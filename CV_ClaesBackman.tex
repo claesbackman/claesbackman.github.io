@@ -1,0 +1,483 @@
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A clean template for an academic CV
+%
+% Uses tabularx to create two column entries (date and job/edu/citation).
+% Defines commands to make adding entries simpler.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt, a4paper]{article}
+
+% Full Unicode support for non-ASCII characters
+\usepackage[gen]{eurosym}
+\usepackage[utf8]{inputenc}
+
+% Useful aliases
+
+\newcommand{\AU}{Aarhus University}
+\newcommand{\BSS}{Aarhus BSS}
+\newcommand{\AuDept}{Department of Economics and Business Economics}
+
+% Identifying information
+\newcommand{\Title}{Curriculum Vit\ae}
+\newcommand{\FirstName}{Claes}
+\newcommand{\LastName}{Bäckman}
+\newcommand{\MyName}{\FirstName\ \LastName}
+\newcommand{\Me}{\textbf{\LastName}}  % For citations
+\newcommand{\Email}{claes.backman@gmail.com}
+\newcommand{\PersonalWebsite}{https://sites.google.com/view/claesbackman/home}
+\newcommand{\ORCID}{0000-0003-3264-3417}
+\newcommand{\Affiliation}{\AuDept \\ \BSS \\ \AU}
+\newcommand{\Address}{
+	Fuglesangs Allé 4
+ \\ 8210 Aarhus V, Denmark
+}
+
+
+% Template configuration
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Disable hyphenation
+\usepackage[none]{hyphenat}
+
+% Control the font size
+\usepackage{anyfontsize}
+
+% Icon fonts (requires using xelatex or luatex)
+\usepackage[fixed]{fontawesome5}
+\usepackage{academicons}
+
+% Template variables for styling
+\newcommand{\TablePad}{\vspace{-0.4cm}}
+\newcommand{\SoftwareTitle}[1]{{\bfseries #1}}
+\newcommand{\TableTitle}[1]{{\fontsize{12pt}{0}\selectfont \itshape #1}}
+
+% For fancy and multipage tables
+\usepackage{tabularx}
+\usepackage{ltablex}
+
+% Define a new environment to place all CV entries in a 2-column table.
+% Left column are the dates, right column the entries.
+\usepackage{environ}
+\NewEnviron{EntriesTable}{
+	\TablePad
+	\begin{tabularx}{\textwidth}{@{}p{0.12\textwidth}@{\hspace{0.02\textwidth}}p{0.86\textwidth}@{}}
+		\BODY
+	\end{tabularx}
+}
+
+
+
+\NewEnviron{EntriesTable_wide}{
+	\TablePad
+	\begin{tabularx}{\textwidth}{@{}p{0.45\textwidth}@{\hspace{0.02\textwidth}}p{0.55\textwidth}@{}}
+		\BODY
+	\end{tabularx}
+}
+
+% Macros to add links and mark publications
+\newcommand{\DOI}[1]{doi:\href{https://doi.org/#1}{#1}}
+\newcommand{\DOILink}[1]{\href{https://doi.org/#1}{doi.org/#1}}
+\newcommand{\Preprint}[1]{\newline • \href{#1}{Working paper} \faFilePdf\ }
+\newcommand{\Publication}[1]{• \href{#1}{Published version} \faFilePdf\ }
+\newcommand{\WorkingPaper}[1]{\newline • \href{#1}{Working paper} \faFilePdf\ }
+\newcommand{\Youtube}[1]{\newline • Recording: \faYoutube\, \href{https://www.youtube.com/watch?v=#1}{youtube.com/watch?v=#1}}
+\newcommand{\GitHub}[1]{\newline • Code: \faGithub\ \href{https://github.com/#1}{#1}}
+\newcommand{\Role}[1]{\newline • Role: #1}
+\newcommand{\Website}[1]{\newline • Website: \href{https://#1}{#1}}
+\newcommand{\Slides}[1]{\newline • Slides: \faTv\ \href{https://#1}{#1}}
+\newcommand{\SlidesDOI}[1]{\newline • Slides: \faTv\ \DOILink{#1}}
+\newcommand{\PosterDOI}[1]{\newline • Poster: \faImage\ \DOILink{#1}}
+\newcommand{\OA}{\aiOpenAccess\enspace}
+\newcommand{\Invited}{\newline • \textbf{Invited talk}}
+
+% Macros to set the year and duration on the left column
+\newcommand{\Duration}[2]{\fontsize{10pt}{0}\selectfont #1 -- #2}
+\newcommand{\Year}[1]{\fontsize{10pt}{0}\selectfont #1}
+\newcommand{\Ongoing}{present}
+%\newcommand{\Ongoing}{$\ast$}
+\newcommand{\Future}{future}
+\newcommand{\Review}{in review}
+\newcommand{\Accepted}{accepted}
+\newcommand{\Appointment}[3]{\textbf{#1} \newline #2 \newline #3}
+\newcommand{\AppointmentTwo}[2]{\textbf{#1} \newline #2}
+% Define command to insert month name and year as date
+\usepackage{datetime}
+\newdateformat{monthyear}{\monthname[\THEMONTH], \THEYEAR}
+
+% Set the page margins
+\usepackage[a4paper,margin=1.5cm,includehead,headsep=5mm]{geometry}
+
+% To get the total page numbers (\pageref{LastPage})
+\usepackage{lastpage}
+
+% No indentation
+\setlength\parindent{0cm}
+
+% Increase the line spacing
+\renewcommand{\baselinestretch}{1.1}
+% and the spacing between rows in tables
+\renewcommand{\arraystretch}{1.5}
+
+% Remove space between items in itemize and enumerate
+\usepackage{enumitem}
+\setlist{nosep}
+
+% Use custom colors
+\usepackage[usenames,dvipsnames]{xcolor}
+
+% Set fonts. Requires compilation with xelatex
+%\usepackage{fontspec}  % required to make older xelatex compile with UTF8
+
+% Configure the font style for sections
+\usepackage{sectsty}
+\sectionfont{\vspace{0.5cm}\bfseries\fontsize{12pt}{0}\selectfont\uppercase}
+\subsectionfont{\vspace{0.2cm}\mdseries\fontsize{12pt}{0}\selectfont\uppercase}
+
+% Set the spacing for sections
+%\usepackage{titlesec}
+%\titlespacing{\section}{0pt}{0cm}{0.3cm}
+%\titlespacing{\subsection}{0pt}{0.3cm}{0.3cm}
+
+% Disable number of sections. Use this instead of "section*" so that the sections still
+% appear as PDF bookmarks. Otherwise, would have to add the table of contents entries
+% manually.
+\makeatletter
+\renewcommand{\@seccntformat}[1]{}
+\makeatother
+
+% Set fancy headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\chead{
+	\fontsize{10pt}{12pt}\selectfont
+	\MyName
+	\hspace{0.2cm} -- \hspace{0.2cm}
+	\Title
+	\hspace{0.2cm} -- \hspace{0.2cm}
+	\monthyear\today
+}
+%\rhead{\fontsize{10pt}{0}\selectfont \thepage/\pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+
+% Metadata for the PDF output and control of hyperlinks
+\usepackage[colorlinks=true]{hyperref}
+\hypersetup{
+	pdftitle={\MyName\ - \Title},
+	pdfauthor={\MyName},
+	linkcolor=blue,
+	citecolor=blue,
+	filecolor=black,
+	urlcolor=MidnightBlue
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+	
+	% No header for the first page
+	\thispagestyle{empty}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% HEADER
+	{\fontsize{22pt}{0}\selectfont\MyName}\\[-0.1cm]
+	\rule{\textwidth}{0.2pt}
+	\begin{minipage}[t]{0.595\textwidth}
+	Email: \href{mailto:\Email}{\Email} \\
+	\href{https://www.\PersonalWebsite}{Personal Website}
+	\end{minipage}
+	\begin{minipage}[t]{0.405\textwidth}
+		\begin{flushright}
+			Last updated: \monthyear\today
+			\\
+			ORCID: \href{https://orcid.org/\ORCID}{\ORCID}
+			\\
+		\end{flushright}
+	\end{minipage}
+%	
+	\section{Research interests}
+	Housing markets, household Finance, Mortgage markets, interest-only mortgages, peer effects 
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Current Appointments}
+	
+	%		\begin{tabularx}{\textwidth}{@{}p{0.12\textwidth}@{\hspace{0.02\textwidth}}p{0.86\textwidth}@{}}
+		%		asdfasfd & asdfioansdf  \\
+		%	\end{tabularx}
+	
+	\begin{EntriesTable}
+		\Duration{2025}{2027}  &  \AppointmentTwo{Marie Skłodowska-Curie fellow}{Leibniz Institute for Financial Research SAFE} \\ 
+		\Duration{2025}{} & \AppointmentTwo{Guest Researcher}{Norges Bank}
+	
+	\end{EntriesTable}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Professional Appointments}
+	
+%		\begin{tabularx}{\textwidth}{@{}p{0.12\textwidth}@{\hspace{0.02\textwidth}}p{0.86\textwidth}@{}}
+%		asdfasfd & asdfioansdf  \\
+%	\end{tabularx}
+	
+	\begin{EntriesTable}
+		\Duration{2024}{2025}  &  \AppointmentTwo{Visiting professor}{Department of Economics, University of Mannheim} \\ 
+		\Duration{2023}{2024} & \AppointmentTwo{Scientific Advisor}{Finansinspektion (Swedish Financial Supervisory Authority)} \\
+		\Duration{2023}{2024}  &  
+		\AppointmentTwo{Advanced Researcher}{Leibniz Institute for Financial Research SAFE}
+		\\
+		\Duration{2020}{2023}  & 
+		\AppointmentTwo{Assistant Professor}{\AuDept, \AU}
+		\\
+%		\Duration{2020}{\Ongoing}  & \textbf{Research Fellow, Danish Finance Institute} \\
+		\Duration{2016}{2019}  &
+		\AppointmentTwo{Postdoctoral Fellow (parental leave September-January 2019)}{Department of Economics, Lund University, Sweden}
+	\end{EntriesTable}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Education}
+	
+	\begin{EntriesTable}
+		\Duration{2013}{2017}  &
+		\textbf{PhD in Economics},  Copenhagen Business School, Denmark.
+		\\
+		%	\Duration{2010}{2012}  &
+		%	\textbf{M.Sc., in Advanced Economics and Finance (Cand.oecon)}, Copenhagen Business School, Denmark
+		%	\\
+		%	\Duration{2007}{2010}  &
+		%	\textbf{BSc in Economics and Business}, Lund University, Sweden 
+	\end{EntriesTable}
+	%	\newpage 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Publications}
+	
+	\begin{EntriesTable}
+		
+		\Year{2025} & Mortgage Design, Repayment Schedules, and Household Borrowing, with Patrick Moran and Peter van Santen \newline Accepted at the \textit{Review of Financial Studies} 
+		\WorkingPaper{https://claesbackman.github.io/Papers/AmortRequirement.pdf} 	 \\
+		
+		\Year{2025} & Mortgage Innovation and House Price Booms, \textit{Journal of Urban Economics}, with Chandler Lutz. 
+		\Preprint{10.2139/ssrn.2699824}
+		\Publication{10.1016/j.jue.2024.103725}
+		%\Preprint{10.2139/ssrn.2699824}	
+		\\
+	
+		 \Year{2023 } &
+		Interest-Only Mortgages and Consumption Growth: Evidence from a Mortgage Market Reform. \textit{International Economic Review}, with Natalia Khorunzhina.  
+		\Preprint{10.2139/ssrn.3533247} 
+		\Publication{10.1111/iere.12682}
+		\\
+		
+		\Year{2021} & Participation and Losses in Multi-Level Marketing: Evidence from an FTC Settlement. \emph{Financial Planning Review}, with Tobin Hanspal
+		\Preprint{10.2139/ssrn.3175871} 
+		\Publication{10.1002/cfp2.1137}
+		\\
+		\Year{2020}  &The Impact of Interest-Only Loans on Affordability. 
+		\emph{Regional Science and Urban Economics}, with Chandler Lutz. 
+		\Preprint{10.2139/ssrn.3055240}
+		\Publication{10.1016/j.regsciurbeco.2018.06.004}
+	\end{EntriesTable}
+
+	\section{Working papers}
+
+	\begin{EntriesTable}
+	\Year{2024} &Beyond Connectivity: Stock Market Participation in a Network, with  Olga Balakina \& Anastasiia Parakhoniak \newline 3rd revise and resubmit to the \textit{Journal of Economic Dynamics and Control}. 
+	\WorkingPaper{https://www.econstor.eu/bitstream/10419/289595/1/1885244843.pdf} 	 \\
+	
+	\Year{2024} & Personal Financial Advice and Portfolio Quality, with  Olga Balakina, Andreas Hackethal, Tobin Hanspal, \& Dominique M. Lammer. (under review)
+	\WorkingPaper{https://claesbackman.github.io/Papers/PersonalFinancialAdviceandPortfolioQuality.pdf}	\\ 
+	
+	\Year{2025} & Housing Returns over the Income Distribution, with Natalia Khorunzhina and Walter D'Lima.
+		\WorkingPaper{https://claesbackman.github.io/Papers/BDK_HousingReturns.pdf}	\\
+		
+	\Year{2025} & Macroprudential policies and homeownership rates: Cross-country evidence 
+			\WorkingPaper{https://claesbackman.github.io/Papers/MacroPrudHomeownership.pdf}	\\
+			
+	\Year{2025} & Mortgage market design and inequality: Evidence from interest-only mortgages in Denmark, with Danial Ali Akbari, Natalia Khorunzhina and Timo Trimborn
+	
+	
+%	\WorkinPaper{https://claesbackman.github.io/Papers/PersonalFinancialAdviceandPortfolioQuality.pdf}	\\ 
+	
+		\end{EntriesTable}
+%		
+%\section{Work in progress}
+%Housing returns across the wealth distribution, with \\ 
+%
+%Mortgage market design and wealth inequality: Evidence from interest-only mortgages in Denmark. With Danial Ali Akbari, Natalia Khorunzhina and Timo Trimborn \\
+%
+%%Can Credit Supply Shocks Affect the Entire Income Distribution? With Natalia Khorunzhina
+%
+%Home equity extractions, renovations and house price s. With Natalia Khorunzhina and Walter D'Lima
+%\\
+%
+%Macroprudential policies do not affect homeownership rates \\
+%
+%The effect of algorithmic trading on pricing fat finger errors. With Olga Balakina, Arze Karam and Anastasiia Parakhoniak  
+%\\
+
+\section{Other Publications}
+
+\begin{EntriesTable}
+	\Year{2019}  &
+	\href{https://www.nationalekonomi.se/sites/default/files/2019/03/47-2-cb.pdf}{Hur påverkar amorteringskravet hushållen? Lärdomar från Danmark.} 
+	\emph{Ekonomisk Debatt, 2019 (The Journal of the Swedish Economic Association)}. 
+	\\
+	%	\Year{2018}  & Bäckman \& Hanspal, Tobin. 
+	%	\href{https://born05-thinkforward-initiative-axaxzmkc.netdna-ssl.com/development/downloads/TFI-Report-_-Multi-Level-Marketing-Participation-and-Social-Connectivity-_-Backman-and-Hanspal.pdf}{Multi-Level Marketing Participation and Social Connectivity}. TFI Research Challenge Report.
+	%	\\
+	
+	
+\end{EntriesTable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Grants \& Awards }
+Combined grant funding: \euro{315.000}. \\
+
+\begin{EntriesTable}
+	2024 & Marie Sk\l{}odowska-Curie Fellowship (Planned for 2025). "Young homeownership (YoHo)". \euro{190.000}, sole PI.   \\ 
+	2023 & Best Lecturer Award (Den Gyldne Pegepind) at the Department of Economics, Aarhus University \\
+	\Duration{2017}{2020}  &
+	Tom Hedelius and Jan Wallanders stiftelse. ``The long and short term impact of amortization requirements''. 1.2 million SEK/ \euro{117.000}. Sole PI. 
+	\\
+	\Year{2017} &
+	Think Forward Initiative Research Challenge Grantee. ``Multi-level Marketing Participation and Social Connectivity''.  \euro{5.000}. Co-PI: Bäckman, Claes \& Hanspal, Tobin
+	\\
+	\Year{2017}  &
+	Research Center SAFE, Goethe University Frankfurt . ``Economic Opportunity and Multi-level Marketing''. \euro{3.000}. Co-PI: Bäckman, Claes \& Hanspal, Tobin
+	\\
+\end{EntriesTable}
+
+%	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Presentations 
+%	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Presentations}
+	
+	\begin{EntriesTable}
+		\Year{2025} &		ReCapNet (planned), Goethe University (planned), 6th CEAR-RSI Household Finance Workshop (planned) \\
+		 % Mannheim University  (Department of Finance),  Mannheim University  (Department of Economics), 
+		\Year{2024} & Mannheim University, Bundesbank, SAFE, Aalto University, VATT Institute for Economic Research, Royal Institute of Technology (Stockholm), ZEW, Mannheim \\ 
+		\Year{2023} & University of Bergen, Riksbanken, 12th European Meeting of the Urban Economics Association (Bocconi), ECHOPPE 2023 (Toulouse), St Gallen workshop on Macroeconomic implications of housing, household finances and wealth dynamics, 5th ECB/IMF macroprudential policy and research conference (Frankfurt), 15th ReCapNet Conference (Mannheim), NHH Norwegian School of Economics (Bergen), Finansinspektionen (Stockholm)
+		   \\ 
+		\Year{2022} & SGF Conference, EEA-ESEM 2022 x 2, Swedish Economic Conference (Stockholm School of Economics), NFN Young Nordic Scholars \\ 
+		\Year{2021}  & Central Bank of Ireland (Workshop on Borrower finances, financial stability assessment and macroprudential policies); Nationalbanken, Denmark; NFN Young Nordic Scholars Webinar; 15th North American Meeting of the Urban Economics Association;  Finansinspektionen (Swedish Financial Supervisory Authority), Young Scholars Nordic Finance Workshop. 
+		\\
+		\Year{2020} & ASSA meetings; Aarhus University; Lund University; EFA 2020; Nordic Junior Macro Seminar Series
+		\\
+		\Year{2019} & European Economic Association Congress 2019; Econometric Society Winter Meetings  
+		\\
+		\Year{2018} & Riksbanken; Aarhus University; Swedish National Conference in Economics; Research Institute for Industrial Economics, CEAR-RSI Household Finance Workshop in Montreal
+			\\
+		\Year{2017} & Norges Bank Workshop on Housing and Household Finance, Oslo; 2nd SAFE Household Finance Workshop, Frankfurt; 
+			\\
+		\Year{2016} & Riksbanken; International Association for Applied Econometrics Annual Conference, Milano; Copenhagen Business School, Denmark; Lund University, Sweden; Econometric Society Winter Meeting, Edinburgh 
+		\\
+		\Year{2015} & Nationalbanken, Denmark; Copenhagen Business School, Denmark, Midwestern Economic Association Annual Meeting, Minneapolis 
+		\\
+		\Year{2014} & Danish Graduate Program in Economics Annual Workshop
+		\\
+		
+	\end{EntriesTable}
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Outreach}	
+	
+	\begin{EntriesTable}
+		\Year{2024} & SAFE blog post on ``Personal Financial Advice and Portfolio Quality''.  \href{		https://safe-frankfurt.de/news-latest/safe-finance-blog/details/ask-for-financial-advice-from-friends-and-family.html}{Link} \\ 
+		\Year{2024} & SAFE blog post on ``Mortgage Design, Repayment Schedules, and Household Borrowing''.  \href{https://safe-frankfurt.de/news-latest/safe-finance-blog/details/how-does-the-design-of-debt-repayment-schedules-affect-household-borrowing.html}{Link} \\ 
+		\Year{2023} & Interviewed for Business Insider on interest-only mortgages. \href{https://www.businessinsider.com/henrys-risky-unusual-interest-only-mortgage-loan-home-prices-soar-2023-12}{HENRYs are turning to a little-known and risky type of mortgage as home prices soar} \\ 
+		\Year{2023} & Interview on Swedish radio P1, about the Danish mortgage market \\
+		\Year{2023} & Interview with Tobin Hanspal  featuring our work on Multilevel Marketing in der Standard, Austria.  \\ 
+		\Year{2022} & Debate article about loans for first-time buyers at Finans.dk, joint with Michael Svarer. \href{https://finans.dk/debat/ECE14399396/haandsraekning-til-foerstegangskoebere-kan-oege-kloefterne-paa-boligmarkedet/}{Håndsrækning til førstegangskøbere kan øge kløfterne på boligmarkedet}\\ 
+		\Year{2022} &  Personal Recommendations and Portfolio Quality: Featured blog post in Duke Financial Economics Center: FinReg Blog\\ 
+		\Year{2022} &  Personal Recommendations and Portfolio Quality. Featured article in FAZ \\ 
+		\Year{2021}  &
+		Launched a financial literacy course for immigrants at \href{https://www.finanskurs.se}{www.finanskurse.se} (\href{https://sites.google.com/view/finanskurs-english/start}{English verion})in collaboration with Finansinspektionen (the Swedish Financial Supervisory Authority). \newline 
+		Media coverage: 		 \href{https://www.gp.se/ekonomi/så-kan-du-bli-rikare-de-startar-gratis-ekonomiutbildning-1.57621182}{Göteborgsposten}
+		\\
+		\Year{2021} & 
+		Debate article in Politiken (a major Danish newspaper) about interest-only mortgages in Denmark and the housing market for young households. \href{https://politiken.dk/debat/art8137567/De-afdragsfrie-lån-skabte-en-boligfest-men-ikke-for-unge}{”De afdragsfrie lån skabte en boligfest, men ikke for unge”} 
+		\\ 
+		\Year{2020} & 
+		Wrote on Ekonomistas, a popular blog by Swedish economists, about the amortization requirement and Corona. 		\href{https://ekonomistas.se/2020/04/08/finansinspektionen-maste-ga-langre-och-avskaffa-amorteringskravet/}{Finansinspektionen måste gå längre och avskaffa amorteringskravet!}
+		\\
+		\Year{2019} & 
+		Interviewed about the amortization requirement in Sweden on TV4 (major television channel) and several newspaper. 		\href{https://www.di.se/nyheter/forskare-kritikerna-har-fel-om-amorteringskravet-lar-av-danmark/}{Dagens industri}, \href{https://www.affarsvarlden.se/artikel/forskare-slopat-amorteringskrav-hjalper-inte-unga-6954108}{Affärvärlden}, among others
+		\\ 
+		\Year{2017} & 
+		Responded to arguments that economics was an outdated discipline in a major Swedish newspaper, together with Petter Lundborg and Tommy Andersson 	\href{https://www.sydsvenskan.se/2017-03-07/forskare-argumenten-ar-forlegade}{Forskare: Argumenten är förlegade}
+		\\ 
+		\Year{2017}	& 
+		Interviewed on Ekonomiekot, Sveriges Radio, about house prices in Denmark and Sweden 		\href{https://sverigesradio.se/artikel/6592272}{Boprisrallyt i Norden oroar}
+		\\
+	\end{EntriesTable}
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%	\section{Academic Service \& Affiliations}
+	
+	\section{Reviewer}
+	Review of Financial Studies, Review of Economics and Statistics, Journal of Economic Behavior and Organization, Journal of Financial and Quantitative Analysis, Regional Science and Urban Economics, Nordic Economic Policy Review, Scandinavian Journal of Economics, Empirical Economics 
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Teaching}
+
+\textbf{University of Mannheim}
+
+Credit and Housing markets, Master elective. (Average grade: 1.1/5) 
+
+Household Finance x2 , Bachelor elective (Grade: 1.6/5) \& Master-level (N/A)
+
+Household Finance Seminar x 2, Bachelor/Master elective (Grade: 1.0/5) \\
+
+
+\textbf{Aarhus University}
+
+Macroeconomic, advanced Bachelor-level, Aarhus University
+
+Winner of Lecturer of the Year Award in 2023, awarded by students. Average teaching evaluation grade of 4.6/5 in 2022. \\
+
+
+\textbf{Lund University}
+
+Macroeconomic Theory and Economic Policy, bachelor-level course in macroeconomics
+
+\section{Supervision}
+P\lowercase{h}D \lowercase{(co-advisor)}
+\begin{EntriesTable}
+	\Duration{2022}{\Ongoing}  & Alexander Kjær Hilsløv, \AU. Main advisor: Jonas Maibom
+\end{EntriesTable}
+
+Bachelor and Master thesis supervision
+\begin{EntriesTable}
+	\Duration{2020}{2023}  &
+	Ten Bachelor and three Master theses supervised at \AU \\ 
+	\Duration{2017}{2019}   & Five Bachelor and nine Master theses supervised at Lund University
+	
+\end{EntriesTable}
+
+	
+\section{Personal}
+Swedish (Native), English (Fluent), Danish (advanced) \\ 
+Married, one child (2019), Swedish citizen
+
+%
+%\section{Workshops \& Short Courses}
+%
+%\begin{EntriesTable}
+%	\Year{2019} &
+%		Main organizer for a workshop on Financial literacy at Lund University, bringing together academics, policymakers and industry
+%	\\
+%\end{EntriesTable}
+%
+%%
+%\section{References} 
+%\begin{EntriesTable_wide}
+%	Professor Lars EO Svensson \newline	Department of Economics  \newline Stockholm School of Economics \newline 
+%	\href{leosven@gmail.com}{leosven@gmail.com} & Associate Professor Natalia Khorunzhina \newline Department of Economics \newline Copenhagen Business School \newline \href{nk.eco@cbs.dk}{nk.eco@cbs.dk} 
+%\end{EntriesTable_wide}
+
+\end{document}
