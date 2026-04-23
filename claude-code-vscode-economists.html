@@ -476,6 +476,9 @@
       </div>
     </div>
     <p style="margin-top:0.8rem;">When you open a project, Claude reads both files. The folder-level file takes precedence if there's any conflict.</p>
+    <div class="note">
+      <strong>Writing as well as code:</strong> CLAUDE.md is also the right place for instructions about how you want Claude to <em>write</em> — tone, voice, the kinds of hedging or phrasing to avoid. Paul Goldsmith-Pinkham has a useful post on using these instructions to get AI assistance that improves rather than flattens your prose: <a href="https://paulgp.substack.com/p/writing-and-thinking-with-ai-assistance" style="color:var(--accent);">Writing and thinking with AI assistance</a>.
+    </div>
 
     <h3>Skills — Reusable Workflows as Slash Commands</h3>
     <p>Skills are markdown instruction files that become <code>/slash-commands</code> you can invoke in the Claude panel. When you type <code>/skill-name</code>, Claude loads the instructions and executes them — useful for repetitive tasks you run across projects, like a standard robustness check or reformatting a regression table.</p>
@@ -507,7 +510,22 @@ For the main specification in this project:
 4. Produce a summary table comparing coefficients across all specs</code></pre>
 
     <h3>Downloading Skills Others Have Written</h3>
-    <p>There is a growing community library of shared skills. The best starting point is the <strong>awesome-claude-code</strong> repository on GitHub (<code>github.com/hesreallyhim/awesome-claude-code</code>), which curates skills, slash commands, and workflow templates. Copy any <code>SKILL.md</code> folder into <code>~/.claude/skills/</code> and it becomes available immediately as a slash command.</p>
+    <p>There is a growing community library of shared skills. The best general starting point is the <strong>awesome-claude-code</strong> repository on GitHub (<code>github.com/hesreallyhim/awesome-claude-code</code>), which curates skills, slash commands, and workflow templates. Copy any <code>SKILL.md</code> folder into <code>~/.claude/skills/</code> and it becomes available immediately as a slash command.</p>
+    <p>For economists specifically, a few starting points that are already in use in the field:</p>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id"><a href="https://github.com/scunning1975/MixtapeTools/blob/main/.claude/skills/beautiful_deck/SKILL.md" style="color:inherit;text-decoration:none;">scunning1975/MixtapeTools<br>— beautiful_deck</a></div>
+        <div class="ext-desc"><strong>Scott Cunningham's slide-deck skill.</strong> Turns notes or a draft outline into a clean, presentation-ready deck. Part of his broader <em>MixtapeTools</em> collection of Claude skills for empirical work.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id"><a href="https://claudeblattman.com/setup/skill-reference/" style="color:inherit;text-decoration:none;">claudeblattman.com<br>— /done and others</a></div>
+        <div class="ext-desc"><strong>Chris Blattman's skill reference.</strong> A set of research-workflow skills, including <code>/done</code> for wrapping up a session and logging what changed. Useful as a model for how a working economist structures daily Claude Code use.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id"><a href="https://github.com/claesbackman/AI-research-feedback" style="color:inherit;text-decoration:none;">claesbackman/<br>AI-research-feedback</a></div>
+        <div class="ext-desc"><strong>Skills for getting feedback on research.</strong> Commands for referee-style reviews of papers, grant proposals, and code — structured prompts that mimic the kind of critique you'd get from a colleague.</div>
+      </div>
+    </div>
     <div class="note warn">
       <strong>Worth knowing:</strong> Claude can also invoke skills automatically when it judges them relevant — not just when you type the slash command. If you'd rather control when a skill runs, add <code>disable-model-invocation: true</code> to the frontmatter.
     </div>
