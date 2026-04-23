@@ -335,7 +335,11 @@
   <section>
     <p class="section-label">Setup</p>
     <h2>Installation in 5 Steps</h2>
-        <p>Installing Claude Code in VSCode and getting started is actually quite straightforward.</p>
+        <p>Installing Claude Code in VS Code and getting started is straightforward.</p>
+
+    <div class="note">
+      <strong>Mac users:</strong> replace <code>Ctrl</code> with <code>Cmd</code> throughout — e.g. <code>Cmd+Shift+X</code> for Extensions, <code>Cmd+Shift+P</code> for the Command Palette.
+    </div>
 
     <ol class="steps">
       <li>Open VS Code and open the Extensions panel by pressing <code>Ctrl+Shift+X</code>.</li>
@@ -345,7 +349,7 @@
       <li>Open your <strong>full project folder</strong> in VS Code (File → Open Folder), not just a single file. Claude needs the whole directory tree to be useful. This can be any folder on your computer — a git repository, a Dropbox folder, or a plain folder on your desktop all work equally well.</li>
     </ol>
     <div class="note">
-      <strong>Tip:</strong> Run <code>Claude Code: Open Walkthrough</code> from the Command Palette (<code>Ctrl+Shift+P</code>) for a quick interactive tour of the basics. <strong>Mac users:</strong> replace <code>Ctrl</code> with <code>Cmd</code> throughout — e.g. <code>Cmd+Shift+X</code> to open Extensions, <code>Cmd+Shift+P</code> for the Command Palette.
+      <strong>Tip:</strong> Run <code>Claude Code: Open Walkthrough</code> from the Command Palette (<code>Ctrl+Shift+P</code>) for a quick interactive tour of the basics.
     </div>
   </section>
 
@@ -359,7 +363,12 @@
       <figcaption style="font-size:0.82rem;color:var(--muted);font-style:italic;margin-top:0.5rem;text-align:center;">Once a folder is opened and Claude Code is launched — project files in the Explorer (left), Claude Code panel (right).</figcaption>
     </figure>
 
+    <div class="note">
+      <strong>Tip:</strong> Do you like the light theme in the pictures, but find that your VSCode is in dark mode? Ask Claude to help you change the theme with a prompt like <code>Change my VS Code theme to light.</code> It can switch themes for you without needing to navigate the settings menu. If you want to change the theme manually, open settings and themes and choose a light theme. 
+    </div>
+
   <hr class="divider">
+
 
   <!-- NEXT STEPS -->
   <section>
@@ -367,10 +376,9 @@
     <h2>After Installing — What to Do Next</h2>
     <p>Claude Code works out of the box, but a few one-time setup steps make it dramatically more useful for empirical research. Everything below is covered in detail in the sections that follow — this is the short roadmap.</p>
     <ol class="steps">
-      <li><strong>Install the research-stack extensions you use.</strong> Stata, Python, LaTeX, CSV viewers — Claude reads what's installed and can run code, render tables, and preview PDFs directly in the editor.</li>
+      <li><strong>Install the extensions for your research stack.</strong> Stata, Python, LaTeX, CSV viewers — Claude reads what's installed and can run code, render tables, and preview PDFs directly in the editor.</li>
       <li><strong>Create a <code>CLAUDE.md</code> file for each project.</strong> Tell Claude once about your data, sample definitions, and coding conventions. It reads this at the start of every session so you never have to repeat yourself.</li>
       <li><strong>Add skills for the workflows you repeat.</strong> Turn a standard robustness check, a referee-style review, or a slide-deck build into a one-line slash command you can invoke in any project.</li>
-      <li><strong>Pick a permission mode before you start.</strong> Start cautious — Normal or Plan mode — until you have a sense of what Claude will do with your files. You can loosen it later.</li>
     </ol>
   </section>
 
@@ -380,27 +388,18 @@
     <h2>A Starter Pack for Economists</h2>
     <p>Install these alongside Claude Code to cover the full research stack. Search for each by the extension ID in the Extensions panel (<code>Ctrl+Shift+X</code>).</p>
 
-    <h3>AI Assistants</h3>
-    <div class="ext-table">
-      <div class="ext-row">
-        <div class="ext-id">anthropic.claude-code</div>
-        <div class="ext-desc">The main Claude Code agent. Reads your project, edits files, runs commands, and shows diffs for approval. The foundation of this whole setup.</div>
-      </div>
-      <div class="ext-row">
-        <div class="ext-id">openai.chatgpt</div>
-        <div class="ext-desc">ChatGPT's Codex directly in VS Code. You can use it similarly to Claude Code -- it can read your files too. </div>
-      </div>
-    </div>
 
     <h3>Stata</h3>
     <div class="ext-table">
       <div class="ext-row">
         <div class="ext-id">tmonk.stata-workbench</div>
-        <div class="ext-desc"><strong>The most important Stata extension.</strong> Built at LSE, it lets you run Stata code directly from the editor — output cards, inline graphs, and a live data browser without switching windows. Critically, it also exposes an MCP server so Claude Code can <em>directly execute Stata commands, inspect your variables, and read stored results</em> (<code>r()</code>, <code>e()</code>) during a session.</div>
+        <div class="ext-desc">A VS Code-compatible extension that allows Stata code to be run directly from the editor. Enables AI agents to directly interact with Stata. It also exposes an MCP server so Claude Code can directly execute Stata commands, inspect your variables, and read stored results. Built by <a href="https://tdmonk.com/" style="color:var(--accent);">Thomas Monk, London School of Economics</a>.
+        </div>
       </div>
     </div>
 
     <h3>Python</h3>
+
     <div class="ext-table">
       <div class="ext-row">
         <div class="ext-id">ms-python.python</div>
@@ -418,6 +417,10 @@
         <div class="ext-id">ms-python.vscode-python-envs</div>
         <div class="ext-desc">Manages virtual environments (conda, venv, pipenv) from inside VS Code. Keeps project dependencies isolated — important when different papers use different package versions.</div>
       </div>
+    </div>
+
+    <div class="note">
+      <strong>Why install Python even if you don't write Python.</strong> A surprising share of the everyday friction in empirical work — converting a PDF or <code>.docx</code> to markdown, reshaping a messy CSV, scraping a table from a webpage, pulling a series from an API, cleaning a bibliography file, splitting a 200-page document into chapters — is solved most quickly by a ten-line Python script. You don't need to know the language to benefit. Ask Claude Code in plain English ("convert this PDF to markdown, keep the tables", "download monthly CPI from FRED and save as CSV"), and it will write, run, and debug the script for you. Installing the Python extensions above is what makes that path smooth: Claude can execute scripts, see the errors, and iterate without you having to set anything up. Think of Python less as a language you need to learn and more as a general-purpose glue that Claude uses on your behalf.
     </div>
 
     <h3>LaTeX</h3>
@@ -444,6 +447,113 @@
       </div>
     </div>
 
+    <div class="note" style="margin-top:1.5rem;">
+      <strong>LaTeX build-file cleanup.</strong> By default, <code>latex-workshop</code> leaves a trail of auxiliary files (<code>.aux</code>, <code>.bbl</code>, <code>.log</code>, <code>.fls</code>, <code>.fdb_latexmk</code>, …) next to your <code>.tex</code> source. To have VS Code delete them automatically after each successful build, add three settings to your <code>.vscode/settings.json</code>:
+      <pre style="margin-top:0.6rem;"><code>"latex-workshop.latex.autoClean.run": "onBuilt",
+"latex-workshop.latex.clean.method": "glob",
+"latex-workshop.latex.clean.fileTypes": [
+  "*.aux", "*.bbl", "*.blg", "*.log",
+  "*.out", "*.toc", "*.fls", "*.fdb_latexmk",
+  "*.nav", "*.snm", "*.vrb"
+]</code></pre>
+      The first line triggers cleanup after every build; the second tells it to match by file extension; the third lists which extensions to delete. Set <code>autoClean.run</code> to <code>"never"</code> if you'd rather keep the aux files around (useful when debugging bibliography or cross-reference errors).
+    </div>
+
+  </section>
+
+  <hr class="divider">
+
+  <!-- FILE FORMATS -->
+  <section>
+    <p class="section-label">File Formats</p>
+    <h2>What Claude Code Can Read — and What to Convert First</h2>
+    <p>Claude Code works best with plain text. The more a file looks like characters-on-a-page (as opposed to a rendered binary), the better Claude can read, edit, and reason about it. For economists this has practical consequences: a referee report in <code>.docx</code> or a codebook as a scanned PDF are both usable, but giving Claude a text version of the same file produces noticeably better results.</p> 
+      
+      <p>A <strong>markdown file</strong> (<code>.md</code>) is the simplest useful form of this: a plain-text document with lightweight formatting conventions — <code>#</code> for headings, <code>*italic*</code>, <code>**bold**</code>, bullet lists, and links written as <code>[text](url)</code> — that renders into nicely formatted output but stays fully readable and editable as raw text.</p>
+
+    <p>A rough guide to how Claude handles the formats you're most likely to encounter:</p>
+
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">Plain text<br>.md, .txt, .tex, .bib, .csv, .json, .yaml</div>
+        <div class="ext-desc"><strong>Native — no friction.</strong> Claude reads these directly and can edit them line by line. Markdown and LaTeX are the ideal substrate for any writing task. CSV and TSV are fine up to a few thousand rows; larger files should be summarised or sampled before being shown to Claude.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Code<br>.py, .R, .do, .jl, .sh</div>
+        <div class="ext-desc"><strong>Native.</strong> Claude reads, edits, and runs these. Stata do-files are no exception — Claude reads them as text even without a Stata installation, though it can only <em>execute</em> them if you have the <code>stata-workbench</code> extension set up.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Jupyter<br>.ipynb</div>
+        <div class="ext-desc"><strong>Native.</strong> Claude reads and edits notebook cells directly — code, markdown, and stored outputs — without round-tripping through a script. Useful when a co-author sends an <code>.ipynb</code> or when you want exploratory analysis and prose side by side.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Word<br>.docx</div>
+        <div class="ext-desc"><strong>Usable with a conversion step.</strong> Claude can open <code>.docx</code> files, but formatting, comments, and tracked changes often come through awkwardly. For referee reports or co-author comments, convert to markdown first with <code>pandoc file.docx -o file.md</code>. Claude can do this for you — just ask.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Excel<br>.xlsx, .xls</div>
+        <div class="ext-desc"><strong>Convert to CSV first.</strong> Claude cannot read Excel binaries directly. Export the sheet as CSV, or ask Claude to run a short Python script that does it. Multi-sheet workbooks are best split into one CSV per sheet with clear names.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Stata / R binaries<br>.dta, .rds, .sav</div>
+        <div class="ext-desc"><strong>Convert first.</strong> Claude cannot read these binary formats. Ask Claude to write a short script (Stata <code>export delimited</code>, R <code>readr::write_csv</code>, or Python <code>pyreadstat</code>) to dump the dataset, a sample, or a summary to CSV or markdown.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">PDF<br>.pdf</div>
+        <div class="ext-desc"><strong>The most common problem format.</strong> See the detailed note below.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Images<br>.png, .jpg, figures</div>
+        <div class="ext-desc"><strong>Partial support.</strong> Claude Code can view images directly — useful for showing it a plot you want to improve, or a screenshot of a results table. But it cannot reliably extract text from scanned documents; for those, use OCR first.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Qualtrics / survey<br>.qsf</div>
+        <div class="ext-desc"><strong>Convert first.</strong> The Qualtrics <code>.qsf</code> format is technically JSON but deeply nested and hard to read. Ask Claude to write a short script that flattens it into a markdown outline of blocks, questions, and answer choices — much easier to evaluate.</div>
+      </div>
+    </div>
+
+    <h3>Handling PDFs</h3>
+    <p>PDFs are where most researchers get stuck. They look like documents, but under the hood they are a layout format, not a text format — the "text" is often a sequence of glyphs positioned on a page, with no inherent notion of paragraphs, columns, or tables. Claude Code <em>can</em> read PDFs, but results vary enormously depending on how the PDF was produced.</p>
+    <p>A practical rule of thumb:</p>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">Born-digital PDFs<br>(from LaTeX, Word, etc.)</div>
+        <div class="ext-desc">Usually fine for short documents. Claude can read them directly. Expect some mangling of tables, footnotes, and multi-column layouts.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Long PDFs<br>(50+ pages)</div>
+        <div class="ext-desc">Convert to markdown first. Reading a 200-page PDF directly eats your context window and slows every subsequent turn. A clean markdown version is a fraction of the size and far easier to navigate.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Scanned PDFs<br>(image-based)</div>
+        <div class="ext-desc">Claude cannot read these as text at all — they are essentially images of pages. Run OCR first (<code>ocrmypdf</code> is a good free option), then convert the OCR'd PDF to markdown.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">PDFs with equations and tables</div>
+        <div class="ext-desc">These are the hardest case. Any extraction will be imperfect. If you have access to the source <code>.tex</code>, use that instead — it will always be cleaner than re-parsing the compiled PDF.</div>
+      </div>
+    </div>
+
+    <p style="margin-top:1rem;">For converting PDFs to markdown, a few options work well:</p>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">pandoc</div>
+        <div class="ext-desc"><strong>The universal converter.</strong> Free, command-line, handles dozens of formats. Good first try: <code>pandoc paper.pdf -o paper.md</code>. Works best on clean, born-digital PDFs.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">marker / MinerU / docling</div>
+        <div class="ext-desc"><strong>ML-based PDF-to-markdown tools.</strong> Noticeably better than pandoc on papers with tables, figure captions, and equations. All are free and open source. Claude Code can install and run them for you.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">A /pdf-to-markdown skill</div>
+        <div class="ext-desc"><strong>Roll your own.</strong> A short skill (see next section) can wrap all of the above with sensible fallbacks — try pandoc first, fall back to a better tool if the output is empty or suspiciously short, and report the word count so you can sanity-check the result.</div>
+      </div>
+    </div>
+
+    <div class="note warn">
+      <strong>Rule of thumb:</strong> if a file format requires a conversion step, do it <em>once</em> up front and commit the markdown version alongside the original. Every later session then starts from clean text, and you don't waste context re-converting the same document. This is especially worth doing for codebooks, data dictionaries, and reference PDFs you'll revisit across months of work.
+    </div>
+
   </section>
 
   <hr class="divider">
@@ -455,7 +565,7 @@
 
     <h3>CLAUDE.md — Persistent Project Context</h3>
     <p>A <code>CLAUDE.md</code> file at your project root is read automatically at the start of every Claude Code session. It's the place to tell Claude things that are always true about your project — conventions, variable naming, dataset structure, what not to touch — so you don't have to repeat them in every prompt.</p>
-    <p>The easiest way to create one is to type <code>/init</code> in the Claude Code panel. Claude will read your project folder and generate a draft <code>CLAUDE.md</code> automatically — inferring your file structure, the languages you're using, and any conventions it can detect. Review and edit the result before using it. Alternatively, create the file manually. A useful starting point for an empirical project:</p>
+    <p>The easiest way to create one is to type <code>/init</code> in the Claude Code panel. Claude will read your project folder and generate a draft <code>CLAUDE.md</code> automatically — inferring file structure, languages, and conventions. Review and edit the result before using it. Alternatively, create the file manually. A useful starting point for an empirical project:</p>
     <pre><code># Project: [Paper title]
 
 ## Data
@@ -518,20 +628,20 @@ For the main specification in this project:
 4. Produce a summary table comparing coefficients across all specs</code></pre>
 
     <h3>Downloading Skills Others Have Written</h3>
-    <p>There is a growing community library of shared skills. The best general starting point is the <strong>awesome-claude-code</strong> repository on GitHub (<code>github.com/hesreallyhim/awesome-claude-code</code>), which curates skills, slash commands, and workflow templates. Copy any <code>SKILL.md</code> folder into <code>~/.claude/skills/</code> and it becomes available immediately as a slash command.</p>
+    <p>There is a growing community library of shared skills. Copy any <code>SKILL.md</code> folder into <code>~/.claude/skills/</code> and it becomes available immediately as a slash command.</p>
     <p>For economists specifically, a few starting points that are already in use in the field:</p>
     <div class="ext-table">
       <div class="ext-row">
-        <div class="ext-id"><a href="https://github.com/scunning1975/MixtapeTools/blob/main/.claude/skills/beautiful_deck/SKILL.md" style="color:inherit;text-decoration:none;">scunning1975/MixtapeTools<br>— beautiful_deck</a></div>
-        <div class="ext-desc"><strong>Scott Cunningham's slide-deck skill.</strong> Turns notes or a draft outline into a clean, presentation-ready deck. Part of his broader <em>MixtapeTools</em> collection of Claude skills for empirical work.</div>
+        <div class="ext-id"><a href="https://github.com/claesbackman/AI-research-feedback" style="color:inherit;text-decoration:none;">claesbackman/<br>AI-research-feedback</a></div>
+        <div class="ext-desc"><strong>Skills for getting feedback on research.</strong> Commands for referee-style reviews of papers, grant proposals, and code — structured prompts that mimic the kind of critique you'd get from a colleague.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id"><a href="https://github.com/scunning1975/MixtapeTools" style="color:inherit;text-decoration:none;">scunning1975/<br>MixtapeTools</a></div>
+        <div class="ext-desc"><strong>Scott Cunningham's collection of Claude skills for empirical work.</strong> Includes <code>/beautiful_deck</code>, which turns notes or a draft outline into a clean, presentation-ready deck, alongside other workflow tools worth browsing.</div>
       </div>
       <div class="ext-row">
         <div class="ext-id"><a href="https://claudeblattman.com/setup/skill-reference/" style="color:inherit;text-decoration:none;">claudeblattman.com<br>— /done and others</a></div>
         <div class="ext-desc"><strong>Chris Blattman's skill reference.</strong> A set of research-workflow skills, including <code>/done</code> for wrapping up a session and logging what changed. Useful as a model for how a working economist structures daily Claude Code use.</div>
-      </div>
-      <div class="ext-row">
-        <div class="ext-id"><a href="https://github.com/claesbackman/AI-research-feedback" style="color:inherit;text-decoration:none;">claesbackman/<br>AI-research-feedback</a></div>
-        <div class="ext-desc"><strong>Skills for getting feedback on research.</strong> Commands for referee-style reviews of papers, grant proposals, and code — structured prompts that mimic the kind of critique you'd get from a colleague.</div>
       </div>
     </div>
     <div class="note warn">
@@ -583,7 +693,7 @@ variable names.</code></pre>
       </div>
       <div class="card">
         <div class="card-header"><span class="card-icon">🗑️</span><span class="card-title">Start a new session for new tasks</span></div>
-        <p>Each Claude Code tab is a fresh context. Use <code>Ctrl+N</code> (or <code>Cmd+N</code> on Mac) to open a new conversation rather than continuing a long one for an unrelated task.</p>
+        <p>Each new conversation in the Claude panel is a fresh context. Click the <strong>+</strong> button at the top of the Claude panel to start one, or type <code>/clear</code> to reset the current conversation — rather than continuing a long one for an unrelated task.</p>
       </div>
       <div class="card">
         <div class="card-header"><span class="card-icon">📊</span><span class="card-title">Check usage with /context</span></div>
@@ -595,34 +705,11 @@ variable names.</code></pre>
     </div>
   </section>
 
-  <hr class="divider">
-
-  <!-- PERMISSION MODES -->
-  <section>
-    <p class="section-label">Key Concept</p>
-    <h2>Permission Modes — Start Cautious</h2>
-    <p>Before sending your first real prompt, set the permission mode at the bottom of the chat panel. There are three modes:</p>
-    <div class="use-cases" style="grid-template-columns:1fr 1fr 1fr;">
-      <div class="card" style="border-left-color:#7a9e7e;">
-        <div class="card-header"><span class="card-icon">🔍</span><span class="card-title">Normal</span></div>
-        <p>Claude asks permission before each file edit or command. <strong>Recommended to start.</strong></p>
-      </div>
-      <div class="card" style="border-left-color:#c4a35a;">
-        <div class="card-header"><span class="card-icon">📋</span><span class="card-title">Plan</span></div>
-        <p>Claude describes its full plan first; you approve before anything changes. Good for larger tasks.</p>
-      </div>
-      <div class="card" style="border-left-color:var(--accent);">
-        <div class="card-header"><span class="card-icon">⚡</span><span class="card-title">Auto-accept</span></div>
-        <p>Claude edits freely without pausing. Only use on throwaway branches.</p>
-      </div>
-    </div>
-  </section>
-
 
 </div>
 
 <footer>
-  Generated April 2026 · Claude Code requires a Claude Pro subscription or above · Official docs: code.claude.com/docs/en/vs-code
+  Generated April 2026 · Claude Code works with a Claude Pro or Max subscription, or an Anthropic API key · Official docs: https://code.claude.com/docs/en/vs-code 
 </footer>
 
 </body>
