@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code in VS Code — For Academic Economists</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #f5f0e8;
+    --accent: #b5451b;
+    --accent-light: #e8d5cc;
+    --rule: #c8bfaf;
+    --code-bg: #2a2a3e;
+    --code-text: #e8e0d5;
+    --muted: #6b6258;
+    --highlight: #f0e6d3;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3.5rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(255,255,255,0.03) 28px,
+      rgba(255,255,255,0.03) 29px
+    );
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 1rem;
+    opacity: 0.85;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  header h1 em {
+    color: #e8a87c;
+    font-style: italic;
+  }
+  .subtitle {
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(245,240,232,0.7);
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .header-rule {
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+    margin: 1.5rem auto 0;
+    position: relative;
+  }
+
+  /* ── Layout ── */
+  .container {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  /* ── Sections ── */
+  section {
+    margin-bottom: 3.5rem;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.65rem;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1.5px solid var(--rule);
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 1.8rem 0 0.6rem;
+    color: var(--ink);
+  }
+
+  p { margin-bottom: 0.9rem; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── Install Steps ── */
+  .steps {
+    counter-reset: step;
+    list-style: none;
+    margin: 1.2rem 0;
+  }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: calc(28px + 1rem);
+    margin-bottom: 1rem;
+    min-height: 28px;
+  }
+  .steps li::before {
+    content: counter(step);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--paper);
+    background: var(--accent);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 2px;
+  }
+
+  /* ── Code blocks ── */
+  pre {
+    background: var(--code-bg);
+    color: var(--code-text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    padding: 1.1rem 1.3rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 0.8rem 0 1rem;
+    line-height: 1.6;
+    border-left: 3px solid var(--accent);
+  }
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.84em;
+    background: var(--highlight);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    color: var(--accent);
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  /* ── Use-case cards ── */
+  .use-cases {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1.25rem 1.4rem;
+    border-left: 4px solid var(--accent);
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+  .card-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .card p {
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+  .card pre {
+    font-size: 0.76rem;
+    margin: 0;
+  }
+
+  /* ── Note box ── */
+  .note {
+    background: var(--highlight);
+    border: 1px solid var(--rule);
+    border-left: 4px solid #7a9e7e;
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    font-size: 0.92rem;
+    margin: 1.2rem 0;
+  }
+  .note strong { color: #3a6b3e; }
+
+  .warn {
+    background: #fdf3ec;
+    border-left-color: var(--accent);
+  }
+  .warn strong { color: var(--accent); }
+
+  /* ── Divider ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 2.5rem 0;
+  }
+
+  /* ── Extension table ── */
+  .ext-table {
+    margin: 0.8rem 0 1rem;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .ext-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ext-row:last-child { border-bottom: none; }
+  .ext-row:nth-child(even) { background: white; }
+  .ext-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    padding: 0.75rem 1.5rem 0.75rem 1rem;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-start;
+    word-break: break-all;
+    line-height: 1.5;
+  }
+  .ext-desc {
+    padding: 0.75rem 1rem 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .ext-desc strong { color: var(--accent); }
+  @media (max-width: 560px) {
+    .ext-row { grid-template-columns: 1fr; }
+    .ext-id { border-right: none; border-bottom: 1px solid var(--rule); }
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    padding: 2rem 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.15em 0.5em;
+    border-radius: 3px;
+    background: var(--ink);
+    color: var(--paper);
+    letter-spacing: 0.05em;
+    margin-right: 0.3rem;
+    vertical-align: middle;
+  }
+  .tag.r { background: #276DC2; }
+  .tag.stata { background: #1a5276; }
+  .tag.python { background: #3572A5; }
+  .tag.latex { background: #3d6b44; }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">A Practical Guide</p>
+  <h1>Claude Code in VS Code<br><em>for Academic Economists</em></h1>
+  <p class="subtitle">Agentic AI assistance for R, Stata, Python, and LaTeX — without leaving your editor</p>
+  <div class="header-rule"></div>
+</header>
+
+<div class="container">
+
+
+  <!-- INSTALL -->
+  <section>
+    <p class="section-label">Setup</p>
+    <h2>Installation in 5 Steps</h2>
+        <p>Installing Claude Code in VSCode and getting started is actually quite straightforward.</p>
+
+    <ol class="steps">
+      <li>Open VS Code and open the Extensions panel by pressing <code>Ctrl+Shift+X</code>.</li>
+      <li>Search <strong>"Claude Code"</strong> and install the official Anthropic extension.</li>
+      <li>Click the Claude icon (<img src="assets/Claude_AI_symbol.svg" alt="Claude" style="height:1em;vertical-align:-0.15em;">) in the left sidebar or on the top right of a window pane.</li>
+      <li>Sign in with your Claude account or API key.</li>
+      <li>Open your <strong>full project folder</strong> in VS Code (File → Open Folder), not just a single file. Claude needs the whole directory tree to be useful. This can be any folder on your computer — a git repository, a Dropbox folder, or a plain folder on your desktop all work equally well.</li>
+    </ol>
+    <div class="note">
+      <strong>Tip:</strong> Run <code>Claude Code: Open Walkthrough</code> from the Command Palette (<code>Ctrl+Shift+P</code>) for a quick interactive tour of the basics. <strong>Mac users:</strong> replace <code>Ctrl</code> with <code>Cmd</code> throughout — e.g. <code>Cmd+Shift+X</code> to open Extensions, <code>Cmd+Shift+P</code> for the Command Palette.
+    </div>
+  </section>
+
+    <figure style="margin:1.5rem 0;">
+      <img src="assets/VSCode_AI_1.png" alt="VS Code welcome screen with Extensions panel, Open Folder, and Claude Code icon highlighted" style="width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;display:block;">
+      <figcaption style="font-size:0.82rem;color:var(--muted);font-style:italic;margin-top:0.5rem;text-align:center;">The VS Code welcome screen — Extensions panel (left), Open Folder (middle), Claude Code icon (top right).</figcaption>
+    </figure>
+
+    <figure style="margin:1.5rem 0;">
+      <img src="assets/VSCode_AI_2.png" alt="VS Code with a project folder opened on the left and the Claude Code panel opened on the right" style="width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;display:block;">
+      <figcaption style="font-size:0.82rem;color:var(--muted);font-style:italic;margin-top:0.5rem;text-align:center;">Once a folder is opened and Claude Code is launched — project files in the Explorer (left), Claude Code panel (right).</figcaption>
+    </figure>
+
+
+  <hr class="divider">
+
+  <!-- EXTENSIONS -->
+  <section>
+    <p class="section-label">Recommended Extensions</p>
+    <h2>A Starter Pack for Economists</h2>
+    <p>Install these alongside Claude Code to cover the full research stack. Search for each by the extension ID in the Extensions panel (<code>Ctrl+Shift+X</code>).</p>
+
+    <h3>AI Assistants</h3>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">anthropic.claude-code</div>
+        <div class="ext-desc">The main Claude Code agent. Reads your project, edits files, runs commands, and shows diffs for approval. The foundation of this whole setup.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">github.copilot-chat</div>
+        <div class="ext-desc">GitHub Copilot's chat panel. Useful as a lightweight second opinion — good for quick inline completions and one-off questions without spinning up a full Claude Code session.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">openai.chatgpt</div>
+        <div class="ext-desc">ChatGPT directly in VS Code. Handy for quick explanations or when you want a second AI perspective, but has no file-editing capability — Claude Code is the one doing actual work.</div>
+      </div>
+    </div>
+
+    <h3>Stata</h3>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">tmonk.stata-workbench</div>
+        <div class="ext-desc"><strong>The most important Stata extension.</strong> Built at LSE, it lets you run Stata code directly from the editor — output cards, inline graphs, and a live data browser without switching windows. Critically, it also exposes an MCP server so Claude Code can <em>directly execute Stata commands, inspect your variables, and read stored results</em> (<code>r()</code>, <code>e()</code>) during a session.</div>
+      </div>
+    </div>
+
+    <h3>Python</h3>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">ms-python.python</div>
+        <div class="ext-desc">The core Python extension. Syntax highlighting, IntelliSense, and the run-button for <code>.py</code> files. Required for anything Python-related.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">ms-python.vscode-pylance</div>
+        <div class="ext-desc">Fast, type-aware language server for Python. Gives Claude Code better static context about your code — variable types, function signatures — which improves suggestion quality.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">ms-python.debugpy</div>
+        <div class="ext-desc">Python debugger. Set breakpoints and inspect variables mid-run — essential when tracking down why a panel merge or regression loop is producing unexpected results.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">ms-python.vscode-python-envs</div>
+        <div class="ext-desc">Manages virtual environments (conda, venv, pipenv) from inside VS Code. Keeps project dependencies isolated — important when different papers use different package versions.</div>
+      </div>
+    </div>
+
+    <h3>LaTeX</h3>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">james-yu.latex-workshop</div>
+        <div class="ext-desc">The standard LaTeX extension. Compiles on save, renders a side-by-side PDF preview, shows compile errors inline, and provides autocomplete for commands and citations. Pairs well with Claude Code for table and notation fixes — you see the output update immediately.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">yzane.markdown-pdf</div>
+        <div class="ext-desc">Converts Markdown files to PDF with one command. Useful for quick memos, referee responses, or notes that don't need full LaTeX treatment.</div>
+      </div>
+    </div>
+
+    <h3>Data Files</h3>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">mechatroner.rainbow-csv</div>
+        <div class="ext-desc">Colour-codes CSV columns so you can visually verify structure at a glance. Also adds a lightweight SQL-like query tool (<code>RBQL</code>) for filtering rows without loading into R or Python. Very useful for quickly sanity-checking raw data files.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">tomoki1207.pdf</div>
+        <div class="ext-desc">Renders PDFs inline in VS Code. Read papers, codebooks, and data documentation without leaving the editor — useful when you want Claude Code to reference a PDF alongside your code.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <hr class="divider">
+
+  <!-- CLAUDE.MD AND SKILLS -->
+  <section>
+    <p class="section-label">Customisation</p>
+    <h2>CLAUDE.md and Skills</h2>
+
+    <h3>CLAUDE.md — Persistent Project Context</h3>
+    <p>A <code>CLAUDE.md</code> file at your project root is read automatically at the start of every Claude Code session. It's the place to tell Claude things that are always true about your project — conventions, variable naming, dataset structure, what not to touch — so you don't have to repeat them in every prompt.</p>
+    <p>The easiest way to create one is to type <code>/init</code> in the Claude Code panel. Claude will read your project folder and generate a draft <code>CLAUDE.md</code> automatically — inferring your file structure, the languages you're using, and any conventions it can detect. Review and edit the result before using it. Alternatively, create the file manually. A useful starting point for an empirical project:</p>
+    <pre><code># Project: [Paper title]
+
+## Data
+- Unit of analysis: firm-year panel, 2010–2022
+- Raw data lives in data/raw/ — never edit these files
+- Main dataset after cleaning: data/clean/panel.dta (N ≈ 47,000)
+
+## Code conventions
+- R scripts are numbered (01_clean.R, 02_analysis.R, ...)
+- All regressions cluster SEs at the firm level
+- Use fixest for all panel regressions
+
+## LaTeX
+- Main file: paper/main.tex
+- Tables generated by 03_tables.R go to paper/tables/
+- Use \widehat{} not \hat{} for estimators</code></pre>
+    <p>CLAUDE.md files work at two levels, and both are loaded simultaneously:</p>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">~/.claude/CLAUDE.md</div>
+        <div class="ext-desc"><strong>Computer-level.</strong> Applies to every project on your machine. The right place for personal preferences that never change — your preferred coding language, how you like SEs clustered, LaTeX notation conventions, or a note that you work with Scandinavian register data and prefer variable names in English. The <code>~</code> is shorthand for your home folder — on Mac/Linux this is <code>/Users/yourname/.claude/</code>, on Windows it's typically <code>C:\Users\yourname\.claude\</code>. Note that folders starting with <code>.</code> are hidden by default; use <code>Cmd+Shift+.</code> on Mac to show them in Finder.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">your-project/CLAUDE.md</div>
+        <div class="ext-desc"><strong>Folder-level.</strong> Applies only when Claude Code is opened in that project folder. Use it for things specific to one paper — dataset structure, sample restrictions, which script produces which output file, co-author conventions.</div>
+      </div>
+    </div>
+    <p style="margin-top:0.8rem;">When you open a project, Claude reads both files. The folder-level file takes precedence if there's any conflict.</p>
+
+    <h3>Skills — Reusable Workflows as Slash Commands</h3>
+    <p>Skills are markdown instruction files that become <code>/slash-commands</code> you can invoke in the Claude panel. When you type <code>/skill-name</code>, Claude loads the instructions and executes them — useful for repetitive tasks you run across projects, like a standard robustness check or reformatting a regression table.</p>
+    <p>Skills live in one of two places:</p>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">~/.claude/skills/</div>
+        <div class="ext-desc">Global skills, available in every project. Good for general research workflows.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">your-project/.claude/skills/</div>
+        <div class="ext-desc">Project-specific skills, only available in that project folder.</div>
+      </div>
+    </div>
+
+    <p style="margin-top:1rem;">Each skill is a folder containing a <code>SKILL.md</code> file. The folder name becomes the slash command. To create a <code>/robustness</code> command:</p>
+    <pre><code>mkdir -p ~/.claude/skills/robustness
+# then create ~/.claude/skills/robustness/SKILL.md</code></pre>
+    <p>A minimal <code>SKILL.md</code> for an economist:</p>
+    <pre><code>---
+name: robustness
+description: Run standard robustness checks on the main regression.
+---
+
+For the main specification in this project:
+1. Re-run with alternative clustering (industry-year instead of firm)
+2. Re-run dropping the top and bottom 1% of the outcome variable
+3. Re-run on the pre-2020 subsample only
+4. Produce a summary table comparing coefficients across all specs</code></pre>
+
+    <h3>Downloading Skills Others Have Written</h3>
+    <p>There is a growing community library of shared skills. The best starting point is the <strong>awesome-claude-code</strong> repository on GitHub (<code>github.com/hesreallyhim/awesome-claude-code</code>), which curates skills, slash commands, and workflow templates. Copy any <code>SKILL.md</code> folder into <code>~/.claude/skills/</code> and it becomes available immediately as a slash command.</p>
+    <div class="note warn">
+      <strong>Worth knowing:</strong> Claude can also invoke skills automatically when it judges them relevant — not just when you type the slash command. If you'd rather control when a skill runs, add <code>disable-model-invocation: true</code> to the frontmatter.
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- GIT -->
+  <section>
+    <p class="section-label">Version Control</p>
+    <h2>Git Integration</h2>
+    <p>Claude Code is git-aware. When you open a project that is a git repository, Claude can see your commit history, staged changes, and diffs — without you having to paste anything. This makes it useful for version control tasks alongside coding ones.</p>
+    <div class="use-cases">
+      <div class="card">
+        <div class="card-header"><span class="card-icon">✍️</span><span class="card-title">Write commit messages</span></div>
+        <pre><code>Write a commit message for my staged changes.</code></pre>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-icon">🔍</span><span class="card-title">Explain what changed</span></div>
+        <pre><code>Summarise what changed between the last two commits 
+in 02_analysis.R.</code></pre>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-icon">🤝</span><span class="card-title">Resolve a merge conflict</span></div>
+        <pre><code>I have a merge conflict in 03_tables.R. Read both 
+versions and resolve it, keeping the more recent 
+variable names.</code></pre>
+      </div>
+    </div>
+    <div class="note">
+      <strong>No git?</strong> That's fine — a Dropbox folder, a shared network drive, or a plain folder on your desktop all work equally well as the project root. Git is optional; Claude Code does not require it.
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CONTEXT WINDOW -->
+  <section>
+    <p class="section-label">Performance</p>
+    <h2>Managing the Context Window</h2>
+    <p>Claude can only hold a limited amount of text in its working memory at once — roughly equivalent to a few hundred pages. For large empirical projects with many scripts and data files, this fills up quickly, and performance degrades as it approaches the limit. A few habits help:</p>
+    <div class="use-cases">
+      <div class="card">
+        <div class="card-header"><span class="card-icon">📎</span><span class="card-title">Use @-mentions to be selective</span></div>
+        <p>Rather than letting Claude read everything, point it at the specific file you're working on.</p>
+        <pre><code>@02_analysis.R fix the clustering in the main spec.</code></pre>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-icon">🗑️</span><span class="card-title">Start a new session for new tasks</span></div>
+        <p>Each Claude Code tab is a fresh context. Use <code>Ctrl+N</code> (or <code>Cmd+N</code> on Mac) to open a new conversation rather than continuing a long one for an unrelated task.</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-icon">📊</span><span class="card-title">Check usage with /context</span></div>
+        <p>Type <code>/context</code> in the panel to see a breakdown of how your context window is being used and how much space remains.</p>
+      </div>
+    </div>
+    <div class="note">
+      <strong>CLAUDE.md helps here too.</strong> Because Claude reads your <code>CLAUDE.md</code> at the start of each session, you don't need to re-explain your project structure in every conversation — keeping prompts short and context usage low.
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PERMISSION MODES -->
+  <section>
+    <p class="section-label">Key Concept</p>
+    <h2>Permission Modes — Start Cautious</h2>
+    <p>Before sending your first real prompt, set the permission mode at the bottom of the chat panel. There are three modes:</p>
+    <div class="use-cases" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="card" style="border-left-color:#7a9e7e;">
+        <div class="card-header"><span class="card-icon">🔍</span><span class="card-title">Normal</span></div>
+        <p>Claude asks permission before each file edit or command. <strong>Recommended to start.</strong></p>
+      </div>
+      <div class="card" style="border-left-color:#c4a35a;">
+        <div class="card-header"><span class="card-icon">📋</span><span class="card-title">Plan</span></div>
+        <p>Claude describes its full plan first; you approve before anything changes. Good for larger tasks.</p>
+      </div>
+      <div class="card" style="border-left-color:var(--accent);">
+        <div class="card-header"><span class="card-icon">⚡</span><span class="card-title">Auto-accept</span></div>
+        <p>Claude edits freely without pausing. Only use on throwaway branches.</p>
+      </div>
+    </div>
+  </section>
+
+
+</div>
+
+<footer>
+  Generated April 2026 · Claude Code requires a Claude Pro subscription or above · Official docs: code.claude.com/docs/en/vs-code
+</footer>
+
+</body>
+</html>
