@@ -83,12 +83,21 @@
     vertical-align: middle;
   }
   .legend span.entry { margin-right: 1em; }
+  footer {
+    margin-top: 2.5em;
+    padding-top: 1em;
+    border-top: 1px solid #ccc;
+    font-size: 0.85em;
+    color: #555;
+  }
+  footer a { color: #4477aa; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
 
 <h1>Portfolio Decomposition Calculator</h1>
-<p class="lead">Decomposes the P90&minus;P10 total wealth-return gap into asset-level contributions, and each asset's contribution into <em>composition</em>, <em>within</em>, and <em>interaction</em> components. Companion to Appendix F of <em>Housing Returns across the Income Distribution</em>.</p>
+<p class="lead">Decomposes the P90&minus;P10 total wealth-return gap into asset-level contributions, and each asset's contribution into <em>composition</em>, <em>within</em>, and <em>interaction</em> components. Companion to Appendix F of <a href="https://claesbackman.com/Papers/BDK_HousingCapitalGains.pdf"><em>Housing Returns across the Income Distribution</em></a> by <a href="https://claesbackman.com/index.html">Claes Bäckman</a>, <a href="https://sites.google.com/view/walterdlima/home">Walter D'Lima</a>, and <a href="https://sites.google.com/view/natalia-khorunzhina">Natalia Khorunzhina</a>.</p>
 
 <div class="formula">
 <em>R<sub>i</sub></em> = &sum;<sub>a</sub> <em>s<sub>i,a</sub></em> &middot; <em>r<sub>i,a</sub></em><br><br>
@@ -97,6 +106,16 @@ Asset contribution = <em>s</em><sub>P90,a</sub>&middot;<em>r</em><sub>P90,a</sub
 + <em>s</em><sub>P10</sub>&middot;(<em>r</em><sub>P90</sub>&minus;<em>r</em><sub>P10</sub>) <span style="color:#888">[within]</span>
 + (<em>s</em><sub>P90</sub>&minus;<em>s</em><sub>P10</sub>)&middot;(<em>r</em><sub>P90</sub>&minus;<em>r</em><sub>P10</sub>) <span style="color:#888">[interaction]</span>
 </div>
+
+<h2>Data sources</h2>
+<p>Each preset combines a source for portfolio shares (P10, P90 of the income distribution) with a source for asset returns by income rank.</p>
+<ul>
+<li><strong>Portfolio shares.</strong> <em>Danish 2014</em>: administrative registers from Statistics Denmark, restricted to households at the 10th and 90th percentiles of the income distribution. <em>SCF 2013</em>: Survey of Consumer Finances, same percentile cuts.</li>
+<li><strong>Housing returns.</strong> Estimated in this paper from ~250,000 Danish repeat-sale transactions (1996&ndash;2022), using the linear fit <em>r</em>(<em>i</em>) = 0.036 + 0.0017&middot;(<em>i</em>&minus;5.5) over income deciles <em>i</em> = 1,&hellip;,10, evaluated at <em>i</em>=1 (P10) and <em>i</em>=10 (P90).</li>
+<li><strong>Financial returns.</strong> <em>Fagereng et al.</em>: Norwegian administrative data on returns to financial wealth across the financial wealth distribution (Fagereng, Guiso, Malacrino, and Pistaferri, 2020). <em>Bach et al.</em>: Swedish administrative data (Bach, Calvet, and Sodini, 2020).</li>
+<li><strong>Pension returns.</strong> Held flat at 4.47% for both percentiles.</li>
+</ul>
+<p>Inputs are editable: click a preset to load it, then adjust any cell to explore alternative scenarios.</p>
 
 <h2>Presets</h2>
 <div class="preset-row">
@@ -144,7 +163,7 @@ Asset contribution = <em>s</em><sub>P90,a</sub>&middot;<em>r</em><sub>P90,a</sub
   <td><input id="r_h_p90" type="number" step="0.01" value="4.37"></td></tr>
 <tr><td>Financial</td>
   <td><input id="r_f_p10" type="number" step="0.01" value="-0.44"></td>
-  <td><input id="r_f_p90" type="number" step="0.01" value="1.36"></td></tr>
+  <td><input id="r_f_p90" type="number" step="0.01" value="1.15"></td></tr>
 <tr><td>Pension</td>
   <td><input id="r_p_p10" type="number" step="0.01" value="4.47"></td>
   <td><input id="r_p_p90" type="number" step="0.01" value="4.47"></td></tr>
@@ -207,7 +226,7 @@ const TOTAL_COLOR = '#555';
 const presets = {
   dk_fagereng: {
     s: { h: [0.63, 0.54], f: [0.24, 0.21], p: [0.13, 0.25] },
-    r: { h: [2.84, 4.37], f: [-0.44, 1.36], p: [4.47, 4.47] }
+    r: { h: [2.84, 4.37], f: [-0.44, 1.15], p: [4.47, 4.47] }
   },
   dk_bach: {
     s: { h: [0.63, 0.54], f: [0.24, 0.21], p: [0.13, 0.25] },
@@ -215,7 +234,7 @@ const presets = {
   },
   scf_fagereng: {
     s: { h: [0.19, 0.42], f: [0.65, 0.24], p: [0.16, 0.34] },
-    r: { h: [2.84, 4.37], f: [-0.44, 1.36], p: [4.47, 4.47] }
+    r: { h: [2.84, 4.37], f: [-0.44, 1.15], p: [4.47, 4.47] }
   },
   scf_bach: {
     s: { h: [0.19, 0.42], f: [0.65, 0.24], p: [0.16, 0.34] },
@@ -599,6 +618,10 @@ document.querySelectorAll('input[type="number"]').forEach(function(el) {
 
 recalculate();
 </script>
+
+<footer>
+<p>Companion tool to <a href="https://claesbackman.com/Papers/BDK_HousingCapitalGains.pdf">Housing Returns across the Income Distribution</a> (<a href="https://claesbackman.com/index.html">Bäckman</a>, <a href="https://sites.google.com/view/walterdlima/home">D'Lima</a>, and <a href="https://sites.google.com/view/natalia-khorunzhina">Khorunzhina</a>). Maintained by <a href="https://claesbackman.com/index.html">Claes Bäckman</a>.</p>
+</footer>
 
 </body>
 </html>
