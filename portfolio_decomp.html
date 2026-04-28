@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio Decomposition Calculator</title>
+<style>
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    max-width: 980px;
+    margin: 2em auto;
+    padding: 0 1.2em 3em;
+    color: #222;
+    line-height: 1.45;
+  }
+  h1 { font-size: 1.5em; margin-bottom: 0.2em; }
+  h2 { font-size: 1.05em; border-bottom: 1px solid #ccc; padding-bottom: 0.2em; margin-top: 1.6em; }
+  p.lead { color: #555; margin-top: 0; }
+  .formula {
+    font-family: 'Cambria Math', Cambria, 'Times New Roman', serif;
+    background: #f7f7f4;
+    padding: 0.8em 1em;
+    border-left: 3px solid #888;
+    margin: 1em 0;
+    font-size: 0.95em;
+  }
+  .formula em { font-style: italic; }
+  table {
+    border-collapse: collapse;
+    margin: 0.6em 0 0.4em;
+    font-size: 0.95em;
+  }
+  th, td {
+    padding: 0.35em 0.9em;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { border-bottom: 1px solid #333; font-weight: normal; font-style: italic; }
+  tbody.summed td, tr.totalrow td {
+    border-top: 1px solid #333;
+    font-weight: bold;
+  }
+  input[type="number"] {
+    width: 5.4em;
+    padding: 0.2em 0.3em;
+    font-family: inherit;
+    font-size: 0.95em;
+    text-align: right;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+  }
+  input[type="number"]:focus { outline: 2px solid #4477aa; }
+  .preset-row { margin: 0.4em 0 0.6em; }
+  .preset-row button {
+    margin: 0 0.4em 0.4em 0;
+    padding: 0.45em 0.9em;
+    font-family: inherit;
+    font-size: 0.9em;
+    border: 1px solid #888;
+    background: #f0f0ec;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  .preset-row button:hover { background: #e3e3df; }
+  .warn { color: #b00; font-weight: bold; }
+  .ok { color: #060; }
+  .panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.6em;
+  }
+  @media (max-width: 760px) {
+    .panels { grid-template-columns: 1fr; }
+  }
+  .note { font-size: 0.85em; color: #666; margin-top: 0.3em; }
+  .chart-wrap { margin-top: 0.4em; }
+  svg text { font-family: Georgia, 'Times New Roman', serif; }
+  .legend { font-size: 0.85em; margin-top: 0.2em; }
+  .legend span.swatch {
+    display: inline-block;
+    width: 0.9em; height: 0.9em;
+    margin-right: 0.3em;
+    vertical-align: middle;
+  }
+  .legend span.entry { margin-right: 1em; }
+</style>
+</head>
+<body>
+
+<h1>Portfolio Decomposition Calculator</h1>
+<p class="lead">Decomposes the P90&minus;P10 total wealth-return gap into asset-level contributions, and each asset's contribution into <em>composition</em>, <em>within</em>, and <em>interaction</em> components. Companion to Appendix F of <em>Housing Returns across the Income Distribution</em>.</p>
+
+<div class="formula">
+<em>R<sub>i</sub></em> = &sum;<sub>a</sub> <em>s<sub>i,a</sub></em> &middot; <em>r<sub>i,a</sub></em><br><br>
+Asset contribution = <em>s</em><sub>P90,a</sub>&middot;<em>r</em><sub>P90,a</sub> &minus; <em>s</em><sub>P10,a</sub>&middot;<em>r</em><sub>P10,a</sub><br>
+&nbsp;&nbsp; = (<em>s</em><sub>P90</sub>&minus;<em>s</em><sub>P10</sub>)&middot;<em>r</em><sub>P10</sub> <span style="color:#888">[composition]</span>
++ <em>s</em><sub>P10</sub>&middot;(<em>r</em><sub>P90</sub>&minus;<em>r</em><sub>P10</sub>) <span style="color:#888">[within]</span>
++ (<em>s</em><sub>P90</sub>&minus;<em>s</em><sub>P10</sub>)&middot;(<em>r</em><sub>P90</sub>&minus;<em>r</em><sub>P10</sub>) <span style="color:#888">[interaction]</span>
+</div>
+
+<h2>Presets</h2>
+<div class="preset-row">
+  <button onclick="loadPreset('dk_fagereng')">Danish 2014 + Fagereng et al.</button>
+  <button onclick="loadPreset('dk_bach')">Danish 2014 + Bach et al.</button>
+  <button onclick="loadPreset('scf_fagereng')">SCF 2013 + Fagereng et al.</button>
+  <button onclick="loadPreset('scf_bach')">SCF 2013 + Bach et al.</button>
+</div>
+
+<div class="panels">
+
+<div>
+<h2>Portfolio shares</h2>
+<table>
+<thead>
+<tr><th>Asset</th><th>P10</th><th>P90</th></tr>
+</thead>
+<tbody>
+<tr><td>Housing</td>
+  <td><input id="s_h_p10" type="number" step="0.01" min="0" max="1" value="0.63"></td>
+  <td><input id="s_h_p90" type="number" step="0.01" min="0" max="1" value="0.54"></td></tr>
+<tr><td>Financial</td>
+  <td><input id="s_f_p10" type="number" step="0.01" min="0" max="1" value="0.24"></td>
+  <td><input id="s_f_p90" type="number" step="0.01" min="0" max="1" value="0.21"></td></tr>
+<tr><td>Pension</td>
+  <td><input id="s_p_p10" type="number" step="0.01" min="0" max="1" value="0.13"></td>
+  <td><input id="s_p_p90" type="number" step="0.01" min="0" max="1" value="0.25"></td></tr>
+<tr class="totalrow"><td>Sum</td>
+  <td id="sum_p10">1.00</td>
+  <td id="sum_p90">1.00</td></tr>
+</tbody>
+</table>
+<p class="note">Shares should sum to 1 within each decile (turns red otherwise).</p>
+</div>
+
+<div>
+<h2>Returns (% annual)</h2>
+<table>
+<thead>
+<tr><th>Asset</th><th>P10</th><th>P90</th></tr>
+</thead>
+<tbody>
+<tr><td>Housing</td>
+  <td><input id="r_h_p10" type="number" step="0.01" value="2.84"></td>
+  <td><input id="r_h_p90" type="number" step="0.01" value="4.37"></td></tr>
+<tr><td>Financial</td>
+  <td><input id="r_f_p10" type="number" step="0.01" value="-0.44"></td>
+  <td><input id="r_f_p90" type="number" step="0.01" value="1.36"></td></tr>
+<tr><td>Pension</td>
+  <td><input id="r_p_p10" type="number" step="0.01" value="4.47"></td>
+  <td><input id="r_p_p90" type="number" step="0.01" value="4.47"></td></tr>
+</tbody>
+</table>
+<p class="note">Housing default from <em>r</em>=0.036+0.0017(<em>i</em>&minus;5.5) at <em>i</em>=1, 10. Pension flat at 4.47%.</p>
+</div>
+
+</div>
+
+<h2>Asset contributions to the P90&minus;P10 gap</h2>
+<p class="note" style="margin-top:-0.2em;">Total contribution of each asset class to the income gap in wealth returns. Bars in absolute percentage points; share of gap shown in parentheses.</p>
+<div class="chart-wrap">
+  <svg id="chart_totals" width="700" height="240" viewBox="0 0 700 240"></svg>
+</div>
+
+<h2>Decomposition (P90&minus;P10 gap, in percentage points)</h2>
+<table id="decomp_table">
+<thead>
+<tr><th>Asset</th><th>Composition</th><th>Within</th><th>Interaction</th><th>Total</th><th>Share of gap</th></tr>
+</thead>
+<tbody>
+<tr><td>Housing</td><td id="d_h_comp">&mdash;</td><td id="d_h_within">&mdash;</td><td id="d_h_int">&mdash;</td><td id="d_h_tot">&mdash;</td><td id="d_h_share">&mdash;</td></tr>
+<tr><td>Financial</td><td id="d_f_comp">&mdash;</td><td id="d_f_within">&mdash;</td><td id="d_f_int">&mdash;</td><td id="d_f_tot">&mdash;</td><td id="d_f_share">&mdash;</td></tr>
+<tr><td>Pension</td><td id="d_p_comp">&mdash;</td><td id="d_p_within">&mdash;</td><td id="d_p_int">&mdash;</td><td id="d_p_tot">&mdash;</td><td id="d_p_share">&mdash;</td></tr>
+</tbody>
+<tbody class="summed">
+<tr><td>Total</td><td id="d_t_comp">&mdash;</td><td id="d_t_within">&mdash;</td><td id="d_t_int">&mdash;</td><td id="d_t_tot">&mdash;</td><td id="d_t_share">100%</td></tr>
+</tbody>
+</table>
+
+<h2>Three-way decomposition by asset</h2>
+<div class="legend">
+  <span class="entry"><span class="swatch" style="background:#4477aa"></span>Composition</span>
+  <span class="entry"><span class="swatch" style="background:#ee7733"></span>Within</span>
+  <span class="entry"><span class="swatch" style="background:#117733"></span>Interaction</span>
+  <span class="entry">&#9670; Net total</span>
+</div>
+<div class="chart-wrap">
+  <svg id="chart" width="700" height="340" viewBox="0 0 700 340"></svg>
+</div>
+
+<script>
+"use strict";
+
+const ASSETS = [
+  { key: 'h', label: 'Housing',   color: '#4477aa' },
+  { key: 'f', label: 'Financial', color: '#ee7733' },
+  { key: 'p', label: 'Pension',   color: '#117733' }
+];
+
+const COMP_COLORS = {
+  comp: '#4477aa',
+  within: '#ee7733',
+  int: '#117733'
+};
+
+const TOTAL_COLOR = '#555';
+
+const presets = {
+  dk_fagereng: {
+    s: { h: [0.63, 0.54], f: [0.24, 0.21], p: [0.13, 0.25] },
+    r: { h: [2.84, 4.37], f: [-0.44, 1.36], p: [4.47, 4.47] }
+  },
+  dk_bach: {
+    s: { h: [0.63, 0.54], f: [0.24, 0.21], p: [0.13, 0.25] },
+    r: { h: [2.84, 4.37], f: [2.00, 5.42], p: [4.47, 4.47] }
+  },
+  scf_fagereng: {
+    s: { h: [0.19, 0.42], f: [0.65, 0.24], p: [0.16, 0.34] },
+    r: { h: [2.84, 4.37], f: [-0.44, 1.36], p: [4.47, 4.47] }
+  },
+  scf_bach: {
+    s: { h: [0.19, 0.42], f: [0.65, 0.24], p: [0.16, 0.34] },
+    r: { h: [2.84, 4.37], f: [2.00, 5.42], p: [4.47, 4.47] }
+  }
+};
+
+function loadPreset(name) {
+  const p = presets[name];
+  for (const a of ASSETS) {
+    document.getElementById('s_' + a.key + '_p10').value = p.s[a.key][0];
+    document.getElementById('s_' + a.key + '_p90').value = p.s[a.key][1];
+    document.getElementById('r_' + a.key + '_p10').value = p.r[a.key][0];
+    document.getElementById('r_' + a.key + '_p90').value = p.r[a.key][1];
+  }
+  recalculate();
+}
+
+function getNum(id) {
+  const v = parseFloat(document.getElementById(id).value);
+  return isNaN(v) ? 0 : v;
+}
+
+function fmt(x, dp) {
+  if (dp === undefined) dp = 2;
+  if (Math.abs(x) < 5e-5) return (0).toFixed(dp);
+  return x.toFixed(dp);
+}
+
+function recalculate() {
+  let sum10 = 0, sum90 = 0;
+  for (const a of ASSETS) {
+    sum10 += getNum('s_' + a.key + '_p10');
+    sum90 += getNum('s_' + a.key + '_p90');
+  }
+  const sumEl10 = document.getElementById('sum_p10');
+  const sumEl90 = document.getElementById('sum_p90');
+  sumEl10.textContent = fmt(sum10);
+  sumEl90.textContent = fmt(sum90);
+  sumEl10.className = Math.abs(sum10 - 1) < 0.005 ? 'ok' : 'warn';
+  sumEl90.className = Math.abs(sum90 - 1) < 0.005 ? 'ok' : 'warn';
+
+  let totals = { comp: 0, within: 0, int: 0, tot: 0 };
+  const rows = [];
+
+  for (const a of ASSETS) {
+    const s10 = getNum('s_' + a.key + '_p10');
+    const s90 = getNum('s_' + a.key + '_p90');
+    const r10 = getNum('r_' + a.key + '_p10') / 100;
+    const r90 = getNum('r_' + a.key + '_p90') / 100;
+
+    const comp   = (s90 - s10) * r10 * 100;
+    const within = s10 * (r90 - r10) * 100;
+    const inter  = (s90 - s10) * (r90 - r10) * 100;
+    const tot    = (s90 * r90 - s10 * r10) * 100;
+
+    document.getElementById('d_' + a.key + '_comp').textContent = fmt(comp);
+    document.getElementById('d_' + a.key + '_within').textContent = fmt(within);
+    document.getElementById('d_' + a.key + '_int').textContent = fmt(inter);
+    document.getElementById('d_' + a.key + '_tot').textContent = fmt(tot);
+
+    totals.comp   += comp;
+    totals.within += within;
+    totals.int    += inter;
+    totals.tot    += tot;
+
+    rows.push({ key: a.key, label: a.label, color: a.color,
+                comp: comp, within: within, inter: inter, tot: tot });
+  }
+
+  document.getElementById('d_t_comp').textContent = fmt(totals.comp);
+  document.getElementById('d_t_within').textContent = fmt(totals.within);
+  document.getElementById('d_t_int').textContent = fmt(totals.int);
+  document.getElementById('d_t_tot').textContent = fmt(totals.tot);
+
+  // Shares of total gap (signed). Undefined when total is ~0.
+  const totalAbs = Math.abs(totals.tot);
+  for (const r of rows) {
+    const cell = document.getElementById('d_' + r.key + '_share');
+    if (totalAbs < 1e-4) {
+      cell.textContent = '—';
+    } else {
+      cell.textContent = (r.tot / totals.tot * 100).toFixed(0) + '%';
+    }
+  }
+
+  drawTotalsChart(rows, totals.tot);
+  drawChart(rows);
+}
+
+function drawTotalsChart(rows, grandTotal) {
+  const svg = document.getElementById('chart_totals');
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+  const W = 700, H = 240;
+  const M = { l: 90, r: 80, t: 20, b: 50 };
+  const innerW = W - M.l - M.r;
+  const innerH = H - M.t - M.b;
+
+  const bars = rows.concat([{ label: 'Total', tot: grandTotal, color: TOTAL_COLOR, isTotal: true }]);
+
+  const allVals = bars.map(function(b) { return b.tot; }).concat([0]);
+  let xMax = Math.max.apply(null, allVals);
+  let xMin = Math.min.apply(null, allVals);
+  const padX = Math.max(0.05, (xMax - xMin) * 0.12);
+  xMax += padX; xMin -= (xMin < 0 ? padX : 0);
+  if (xMax === xMin) { xMax = 1; xMin = 0; }
+
+  const xScale = function(v) {
+    return M.l + innerW * (v - xMin) / (xMax - xMin);
+  };
+  const x0 = xScale(0);
+
+  const ns = 'http://www.w3.org/2000/svg';
+  function el(name, attrs) {
+    const e = document.createElementNS(ns, name);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  // x ticks + gridlines
+  const ticks = niceTicks(xMin, xMax, 6);
+  for (const t of ticks) {
+    const x = xScale(t);
+    svg.appendChild(el('line', {
+      x1: x, y1: M.t, x2: x, y2: M.t + innerH,
+      stroke: t === 0 ? '#333' : '#eee'
+    }));
+    const lab = el('text', {
+      x: x, y: M.t + innerH + 16,
+      'text-anchor': 'middle',
+      'font-size': 11, fill: '#444'
+    });
+    lab.textContent = t.toFixed(2);
+    svg.appendChild(lab);
+  }
+
+  // x axis title
+  const xtitle = el('text', {
+    x: M.l + innerW / 2, y: M.t + innerH + 36,
+    'text-anchor': 'middle',
+    'font-size': 12, fill: '#222'
+  });
+  xtitle.textContent = 'Contribution to P90−P10 gap (pp)';
+  svg.appendChild(xtitle);
+
+  // bars
+  const slot = innerH / bars.length;
+  const barH = Math.min(28, slot * 0.6);
+  const totalAbs = Math.abs(grandTotal);
+
+  bars.forEach(function(b, i) {
+    const cy = M.t + slot * (i + 0.5);
+    const yTop = cy - barH / 2;
+
+    const xStart = b.tot >= 0 ? x0 : xScale(b.tot);
+    const xEnd   = b.tot >= 0 ? xScale(b.tot) : x0;
+    const w = xEnd - xStart;
+
+    if (Math.abs(b.tot) > 1e-10) {
+      svg.appendChild(el('rect', {
+        x: xStart, y: yTop, width: w, height: barH,
+        fill: b.color, opacity: b.isTotal ? 0.85 : 0.9
+      }));
+    }
+
+    // separator line above the Total row
+    if (b.isTotal) {
+      svg.appendChild(el('line', {
+        x1: M.l, y1: cy - slot / 2 + 2,
+        x2: M.l + innerW, y2: cy - slot / 2 + 2,
+        stroke: '#888', 'stroke-dasharray': '3,3'
+      }));
+    }
+
+    // y-axis label (asset name)
+    const ylab = el('text', {
+      x: M.l - 8, y: cy + 4,
+      'text-anchor': 'end',
+      'font-size': 12,
+      'font-weight': b.isTotal ? 'bold' : 'normal',
+      fill: '#222'
+    });
+    ylab.textContent = b.label;
+    svg.appendChild(ylab);
+
+    // value label at end of bar
+    let shareStr = '';
+    if (!b.isTotal && totalAbs >= 1e-4) {
+      shareStr = ' (' + (b.tot / grandTotal * 100).toFixed(0) + '%)';
+    }
+    const valStr = b.tot.toFixed(2) + ' pp' + shareStr;
+    const labelX = b.tot >= 0 ? xEnd + 5 : xStart - 5;
+    const vlab = el('text', {
+      x: labelX, y: cy + 4,
+      'text-anchor': b.tot >= 0 ? 'start' : 'end',
+      'font-size': 11,
+      'font-weight': b.isTotal ? 'bold' : 'normal',
+      fill: '#222'
+    });
+    vlab.textContent = valStr;
+    svg.appendChild(vlab);
+  });
+
+  // axis line
+  svg.appendChild(el('line', {
+    x1: M.l, y1: M.t + innerH, x2: M.l + innerW, y2: M.t + innerH,
+    stroke: '#333'
+  }));
+}
+
+function drawChart(rows) {
+  const svg = document.getElementById('chart');
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+  const W = 700, H = 340;
+  const M = { l: 60, r: 30, t: 25, b: 50 };
+  const innerW = W - M.l - M.r;
+  const innerH = H - M.t - M.b;
+
+  const all = [];
+  for (const r of rows) {
+    all.push(r.comp, r.within, r.inter, r.tot);
+    let pos = 0, neg = 0;
+    for (const v of [r.comp, r.within, r.inter]) {
+      if (v >= 0) pos += v; else neg += v;
+    }
+    all.push(pos, neg);
+  }
+  let yMax = Math.max(0, ...all);
+  let yMin = Math.min(0, ...all);
+  const pad = Math.max(0.05, (yMax - yMin) * 0.08);
+  yMax += pad; yMin -= pad;
+  if (yMax === yMin) { yMax = 1; yMin = -1; }
+
+  const yScale = function(v) {
+    return M.t + innerH * (1 - (v - yMin) / (yMax - yMin));
+  };
+
+  const ns = 'http://www.w3.org/2000/svg';
+  function el(name, attrs) {
+    const e = document.createElementNS(ns, name);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  // y gridlines + ticks
+  const ticks = niceTicks(yMin, yMax, 6);
+  for (const t of ticks) {
+    const y = yScale(t);
+    svg.appendChild(el('line', {
+      x1: M.l, y1: y, x2: M.l + innerW, y2: y,
+      stroke: t === 0 ? '#333' : '#e5e5e5',
+      'stroke-width': t === 0 ? 1 : 1
+    }));
+    const lab = el('text', {
+      x: M.l - 6, y: y + 4,
+      'text-anchor': 'end',
+      'font-size': 11,
+      fill: '#444'
+    });
+    lab.textContent = t.toFixed(2);
+    svg.appendChild(lab);
+  }
+
+  // y axis label
+  const ylab = el('text', {
+    x: 18, y: M.t + innerH / 2,
+    transform: 'rotate(-90, 18, ' + (M.t + innerH / 2) + ')',
+    'text-anchor': 'middle',
+    'font-size': 12,
+    fill: '#222'
+  });
+  ylab.textContent = 'Contribution to P90−P10 gap (pp)';
+  svg.appendChild(ylab);
+
+  // bars
+  const n = rows.length;
+  const slot = innerW / n;
+  const barW = slot * 0.55;
+
+  rows.forEach(function(r, i) {
+    const cx = M.l + slot * (i + 0.5);
+    const x = cx - barW / 2;
+
+    const segs = [
+      { v: r.comp,   color: COMP_COLORS.comp,   name: 'composition' },
+      { v: r.within, color: COMP_COLORS.within, name: 'within' },
+      { v: r.inter,  color: COMP_COLORS.int,    name: 'interaction' }
+    ];
+
+    let posVal = 0, negVal = 0;
+    for (const seg of segs) {
+      if (seg.v >= 0) {
+        const top = yScale(posVal + seg.v);
+        const bot = yScale(posVal);
+        if (Math.abs(seg.v) > 1e-10) {
+          svg.appendChild(el('rect', {
+            x: x, y: top, width: barW, height: bot - top,
+            fill: seg.color, opacity: 0.9,
+            stroke: '#fff', 'stroke-width': 0.5
+          }));
+        }
+        posVal += seg.v;
+      } else {
+        const top = yScale(negVal);
+        const bot = yScale(negVal + seg.v);
+        if (Math.abs(seg.v) > 1e-10) {
+          svg.appendChild(el('rect', {
+            x: x, y: top, width: barW, height: bot - top,
+            fill: seg.color, opacity: 0.9,
+            stroke: '#fff', 'stroke-width': 0.5
+          }));
+        }
+        negVal += seg.v;
+      }
+    }
+
+    // total marker (diamond)
+    const yTot = yScale(r.tot);
+    const d = 5;
+    svg.appendChild(el('polygon', {
+      points: cx + ',' + (yTot - d) + ' ' +
+              (cx + d) + ',' + yTot + ' ' +
+              cx + ',' + (yTot + d) + ' ' +
+              (cx - d) + ',' + yTot,
+      fill: '#222'
+    }));
+
+    // total label
+    const totLab = el('text', {
+      x: cx, y: r.tot >= 0 ? yTot - 10 : yTot + 18,
+      'text-anchor': 'middle',
+      'font-size': 11,
+      'font-weight': 'bold',
+      fill: '#222'
+    });
+    totLab.textContent = r.tot.toFixed(2);
+    svg.appendChild(totLab);
+
+    // x label
+    const xlab = el('text', {
+      x: cx, y: M.t + innerH + 22,
+      'text-anchor': 'middle',
+      'font-size': 13,
+      fill: '#222'
+    });
+    xlab.textContent = r.label;
+    svg.appendChild(xlab);
+  });
+
+  // x axis
+  svg.appendChild(el('line', {
+    x1: M.l, y1: M.t + innerH, x2: M.l + innerW, y2: M.t + innerH,
+    stroke: '#333'
+  }));
+}
+
+function niceTicks(lo, hi, target) {
+  const span = hi - lo;
+  if (span === 0) return [lo];
+  const rough = span / target;
+  const mag = Math.pow(10, Math.floor(Math.log10(rough)));
+  const norm = rough / mag;
+  let step;
+  if (norm < 1.5) step = 1 * mag;
+  else if (norm < 3) step = 2 * mag;
+  else if (norm < 7) step = 5 * mag;
+  else step = 10 * mag;
+  const start = Math.ceil(lo / step) * step;
+  const out = [];
+  for (let v = start; v <= hi + step * 0.5; v += step) {
+    out.push(Math.round(v / step) * step);
+  }
+  return out;
+}
+
+document.querySelectorAll('input[type="number"]').forEach(function(el) {
+  el.addEventListener('input', recalculate);
+});
+
+recalculate();
+</script>
+
+</body>
+</html>
