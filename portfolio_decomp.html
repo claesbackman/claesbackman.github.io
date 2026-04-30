@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Portfolio Decomposition Calculator</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QFH3CE0R2E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QFH3CE0R2E');
+</script>
 <style>
   body {
     font-family: Georgia, 'Times New Roman', serif;
@@ -110,20 +118,23 @@ Asset contribution = <em>s</em><sub>P90,a</sub>&middot;<em>r</em><sub>P90,a</sub
 <h2>Data sources</h2>
 <p>Each preset combines a source for portfolio shares (P10, P90 of the income distribution) with a source for asset returns by income rank.</p>
 <ul>
-<li><strong>Portfolio shares.</strong> <em>Danish 2014</em>: administrative registers from Statistics Denmark, restricted to households at the 10th and 90th percentiles of the income distribution. <em>SCF 2013</em>: Survey of Consumer Finances, same percentile cuts.</li>
+<li><strong>Portfolio shares.</strong> <em>Danish 2014&ndash;2019</em>: administrative registers from Statistics Denmark, averaged over 2014&ndash;2019 for households at the 10th and 90th percentiles of the income distribution. <em>SCF 2013</em>: Survey of Consumer Finances, same percentile cuts.</li>
 <li><strong>Housing returns.</strong> Estimated in this paper from ~250,000 Danish repeat-sale transactions (1996&ndash;2022), using the linear fit <em>r</em>(<em>i</em>) = 0.036 + 0.0017&middot;(<em>i</em>&minus;5.5) over income deciles <em>i</em> = 1,&hellip;,10, evaluated at <em>i</em>=1 (P10) and <em>i</em>=10 (P90).</li>
-<li><strong>Financial returns.</strong> <em>Fagereng et al.</em>: Norwegian administrative data on returns to financial wealth across the financial wealth distribution (Fagereng, Guiso, Malacrino, and Pistaferri, 2020). <em>Bach et al.</em>: Swedish administrative data (Bach, Calvet, and Sodini, 2020).</li>
+<li><strong>Financial returns.</strong> <em>Fagereng et al.</em>: Norwegian administrative data on returns to financial wealth across the financial wealth distribution (Fagereng, Guiso, Malacrino, and Pistaferri, 2020). <em>Bach et al.</em>: Swedish administrative data (Bach, Calvet, and Sodini, 2020). <em>Passive</em>: country-internal mix <em>r</em><sub>fin,i</sub>=α<sub>i</sub><em>r</em><sub>stock</sub>+(1&minus;α<sub>i</sub>)<em>r</em><sub>safe</sub>, using OMXC20+10y bond for Denmark (α<sub>P10</sub>=0.07, α<sub>P90</sub>=0.27 from Danish registers) and S&amp;P 500+10y T for the SCF (α from SCF risky-asset shares). Captures only the composition channel; gives a lower bound on the financial-wealth gap.</li>
 <li><strong>Pension returns.</strong> Held flat at 4.47% for both percentiles.</li>
 </ul>
 <p>Inputs are editable: click a preset to load it, then adjust any cell to explore alternative scenarios.</p>
 
 <h2>Presets</h2>
 <div class="preset-row">
-  <button onclick="loadPreset('dk_fagereng')">Danish 2014 + Fagereng et al.</button>
-  <button onclick="loadPreset('dk_bach')">Danish 2014 + Bach et al.</button>
+  <button onclick="loadPreset('dk_fagereng')">Danish 2014&ndash;2019 + Fagereng et al.</button>
+  <button onclick="loadPreset('dk_bach')">Danish 2014&ndash;2019 + Bach et al.</button>
+  <button onclick="loadPreset('dk_passive')">Danish 2014&ndash;2019 + Passive*</button>
   <button onclick="loadPreset('scf_fagereng')">SCF 2013 + Fagereng et al.</button>
   <button onclick="loadPreset('scf_bach')">SCF 2013 + Bach et al.</button>
+  <button onclick="loadPreset('scf_passive')">SCF 2013 + Passive*</button>
 </div>
+<p class="note">*Passive = <em>r</em><sub>fin,i</sub> = α<sub>i</sub>·<em>r</em><sub>stock</sub> + (1&minus;α<sub>i</sub>)·<em>r</em><sub>safe</sub>, with country-specific real stock and bond means over 2014&ndash;2022. The Danish risky shares (α<sub>P10</sub>=0.07, α<sub>P90</sub>=0.27) are constructed from Danish administrative registers (2014&ndash;2019 average). Default values are illustrative; replace with Stata-computed means after re-running <code>15_PortfolioDecomposition.do</code>.</p>
 
 <div class="panels">
 
@@ -135,14 +146,14 @@ Asset contribution = <em>s</em><sub>P90,a</sub>&middot;<em>r</em><sub>P90,a</sub
 </thead>
 <tbody>
 <tr><td>Housing</td>
-  <td><input id="s_h_p10" type="number" step="0.01" min="0" max="1" value="0.63"></td>
-  <td><input id="s_h_p90" type="number" step="0.01" min="0" max="1" value="0.54"></td></tr>
+  <td><input id="s_h_p10" type="number" step="0.01" min="0" max="1" value="0.36"></td>
+  <td><input id="s_h_p90" type="number" step="0.01" min="0" max="1" value="0.48"></td></tr>
 <tr><td>Financial</td>
-  <td><input id="s_f_p10" type="number" step="0.01" min="0" max="1" value="0.24"></td>
-  <td><input id="s_f_p90" type="number" step="0.01" min="0" max="1" value="0.21"></td></tr>
+  <td><input id="s_f_p10" type="number" step="0.01" min="0" max="1" value="0.17"></td>
+  <td><input id="s_f_p90" type="number" step="0.01" min="0" max="1" value="0.19"></td></tr>
 <tr><td>Pension</td>
-  <td><input id="s_p_p10" type="number" step="0.01" min="0" max="1" value="0.13"></td>
-  <td><input id="s_p_p90" type="number" step="0.01" min="0" max="1" value="0.25"></td></tr>
+  <td><input id="s_p_p10" type="number" step="0.01" min="0" max="1" value="0.47"></td>
+  <td><input id="s_p_p90" type="number" step="0.01" min="0" max="1" value="0.33"></td></tr>
 <tr class="totalrow"><td>Sum</td>
   <td id="sum_p10">1.00</td>
   <td id="sum_p90">1.00</td></tr>
@@ -225,11 +236,11 @@ const TOTAL_COLOR = '#555';
 
 const presets = {
   dk_fagereng: {
-    s: { h: [0.63, 0.54], f: [0.24, 0.21], p: [0.13, 0.25] },
+    s: { h: [0.36, 0.48], f: [0.17, 0.19], p: [0.47, 0.33] },
     r: { h: [2.84, 4.37], f: [-0.44, 1.15], p: [4.47, 4.47] }
   },
   dk_bach: {
-    s: { h: [0.63, 0.54], f: [0.24, 0.21], p: [0.13, 0.25] },
+    s: { h: [0.36, 0.48], f: [0.17, 0.19], p: [0.47, 0.33] },
     r: { h: [2.84, 4.37], f: [2.00, 5.42], p: [4.47, 4.47] }
   },
   scf_fagereng: {
@@ -239,6 +250,23 @@ const presets = {
   scf_bach: {
     s: { h: [0.19, 0.42], f: [0.65, 0.24], p: [0.16, 0.34] },
     r: { h: [2.84, 4.37], f: [2.00, 5.42], p: [4.47, 4.47] }
+  },
+  // Passive spec: r_fin = alpha_i * r_stock + (1-alpha_i) * r_safe
+  // Danish: alpha_P10=0.07, alpha_P90=0.27 (from Danish registers, 2014-2019).
+  // r_stock = OMXC20 real mean 2014-2022 (~8% rough est.); r_safe = Danish
+  // 10y bond real mean 2014-2022 (~-0.75%). Implies r_fin_P10 ~ -0.14%,
+  // r_fin_P90 ~ 1.61%. Replace with exact Stata-computed values once
+  // 15_PortfolioDecomposition.do has been re-run.
+  dk_passive: {
+    s: { h: [0.36, 0.48], f: [0.17, 0.19], p: [0.47, 0.33] },
+    r: { h: [2.84, 4.37], f: [-0.14, 1.61], p: [4.47, 4.47] }
+  },
+  // SCF passive: alpha_P10 and alpha_P90 from scf_risky_share_by_decile.dta
+  // (rough placeholder: 0.15 / 0.45). r_stock = S&P 500 real mean 2014-2022
+  // (~9% rough est.); r_safe = US 10y T real mean 2014-2022 (~0%).
+  scf_passive: {
+    s: { h: [0.19, 0.42], f: [0.65, 0.24], p: [0.16, 0.34] },
+    r: { h: [2.84, 4.37], f: [1.35, 4.05], p: [4.47, 4.47] }
   }
 };
 
