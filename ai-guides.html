@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AI guides — Claes Bäckman</title>
+<meta name="description" content="A collection of practical guides to Claude Code, Codex, and agentic AI for academic economists — plus workshop slides." />
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Claes Bäckman" />
+<meta property="og:title" content="AI guides — Claes Bäckman" />
+<meta property="og:description" content="Practical guides to Claude Code, Codex, and agentic AI for academic economists." />
+<meta property="og:url" content="https://claesbackman.com/ai-guides.html" />
+<meta property="og:image" content="https://claesbackman.com/assets/photo.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="stylesheet" href="assets/style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231a2b4a'/%3E%3Ctext x='50%25' y='54%25' font-family='Georgia,serif' font-size='32' fill='white' text-anchor='middle' dominant-baseline='middle'%3ECB%3C/text%3E%3C/svg%3E" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QFH3CE0R2E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QFH3CE0R2E');
+</script>
+
+<style>
+  .guide-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .guide-list li {
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    background: var(--card-bg);
+    border-radius: 6px;
+    padding: 1.1rem 1.3rem;
+  }
+  .guide-list h3 {
+    margin: 0 0 .35rem;
+    font-size: 1.15rem;
+  }
+  .guide-list h3 a {
+    color: var(--accent);
+    border-bottom: none;
+  }
+  .guide-list h3 a:hover { color: var(--accent-hover); }
+  .guide-list p {
+    margin: 0;
+    color: var(--ink-muted);
+    font-size: .98rem;
+  }
+  .guide-meta {
+    display: inline-block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: .72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: .4rem;
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">Claes Bäckman</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="yoho.html">YoHo</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="ai-guides.html" aria-current="page">AI guides</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<header class="page-header">
+  <h1>AI guides for academic economists</h1>
+  <p class="muted">
+    A short collection of practical guides for working with agentic AI on empirical
+    research — Claude Code, Codex, and the surfaces around them — plus the slides from
+    my workshop on using these tools day to day.
+  </p>
+</header>
+
+<section>
+  <h2>Where to start</h2>
+  <p>
+    If you're not sure which tool or surface fits your workflow, start with the overview.
+    It is a five-minute tour of where these agents can run (VS Code, terminal, desktop,
+    web, mobile) and which surface suits which task.
+  </p>
+  <ul class="guide-list">
+    <li>
+      <span class="guide-meta">Overview</span>
+      <h3><a href="agentic-ai-overview.html">Where to run agentic AI</a></h3>
+      <p>Six surfaces, one decision — a short tour of VS Code, terminal, desktop apps, web, and mobile, with a cheat sheet for which one to pick for which task.</p>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2>Hands-on guides</h2>
+  <p>
+    Walk-throughs for getting Claude Code or Codex set up in VS Code for empirical
+    research — installation, recommended extensions, file-format handling, persistent
+    project context, reusable workflows, and managing the context window.
+  </p>
+  <ul class="guide-list">
+    <li>
+      <span class="guide-meta">Guide · Anthropic</span>
+      <h3><a href="claude-code-guide.html">Claude Code in VS Code</a></h3>
+      <p>Setting up and using Claude Code inside VS Code for R, Stata, Python, and LaTeX work. Covers <code>CLAUDE.md</code>, skills, and the everyday research workflow.</p>
+    </li>
+    <li>
+      <span class="guide-meta">Guide · OpenAI</span>
+      <h3><a href="codex-vscode-guide.html">Codex in VS Code</a></h3>
+      <p>The same ground for OpenAI's Codex — installation, <code>AGENTS.md</code>, skills, approval modes, and cloud delegation.</p>
+    </li>
+    <li>
+      <span class="guide-meta">Comparison</span>
+      <h3><a href="codex-vs-claude-code.html">Codex vs Claude Code</a></h3>
+      <p>A side-by-side look at how the two agents differ in everyday research use — project instructions, slash commands, permissions, and local-versus-cloud workflows.</p>
+    </li>
+    <li>
+      <span class="guide-meta">Guide · LaTeX</span>
+      <h3><a href="overleaf-vscode-guide.html">Linking VS Code and Overleaf</a></h3>
+      <p>Sync your LaTeX papers through GitHub or Dropbox so you can edit locally with Claude Code or Codex while coauthors keep working in Overleaf.</p>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2>Workshop slides</h2>
+  <p>
+    Slides from my workshops on agentic AI for researchers. The repository is updated
+    as the tools change.
+  </p>
+  <ul class="guide-list">
+    <li>
+      <span class="guide-meta">Slides · GitHub</span>
+      <h3><a href="https://github.com/claesbackman/AI_Workshop_Slides">AI Workshop Slides</a></h3>
+      <p>Slide decks used in talks and workshops on integrating Claude Code, Codex, and related tools into an empirical research workflow.</p>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2>Related</h2>
+  <p>
+    The <a href="resources.html">resources page</a> collects writing from other
+    economists on AI-assisted research, plus the broader hidden curriculum on writing,
+    presenting, and coding. I also write about AI, coding, research, and housing on
+    <a href="https://claesbackman.substack.com">Substack</a>.
+  </p>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>
+      <a href="mailto:claes.backman@gmail.com">claes.backman@gmail.com</a>
+    </p>
+    <p class="muted small">Last updated May 2026.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where to Run Agentic AI</title>
+<meta name="description" content="A short overview of the different surfaces for agentic AI — VS Code, terminal, desktop apps, web, mobile, and third-party IDEs — for academic economists choosing where to start with Claude Code or Codex.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Source+Serif+4:ital,wght@0,300;0,400;1,300;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QFH3CE0R2E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QFH3CE0R2E');
+</script>
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #f5f0e8;
+    --accent: #5d5a8f;
+    --accent-light: #d6d4e6;
+    --rule: #c8bfaf;
+    --code-bg: #2a2a3e;
+    --code-text: #e8e0d5;
+    --muted: #6b6258;
+    --highlight: #f0e6d3;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  /* Top nav */
+  .top-nav {
+    background: var(--ink);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0.7rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .top-nav-inner {
+    max-width: 740px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .top-nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.85);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .top-nav-brand:hover { color: var(--accent-light); }
+  .top-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    margin: 0;
+    padding: 0;
+  }
+  .top-nav ul a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+    padding-bottom: 2px;
+  }
+  .top-nav ul a:hover { color: var(--accent-light); }
+  .top-nav ul a[aria-current="page"] {
+    color: var(--accent-light);
+    border-bottom: 1px solid var(--accent);
+  }
+
+  /* Header */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3.5rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(255,255,255,0.03) 28px,
+      rgba(255,255,255,0.03) 29px
+    );
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 1rem;
+    opacity: 0.85;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  header h1 em {
+    color: #b6b1e2;
+    font-style: italic;
+  }
+  .subtitle {
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(245,240,232,0.7);
+    font-size: 1rem;
+    max-width: 540px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .byline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.6);
+    margin-top: 0.8rem;
+    position: relative;
+  }
+  .byline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(245,240,232,0.35);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .byline a:hover {
+    color: #b6b1e2;
+    border-bottom-color: #b6b1e2;
+  }
+  .header-rule {
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+    margin: 1.5rem auto 0;
+    position: relative;
+  }
+
+  /* Layout */
+  .container {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  section { margin-bottom: 3.2rem; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.55rem;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1.5px solid var(--rule);
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 1.6rem 0 0.5rem;
+    color: var(--ink);
+  }
+
+  p { margin-bottom: 0.9rem; }
+  p:last-child { margin-bottom: 0; }
+
+  a { color: var(--accent); }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.84em;
+    background: var(--highlight);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    color: var(--accent);
+  }
+
+  /* Tables (re-used from existing pages) */
+  .ext-table {
+    margin: 0.8rem 0 1rem;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .ext-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ext-row:last-child { border-bottom: none; }
+  .ext-row:nth-child(even) { background: white; }
+  .ext-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--accent);
+    padding: 0.75rem 1.5rem 0.75rem 1rem;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-start;
+    word-break: break-word;
+    line-height: 1.5;
+  }
+  .ext-desc {
+    padding: 0.75rem 1rem 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .ext-desc strong { color: var(--accent); }
+
+  /* Comparison table: three columns */
+  .compare-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-row:nth-child(even) { background: white; }
+  .compare-row.head {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .compare-row.head > div {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.6rem 1rem;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  .compare-row.head > div:last-child { border-right: none; }
+  .compare-row > div {
+    padding: 0.75rem 1rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    border-right: 1px solid var(--rule);
+  }
+  .compare-row > div:last-child { border-right: none; }
+  .compare-row .surface {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  @media (max-width: 620px) {
+    .compare-row { grid-template-columns: 1fr; }
+    .compare-row > div { border-right: none; border-bottom: 1px dashed var(--rule); }
+    .compare-row > div:last-child { border-bottom: none; }
+    .compare-row.head { display: none; }
+  }
+  @media (max-width: 560px) {
+    .ext-row { grid-template-columns: 1fr; }
+    .ext-id { border-right: none; border-bottom: 1px solid var(--rule); }
+  }
+
+  /* Note box */
+  .note {
+    background: var(--highlight);
+    border: 1px solid var(--rule);
+    border-left: 4px solid #7a9e7e;
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    font-size: 0.92rem;
+    margin: 1.2rem 0;
+  }
+  .note strong { color: #3a6b3e; }
+
+  .note.warn {
+    background: #fdf3ec;
+    border-left-color: #b5451b;
+  }
+  .note.warn strong { color: #b5451b; }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 2.2rem 0;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    padding: 2rem 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="top-nav-inner">
+    <a href="index.html" class="top-nav-brand">Claes Bäckman</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="yoho.html">YoHo</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="ai-guides.html" aria-current="page">AI guides</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <p class="eyebrow">A Quick Tour</p>
+  <h1>Where to Run <em>Agentic AI</em></h1>
+  <p class="subtitle">VS Code, terminal, desktop, web, mobile — six surfaces, one decision</p>
+  <p class="byline">by <a href="index.html">Claes Bäckman</a></p>
+  <div class="header-rule"></div>
+</header>
+
+<div class="container">
+
+  <section>
+    <p>Claude Code and Codex are the two main agentic AI systems for everyday research work. Both can read your files, run code, edit drafts, and iterate on a task until it's done. There are several different programs you can use to get started with agentic AI. The goal of this page is to help you navigate the different options. For a side-by-side comparison of the two systems themselves, see <a href="codex-vs-claude-code.html">Codex vs Claude Code</a>.</p>
+      
+    <p>For installation guides for agentic AI in VS Code, see <a href="claude-code-guide.html">Claude Code</a> and <a href="codex-vscode-guide.html">Codex</a>.</p>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <p class="section-label">Surface 1</p>
+    <h2>VS Code</h2>
+    <p>VS Code is an editor where you can write and run code, work in LaTeX, and keep your project files in view. Both Claude Code and Codex ship official VS Code extensions, where the AI sits in a side panel, sees the file you have open, can edit anywhere in the project, run code, view tables and figures, and inspect diffs before you accept them. If you want to see your files in the same editor, this is the surface to start with.</p>
+
+    <p>There is a learning curve to VS Code. The two guides on this site walk through that first day specifically for empirical research: <a href="claude-code-guide.html">Claude Code in VS Code</a> and <a href="codex-vscode-guide.html">Codex in VS Code</a>.</p>
+  </section>
+
+  <section>
+    <p class="section-label">Surface 2</p>
+    <h2>Terminal / CLI</h2>
+    <p>Both systems also run as command-line tools: <code>claude</code> and <code>codex</code> in any shell. You point the CLI at a folder, describe what you want, and it edits files in place. Under the hood this is the same as the VS Code version, just without the editor wrapper. This is the natural fit for anyone already working in a terminal: cluster jobs, remote servers via SSH, headless scripts, or workflows that pipe AI calls into other tools.</p>
+    <p>Two practical cases where the CLI wins over VS Code:</p>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">Remote servers</div>
+        <div class="ext-desc"><strong>SSH into a cluster</strong> and run the CLI there. Useful if your data lives behind a firewall (Statistics Denmark, secure research environments) and cannot be moved to your laptop.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Background runs</div>
+        <div class="ext-desc"><strong>Long jobs you want to walk away from.</strong> The CLI can run for hours unattended — building a robustness table over twelve specifications, converting a folder of PDFs to markdown — and just leave you a diff to review.</div>
+      </div>
+    </div>
+    <p>Official docs: <a href="https://code.claude.com/docs/en/overview">Claude Code CLI</a> · <a href="https://developers.openai.com/codex/cli">Codex CLI</a>.</p>
+  </section>
+
+  <section>
+    <p class="section-label">Surface 3</p>
+    <h2>Desktop apps</h2>
+    <p>The Claude desktop app (Mac and Windows) and the ChatGPT desktop app are the chat-style interfaces most people first encounter. Claude Desktop now also has Cowork and Code tabs: Cowork for longer background tasks, and Code for starting a Claude Code session on a folder or repo.</p>
+
+    <figure style="margin:1.5rem 0;">
+      <img src="assets/Claude_app.png" alt="The Claude desktop app showing the Chat, Cowork, and Code tabs at the top of the sidebar, with a list of recent sessions on the right." width="3020" height="866" loading="lazy" style="width:100%;height:auto;border:1px solid var(--rule);border-radius:6px;display:block;">
+      <figcaption style="font-size:0.82rem;color:var(--muted);font-style:italic;margin-top:0.5rem;text-align:center;">The Claude desktop app — Chat for plain conversation, Cowork for background agent work, and Code for spawning a Claude Code session on a folder or repo.</figcaption>
+    </figure>
+
+    <p>OpenAI also ships a dedicated Codex desktop app. It is closer to Claude's Code tab than to ordinary chat: it is built for working on coding threads in parallel, reviewing diffs, and managing Git-backed changes. Desktop apps are useful when you want a focused AI workspace without living inside VS Code or the terminal.</p>
+
+    <p>For quick conversations and drafting, the ordinary Claude or ChatGPT chat surface remains easiest. For sustained editing, use the Code/Codex desktop surfaces or an IDE; the chat-only surfaces are the ones that become hard to track once many files and diffs are involved.</p>
+  </section>
+
+  <section>
+    <p class="section-label">Surface 4</p>
+    <h2>Web / browser</h2>
+    <p>For ordinary chat, the browser versions at <a href="https://claude.ai">claude.ai</a> and <a href="https://chatgpt.com">chatgpt.com</a> are close to the desktop chat apps. The exception worth knowing about is that both vendors now run <strong>long-running cloud agents</strong> from the web — <a href="https://claude.ai/code">claude.ai/code</a> and <a href="https://chatgpt.com/codex">chatgpt.com/codex</a>. You point them at a GitHub repository, describe the task, and the agent works in a cloud container for minutes or hours before pushing a branch or opening a pull request you can review and merge.</p>
+    <p>Cloud agents are useful in three situations: when your work laptop blocks software installs (common at central banks and statistical agencies), when you want to kick off a job from a borrowed machine, and when you want several independent attempts at the same task running in parallel. They are <em>not</em> useful when the data lives only on your laptop or inside a secure environment — the cloud agent can't see it.</p>
+  </section>
+
+  <section>
+    <p class="section-label">Surface 5</p>
+    <h2>Mobile apps</h2>
+    <p>Claude and ChatGPT both have iOS and Android apps. You will not edit a Stata script on a phone. But two patterns work well: <strong>capture</strong> — dictate an idea, a literature note, or a draft paragraph while walking — and <strong>monitor</strong> — kick off a cloud agent from your laptop in the morning, then approve or redirect it from your phone over coffee. Voice input on either app is good enough that talking through a paper's argument and getting structured notes back is now genuinely practical.</p>
+    <p>The mobile apps also pair with the cloud agents above: you can review a pull request, leave a comment, and ask the agent to revise, all without opening a laptop.</p>
+  </section>
+
+  <section>
+    <p class="section-label">Surface 6</p>
+    <h2>Other editors (Cursor, JetBrains, Zed)</h2>
+    <p>If you already work in another editor, you don't have to switch to VS Code. <a href="https://cursor.com">Cursor</a> is a VS Code fork built around AI from the ground up; <a href="https://www.jetbrains.com/">JetBrains</a> IDEs (PyCharm, IntelliJ IDEA, WebStorm, etc.) have first-party Claude Code and Codex integrations; and <a href="https://zed.dev/">Zed</a> is a fast editor where you can run the CLIs from the integrated terminal. The agentic experience is broadly similar in Cursor and JetBrains, while Zed is closer to the terminal workflow.</p>
+    <p>Practically: if you live in PyCharm for Python work or already use Cursor for a side project, you can keep your editor and add Claude Code or Codex on top. If you use Zed, start with <code>claude</code> or <code>codex</code> in the project root. If you have no strong preference, VS Code remains the path of least resistance — it is what most documentation, screenshots, and shared workflows assume.</p>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <p class="section-label">Decision aid</p>
+    <h2>Which surface for which task</h2>
+    <p>A rough cheat sheet. None of the surfaces are mutually exclusive — most researchers end up using two or three, picking whichever fits the moment.</p>
+
+    <div class="ext-table">
+      <div class="compare-row head">
+        <div>Surface</div>
+        <div>Best for</div>
+        <div>When not to use</div>
+      </div>
+      <div class="compare-row">
+        <div class="surface">VS Code</div>
+        <div>Daily coding, paper writing, anything where you want a real editor and a diff view.</div>
+        <div>Quick conversational work — overkill for "explain this paragraph to me."</div>
+      </div>
+      <div class="compare-row">
+        <div class="surface">Terminal</div>
+        <div>Remote servers, secure data environments, long unattended jobs, scripting AI into pipelines.</div>
+        <div>If you are not already a terminal user — the learning curve isn't worth it just for AI.</div>
+      </div>
+      <div class="compare-row">
+        <div class="surface">Desktop app</div>
+        <div>Focused AI workspace, visual diff review, parallel coding sessions, and quick drafting.</div>
+        <div>When you need a full editor around the agent, or when the work must run on a remote/secure server.</div>
+      </div>
+      <div class="compare-row">
+        <div class="surface">Web</div>
+        <div>Borrowed machines, locked-down laptops, kicking off cloud agents on a GitHub repo.</div>
+        <div>Data that cannot leave your machine or a secure environment.</div>
+      </div>
+      <div class="compare-row">
+        <div class="surface">Mobile</div>
+        <div>Capturing ideas on the move, reviewing or redirecting cloud agents, voice notes.</div>
+        <div>Any actual editing — phones are for triage, not for work.</div>
+      </div>
+      <div class="compare-row">
+        <div class="surface">Other IDEs</div>
+        <div>Sticking with the editor you already know (PyCharm, Cursor, Zed).</div>
+        <div>If your editor only gives terminal access and you want rich diff review, use VS Code or a desktop app.</div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>A reasonable starting point.</strong> Install Claude Code or Codex inside VS Code for daily editing, keep the desktop app open for drafting and exploration, and learn the CLI once you have a job that needs to run on a server or in the background. The web and mobile surfaces are useful additions but not where most of the work happens.
+    </div>
+
+    <div class="note warn">
+      <strong>Two cautions, regardless of surface.</strong> First, never paste data subject to a confidentiality agreement (administrative registers, restricted samples) into a cloud agent or web chat — local-only surfaces are the right tool there. Second, the AI's confidence is not calibrated; verify regression results, citations, and identification claims yourself before they enter a draft.
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Last updated May 2026 · See also: <a href="claude-code-guide.html">Claude Code in VS Code</a> · <a href="codex-vscode-guide.html">Codex in VS Code</a> · <a href="codex-vs-claude-code.html">Codex vs Claude Code</a>
+</footer>
+
+</body>
+</html>

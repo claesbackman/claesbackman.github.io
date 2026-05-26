@@ -37,6 +37,57 @@
     line-height: 1.75;
   }
 
+  /* ── Top nav ── */
+  .top-nav {
+    background: var(--ink);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0.7rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .top-nav-inner {
+    max-width: 740px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .top-nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.85);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .top-nav-brand:hover { color: var(--accent-light); }
+  .top-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    margin: 0;
+    padding: 0;
+  }
+  .top-nav ul a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+    padding-bottom: 2px;
+  }
+  .top-nav ul a:hover { color: var(--accent-light); }
+  .top-nav ul a[aria-current="page"] {
+    color: var(--accent-light);
+    border-bottom: 1px solid var(--accent);
+  }
+
   /* ── Header ── */
   header {
     background: var(--ink);
@@ -348,6 +399,20 @@
 </head>
 <body>
 
+<nav class="top-nav">
+  <div class="top-nav-inner">
+    <a href="index.html" class="top-nav-brand">Claes Bäckman</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="yoho.html">YoHo</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="ai-guides.html" aria-current="page">AI guides</a></li>
+    </ul>
+  </div>
+</nav>
+
 <header>
   <p class="eyebrow">A Practical Guide</p>
   <h1>Claude Code in VS Code<br><em>for Academic Economists</em></h1>
@@ -358,6 +423,10 @@
 
 <div class="container">
 
+  <section>
+    <p>Both Claude Code and OpenAI's Codex work very well inside VS Code, and the choice between them is mostly a matter of taste, existing accounts, and which conventions your collaborators/workplace already use. This guide focuses on Claude Code, but a companion <a href="codex-vscode-guide.html" style="color:var(--accent);">Codex guide</a> covers the same ground for Codex, and a side-by-side <a href="codex-vs-claude-code.html" style="color:var(--accent);">comparison</a> walks through the practical differences. Pick whichever fits your workflow.</p>
+    <p>VS Code is one of several places these tools can run — see <a href="agentic-ai-overview.html" style="color:var(--accent);">where to run agentic AI</a> for a five-minute tour of the alternatives (terminal, desktop app, web, mobile) before committing to a setup.</p>
+  </section>
 
   <!-- INSTALL -->
   <section>
@@ -737,7 +806,8 @@ variable names.</code></pre>
 </div>
 
 <footer>
-  Generated April 2026 · Claude Code works with a Claude Pro or Max subscription, or an Anthropic API key · Official docs: https://code.claude.com/docs/en/vs-code 
+  Generated April 2026 · Claude Code works with a Claude Pro or Max subscription, or an Anthropic API key · Official docs: <a href="https://code.claude.com/docs/en/vs-code" style="color:var(--accent);">code.claude.com/docs/en/vs-code</a><br>
+  Companion pages: <a href="codex-vscode-guide.html" style="color:var(--accent);">Codex guide</a> · <a href="codex-vs-claude-code.html" style="color:var(--accent);">Codex vs Claude Code</a> · <a href="overleaf-vscode-guide.html" style="color:var(--accent);">Overleaf + VS Code</a>
 </footer>
 
 </body>

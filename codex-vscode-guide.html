@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex in VS Code - For Academic Economists</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Source+Serif+4:ital,wght@0,300;0,400;1,300;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QFH3CE0R2E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QFH3CE0R2E');
+</script>
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #f5f0e8;
+    --accent: #2f6f73;
+    --accent-light: #cfe6e2;
+    --rule: #c8bfaf;
+    --code-bg: #20242f;
+    --code-text: #e8e0d5;
+    --muted: #6b6258;
+    --highlight: #e8efe9;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  /* Top nav */
+  .top-nav {
+    background: var(--ink);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0.7rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .top-nav-inner {
+    max-width: 740px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .top-nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.85);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .top-nav-brand:hover { color: var(--accent-light); }
+  .top-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    margin: 0;
+    padding: 0;
+  }
+  .top-nav ul a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+    padding-bottom: 2px;
+  }
+  .top-nav ul a:hover { color: var(--accent-light); }
+  .top-nav ul a[aria-current="page"] {
+    color: var(--accent-light);
+    border-bottom: 1px solid var(--accent);
+  }
+
+  /* Header */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3.5rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(255,255,255,0.03) 28px,
+      rgba(255,255,255,0.03) 29px
+    );
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 1rem;
+    opacity: 0.85;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  header h1 em {
+    color: #8fd1c9;
+    font-style: italic;
+  }
+  .subtitle {
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(245,240,232,0.7);
+    font-size: 1rem;
+    max-width: 520px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .byline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.6);
+    margin-top: 0.8rem;
+    position: relative;
+  }
+  .byline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(245,240,232,0.35);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .byline a:hover {
+    color: #8fd1c9;
+    border-bottom-color: #8fd1c9;
+  }
+  .header-rule {
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+    margin: 1.5rem auto 0;
+    position: relative;
+  }
+
+  /* Layout */
+  .container {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  section {
+    margin-bottom: 3.5rem;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.65rem;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1.5px solid var(--rule);
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 1.8rem 0 0.6rem;
+    color: var(--ink);
+  }
+
+  p { margin-bottom: 0.9rem; }
+  p:last-child { margin-bottom: 0; }
+  a { color: var(--accent); }
+
+  /* Install Steps */
+  .steps {
+    counter-reset: step;
+    list-style: none;
+    margin: 1.2rem 0;
+  }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: calc(28px + 1rem);
+    margin-bottom: 1rem;
+    min-height: 28px;
+  }
+  .steps li::before {
+    content: counter(step);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--paper);
+    background: var(--accent);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 2px;
+  }
+
+  /* Code blocks */
+  pre {
+    background: var(--code-bg);
+    color: var(--code-text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    padding: 1.1rem 1.3rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 0.8rem 0 1rem;
+    line-height: 1.6;
+    border-left: 3px solid var(--accent);
+  }
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.84em;
+    background: var(--highlight);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    color: var(--accent);
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  /* Use-case cards */
+  .use-cases {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1.25rem 1.4rem;
+    border-left: 4px solid var(--accent);
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+  .card-icon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--paper);
+    background: var(--accent);
+    width: 1.45rem;
+    height: 1.45rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .card p {
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+  .card pre {
+    font-size: 0.76rem;
+    margin: 0;
+  }
+
+  /* Note box */
+  .note {
+    background: var(--highlight);
+    border: 1px solid var(--rule);
+    border-left: 4px solid #7a9e7e;
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    font-size: 0.92rem;
+    margin: 1.2rem 0;
+  }
+  .note strong { color: #3a6b3e; }
+
+  .warn {
+    background: #fdf3ec;
+    border-left-color: #b5451b;
+  }
+  .warn strong { color: #b5451b; }
+
+  /* Small interface diagram */
+  .mini-ui {
+    background: #ffffff;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    margin: 1.4rem 0;
+    overflow: hidden;
+  }
+  .mini-titlebar {
+    display: grid;
+    grid-template-columns: 150px 1fr 190px;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+  .mini-titlebar div {
+    padding: 0.55rem 0.75rem;
+  }
+  .mini-titlebar div + div {
+    border-left: 1px solid var(--rule);
+  }
+  .mini-body {
+    display: grid;
+    grid-template-columns: 150px 1fr 190px;
+    min-height: 210px;
+  }
+  .mini-files,
+  .mini-editor,
+  .mini-codex {
+    padding: 0.85rem;
+  }
+  .mini-files,
+  .mini-codex {
+    background: #f8f7f4;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+  .mini-files {
+    border-right: 1px solid var(--rule);
+  }
+  .mini-codex {
+    border-left: 1px solid var(--rule);
+  }
+  .mini-editor {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: #3b3b4d;
+  }
+  .mini-line {
+    display: block;
+    margin-bottom: 0.35rem;
+    white-space: nowrap;
+  }
+  .mini-pill {
+    display: inline-block;
+    border: 1px solid var(--rule);
+    background: white;
+    border-radius: 3px;
+    padding: 0.25rem 0.45rem;
+    margin-bottom: 0.45rem;
+  }
+  .mini-prompt {
+    margin-top: 4.5rem;
+    border: 1px solid var(--rule);
+    background: white;
+    border-radius: 4px;
+    padding: 0.5rem;
+    color: var(--ink);
+  }
+  .mini-caption {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+    text-align: center;
+    padding: 0.55rem 1rem 0.8rem;
+    border-top: 1px solid var(--rule);
+  }
+  @media (max-width: 640px) {
+    .mini-titlebar,
+    .mini-body {
+      grid-template-columns: 1fr;
+    }
+    .mini-titlebar div + div,
+    .mini-files,
+    .mini-codex {
+      border-left: none;
+      border-right: none;
+      border-top: 1px solid var(--rule);
+    }
+    .mini-body { min-height: auto; }
+    .mini-prompt { margin-top: 1rem; }
+  }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 2.5rem 0;
+  }
+
+  /* Extension table */
+  .ext-table {
+    margin: 0.8rem 0 1rem;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .ext-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ext-row:last-child { border-bottom: none; }
+  .ext-row:nth-child(even) { background: white; }
+  .ext-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    padding: 0.75rem 1.5rem 0.75rem 1rem;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-start;
+    word-break: break-all;
+    line-height: 1.5;
+  }
+  .ext-desc {
+    padding: 0.75rem 1rem 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .ext-desc strong { color: var(--accent); }
+  @media (max-width: 560px) {
+    .ext-row { grid-template-columns: 1fr; }
+    .ext-id { border-right: none; border-bottom: 1px solid var(--rule); }
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    padding: 2rem 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.15em 0.5em;
+    border-radius: 3px;
+    background: var(--ink);
+    color: var(--paper);
+    letter-spacing: 0.05em;
+    margin-right: 0.3rem;
+    vertical-align: middle;
+  }
+  .tag.r { background: #276DC2; }
+  .tag.stata { background: #1a5276; }
+  .tag.python { background: #3572A5; }
+  .tag.latex { background: #3d6b44; }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="top-nav-inner">
+    <a href="index.html" class="top-nav-brand">Claes Bäckman</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="yoho.html">YoHo</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="ai-guides.html" aria-current="page">AI guides</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <p class="eyebrow">A Practical Guide</p>
+  <h1>Codex in VS Code<br><em>for Academic Economists</em></h1>
+  <p class="subtitle">Agentic AI assistance for R, Stata, Python, LaTeX, and research workflows</p>
+  <p class="byline">by <a href="index.html">Claes B&auml;ckman</a></p>
+  <div class="header-rule"></div>
+</header>
+
+<div class="container">
+
+  <section>
+    <p>VS Code is one of several places Codex can run. If you have not picked a surface yet, see <a href="agentic-ai-overview.html" style="color:var(--accent);">where to run agentic AI</a> for a short tour of the alternatives (terminal, desktop app, web, mobile) before working through this guide. For the Anthropic counterpart, see the companion <a href="claude-code-guide.html" style="color:var(--accent);">Claude Code guide</a> and the side-by-side <a href="codex-vs-claude-code.html" style="color:var(--accent);">comparison</a>.</p>
+  </section>
+
+  <!-- INSTALL -->
+  <section>
+    <p class="section-label">Setup</p>
+    <h2>Installation in 5 Steps</h2>
+    <p>Installing Codex in VS Code is straightforward. The important thing is to install the official OpenAI extension and open a full project folder before asking it to do research work.</p>
+
+    <div class="note">
+      <strong>Mac users:</strong> replace <code>Ctrl</code> with <code>Cmd</code> throughout, for example <code>Cmd+Shift+X</code> for Extensions and <code>Cmd+Shift+P</code> for the Command Palette.
+    </div>
+
+    <ol class="steps">
+      <li>Open VS Code and open the Extensions panel with <code>Ctrl+Shift+X</code>.</li>
+      <li>Search <strong>"Codex"</strong> and install <a href="https://marketplace.visualstudio.com/items?itemName=openai.chatgpt"><strong>Codex - OpenAI's coding agent</strong></a> from OpenAI. The extension ID is <code>openai.chatgpt</code>. You can also press <code>Ctrl+P</code> and run <code>ext install openai.chatgpt</code>.</li>
+      <li>Restart VS Code if the Codex icon does not appear right away. In VS Code, Codex opens in the right sidebar by default.</li>
+      <li>Sign in with your ChatGPT account, or use an API key if that is how your account is set up. ChatGPT Plus, Pro, Business, Edu, and Enterprise plans include Codex usage.</li>
+      <li>Open your <strong>full project folder</strong> in VS Code (File &gt; Open Folder), not just a single file. Codex is most useful when it can see the directory tree, scripts, output folders, and documentation together.</li>
+    </ol>
+
+    <div class="mini-ui" aria-label="Simplified VS Code layout with files, editor, and Codex panel">
+      <div class="mini-titlebar">
+        <div>Explorer</div>
+        <div>paper/main.tex</div>
+        <div>Codex</div>
+      </div>
+      <div class="mini-body">
+        <div class="mini-files">
+          <span class="mini-line">project/</span>
+          <span class="mini-line">data/raw/</span>
+          <span class="mini-line">code/01_clean.R</span>
+          <span class="mini-line">code/02_analysis.R</span>
+          <span class="mini-line">paper/main.tex</span>
+          <span class="mini-line">AGENTS.md</span>
+        </div>
+        <div class="mini-editor">
+          <span class="mini-line">\section{Empirical Strategy}</span>
+          <span class="mini-line">We estimate the baseline model...</span>
+          <span class="mini-line">&nbsp;</span>
+          <span class="mini-line">table: output/main_results.tex</span>
+          <span class="mini-line">figure: output/event_study.pdf</span>
+        </div>
+        <div class="mini-codex">
+          <span class="mini-pill">Agent</span>
+          <span class="mini-pill">medium</span>
+          <div class="mini-prompt">@code/02_analysis.R explain why the clustered SEs changed.</div>
+        </div>
+      </div>
+      <div class="mini-caption">A useful setup: full folder in the Explorer, source files in the editor, Codex in the side panel.</div>
+    </div>
+
+    <div class="note">
+      <strong>Windows users:</strong> Codex can run natively on Windows with the Windows sandbox. If your research code depends on Linux tooling, WSL2 is often the smoother route.
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- NEXT STEPS -->
+  <section>
+    <p class="section-label">Next</p>
+    <h2>After Installing - What to Do Next</h2>
+    <p>Codex works out of the box, but a few one-time setup steps make it much more useful for empirical research. Everything below is covered in detail later; this is the short roadmap.</p>
+    <ol class="steps">
+      <li><strong>Install extensions for your research stack.</strong> Stata, Python, LaTeX, CSV viewers, and PDF viewers make it easier for Codex to run code, inspect errors, preview output, and iterate inside VS Code.</li>
+      <li><strong>Create an <code>AGENTS.md</code> file for each project.</strong> Tell Codex once about your data, sample definitions, file layout, and coding conventions. Codex reads these instructions before it starts work.</li>
+      <li><strong>Learn the mode switcher.</strong> Use <code>Chat</code> when you only want advice, <code>Agent</code> when Codex may edit files and run commands, and <code>Agent (Full Access)</code> only when you deliberately want broader autonomy.</li>
+      <li><strong>Add skills for workflows you repeat.</strong> A standard robustness check, referee-style read, or table-formatting routine can become a reusable skill you invoke with <code>$skill-name</code>.</li>
+    </ol>
+  </section>
+
+  <!-- EXTENSIONS -->
+  <section>
+    <p class="section-label">Recommended Extensions</p>
+    <h2>A Starter Pack for Economists</h2>
+    <p>Install these alongside Codex to cover the full research stack. Search for each by extension ID in the Extensions panel (<code>Ctrl+Shift+X</code>).</p>
+
+    <h3>Stata</h3>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">tmonk.stata-workbench</div>
+        <div class="ext-desc">A VS Code-compatible extension that allows Stata code to be run directly from the editor. Useful when Codex writes or edits <code>.do</code> files and you want to execute them without leaving VS Code. It also exposes an MCP server, so if you configure that server for Codex, Codex can interact with Stata more directly. Built by <a href="https://tdmonk.com/">Thomas Monk, London School of Economics</a>.</div>
+      </div>
+    </div>
+
+    <h3>Python</h3>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">ms-python.python</div>
+        <div class="ext-desc">The core Python extension. Syntax highlighting, IntelliSense, and a run button for <code>.py</code> files. Required for most Python work in VS Code.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">ms-python.vscode-pylance</div>
+        <div class="ext-desc">Fast, type-aware language server for Python. Gives Codex better static context about variable types, function signatures, and import errors.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">ms-python.debugpy</div>
+        <div class="ext-desc">Python debugger. Set breakpoints and inspect variables mid-run - essential when tracking down why a panel merge or regression loop is producing unexpected results.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">ms-python.vscode-python-envs</div>
+        <div class="ext-desc">Manages virtual environments such as conda, venv, and pipenv from inside VS Code. Keeps project dependencies isolated when different papers use different package versions.</div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Why install Python even if you do not write Python.</strong> A surprising share of everyday empirical-work friction - converting <code>.docx</code> or PDFs to markdown, reshaping a messy CSV, scraping a table, pulling a series from an API, cleaning a bibliography file - is solved most quickly by a short Python script. Ask Codex in plain English, and it can write, run, and debug that script for you.
+    </div>
+
+    <h3>LaTeX</h3>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">james-yu.latex-workshop</div>
+        <div class="ext-desc">The standard LaTeX extension. Compiles on save, renders a side-by-side PDF preview, shows compile errors inline, and provides autocomplete for commands and citations. Pairs well with Codex for table, notation, and bibliography fixes.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">yzane.markdown-pdf</div>
+        <div class="ext-desc">Converts Markdown files to PDF with one command. Useful for quick memos, referee responses, or notes that do not need full LaTeX treatment.</div>
+      </div>
+    </div>
+
+    <h3>Data Files</h3>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">mechatroner.rainbow-csv</div>
+        <div class="ext-desc">Colour-codes CSV columns so you can visually verify structure at a glance. Also adds a lightweight SQL-like query tool (<code>RBQL</code>) for filtering rows without loading them into R or Python.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">tomoki1207.pdf</div>
+        <div class="ext-desc">Renders PDFs inline in VS Code. Useful when you want papers, codebooks, or appendices visible next to the code Codex is editing.</div>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:1.5rem;">
+      <strong>LaTeX build-file cleanup.</strong> By default, <code>latex-workshop</code> leaves auxiliary files (<code>.aux</code>, <code>.bbl</code>, <code>.log</code>, <code>.fls</code>, <code>.fdb_latexmk</code>, and so on) next to your <code>.tex</code> source. To have VS Code delete them automatically after each successful build, add three settings to <code>.vscode/settings.json</code>:
+      <pre style="margin-top:0.6rem;"><code>"latex-workshop.latex.autoClean.run": "onBuilt",
+"latex-workshop.latex.clean.method": "glob",
+"latex-workshop.latex.clean.fileTypes": [
+  "*.aux", "*.bbl", "*.blg", "*.log",
+  "*.out", "*.toc", "*.fls", "*.fdb_latexmk",
+  "*.nav", "*.snm", "*.vrb"
+]</code></pre>
+      The first line triggers cleanup after every build; the second tells it to match by file extension; the third lists which extensions to delete.
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FILE FORMATS -->
+  <section>
+    <p class="section-label">File Formats</p>
+    <h2>What Codex Can Read - and What to Convert First</h2>
+    <p>Codex works best with plain text. The more a file looks like characters on a page, as opposed to a rendered binary, the better Codex can inspect, edit, and reason about it. For economists this matters: a referee report in <code>.docx</code>, a codebook as a scanned PDF, or a Stata dataset in <code>.dta</code> can all be useful inputs, but usually only after conversion to a text-friendly form.</p>
+
+    <p>A <strong>markdown file</strong> (<code>.md</code>) is the simplest useful form: a plain-text document with lightweight formatting conventions - <code>#</code> for headings, <code>*italic*</code>, <code>**bold**</code>, bullet lists, and links written as <code>[text](url)</code>. It renders nicely but remains fully readable as raw text.</p>
+
+    <p>A rough guide to the formats you are most likely to encounter:</p>
+
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">Plain text<br>.md, .txt, .tex, .bib, .csv, .json, .yaml</div>
+        <div class="ext-desc"><strong>Native - no friction.</strong> Codex reads these directly and can edit them line by line. Markdown and LaTeX are the ideal substrate for writing tasks. CSV and TSV are fine up to moderate sizes; larger files should be sampled, summarized, or queried with code.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Code<br>.py, .R, .do, .jl, .sh</div>
+        <div class="ext-desc"><strong>Native.</strong> Codex reads, edits, and can run these when the relevant interpreter is installed. Stata do-files are text, so Codex can edit them even if Stata itself is not available.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Jupyter<br>.ipynb</div>
+        <div class="ext-desc"><strong>Usable.</strong> Notebooks are JSON under the hood. Codex can inspect them directly, though for large notebooks it is often cleaner to export to a script or markdown first.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Word<br>.docx</div>
+        <div class="ext-desc"><strong>Convert first.</strong> For referee reports or co-author comments, convert to markdown with <code>pandoc file.docx -o file.md</code>. Codex can do this for you if <code>pandoc</code> is installed.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Excel<br>.xlsx, .xls</div>
+        <div class="ext-desc"><strong>Convert or inspect with code.</strong> Ask Codex to write a Python or R script that lists sheet names, previews columns, and exports one CSV per sheet. Do not paste entire workbooks into a prompt.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Stata / R binaries<br>.dta, .rds, .sav</div>
+        <div class="ext-desc"><strong>Convert first.</strong> Ask Codex to write Stata, R, or Python code that dumps a sample, a schema, a codebook, or a CSV version. For large datasets, summary tables are more useful than raw rows.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">PDF<br>.pdf</div>
+        <div class="ext-desc"><strong>Extract text first for serious work.</strong> Inline PDF preview is convenient for you, but Codex gets better results from markdown or plain text extracted from the PDF. See the note below.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Images<br>.png, .jpg, figures</div>
+        <div class="ext-desc"><strong>Useful as visual context.</strong> The Codex IDE extension accepts images in prompts. This is good for plots, screenshots, and UI references. For scanned documents, run OCR first if the text matters.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Qualtrics / survey<br>.qsf</div>
+        <div class="ext-desc"><strong>Convert first.</strong> A <code>.qsf</code> file is technically JSON, but deeply nested. Ask Codex to flatten it into a markdown outline of blocks, questions, and answer choices before reviewing it.</div>
+      </div>
+    </div>
+
+    <h3>Handling PDFs</h3>
+    <p>PDFs are where researchers most often get stuck. They look like documents, but they are layout files. Text may be stored as page-positioned glyphs with no clean paragraph, column, or table structure.</p>
+    <p>A practical rule of thumb:</p>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">Born-digital PDFs<br>(from LaTeX, Word, etc.)</div>
+        <div class="ext-desc">Usually fine for short documents after text extraction. Expect some table, footnote, and multi-column mangling.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Long PDFs<br>(50+ pages)</div>
+        <div class="ext-desc">Convert to markdown first. A clean markdown version is far easier for Codex to navigate and much cheaper in context.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Scanned PDFs<br>(image-based)</div>
+        <div class="ext-desc">Run OCR first, for example with <code>ocrmypdf</code>, then convert the OCR'd PDF to markdown or text.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">PDFs with equations and tables</div>
+        <div class="ext-desc">These are the hardest case. If you have the source <code>.tex</code>, use that instead. It will almost always be cleaner than re-parsing the compiled PDF.</div>
+      </div>
+    </div>
+
+    <p style="margin-top:1rem;">For converting PDFs to markdown, a few options work well:</p>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">pdftotext / pandoc</div>
+        <div class="ext-desc"><strong>Good first pass.</strong> Free command-line tools for extracting text or converting formats. Useful on clean, born-digital PDFs.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">marker / MinerU / docling</div>
+        <div class="ext-desc"><strong>ML-based PDF-to-markdown tools.</strong> Often better on papers with tables, figures, captions, and equations. Codex can help install and run them.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">$pdf-to-markdown skill</div>
+        <div class="ext-desc"><strong>Roll your own.</strong> A Codex skill can wrap your preferred conversion tools with sensible fallbacks, then report word counts and suspicious extraction failures.</div>
+      </div>
+    </div>
+
+    <div class="note warn">
+      <strong>Rule of thumb:</strong> if a file format requires conversion, do it once up front and keep the markdown or CSV version alongside the original. Every later Codex session then starts from clean text.
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- AGENTS.MD AND SKILLS -->
+  <section>
+    <p class="section-label">Customisation</p>
+    <h2>AGENTS.md and Skills</h2>
+
+    <h3>AGENTS.md - Persistent Project Context</h3>
+    <p>An <code>AGENTS.md</code> file gives Codex persistent instructions and context. It is the place to state things that are always true about your project: folder layout, data rules, code conventions, model notation, and what not to touch.</p>
+    <p>There are two especially useful levels:</p>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">~/.codex/AGENTS.md</div>
+        <div class="ext-desc"><strong>Computer-level.</strong> Applies to every project on your machine. Use it for personal defaults: preferred languages, regression conventions, LaTeX notation, writing style, or recurring cautions. On Mac/Linux, <code>~</code> is your home folder; on Windows it is typically <code>C:\Users\yourname\</code>.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">your-project/AGENTS.md</div>
+        <div class="ext-desc"><strong>Folder-level.</strong> Applies when Codex is opened in that project or repository. Use it for one paper: data structure, sample restrictions, script order, output folders, and co-author conventions.</div>
+      </div>
+    </div>
+    <p style="margin-top:0.8rem;">Codex can also read nested <code>AGENTS.md</code> and <code>AGENTS.override.md</code> files as it walks from the project root to your current working directory. More specific instructions appear later and take precedence.</p>
+
+    <p>Unlike Claude Code, Codex does not use <code>CLAUDE.md</code>. For a new empirical project, create <code>AGENTS.md</code> manually or ask Codex to draft one after it has inspected the folder. A useful starting point:</p>
+    <pre><code># Project: [Paper title]
+
+## Data
+- Unit of analysis: firm-year panel, 2010-2022
+- Raw data lives in data/raw/ - never edit these files
+- Main dataset after cleaning: data/clean/panel.dta
+- When data are large, create summaries or samples instead of loading full files into context
+
+## Code conventions
+- R scripts are numbered: 01_clean.R, 02_analysis.R, 03_tables.R
+- All regressions cluster SEs at the firm level unless instructed otherwise
+- Use fixest for panel regressions
+- Save generated tables to paper/tables/
+
+## LaTeX
+- Main file: paper/main.tex
+- Use \widehat{} rather than \hat{} for estimators
+- Keep notation consistent with paper/notation.md
+
+## Safety
+- Do not overwrite raw data
+- Ask before installing new packages
+- Run the relevant script after editing analysis code</code></pre>
+
+    <div class="note">
+      <strong>Writing as well as code:</strong> <code>AGENTS.md</code> is also the right place for instructions about how you want Codex to write: tone, voice, and phrases to avoid. Paul Goldsmith-Pinkham has a useful post on using these instructions to get AI assistance that improves rather than flattens your prose: <a href="https://paulgp.substack.com/p/writing-and-thinking-with-ai-assistance">Writing and thinking with AI assistance</a>.
+    </div>
+
+    <h3>Skills - Reusable Workflows</h3>
+    <p>Codex skills are folders containing a <code>SKILL.md</code> file, plus optional scripts, references, and assets. They package task-specific instructions so Codex can follow a workflow reliably. Skills are available in the Codex CLI, IDE extension, and Codex app.</p>
+    <p>Codex skills are not slash commands in the Claude sense. In Codex, slash commands such as <code>/status</code>, <code>/review</code>, <code>/cloud</code>, and <code>/local</code> control the session. Skills are invoked by mentioning them directly, for example <code>$robustness</code>, or by typing <code>$</code> and selecting from the list. Codex may also invoke a skill automatically when your request matches its description.</p>
+
+    <p>Skills can live in several places:</p>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">your-project/.agents/skills/</div>
+        <div class="ext-desc">Repository skills checked into a project. Good for paper-specific workflows that co-authors should share.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">~/.agents/skills/</div>
+        <div class="ext-desc">User skills available across projects. Good for general research workflows you personally reuse.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">/etc/codex/skills/</div>
+        <div class="ext-desc">Machine or container-level skills, more common in shared lab or teaching environments.</div>
+      </div>
+    </div>
+
+    <p style="margin-top:1rem;">To create a <code>$robustness</code> skill manually:</p>
+    <pre><code>mkdir -p .agents/skills/robustness
+# then create .agents/skills/robustness/SKILL.md</code></pre>
+    <p>A minimal <code>SKILL.md</code> for an economist:</p>
+    <pre><code>---
+name: robustness
+description: Use when asked to run standard robustness checks on the main regression.
+---
+
+For the main specification in this project:
+1. Identify the baseline regression script and output table
+2. Re-run with alternative clustering: industry-year instead of firm
+3. Re-run dropping the top and bottom 1% of the outcome variable
+4. Re-run on the pre-2020 subsample only
+5. Produce a summary table comparing coefficients across all specifications
+6. Report which files changed and which commands were run</code></pre>
+
+    <h3>Downloading Skills Others Have Written</h3>
+    <p>Codex includes a <code>$skill-installer</code> skill for installing curated or external skills. For local experimentation you can also copy a skill folder into <code>~/.agents/skills/</code> or into a project's <code>.agents/skills/</code> directory. If a new skill does not appear immediately, restart Codex.</p>
+    <p>For economists, the existing Claude-skill ecosystem is still useful as a source of ideas, but paths and invocation syntax need to be adapted for Codex. A few starting points:</p>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id"><a href="https://github.com/claesbackman/AI-research-feedback" style="color:inherit;text-decoration:none;">claesbackman/<br>AI-research-feedback</a></div>
+        <div class="ext-desc"><strong>Research feedback workflows.</strong> Commands for referee-style reviews of papers, grant proposals, and code. Port the instruction files into Codex skill folders when you want them available as <code>$skills</code>.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id"><a href="https://github.com/scunning1975/MixtapeTools" style="color:inherit;text-decoration:none;">scunning1975/<br>MixtapeTools</a></div>
+        <div class="ext-desc"><strong>Scott Cunningham's empirical-workflow tools.</strong> A useful model for structuring repeatable research tasks, even when adapting from Claude-style folders to Codex-style skills.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id"><a href="https://claudeblattman.com/setup/skill-reference/" style="color:inherit;text-decoration:none;">claudeblattman.com<br>- /done and others</a></div>
+        <div class="ext-desc"><strong>Chris Blattman's skill reference.</strong> A clear example of how a working economist structures daily AI-assisted research workflows. Translate slash-command conventions into Codex skills where useful.</div>
+      </div>
+    </div>
+    <div class="note warn">
+      <strong>Worth knowing:</strong> Codex may invoke skills implicitly when their descriptions match your request. If you want a skill to run only when explicitly mentioned, add optional skill metadata that disables implicit invocation.
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- MODES -->
+  <section>
+    <p class="section-label">Control</p>
+    <h2>Approval Modes, Reasoning, and Cloud Work</h2>
+    <p>The most important Codex habit is choosing the right level of autonomy for the task. The mode switcher sits under the chat input in the Codex panel.</p>
+    <div class="ext-table">
+      <div class="ext-row">
+        <div class="ext-id">Chat</div>
+        <div class="ext-desc"><strong>Advice only.</strong> Use this for explaining code, brainstorming identification checks, reviewing a table, or planning changes before any files are touched.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Agent</div>
+        <div class="ext-desc"><strong>Default working mode.</strong> Codex can read files, edit files, and run commands in the working directory. It asks for approval before working outside the directory or using the network.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Agent (Full Access)</div>
+        <div class="ext-desc"><strong>Use sparingly.</strong> Codex can run with fewer approval prompts, including broader network access depending on your setup. This is convenient for trusted maintenance tasks but deserves care.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Reasoning effort</div>
+        <div class="ext-desc"><strong>Start at medium.</strong> Use higher reasoning effort for complex debugging, refactors, or ambiguous empirical logic. Higher effort is slower and consumes usage faster.</div>
+      </div>
+      <div class="ext-row">
+        <div class="ext-id">Cloud</div>
+        <div class="ext-desc"><strong>Delegate longer jobs.</strong> Use <code>/cloud</code> or the cloud controls when you want Codex to run a larger task remotely, then review the changes locally before merging them.</div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Local first for private data:</strong> if a task touches confidential datasets, restricted administrative data, or files you are not allowed to upload, keep the work local and avoid cloud delegation.
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- GIT -->
+  <section>
+    <p class="section-label">Version Control</p>
+    <h2>Git Integration</h2>
+    <p>Codex is git-aware. When you open a project that is a git repository, Codex can inspect diffs, staged changes, branches, and commit history. This makes it useful for version control tasks alongside coding ones.</p>
+    <div class="use-cases">
+      <div class="card">
+        <div class="card-header"><span class="card-icon">1</span><span class="card-title">Write commit messages</span></div>
+        <pre><code>Write a commit message for my staged changes.</code></pre>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-icon">2</span><span class="card-title">Explain what changed</span></div>
+        <pre><code>Summarise what changed between the last two commits
+in code/02_analysis.R.</code></pre>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-icon">3</span><span class="card-title">Review uncommitted work</span></div>
+        <pre><code>/review
+
+Review my uncommitted changes and flag anything that
+could change the sample or regression specification.</code></pre>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-icon">4</span><span class="card-title">Resolve a merge conflict</span></div>
+        <pre><code>I have a merge conflict in code/03_tables.R. Read both
+versions and resolve it, keeping the newer variable names.</code></pre>
+      </div>
+    </div>
+    <div class="note">
+      <strong>No git?</strong> That is fine for local work. A Dropbox folder, shared drive, or plain folder on your desktop can still be a useful project root. Git becomes more important when you want history, branches, cloud delegation, or pull requests.
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CONTEXT WINDOW -->
+  <section>
+    <p class="section-label">Performance</p>
+    <h2>Managing Context</h2>
+    <p>Codex can only hold a limited amount of project information in its working memory at once. Large empirical projects with many scripts, logs, data extracts, and output tables can fill that space quickly. A few habits help:</p>
+    <div class="use-cases">
+      <div class="card">
+        <div class="card-header"><span class="card-icon">1</span><span class="card-title">Use @-mentions deliberately</span></div>
+        <p>Point Codex at the specific files you want it to use instead of making it infer the whole project.</p>
+        <pre><code>@code/02_analysis.R fix the clustering in the main spec.</code></pre>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-icon">2</span><span class="card-title">Add selected text as context</span></div>
+        <p>Select the exact equation, table, or error message in VS Code and use the Codex command to add the selection to the current thread.</p>
+        <pre><code>Explain this selected LaTeX error and patch the table.</code></pre>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-icon">3</span><span class="card-title">Start new threads for new tasks</span></div>
+        <p>A fresh thread avoids dragging old assumptions into a new problem. In VS Code, <code>Cmd+N</code> or <code>Ctrl+N</code> creates a new Codex thread by default.</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-icon">4</span><span class="card-title">Check status</span></div>
+        <p>Use <code>/status</code> to see thread information, context usage, and rate-limit information.</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-icon">5</span><span class="card-title">Use Auto Context with care</span></div>
+        <p><code>/auto-context</code> can include recent files and IDE context automatically. It is convenient for small projects, but explicit file mentions are often cleaner for large research folders.</p>
+      </div>
+    </div>
+    <div class="note">
+      <strong>AGENTS.md helps here too.</strong> Because Codex reads persistent project guidance before working, you do not need to re-explain the same data structure and file conventions in every prompt.
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Generated May 2026 &middot; Codex is available in the VS Code extension, CLI, web, and app &middot; Official docs: <a href="https://developers.openai.com/codex/ide">developers.openai.com/codex/ide</a><br>
+  Companion pages: <a href="claude-code-guide.html" style="color:var(--accent);">Claude Code guide</a> &middot; <a href="codex-vs-claude-code.html" style="color:var(--accent);">Codex vs Claude Code</a> &middot; <a href="overleaf-vscode-guide.html" style="color:var(--accent);">Overleaf + VS Code</a>
+</footer>
+
+</body>
+</html>
