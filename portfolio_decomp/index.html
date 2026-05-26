@@ -205,7 +205,13 @@
             <article class="panel chart-panel">
               <div class="panel-header">
                 <h3>Asset mix and risky financial share</h3>
-                <p>Click a decile bar to pin the detail card.</p>
+                <p>Click a decile bar to pin the detail card. Each stacked bar shows the portfolio composition for that income decile.</p>
+                <ul class="chart-legend" aria-label="Chart legend">
+                  <li><span class="legend-swatch legend-swatch-housing"></span>Housing share</li>
+                  <li><span class="legend-swatch legend-swatch-financial"></span>Financial share</li>
+                  <li><span class="legend-swatch legend-swatch-pension"></span>Pension share</li>
+                  <li><span class="legend-swatch legend-swatch-risky"></span>Risky share in financial wealth</li>
+                </ul>
               </div>
               <svg id="portfolio-chart" class="chart" viewBox="0 0 720 420" role="img"></svg>
             </article>
@@ -240,10 +246,8 @@
               </div>
               <p>
                 <em>Danish 2014&ndash;2019</em>: administrative registers from
-                Statistics Denmark, averaged over 2014&ndash;2019 for households
-                at the 10th and 90th percentiles of the income distribution.
-                <em>SCF 2013</em>: Survey of Consumer Finances, same percentile
-                cuts.
+                Statistics Denmark, averaged over 2014&ndash;2019.
+                <em>SCF 2013</em>: Survey of Consumer Finances 2014. 
               </p>
             </article>
 

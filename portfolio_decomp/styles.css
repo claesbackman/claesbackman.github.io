@@ -596,6 +596,47 @@ output {
   fill: var(--gold);
 }
 
+.chart-legend {
+  list-style: none;
+  margin: 0.55rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.chart-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.legend-swatch-housing {
+  background: rgba(197, 90, 53, 0.78);
+}
+
+.legend-swatch-financial {
+  background: rgba(57, 88, 111, 0.82);
+}
+
+.legend-swatch-pension {
+  background: rgba(23, 117, 106, 0.78);
+}
+
+.legend-swatch-risky {
+  background: var(--gold);
+}
+
 .contribution-bar.housing {
   fill: rgba(197, 90, 53, 0.82);
 }
