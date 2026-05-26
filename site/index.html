@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Housing Capital Gains and Wealth Returns</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-backdrop" aria-hidden="true"></div>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Interactive Paper Companion</p>
+          <h2>Where you can buy shapes how much housing wealth you earn.</h2>
+          <p class="hero-summary">
+           Decomposes the P90&minus;P10 total wealth-return gap into asset-level contributions, and each asset's contribution into <em>composition</em>, <em>within</em>, and <em>interaction</em> components. Companion to Appendix F of <a href="https://claesbackman.com/Papers/BDK_HousingCapitalGains.pdf"><em>Housing Capital Gains across the Income Distribution</em></a> by <a href="https://claesbackman.com/index.html">Claes Bäckman</a>, <a href="https://sites.google.com/view/walterdlima/home">Walter D'Lima</a>, and <a href="https://sites.google.com/view/natalia-khorunzhina">Natalia Khorunzhina</a>. 
+          </p>
+          <nav class="hero-nav" aria-label="Section navigation">
+            <a href="#lab">Decomposition Lab</a>
+            <a href="#returns">Return Explorer</a>
+            <a href="#portfolios">Portfolio Mix</a>
+            <a href="#pipeline">Data sources</a>
+          </nav>
+        </div>
+
+        <div class="hero-board">
+          <article class="metric-card metric-card-main">
+            <span class="metric-label">Paper Headline</span>
+            <strong class="metric-value" id="hero-paper-gap">1.36 pp</strong>
+            <p class="metric-note">
+              Higher annualized housing capital gains for P90 versus P10 buyers.
+            </p>
+          </article>
+
+          <article class="metric-card">
+            <span class="metric-label">10-Year Gap</span>
+            <strong class="metric-value" id="hero-ten-year-gap">14.6%</strong>
+            <p class="metric-note">Cumulative difference over a decade in the paper.</p>
+          </article>
+
+          <article class="metric-card">
+            <span class="metric-label">Core Mechanism</span>
+            <strong class="metric-value">Location</strong>
+            <p class="metric-note">
+              The paper argues that the gradient is largely explained by where
+              households buy.
+            </p>
+          </article>
+
+      
+        </div>
+      </header>
+
+
+      
+        <section class="section" id="lab">
+          <div class="section-heading">
+            <p class="eyebrow">01</p>
+            <h2>Portfolio Decomposition Lab</h2>
+            <p>
+              Recreate the logic in <code>15_PortfolioDecomposition.do</code>.
+              Switch the share source, financial return calibration, and
+              compounding horizon to see how the P90-P10 wealth-return gap moves.
+            </p>
+          </div>
+
+          <div class="control-stack">
+            <div class="control-group">
+              <span class="control-label">Share source</span>
+              <div class="segmented-control" id="lab-source-control" aria-label="Decomposition share source">
+                <button type="button" data-source="danish" class="is-active">Danish</button>
+                <button type="button" data-source="scf">SCF</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <span class="control-label">Financial return calibration</span>
+              <div class="segmented-control" id="lab-return-control" aria-label="Financial return calibration">
+                <button type="button" data-return-spec="passive" class="is-active">Passive</button>
+                <button type="button" data-return-spec="fagereng">Fagereng</button>
+                <button type="button" data-return-spec="bach">Bach</button>
+              </div>
+            </div>
+
+            <label class="range-control">
+              <span>Compounding horizon</span>
+              <div class="range-meta">
+                <input id="lab-horizon" type="range" min="1" max="15" value="1" />
+                <output id="lab-horizon-output" for="lab-horizon">1 year</output>
+              </div>
+            </label>
+          </div>
+
+          <div class="metric-strip" id="lab-metrics"></div>
+
+          <div class="grid-two">
+            <article class="panel chart-panel">
+              <div class="panel-header">
+                <h3>Total contribution to the P90-P10 gap</h3>
+                <p>Asset contribution equals P90 share times P90 return minus the P10 analogue.</p>
+              </div>
+              <svg id="contribution-chart" class="chart" viewBox="0 0 720 380" role="img"></svg>
+            </article>
+
+            <article class="panel chart-panel">
+              <div class="panel-header">
+                <h3>Composition, within, interaction</h3>
+                <p>The three terms in the appendix, using P10 as the baseline.</p>
+              </div>
+              <svg id="decomposition-chart" class="chart" viewBox="0 0 720 420" role="img"></svg>
+            </article>
+          </div>
+
+          <article class="panel note-panel">
+            <div class="panel-header">
+              <h3>How to read the controls</h3>
+            </div>
+            <p id="lab-note">
+              Passive uses country-internal risky shares times stock and safe
+              returns; the other two use external financial-return gradients
+              imported from the literature.
+            </p>
+          </article>
+        </section>
+
+      <main>
+        <section class="section" id="returns">
+          <div class="section-heading">
+            <p class="eyebrow">02</p>
+            <h2>Housing Return Explorer</h2>
+            <p>
+              Scrub across income deciles and holding periods to see how the
+              housing-gains gradient implied by the paper maps into annualized
+              and compounded returns.
+            </p>
+          </div>
+
+          <div class="control-row">
+            <label class="range-control">
+              <span>Selected income decile</span>
+              <div class="range-meta">
+                <input id="return-decile" type="range" min="1" max="10" value="10" />
+                <output id="return-decile-output" for="return-decile">10</output>
+              </div>
+            </label>
+
+            <label class="range-control">
+              <span>Holding period</span>
+              <div class="range-meta">
+                <input id="return-horizon" type="range" min="1" max="15" value="10" />
+                <output id="return-horizon-output" for="return-horizon">10 years</output>
+              </div>
+            </label>
+          </div>
+
+          <div class="grid-two">
+            <article class="panel chart-panel">
+              <div class="panel-header">
+                <h3>Annualized real housing capital gains</h3>
+                <p>Decile midpoint calibration from the Stata data builder.</p>
+              </div>
+              <svg id="returns-line-chart" class="chart" viewBox="0 0 720 360" role="img"></svg>
+            </article>
+
+            <article class="panel chart-panel">
+              <div class="panel-header">
+                <h3>Compounded gain over the selected horizon</h3>
+                <p>The same annualized series translated into buy-and-hold growth.</p>
+              </div>
+              <svg id="returns-growth-chart" class="chart" viewBox="0 0 720 360" role="img"></svg>
+            </article>
+          </div>
+
+          <div class="metric-strip" id="returns-metrics"></div>
+        </section>
+
+        <section class="section" id="portfolios">
+          <div class="section-heading">
+            <p class="eyebrow">03</p>
+            <h2>Portfolio Mix by Decile</h2>
+            <p>
+              Compare the Danish and SCF share profiles that flow into the
+              decomposition. The bars show gross-asset weights; the line tracks
+              the risky share within financial wealth.
+            </p>
+          </div>
+
+          <div class="control-row">
+            <div class="segmented-control" id="portfolio-source-control" aria-label="Portfolio share source">
+              <button type="button" data-source="danish" class="is-active">Danish shares</button>
+              <button type="button" data-source="scf">SCF shares</button>
+            </div>
+
+            <label class="range-control">
+              <span>Inspect decile</span>
+              <div class="range-meta">
+                <input id="portfolio-decile" type="range" min="1" max="10" value="10" />
+                <output id="portfolio-decile-output" for="portfolio-decile">10</output>
+              </div>
+            </label>
+          </div>
+
+          <div class="grid-two portfolio-grid">
+            <article class="panel chart-panel">
+              <div class="panel-header">
+                <h3>Asset mix and risky financial share</h3>
+                <p>Click a decile bar to pin the detail card.</p>
+              </div>
+              <svg id="portfolio-chart" class="chart" viewBox="0 0 720 420" role="img"></svg>
+            </article>
+
+            <article class="panel detail-panel">
+              <div class="panel-header">
+                <h3 id="portfolio-detail-title">Decile 10 snapshot</h3>
+                <p id="portfolio-detail-subtitle">Current source: Danish shares</p>
+              </div>
+              <div class="stacked-share-preview" id="portfolio-preview"></div>
+              <div class="metric-strip metric-strip-compact" id="portfolio-metrics"></div>
+            </article>
+          </div>
+        </section>
+
+
+        <section class="section" id="pipeline">
+          <div class="section-heading">
+            <p class="eyebrow">04</p>
+            <h2>Data sources</h2>
+            <p>
+              Each preset combines a source for portfolio shares (P10, P90 of
+              the income distribution) with a source for asset returns by
+              income rank.
+            </p>
+          </div>
+
+          <div class="sources-grid">
+            <article class="panel source-card">
+              <div class="panel-header">
+                <h3>Portfolio shares</h3>
+              </div>
+              <p>
+                <em>Danish 2014&ndash;2019</em>: administrative registers from
+                Statistics Denmark, averaged over 2014&ndash;2019 for households
+                at the 10th and 90th percentiles of the income distribution.
+                <em>SCF 2013</em>: Survey of Consumer Finances, same percentile
+                cuts.
+              </p>
+            </article>
+
+            <article class="panel source-card">
+              <div class="panel-header">
+                <h3>Housing returns</h3>
+              </div>
+              <p>
+                Estimated in this paper from ~250,000 Danish repeat-sale
+                transactions (1996&ndash;2022), using the linear fit
+                <em>r</em>(<em>i</em>) = 0.036 + 0.0017&middot;(<em>i</em>&minus;5.5)
+                over income deciles <em>i</em> = 1,&hellip;,10, evaluated at
+                <em>i</em>=1 (P10) and <em>i</em>=10 (P90).
+              </p>
+            </article>
+
+            <article class="panel source-card">
+              <div class="panel-header">
+                <h3>Financial returns</h3>
+              </div>
+              <p>
+                <em>Fagereng et al.</em>: Norwegian administrative data on
+                returns to financial wealth across the financial wealth
+                distribution (Fagereng, Guiso, Malacrino, and Pistaferri, 2020).
+                <em>Bach et al.</em>: Swedish administrative data (Bach, Calvet,
+                and Sodini, 2020). <em>Passive</em>: country-internal mix
+                <em>r</em><sub>fin,i</sub>=&alpha;<sub>i</sub><em>r</em><sub>stock</sub>+(1&minus;&alpha;<sub>i</sub>)<em>r</em><sub>safe</sub>,
+                using OMXC20+10y bond for Denmark
+                (&alpha;<sub>P10</sub>=0.07, &alpha;<sub>P90</sub>=0.27 from
+                Danish registers) and S&amp;P 500+10y T for the SCF (&alpha;
+                from SCF risky-asset shares). Captures only the composition
+                channel; gives a lower bound on the financial-wealth gap.
+              </p>
+            </article>
+
+            <article class="panel source-card">
+              <div class="panel-header">
+                <h3>Pension returns</h3>
+              </div>
+              <p>Held flat at 4.47% for both percentiles.</p>
+            </article>
+          </div>
+
+          <p class="sources-footnote">
+            Inputs are editable: click a preset to load it, then adjust any
+            cell to explore alternative scenarios.
+          </p>
+        </section>
+      </main>
+
+    
+
+    <script src="./data/site-data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

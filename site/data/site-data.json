@@ -1,0 +1,715 @@
+{
+  "meta": {
+    "generatedAtUtc": "2026-05-17T13:58:32+00:00",
+    "sourceDirectory": "ExternalData/FinalData",
+    "passiveWindow": {
+      "startYear": 2014,
+      "endYear": 2022
+    },
+    "paperHeadlines": {
+      "annualGapP90P10Pp": 1.36,
+      "tenYearGapPct": 14.6,
+      "locationExplainsMost": true
+    },
+    "siteCalibrationNotes": {
+      "housingDecileGapPp": 1.53,
+      "housingDecileGapDescription": "Interactive decile explorer uses decile midpoint returns from 10_build_housing_return_by_decile.do.",
+      "pensionLabel": "Mean real pension return, 2014-2022"
+    }
+  },
+  "series": {
+    "housingReturns": [
+      {
+        "decile": 1,
+        "annualizedReturn": 0.02835
+      },
+      {
+        "decile": 2,
+        "annualizedReturn": 0.03005
+      },
+      {
+        "decile": 3,
+        "annualizedReturn": 0.03175
+      },
+      {
+        "decile": 4,
+        "annualizedReturn": 0.03345
+      },
+      {
+        "decile": 5,
+        "annualizedReturn": 0.03515
+      },
+      {
+        "decile": 6,
+        "annualizedReturn": 0.03685
+      },
+      {
+        "decile": 7,
+        "annualizedReturn": 0.03855
+      },
+      {
+        "decile": 8,
+        "annualizedReturn": 0.04025
+      },
+      {
+        "decile": 9,
+        "annualizedReturn": 0.04195
+      },
+      {
+        "decile": 10,
+        "annualizedReturn": 0.04365
+      }
+    ],
+    "shareProfiles": {
+      "danish": [
+        {
+          "decile": 1,
+          "housing": 0.317819,
+          "financial": 0.213206,
+          "pension": 0.468976,
+          "riskyShare": 0.06791
+        },
+        {
+          "decile": 2,
+          "housing": 0.300021,
+          "financial": 0.198344,
+          "pension": 0.501635,
+          "riskyShare": 0.07454
+        },
+        {
+          "decile": 3,
+          "housing": 0.351641,
+          "financial": 0.1885,
+          "pension": 0.459859,
+          "riskyShare": 0.091222
+        },
+        {
+          "decile": 4,
+          "housing": 0.371108,
+          "financial": 0.179292,
+          "pension": 0.4496,
+          "riskyShare": 0.097301
+        },
+        {
+          "decile": 5,
+          "housing": 0.362,
+          "financial": 0.182328,
+          "pension": 0.455672,
+          "riskyShare": 0.101536
+        },
+        {
+          "decile": 6,
+          "housing": 0.374202,
+          "financial": 0.170181,
+          "pension": 0.455617,
+          "riskyShare": 0.110472
+        },
+        {
+          "decile": 7,
+          "housing": 0.404113,
+          "financial": 0.152537,
+          "pension": 0.443351,
+          "riskyShare": 0.131827
+        },
+        {
+          "decile": 8,
+          "housing": 0.435572,
+          "financial": 0.143134,
+          "pension": 0.421294,
+          "riskyShare": 0.159616
+        },
+        {
+          "decile": 9,
+          "housing": 0.459147,
+          "financial": 0.143489,
+          "pension": 0.397363,
+          "riskyShare": 0.193425
+        },
+        {
+          "decile": 10,
+          "housing": 0.491485,
+          "financial": 0.172985,
+          "pension": 0.335529,
+          "riskyShare": 0.270287
+        }
+      ],
+      "scf": [
+        {
+          "decile": 1,
+          "housing": 0.310119,
+          "financial": 0.65566,
+          "pension": 0.034221,
+          "riskyShare": 0.04199
+        },
+        {
+          "decile": 2,
+          "housing": 0.373357,
+          "financial": 0.564271,
+          "pension": 0.062373,
+          "riskyShare": 0.058725
+        },
+        {
+          "decile": 3,
+          "housing": 0.446758,
+          "financial": 0.453407,
+          "pension": 0.099836,
+          "riskyShare": 0.044744
+        },
+        {
+          "decile": 4,
+          "housing": 0.490597,
+          "financial": 0.379918,
+          "pension": 0.129485,
+          "riskyShare": 0.067628
+        },
+        {
+          "decile": 5,
+          "housing": 0.471675,
+          "financial": 0.369213,
+          "pension": 0.159112,
+          "riskyShare": 0.069988
+        },
+        {
+          "decile": 6,
+          "housing": 0.540131,
+          "financial": 0.272741,
+          "pension": 0.187128,
+          "riskyShare": 0.090324
+        },
+        {
+          "decile": 7,
+          "housing": 0.612661,
+          "financial": 0.220615,
+          "pension": 0.166723,
+          "riskyShare": 0.08868
+        },
+        {
+          "decile": 8,
+          "housing": 0.634349,
+          "financial": 0.163823,
+          "pension": 0.201828,
+          "riskyShare": 0.112161
+        },
+        {
+          "decile": 9,
+          "housing": 0.642569,
+          "financial": 0.157085,
+          "pension": 0.200346,
+          "riskyShare": 0.170137
+        },
+        {
+          "decile": 10,
+          "housing": 0.54872,
+          "financial": 0.238939,
+          "pension": 0.212341,
+          "riskyShare": 0.315384
+        }
+      ]
+    },
+    "financialReturns": {
+      "pensionFlatAnnualizedReturn": 0.044667,
+      "fagereng": [
+        {
+          "decile": 1,
+          "annualizedReturn": -0.0044
+        },
+        {
+          "decile": 2,
+          "annualizedReturn": -0.002633
+        },
+        {
+          "decile": 3,
+          "annualizedReturn": -0.000866
+        },
+        {
+          "decile": 4,
+          "annualizedReturn": 0.000901
+        },
+        {
+          "decile": 5,
+          "annualizedReturn": 0.002668
+        },
+        {
+          "decile": 6,
+          "annualizedReturn": 0.004435
+        },
+        {
+          "decile": 7,
+          "annualizedReturn": 0.006202
+        },
+        {
+          "decile": 8,
+          "annualizedReturn": 0.007969
+        },
+        {
+          "decile": 9,
+          "annualizedReturn": 0.009736
+        },
+        {
+          "decile": 10,
+          "annualizedReturn": 0.011503
+        }
+      ],
+      "bach": [
+        {
+          "decile": 1,
+          "annualizedReturn": 0.02
+        },
+        {
+          "decile": 2,
+          "annualizedReturn": 0.0238
+        },
+        {
+          "decile": 3,
+          "annualizedReturn": 0.0276
+        },
+        {
+          "decile": 4,
+          "annualizedReturn": 0.0314
+        },
+        {
+          "decile": 5,
+          "annualizedReturn": 0.0352
+        },
+        {
+          "decile": 6,
+          "annualizedReturn": 0.039
+        },
+        {
+          "decile": 7,
+          "annualizedReturn": 0.0428
+        },
+        {
+          "decile": 8,
+          "annualizedReturn": 0.0466
+        },
+        {
+          "decile": 9,
+          "annualizedReturn": 0.0504
+        },
+        {
+          "decile": 10,
+          "annualizedReturn": 0.0542
+        }
+      ],
+      "passive": {
+        "note": "Passive returns are country-internal mixes of stock and safe rates using risky shares by decile.",
+        "denmark": [
+          {
+            "decile": 1,
+            "annualizedReturn": 0.000595
+          },
+          {
+            "decile": 2,
+            "annualizedReturn": 0.001385
+          },
+          {
+            "decile": 3,
+            "annualizedReturn": 0.003372
+          },
+          {
+            "decile": 4,
+            "annualizedReturn": 0.004097
+          },
+          {
+            "decile": 5,
+            "annualizedReturn": 0.004601
+          },
+          {
+            "decile": 6,
+            "annualizedReturn": 0.005666
+          },
+          {
+            "decile": 7,
+            "annualizedReturn": 0.00821
+          },
+          {
+            "decile": 8,
+            "annualizedReturn": 0.01152
+          },
+          {
+            "decile": 9,
+            "annualizedReturn": 0.015548
+          },
+          {
+            "decile": 10,
+            "annualizedReturn": 0.024705
+          }
+        ],
+        "scf": [
+          {
+            "decile": 1,
+            "annualizedReturn": -0.000684
+          },
+          {
+            "decile": 2,
+            "annualizedReturn": 0.000889
+          },
+          {
+            "decile": 3,
+            "annualizedReturn": -0.000425
+          },
+          {
+            "decile": 4,
+            "annualizedReturn": 0.001726
+          },
+          {
+            "decile": 5,
+            "annualizedReturn": 0.001948
+          },
+          {
+            "decile": 6,
+            "annualizedReturn": 0.00386
+          },
+          {
+            "decile": 7,
+            "annualizedReturn": 0.003705
+          },
+          {
+            "decile": 8,
+            "annualizedReturn": 0.005912
+          },
+          {
+            "decile": 9,
+            "annualizedReturn": 0.011362
+          },
+          {
+            "decile": 10,
+            "annualizedReturn": 0.025016
+          }
+        ],
+        "inputs": [
+          {
+            "country": "Denmark",
+            "stockRealMean": 0.111637,
+            "safeRealMean": -0.007495
+          },
+          {
+            "country": "United States",
+            "stockRealMean": 0.089374,
+            "safeRealMean": -0.004631
+          }
+        ]
+      }
+    }
+  },
+  "baselineDecompositions": {
+    "danish": {
+      "passive": {
+        "horizonYears": 1,
+        "contributions": [
+          {
+            "asset": "housing",
+            "contribution": 1.244315
+          },
+          {
+            "asset": "financial",
+            "contribution": 0.414674
+          },
+          {
+            "asset": "pension",
+            "contribution": -0.596068
+          },
+          {
+            "asset": "total",
+            "contribution": 1.062921
+          }
+        ],
+        "parts": [
+          {
+            "asset": "housing",
+            "composition": 0.492343,
+            "within": 0.486263,
+            "interaction": 0.265709,
+            "total": 1.244315
+          },
+          {
+            "asset": "financial",
+            "composition": -0.002393,
+            "within": 0.51404,
+            "interaction": -0.096973,
+            "total": 0.414674
+          },
+          {
+            "asset": "pension",
+            "composition": -0.596068,
+            "within": 0.0,
+            "interaction": -0.0,
+            "total": -0.596068
+          }
+        ]
+      },
+      "fagereng": {
+        "horizonYears": 1,
+        "contributions": [
+          {
+            "asset": "housing",
+            "contribution": 1.244315
+          },
+          {
+            "asset": "financial",
+            "contribution": 0.292795
+          },
+          {
+            "asset": "pension",
+            "contribution": -0.596068
+          },
+          {
+            "asset": "total",
+            "contribution": 0.941043
+          }
+        ],
+        "parts": [
+          {
+            "asset": "housing",
+            "composition": 0.492343,
+            "within": 0.486263,
+            "interaction": 0.265709,
+            "total": 1.244315
+          },
+          {
+            "asset": "financial",
+            "composition": 0.017697,
+            "within": 0.339062,
+            "interaction": -0.063963,
+            "total": 0.292795
+          },
+          {
+            "asset": "pension",
+            "composition": -0.596068,
+            "within": 0.0,
+            "interaction": -0.0,
+            "total": -0.596068
+          }
+        ]
+      },
+      "bach": {
+        "horizonYears": 1,
+        "contributions": [
+          {
+            "asset": "housing",
+            "contribution": 1.244315
+          },
+          {
+            "asset": "financial",
+            "contribution": 0.511167
+          },
+          {
+            "asset": "pension",
+            "contribution": -0.596068
+          },
+          {
+            "asset": "total",
+            "contribution": 1.159414
+          }
+        ],
+        "parts": [
+          {
+            "asset": "housing",
+            "composition": 0.492343,
+            "within": 0.486263,
+            "interaction": 0.265709,
+            "total": 1.244315
+          },
+          {
+            "asset": "financial",
+            "composition": -0.080442,
+            "within": 0.729165,
+            "interaction": -0.137556,
+            "total": 0.511167
+          },
+          {
+            "asset": "pension",
+            "composition": -0.596068,
+            "within": 0.0,
+            "interaction": -0.0,
+            "total": -0.596068
+          }
+        ]
+      }
+    },
+    "scf": {
+      "passive": {
+        "horizonYears": 1,
+        "contributions": [
+          {
+            "asset": "housing",
+            "contribution": 1.515975
+          },
+          {
+            "asset": "financial",
+            "contribution": 0.642577
+          },
+          {
+            "asset": "pension",
+            "contribution": 0.795609
+          },
+          {
+            "asset": "total",
+            "contribution": 2.954161
+          }
+        ],
+        "parts": [
+          {
+            "asset": "housing",
+            "composition": 0.676434,
+            "within": 0.474482,
+            "interaction": 0.36506,
+            "total": 1.515975
+          },
+          {
+            "asset": "financial",
+            "composition": 0.028504,
+            "within": 1.685046,
+            "interaction": -1.070973,
+            "total": 0.642577
+          },
+          {
+            "asset": "pension",
+            "composition": 0.795609,
+            "within": 0.0,
+            "interaction": 0.0,
+            "total": 0.795609
+          }
+        ]
+      },
+      "fagereng": {
+        "horizonYears": 1,
+        "contributions": [
+          {
+            "asset": "housing",
+            "contribution": 1.515975
+          },
+          {
+            "asset": "financial",
+            "contribution": 0.563342
+          },
+          {
+            "asset": "pension",
+            "contribution": 0.795609
+          },
+          {
+            "asset": "total",
+            "contribution": 2.874926
+          }
+        ],
+        "parts": [
+          {
+            "asset": "housing",
+            "composition": 0.676434,
+            "within": 0.474482,
+            "interaction": 0.36506,
+            "total": 1.515975
+          },
+          {
+            "asset": "financial",
+            "composition": 0.183357,
+            "within": 1.042696,
+            "interaction": -0.662711,
+            "total": 0.563342
+          },
+          {
+            "asset": "pension",
+            "composition": 0.795609,
+            "within": 0.0,
+            "interaction": 0.0,
+            "total": 0.795609
+          }
+        ]
+      },
+      "bach": {
+        "horizonYears": 1,
+        "contributions": [
+          {
+            "asset": "housing",
+            "contribution": 1.515975
+          },
+          {
+            "asset": "financial",
+            "contribution": -0.016271
+          },
+          {
+            "asset": "pension",
+            "contribution": 0.795609
+          },
+          {
+            "asset": "total",
+            "contribution": 2.295313
+          }
+        ],
+        "parts": [
+          {
+            "asset": "housing",
+            "composition": 0.676434,
+            "within": 0.474482,
+            "interaction": 0.36506,
+            "total": 1.515975
+          },
+          {
+            "asset": "financial",
+            "composition": -0.833442,
+            "within": 2.242357,
+            "interaction": -1.425186,
+            "total": -0.016271
+          },
+          {
+            "asset": "pension",
+            "composition": 0.795609,
+            "within": 0.0,
+            "interaction": 0.0,
+            "total": 0.795609
+          }
+        ]
+      }
+    }
+  },
+  "pipeline": [
+    {
+      "file": "10_build_housing_return_by_decile.do",
+      "purpose": "Creates the housing return gradient by income decile using the paper's baseline housing-gains estimate.",
+      "outputs": [
+        "housing_return_by_decile.dta"
+      ]
+    },
+    {
+      "file": "11_build_shares_by_decile.do",
+      "purpose": "Builds Danish gross-asset shares and risky-financial shares by income decile.",
+      "outputs": [
+        "shares_by_decile.dta",
+        "dk_risky_share_by_decile.dta"
+      ]
+    },
+    {
+      "file": "12_build_scf_shares_returns.do",
+      "purpose": "Builds the SCF comparison portfolio shares and risky-financial shares for US households.",
+      "outputs": [
+        "scf_shares_by_decile.dta",
+        "scf_risky_share_by_decile.dta"
+      ]
+    },
+    {
+      "file": "13_inputs_DK.do",
+      "purpose": "Builds Danish risk-free, OMXC20, and pension return inputs for the passive calibration.",
+      "outputs": [
+        "risk_free.dta",
+        "OMXC20_annual.dta",
+        "pension_returns.dta"
+      ]
+    },
+    {
+      "file": "13c_inputs_US.do",
+      "purpose": "Builds US real stock and safe returns for the SCF passive calibration.",
+      "outputs": [
+        "sp500_annual.dta"
+      ]
+    },
+    {
+      "file": "15_PortfolioDecomposition.do",
+      "purpose": "Combines portfolio shares and return gradients into asset contributions and the three-way decomposition.",
+      "outputs": [
+        "portfolio_decomposition.dta",
+        "Table_PortfolioDecomposition.tex"
+      ]
+    }
+  ]
+}
