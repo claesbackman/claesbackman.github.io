@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Housing Market Frictions and Access to Homeownership &mdash; 1st Annual Workshop in Real Estate Finance</title>
+  <style>
+    :root {
+      --color-primary: #1a3a5c;
+      --color-accent: #c0392b;
+      --color-bg: #fdfdfd;
+      --color-card: #ffffff;
+      --color-muted: #5a6a7a;
+      --color-border: #e0e4e8;
+      --color-light-bg: #f5f7f9;
+      --max-width: 760px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      color: #2c3e50;
+      background: var(--color-bg);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    /* Header */
+    header {
+      background: var(--color-primary);
+      color: #fff;
+      padding: 3.5rem 1.5rem 3rem;
+      text-align: center;
+    }
+
+    header .label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 1rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      max-width: 650px;
+      margin: 0 auto 0.6rem;
+    }
+
+    header .subtitle {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      opacity: 0.85;
+      margin-bottom: 0.3rem;
+    }
+
+    header .date-location {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      opacity: 0.85;
+    }
+
+    .register-btn {
+      display: inline-block;
+      margin-top: 1.6rem;
+      padding: 0.7rem 1.8rem;
+      background: var(--color-accent);
+      color: #fff;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .register-btn:hover {
+      background: #a93226;
+      transform: translateY(-1px);
+    }
+
+    /* Navigation */
+    nav {
+      background: #fff;
+      border-bottom: 1px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav ul {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
+      padding: 0;
+    }
+
+    nav a {
+      display: block;
+      padding: 0.75rem 1.1rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-muted);
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--color-primary); }
+
+    /* Main content */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    h2 {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+    }
+
+    p { margin-bottom: 1rem; }
+
+    p:last-child { margin-bottom: 0; }
+
+    ul.topics {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+    }
+
+    ul.topics li {
+      padding: 0.35rem 0 0.35rem 1.2rem;
+      position: relative;
+      font-size: 0.97rem;
+    }
+
+    ul.topics li::before {
+      content: '\2014';
+      position: absolute;
+      left: 0;
+      color: var(--color-muted);
+    }
+
+    /* Keynote card */
+    .keynote-card {
+      background: var(--color-light-bg);
+      border-left: 3px solid var(--color-accent);
+      padding: 1.2rem 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .keynote-card .name {
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .keynote-card .title {
+      font-style: italic;
+      color: var(--color-muted);
+      margin-top: 0.2rem;
+    }
+
+    /* Dates grid */
+    .dates-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .date-item {
+      background: var(--color-light-bg);
+      padding: 1.2rem;
+      text-align: center;
+      border-top: 3px solid var(--color-primary);
+    }
+
+    .date-item .day {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      line-height: 1.2;
+    }
+
+    .date-item .month {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .date-item .desc {
+      font-size: 0.88rem;
+      color: #2c3e50;
+    }
+
+    /* Schedule */
+    .day-header {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin: 2rem 0 0.8rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--color-primary);
+    }
+
+    .day-header:first-of-type { margin-top: 0.5rem; }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.93rem;
+    }
+
+    .schedule-table tr { border-bottom: 1px solid var(--color-border); }
+
+    .schedule-table tr:last-child { border-bottom: none; }
+
+    .schedule-table td {
+      padding: 0.55rem 0;
+      vertical-align: top;
+    }
+
+    .schedule-table .time {
+      width: 130px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      white-space: nowrap;
+      padding-right: 1rem;
+    }
+
+    .schedule-table .event { font-size: 0.93rem; }
+
+    .schedule-table .session-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-primary);
+      padding-top: 0.8rem;
+    }
+
+    .schedule-table .break {
+      font-style: italic;
+      color: var(--color-muted);
+    }
+
+    .schedule-table .highlight {
+      font-weight: 600;
+    }
+
+    .schedule-table .paper-title {
+      font-weight: 600;
+      display: block;
+    }
+
+    .schedule-table .authors {
+      display: block;
+      margin-top: 0.15rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.83rem;
+      color: var(--color-muted);
+    }
+
+    .schedule-table .discussant {
+      display: block;
+      margin-top: 0.1rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.83rem;
+      font-style: italic;
+      color: var(--color-muted);
+    }
+
+    /* Venue */
+    .venue-card {
+      background: var(--color-light-bg);
+      border-left: 3px solid var(--color-primary);
+      padding: 1.2rem 1.5rem;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .venue-card .name {
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .venue-card .venue-address,
+    .venue-card .venue-room {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.92rem;
+      color: var(--color-muted);
+      margin-top: 0.2rem;
+    }
+
+    .venue-link a {
+      color: var(--color-primary);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-border);
+      transition: border-color 0.2s;
+    }
+
+    .venue-link a:hover { border-color: var(--color-primary); }
+
+    /* People */
+    .person {
+      margin-bottom: 0.5rem;
+    }
+
+    .person .name {
+      font-weight: 600;
+    }
+
+    .person .affiliation {
+      color: var(--color-muted);
+      font-size: 0.93rem;
+    }
+
+    /* Contact */
+    .contact-emails {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .contact-emails a {
+      color: var(--color-primary);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-border);
+      transition: border-color 0.2s;
+    }
+
+    .contact-emails a:hover {
+      border-color: var(--color-primary);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      border-top: 1px solid var(--color-border);
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .header-logos {
+      margin-top: 1.4rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .header-logos img {
+      height: 30px;
+      width: auto;
+      display: block;
+      filter: grayscale(10%);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header { padding: 2.5rem 1.2rem 2rem; }
+      header h1 { font-size: 1.5rem; }
+      .dates-grid { grid-template-columns: 1fr; }
+      nav a { padding: 0.6rem 0.7rem; font-size: 0.75rem; }
+      .schedule-table .time { width: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="label">Workshop Program</div>
+    <h1>Housing Market Frictions and Access to Homeownership</h1>
+    <div class="subtitle">1<sup>st</sup> Annual Workshop in Real Estate Finance</div>
+    <div class="date-location">Frankfurt am Main &middot; 24&ndash;25 August 2026</div>
+    <a class="register-btn" href="https://forms.gle/FebeZoNQWpYMz6Jv7" target="_blank" rel="noopener noreferrer">Register</a>
+    <div class="header-logos">
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#keynote">Keynotes</a></li>
+      <li><a href="#program">Program</a></li>
+      <li><a href="#venue">Venue</a></li>
+      <li><a href="#committee">Committee</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>
+        Housing markets are shaped by a wide set of frictions that impede price discovery, distort allocations, and amplify distributional consequences. These can reflect financial constraints, the search and matching process, market liquidity and transaction costs, or can result from individual behavioral preferences, imperfect information, and institutional characteristics.
+      </p>
+      <p>
+        The goal of the Workshop in Real Estate Finance is to discuss and support the development of new theoretical and empirical frameworks that quantify these frictions, identify transmission mechanisms, and evaluate how they interact across demand and supply. The program includes work on households, lenders, developers, landlords, intermediaries, and on how macroprudential regulation propagates through markets to shape prices, quantities, mobility, and access to homeownership.
+      </p>
+      <p>
+        Each presentation is allocated 25 minutes, followed by 15 minutes for the discussion and 5 minutes for general Q&amp;A.
+      </p>
+    </section>
+
+    <section id="keynote">
+      <h2>Keynote Lectures</h2>
+      <p>The workshop will feature keynote lectures by:</p>
+      <div class="keynote-card">
+        <div class="name">Timothy McQuade</div>
+        <div class="title">Associate Professor of Finance, Real Estate, Entrepreneurship and Innovation, Haas School of Business, UC Berkeley and NBER</div>
+      </div>
+      <div class="keynote-card">
+        <div class="name">Andreas Fuster</div>
+        <div class="title">Associate Professor of Finance and SFI Senior Chair at Swiss Finance Institute at EPFL and CEPR</div>
+      </div>
+    </section>
+
+    <section id="program">
+      <h2>Program</h2>
+
+      <div class="day-header">Day 1 &mdash; Monday, 24 August 2026</div>
+      <table class="schedule-table">
+        <tr>
+          <td class="time">13:30 &ndash; 13:55</td>
+          <td class="event highlight">Registration &amp; coffee</td>
+        </tr>
+        <tr>
+          <td class="time">13:55 &ndash; 14:00</td>
+          <td class="event highlight">Welcome remarks</td>
+        </tr>
+        <tr><td colspan="2" class="session-label">Session 1 &mdash; Housing Affordability &amp; Access</td></tr>
+        <tr>
+          <td class="time">14:00 &ndash; 14:45</td>
+          <td class="event">
+            <span class="paper-title">Supporting Young Homebuyers</span>
+            <span class="authors">Jonas Wogh (Maastricht University), Max L&ouml;ffler (Maastricht University, CESifo, IZA, ZEW)</span>
+            <span class="discussant">Discussant: Marta Cota (Nova SBE)</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="time">14:45 &ndash; 15:30</td>
+          <td class="event">
+            <span class="paper-title">&ldquo;Giving Up&rdquo;: The Impact of Decreasing Housing Affordability on Consumption, Work Effort, and Investment</span>
+            <span class="authors">Seung Hyeong Lee (Northwestern University), Younggeun Yoo (University of Chicago)</span>
+            <span class="discussant">Discussant: Philip Schnorpfeil (Goethe University)</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="time">15:30 &ndash; 16:00</td>
+          <td class="event break">Coffee break</td>
+        </tr>
+        <tr><td colspan="2" class="session-label">Session 2 &mdash; Housing Supply</td></tr>
+        <tr>
+          <td class="time">16:00 &ndash; 16:45</td>
+          <td class="event">
+            <span class="paper-title">House Prices, Quantities, and the Propagation of Shocks when Developers Are Imperfectly Competitive</span>
+            <span class="authors">Tianping Wu, Jack Favilukis, Elena S. Pikulina (Sauder School of Business, University of British Columbia)</span>
+            <span class="discussant">Discussant: Fern Ramoutar (University of Toronto)</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="time">16:45 &ndash; 17:30</td>
+          <td class="event">
+            <span class="paper-title">Land Use Regulation, Homeownership, and the Cost of NIMBYism</span>
+            <span class="authors">Gabriel Loumeau (University of Neuch&acirc;tel), Brian Greaney (University of Washington), Christian A. L. Hilber (London School of Economics), Hans R. A. Koster (Vrije Universiteit Amsterdam), Andrii Parkhomenko (Marshall School of Business, University of Southern California)</span>
+            <span class="discussant">Discussant: Yu Zhang (Guanghua School of Management, Peking University)</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="time">17:30 &ndash; 17:45</td>
+          <td class="event break">Break</td>
+        </tr>
+        <tr>
+          <td class="time">17:45 &ndash; 18:45</td>
+          <td class="event highlight">Panel discussion</td>
+        </tr>
+        <tr>
+          <td class="time">19:00</td>
+          <td class="event highlight">Workshop dinner &mdash; keynote by Andreas Fuster (SFI at EPFL, and CEPR)</td>
+        </tr>
+      </table>
+
+      <div class="day-header">Day 2 &mdash; Tuesday, 25 August 2026</div>
+      <table class="schedule-table">
+        <tr>
+          <td class="time">08:30 &ndash; 09:00</td>
+          <td class="event break">Coffee</td>
+        </tr>
+        <tr><td colspan="2" class="session-label">Session 3 &mdash; Search, Intermediaries &amp; Housing Supply</td></tr>
+        <tr>
+          <td class="time">09:00 &ndash; 09:45</td>
+          <td class="event">
+            <span class="paper-title">More Experienced Intermediaries &mdash; More Principal-Agent Problems?</span>
+            <span class="authors">Sophia Gilbukh (Baruch College, City University of New York)</span>
+            <span class="discussant">Discussant: David Genesove (Hebrew University of Jerusalem)</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="time">09:45 &ndash; 10:30</td>
+          <td class="event">
+            <span class="paper-title">How Housing Supply Expansions Reshape Cities</span>
+            <span class="authors">Matthijs Korevaar (Erasmus University Rotterdam), Marco Giacoletti (University of Notre Dame), Franklin Qian (UNC Kenan-Flagler Business School)</span>
+            <span class="discussant">Discussant: Amrita Kulka (University of Warwick)</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="time">10:30 &ndash; 11:00</td>
+          <td class="event break">Coffee break</td>
+        </tr>
+        <tr><td colspan="2" class="session-label">Session 4 &mdash; Spatial &amp; Distributional Housing Dynamics</td></tr>
+        <tr>
+          <td class="time">11:00 &ndash; 11:45</td>
+          <td class="event">
+            <span class="paper-title">Racial Segregation, Landlords, and Urban Decay</span>
+            <span class="authors">Christophe Spaenjers (Leeds School of Business, University of Colorado Boulder), Tom Nicholas (Harvard Business School)</span>
+            <span class="discussant">Discussant: Francisco Amaral (University of Zurich)</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="time">11:45 &ndash; 12:30</td>
+          <td class="event">
+            <span class="paper-title">Unpacking Moving: A Quantitative Spatial Equilibrium Model with Wealth</span>
+            <span class="authors">Nuno Paix&atilde;o (Bank of Canada), Elisa Giannone (CREI), Xinle Pang (SUNY Buffalo), Qi Li (Penn State University)</span>
+            <span class="discussant">Discussant: Louiza A. Bartzoka (Copenhagen Business School)</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="time">12:30 &ndash; 13:30</td>
+          <td class="event break">Lunch</td>
+        </tr>
+        <tr>
+          <td class="time">13:30 &ndash; 14:30</td>
+          <td class="event highlight">Keynote &mdash; Timothy McQuade (Haas School of Business, UC Berkeley, and NBER)</td>
+        </tr>
+        <tr>
+          <td class="time">14:30 &ndash; 14:45</td>
+          <td class="event break">Break</td>
+        </tr>
+        <tr><td colspan="2" class="session-label">Session 5 &mdash; Insurance, Climate Risk &amp; Monetary Policy</td></tr>
+        <tr>
+          <td class="time">14:45 &ndash; 15:30</td>
+          <td class="event">
+            <span class="paper-title">Natural Disasters, Property Insurance, and Housing Markets</span>
+            <span class="authors">Michael Boutros (University of Toronto), Nuno Clara (Fuqua School of Business, Duke University), Pierre Mabille (INSEAD)</span>
+            <span class="discussant">Discussant: Federica Zeni (Bank of Italy)</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="time">15:30 &ndash; 16:15</td>
+          <td class="event">
+            <span class="paper-title">Housing Market Segmentation and Monetary Policy</span>
+            <span class="authors">Pablo De Llanos (Columbia University)</span>
+            <span class="discussant">Discussant: Gonzalo Paz-Pardo (ECB)</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="time">16:15</td>
+          <td class="event highlight">Closing remarks</td>
+        </tr>
+      </table>
+    </section>
+
+    <section id="venue">
+      <h2>Venue</h2>
+      <div class="venue-card">
+        <div class="name">Frankfurt School of Finance &amp; Management</div>
+        <div class="venue-address">Adickesallee 32&ndash;34, 60322 Frankfurt am Main, Germany</div>
+        <div class="venue-room">Room: Executive Learning Center (2A)</div>
+      </div>
+      <p>
+        The Frankfurt School campus is located in the north of Frankfurt&rsquo;s city center and is easily reached by public transport from Frankfurt Hauptbahnhof and Frankfurt Airport. The nearest U-Bahn station is Deutsche Nationalbibliothek (line U5), a short walk from the campus.
+      </p>
+      <p class="venue-link">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Frankfurt+School+of+Finance+%26+Management%2C+Adickesallee+32-34%2C+60322+Frankfurt+am+Main" target="_blank" rel="noopener noreferrer">View on Google Maps</a>
+      </p>
+    </section>
+
+    <section id="committee">
+      <h2>Local Organizers</h2>
+      <div class="person">
+        <span class="name">Cristian Badarinza</span>
+        <span class="affiliation">&mdash; Frankfurt School of Finance &amp; Management, NUS Business School</span>
+      </div>
+      <div class="person">
+        <span class="name">Claes B&auml;ckman</span>
+        <span class="affiliation">&mdash; Leibniz Institute for Financial Research SAFE</span>
+      </div>
+
+      <h2 style="margin-top: 2rem;">Program Committee</h2>
+      <div class="person">
+        <span class="name">Ragnar Juelsrud</span>
+        <span class="affiliation">&mdash; University of Oslo</span>
+      </div>
+      <div class="person">
+        <span class="name">Ella Getz Wold</span>
+        <span class="affiliation">&mdash; BI Oslo</span>
+      </div>
+      <div class="person">
+        <span class="name">Pierre Mabille</span>
+        <span class="affiliation">&mdash; INSEAD</span>
+      </div>
+      <div class="person">
+        <span class="name">Lu Liu</span>
+        <span class="affiliation">&mdash; Wharton</span>
+      </div>
+      <div class="person">
+        <span class="name">Francisco Amaral</span>
+        <span class="affiliation">&mdash; University of Zurich</span>
+      </div>
+      <div class="person">
+        <span class="name">Gonzalo Paz-Pardo</span>
+        <span class="affiliation">&mdash; European Central Bank</span>
+      </div>
+      <div class="person">
+        <span class="name">Georgi Kocharkov</span>
+        <span class="affiliation">&mdash; European Central Bank and Bundesbank</span>
+      </div>
+      <div class="person">
+        <span class="name">Tereza Rano&scaron;ov&aacute;</span>
+        <span class="affiliation">&mdash; Bundesbank</span>
+      </div>
+      <div class="person">
+        <span class="name">Sophia Gilbukh</span>
+        <span class="affiliation">&mdash; CUNY Baruch College, Zicklin School of Business</span>
+      </div>
+      <div class="person">
+        <span class="name">Lee Kwan Ok</span>
+        <span class="affiliation">&mdash; NUS</span>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        For questions regarding organizational details or the workshop, please contact:
+      </p>
+      <p class="contact-emails">
+        <a href="mailto:c.badarinza@fs.de">c.badarinza@fs.de</a> &nbsp;or&nbsp;
+        <a href="mailto:claes.backman@gmail.com">claes.backman@gmail.com</a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>1<sup>st</sup> Annual Workshop in Real Estate Finance &middot; Frankfurt am Main &middot; 2026</p>
+  </footer>
+
+</body>
+</html>
