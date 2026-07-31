@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verifying LLM output — for academic economists</title>
+<meta name="description" content="Practical checks for verifying AI-generated code and analysis in empirical research — fresh agents, second models, comprehension quizzes, and independent reimplementation.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QFH3CE0R2E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QFH3CE0R2E');
+</script>
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #f5f0e8;
+    --accent: #b5451b;
+    --accent-light: #e8d5cc;
+    --rule: #c8bfaf;
+    --code-bg: #2a2a3e;
+    --code-text: #e8e0d5;
+    --muted: #6b6258;
+    --highlight: #f0e6d3;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  /* ── Top nav ── */
+  .top-nav {
+    background: var(--ink);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0.7rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .top-nav-inner {
+    max-width: 740px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .top-nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.85);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .top-nav-brand:hover { color: var(--accent-light); }
+  .top-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    margin: 0;
+    padding: 0;
+  }
+  .top-nav ul a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+    padding-bottom: 2px;
+  }
+  .top-nav ul a:hover { color: var(--accent-light); }
+  .top-nav ul a[aria-current="page"] {
+    color: var(--accent-light);
+    border-bottom: 1px solid var(--accent);
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3.5rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(255,255,255,0.03) 28px,
+      rgba(255,255,255,0.03) 29px
+    );
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 1rem;
+    opacity: 0.85;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  header h1 em {
+    color: #e8a87c;
+    font-style: italic;
+  }
+  .subtitle {
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(245,240,232,0.7);
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .byline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.6);
+    margin-top: 0.8rem;
+    position: relative;
+  }
+  .byline a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(245,240,232,0.35);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .byline a:hover {
+    color: #e8a87c;
+    border-bottom-color: #e8a87c;
+  }
+  .header-rule {
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+    margin: 1.5rem auto 0;
+    position: relative;
+  }
+
+  /* ── Layout ── */
+  .container {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  /* ── Sections ── */
+  section {
+    margin-bottom: 3.5rem;
+    scroll-margin-top: 4rem;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.65rem;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1.5px solid var(--rule);
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 1.8rem 0 0.6rem;
+    color: var(--ink);
+  }
+
+  p { margin-bottom: 0.9rem; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── Steps ── */
+  .steps {
+    counter-reset: step;
+    list-style: none;
+    margin: 1.2rem 0;
+  }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: calc(28px + 1rem);
+    margin-bottom: 1rem;
+    min-height: 28px;
+  }
+  .steps li::before {
+    content: counter(step);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--paper);
+    background: var(--accent);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 2px;
+  }
+
+  /* ── Code blocks ── */
+  pre {
+    background: var(--code-bg);
+    color: var(--code-text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    padding: 1.1rem 1.3rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 0.8rem 0 1rem;
+    line-height: 1.6;
+    border-left: 3px solid var(--accent);
+  }
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.84em;
+    background: var(--highlight);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    color: var(--accent);
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  /* ── Use-case cards ── */
+  .use-cases {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1.25rem 1.4rem;
+    border-left: 4px solid var(--accent);
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+  .card-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .card p {
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+  .card pre {
+    font-size: 0.76rem;
+    margin: 0;
+  }
+
+  /* ── Note box ── */
+  .note {
+    background: var(--highlight);
+    border: 1px solid var(--rule);
+    border-left: 4px solid #7a9e7e;
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    font-size: 0.92rem;
+    margin: 1.2rem 0;
+  }
+  .note strong { color: #3a6b3e; }
+
+  .warn {
+    background: #fdf3ec;
+    border-left-color: var(--accent);
+  }
+  .warn strong { color: var(--accent); }
+
+  /* ── Divider ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 2.5rem 0;
+  }
+
+  /* ── Tables ── */
+  .ext-table {
+    margin: 0.8rem 0 1rem;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .ext-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ext-row:last-child { border-bottom: none; }
+  .ext-row:nth-child(even) { background: white; }
+  .ext-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    padding: 0.75rem 1.5rem 0.75rem 1rem;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-start;
+    word-break: break-word;
+    line-height: 1.5;
+  }
+  .ext-desc {
+    padding: 0.75rem 1rem 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .ext-desc strong { color: var(--accent); }
+  /* Prose-keyed variant: the left column is a phrase, not an identifier */
+  .ext-table.prose .ext-id {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.45;
+  }
+  @media (max-width: 560px) {
+    .ext-row { grid-template-columns: 1fr; }
+    .ext-id { border-right: none; border-bottom: 1px solid var(--rule); }
+  }
+
+  /* ── Table of contents ── */
+  .toc {
+    list-style: none;
+    margin: 1.2rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.35rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  .toc li { display: flex; gap: 0.5rem; align-items: baseline; }
+  .toc .toc-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    flex: 0 0 auto;
+  }
+  .toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .toc a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  @media (max-width: 560px) { .toc { grid-template-columns: 1fr; } }
+
+  /* ── Check number badge ── */
+  .check-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--accent);
+    padding: 0.2em 0.6em;
+    border-radius: 3px;
+    vertical-align: 0.15em;
+    margin-right: 0.5rem;
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    padding: 2rem 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.15em 0.5em;
+    border-radius: 3px;
+    background: var(--ink);
+    color: var(--paper);
+    letter-spacing: 0.05em;
+    margin-right: 0.3rem;
+    vertical-align: middle;
+  }
+  .tag.r { background: #276DC2; }
+  .tag.stata { background: #1a5276; }
+  .tag.python { background: #3572A5; }
+  .tag.latex { background: #3d6b44; }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="top-nav-inner">
+    <a href="index.html" class="top-nav-brand">Claes Bäckman</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="yoho.html">YoHo</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="ai-guides.html" aria-current="page">AI guides</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <p class="eyebrow">A Practical Guide</p>
+  <h1>Verifying LLM output<br><em>for academic economists</em></h1>
+  <p class="subtitle">How to check AI-generated code and analysis before it ends up in a paper</p>
+  <p class="byline">by <a href="index.html">Claes Bäckman</a></p>
+  <div class="header-rule"></div>
+</header>
+
+<div class="container">
+
+  <section>
+    <p>Verification is becoming a bottleneck for empirical research. AI agents are fast, cheap, and competent at producing code, including in languages that you may not know (I don't really know how to make a website, but Claude does). While I have seen plenty of concerns over verification, I have not seen a practical guide that collects ways of actually verifying LLM output.</p>
+    <p>This guide is meant to address this gap. These checks are collected from my own experience and from others, including <a href="https://www.geoffreylitt.com/2026/07/02/understanding-is-the-new-bottleneck.html" style="color:var(--accent);">Geoffrey Litt on understanding as the new bottleneck</a> and <a href="https://substack.com/@paulgp/p-204750868" style="color:var(--accent);">Paul Goldsmith-Pinkham on integration and collaboration in AI research work</a>. If you have other checks, <a href="mailto:claes.backman@gmail.com" style="color:var(--accent);">please share them</a> — this is meant to be a living document.</p>    
+  </section>
+
+  <!-- READ IT YOURSELF -->
+  <section id="read-it">
+    <p class="section-label">First Principle</p>
+    <h2>You have to read the code — or some version of it</h2>
+    <p> The code is the analysis. You have to do some version of checking that the code does what you actually want it to do. Now, you can do that in many ways, and some are going to be more efficient than others. For instance, if you use Git you can choose to read only the parts that change (that is easy to get out of Git). You can also have your favorite agent present the changes to you along with an explanation. </p>
+
+    <p>I'm figuring out how to read code updates from Claude myself as I go along, and I don't know if I have the right approach yet. But what is clear is that you are responsible for the code once it produces results that are in the paper, and so you have to some work yourself. </p>
+
+    <p> Something to keep in mind: you are not really looking for the normal errors that would break a code or cause a crash. Claude and agents are very good at iterating and figuring out what breaks code, and they can work autonomously to fix those errors. So you will get a table with output, and it might look plausible. But it might be wrong because the agent took a shortcut. The errors you are looking for are the subtle ones that don't crash but lead to incorrect conclusions. </p>
+     <div class="note">
+      <strong>A reasonable default from Claude.</strong> Ask for a plan and for questions before any code gets written, record a git baseline before every session, review every diff with a fresh agent, run a second model over anything that will appear in the paper, and independently reimplement the main table. 
+    </div>
+  </section>
+
+
+  <hr class="divider">
+
+  <!-- GIT -->
+  <section id="git">
+    <p class="section-label">Prerequisite</p>
+    <h2>Use git to make verification tractable</h2>
+    <p>Git is a very useful tool for verification, because it allows agent to evaluate and verify the code that changed. Git allows you to see what changed using --git diff, which also means that the agents can easily see what changed. I recommend watching and reading <a href="https://substack.com/@paulgp/p-204750868" style="color:var(--accent);">Paul Goldsmith-Pinkham on integration and collaboration in AI research work</a>.</p>
+
+    <p>Using git matters more for agents than for us people. If you ask the agent to review the code, it will look over all the code and it will spread its attention over too many things. This invites both generic answers, a lack of focus, and will cost you more tokens. If the agent instead examines a diff, it will know exactly what is new, and can compare the change against the code you had already checked. </p>
+      
+    <div class="note">
+      <strong>If you don't use git yet.</strong> The <a href="claude-code-guide.html" style="color:var(--accent);">Claude Code guide</a> notes that git is optional for getting these tools running, which is true. For verification it stops being optional. <code>Initialise a git repository here, add a .gitignore that excludes the data directory, logs, and LaTeX build files, and make an initial commit</code> is a complete instruction.
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CHECK 1 -->
+  <section id="check-01">
+    <p class="section-label">Check One</p>
+    <h2><span class="check-num">01</span>Launch a fresh agent to attack the diff</h2>
+    <p>Launching a fresh agent or a fresh chat window to evaluate the code is an easy but important first check. The reason you want to use a fresh agent/chat is that the agent that wrote the code has too much context. Because it wrote the code, it has all the conversation in mind, and it is not an independent arbiter of what is right and wrong. It's very easy to get around that problem by launching a fresh agent: either you ask the current agent to launch a subagent (<code>Use a subagent to review the code…</code>), or you start a new chat window with a reference to the code you want checked. A fresh agent has no stake in the code, and will be more likely to find problems.</p>
+
+    <p>One caveat on subagents: the parent writes their instructions and summarises the report back to you, so you read a filtered account. A new session you brief yourself is the more isolated option.</p>
+   
+    <div class="note warn">
+      <strong>Have the reviewer report, not fix.</strong> A reviewer that edits as it goes hands you a second diff to verify, produced by an agent optimising for closing findings rather than for correctness. Read the findings, make it prove the ones that matter, and fix those yourself — confident false positives are common enough that acting on an unexamined list will cost you more than it saves. You can also launch an agent to check if the mistakes it found are actually real! 
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CHECK 2 -->
+  <section id="check-02">
+    <p class="section-label">Check Two</p>
+    <h2><span class="check-num">02</span>Use a different model</h2>
+    <p>This one is very similar to the above, in that you have a fresh agent look at the code. But sometimes there is a value in having a different model entirely look at the code. Two instances of the same model share training data and habits of thought, so they tend to make the same mistakes.</p>
+
+    <p>Running the diff past a model from a different developer breaks that correlation, on the same logic as sending a paper to two referees from different subfields rather than to two students of the same advisor. Setting up both tools is covered separately in the <a href="claude-code-guide.html" style="color:var(--accent);">Claude Code guide</a> and the <a href="codex-vscode-guide.html" style="color:var(--accent);">Codex guide</a>.</p>
+    
+    <div class="note">
+      <strong>Give both tools the same project context.</strong> Claude Code reads <code>CLAUDE.md</code> and Codex reads <code>AGENTS.md</code>. Keep the substance in one file and have the other point to it, so the second opinion works from the same sample definitions as the first. 
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CHECK 3 -->
+  <section id="check-03">
+    <p class="section-label">Check Three</p>
+    <h2><span class="check-num">03</span>Make the agent quiz you</h2>
+    <p>The checks so far verify the code using LLMs. But you are also supposed to be in the loop, which is easy to skip. Using a quiz is a nice way to make sure that you understand what is going on. Geoffrey Litt's <a href="https://gist.github.com/geoffreylitt/a29df1b5f9865506e8952488eac3d524" style="color:var(--accent);">explain-diff skill</a> is a neat solution. The agent writes a self-contained HTML page explaining a change — background, the core intuition with toy examples and diagrams, a walkthrough of the code — ending in five multiple-choice questions with immediate feedback. </p>
+    <p>Here is the instructions from the skill:</p>
+    <pre><code>Quiz: Quiz: Come up with five questions that test the reader's 
+knowledge of this PR. This should be medium difficulty,
+difficult enough that you actually need to understand 
+the substance of the PR to answer them, but not gotchas.
+The goal is to help the reader make 
+sure that they've actually understood. These should be 
+presented as interactive multiple-choice questions, and when
+the user clicks, it tells them whether they were correct 
+and gives feedback.</code></pre>
+
+<p>Adapted for an empirical paper rather than a software change, the skill looks like this. Save it as <code>~/.claude/skills/quiz-me/SKILL.md</code> and it becomes <code>/quiz-me</code>.</p>
+    <pre><code>---
+name: quiz-me
+description: Explain a change to the analysis and quiz me on whether
+  I understood it. Use when I have asked for a change to cleaning or
+  estimation code and need to verify my own understanding.
+disable-model-invocation: true
+---
+
+Work only from the code and the diff. If this conversation contains
+an earlier account of the change, ignore it and read the files.
+
+Produce a single self-contained HTML file explaining the specified
+change, ending in a quiz. Save it outside the repository with a
+filename starting with today's date in YYYY-MM-DD- format, then
+tell me the path.
+
+Sections:
+
+1. What this code did before. Explore the surrounding scripts, do
+   not rely on the diff alone.
+2. What changed and why, in plain language. No code in this section.
+3. Consequences for the results. Which sample, which coefficients,
+   which tables are affected, and in which direction. Say so
+   explicitly if the answer is none.
+4. Walkthrough of the changed code, grouped by purpose rather than
+   by file.
+5. Quiz. Five multiple-choice questions, medium difficulty — hard
+   enough that answering requires understanding the substance, not
+   gotchas. At least two must be about empirical consequences
+   rather than syntax: which observations enter the sample, what
+   the coefficient now identifies, what would change if an
+   assumption failed. Distractors must be plausible
+   misunderstandings, and must match the correct answer in length,
+   grammar, specificity, and confidence. Randomise the position of
+   the correct answer independently for each question. On click,
+   report whether the answer was correct and explain why, including
+   why each wrong option is wrong. For each question, cite the file
+   and line the answer rests on.
+
+Style: clear prose, concrete toy examples with made-up numbers, and
+simple HTML diagrams rather than ASCII art. Code in `&lt;pre&gt;` tags.
+Embed all CSS and JavaScript so the file works offline.</code></pre>
+    <p>Run it in a new session rather than the one that made the change. Starting fresh forces the agent to read the files instead of recalling the conversation, which is why the skill opens by telling it to.</p>
+    <div class="note">
+      <strong>The thirty-second version.</strong> When a full explainer is overkill, open a fresh session and ask: <code>Read the last commit and the files it touches, then ask me three questions about what it changed. Do not tell me the answers until I have answered. If my answer is wrong, say so directly — do not tell me I was close.</code> 
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CHECK 4 -->
+  <section id="check-04">
+    <p class="section-label">Check Four</p>
+    <h2><span class="check-num">04</span>Reimplement the analysis in another language</h2>
+    <p><span class="tag stata">Stata</span><span class="tag r">R</span><span class="tag python">Python</span> This is a check that <a href="https://substack.com/@causalinf" style="color:var(--accent);">Scott Cunningham</a> has advocated for (at least he's the person I think about when this check comes up). It is the most expensive check, but it is also the strongest: you ask for code in different programming languages to see if you get the right output. </p>
+
+    <p>This is a strong test because it involves the whole chain. If the errors across languages are independent, then you should be able to spot them by looking at the differences in output. An independent implementation across programming languages catches the case where the do-file faithfully implements something other than what the paper says it does. Use a different model for it as well, for the reason in check 02. Given how good agents are becoming at writing code, this test is getting cheaper to run over time as well. </p> 
+
+    <h3>Isolating the second implementation</h3>
+    <p>Now, this check can also happen organically as you work with agents. Claude is very prone to using Python for generating intermediate results in my chats, for example. If you open a separate chat and ask for a Stata pipeline and the number match, you kind of get this check for free. As with many other checks, verification is not a one-time thing but rather a continuous process. </p> 
+
+    <p>But it is also worth thinking about how to implement the check independently. To do that, you need to think about how LLMs work, and make sure that you isolate the model from the previous context. If you ask "Ignore what you know about <code>02_analysis.do</code>", you essentially ask the model to un-condition on what is already in its context, which is not something it can do. The context is always loaded. You have to enforce indepdendence by removing the context that could contaminate the results. You can do that by creating a new folder with a fresh session. Then add a file with the specification or a description of what you want to implement and a description of the data: </p>
+    
+    <p>You can probably figure out multiple ways to do this. One way: copy the specification description out of the paper into <code>spec.md</code> and delete the results from it. Also write (or have your agent write) a file that describes the data and the variables (<code>README.md</code>). Then ask your favorite model some version of: </p>
+    <pre><code>Read verify/spec.md, which describes a specification, and
+data/README.md, which describes the raw data. From those two
+documents only, write an R script that estimates the specification
+starting from the raw files in data/raw/. Save it as
+verify/analysis_check.R.
+
+Where the description is ambiguous, do not guess. Stop and list
+the ambiguities and I will resolve them.
+
+Do not run it. I will run it myself and tell you what it returns.</code></pre>
+    <p>Running it yourself is important (and not just for saving tokens). An agent that runs its own script and sees an implausible number will debug towards plausibility, and plausibility is exactly what you are trying to test. Similarly,  the instruction to stop at ambiguities may help you resolve some ambiguities yourself. </p>
+
+    
+    <div class="note">
+      <strong>Since this is costly, reserve this check for for the importance.</strong> Examples would be the main results (the table and figure exhibits in the paper) and any step where a mistake would be invisible in the output, like a complicated panel construction, a hand-rolled event-time definition, or an index built from several sources. 
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- OTHER CHECKS -->
+  <section id="cheap">
+    <p class="section-label">Check Five and Onwards</p>
+    <h2>Checks that cost almost nothing</h2>
+    <p>It is also worth creating some habits. Here are some examples. </p>
+
+    <h3>Verify the data, not only the code</h3>
+    <p>Correct-looking code operating on the wrong sample produces wrong results. Make sure you know what the data looks like. A sample-construction table is a simple way to do this. Also make sure that you check that merges work as expected, and take a look at the distribution of constructed variable.</p>
+
+    <h3>Compare against an external benchmark</h3>
+    <p>We all do this when figuring out whether the results "make sense", and so we should keep doing it also for LLM output. This is almost certainly a part of your normal workflow, so it may not be a huge extra cost. This is an external validation, which is a nice way to catch errors that are not caught by internal checks from above.</p>
+
+    <h3>Check the numbers in the prose against the numbers in the tables</h3>
+    <p>Coefficients get quoted in the abstract and the introduction, the specification then changes, and you don't update the writing. This kind of consistency check is also included in my review-paper skill (for this skill and more, see <a href="https://github.com/claesbackman/AI-research-feedback" style="color:var(--accent);">my collection of AI skills</a>).
+    This is a tedious check for a human and a trivial check for an agent.</p>
+  
+
+    <h3>Verify your reference</h3>
+    <p>Models still invent citations. There are now some automated checks for references, like <a href="https://reviewer3.com/" style="color:var(--accent);">Reviewer3</a>, and probably others.</p>
+
+  </section>
+
+  <hr class="divider">
+
+  <!-- WORK ALONGSIDE -->
+  <section id="alongside">
+    <p class="section-label">Before the Checks</p>
+    <h2>The cheapest verification happens while the code is being written</h2>
+    <p>All the above checks are after-the-fact checks. Each assumes code exists and asks how to establish that it is right. But the most reliable way to understand an analysis is to have been present while it was built.</p>
+    <p>Compare two sessions. In the first, you describe the whole pipeline in a paragraph, the agent works for six minutes, and you are handed 400 lines across five files. Verifying that means reverse-engineering someone else's reasoning from its output, which is the position a referee is in, except that you are the author. In the second, you agree on a plan, the agent asks three questions you had not thought about, then writes one cleaning step, runs it, and shows you the counts. Both produce the same script, but in the second you already know what it does, and the checks below become confirmation rather than discovery.</p>
+    <p>The second is also not slower in the end. Time saved by one long prompt is borrowed against the debugging session where you discover, three tables later, that the deflator was applied twice. The exception is mechanical work with a visible output, where you can see whether the result is right and none of this is needed.</p>
+    <p>A working shape for the loop, using a panel construction task as the example.</p>
+    <ol class="steps">
+      <li><strong>Ask for a plan, not code.</strong> A plan is a page of prose you can read in a minute, and disagreeing with it costs nothing. Disagreeing with a finished implementation costs a rewrite. Most tools have an explicit mode for this — otherwise say so in the prompt.
+        <pre><code>Before writing any code, describe how you would build the
+firm-year panel from the raw files: which files, in which
+order, what the key is at each stage, and where observations
+could be lost. Number the steps so I can respond to them
+individually. Do not write code yet.</code></pre>
+      </li>
+      <li><strong>Make it ask you questions.</strong> An agent that has to ask whether firms changing industry mid-panel keep their original classification has surfaced a decision that would otherwise have been settled by whichever default it picked, and that you would have discovered at the earliest when a coauthor asked.
+        <pre><code>Before you start, ask me every question you need answered
+to do this correctly. I would rather answer ten questions
+now than discover your assumptions later. Include the ones
+where you could guess a reasonable default — I want to know
+which defaults you would have chosen.</code></pre>
+      </li>
+      <li><strong>Work in steps small enough to check, and run each one.</strong> Code that has not been executed is a hypothesis. Ask for one step, have it run, look at the output, then continue. The counts after each step are the verification, and they arrive while the decision is still fresh enough to discuss.
+        <pre><code>Implement step 1 only. Run it, then report the number of
+observations and unique firms, and show me the first ten
+rows. Stop there and wait for me before starting step 2.</code></pre>
+      </li>
+      <li><strong>Ask why, not what.</strong> A summary of what the code does restates the code. The useful question is about the decisions, the places where something else was possible, because that is where your judgement is needed. Note that the second half of this prompt asks for something the agent has to run rather than assert.
+        <pre><code>List the three decisions in what you just wrote where a
+reasonable person could have done something different, and
+what you chose in each case. Then re-run the specification
+under each alternative and give me the coefficients side by
+side. Do not tell me what you expect the alternative to do —
+run it.</code></pre>
+      </li>
+    </ol>
+    <div class="note">
+      <strong>The questions are the deliverable.</strong> Keep the ambiguities the agent raises and your answers to them in a <code>decisions.md</code> in the repo, with a one-line pointer to it from <code>CLAUDE.md</code> rather than the decisions themselves — a project-context file that grows without limit gets followed less closely. This is the sample-definition documentation you would otherwise reconstruct from memory for the appendix eighteen months later.
+    </div>
+  </section>
+
+  <hr class="divider">
+
+</div>
+
+
+
+<footer>
+  Generated July 2026 · The quiz idea is adapted from Geoffrey Litt's <a href="https://gist.github.com/geoffreylitt/a29df1b5f9865506e8952488eac3d524" style="color:var(--accent);">explain-diff skill</a><br>
+  Companion pages: <a href="claude-code-guide.html" style="color:var(--accent);">Claude Code guide</a> · <a href="codex-vscode-guide.html" style="color:var(--accent);">Codex guide</a> · <a href="codex-vs-claude-code.html" style="color:var(--accent);">Codex vs Claude Code</a> · <a href="ai-guides.html" style="color:var(--accent);">All AI guides</a>
+</footer>
+
+</body>
+</html>
