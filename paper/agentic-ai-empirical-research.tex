@@ -257,8 +257,8 @@ until it is done. The choice between them is mostly a matter of taste, existing
 accounts, and what your collaborators or employer already use. Appendix
 \ref{app:tools} works through the differences.
 
-The more consequential early decision is not which system but which
-\emph{surface}, meaning where the agent runs. There are six, and most researchers end
+The more consequential early decision is which \emph{surface} you use, meaning
+where the agent runs. There are six, and most researchers end
 up using two or three.
 
 \subsection{VS Code}
@@ -407,12 +407,11 @@ in Appendix \ref{app:tools}. The reasoning behind the choices is here.
 
 For \textbf{Stata}, the relevant extension lets Stata code run from the editor
 and exposes an interface the agent can drive directly, so it can execute
-commands, inspect variables, and read stored results, so it is not writing
-do-files blind.
+commands, inspect variables, and read stored results. It is not writing do-files
+blind.
 
 For \textbf{Python}, install the core extension, a language server, the debugger,
-and environment management. This is worth doing \emph{even if you do not write
-Python}, which is the part people skip. A surprising share of the everyday
+and environment management. Do this \emph{even if you do not write Python}, which is the part people skip. A surprising share of the everyday
 friction in empirical work --- converting a PDF or a Word file to markdown,
 reshaping a messy CSV, scraping a table from a webpage, pulling a series from an
 API, cleaning a bibliography file, splitting a 200-page document into chapters
@@ -626,8 +625,8 @@ conflict by reading both sides.
 For getting started, git is optional. A synced folder or a plain directory works
 fine as a project root, and the installation guides say so.
 
-\textbf{For verification, it stops being optional}, and this is the one setup
-recommendation in this document I would make unconditionally. The reason is
+\textbf{For verification, it stops being optional}, and it is the setup step I
+would argue hardest for. The reason is
 developed in Section \ref{sec:diff}: a diff is what makes it possible to check a
 change rather than re-reading an entire codebase, and that matters more for the
 agent than it does for you.
@@ -646,7 +645,7 @@ directory, logs, and LaTeX build files, and make an initial commit.
 An agent can hold only a limited amount of text in working memory at once ---
 roughly a few hundred pages --- and performance degrades as it fills. For a large
 empirical project with many scripts, logs, and output tables, this happens
-quickly. Three habits help.
+quickly. A few habits help.
 
 \emph{Point at specific files} instead of letting the agent read everything.
 Both systems support mentioning a file directly in the prompt
@@ -688,15 +687,14 @@ read along the way. A session that has opened twenty scripts pays for those
 twenty scripts again on each subsequent exchange, whether or not they are still
 relevant.
 
-Two consequences follow, and they are the whole of the practical advice.
+The practical advice is all downstream of that.
 
-The first is that cost grows with session length even when the work does not.
+Cost grows with session length even when the work does not.
 A long conversation is expensive at the end for reasons that have nothing to do
 with what you are asking at the end. The context discipline in
-Section \ref{sec:context-window} is therefore also cost discipline. The same
-habits produce both.
+Section \ref{sec:context-window} is therefore also cost discipline.
 
-The second is that a stable prefix is cheap. Most vendors cache repeated context,
+A stable prefix is also cheap. Most vendors cache repeated context,
 so the parts of a session that do not change between turns cost less on re-read
 than they did the first time. That rewards a project-context file that stays put
 and an early conversation that you do not keep editing. It penalises the habit of
@@ -720,8 +718,7 @@ reviewing a diff for the silent shortcut, deciding whether a merge did what it
 was supposed to do. These are the tasks from Section \ref{sec:ladder}, and they
 share the property that a wrong answer looks exactly like a right one.
 
-The rule that falls out of this is short. Spend on judgement, economise on
-typing.
+Spend on judgement, economise on typing.
 
 \begin{aside}
 \textbf{Do not economise on the review pass.} A cheap model reviewing a diff will
@@ -934,8 +931,8 @@ code has too much context. Because it wrote the code, it has the whole
 conversation in mind, and it is not an independent arbiter of what is right. A
 fresh agent has no stake in the code and is more likely to find problems.
 
-Two ways to do this: ask the current agent to launch a subagent to review the
-change, or start a new session yourself pointed at the diff.
+Ask the current agent to launch a subagent to review the change, or start a new
+session yourself pointed at the diff.
 
 One caveat on subagents: the parent writes their instructions and summarises the
 report back to you, so you read a filtered account. A new session that you brief
@@ -1028,8 +1025,8 @@ over time, as agents get better at writing code.
 
 This check can happen organically. Agents are prone to reaching for Python to
 generate intermediate results, for instance. If you separately ask for a Stata
-pipeline and the numbers match, you get the check for free. Verification is not a
-one-time event so much as a continuous process.
+pipeline and the numbers match, you get the check for free. Some of the
+verification happens without you planning it.
 
 But it is worth thinking about how to run it deliberately, and doing that
 requires taking seriously how these models work. If you ask the agent to
@@ -1037,8 +1034,8 @@ requires taking seriously how these models work. If you ask the agent to
 un-condition on something already in its context, which is not an operation it
 can perform. The context is always loaded. Independence has to be enforced by
 removing the contaminating context, not by requesting that it be disregarded.
-\textbf{This is the single most important practical point in this document}, and
-it generalises well beyond this check: every claim of independence in
+This is the most important practical point in this document, and it generalises
+well beyond this check: every claim of independence in
 Sections \ref{sec:check1}--\ref{sec:reimplement} is only as good as the physical
 isolation behind it.
 
@@ -1059,9 +1056,9 @@ ambiguities and I will resolve them.
 Do not run it. I will run it myself and tell you what it returns.
 \end{prompt}
 
-Running it yourself matters, and not only for the token cost. \textbf{An agent that
-runs its own script and sees an implausible number will debug towards
-plausibility, and plausibility is exactly what you are trying to test.} The
+Running it yourself matters, and not only for the token cost. An agent that runs its own
+script and sees an implausible number will debug towards plausibility, and
+plausibility is exactly what you are trying to test. The
 instruction to stop at ambiguities is also useful in its own right, because the
 ambiguities it surfaces are often ones you want to resolve in the paper too.
 
@@ -1124,11 +1121,10 @@ where the file contents go. A researcher who has carefully avoided the web
 surface, installed the command-line tool on a secure laptop, and pointed it at a
 folder of register extracts has transmitted the register extracts.
 
-There are two real exceptions. Models running entirely on your own hardware keep
+Two exceptions are real. Models running entirely on your own hardware keep
 everything in place, and some institutions run approved deployments inside their
 own boundary. Both exist. Both are meaningfully worse at this work than the
-hosted frontier models. That tradeoff is real, and worth weighing properly
-rather than waving away.
+hosted frontier models. That tradeoff is real. Weigh it before dismissing it.
 
 So the first task, before the first session, is to work out which of three
 situations you are in.
@@ -1193,16 +1189,16 @@ document.
 Check that the dictionary is itself releasable. A variable list is usually fine.
 Value ranges can disclose more than they appear to, and a frequency table with
 small cells may breach the same disclosure rules that govern your output. This is
-a judgement your data-use agreement governs, and it is worth asking the data
-provider instead of guessing.
+a judgement your data-use agreement governs, so ask the data provider instead of
+guessing.
 
 The side benefit is that this is documentation you needed anyway, and writing it
 early is easier than reconstructing it for the appendix later.
 
 \subsection{Output is disclosure too}
 
-The easiest rule to follow is the one about not uploading the microdata. The
-easier one to break is everything downstream of it.
+The easy rule to follow is the one about not uploading the microdata. Everything
+downstream of it is easier to break.
 
 Pasting a regression table into a chat to ask what it means transmits results.
 Aggregates are often permitted under a data-use agreement and small cell counts
@@ -1276,8 +1272,8 @@ A short checklist, done once, deliberately, and not in the middle of a task.
 % =============================================================== SECTION 8 ==
 \section{Where this is going}
 
-Three things seem worth saying about the direction of travel, offered as
-expectations and not predictions.
+Three expectations about the direction of travel, offered as expectations and
+not predictions.
 
 The checks in Section \ref{sec:ladder} get cheaper over time and the work they
 check gets cheaper faster. Reimplementation in a second language was an
@@ -1289,7 +1285,7 @@ because they scale.
 
 The profession has not settled what it is reasonable to expect. A referee cannot
 currently ask what was AI-generated and what was not, and would not know what to
-do with the answer. My own guess is that the norm that eventually forms is not
+do with the answer. My own guess is that the norm that eventually forms is
 about documentation of checking, closer to what we already expect for a
 replication package than to a conflict-of-interest statement. The \code{decisions.md} file in Section \ref{sec:loop} is a small bet
 on that.
