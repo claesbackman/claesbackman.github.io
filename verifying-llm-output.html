@@ -479,7 +479,7 @@
     <h2>You have to read the code — or some version of it</h2>
     <p> The code is the analysis. You have to do some version of checking that the code does what you actually want it to do. Now, you can do that in many ways, and some are going to be more efficient than others. For instance, if you use Git you can choose to read only the parts that change (that is easy to get out of Git). You can also have your favorite agent present the changes to you along with an explanation. </p>
 
-    <p>I'm figuring out how to read code updates from Claude myself as I go along, and I don't know if I have the right approach yet. But what is clear is that you are responsible for the code once it produces results that are in the paper, and so you have to some work yourself. </p>
+    <p>I'm figuring out how to read code updates from Claude myself as I go along, and I don't know if I have the right approach yet. But what is clear is that you are responsible for the code once it produces results that are in the paper, and so you have to do some work yourself.</p>
 
     <p> Something to keep in mind: you are not really looking for the normal errors that would break a code or cause a crash. Claude and agents are very good at iterating and figuring out what breaks code, and they can work autonomously to fix those errors. So you will get a table with output, and it might look plausible. But it might be wrong because the agent took a shortcut. The errors you are looking for are the subtle ones that don't crash but lead to incorrect conclusions. </p>
      <div class="note">
@@ -494,7 +494,7 @@
   <section id="git">
     <p class="section-label">Prerequisite</p>
     <h2>Use git to make verification tractable</h2>
-    <p>Git is a very useful tool for verification, because it allows agent to evaluate and verify the code that changed. Git allows you to see what changed using --git diff, which also means that the agents can easily see what changed. I recommend watching and reading <a href="https://substack.com/@paulgp/p-204750868" style="color:var(--accent);">Paul Goldsmith-Pinkham on integration and collaboration in AI research work</a>.</p>
+    <p>Git is a very useful tool for verification, because it allows an agent to evaluate and verify the code that changed. Git allows you to see what changed using <code>git diff</code>, which also means that the agents can easily see what changed. I recommend watching and reading <a href="https://substack.com/@paulgp/p-204750868" style="color:var(--accent);">Paul Goldsmith-Pinkham on integration and collaboration in AI research work</a>.</p>
 
     <p>Using git matters more for agents than for us people. If you ask the agent to review the code, it will look over all the code and it will spread its attention over too many things. This invites both generic answers, a lack of focus, and will cost you more tokens. If the agent instead examines a diff, it will know exactly what is new, and can compare the change against the code you had already checked. </p>
       
@@ -541,7 +541,7 @@
     <h2><span class="check-num">03</span>Make the agent quiz you</h2>
     <p>The checks so far verify the code using LLMs. But you are also supposed to be in the loop, which is easy to skip. Using a quiz is a nice way to make sure that you understand what is going on. Geoffrey Litt's <a href="https://gist.github.com/geoffreylitt/a29df1b5f9865506e8952488eac3d524" style="color:var(--accent);">explain-diff skill</a> is a neat solution. The agent writes a self-contained HTML page explaining a change — background, the core intuition with toy examples and diagrams, a walkthrough of the code — ending in five multiple-choice questions with immediate feedback. </p>
     <p>Here is the instructions from the skill:</p>
-    <pre><code>Quiz: Quiz: Come up with five questions that test the reader's 
+    <pre><code>Quiz: Come up with five questions that test the reader's
 knowledge of this PR. This should be medium difficulty,
 difficult enough that you actually need to understand 
 the substance of the PR to answer them, but not gotchas.
@@ -606,14 +606,14 @@ Embed all CSS and JavaScript so the file works offline.</code></pre>
   <section id="check-04">
     <p class="section-label">Check Four</p>
     <h2><span class="check-num">04</span>Reimplement the analysis in another language</h2>
-    <p><span class="tag stata">Stata</span><span class="tag r">R</span><span class="tag python">Python</span> This is a check that <a href="https://substack.com/@causalinf" style="color:var(--accent);">Scott Cunningham</a> has advocated for (at least he's the person I think about when this check comes up). It is the most expensive check, but it is also the strongest: you ask for code in different programming languages to see if you get the right output. </p>
+    <p><span class="tag stata">Stata</span><span class="tag r">R</span><span class="tag python">Python</span> This is a check that <a href="https://substack.com/@causalinf" style="color:var(--accent);">Scott Cunningham</a> has advocated for (at least he's the person I think about when this check comes up). It is the most expensive check, but it is also the strongest: you ask for code in different programming languages to see if you get the same output.</p>
 
     <p>This is a strong test because it involves the whole chain. If the errors across languages are independent, then you should be able to spot them by looking at the differences in output. An independent implementation across programming languages catches the case where the do-file faithfully implements something other than what the paper says it does. Use a different model for it as well, for the reason in check 02. Given how good agents are becoming at writing code, this test is getting cheaper to run over time as well. </p> 
 
     <h3>Isolating the second implementation</h3>
-    <p>Now, this check can also happen organically as you work with agents. Claude is very prone to using Python for generating intermediate results in my chats, for example. If you open a separate chat and ask for a Stata pipeline and the number match, you kind of get this check for free. As with many other checks, verification is not a one-time thing but rather a continuous process. </p> 
+    <p>Now, this check can also happen organically as you work with agents. Claude is very prone to using Python for generating intermediate results in my chats, for example. If you open a separate chat and ask for a Stata pipeline and the numbers match, you kind of get this check for free. As with many other checks, verification is not a one-time thing but rather a continuous process. </p> 
 
-    <p>But it is also worth thinking about how to implement the check independently. To do that, you need to think about how LLMs work, and make sure that you isolate the model from the previous context. If you ask "Ignore what you know about <code>02_analysis.do</code>", you essentially ask the model to un-condition on what is already in its context, which is not something it can do. The context is always loaded. You have to enforce indepdendence by removing the context that could contaminate the results. You can do that by creating a new folder with a fresh session. Then add a file with the specification or a description of what you want to implement and a description of the data: </p>
+    <p>But it is also worth thinking about how to implement the check independently. To do that, you need to think about how LLMs work, and make sure that you isolate the model from the previous context. If you ask "Ignore what you know about <code>02_analysis.do</code>", you essentially ask the model to un-condition on what is already in its context, which is not something it can do. The context is always loaded. You have to enforce independence by removing the context that could contaminate the results. You can do that by creating a new folder with a fresh session. Then add a file with the specification or a description of what you want to implement and a description of the data.</p>
     
     <p>You can probably figure out multiple ways to do this. One way: copy the specification description out of the paper into <code>spec.md</code> and delete the results from it. Also write (or have your agent write) a file that describes the data and the variables (<code>README.md</code>). Then ask your favorite model some version of: </p>
     <pre><code>Read verify/spec.md, which describes a specification, and
@@ -630,7 +630,7 @@ Do not run it. I will run it myself and tell you what it returns.</code></pre>
 
     
     <div class="note">
-      <strong>Since this is costly, reserve this check for for the importance.</strong> Examples would be the main results (the table and figure exhibits in the paper) and any step where a mistake would be invisible in the output, like a complicated panel construction, a hand-rolled event-time definition, or an index built from several sources. 
+      <strong>Since this is costly, reserve this check for what matters most.</strong> Examples would be the main results (the table and figure exhibits in the paper) and any step where a mistake would be invisible in the output, like a complicated panel construction, a hand-rolled event-time definition, or an index built from several sources. 
     </div>
   </section>
 
@@ -643,7 +643,7 @@ Do not run it. I will run it myself and tell you what it returns.</code></pre>
     <p>It is also worth creating some habits. Here are some examples. </p>
 
     <h3>Verify the data, not only the code</h3>
-    <p>Correct-looking code operating on the wrong sample produces wrong results. Make sure you know what the data looks like. A sample-construction table is a simple way to do this. Also make sure that you check that merges work as expected, and take a look at the distribution of constructed variable.</p>
+    <p>Correct-looking code operating on the wrong sample produces wrong results. Make sure you know what the data looks like. A sample-construction table is a simple way to do this. Also make sure that you check that merges work as expected, and take a look at the distribution of constructed variables.</p>
 
     <h3>Compare against an external benchmark</h3>
     <p>We all do this when figuring out whether the results "make sense", and so we should keep doing it also for LLM output. This is almost certainly a part of your normal workflow, so it may not be a huge extra cost. This is an external validation, which is a nice way to catch errors that are not caught by internal checks from above.</p>
@@ -653,7 +653,7 @@ Do not run it. I will run it myself and tell you what it returns.</code></pre>
     This is a tedious check for a human and a trivial check for an agent.</p>
   
 
-    <h3>Verify your reference</h3>
+    <h3>Verify your references</h3>
     <p>Models still invent citations. There are now some automated checks for references, like <a href="https://reviewer3.com/" style="color:var(--accent);">Reviewer3</a>, and probably others.</p>
 
   </section>
