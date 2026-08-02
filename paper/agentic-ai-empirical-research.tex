@@ -136,12 +136,15 @@ right.
 
 This guide covers both halves of that problem. The first half is a practical
 workflow: where these tools run, how to set up a project so an agent is useful
-rather than merely busy, which file formats need converting, and how to record
-project context so it does not have to be re-explained every session. The
-second half, which is the part I think matters more, is verification: a
+instead of merely busy, which file formats need converting, how to record
+project context so it does not have to be re-explained every session, how to
+choose a model without paying for capability the task cannot use, and how to
+work when the data is held under a confidentiality agreement.
+
+The second half, which is the part I think matters more, is verification. A
 cost-ordered set of checks for establishing that AI-generated code and analysis
 are correct before they enter a paper, and an argument that the cheapest
-verification happens while the code is being written rather than afterwards.
+verification happens while the code is being written.
 
 Nothing here is a benchmark or a model evaluation. It is a working account of
 how to use these tools on an empirical paper without losing the ability to
@@ -154,11 +157,11 @@ defend what the paper says.
 \footnotesize\color{mutedink}
 \textbf{\version.} This document is assembled from a set of guides maintained at
 \href{https://claesbackman.github.io/ai-guides.html}{claesbackman.github.io/ai-guides.html},
-where the tool-specific material is kept current. Sections \ref{sec:surfaces}
-and Appendix \ref{app:tools} describe software that changes every few months and
-should be read against the dated web version. The argument in
-Sections \ref{sec:loop}--\ref{sec:habits} is meant to outlast the products it
-was written about.
+where the tool-specific material is kept current. Section \ref{sec:surfaces},
+parts of Section \ref{sec:cost}, and Appendix \ref{app:tools} describe software
+and pricing that change every few months, and should be read against the dated
+web version. The argument in Sections \ref{sec:loop}--\ref{sec:habits} is meant
+to outlast the products it was written about.
 
 Corrections, disagreements, and additional checks are welcome. This is intended
 as a living document.
@@ -178,7 +181,7 @@ as a living document.
 
 Verification is becoming a bottleneck for empirical research. AI agents are
 fast, cheap, and competent at producing code, including in languages that you
-may not know --- I do not really know how to build a website, but Claude does.
+may not know (I do not really know how to build a website, but Claude does).
 While I have seen plenty of concern about verification, I have not seen a
 practical guide that collects ways of actually verifying what these tools hand
 back.
@@ -191,17 +194,21 @@ is specific to economics.
 
 \subsection{Who this is for}
 
-Roughly, three groups.
+Roughly, four groups.
 
 \begin{itemize}
 \item \textbf{People who have not started.} Sections \ref{sec:surfaces} and
-  \ref{sec:setup} are for you: where these tools run, and what to do in the
-  first hour so that the tool is actually useful on a research project rather
-  than a toy.
+  \ref{sec:setup} are for you. Where these tools run, and what to do in the
+  first hour so that the tool becomes useful on a research project instead of a
+  toy.
 \item \textbf{People already using an agent daily.} Skip to
-  Section \ref{sec:loop}. The workflow material will be familiar; the
+  Section \ref{sec:loop}. The workflow material will be familiar. The
   verification ladder in Section \ref{sec:ladder} probably contains at least one
   check you are not running.
+\item \textbf{People working with administrative or otherwise restricted data.}
+  Read Section \ref{sec:confidential} first. It changes what the rest of the
+  document means for you, and the setup it describes is much easier to do before
+  the first session than after.
 \item \textbf{People who referee, supervise, or co-author with the above.} Section
   \ref{sec:ladder} is a reasonable starting point for what it is fair to expect
   someone to have done before showing you a table.
@@ -220,21 +227,24 @@ enforced structurally rather than requested, and that being present while code
 is written is cheaper than reconstructing it afterwards. None of that depends on
 which vendor you use.
 
-Appendix \ref{app:tools} holds the material that decays --- the side-by-side
+Appendix \ref{app:tools} holds the material that decays. The side-by-side
 comparison of Claude Code and Codex, the specific file names, the approval-mode
 vocabulary. It is stamped with the date the official documentation was checked.
 When it conflicts with the web version of these guides, the web version is
-right.
+right. The same caution applies to the discussion of model tiers and pricing in
+Section \ref{sec:cost}, where the reasoning should hold up better than any
+specific number in it.
 
 \begin{aside}
-\textbf{Two cautions before anything else.} First, never paste data subject to a
-confidentiality agreement --- administrative registers, restricted samples,
-anything under a data-use agreement --- into a cloud agent or a web chat.
-Local-only surfaces are the right tool there, and Section \ref{sec:confidential}
-returns to this. Second, the model's confidence is not calibrated. Verify
-regression results, citations, and identification claims yourself before they
-enter a draft. The rest of this document is largely an elaboration of that
-second sentence.
+\textbf{Two cautions before anything else.} First, data subject to a
+confidentiality agreement does not go into an agent. Note that installing the
+tool on your own laptop is not sufficient, because the model still runs on the
+vendor's servers and reads whatever you point it at. Section
+\ref{sec:confidential} is about what to do instead, and it is worth reading
+before your first session if you work with administrative registers. Second, the
+model's confidence is not calibrated. Verify regression results, citations, and
+identification claims yourself before they enter a draft. The rest of this
+document is largely an elaboration of that second sentence.
 \end{aside}
 
 % =============================================================== SECTION 2 ==
@@ -244,11 +254,11 @@ second sentence.
 Claude Code and Codex are the two main agentic systems for everyday research
 work. Both can read your files, run code, edit drafts, and iterate on a task
 until it is done. The choice between them is mostly a matter of taste, existing
-accounts, and what your collaborators or employer already use; Appendix
+accounts, and what your collaborators or employer already use. Appendix
 \ref{app:tools} works through the differences.
 
 The more consequential early decision is not which system but which
-\emph{surface} --- where the agent runs. There are six, and most researchers end
+\emph{surface}, meaning where the agent runs. There are six, and most researchers end
 up using two or three.
 
 \subsection{VS Code}
@@ -285,13 +295,13 @@ Two cases where the terminal clearly beats the editor:
 \subsection{Desktop applications}
 
 The vendor desktop apps are the chat-style interfaces most people meet first,
-but both now include modes aimed at sustained work rather than conversation:
+but both now include modes built for sustained work as well as conversation:
 background task runners, and dedicated interfaces for starting an agent session
 on a folder or repository and reviewing the resulting diffs.
 
 For quick conversation and drafting, ordinary chat remains easiest. For
-sustained editing, use a code-oriented surface or an IDE --- chat-only surfaces
-become hard to track once many files and diffs are involved.
+sustained editing, use a code-oriented surface or an IDE, because chat-only
+surfaces become hard to track once many files and diffs are involved.
 
 \subsection{Web}
 
@@ -303,7 +313,7 @@ opening a pull request for you to review.
 
 Cloud agents are useful in three situations: when your work laptop blocks
 software installation, which is common at central banks and statistical
-agencies; when you want to start a job from a borrowed machine; and when you
+agencies, when you want to start a job from a borrowed machine, and when you
 want several independent attempts at the same task running in parallel. They are
 useless when the data lives only on your laptop or inside a secure environment,
 because the cloud agent cannot see it.
@@ -321,11 +331,11 @@ revise, without opening a laptop.
 \subsection{Other editors}
 
 If you already work in another editor you do not have to switch. Cursor is a VS
-Code fork built around AI from the ground up; the JetBrains IDEs have
-first-party integrations for both agents; and in a fast editor like Zed you can
+Code fork built around AI from the ground up. The JetBrains IDEs have
+first-party integrations for both agents, and in a fast editor like Zed you can
 run either command-line tool from the integrated terminal. If you have no strong
-preference, VS Code remains the path of least resistance --- it is what most
-documentation, screenshots, and shared workflows assume.
+preference, VS Code remains the path of least resistance, because it is what
+most documentation, screenshots, and shared workflows assume.
 
 \subsection{Which surface for which task}
 
@@ -337,7 +347,7 @@ documentation, screenshots, and shared workflows assume.
 VS Code &
 Daily coding, paper writing, anything where you want a real editor and a diff
 view. &
-Quick conversational work --- overkill for ``explain this paragraph to me.'' \\
+Quick conversational work. Overkill for ``explain this paragraph to me.'' \\
 \addlinespace
 Terminal &
 Remote servers, secure data environments, long unattended jobs, scripting an
@@ -383,21 +393,21 @@ people try an agent once and conclude it is not for them.
 \subsection{Open the folder, not the file}
 
 Open your whole project directory, not a single script. The agent needs the
-directory tree to be useful --- to see that \code{01\_clean.R} produces the file
+directory tree to be useful, so that it can see that \code{01\_clean.R} produces the file
 that \code{02\_analysis.R} reads, that tables land in \code{paper/tables/}, that
 the raw data is where you say it is. This can be a git repository, a synced
-folder, or a plain folder on your desktop; all work equally well.
+folder, or a plain folder on your desktop. All work equally well.
 
 \subsection{Install the extensions for your stack}
 
 If you work in VS Code, install the extensions for the languages you use before
 you start. The agent reads what is installed, and can then run code, render
 tables, and preview PDFs directly. The specific extension identifiers are listed
-in Appendix \ref{app:tools}; the reasoning behind the choices is here.
+in Appendix \ref{app:tools}. The reasoning behind the choices is here.
 
 For \textbf{Stata}, the relevant extension lets Stata code run from the editor
 and exposes an interface the agent can drive directly, so it can execute
-commands, inspect variables, and read stored results rather than writing
+commands, inspect variables, and read stored results, so it is not writing
 do-files blind.
 
 For \textbf{Python}, install the core extension, a language server, the debugger,
@@ -408,7 +418,7 @@ reshaping a messy CSV, scraping a table from a webpage, pulling a series from an
 API, cleaning a bibliography file, splitting a 200-page document into chapters
 --- is solved fastest by a ten-line Python script. You do not need to know the
 language to benefit. Ask in plain English (``convert this PDF to markdown, keep
-the tables''; ``download monthly CPI from FRED and save as CSV'') and the agent
+the tables'', or ``download monthly CPI from FRED and save as CSV'') and the agent
 will write, run, and debug the script. Installing the Python extensions is what
 makes that path smooth: the agent can execute the script, see the error, and
 iterate without you setting anything up. Think of Python less as a language you
@@ -423,7 +433,7 @@ editor.
 \subsection{What the agent can read, and what to convert first}
 
 These tools work best with plain text. The more a file looks like
-characters-on-a-page rather than a rendered binary, the better the agent can
+characters-on-a-page and less like a rendered binary, the better the agent can
 read, edit, and reason about it. For economists this has practical consequences:
 a referee report in \code{.docx} or a codebook as a scanned PDF are both usable,
 but a text version of the same file produces noticeably better results.
@@ -435,8 +445,8 @@ but a text version of the same file produces noticeably better results.
 \endhead
 \code{.md .txt .tex}\newline\code{.bib .csv .json} &
 Native, no friction. Read and edited line by line. Markdown and LaTeX are the
-ideal substrate for any writing task. CSV is fine up to a few thousand rows;
-larger files should be summarised or sampled first. \\
+ideal substrate for any writing task. CSV is fine up to a few thousand rows.
+Larger files should be summarised or sampled first. \\
 \addlinespace
 \code{.py .R .do .jl} &
 Native. Read, edited, and run. Stata do-files are read as text even without a
@@ -453,7 +463,7 @@ markdown first with \code{pandoc file.docx -o file.md}. The agent will do this
 for you. \\
 \addlinespace
 \code{.xlsx .xls} &
-Convert to CSV first; the binaries cannot be read directly. Split multi-sheet
+Convert to CSV first, because the binaries cannot be read directly. Split multi-sheet
 workbooks into one clearly named CSV per sheet. \\
 \addlinespace
 \code{.dta .rds .sav} &
@@ -466,8 +476,7 @@ The most common problem format. See below. \\
 \addlinespace
 Images &
 Partial. Plots and screenshots of tables can be viewed directly, which is useful
-when you want a figure improved. Text cannot be reliably extracted from scans;
-use OCR first. \\
+when you want a figure improved. Text cannot be reliably extracted from scans, so run OCR first. \\
 \addlinespace
 \code{.qsf} (Qualtrics) &
 Convert first. Technically JSON, but deeply nested. Ask for a script that
@@ -478,7 +487,7 @@ flattens it into a markdown outline of blocks, questions, and answer choices. \\
 \subsubsection{PDFs}
 
 PDFs are where most researchers get stuck. They look like documents, but they are
-a layout format rather than a text format --- the ``text'' is often a sequence of
+a layout format rather than a text format. The ``text'' is often a sequence of
 glyphs positioned on a page, with no inherent notion of paragraphs, columns, or
 tables. Results vary enormously with how the PDF was produced.
 
@@ -490,11 +499,11 @@ tables. Results vary enormously with how the PDF was produced.
   Reading a 200-page PDF directly consumes the context window and slows every
   subsequent turn. A clean markdown version is a fraction of the size and easier
   to navigate.
-\item \textbf{Scanned PDFs} cannot be read as text at all --- they are images of
-  pages. Run OCR first (\code{ocrmypdf} is a good free option), then convert.
+\item \textbf{Scanned PDFs} cannot be read as text at all, because they are
+  images of pages. Run OCR first (\code{ocrmypdf} is a good free option), then convert.
 \item \textbf{PDFs with equations and tables} are the hardest case, and any
   extraction will be imperfect. If you can get the source \code{.tex}, use that
-  instead; it will always be cleaner than re-parsing the compiled output.
+  instead. It will always be cleaner than re-parsing the compiled output.
 \end{itemize}
 
 For conversion, \code{pandoc} is the universal first try and works best on clean
@@ -555,21 +564,21 @@ holds dataset structure, sample restrictions, which script produces which
 output, and co-author conventions. Where they conflict, the project file wins.
 
 This is also the right place for instructions about how you want the agent to
-\emph{write} --- tone, voice, the hedging and phrasing to avoid. Paul
+\emph{write}: tone, voice, the hedging and phrasing to avoid. Paul
 Goldsmith-Pinkham has a useful post on using these instructions to get assistance
 that improves rather than flattens your prose.\footnote{\url{https://paulgp.com/}}
 
 \begin{aside}
 \textbf{Keep it short.} A project-context file that grows without limit gets
 followed less closely. Put facts in it, not chatty prose, and point to longer
-documents rather than inlining them --- see the note on \code{decisions.md} at the
+documents instead of inlining them. See the note on \code{decisions.md} at the
 end of Section \ref{sec:loop}.
 \end{aside}
 
 \subsection{Skills: reusable workflows}
 
-Both systems let you save a set of instructions as a named, reusable workflow ---
-a markdown file that you invoke by name to run a procedure you repeat across
+Both systems let you save a set of instructions as a named, reusable workflow, a markdown file that
+you invoke by name to run a procedure you repeat across
 projects. A standard robustness check, a referee-style review, a table
 reformatting routine.
 
@@ -602,15 +611,15 @@ directory makes it available immediately.
 
 One thing to know: an agent may invoke a skill on its own when it judges the
 description relevant, not only when you ask for it by name. If you would rather
-control when a skill runs, most systems have a flag to disable model invocation;
-the one for Claude Code is in Appendix \ref{app:skills}.
+control when a skill runs, most systems have a flag to disable model invocation.
+The one for Claude Code is in Appendix \ref{app:skills}.
 
 \subsection{Git}
 \label{sec:git}
 
 These tools are git-aware. When the project is a repository, the agent can see
 commit history, staged changes, and diffs without you pasting anything. That
-makes it useful for the version-control tasks themselves --- writing commit
+makes it useful for the version-control tasks themselves: writing commit
 messages, summarising what changed between two commits, resolving a merge
 conflict by reading both sides.
 
@@ -632,13 +641,14 @@ directory, logs, and LaTeX build files, and make an initial commit.
 \end{prompt}
 
 \subsection{Managing the context window}
+\label{sec:context-window}
 
 An agent can hold only a limited amount of text in working memory at once ---
 roughly a few hundred pages --- and performance degrades as it fills. For a large
 empirical project with many scripts, logs, and output tables, this happens
 quickly. Three habits help.
 
-\emph{Point at specific files} rather than letting the agent read everything.
+\emph{Point at specific files} instead of letting the agent read everything.
 Both systems support mentioning a file directly in the prompt
 (\code{@02\_analysis.R fix the clustering in the main spec}), which is faster and
 cheaper than making it infer the project.
@@ -656,6 +666,133 @@ start of every session, you do not need to re-explain the project in each
 conversation, which keeps prompts short.
 
 % =============================================================== SECTION 4 ==
+\section{Choosing a model and controlling what it costs}
+\label{sec:cost}
+
+Model choice is usually presented as a quality question. In day-to-day research
+work it is mostly a cost question, because the quality difference between tiers
+matters on a narrow set of tasks and the price difference applies to all of them.
+This section is about telling those tasks apart.
+
+\subsection{What you are actually paying for}
+
+There are two billing shapes. Under a subscription you pay a flat fee and the
+cost surfaces as a usage limit you hit in the middle of a task. Under metered API
+access you pay per token and the cost surfaces as a bill. Most academic users
+start on a subscription and should stay there until something forces the issue.
+
+In either case the dominant quantity is \emph{input} tokens. This surprises
+people, who reasonably assume they are paying for what the model writes. An agent
+resends the whole conversation on every turn, together with every file it has
+read along the way. A session that has opened twenty scripts pays for those
+twenty scripts again on each subsequent exchange, whether or not they are still
+relevant.
+
+Two consequences follow, and they are the whole of the practical advice.
+
+The first is that cost grows with session length even when the work does not.
+A long conversation is expensive at the end for reasons that have nothing to do
+with what you are asking at the end. The context discipline in
+Section \ref{sec:context-window} is therefore also cost discipline. The same
+habits produce both.
+
+The second is that a stable prefix is cheap. Most vendors cache repeated context,
+so the parts of a session that do not change between turns cost less on re-read
+than they did the first time. That rewards a project-context file that stays put
+and an early conversation that you do not keep editing. It penalises the habit of
+re-pasting a slightly different version of the same instructions.
+
+\subsection{Matching the model to the task}
+
+Models come in tiers, and the price gap between the cheapest and the most capable
+is large enough to change how you work. The useful question is which tasks can
+tell the difference.
+
+\textbf{Cheap models are fine when the output is visibly right or visibly wrong.}
+Converting a file format, reshaping a CSV, renaming variables across a project,
+writing a plotting script, drafting a commit message, running a script and
+reporting the row counts. You can see the answer. If it is wrong, you will know
+within seconds, and the cost of the retry is trivial.
+
+\textbf{Capable models earn their price where the failure is invisible.} Planning
+a panel construction, working out what a specification actually identifies,
+reviewing a diff for the silent shortcut, deciding whether a merge did what it
+was supposed to do. These are the tasks from Section \ref{sec:ladder}, and they
+share the property that a wrong answer looks exactly like a right one.
+
+The rule that falls out of this is short. Spend on judgement, economise on
+typing.
+
+\begin{aside}
+\textbf{Do not economise on the review pass.} A cheap model reviewing a diff will
+find the things that were going to break anyway and miss the shortcut. That is
+the one place where saving money buys you nothing, because the error class you
+are hunting in Section \ref{sec:ladder} is precisely the one that requires
+understanding the analysis. If you are going to run a check, run it with a model
+capable of passing it.
+\end{aside}
+
+\subsection{Reasoning effort}
+
+Several tools expose a reasoning-effort or thinking-budget setting. Higher
+settings cost more and take longer, sometimes by a lot. The default is usually
+sensible for ordinary work.
+
+A habit worth forming: raise the effort for the plan and lower it for the
+implementation. The plan is where the thinking happens and it is a page long, so
+the expensive setting is cheap in absolute terms. The implementation is mostly
+transcription of a decision already made. Raising effort for a long code-writing
+session spends the budget where it changes least.
+
+Raise it again for a review pass over the main table, for the same reason.
+
+\subsection{Habits that cut the bill}
+
+Each of these appears elsewhere in this document for a correctness reason. They
+are collected here because they all happen to save money as well, which is worth
+knowing when you are deciding whether the discipline is worth it.
+
+\begin{itemize}
+\item \textbf{Point at files.} Letting an agent search a large project to find
+  what it needs costs more than telling it. An \code{@}-mention of the file you
+  care about replaces an exploration.
+\item \textbf{Start a new session for a new task.} A session carries its history.
+  Two short conversations cost less than one long one covering the same ground.
+\item \textbf{Review diffs, not codebases.} The point in Section \ref{sec:diff}
+  was that a whole-project review produces worse findings. It also costs several
+  times as much, because the whole project goes into the context to produce them.
+\item \textbf{Convert once and commit the result.} Re-converting the same
+  200-page PDF at the start of every session is a recurring charge for a job you
+  finished months ago.
+\item \textbf{Ask for a plan before code.} A page of prose is cheap to produce
+  and cheap to reject. Four hundred lines are expensive to produce, expensive to
+  read, and expensive to replace when you decide the second step was wrong.
+\item \textbf{Do not let the agent run the expensive script.} Section
+  \ref{sec:reimplement} gives the correctness argument, which is the important
+  one. The side benefit is that you are not paying for the model to watch several
+  thousand lines of output go past.
+\item \textbf{Reserve the costly checks.} Reimplementation in a second language
+  is the expensive rung of the ladder. Run it on the exhibits that go in the
+  paper.
+\item \textbf{Batch the mechanical work.} Twelve robustness specifications in one
+  unattended run cost less, in tokens and in attention, than twelve
+  conversations that each re-establish what the project is.
+\end{itemize}
+
+\subsection{Where the cost actually lands}
+
+For most academic users the token bill stays small next to the value of the time
+involved, and worrying about it in detail is a poor use of the time it saves. A
+subscription covers ordinary work. The reason to care about this at all is that
+the habits above do double duty.
+
+Short sessions, small diffs, explicit file references, and a plan before an
+implementation are the same practices that keep an agent accurate. An expensive
+session and a session you cannot verify tend to be the same session, and they are
+expensive for the same reason: too much context, too little structure, and no
+point at which anyone decided what was supposed to happen.
+
+% =============================================================== SECTION 5 ==
 \section{Verification begins before the code is written}
 \label{sec:loop}
 
@@ -667,11 +804,11 @@ is to have been present while it was built, and that is cheaper than any of them
 Compare two sessions. In the first, you describe the whole pipeline in a
 paragraph, the agent works for six minutes, and hands you 400 lines across five
 files. Verifying that means reverse-engineering someone else's reasoning from its
-output --- which is the position a referee is in, except that you are the author.
+output, which is the position a referee is in, except that you are the author.
 In the second, you agree on a plan, the agent asks three questions you had not
 thought about, then writes one cleaning step, runs it, and shows you the counts.
 Both produce the same script. In the second you already know what it does, and
-the checks in the next section become confirmation rather than discovery.
+the checks in the next section confirm what you already know.
 
 The second session is also not slower in the end. Time saved by one long prompt
 is borrowed against the debugging session where you discover, three tables later,
@@ -685,7 +822,7 @@ A working shape for the loop, using panel construction as the example.
 
 A plan is a page of prose you can read in a minute, and disagreeing with it costs
 nothing. Disagreeing with a finished implementation costs a rewrite. Most tools
-have an explicit mode for this; otherwise say so in the prompt.
+have an explicit mode for this. If yours does not, say so in the prompt.
 
 \begin{prompt}
 Before writing any code, describe how you would build the firm-year panel
@@ -698,7 +835,7 @@ respond to them individually. Do not write code yet.
 
 An agent that has to ask whether firms changing industry mid-panel keep their
 original classification has surfaced a decision that would otherwise have been
-settled by whichever default it picked --- and that you would have discovered, at
+settled by whichever default it picked, and that you would have discovered, at
 the earliest, when a co-author asked.
 
 \begin{prompt}
@@ -726,7 +863,7 @@ before starting step 2.
 A summary of what the code does restates the code. The useful question is about
 the decisions --- the places where something else was possible --- because that is
 where your judgement is needed. Note that the second half of this prompt asks for
-something the agent has to run rather than assert.
+something the agent has to run, not something it can assert.
 
 \begin{prompt}
 List the three decisions in what you just wrote where a reasonable
@@ -739,7 +876,7 @@ the alternative to do - run it.
 \begin{aside}
 \textbf{The questions are the deliverable.} Keep the ambiguities the agent raises
 and your answers to them in a \code{decisions.md} in the repository, with a
-one-line pointer to it from your project-context file rather than the decisions
+one-line pointer to it from your project-context file, not the decisions
 themselves. This is the sample-definition documentation you would otherwise
 reconstruct from memory for the appendix eighteen months later.
 \end{aside}
@@ -861,7 +998,7 @@ rather than a software change, with the questions weighted towards empirical
 consequences --- which observations enter the sample, what the coefficient now
 identifies, what would change if an assumption failed --- rather than syntax.
 
-Run it in a new session rather than the one that made the change. Starting fresh
+Run it in a new session, not the one that made the change. Starting fresh
 forces the agent to read the files instead of recalling the conversation, which is
 why the skill opens by telling it to.
 
@@ -882,15 +1019,15 @@ language and see whether you get the same output.
 It is strong because it involves the whole chain. If errors across languages are
 independent, differences in output reveal them. An independent implementation
 catches the case where the do-file faithfully implements something other than
-what the paper says it does --- the failure mode no amount of reading the do-file
-will surface, because the do-file is internally consistent. Use a different model
+what the paper says it does. That is the failure mode no amount of reading the
+do-file will surface, because the do-file is internally consistent. Use a different model
 as well, for the reason in Check 2. And note that this check is getting cheaper
 over time, as agents get better at writing code.
 
 \subsubsection{Isolating the second implementation}
 
 This check can happen organically. Agents are prone to reaching for Python to
-generate intermediate results, for instance; if you separately ask for a Stata
+generate intermediate results, for instance. If you separately ask for a Stata
 pipeline and the numbers match, you get the check for free. Verification is not a
 one-time event so much as a continuous process.
 
@@ -925,9 +1062,8 @@ Do not run it. I will run it myself and tell you what it returns.
 Running it yourself matters, and not only for the token cost. \textbf{An agent that
 runs its own script and sees an implausible number will debug towards
 plausibility, and plausibility is exactly what you are trying to test.} The
-instruction to stop at ambiguities is also useful in its own right --- the
-ambiguities it surfaces are ones you may want to resolve in the paper, not only
-in the check.
+instruction to stop at ambiguities is also useful in its own right, because the
+ambiguities it surfaces are often ones you want to resolve in the paper too.
 
 \begin{aside}
 \textbf{Reserve this for what matters.} Since it is costly, run it on the main
@@ -969,49 +1105,193 @@ Models still invent citations. There are automated checkers for this now
 --- Reviewer3, among others --- and it takes a minute.
 
 % =============================================================== SECTION 7 ==
-\section{Confidential data}
+\section{Working with restricted data}
 \label{sec:confidential}
 
-Most of the above is agnostic about where the work happens. This part is not.
+Most of this document is agnostic about where the work happens. This section is
+not, and for anyone using administrative registers it is the part that determines
+whether the rest is usable at all.
 
-If your data is subject to a confidentiality agreement --- administrative
-registers, restricted samples, anything under a data-use agreement --- it does not
-go into a cloud agent or a web chat. That rules out the web surface entirely,
-rules out cloud delegation from the IDE, and means that for those projects you
-work locally, or on the secure environment itself via the command line.
+\subsection{What actually leaves your machine}
 
-This has consequences for the verification ladder that are worth stating plainly,
-because they are easy to miss. Check 2 requires two vendors, which means two sets
-of terms to check rather than one. Check 4 involves creating a second folder with
-a description of the data in it: that description is a derived product of the
-restricted data, and whether it can leave the environment is a question for your
-data-use agreement, not for the agent. In secure environments the realistic
-version of Check 4 is a second implementation run inside the environment, by an
-agent running there, on the terminal surface.
+Start with the misconception that causes the most trouble. Running an agent
+\emph{locally} does not keep your data local. The tool runs on your machine. The
+model does not. Every file the agent opens, every excerpt it quotes back, and
+every word you type is transmitted to the vendor for inference.
 
-None of this makes the checks impossible. It does mean the setup work happens
-once, deliberately, before the first session rather than in the middle of one.
+The word \emph{local} describes where the editor window is. It says nothing about
+where the file contents go. A researcher who has carefully avoided the web
+surface, installed the command-line tool on a secure laptop, and pointed it at a
+folder of register extracts has transmitted the register extracts.
+
+There are two real exceptions. Models running entirely on your own hardware keep
+everything in place, and some institutions run approved deployments inside their
+own boundary. Both exist. Both are meaningfully worse at this work than the
+hosted frontier models. That tradeoff is real, and worth weighing properly
+rather than waving away.
+
+So the first task, before the first session, is to work out which of three
+situations you are in.
+
+\subsection{Three regimes}
+
+\textbf{Regime A: the data may be transmitted.} Public data, purchased data, or
+licensed data whose agreement permits third-party processing. The ordinary
+workflow in this document applies without modification. It is still worth
+checking the vendor's retention and training terms, and using a zero-retention or
+institutional arrangement if your university has negotiated one.
+
+\textbf{Regime B: the data may not be transmitted, but code may.} This is the
+common case for administrative data held under a data-use agreement on a machine
+you control. You can use an agent productively. You cannot point it at the data.
+Section \ref{sec:synthetic} is about how to work in this regime, and it is the
+one most readers of this document will be in.
+
+\textbf{Regime C: nothing leaves.} A secure environment with no outbound network,
+which is how most national statistics agencies and many secure enclaves are
+built. No hosted agent is reachable from inside. Unless your institution provides
+an approved deployment within the boundary, the agent stays outside and only your
+own hands go in. Everything below about synthetic data still applies, and the
+transfer step becomes whatever your environment's approved file-transfer process
+is.
+
+\subsection{The synthetic-data pattern}
+\label{sec:synthetic}
+
+This is the workhorse for Regime B, and it works well enough that the loss
+relative to unrestricted work is smaller than people expect.
+
+Build a mock dataset with the same shape as the real one. Same file layout, same
+variable names, same types, same value ranges, same missingness structure, same
+key structure including whatever duplication the real keys have. Populate it with
+random values. Then give the agent the mock data and develop the entire pipeline
+against it. The agent can read files, run code, see the errors, and iterate,
+which is the whole benefit of an agent and none of it requires real observations.
+When the script is finished, move it into the restricted environment and run it
+there yourself.
+
+Writing the generator is itself a good first task to hand the agent, working from
+the data dictionary described below.
+
+\begin{aside}
+\textbf{Expect the first real run to fail, and treat that as information.} Mock
+data has none of the pathologies that make real data hard. No duplicate
+identifiers you did not know about, no sentinel values coded as 9999, no year
+where the variable definition quietly changed, no municipality that merged. Those
+are exactly the places a pipeline breaks. The run inside the environment is a
+real test, so budget for it failing.
+\end{aside}
+
+\subsection{The data dictionary is the interface}
+
+What you send instead of data is a description of it. A markdown file listing the
+files, the variables, their types and units, the coverage, the key structure, and
+the quirks you already know about. This is what the agent reasons from, and the
+quality of the pipeline it writes depends almost entirely on the quality of this
+document.
+
+Check that the dictionary is itself releasable. A variable list is usually fine.
+Value ranges can disclose more than they appear to, and a frequency table with
+small cells may breach the same disclosure rules that govern your output. This is
+a judgement your data-use agreement governs, and it is worth asking the data
+provider instead of guessing.
+
+The side benefit is that this is documentation you needed anyway, and writing it
+early is easier than reconstructing it for the appendix later.
+
+\subsection{Output is disclosure too}
+
+The easiest rule to follow is the one about not uploading the microdata. The
+easier one to break is everything downstream of it.
+
+Pasting a regression table into a chat to ask what it means transmits results.
+Aggregates are often permitted under a data-use agreement and small cell counts
+often are not, so the question to ask is whether the output clears your
+disclosure rules. A traceback from a crashed script can carry a row
+of raw data inside the error message, and debugging a crash is the single most
+natural thing to hand an agent. A scatter plot of individual observations is
+microdata drawn as a picture.
+
+None of this is exotic. It just happens at moments when you are thinking about
+something else.
+
+\subsection{Where the transcript lives}
+
+Agents write session logs, caches, and history files to disk. If a session
+touched restricted material, those files are now copies of restricted material in
+a location your data-use agreement almost certainly does not list.
+
+Find out where your tool stores conversation history and either keep it inside
+the approved boundary or turn it off. The same applies to the project-context
+file and to the \code{decisions.md} from Section \ref{sec:loop}, both of which
+accumulate specifics about the data and both of which get committed to git. Keep
+sample definitions in them and keep actual values out.
+
+Set the \code{.gitignore} to exclude the data directory before the first commit.
+Git remembers, and removing a file later does not remove it from the history.
+
+\subsection{The verification ladder under restriction}
+
+The checks in Section \ref{sec:ladder} survive, with adjustments.
+
+\emph{Check 1, a fresh agent on the diff}, works unchanged in Regime B. A diff of
+code is code.
+
+\emph{Check 2, a second vendor}, works, at the cost of a second set of terms to
+review and a second account to get approved by whoever approves such things at
+your institution. Start that conversation early, because it is slower than the
+technical work.
+
+\emph{Check 3, the quiz}, works unchanged. It operates on the code and the diff.
+
+\emph{Check 4, reimplementation}, is the awkward one. It needs a specification
+and a description of the data, and both are derived from restricted material. In
+Regime B, write \code{spec.md} from the paper, not from the data, and
+reuse the dictionary you already built. In Regime C the honest version is a
+second implementation written outside the environment, carried in, run there, and
+compared only on the coefficients you are permitted to bring out.
+
+The cheap habits in Section \ref{sec:habits} are unaffected, and they become
+relatively more valuable, because every one of them runs entirely inside the
+boundary.
+
+\subsection{Before the first session}
+
+A short checklist, done once, deliberately, and not in the middle of a task.
+
+\begin{enumerate}
+\item Read the data-use agreement for what it says about third-party processing.
+  If it is silent, ask the provider rather than assuming silence is permission.
+\item Decide which regime you are in and write it down where coauthors can see
+  it.
+\item In Regime B or C, build the mock data and the data dictionary before
+  anything else.
+\item Set the \code{.gitignore} before the first commit.
+\item Find out where the tool writes its logs and history.
+\item Agree all of the above with your coauthors. One coauthor pasting the sample
+  into a chat window undoes every other precaution on this list, and they will
+  not know they did anything unusual.
+\end{enumerate}
 
 % =============================================================== SECTION 8 ==
 \section{Where this is going}
 
 Three things seem worth saying about the direction of travel, offered as
-expectations rather than predictions.
+expectations and not predictions.
 
 The checks in Section \ref{sec:ladder} get cheaper over time and the work they
 check gets cheaper faster. Reimplementation in a second language was an
 unreasonable ask three years ago and is now an afternoon. That is good, but it
 means the ratio of produced-to-verified analysis keeps rising unless verification
-becomes routine rather than heroic. The habits in Section \ref{sec:habits} and the
+becomes routine work and not a heroic effort. The habits in Section \ref{sec:habits} and the
 loop in Section \ref{sec:loop} matter more than the expensive checks precisely
 because they scale.
 
 The profession has not settled what it is reasonable to expect. A referee cannot
 currently ask what was AI-generated and what was not, and would not know what to
 do with the answer. My own guess is that the norm that eventually forms is not
-about disclosure of use but about documentation of checking --- closer to what we
-already expect for a replication package than to a conflict-of-interest
-statement. The \code{decisions.md} file in Section \ref{sec:loop} is a small bet
+about documentation of checking, closer to what we already expect for a
+replication package than to a conflict-of-interest statement. The \code{decisions.md} file in Section \ref{sec:loop} is a small bet
 on that.
 
 And the material in Appendix \ref{app:tools} will be wrong before the material in
@@ -1028,8 +1308,8 @@ split.
 \subsection{\emph{quiz-me} --- explain a change and test that I understood it}
 
 Adapted from Geoffrey Litt's \emph{explain-diff} skill for an empirical paper
-rather than a software change. Save as \code{\textasciitilde/.claude/skills/quiz-me/SKILL.md};
-it then becomes \code{/quiz-me}. Run it in a new session, not the one that made
+rather than a software change. Save as \code{\textasciitilde/.claude/skills/quiz-me/SKILL.md},
+which makes it \code{/quiz-me}. Run it in a new session, not the one that made
 the change.
 
 \begin{promptbox}
@@ -1082,7 +1362,7 @@ Embed all CSS and JavaScript so the file works offline.
 \subsection{Note on automatic invocation}
 
 An agent may run a skill on its own when the description matches what you asked
-for. For a verification skill this is usually not what you want --- the point is
+for. For a verification skill this is usually unwanted, because the point is
 that you chose to run it. The \mbox{\code{disable-model-invocation: true}} line
 above prevents it.
 
@@ -1114,8 +1394,8 @@ workflow comparison, not a model benchmark.
 \midrule
 \endhead
 Project\newline instructions &
-\code{AGENTS.md}. Reads global and project files before working; layers root and
-nested instructions, closer files taking precedence. &
+\code{AGENTS.md}. Reads global and project files before working, layering root and
+nested instructions, with closer files taking precedence. &
 \code{CLAUDE.md}. Persistent memory files at session start, plus auto memory and
 path-specific rules. \\
 \addlinespace
@@ -1147,8 +1427,8 @@ extension emphasises interactive work and resumable conversations. \\
 Subagents &
 Explicit subagent workflows and custom agents, surfaced mainly in the app and
 CLI. &
-Specialised subagents with their own context, prompts, tools, and permissions;
-delegates when a task matches. \\
+Specialised subagents with their own context, prompts, tools, and permissions.
+Delegates when a task matches. \\
 \addlinespace
 Hooks &
 Deterministic scripts on lifecycle events, behind a feature flag in
@@ -1157,9 +1437,9 @@ Mature automation surface with many lifecycle events, shell commands, HTTP
 endpoints, and prompt/agent hooks. \\
 \addlinespace
 Reasoning &
-Explicit reasoning-effort control in the IDE. Start at medium; raise for complex
-debugging or ambiguous empirical logic. &
-Model selection in the panel; plan review and checkpoints in the interface. \\
+Explicit reasoning-effort control in the IDE. Start at medium and raise it for
+complex debugging or ambiguous empirical logic. &
+Model selection in the panel, with plan review and checkpoints in the interface. \\
 \bottomrule
 \end{longtable}
 
@@ -1177,11 +1457,11 @@ permission modes as part of everyday work.
 
 \textbf{Practical recommendation:} keep both installed for a while if your budget
 allows. Use one as a daily driver and the other as the second opinion in Check 2.
-That is not a hedge --- it is the check.
+The second subscription buys you the independence that check depends on.
 
 \subsubsection{Migrating between them}
 
-The conceptual pieces transfer; the file names and invocation change. Move durable
+The conceptual pieces transfer. The file names and invocation change. Move durable
 project context from \code{CLAUDE.md} into \code{AGENTS.md}, keeping facts rather
 than prose. Convert skills by moving
 
@@ -1215,7 +1495,7 @@ Monk, LSE. \\
 \code{ms-python.python} & Core Python support. Required for anything
 Python-related. \\
 \code{ms-python.vscode-pylance} & Type-aware language server. Gives the agent
-better static context --- variable types, signatures. \\
+better static context: variable types, signatures. \\
 \code{ms-python.debugpy} & Debugger. Breakpoints and mid-run inspection, for
 tracking down why a merge or regression loop misbehaves. \\
 \code{ms-python.vscode-python-envs} & Virtual environment management, so
@@ -1282,17 +1562,17 @@ Conflicts & Git merge & ``Conflicted copy'' files \\
 \end{longtable}
 
 Pick one per project. Running both on the same Overleaf project creates
-duplicate-file chaos; if you switch, unlink the old one first.
+duplicate-file chaos. If you switch, unlink the old one first.
 
 \subsection{GitHub route}
 
 In Overleaf, open the project menu and choose Integrations $\rightarrow$ GitHub
 $\rightarrow$ Export Project to GitHub, then create the repository. Clone it
-locally --- GitHub Desktop gives you commit, push, pull, and branch without the
+locally. GitHub Desktop gives you commit, push, pull, and branch without the
 command line, which is the default I would recommend for writing, though the CLI
 works identically if you prefer it. Open the folder in VS Code, install the LaTeX
 extension for local preview, and work normally. Commit and push when you want
-Overleaf to see the change; in Overleaf, pull GitHub changes to bring them in.
+Overleaf to see the change. In Overleaf, pull GitHub changes to bring them in.
 The reverse direction, for co-author edits made in Overleaf, is a push from the
 same menu.
 
@@ -1301,7 +1581,7 @@ compiled output out of the history.
 
 \subsection{Dropbox route}
 
-Install Dropbox and let the initial sync finish. In Overleaf, link Dropbox Sync;
+Install Dropbox and let the initial sync finish. In Overleaf, link Dropbox Sync.
 Overleaf creates an \code{Apps/Overleaf/} folder containing one subfolder per
 project. Open the project folder locally and edit. Each save propagates within
 seconds, in both directions. Compile in Overleaf, or locally with
@@ -1311,12 +1591,12 @@ seconds, in both directions. Compile in Overleaf, or locally with
 
 \begin{itemize}
 \item \textbf{The first sync overwrites.} Make sure both sides agree on initial
-  contents before linking. If one side is empty, the other wins --- and not always
-  in the direction you expect.
+  contents before linking. If one side is empty, the other wins, and not always in
+  the direction you expect.
 \item \textbf{GitHub sync is not instant.} Overleaf only pulls when someone
   clicks. Tell co-authors to pull after you push.
 \item \textbf{Dropbox conflicts are silent.} Simultaneous edits produce a
-  \code{(conflicted copy).tex} file rather than a warning. Skim the folder
+  \code{(conflicted copy).tex} file and no warning. Skim the folder
   occasionally.
 \item \textbf{Dropbox notifications are noisy.} The auto-sync produces frequent
   update messages. This is why I switched to GitHub.
@@ -1334,16 +1614,16 @@ seconds, in both directions. Compile in Overleaf, or locally with
 \section{Sources and further reading}
 
 The verification checks in Section \ref{sec:ladder} are collected from my own
-experience and from others. In particular: Geoffrey Litt on understanding as the
-new bottleneck, and the \emph{explain-diff} skill that Section \ref{sec:quiz} and
-Appendix \ref{app:skills} adapt; Paul Goldsmith-Pinkham on integration and
+experience and from others. Geoffrey Litt on understanding as the new
+bottleneck, and the \emph{explain-diff} skill that Section \ref{sec:quiz} and
+Appendix \ref{app:skills} adapt. Paul Goldsmith-Pinkham on integration and
 collaboration in AI research work, which is where the emphasis on diffs in
-Section \ref{sec:diff} comes from, and on writing with AI assistance; and Scott
-Cunningham, who is the person I associate with the cross-language reimplementation
-check in Section \ref{sec:reimplement}.
+Section \ref{sec:diff} comes from, and on writing with AI assistance. Scott
+Cunningham, who is the person I associate with the cross-language
+reimplementation check in Section \ref{sec:reimplement}.
 
-For the broader picture of what these tools can do in economics, rather than how
-to check them, Anton Korinek's survey in the \emph{Journal of Economic Literature}
+For the broader picture of what these tools can do in economics, as opposed to
+how to check them, Anton Korinek's survey in the \emph{Journal of Economic Literature}
 and its periodic online updates are the standard reference.
 
 The resources page at
