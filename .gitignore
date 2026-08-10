@@ -2,3 +2,12 @@ knowledge-base/
 .obsidian/
 .DS_Store
 untitled folder/
+
+# LaTeX build artefacts
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.synctex.gz
