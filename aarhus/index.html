@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Practical AI for Academics — Aarhus 2026 — Claes Bäckman</title>
+<meta name="description" content="Slides, Claude Code skills, setup guides, and hands-on instructions from the two-day workshop Practical AI for Academics, Aarhus, 27–28 August 2026." />
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Claes Bäckman" />
+<meta property="og:title" content="Practical AI for Academics — Aarhus 2026" />
+<meta property="og:description" content="Slides, Claude Code skills, and guides from the two-day workshop for academic economists." />
+<meta property="og:url" content="https://claesbackman.com/aarhus/" />
+<meta property="og:image" content="https://claesbackman.com/assets/photo.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="stylesheet" href="../assets/style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231a2b4a'/%3E%3Ctext x='50%25' y='54%25' font-family='Georgia,serif' font-size='32' fill='white' text-anchor='middle' dominant-baseline='middle'%3ECB%3C/text%3E%3C/svg%3E" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QFH3CE0R2E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QFH3CE0R2E');
+</script>
+
+<style>
+  .eyebrow {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: .72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 .6rem;
+  }
+  .toc {
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem 1.25rem;
+    font-size: .92rem;
+  }
+  .guide-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .guide-list li {
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    background: var(--card-bg);
+    border-radius: 6px;
+    padding: 1.1rem 1.3rem;
+  }
+  .guide-list h3 {
+    margin: 0 0 .35rem;
+    font-size: 1.15rem;
+  }
+  .guide-list h3 a {
+    color: var(--accent);
+    border-bottom: none;
+  }
+  .guide-list h3 a:hover { color: var(--accent-hover); }
+  .guide-list p {
+    margin: 0;
+    color: var(--ink-muted);
+    font-size: .98rem;
+  }
+  .guide-meta {
+    display: inline-block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: .72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: .4rem;
+  }
+  .btn {
+    display: inline-block;
+    margin: .75rem .6rem 0 0;
+    padding: .45rem .95rem;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    color: var(--accent);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: .88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .15s ease, color .15s ease;
+  }
+  .btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+  pre {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: .9rem 1.1rem;
+    overflow-x: auto;
+    font-size: .84rem;
+    line-height: 1.5;
+    margin: .6rem 0 1rem;
+    max-width: 100%;
+  }
+  pre code { background: none; padding: 0; font-size: 1em; }
+  .table-wrap { overflow-x: auto; margin: 0 0 1rem; }
+  table.skills { width: 100%; border-collapse: collapse; font-size: .95rem; min-width: 34rem; }
+  .skills th, .skills td {
+    text-align: left;
+    vertical-align: top;
+    padding: .6rem .6rem .6rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .skills th {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: .72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+  }
+  .skills td:first-child { white-space: nowrap; }
+  .steps { max-width: var(--measure); padding-left: 1.3rem; }
+  .steps li { margin-bottom: .45rem; }
+  .steps ul { margin: .3rem 0 0; padding-left: 1.1rem; font-size: .95rem; color: var(--ink-muted); }
+  .block { margin: 0 0 2rem; max-width: var(--measure); }
+  .block h3 { font-size: 1.1rem; margin: 0 0 .5rem; }
+  .block p { margin: 0 0 .6rem; }
+  .note {
+    border-left: 3px solid var(--accent);
+    background: var(--card-bg);
+    padding: .7rem 1rem;
+    margin: 1rem 0;
+    font-size: .95rem;
+    max-width: var(--measure);
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: 1.25rem;
+    margin-top: .5rem;
+  }
+  .two-col > div {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    background: #fff;
+  }
+  .two-col h3 { font-size: 1.05rem; margin: 0 0 .5rem; }
+  .two-col p { font-size: .95rem; margin: 0 0 .6rem; }
+  .two-col ol { padding-left: 1.2rem; margin: 0; font-size: .95rem; }
+  .two-col ol li { margin-bottom: .35rem; }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">Claes Bäckman</a>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../research.html">Research</a></li>
+      <li><a href="../resources.html">Resources</a></li>
+      <li><a href="../yoho.html">YoHo</a></li>
+      <li><a href="../teaching.html">Teaching</a></li>
+      <li><a href="../ai-guides.html">AI guides</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<header class="page-header">
+  <p class="eyebrow">Workshop · Aarhus · 27–28 August 2026</p>
+  <h1>Practical AI for Academics</h1>
+  <p class="muted">
+    Everything from the two days in one place: the slides, the Claude Code skills we use in the
+    hands-on blocks, the setup guides, and the exercises. Bookmark this page. It stays up as
+    the tools change, and the skills repository is updated as I revise them.
+  </p>
+  <ul class="toc">
+    <li><a href="#slides">Slides</a></li>
+    <li><a href="#setup">Set up for Day 2</a></li>
+    <li><a href="#install">Install the skills</a></li>
+    <li><a href="#skills">What each skill does</a></li>
+    <li><a href="#handson">Hands-on blocks</a></li>
+    <li><a href="#claudemd">CLAUDE.md template</a></li>
+    <li><a href="#guides">Guides</a></li>
+  </ul>
+</header>
+
+<section id="slides">
+  <h2>Slides</h2>
+  <ul class="guide-list">
+    <li>
+      <span class="guide-meta">Day 1 · 27 August · PDF</span>
+      <h3><a href="Aarhus_Day1.pdf">An introduction to generative AI</a></h3>
+      <p>Where the field is and what it means for research, teaching, and admin. Chat versus agentic
+        tools, Claude Code versus Codex, pricing and model tiers. How the agent works, what a context
+        window is, how to verify what comes back. Setting up VS Code with Claude Code, linking Overleaf,
+        writing a <code>CLAUDE.md</code>, and the working habits that keep a session on track.</p>
+    </li>
+    <li>
+      <span class="guide-meta">Day 2 · 28 August · PDF</span>
+      <h3><a href="Aarhus_Day2.pdf">Hands-on with your own materials</a></h3>
+      <p>A referee report on your own draft with the <code>/review-paper</code> skill and what subagents
+        add. Working with secure data. Administrative tasks. A <code>voice.md</code> from your own
+        writing. Teaching when AI can do the homework. Slides and websites from a project folder.
+        Implications, disclosure norms, and three things to try on Monday.</p>
+    </li>
+  </ul>
+</section>
+
+<section id="setup">
+  <h2>Set up before Day 2</h2>
+  <p>
+    Day 2 assumes the Day 1 setup: VS Code, Claude Code, and a project folder with a
+    <code>CLAUDE.md</code>. Doing this the evening before saves the first half hour.
+  </p>
+  <ol class="steps">
+    <li><strong>Install VS Code and Claude Code.</strong> The <a href="../claude-code-guide.html">Claude Code in VS Code</a> guide
+      walks through installation, the extensions worth having for Stata, Python, R, and LaTeX, and the first session.
+      Claude Code needs a Claude account. The free tier is enough to follow along, and the Pro tier
+      (about $20 a month) removes the limits you will otherwise hit during the hands-on blocks.</li>
+    <li><strong>If your paper lives in Overleaf,</strong> link it to a folder on your computer so the agent can read it.
+      <a href="../overleaf-vscode-guide.html">Linking VS Code and Overleaf</a> covers the GitHub and Dropbox routes.</li>
+    <li><strong>Install the skills</strong> below and restart VS Code.</li>
+    <li><strong>Bring</strong> one draft you would like another pair of eyes on, preferably close to finished, and four or five
+      PDFs of your own writing for the <code>voice.md</code> block. Intros, abstracts, and paragraphs you are proud of.
+      Leave out co-authored sections where the prose is not yours.</li>
+  </ol>
+  <div class="note">
+    Nothing you put in a project folder is uploaded anywhere until you ask the agent to read it, but
+    the agent does read what you point it at. Keep restricted data out of the folder. Day 2 has a block
+    on how to work alongside secure servers.
+  </div>
+</section>
+
+<section id="install">
+  <h2>Install the skills</h2>
+  <p>
+    A skill is a markdown file that Claude Code loads when you type its <code>/</code> command. Every
+    skill used in the workshop is in one public repository,
+    <a href="https://github.com/claesbackman/AI-research-feedback">github.com/claesbackman/AI-research-feedback</a>
+    (MIT licence). Fork them, edit them, make them yours. Two ways to install.
+  </p>
+  <div class="two-col">
+    <div>
+      <h3>Without a terminal</h3>
+      <p>Windows Explorer or macOS Finder.</p>
+      <ol>
+        <li>Download the zip below and unzip it.</li>
+        <li>Open the <code>Skills</code> folder inside. Copy each skill folder
+          (<code>review-paper</code>, <code>review-paper-light</code>, and so on) into
+          <code>~/.claude/skills/</code>.</li>
+        <li>That is a hidden folder in your user folder: <code>C:\Users\you\.claude\skills</code> on Windows,
+          <code>/Users/you/.claude/skills</code> on a Mac. To see hidden folders in Explorer: View → Show → Hidden items.
+          In Finder: Cmd-Shift-. in your home folder.</li>
+        <li>Restart VS Code. Type <code>/</code> in Claude Code and the skills appear.</li>
+      </ol>
+      <a class="btn btn-primary" href="https://github.com/claesbackman/AI-research-feedback/archive/refs/heads/main.zip">Download all skills (zip)</a>
+    </div>
+    <div>
+      <h3>With a terminal</h3>
+      <p>macOS, Linux, or WSL. Paste this one line. Run it again later to update.</p>
+<pre><code>git clone --depth 1 https://github.com/claesbackman/AI-research-feedback.git /tmp/airf &amp;&amp; mkdir -p ~/.claude/skills &amp;&amp; cp -R /tmp/airf/Skills/. ~/.claude/skills/ &amp;&amp; rm -rf /tmp/airf</code></pre>
+      <p>A skill in <code>~/.claude/skills/</code> works in every project. One in
+        <code>project/.claude/skills/</code> works only in that project. The
+        <a href="https://github.com/claesbackman/AI-research-feedback#readme">README</a> has one-line installers
+        for individual skills.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>What each skill does</h2>
+  <p>
+    The review skills run only when you type the command. Claude will not launch a multi-agent review
+    on its own. Each report is saved to a <code>reviews/</code> folder next to your draft, and each
+    skill is a few hundred lines of plain markdown you can open and change.
+  </p>
+  <div class="table-wrap">
+  <table class="skills">
+    <thead><tr><th>Command</th><th>What it does</th><th>When to use it</th></tr></thead>
+    <tbody>
+      <tr><td><code>/review-paper</code></td>
+        <td>Pre-submission referee report. Eight subagents run in parallel: spelling and style, internal consistency, unsupported claims and identification, mathematics, tables and figures, a referee assessment, a contribution advocate, and a contribution skeptic. Add a journal: <code>/review-paper AER</code>.</td>
+        <td>A draft you are about to circulate or submit. Ten to fifteen minutes.</td></tr>
+      <tr><td><code>/review-paper-light</code></td>
+        <td>Two agents, contribution and identification only. Flags causal over-claiming.</td>
+        <td>Quick iteration on a draft. About a minute.</td></tr>
+      <tr><td><code>/review-paper-code</code></td>
+        <td>Maps the paper's empirical claims to the code. Checks reproducibility, sample restrictions, clustering, fixed effects.</td>
+        <td>Before a replication package leaves your hands.</td></tr>
+      <tr><td><code>/audit-analysis</code></td>
+        <td>Hands changed analysis code to a fresh subagent told to break it: samples, merges, variable construction, silent failures, estimation. Every finding cites a file and a line.</td>
+        <td>After the agent, or a coauthor, changed the estimation pipeline.</td></tr>
+      <tr><td><code>/explain-diff</code></td>
+        <td>Explains a code change as an offline HTML page: what the code did before, what changed, what it does to the results, and a five-question quiz.</td>
+        <td>When you need to understand a change well enough to defend it.</td></tr>
+      <tr><td><code>/review-grant</code></td>
+        <td>Six-agent panel review of a grant proposal against a named funder: <code>/review-grant ERC</code>.</td>
+        <td>Before submission.</td></tr>
+      <tr><td><code>/review-pap</code></td>
+        <td>Six-agent review of a pre-analysis plan against a registry or journal standard.</td>
+        <td>Before registration.</td></tr>
+      <tr><td><code>/paper-version</code></td>
+        <td>Turns a LaTeX paper into a policy brief, a one-page, or a five-page summary, fact-checks it against the paper, and builds a standalone HTML page.</td>
+        <td>Outreach. <code>/paper-version brief</code>.</td></tr>
+      <tr><td><code>/pdf-to-markdown</code></td>
+        <td>Converts a PDF to markdown, trimmed at the references.</td>
+        <td>When your draft or a paper you want reviewed exists only as a PDF.</td></tr>
+      <tr><td><code>/voice-extractor</code></td>
+        <td>Reads a folder of your own papers and writes a <code>voice.md</code>: phrasing, sentence rhythm, hedging style, and a ban list. Written by Mihail Velikov. We hand out the file at the workshop, since it is his to publish.</td>
+        <td>The Day 2 voice block. Once per author.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="handson">
+  <h2>Hands-on blocks</h2>
+  <p>The instructions from the Day 2 slides, so you can follow them without switching windows.</p>
+
+  <div class="block">
+    <h3>1. A referee report on your own draft</h3>
+    <ol class="steps">
+      <li>Open the folder with your draft in VS Code and start Claude Code.</li>
+      <li>The draft needs to be LaTeX or markdown. If you only have a PDF, run <code>/pdf-to-markdown draft.pdf</code> first.</li>
+      <li>Run <code>/review-paper-light</code> for the one-minute version, or <code>/review-paper</code> for the full eight-agent run. Add a journal if you have one in mind.</li>
+      <li>Read the report in <code>reviews/</code>. It is not all correct.</li>
+    </ol>
+    <p><em>Debrief.</em> What did it catch that you would not have seen? What did it get wrong? Which agent gave the most useful feedback?</p>
+  </div>
+
+  <div class="block">
+    <h3>2. A <code>voice.md</code> from your own writing</h3>
+    <ol class="steps">
+      <li>Put four or five PDFs of your own writing in a folder, say <code>sample-papers/</code>. Five to ten thousand words is plenty.</li>
+      <li>Run <code>/voice-extractor sample-papers</code>.</li>
+      <li>Read <code>voice.md</code> and edit anything that does not sound like you. The file is yours, not the model's.</li>
+      <li>Reference it from <code>CLAUDE.md</code> so every future session loads your voice.</li>
+    </ol>
+    <p><em>Check it works.</em> Ask Claude to rewrite a paragraph with and without <code>voice.md</code> in context. If you cannot tell the versions apart, the file needs sharper rules.</p>
+  </div>
+
+  <div class="block">
+    <h3>3. Audit one of your own courses</h3>
+    <ol class="steps">
+      <li>Put the syllabus and the graded assignments for one course in a folder. Add one past exam if you have it.</li>
+      <li>Open the folder in VS Code and run the audit prompt from the Day 2 slides (the Rules 1 and 4 slide).</li>
+      <li>Read the table. Where do you disagree with the agent about what a component certifies?</li>
+      <li>Ask it to attempt the assignment you are most worried about. Grade the result with your rubric.</li>
+      <li>Pick one component and redesign it: in-class, précis baseline, or threshold quiz.</li>
+    </ol>
+  </div>
+
+  <div class="block">
+    <h3>4. A style file for slides</h3>
+    <p>Put a few old presentations in a folder and ask Claude to describe their structure, palette, and title style.
+      Save the answer as <code>slides-style.md</code> and reference it whenever you ask for a new deck. Build it once,
+      use it for every deck after.</p>
+  </div>
+</section>
+
+<section id="claudemd">
+  <h2>A <code>CLAUDE.md</code> starter template</h2>
+  <p>
+    <code>CLAUDE.md</code> sits in the project folder and is loaded at the start of every session. Type
+    <code>/init</code> in Claude Code to have it drafted from the folder, or start from this and edit.
+  </p>
+<pre><code># About me
+I am a researcher in [field].
+
+# How I want you to work with me
+- Ask clarifying questions before generating long output.
+- Critical, skeptical tone in feedback. Do not flatter.
+- When editing, preserve my voice (see voice.md). No generic LLM phrasing.
+- Avoid bullet lists and passive voice in formal writing.
+- Cite the specific line or section you are commenting on.
+
+# Things to avoid
+- Do not fabricate citations.
+- Do not over-claim causality.
+- Do not insert emoji or markdown decorations in formal docs.</code></pre>
+</section>
+
+<section id="guides">
+  <h2>Guides</h2>
+  <p>The written versions of what the slides cover, kept current as the tools change.</p>
+  <ul class="guide-list">
+    <li>
+      <span class="guide-meta">PDF · 28 pages</span>
+      <h3><a href="../paper/agentic-ai-empirical-research.pdf">Agentic AI for Empirical Research</a></h3>
+      <p>The practical workflow and the verification checks in one citable document, with the tool-specific material in a dated appendix.</p>
+    </li>
+    <li>
+      <span class="guide-meta">Overview</span>
+      <h3><a href="../agentic-ai-overview.html">Where to run agentic AI</a></h3>
+      <p>VS Code, terminal, desktop, web, mobile. Which surface suits which task.</p>
+    </li>
+    <li>
+      <span class="guide-meta">Setup · Anthropic</span>
+      <h3><a href="../claude-code-guide.html">Claude Code in VS Code</a></h3>
+      <p>Installation, extensions, <code>CLAUDE.md</code>, skills, and the everyday research workflow.</p>
+    </li>
+    <li>
+      <span class="guide-meta">Setup · OpenAI</span>
+      <h3><a href="../codex-vscode-guide.html">Codex in VS Code</a></h3>
+      <p>The same ground for Codex. <code>AGENTS.md</code>, approval modes, cloud delegation.</p>
+    </li>
+    <li>
+      <span class="guide-meta">Comparison</span>
+      <h3><a href="../codex-vs-claude-code.html">Codex vs Claude Code</a></h3>
+      <p>How the two agents differ in everyday research use.</p>
+    </li>
+    <li>
+      <span class="guide-meta">Verification</span>
+      <h3><a href="../verifying-llm-output.html">Verifying LLM output</a></h3>
+      <p>Fresh-agent review, a second model, comprehension quizzes, and reimplementation in another language.</p>
+    </li>
+    <li>
+      <span class="guide-meta">LaTeX</span>
+      <h3><a href="../overleaf-vscode-guide.html">Linking VS Code and Overleaf</a></h3>
+      <p>Edit locally with the agent while coauthors stay on Overleaf.</p>
+    </li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h2>Questions</h2>
+  <p>
+    Email <a href="mailto:claes.backman@gmail.com">claes.backman@gmail.com</a>. I write about AI and
+    research on <a href="https://claesbackman.substack.com">Substack</a>, and the
+    <a href="../resources.html">resources page</a> collects what other economists have written about
+    working with these tools.
+  </p>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>
+      <a href="mailto:claes.backman@gmail.com">claes.backman@gmail.com</a>
+    </p>
+    <p class="muted small">Last updated August 2026.</p>
+  </div>
+</footer>
+
+</body>
+</html>
