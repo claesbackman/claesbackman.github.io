@@ -299,9 +299,6 @@
       <tr><td><code>/review-paper-code</code></td>
         <td>Maps the paper's empirical claims to the code. Checks reproducibility, sample restrictions, clustering, fixed effects.</td>
         <td>Before a replication package leaves your hands.</td></tr>
-      <tr><td><code>/audit-analysis</code></td>
-        <td>Hands changed analysis code to a fresh subagent told to break it: samples, merges, variable construction, silent failures, estimation. Every finding cites a file and a line.</td>
-        <td>After the agent, or a coauthor, changed the estimation pipeline.</td></tr>
       <tr><td><code>/explain-diff</code></td>
         <td>Explains a code change as an offline HTML page: what the code did before, what changed, what it does to the results, and a five-question quiz.</td>
         <td>When you need to understand a change well enough to defend it.</td></tr>
@@ -311,14 +308,8 @@
       <tr><td><code>/review-pap</code></td>
         <td>Six-agent review of a pre-analysis plan against a registry or journal standard.</td>
         <td>Before registration.</td></tr>
-      <tr><td><code>/paper-version</code></td>
-        <td>Turns a LaTeX paper into a policy brief, a one-page, or a five-page summary, fact-checks it against the paper, and builds a standalone HTML page.</td>
-        <td>Outreach. <code>/paper-version brief</code>.</td></tr>
-      <tr><td><code>/pdf-to-markdown</code></td>
-        <td>Converts a PDF to markdown, trimmed at the references.</td>
-        <td>When your draft or a paper you want reviewed exists only as a PDF.</td></tr>
       <tr><td><code>/voice-extractor</code></td>
-        <td>Reads a folder of your own papers and writes a <code>voice.md</code>: phrasing, sentence rhythm, hedging style, and a ban list. Written by Mihail Velikov. We hand out the file at the workshop, since it is his to publish.</td>
+        <td>Reads a folder of your own papers and writes a <code>voice.md</code>: phrasing, sentence rhythm, hedging style, and a ban list. Written by Mihail Velikov. You can download it <a href="https://github.com/velikov-mihail/edhec-master-class/tree/main/demo2-voice-skill/.claude/skills/voice-extractor">here</a>.</td>
         <td>The Day 2 voice block. Once per author.</td></tr>
     </tbody>
   </table>
@@ -352,18 +343,7 @@
   </div>
 
   <div class="block">
-    <h3>3. Audit one of your own courses</h3>
-    <ol class="steps">
-      <li>Put the syllabus and the graded assignments for one course in a folder. Add one past exam if you have it.</li>
-      <li>Open the folder in VS Code and run the audit prompt from the Day 2 slides (the Rules 1 and 4 slide).</li>
-      <li>Read the table. Where do you disagree with the agent about what a component certifies?</li>
-      <li>Ask it to attempt the assignment you are most worried about. Grade the result with your rubric.</li>
-      <li>Pick one component and redesign it: in-class, précis baseline, or threshold quiz.</li>
-    </ol>
-  </div>
-
-  <div class="block">
-    <h3>4. A style file for slides</h3>
+    <h3>3. A style file for slides</h3>
     <p>Put a few old presentations in a folder and ask Claude to describe their structure, palette, and title style.
       Save the answer as <code>slides-style.md</code> and reference it whenever you ask for a new deck. Build it once,
       use it for every deck after.</p>
