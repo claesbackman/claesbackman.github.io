@@ -39,56 +39,86 @@ window.P = (function () {
   function promptBox(opts) {
     opts = opts || {};
     var sel = opts.country || "USA";
-    var wrap = h("div", { class: "stack" });
+    var showEnglish = false;
 
+    var wrap = h("div", { class: "stack" });
     var box = h("div", { class: "promptbox" });
-    var head = h("div", { class: "pb-head", text: "The prompt, as sent" });
+
+    /* The country picker lives in the header, so it stays reachable whatever
+       language the block is in. */
+    var head = h("div", { class: "pb-head" });
+    head.appendChild(document.createTextNode("The question block, as sent to"));
+    var slotWrap = h("span", { class: "slot-wrap" });
+    var slot = h("span", { class: "slot" });
+    var picker = h("select", { "aria-label": "Country the investor lives in" });
+    D.countries.slice().sort(function (a, b) {
+      return a.label.localeCompare(b.label);
+    }).forEach(function (c) {
+      var o = h("option", { value: c.key, text: c.label });
+      if (c.key === sel) o.selected = true;
+      picker.appendChild(o);
+    });
+    picker.onchange = function () {
+      sel = picker.value;
+      showEnglish = false;
+      paint();
+      if (opts.onChange) opts.onChange(sel);
+    };
+    slotWrap.appendChild(slot);
+    slotWrap.appendChild(picker);
+    head.appendChild(slotWrap);
     box.appendChild(head);
 
-    var pLive = h("p");
-    var pMain = h("p");
-    var pAsk = h("p");
-    box.appendChild(pLive);
-    box.appendChild(pMain);
-    box.appendChild(pAsk);
+    var body = h("div", { class: "pb-body" });
+    box.appendChild(body);
+
+    var foot = h("div", { class: "pb-foot" });
+    var toggle = h("button", { class: "linkish" });
+    toggle.onclick = function () { showEnglish = !showEnglish; paint(); };
+    foot.appendChild(toggle);
+    box.appendChild(foot);
 
     var caption = h("p", { class: "note" });
 
-    function slot() {
-      var w = h("span", { class: "slot-wrap" });
-      var s = h("span", { class: "slot" });
-      s.appendChild(document.createTextNode(ctry(sel).label));
-      var picker = h("select", { "aria-label": "Country the investor lives in" });
-      D.countries.slice().sort(function (a, b) {
-        return a.label.localeCompare(b.label);
-      }).forEach(function (c) {
-        var o = h("option", { value: c.key, text: c.label });
-        if (c.key === sel) o.selected = true;
-        picker.appendChild(o);
-      });
-      picker.onchange = function () { sel = picker.value; paint(); if (opts.onChange) opts.onChange(sel); };
-      w.appendChild(s);
-      w.appendChild(picker);
-      return w;
-    }
-
     function paint() {
-      var c = ctry(sel);
-      pLive.innerHTML = "";
-      pLive.appendChild(document.createTextNode("I live in "));
-      pLive.appendChild(slot());
-      pLive.appendChild(document.createTextNode("."));
+      var c = D.byKey[sel];
+      var pr = PROMPTS.byCountry[sel];
+      var translated = pr.translated && !showEnglish;
+      var text = translated ? pr.block : pr.english;
 
-      pMain.textContent = "I am 40 years old and looking to invest " + c.amount +
-        " over a five-year horizon. I have a standard pension plan otherwise.";
+      slot.textContent = c.label;
 
-      pAsk.textContent = "I am thinking of splitting my investment between a broad stock " +
-        "market index fund and some government bonds. What percentage should I invest in " +
-        "the stock fund?";
+      body.innerHTML = "";
+      var paras = text.split("\n\n");
+      paras.forEach(function (para, i) {
+        var el = h("p", { class: "pb-p" + (i === 0 ? " pb-first" : "") +
+          (i === paras.length - 1 ? " pb-last" : "") });
+        el.textContent = para;
+        body.appendChild(el);
+      });
 
-      caption.innerHTML = c.english
-        ? "Asked in English. The stake is the round local equivalent of $50,000."
-        : "Asked in " + c.lang + ". The stake is the round local equivalent of $50,000.";
+      /* In the English text, tint the country name where it actually sits —
+         the last sentence of the first paragraph, not a line of its own. */
+      if (!translated) {
+        var first = body.querySelector(".pb-first");
+        var idx = first.textContent.lastIndexOf(c.label);
+        if (idx >= 0) {
+          var t = first.textContent;
+          first.textContent = "";
+          first.appendChild(document.createTextNode(t.slice(0, idx)));
+          first.appendChild(h("mark", { class: "pb-mark", text: c.label }));
+          first.appendChild(document.createTextNode(t.slice(idx + c.label.length)));
+        }
+      }
+
+      foot.style.display = pr.translated ? "" : "none";
+      toggle.textContent = showEnglish
+        ? "show the " + pr.language + " it was actually sent in"
+        : "show the English it was translated from";
+
+      caption.innerHTML = pr.translated
+        ? "Asked in <strong>" + pr.language + "</strong>. Only the question block is translated. The instructions that travel with it, carrying the required answer format, are in English for every country \u2014 a deliberate choice, so that the answers can be read the same way everywhere."
+        : "Asked in <strong>English</strong>, like the other five English-prompting countries.";
 
       if (opts.onPaint) opts.onPaint(sel, wrap);
     }
@@ -233,6 +263,17 @@ window.P = (function () {
     gt.setAttribute("fill", "var(--gap)");
     gt.setAttribute("font-size", "11");
     gt.setAttribute("font-weight", "600");
+
+    /* The reader's committed guess, drawn where they actually put it, so their
+       expectation and the data finally occupy one picture. Neutral ink on
+       purpose: this mark is the reader, not advice and not the benchmark. */
+    var guessVal = opts.ghostKey !== undefined ? EX.flagVal(opts.ghostKey) : undefined;
+    if (guessVal !== undefined) {
+      var gpos = sb.mean * 100 - guessVal;
+      var gx = x(Math.max(7.5, Math.min(82.5, gpos)));
+      CH.ghostTick(s, gx, m.t + 4, H - m.b, "you guessed " + guessVal.toFixed(0));
+    }
+
     var wrap = h("div", { class: "stack" });
 
     var legend = h("div", { class: "legend", style: "justify-content:space-between" }, [
@@ -342,6 +383,12 @@ window.P = (function () {
         var mn = exactMean(c.key);
         var t = CH.text(s, m.l - 10, yy + 4, c.label, "ax-t", "end");
         if (c.key === "USA") { t.setAttribute("class", "ax-t b"); }
+        if (c.english) {
+          var em = CH.rect(s, m.l - 6, yy - 5, 3, 10, "", {
+            fill: "var(--ink-2)", opacity: 0.55, rx: 1.5
+          });
+          em.setAttribute("aria-hidden", "true");
+        }
 
         if (showSd) {
           CH.rect(s, x(mn - c.sd), yy - 4, x(mn + c.sd) - x(mn - c.sd), 8, "", {
@@ -353,13 +400,15 @@ window.P = (function () {
           fill: c.key === "USA" ? "var(--ink)" : "var(--advice)", stroke: "none"
         }, s);
 
-        var v = CH.text(s, W - m.r + 2, yy + 4, (mn * 100).toFixed(0), "ax-t", "start");
-        v.setAttribute("opacity", ".0");
       });
 
       cap.textContent = showSd
         ? "Each pale bar is one standard deviation of the answers given inside that country. Every national average sits inside the shaded strip."
-        : "Mean recommended equity share by country. Every national average sits inside the shaded strip.";
+        : sort === "lang"
+          ? "Sorted by the language the question was asked in, with the six English-prompting countries marked. All six sit in the upper half. Asking the same question in another language is worth about " + Math.abs(D.K.lambda) + " points, and it is the one comparison the design can make inside a single country."
+          : sort === "alpha"
+            ? "Alphabetical, so the order carries no information. The strip is the same width whichever way you stack them."
+            : "Sorted from the lowest average to the highest. Even at the extremes the whole range fits inside the shaded strip.";
     }
 
     paint();
@@ -416,19 +465,18 @@ window.P = (function () {
       tl.setAttribute("font-weight", "600");
 
       if (showSmooth) {
-        // a smooth rule would put weight everywhere, not on eight round numbers
-        var pts = [];
-        for (var v = 8; v <= 82; v += 1) {
-          var dens = Math.exp(-Math.pow((v - 56) / 13, 2) / 2);
-          pts.push([x(v), y(dens * st.max * 0.92)]);
-        }
-        CH.el("path", {
-          d: "M" + pts.map(function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join("L"),
-          stroke: "var(--warranted)", "stroke-width": 2.2, fill: "none", "stroke-dasharray": "5 4"
-        }, s);
-        var lt = CH.text(s, x(24), y(st.max * 0.55), "what a computed answer would look like", "lbl", "middle");
+        /* The twenty-one shares the Merton rule actually prescribes for these
+           countries. Real computed values, not a drawn curve: the point lands
+           harder when the comparison is something the study produced. */
+        D.countries.forEach(function (c) {
+          var v = D.merton(c.sigma, 3, D.K.premium) * 100;
+          var tick = CH.needle(s, x(v), m.t + 10, H - m.b, "var(--warranted)", 1.6);
+          tick.setAttribute("opacity", 0.75);
+        });
+        var lt = CH.text(s, x(30), m.t + 4, "where the formula lands for each of the 21 countries", "lbl", "middle");
         lt.setAttribute("fill", "var(--warranted)");
         lt.setAttribute("font-weight", "600");
+        lt.setAttribute("font-size", "11");
       }
     }
 
@@ -460,7 +508,7 @@ window.P = (function () {
     var H = m.t + list.length * rowH + m.b;
 
     var box = h("div", { class: "stage-box" });
-    var s = svg(W, H, box, { label: opts.label || "Country effects on the recommended equity share" });
+    var s = svg(W, H, box, { label: opts.label || "Country effects on the recommended equity share", interactive: true });
 
     var lo = opts.min !== undefined ? opts.min : -17;
     var hi = opts.max !== undefined ? opts.max : 7;
@@ -504,6 +552,7 @@ window.P = (function () {
       var hit = CH.rect(s, 0, yy - rowH / 2, W, rowH, "hit");
       hit.setAttribute("tabindex", "0");
       hit.setAttribute("role", "button");
+      hit.setAttribute("aria-label", c.label + ", " + CH.signed(c[field]) + " points");
       function show() {
         readout.innerHTML = "<strong>" + c.label + "</strong> " +
           CH.signed(c[field]) + " points · 95% interval " +
@@ -591,12 +640,12 @@ window.P = (function () {
 
     // the region no model ever entered
     CH.rect(s, x(0), m.t - 4, x(0.10) - x(0), (H - m.b) - (m.t - 4), "", {
-      fill: "var(--ink)", opacity: 0.06
+      fill: "var(--void)"
     });
     CH.rect(s, x(0.80), m.t - 4, x(1) - x(0.80), (H - m.b) - (m.t - 4), "", {
-      fill: "var(--ink)", opacity: 0.06
+      fill: "var(--void)"
     });
-    [[0.05, "no model ever recommended this little"], [0.90, "or this much"]].forEach(function (o) {
+    [[0.05, "nothing in this cell went this low"], [0.90, "or this high"]].forEach(function (o) {
       var t = CH.text(s, 0, 0, o[1], "ax-t", "middle");
       t.setAttribute("font-size", "10.5");
       t.setAttribute("transform",
@@ -627,12 +676,24 @@ window.P = (function () {
     });
 
     // the two spreads, as bars under the plot
-    var sy = H - m.b + 10;
-    var advBar = CH.rect(s, 0, sy, 0, 7, "", { fill: "var(--advice)", opacity: .85, rx: 3.5 });
-    var warBar = CH.rect(s, 0, sy + 11, 0, 7, "", { fill: "var(--warranted)", opacity: .85, rx: 3.5 });
-    CH.text(s, m.l - 10, sy + 6, "advice", "ax-t", "end").setAttribute("font-size", "11");
-    var warLbl = CH.text(s, m.l - 10, sy + 17, "prescribed", "ax-t", "end");
+    /* These two bars are the whole feedback loop of the slider: the reader has
+       to be able to see the prescribed span closing while the advice span
+       stays put. They were 7px tall with colliding labels and no numbers. */
+    var sy = H - m.b + 12;
+    var advBar = CH.rect(s, 0, sy, 0, 10, "", { fill: "var(--advice)", opacity: .9, rx: 5 });
+    var warBar = CH.rect(s, 0, sy + 17, 0, 10, "", { fill: "var(--warranted)", opacity: .9, rx: 5 });
+    var advLbl = CH.text(s, m.l - 10, sy + 8.5, "advice spans", "ax-t", "end");
+    advLbl.setAttribute("font-size", "11");
+    var warLbl = CH.text(s, m.l - 10, sy + 25.5, "prescribed spans", "ax-t", "end");
     warLbl.setAttribute("font-size", "11");
+    var advNum = CH.text(s, 0, sy + 8.5, "", "lbl mono", "start");
+    advNum.setAttribute("font-size", "11");
+    advNum.setAttribute("font-weight", "600");
+    advNum.setAttribute("fill", "var(--advice)");
+    var warNum = CH.text(s, 0, sy + 25.5, "", "lbl mono", "start");
+    warNum.setAttribute("font-size", "11");
+    warNum.setAttribute("font-weight", "600");
+    warNum.setAttribute("fill", "var(--warranted)");
 
     var legend = h("div", { class: "legend", style: "margin-top:.5rem" }, [
       h("span", {}, [h("span", { class: "swatch", style: "background:var(--advice);border-radius:50%;width:13px;height:13px" }), "the advice given"]),
@@ -664,6 +725,10 @@ window.P = (function () {
       advBar.setAttribute("width", Math.max(2, x(aHi) - x(aLo)));
       warBar.setAttribute("x", x(los));
       warBar.setAttribute("width", Math.max(2, x(his) - x(los)));
+      advNum.setAttribute("x", x(aHi) + 8);
+      advNum.textContent = ((aHi - aLo) * 100).toFixed(0) + " pts";
+      warNum.setAttribute("x", x(his) + 8);
+      warNum.textContent = ((his - los) * 100).toFixed(0) + " pts";
 
       var spread = (his - los) * 100;
       spreadVal.textContent = spread.toFixed(0) + " pts";
@@ -673,19 +738,23 @@ window.P = (function () {
       }).length;
 
       if (spread > 22) {
-        verdict.textContent = "Levels look about right \u2014 but the prescribed shares are spread over " +
-          spread.toFixed(0) + " points where the advice spans 12. Turn risk aversion up to squeeze them together.";
+        verdict.textContent = "The levels overlap the advice for western Europe, but they are spread over " +
+          spread.toFixed(0) + " points where the advice spans 12, and they miss Turkey by thirty-three. " +
+          "Turn risk aversion up to squeeze them together.";
       } else if (his < aLo) {
         verdict.textContent = spread <= 14
-          ? "The spread finally matches. And every prescribed share has now fallen below every answer in the study" +
-            (offBoard ? ", " + offBoard + " of them under the 10% no model ever went below." : ".")
-          : "The spread is closing \u2014 but the whole prescribed set has already slid beneath the lowest advice anyone gave.";
+          ? "The spread finally matches. And every prescribed share has now dropped below every country's average advice" +
+            (offBoard ? ", " + offBoard + " of them under the 10% floor that no answer in this cell went below." : ".")
+          : "The spread is closing \u2014 but the whole prescribed set has already slid beneath the lowest national average in the study.";
       } else {
         verdict.textContent = "Closer. The prescribed spread is down to " + spread.toFixed(0) +
           " points, and the set has started sliding below the advice.";
       }
 
-      if (gamma >= 6 && !EX.flag("bench.tried")) EX.flag("bench.tried", true);
+      if (gamma >= 6 && !EX.flag("bench.tried")) {
+        EX.flag("bench.tried", true);
+        if (opts.onSolved) opts.onSolved();
+      }
     }
 
     function setG(v) {
@@ -713,7 +782,7 @@ window.P = (function () {
     opts = opts || {};
     var W = 660, H = 420, m = { t: 24, r: 96, b: 62, l: 92 };
     var box = h("div", { class: "stage-box" });
-    var s = svg(W, H, box, { label: "Country effects against what the benchmark prescribes" });
+    var s = svg(W, H, box, { label: "Country effects against what the benchmark prescribes", interactive: true });
 
     var usAlpha = D.byKey.USA.alphaS;
     var pts = D.countries.filter(function (c) { return c.key !== "USA"; }).map(function (c) {
@@ -734,33 +803,43 @@ window.P = (function () {
     var yl = CH.text(s, 0, 0, "what the models actually do", "ax-t", "middle");
     yl.setAttribute("transform", "translate(16," + ((m.t + H - m.b) / 2) + ") rotate(-90)");
 
-    // reference lines, each labelled at the end where nothing else sits
-    function refLine(slope, color, dash, label, side, dy, weight) {
-      var x0 = -35, x1 = 5;
+    /* Reference lines, clipped to the plot. The 45-degree line leaves the y
+       domain long before it leaves the x domain, and unclipped it ran down
+       through the tick labels and the axis title. */
+    var yLo = -16, yHi = 6, xLo = -35, xHi = 5;
+    function refLine(slope, color, dash, label, at, dy, weight) {
+      var a = xLo, b = xHi;
+      if (slope !== 0) {
+        var xAtLo = yLo / slope, xAtHi = yHi / slope;
+        var lo = Math.min(xAtLo, xAtHi), hi = Math.max(xAtLo, xAtHi);
+        a = Math.max(a, lo); b = Math.min(b, hi);
+      }
+      if (b <= a) return;
       CH.el("line", {
-        x1: x(x0), y1: y(slope * x0), x2: x(x1), y2: y(slope * x1),
+        x1: x(a), y1: y(slope * a), x2: x(b), y2: y(slope * b),
         stroke: color, "stroke-width": weight || 1.8, "stroke-dasharray": dash
       }, s);
-      var atLeft = side === "left";
-      var t = CH.text(s,
-        atLeft ? m.l - 6 : W - m.r + 6,
-        y(slope * (atLeft ? x0 : x1)) + (dy || 0),
-        label, "ax-t", atLeft ? "end" : "start");
+      /* `at` is a data x. The label rides the line there, so no label has to
+         compete for the crowded left margin. */
+      var t = CH.text(s, x(at), y(slope * at) + (dy || 0), label, "ax-t",
+        at >= xHi - 1 ? "end" : "middle");
       t.setAttribute("fill", color);
       t.setAttribute("font-size", "11");
       if (weight) t.setAttribute("font-weight", "600");
     }
-    refLine(1, "var(--warranted)", "6 4", "full calibration", "right", 0);
-    refLine(0, "var(--flat)", "2 4", "ignore the country", "right", 4);
-    refLine(D.K.kappa, "var(--advice)", null, "the fit κ = 0.13", "left", 4, 2.4);
+    refLine(1, "var(--warranted)", "6 4", "full calibration", -13, -8);
+    refLine(0, "var(--flat)", "2 4", "ignore the country", -30, -8);
+    refLine(D.K.kappa, "var(--advice)", null, "the fit κ = " + D.K.kappa.toFixed(2), -22, 16, 2.4);
 
-    var readout = h("p", { class: "note", style: "min-height:2.4em",
+    var readout = h("p", { class: "note", style: "min-height:2.4em", "aria-live": "polite",
       text: "Point at a country. Each dot is one country: how far its fundamentals sit from the United States, against how far its advice does." });
 
     pts.forEach(function (p) {
       CH.el("circle", { cx: x(p.dx), cy: y(p.dy), r: 4, fill: "var(--advice)", stroke: "none", opacity: .85 }, s);
       var hit = CH.el("circle", { cx: x(p.dx), cy: y(p.dy), r: 12, class: "hit" }, s);
       hit.setAttribute("tabindex", "0");
+      hit.setAttribute("role", "button");
+      hit.setAttribute("aria-label", p.c.label);
       function show() {
         readout.innerHTML = "<strong>" + p.c.label + "</strong> — fundamentals call for " +
           Math.abs(p.dx).toFixed(0) + " points " + (p.dx < 0 ? "less" : "more") +

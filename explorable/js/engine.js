@@ -156,7 +156,20 @@ window.EX = (function () {
     drawDots();
     window.scrollTo(0, 0);
     stage.focus({ preventScroll: true });
+    checkMore();
   }
+
+  // The rail is fixed, so on a short window it reads as the bottom of the page
+  // and a reader can miss a door sitting just under it. Mark the body while
+  // there is more below, and clear the mark once they have scrolled.
+  function checkMore() {
+    var more = (document.body.scrollHeight - window.innerHeight) > 24 &&
+               (window.scrollY + window.innerHeight) < (document.body.scrollHeight - 24);
+    document.body.classList.toggle("has-more", more);
+  }
+
+  window.addEventListener("scroll", function () { checkMore(); }, { passive: true });
+  window.addEventListener("resize", function () { checkMore(); });
 
   function drawDots() {
     var d = decks[cur.deck];
@@ -218,13 +231,38 @@ window.EX = (function () {
 
   var overlay, mapBody, mapProgress;
 
+  var mapOpener = null;
+
   function openMap() {
     drawMap();
+    mapOpener = document.activeElement;
     overlay.hidden = false;
+    // The rest of the page must not be reachable while the dialog is up.
+    document.getElementById("stage").inert = true;
+    var bar = document.querySelector(".topbar");
+    if (bar) bar.inert = true;
     var first = overlay.querySelector(".map-node:not(:disabled)");
     if (first) first.focus();
   }
-  function closeMap() { overlay.hidden = true; }
+  function closeMap() {
+    overlay.hidden = true;
+    document.getElementById("stage").inert = false;
+    var bar = document.querySelector(".topbar");
+    if (bar) bar.inert = false;
+    // Send focus back where it came from rather than dropping it on <body>.
+    if (mapOpener && document.contains(mapOpener)) mapOpener.focus();
+    mapOpener = null;
+  }
+
+  // Keep Tab inside the dialog for browsers without inert.
+  function trapTab(e) {
+    if (overlay.hidden || e.key !== "Tab") return;
+    var f = overlay.querySelectorAll("button:not(:disabled), [href], input, select, textarea");
+    if (!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
 
   function mapNode(id, n) {
     var d = decks[id];
@@ -247,7 +285,9 @@ window.EX = (function () {
       return '<span class="map-tick' + (seen(id, i) ? " on" : "") + '"></span>';
     }).join("") + "</span>";
 
-    var meta = locked ? "not open yet"
+    var miss = locked && !d.parent ? missingFor(id) : [];
+    var meta = miss.length ? "after " + miss.join(" and ")
+      : locked ? "not open yet"
       : done(id) ? "done"
       : reached(id) ? (furthest(id) + 1) + " of " + d.slides.length
       : "open";
@@ -263,13 +303,38 @@ window.EX = (function () {
     return row;
   }
 
-  // A deck is reachable once the slide that offers it has been seen. Side doors
-  // stay hidden until then so the map does not spoil the tree.
+  // A side door is reachable once the slide that offers it has been seen, so
+  // the map does not spoil the tree. A spine deck is reachable once the decks
+  // it argues from are finished: the map lists them all, but the ones whose
+  // premises the reader has not met yet are shown dimmed rather than opened.
+  // This is the diamond -- `levers` needs both eliminations, in either order.
+  var REQUIRES = {
+    same:      ["ask"],
+    warranted: ["same"],
+    words:     ["same"],
+    levers:    ["warranted", "words"],
+    lineup:    ["levers"],
+    asym:      ["lineup"],
+    incidence: ["asym"]
+  };
+
   function unlocked(id) {
     var d = decks[id];
-    if (!d.opensAfter) return !d.parent;          // spine decks are always listed
-    var a = d.opensAfter;
-    return seen(a[0], a[1]);
+    if (d.opensAfter) return seen(d.opensAfter[0], d.opensAfter[1]);
+    if (d.parent) return false;
+    var req = REQUIRES[id];
+    if (!req) return true;
+    for (var i = 0; i < req.length; i++) {
+      if (decks[req[i]] && !done(req[i])) return false;
+    }
+    return true;
+  }
+
+  // What the reader still has to finish before a locked spine deck opens.
+  function missingFor(id) {
+    var req = REQUIRES[id] || [];
+    return req.filter(function (r) { return decks[r] && !done(r); })
+              .map(function (r) { return decks[r].title; });
   }
 
   function drawMap() {
@@ -345,7 +410,23 @@ window.EX = (function () {
     overlay.addEventListener("click", function (e) {
       if (e.target.hasAttribute("data-close")) closeMap();
     });
-    document.getElementById("resetBtn").onclick = function () {
+    // Two clicks, because one click used to throw away the whole read.
+    var resetBtn = document.getElementById("resetBtn");
+    var resetArmed = false, resetTimer;
+    resetBtn.onclick = function () {
+      if (!resetArmed) {
+        resetArmed = true;
+        resetBtn.textContent = "Clear everything? Click again";
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(function () {
+          resetArmed = false;
+          resetBtn.textContent = "Start over";
+        }, 4000);
+        return;
+      }
+      clearTimeout(resetTimer);
+      resetArmed = false;
+      resetBtn.textContent = "Start over";
       mem = { seen: {}, furthest: {}, flags: {} };
       save();
       closeMap();
@@ -361,6 +442,8 @@ window.EX = (function () {
       var typing = t && (t.tagName === "INPUT" || t.tagName === "SELECT" ||
         t.tagName === "TEXTAREA" || t.isContentEditable);
       if (e.key === "Escape") { closeMap(); return; }
+      trapTab(e);
+      if (!overlay.hidden) return;          // the dialog owns the keyboard
       if (typing) return;
       if (e.key === "ArrowRight") { next(); e.preventDefault(); }
       else if (e.key === "ArrowLeft") { prev(); e.preventDefault(); }

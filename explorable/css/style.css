@@ -19,13 +19,15 @@
   --rule-2:      #cfc7b7;
 
   --advice:      #c9541f;
+  --on-advice:   #fffdf9;
   --advice-soft: #f3dccd;
   --advice-dim:  #e0a480;
   --warranted:   #21657f;
   --warranted-soft:#d3e3ea;
   --warranted-dim: #7aa9bd;
   --gap:         #a58a3c;
-  --flat:        #9a978e;
+  --flat:        #6f6c64;
+  --void:        #ece6da;
 
   --ok:          #3d7a4e;
   --alert:       #a33a2a;
@@ -34,7 +36,8 @@
   --sans:  ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   --mono:  ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
 
-  --topbar-h: 52px;
+  --topbar-h: 62px;
+  --ruler-h: 15px;
   --rail-h: 58px;
   --slide-max: 1080px;
   --prose-max: 34rem;
@@ -59,6 +62,7 @@
     --rule-2:      #3d424e;
 
     --advice:      #ef8b4e;
+    --on-advice:   #21150c;
     --advice-soft: #43291b;
     --advice-dim:  #9a5c34;
     --warranted:   #5fb0d0;
@@ -66,6 +70,8 @@
     --warranted-dim: #3c7a92;
     --gap:         #cbab55;
     --flat:        #7d7a73;
+  --void:        #23272f;
+    --void:        #23272f;
 
     --ok:          #6ab07d;
     --alert:       #e0705c;
@@ -83,6 +89,7 @@
   --rule:        #2c303a;
   --rule-2:      #3d424e;
   --advice:      #ef8b4e;
+  --on-advice:   #21150c;
   --advice-soft: #43291b;
   --advice-dim:  #9a5c34;
   --warranted:   #5fb0d0;
@@ -96,6 +103,21 @@
 }
 
 /* ---------- base ---------- */
+
+/* Links had no rule at all, so every anchor rendered in browser-default blue
+   and violet — off-palette in light, and about 2.3:1 in dark. */
+a {
+  color: var(--warranted);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+a:hover { color: var(--advice); }
+a:focus-visible {
+  outline: 2px solid var(--advice);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 
 * { box-sizing: border-box; }
 
@@ -189,6 +211,54 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round
   * { transition-duration: .01ms !important; }
 }
 
+/* Short viewports — the common 1280x720 laptop — were pushing doors and
+   controls behind the fixed rail. Tighten the vertical rhythm rather than
+   let the reader lose the way forward. */
+@media (max-height: 850px) {
+  #stage {
+    padding-top: calc(var(--topbar-h) + 1.1rem);
+    padding-bottom: calc(var(--rail-h) + 1.1rem);
+  }
+  .slide { min-height: calc(100vh - var(--topbar-h) - var(--rail-h) - 2.2rem); }
+  h1.big  { font-size: clamp(1.7rem, 3.6vw, 2.35rem); margin-bottom: .6rem; }
+  h2.head { font-size: clamp(1.25rem, 2.4vw, 1.6rem);  margin-bottom: .55rem; }
+  .slide p { margin-block: .55rem; }
+  .stage-box { padding: .75rem .9rem; }
+  .door { padding: .8rem .95rem; }
+  .stack { gap: .7rem; }
+  .doors { margin-top: .9rem !important; }
+}
+
+/* "there is more below" — a soft fade above the rail, only while it is true */
+body.has-more::after {
+  content: "";
+  position: fixed; left: 0; right: 0;
+  bottom: var(--rail-h); height: 4.5rem;
+  background: linear-gradient(to top, var(--ground), transparent);
+  pointer-events: none; z-index: 3;
+}
+
+/* ---------- the standing ruler ---------- */
+/* One 0-100 track promoted to the furniture. It carries the band the advice
+   occupies and a needle at the panel average, and it never moves. */
+#topbar { align-items: flex-start; padding-top: 5px; }
+#ruler {
+  position: fixed; z-index: 41;
+  top: calc(var(--topbar-h) - var(--ruler-h) - 1px); left: 0; right: 0;
+  height: var(--ruler-h);
+  pointer-events: none;
+}
+#ruler svg { width: 100%; height: var(--ruler-h); display: block; overflow: visible; }
+.rl-track  { stroke: var(--rule-2); stroke-width: 1; }
+.rl-tick   { stroke: var(--rule-2); stroke-width: 1; }
+.rl-band   { fill: var(--advice); opacity: .10; stroke: none; }
+.rl-needle { stroke: var(--advice); stroke-width: 2.5; stroke-linecap: round; }
+.rl-ghost  { stroke: var(--warranted); stroke-width: 2; stroke-linecap: round; opacity: .85; }
+.rl-lab {
+  fill: var(--muted); stroke: none;
+  font-family: var(--mono); font-size: 8px; letter-spacing: .04em;
+}
+
 /* ---------- typography ---------- */
 
 .eyebrow {
@@ -266,6 +336,15 @@ em.term { font-style: normal; font-weight: 600; }
 .demo > svg { width: 100%; height: auto; display: block; }
 @media (max-width: 620px) { .demo { min-height: 340px; } }
 
+/* On a phone a 660-unit chart scaled into a 360px column renders its 11px
+   labels at about 6px. Give the figure a floor and let its own box scroll,
+   rather than shrinking the text past reading size. */
+@media (max-width: 700px) {
+  .stage-box { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .stage-box > svg,
+  .stage-box > .stack > svg { min-width: 700px; }
+}
+
 /* ---------- doors (branch links) ---------- */
 
 .door {
@@ -318,7 +397,15 @@ em.term { font-style: normal; font-weight: 600; }
   letter-spacing: .05em; text-transform: uppercase; color: var(--muted);
   display: flex; justify-content: space-between; align-items: baseline; gap: .6rem;
 }
-.ctl-val { font-family: var(--mono); font-size: .92rem; color: var(--ink); letter-spacing: 0; text-transform: none; }
+/* The readout gains and loses a trailing clause as the slider moves, which
+   rewrapped it from two lines to one and jumped the chart under the cursor. */
+.ctl-val {
+  font-family: var(--mono); font-size: .92rem; color: var(--ink);
+  letter-spacing: 0; text-transform: none;
+  min-height: 2.6em; display: flex; align-items: center; justify-content: flex-end;
+  text-align: right;
+}
+@media (min-width: 700px) { .ctl-val { min-height: 1.3em; } }
 
 input[type=range] {
   -webkit-appearance: none; appearance: none;
@@ -363,7 +450,7 @@ select, .pill-input {
 
 .btn {
   font-family: var(--sans); font-size: .88rem; font-weight: 600;
-  background: var(--advice); color: #fff; border: 0;
+  background: var(--advice); color: var(--on-advice); border: 0;
   border-radius: 9px; padding: .6rem 1.1rem;
   transition: filter .16s, transform .16s;
 }
@@ -389,7 +476,7 @@ select, .pill-input {
 }
 .chip:hover { border-color: var(--ink-2); color: var(--ink); }
 .chip[aria-pressed="true"] {
-  background: var(--advice); border-color: var(--advice); color: #fff; font-weight: 600;
+  background: var(--advice); border-color: var(--advice); color: var(--on-advice); font-weight: 600;
 }
 
 /* ---------- readouts ---------- */
@@ -548,6 +635,14 @@ select, .pill-input {
   width: .7rem; border-bottom-left-radius: 6px;
 }
 
+.keyhint { font-family: var(--sans); font-size: .74rem; color: var(--muted); }
+.keyhint kbd {
+  font-family: var(--mono); font-size: .72rem;
+  border: 1px solid var(--rule-2); border-radius: 4px;
+  padding: .05rem .3rem; background: var(--ground-2); color: var(--ink-2);
+}
+@media (max-width: 620px) { .keyhint { display: none; } }
+
 /* ---------- toast ---------- */
 
 .toast {
@@ -621,3 +716,103 @@ table.data td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; 
   .frac { gap: .4rem; }
   .frac-num, .frac-den { padding-left: .3rem; padding-right: .3rem; }
 }
+
+/* ---------- the line-up ---------- */
+
+.lineup {
+  display: grid; gap: .9rem; grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 900px) { .lineup { grid-template-columns: minmax(0,1fr); } }
+
+.suspect {
+  display: flex; flex-direction: column; text-align: left; gap: .55rem;
+  background: var(--card); border: 1px solid var(--rule-2); border-radius: 13px;
+  padding: 1.05rem 1.1rem; color: inherit;
+  transition: border-color .18s, transform .18s, opacity .18s, box-shadow .18s;
+}
+.suspect:hover { border-color: var(--ink-2); }
+.suspect.open { border-color: var(--advice); box-shadow: var(--shadow); transform: translateY(-2px); }
+.suspect.dim { opacity: .5; }
+.suspect-name { font-size: 1.02rem; font-weight: 650; letter-spacing: -.012em; }
+.suspect-blurb {
+  font-family: var(--sans); font-size: .84rem; line-height: 1.5;
+  color: var(--ink-2); margin: 0; max-width: none;
+}
+/* The verdict appears on click. Reserve its height so picking a card does not
+   push the comparison bar the reader is checking it against. */
+.suspect-verdict {
+  font-family: var(--sans); font-size: .82rem; line-height: 1.45;
+  margin: 0; max-width: none; min-height: 5.8em;
+}
+@media (min-width: 700px) { .suspect-verdict { min-height: 4.4em; } }
+/* Red and green were off-palette and the standard colour-blind failure pair.
+   The verdict text carries the distinction, so weight is enough. */
+.suspect-verdict.out { color: var(--muted); font-weight: 600; }
+.suspect-verdict.in  { color: var(--advice); font-weight: 600; }
+
+.sig { display: grid; gap: .1rem; margin-top: .2rem; }
+.sig-row { display: flex; align-items: center; gap: .5rem; }
+.sig-k {
+  font-family: var(--sans); font-size: .74rem; color: var(--muted);
+  width: 6.6rem; flex: none;
+}
+.sig-cell { color: var(--ink-2); display: inline-flex; flex: none; }
+/* Match and mismatch, without relying on a red/green pair: the matching arrow
+   takes the advice accent and full weight, the mismatch recedes. */
+.sig-cell.hit { color: var(--advice); opacity: 1; }
+.sig-cell.miss { color: var(--muted); opacity: .45; }
+.sig-v {
+  font-family: var(--mono); font-size: .78rem; color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.observed {
+  background: var(--ground-2); border: 1px solid var(--rule);
+  border-radius: 13px; padding: .9rem 1.1rem;
+  display: flex; align-items: center; gap: 1.6rem; flex-wrap: wrap;
+}
+.observed-k {
+  font-family: var(--sans); font-size: .72rem; font-weight: 650;
+  letter-spacing: .09em; text-transform: uppercase; color: var(--muted);
+}
+.sig-obs { display: flex; gap: 1.6rem; flex-wrap: wrap; }
+.sig-obs .sig-row { gap: .4rem; }
+.sig-obs .sig-k { width: auto; }
+.sig-obs .sig-cell { color: var(--advice); }
+
+/* ---------- the balance-sheet probes ---------- */
+
+.probe-cols {
+  display: grid; gap: 1.2rem; grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 760px) { .probe-cols { grid-template-columns: minmax(0,1fr); } }
+.probe-group { display: flex; flex-direction: column; gap: .45rem; align-items: flex-start; }
+.probe-title {
+  font-family: var(--sans); font-size: .78rem; font-weight: 650;
+  letter-spacing: .04em; color: var(--ink);
+}
+.probe-sub {
+  font-family: var(--sans); font-size: .76rem; color: var(--muted);
+  margin-bottom: .15rem;
+}
+.chip.probe { text-align: left; white-space: normal; line-height: 1.35; }
+
+/* ---------- the prompt box ---------- */
+
+.pb-body .pb-p { margin: 0 0 .8rem; max-width: none; }
+.pb-body .pb-p.pb-last { margin-bottom: 0; font-size: .88em; color: var(--muted); }
+.pb-mark {
+  background: var(--advice-soft); color: var(--advice);
+  padding: .04em .3em; border-radius: 5px; font-weight: 600;
+}
+.pb-foot { margin-top: 1rem; padding-top: .8rem; border-top: 1px solid var(--rule); }
+.promptbox .pb-head { margin-bottom: 1rem; }
+.promptbox .pb-head::after { margin-left: .1rem; }
+.pb-head .slot { text-transform: none; letter-spacing: 0; font-size: .95rem; }
+
+/* the inline signature glyphs must not stretch to fill their flex cell */
+.sig-cell svg { width: 40px !important; height: 22px; flex: none; display: block; }
+.sig { margin-top: .35rem; }
+.sig-row { min-height: 24px; }
+.ok-t { color: var(--ok); font-weight: 600; }
+.alert-t { color: var(--alert); font-weight: 600; }

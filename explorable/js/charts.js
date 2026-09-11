@@ -22,11 +22,15 @@ window.CH = (function () {
 
   function svg(w, h, parent, opts) {
     opts = opts || {};
+    /* role="img" makes the subtree presentational, which silences any focusable
+       children. Charts that expose per-point hit targets pass interactive:true
+       so the tab stops inside them are actually announced. */
     var s = el("svg", {
       viewBox: "0 0 " + w + " " + h,
       preserveAspectRatio: opts.preserve || "xMidYMid meet",
-      role: "img"
+      role: opts.interactive ? "group" : "img"
     }, parent);
+    if (opts.interactive && opts.label) s.setAttribute("aria-label", opts.label);
     s.style.display = "block";
     s.style.width = "100%";
     s.style.height = opts.height || "auto";

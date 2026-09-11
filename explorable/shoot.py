@@ -63,6 +63,12 @@ def main():
             try { localStorage.setItem('oafw.progress.v1', JSON.stringify(mem)); } catch(e) {}
         }""")
 
+        # The hash navigations below are same-document, so EX never re-reads
+        # storage and its stale in-memory copy would overwrite what we just
+        # wrote. Reload once so the unlocked progress is the live state.
+        page.reload()
+        page.wait_for_timeout(200)
+
         shots = 0
         for deck in decks:
             n = page.evaluate("EX.decks['%s'].slides.length" % deck)
