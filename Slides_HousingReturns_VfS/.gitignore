@@ -1,5 +1,3 @@
-# Rendered output — reproduce with `quarto render index.qmd`
-index_files/
 
 # Quarto's scratch directory (it adds this rule itself on render)
 /.quarto/
