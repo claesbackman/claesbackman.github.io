@@ -1,4 +1,4 @@
-/* decks/b-trunk.js — feasible, reform, wealth, sandbox */
+/* decks/b-trunk.js — feasible, reform, wealth, learned */
 (function () {
   const L = window.LIB, P = L.PAPER;
   const TYPES = ['rural', 'province', 'country', 'city', 'capital'];
@@ -53,6 +53,14 @@
   const feasible = {
     id: 'feasible', title: 'What you can actually buy', short: 'Feasible set',
     slides: [
+      {
+        title: 'Why isn\'t Anna in the winning town?', layout: 'center',
+        prose: `
+          <p>Back to the question we left open. Bo is not a better picker within a town. He is in a different town. And we now know why that matters: his return piles up as wealth, hers is lived in. So the gap comes down to one question: why is Anna not there too?</p>
+          <p>Two stories fit the same map. In the first, Anna <strong>chose</strong>. Her job is elsewhere, her family is nearby, and Copenhagen was never the plan. In the second, Anna <strong>could not</strong>. The homes she could finance in the fast-growing towns were too small to live in, so she bought where the bank's ceiling was above the floor.</p>
+          <p>Both stories leave Anna in the same place, so looking at where she bought cannot separate them. Two things can. First, look at what she <em>could</em> have bought, not just what she did. That is her feasible set, and the next slides build it. Second, find a moment when what she could buy changed while everything else about her stayed the same. Denmark provides one.</p>`,
+        doors: [{ to: 'feasible/1', label: 'First, what could she buy?', hint: 'The main road', kind: 'next' }],
+      },
       {
         title: 'You cannot buy a slice of a neighbourhood', layout: 'split', nextLabel: 'How does the bank decide?',
         prose: `
@@ -170,8 +178,8 @@
         prose: `
           <p>Across all buyers, which rule sets the ceiling? For a little over half, the <strong>income rule</strong>. The down-payment rule bites most in the middle of the income ladder and rarely at the top or bottom.</p>
           <p>Savings-based ceilings are fairly similar across incomes, partly because lower-income buyers are often older and have equity. Income-based ceilings are not. That is the rule standing between Anna and Copenhagen.</p>
-          <p class="q">So loosen the income rule and Anna gets in?</p>`,
-        doors: [{ to: 'reform/0', label: 'Denmark tried exactly that', hint: 'The 2003 experiment', kind: 'next' }],
+          <p class="q">If the income rule is what keeps Anna out, relaxing it should let her in. Denmark relaxed it.</p>`,
+        doors: [{ to: 'reform/0', label: 'What happened in 2003?', hint: 'The natural experiment', kind: 'next' }],
         stage(el) {
           const c = L.chart(600, 320, { l: 52, r: 20, t: 30, b: 44 }, [0, 100], [0, 1]);
           L.axisY(c, [0, 0.25, 0.5, 0.75, 1], v => Math.round(v * 100) + '%', 'share of buyers');
@@ -217,6 +225,7 @@
         prose: `
           <p>In 2003 Denmark allowed <strong>interest-only mortgages</strong>: ten years with no repayment of principal. Monthly payments fell by roughly a fifth. That loosens exactly the income rule from the last deck.</p>
           <p>Uptake was huge. Within a few years, over 60 percent of purchases used one, across the whole income ladder.</p>
+          <p>If the constraint story is right, this is the moment Anna should get in. If the choice story is right, nothing should move.</p>
           <p class="q">In the fast-growing towns, what happened to the share of low-income buyers?</p>
           <div class="bets" id="bet-share">
             <button class="bet" data-v="up">It rose</button>
@@ -257,7 +266,7 @@
         },
       },
       {
-        title: 'Prices moved. Buyers did not.', layout: 'stack', nextLabel: 'Why? Run the town yourself',
+        title: 'Prices moved. Buyers did not.', layout: 'stack', nextLabel: 'What this means',
         prose: (ctx) => {
           const s = ctx.getBet('r-share'), p = ctx.getBet('r-price');
           const echo = (s === 'flat' ? 'You called the buyer share right. ' : s ? 'You expected the buyer share to move. It did not. ' : '') + (p === 'up' ? 'And you called prices right.' : p ? 'Prices, though, rose sharply.' : '');
@@ -280,79 +289,13 @@
         },
       },
       {
-        title: 'The auction', layout: 'stack', stageClass: 'stage-tall', nextLabel: 'What this means',
-        prose: `
-          <p>Why would more credit change nothing about who buys? Run the town yourself. Eight homes for sale, twenty-four would-be buyers up the income ladder, each bidding up to their ceiling. The top eight bids win, and the price is set where the eighth bid lands.</p>
-          <p>Press <strong>loosen credit</strong>, which cuts everyone's payments by a fifth, as the 2003 reform did. Who wins now? Then let builders respond to the price and see who gets in.</p>`,
-        stage(el, ctx, info) {
-          const bidders = []; const r = L.rng(3);
-          for (let i = 0; i < 24; i++) {
-            const rank = 6 + i * 4;
-            bidders.push({ id: i, rank, income: L.incomeAt(rank) * (0.9 + 0.2 * r()), wealth: L.wealthAt(rank) * (0.7 + 0.6 * r()) });
-          }
-          const N = 8;
-          const base = L.auction(bidders, N);
-          let loosened = info.revisit, elastic = false;
-          const c = L.chart(900, 330, { l: 56, r: 16, t: 30, b: 44 }, [0, 24], [0, 5e6]);
-          L.axisY(c, [0, 1e6, 2e6, 3e6, 4e6, 5e6], v => (v / 1e6) + 'm', 'maximum bid, DKK');
-          L.axisX(c, [0.5, 6.5, 12.5, 18.5, 23.5], v => 'rank ' + bidders[Math.floor(v)].rank, 'would-be buyers, by income rank');
-          const bw = (c.x(1) - c.x(0)) * 0.72;
-          const bars = bidders.map((b, i) => { const e = L.svg('rect', { x: c.x(i) + (c.x(1) - c.x(0) - bw) / 2, width: bw, rx: 3, fill: 'var(--ink-3)' }); e.appendChild(L.svg('title')); c.g.appendChild(e); return e; });
-          const pLine = L.svg('line', { x1: c.m.l, x2: c.W - c.m.r, stroke: 'var(--gain)', 'stroke-width': 2.5 });
-          const pLbl = L.svg('text', { x: c.m.l + 6, class: 'lbl', fill: 'var(--gain)' });
-          c.g.append(pLine, pLbl);
-          const status = L.el('p', { class: 'q', style: 'margin:0' });
-          const legend = L.el('div', { class: 'legend' });
-          legend.appendChild(L.el('span', { style: '--c:var(--anna)', text: 'wins, bottom third' }));
-          legend.appendChild(L.el('span', { style: '--c:var(--ink)', text: 'wins, middle third' }));
-          legend.appendChild(L.el('span', { style: '--c:var(--bo)', text: 'wins, top third' }));
-          legend.appendChild(L.el('span', { style: '--c:var(--paper-3)', text: 'outbid' }));
-          let paint = () => {
-            const res = L.auction(bidders, N, { payFactor: loosened ? 0.8 : 1, elasticity: elastic ? 1.5 : 0, basePrice: base.price });
-            const byId = Object.fromEntries(res.bids.map(b => [b.id, b]));
-            bidders.forEach((b, i) => {
-              const bid = byId[b.id].bid, win = res.winners.has(b.id);
-              const y = c.y(Math.min(bid, 5e6));
-              bars[i].setAttribute('y', y); bars[i].setAttribute('height', c.y(0) - y);
-              bars[i].setAttribute('fill', win ? (b.rank < 34 ? 'var(--anna)' : b.rank > 66 ? 'var(--bo)' : 'var(--ink)') : 'var(--paper-3)');
-              bars[i].setAttribute('stroke', win ? 'none' : 'var(--line)');
-              bars[i].firstChild.textContent = `rank ${b.rank} · bids up to ${L.fmtDKK(bid)} · ${win ? 'wins' : 'outbid'}`;
-            });
-            pLine.setAttribute('y1', c.y(res.price)); pLine.setAttribute('y2', c.y(res.price));
-            pLbl.setAttribute('y', c.y(res.price) - 6); pLbl.textContent = `price ${L.fmtDKK(res.price)} · ${res.homes} homes`;
-            const winners = bidders.filter(b => res.winners.has(b.id));
-            const lowMid = winners.filter(b => b.rank <= 66).length;
-            status.innerHTML = `${res.homes} homes sold at <span class="num gain">${L.fmtDKK(res.price)}</span>. Winners below rank 67: <span class="num">${lowMid}</span> of ${res.homes}. Lowest winning rank: <span class="num">${Math.min(...winners.map(b => b.rank))}</span>.`;
-          };
-          const bLoose = L.el('button', { class: 'btn', text: loosened ? 'Tighten credit again' : 'Loosen credit (payments −20%)' });
-          bLoose.addEventListener('click', () => { loosened = !loosened; bLoose.textContent = loosened ? 'Tighten credit again' : 'Loosen credit (payments −20%)'; paint(); });
-          const tEl = L.toggle('let builders respond (elastic supply)', false, 'r-elastic');
-          tEl.input.addEventListener('change', () => { elastic = tEl.input.checked; paint(); });
-          const roofs = bidders.map((b, i) => CD.roof(c.g, { x: +bars[i].getAttribute('x'), w: bw, h: 9 }));
-          const sign = CD.solgt(c.g, { text: 'SOLGT', sub: '' });
-          const dress = () => {
-            let marginal = null, my = -1;
-            bidders.forEach((b, i) => { const win = bars[i].getAttribute('stroke') === 'none'; const y = +bars[i].getAttribute('y'); roofs[i].el.setAttribute('fill', bars[i].getAttribute('fill')); roofs[i].set(y, win); if (win && y > my) { my = y; marginal = i; } });
-            if (marginal !== null) { sign.set(+bars[marginal].getAttribute('x') + bw / 2, my); sign.g.setText('SOLGT', pLbl.textContent.replace('price ', '').split(' · ')[0]); }
-          };
-          const paint0 = paint; paint = () => { paint0(); dress(); };
-          pLbl.style.display = 'none';
-          el.appendChild(L.el('div', { class: 'controls' }, [bLoose, tEl.row]));
-          el.appendChild(L.el('div', { class: 'chart-wrap' }, [c.svg]));
-          el.appendChild(legend);
-          el.appendChild(status);
-          el.appendChild(L.el('p', { class: 'caption', text: 'A cartoon of the paper\'s framework, not its data. Coloured bars win. In the data, whether the mix of buyers in high-growth towns shifted after 2003 depended on how local supply responds to prices, which is what the switch imitates: where prices absorbed the extra credit, the mix stayed put.' }));
-          paint();
-        },
-      },
-      {
         title: 'More credit, same winners, higher prices', layout: 'center',
         prose: `
           <p>Credit sets the baseline of who can enter a market at all. But when the number of homes cannot grow, more credit for everyone buys the same homes at higher prices. The ranking of bids does not change, so the winners do not either. Sorting by income is where the market settles, not an accident waiting for a policy fix.</p>
           <p>The paper reads the 2003 reform, and a 2016 tightening aimed at Copenhagen and Aarhus, the same way: borrowing capacity moved, prices moved, the income mix of buyers in high-growth towns did not. Higher-income buyers also live in the places where supply is least elastic.</p>
           <p class="note">Other frictions push the same way: people prefer to live near where they grew up, search locally, and commute to jobs that are somewhere in particular. The paper does not claim to isolate one cause. It shows the pattern is consistent with constraints plus inelastic supply, and inconsistent with a simple "loosen credit and they will come".</p>`,
         doors: [
-          { to: 'wealth/0', label: 'So what does the shape of the return do to wealth?', hint: 'The main road', kind: 'next' },
+          { to: 'learned/0', label: 'What we learned', hint: 'The end of the road', kind: 'next' },
           { to: 'elsewhere/0', label: 'Is any of this specific to Denmark?', kind: 'side' },
         ],
       },
@@ -411,10 +354,11 @@
         },
       },
       {
-        title: 'How much of the wealth gap is this?', layout: 'stack', stageClass: 'stage-tall', nextLabel: 'What we learned',
+        title: 'How much of the wealth gap is this?', layout: 'stack', stageClass: 'stage-tall',
         prose: `
           <p>Rich and poor households earn different returns on everything they own, not just houses. How much of the total wealth-return gap between the 90th and 10th income percentiles comes from housing?</p>
           <p>This is the paper's calculation, with every input exposed. Change any number and the bars follow. Drag the two housing returns to the same value to see what the gap would be without the housing gradient.</p>`,
+        doors: [{ to: 'feasible/0', label: 'So why is Anna not in the winning town?', hint: 'The main road', kind: 'next' }],
         stage(el) {
           const D = P.portfolio;
           let shares = JSON.parse(JSON.stringify(D.DK));
@@ -475,6 +419,15 @@
           el.appendChild(L.el('div', { class: 'grid2', style: 'flex:0 0 auto' }, [left, right]));
         },
       },
+    ],
+  };
+
+  // =====================================================================
+  // DECK 8 · learned
+  // =====================================================================
+  const learned = {
+    id: 'learned', title: 'What we learned', short: 'What we learned',
+    slides: [
       {
         title: 'What we learned', layout: 'stack',
         stage(el) { const j = CD.roofAndCoin(200); j.style.height = '100%'; j.style.width = 'auto'; j.style.alignSelf = 'center'; el.appendChild(j); el.appendChild(L.el('p', { class: 'caption', style: 'text-align:center', text: 'You cannot put a roof in a savings account.' })); },
@@ -482,79 +435,17 @@
           <p>Bo's home rose in price faster than Anna's, by about 1.4 points a year. <a data-go="gap/0" href="#gap/0">The gap</a>.</p>
           <p>Almost all of that is where they bought, not what or when. Inside a town, richer buyers do no better. <a data-go="why/1" href="#why/1">Why</a>.</p>
           <p>Where Anna bought, rents are high next to prices. Add the rent she never paid and their total returns are about equal. <a data-go="yield/2" href="#yield/2">The other half</a>.</p>
-          <p>Their feasible sets differ. A home is bought whole, and the bank's income rule shrinks the set of whole homes Anna can reach, most of all in the fast-growing towns. The paper shows this is consistent with the sorting, not that it is the only cause. <a data-go="feasible/2" href="#feasible/2">The feasible set</a>.</p>
-          <p>Loosening credit did not change who got in. With supply fixed, it raised prices instead. <a data-go="reform/2" href="#reform/2">The auction</a>.</p>
           <p>So the total return to housing is roughly equal but its shape is not. Price gains become wealth. Housing services get lived in. <a data-go="wealth/0" href="#wealth/0">The roof</a>.</p>
+          <p>Their feasible sets differ. A home is bought whole, and the bank's income rule shrinks the set of whole homes Anna can reach, most of all in the fast-growing towns. The paper shows this is consistent with the sorting, not that it is the only cause. <a data-go="feasible/3" href="#feasible/3">The feasible set</a>.</p>
+          <p>Loosening credit did not change who got in. With supply fixed, it raised prices instead. <a data-go="reform/2" href="#reform/2">The reform</a>.</p>
           <p class="note">Open questions the paper leaves on the table: whether these place-based gains persist beyond 1996 to 2022, how much of location is choice rather than constraint, and whether the same places also pay off through schools and jobs.</p>`,
         doors: [
-          { to: 'sandbox/0', label: 'Build your own housing market', hint: 'The sandbox', kind: 'next' },
+          { to: 'start/0', label: 'Start again from the beginning', hint: 'Back to the start', kind: 'next' },
           { to: 'measure/3', label: 'What this cannot tell you', kind: 'side' },
         ],
       },
     ],
   };
 
-  // =====================================================================
-  // DECK S · sandbox
-  // =====================================================================
-  const sandbox = {
-    id: 'sandbox', title: 'Your Denmark', short: 'Sandbox',
-    slides: [
-      {
-        title: 'Build a housing market', layout: 'stack', stageClass: 'stage-tall',
-        prose: `
-          <p>The auction with every knob exposed, and Anna's reach into the fast-growing places as a readout. Who ends up owning in the fast-growing town under your rules?</p>
-          <p class="note">Where the cartoon breaks: prices elsewhere are held fixed, nobody moves for a job, nobody inherits a down payment, and everything is realized rather than expected return. The paper's own list of caveats is in <a data-go="measure/3" href="#measure/3">the methods room</a>.</p>`,
-        doors: [{ to: 'start/0', label: 'Back to the beginning', kind: 'back' }],
-        stage(el) {
-          const opts = { down: 0.20, pti: 0.35, rate: 0.04, payFactor: 1, elasticity: 0, homes: 8, minSize: 0 };
-          const r = L.rng(5);
-          const bidders = []; for (let i = 0; i < 24; i++) { const rank = 6 + i * 4; bidders.push({ id: i, rank, income: L.incomeAt(rank) * (0.9 + 0.2 * r()), wealth: L.wealthAt(rank) * (0.7 + 0.6 * r()) }); }
-          const auc = (o) => {
-            const bids = bidders.map(b => ({ ...b, bid: L.borrow(b.income, b.wealth, { down: o.down, pti: o.pti, rate: o.rate, payFactor: o.payFactor }).max })).sort((a, b) => b.bid - a.bid);
-            const p0 = bids[o.homes - 1].bid;
-            let homes = o.homes, price = p0;
-            if (o.elasticity > 0) { for (let it = 0; it < 30; it++) { homes = L.clamp(Math.round(o.homes * Math.pow(price / basePrice, o.elasticity)), 1, 24); const p2 = bids[homes - 1].bid; if (Math.abs(p2 - price) < 1) break; price = (price + p2) / 2; } price = bids[homes - 1].bid; }
-            return { bids, homes, price, winners: new Set(bids.slice(0, homes).map(b => b.id)) };
-          };
-          const basePrice = auc({ ...opts, elasticity: 0 }).price;
-          const c = L.chart(900, 300, { l: 56, r: 16, t: 30, b: 44 }, [0, 24], [0, 6e6]);
-          L.axisY(c, [0, 2e6, 4e6, 6e6], v => (v / 1e6) + 'm', 'maximum bid, DKK');
-          L.axisX(c, [0.5, 6.5, 12.5, 18.5, 23.5], v => 'rank ' + bidders[Math.floor(v)].rank, 'would-be buyers, by income rank');
-          const bw = (c.x(1) - c.x(0)) * 0.72;
-          const bars = bidders.map((b, i) => { const e = L.svg('rect', { x: c.x(i) + (c.x(1) - c.x(0) - bw) / 2, width: bw, rx: 3 }); c.g.appendChild(e); return e; });
-          const pLine = L.svg('line', { x1: c.m.l, x2: c.W - c.m.r, stroke: 'var(--gain)', 'stroke-width': 2.5 }), pLbl = L.svg('text', { x: c.m.l + 6, class: 'lbl', fill: 'var(--gain)' });
-          c.g.append(pLine, pLbl);
-          const status = L.el('p', { class: 'q', style: 'margin:0' });
-          const paint = () => {
-            const res = auc(opts);
-            const byId = Object.fromEntries(res.bids.map(b => [b.id, b]));
-            bidders.forEach((b, i) => { const bid = byId[b.id].bid, win = res.winners.has(b.id); const y = c.y(Math.min(bid, 6e6)); bars[i].setAttribute('y', y); bars[i].setAttribute('height', c.y(0) - y); bars[i].setAttribute('fill', win ? (b.rank < 34 ? 'var(--anna)' : b.rank > 66 ? 'var(--bo)' : 'var(--ink)') : 'var(--paper-3)'); bars[i].setAttribute('stroke', win ? 'none' : 'var(--line)'); });
-            pLine.setAttribute('y1', c.y(res.price)); pLine.setAttribute('y2', c.y(res.price)); pLbl.setAttribute('y', c.y(res.price) - 6); pLbl.textContent = `price ${L.fmtDKK(res.price)} · ${res.homes} homes`;
-            const winners = bidders.filter(b => res.winners.has(b.id));
-            const share = L.feasibleShare(L.borrow(L.HH.anna.income, L.HH.anna.wealth, opts).max, { minSize: opts.minSize, highGrowth: true });
-            status.innerHTML = `${res.homes} homes at <span class="num gain">${L.fmtDKK(res.price)}</span>. Lowest winning rank <span class="num">${Math.min(...winners.map(b => b.rank))}</span>. Anna's feasible share of high-growth homes: <span class="num">${Math.round(share * 100)}%</span>.`;
-          };
-          const S = (label, key, min, max, step, fmt, id) => { const s = L.slider(label, min, max, opts[key], step, fmt, id); s.input.addEventListener('input', () => { opts[key] = +s.input.value; paint(); }); return s.row; };
-          const left = L.el('div', { class: 'panel' }, [L.el('h3', { text: 'Credit rules' }),
-            S('down payment', 'down', 0.05, 0.4, 0.01, v => Math.round(v * 100) + '%', 'sb-down'),
-            S('payment cap, share of income', 'pti', 0.15, 0.6, 0.01, v => Math.round(v * 100) + '%', 'sb-pti'),
-            S('mortgage rate', 'rate', 0.005, 0.09, 0.0025, v => (v * 100).toFixed(2) + '%', 'sb-rate'),
-            S('monthly payment per krone borrowed', 'payFactor', 0.6, 1, 0.05, v => v.toFixed(2), 'sb-pf'),
-            L.el('p', { class: 'caption', text: 'Payment 0.8 means a fifth lower monthly payments for the same loan, as interest-only mortgages gave.' })]);
-          const right = L.el('div', { class: 'panel' }, [L.el('h3', { text: 'The town' }),
-            S('homes for sale', 'homes', 2, 20, 1, v => String(v), 'sb-homes'),
-            S('supply elasticity', 'elasticity', 0, 3, 0.1, v => v.toFixed(1), 'sb-el'),
-            S('minimum size Anna needs', 'minSize', 0, 150, 5, v => v + ' m²', 'sb-size'),
-            L.el('p', { class: 'caption', text: 'Elasticity 0: no new homes however high prices go. 2: the number of homes rises twice as fast as the price.' })]);
-          el.appendChild(L.el('div', { class: 'grid2', style: 'flex:0 0 auto' }, [left, right]));
-          el.appendChild(L.el('div', { class: 'chart-wrap', style: 'flex:0 0 auto' }, [c.svg]));
-          el.appendChild(status);
-          paint();
-        },
-      },
-    ],
-  };
-
-  window.DECKS.push(feasible, reform, wealth, sandbox);
+  window.DECKS.push(feasible, reform, wealth, learned);
 })();

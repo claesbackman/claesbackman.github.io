@@ -181,8 +181,8 @@
   // ---------- map ----------
   const MAP = {
     // grid positions (col,row) for each deck
-    start: [0, 1], gap: [1, 1], why: [2, 1], yield: [3, 1], feasible: [4, 1], reform: [5, 1], wealth: [6, 1], sandbox: [7, 1],
-    measure: [0.6, 2.2], risk: [2.6, 0], elsewhere: [5.4, 2.2],
+    start: [0, 1], gap: [1, 1], why: [2, 1], yield: [3, 1], wealth: [4, 1], feasible: [5, 1], reform: [6, 1], learned: [7, 1],
+    measure: [0.6, 2.2], risk: [2.6, 0], elsewhere: [6.4, 2.2],
   };
   function edges() {
     const E = new Set();

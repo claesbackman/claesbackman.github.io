@@ -429,9 +429,8 @@
           <p>Bo is not better at picking the winning street. He is better at being in the winning town.</p>
           <p>The paper's own words: the gradient reflects differential exposure to high-growth locations, not superior within-market performance.</p>`,
         doors: [
-          { to: 'yield/0', label: 'Before that: is Bo\'s bigger price gain the whole story?', hint: 'The main road: the other half of the return', kind: 'next', primary: true },
+          { to: 'yield/0', label: 'Is Bo\'s bigger price gain the whole story?', hint: 'The main road: the other half of the return', kind: 'next', primary: true },
           { to: 'risk/0', label: 'Is the winning town just riskier?', hint: 'A finance side room', kind: 'side' },
-          { to: 'feasible/0', label: 'Skip ahead: why different towns?', hint: 'Rejoin the road later', kind: 'side' },
         ],
         stage(el) {
           const c = L.chart(600, 320, { l: 52, r: 20, t: 30, b: 44 }, [0, 100], [-1, 1]);
@@ -571,8 +570,7 @@
           <p>Brick is the wall: price gains, the part you can sell or borrow against. Thatch is the roof: the yield, the part you live under. Anna's return is mostly roof. Bo's is mostly wall.</p>
           <p class="q">Does the shape matter if the total is the same?</p>`,
         doors: [
-          { to: 'wealth/0', label: 'Yes, and here is why', hint: 'Jump to wealth', kind: 'side' },
-          { to: 'feasible/0', label: 'First: why do they end up in different places?', hint: 'The main road', kind: 'next' },
+          { to: 'wealth/0', label: 'Yes, and here is why', hint: 'The main road', kind: 'next' },
         ],
         stage(el) {
           const W = 600, H = 340, base = 290, top = 40;

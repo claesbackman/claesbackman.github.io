@@ -69,7 +69,7 @@
           <p>High-income buyers do sit in markets with marginally higher measured risk on some dimensions, and marginally lower on others. Nothing here is the size of a 1.4 point yearly return gap. And inside a town, richer buyers do slightly worse, so it is not stock-picking talent with houses.</p>
           <p>Something else keeps Anna out of the fast-growing places. The paper's answer is about what she can feasibly buy.</p>`,
         doors: [
-          { to: 'feasible/0', label: 'Onward: what you can actually buy', hint: 'Rejoin the main road', kind: 'next' },
+          { to: 'yield/0', label: 'Onward: the other half of the return', hint: 'Rejoin the main road', kind: 'next' },
           { to: 'why/3', label: 'Back to the twist', kind: 'back' },
         ],
       },
@@ -123,8 +123,8 @@
           <p>Where it should be weaker: places where builders can respond quickly, countries where most people rent, and tax systems that take a bite out of owner-occupied capital gains.</p>
           <p class="note">The paper's Danish evidence is unusually clean because the registers cover every sale and every buyer's income. The mechanism is not unusually Danish.</p>`,
         doors: [
-          { to: 'wealth/0', label: 'What the shape of the return does to wealth', hint: 'Main road', kind: 'next' },
-          { to: 'reform/3', label: 'Back to the reform', kind: 'back' },
+          { to: 'learned/0', label: 'What we learned', hint: 'The end of the road', kind: 'next' },
+          { to: 'reform/2', label: 'Back to the reform', kind: 'back' },
         ],
       },
     ],
@@ -181,7 +181,7 @@
           <p><strong>Cash flows are approximate.</strong> The total return adds an imputed yield to a realized gain. A fuller internal-rate-of-return version, with maintenance, property tax and transaction costs, tilts the total slightly toward lower-income buyers.</p>`,
         doors: [
           { to: 'start/2', label: 'Back to Anna and Bo', kind: 'back' },
-          { to: 'wealth/2', label: 'What we learned', kind: 'next' },
+          { to: 'learned/0', label: 'What we learned', kind: 'next' },
         ],
       },
     ],
