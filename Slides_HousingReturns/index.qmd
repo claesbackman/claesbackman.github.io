@@ -23,8 +23,9 @@ format:
     fig-align: center
     include-in-header: theme/fonts.html
     include-after-body: js/include.html
+    embed-resources: true
 html-math-method: katex
-bibliography: ../../5_references.bib
+bibliography: 5_references.bib
 link-citations: false
 ---
 

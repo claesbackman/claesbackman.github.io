@@ -6,3 +6,5 @@ index_files/
 
 # shoot.py screenshots
 _shots/
+
+**/*.quarto_ipynb
