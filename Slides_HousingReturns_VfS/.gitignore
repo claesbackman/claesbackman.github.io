@@ -1,6 +1,0 @@
-
-# Quarto's scratch directory (it adds this rule itself on render)
-/.quarto/
-
-# shoot.py screenshots
-_shots/
