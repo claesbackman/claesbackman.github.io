@@ -23,7 +23,6 @@ format:
     fig-align: center
     include-in-header: theme/fonts.html
     include-after-body: js/include.html
-    embed-resources: true
 html-math-method: katex
 bibliography: 5_references.bib
 link-citations: false
@@ -177,9 +176,11 @@ Lower-income buyers realize the same total as [housing services]{.yield-t}, a co
 ## Balance sheet effects of capital gains 
 
 ::: {.prose}
-The capital gain [gH]{.gain-t} accrues directly as an asset value. The rental yield is consumed as housing services. 
+The capital gain  accrues directly as an asset value. In Denmark, capital gains on housing [is not taxed]{.gain-t}. 
 
-Equal total returns therefore need not imply equal wealth accumulation. 
+ The rental yield is consumed as housing services. For that to show up as wealth, households would need to [actively adjust their savings]{.yield-t} 
+
+[Equal total returns therefore need not imply equal wealth accumulation.]{.q}
 
 :::
 
