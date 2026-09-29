@@ -1,0 +1,475 @@
+/*-- scss:defaults --*/
+
+// Explorable deck theme
+//
+// Colour encodes the argument and nothing else. Four semantic colours, named
+// generically here. Do not rename them: the classes below and the notes
+// reference depend on the names. Instead give each an alias in the topic's
+// own words in the :root block (--gain: var(--primary);) and paint the charts
+// with the aliases, so that whoever writes a chart writes the argument into it:
+//     --primary    the quantity the talk is about
+//     --contrast   its counterweight or the second component
+//     --actor-a    the first character or group
+//     --actor-b    the second
+// Everything else is paper and ink.
+
+$paper:      #FFFFFF;
+$paper-2:    #F7F7F7;
+$paper-3:    #ECECEC;
+$ink:        #1C2224;
+$ink-2:      #4B5457;
+$ink-3:      #667074;
+$line:       #C9CEC6;
+
+// This deck: primary = advice (what a model recommends), contrast = theory (what a
+// benchmark prescribes), actor-a = Emily in Ohio (the United States), actor-b = Yuki in
+// Osaka (Japan). Hatching is the second channel: hatched marks the words of an answer,
+// solid marks its number.
+$primary:       #C4452A;
+$contrast:      #1B6E7E;
+$actor-a:       #B8760A;
+$actor-b:       #6B4FA8;
+$primary-soft:  #F2D9D2;
+$contrast-soft: #D2E6EA;
+$actor-a-soft:  #F1E3C6;
+$actor-b-soft:  #E4DDF1;
+
+// Three faces: a display grotesque for titles and labels, a serif narrator for
+// body text, a mono for numbers. Each has a system fallback so the deck
+// presents offline.
+$display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+$body:    "Newsreader", Georgia, "Times New Roman", serif;
+$jp:      "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+$mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+// reveal.js hooks
+$body-bg: $paper;
+$body-color: $ink;
+$link-color: $ink;
+$link-color-hover: $primary;
+$selection-bg: $primary-soft;
+$selection-color: $ink;
+
+$font-family-sans-serif: $body;
+$font-family-monospace: $mono;
+$presentation-font-size-root: 30px;
+$presentation-line-height: 1.45;
+
+$presentation-heading-font: $display;
+$presentation-heading-color: $ink;
+$presentation-heading-font-weight: 800;
+$presentation-heading-line-height: 1.08;
+$presentation-heading-letter-spacing: -0.02em;
+$presentation-h1-font-size: 2.4em;
+$presentation-h2-font-size: 1.3em;
+$presentation-h3-font-size: 1em;
+$presentation-h4-font-size: 0.85em;
+$presentation-title-slide-text-align: left;
+
+$code-block-font-size: 0.6em;
+
+/*-- scss:rules --*/
+
+/* The tokens as CSS variables, because the charts paint with var(--primary) etc. */
+:root {
+  --paper: #{$paper}; --paper-2: #{$paper-2}; --paper-3: #{$paper-3};
+  --ink: #{$ink}; --ink-2: #{$ink-2}; --ink-3: #{$ink-3}; --line: #{$line};
+  --primary: #{$primary}; --contrast: #{$contrast}; --actor-a: #{$actor-a}; --actor-b: #{$actor-b};
+  --primary-soft: #{$primary-soft}; --contrast-soft: #{$contrast-soft}; --actor-a-soft: #{$actor-a-soft}; --actor-b-soft: #{$actor-b-soft};
+  --focus: #{$actor-b};
+  --display: #{$display}; --body: #{$body}; --mono: #{$mono};
+  /* Topic aliases: one per token, in the topic's words. Charts use these. */
+  --advice: var(--primary); --advice-soft: var(--primary-soft);
+  --theory: var(--contrast); --theory-soft: var(--contrast-soft);
+  --emily: var(--actor-a); --emily-soft: var(--actor-a-soft);
+  --yuki: var(--actor-b); --yuki-soft: var(--actor-b-soft);
+  --jp: #{$jp};
+}
+
+.reveal {
+  font-family: $body;
+  -webkit-font-smoothing: antialiased;
+
+  h1, h2, h3 { font-family: $display; font-weight: 800; letter-spacing: -0.02em; text-transform: none; text-wrap: balance; }
+  h2 { font-size: 1.3em; line-height: 1.08; margin: 0 0 0.6em; max-width: none; text-align: left; }
+  .slide h2 { border: 0; padding: 0; }
+
+  p { margin: 0.45em 0; line-height: 1.45; }
+  strong { font-weight: 500; color: $ink; }
+  em { font-style: italic; }
+  a { color: $ink; text-decoration: underline; text-decoration-color: $ink-3; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { background: $paper-3; color: $ink; }
+
+  ul, ol { margin: 0.4em 0; }
+  li { margin: 0.3em 0; }
+  ul li::marker { color: $line; }
+
+  .slide-number { font-family: $display; font-size: 0.45em; color: $ink-3; background: none; }
+  .progress { color: $ink-3; height: 4px; }
+  .footer { font-family: $display; font-weight: 500; font-size: 0.42em; color: $ink-3; letter-spacing: 0.01em; }
+}
+
+/* ---------- typographic roles ---------- */
+
+.reveal .eyebrow { margin: 0 0 0.5em; font: 500 0.42em $display; letter-spacing: 0.08em; text-transform: uppercase; color: $ink-3; }
+.reveal .q { display: block; font: 700 1.05em/1.25 $display; color: $ink; margin: 0.55em 0; text-wrap: balance; }
+.reveal .note { display: block; font-size: 0.82em; line-height: 1.45; color: $ink-2; border-left: 3px solid $line; padding-left: 12px; margin-top: 0.7em; }
+.reveal .live-note { display: block; font-size: 0.9em; line-height: 1.45; color: $ink; margin-top: 0.6em; min-height: 2.9em; }
+.reveal .source { display: block; font: 400 0.5em/1.4 $body; color: $ink-3; margin-top: 0.6em; }
+.reveal .num { font-family: $mono; font-variant-numeric: tabular-nums; font-size: 0.92em; }
+.reveal .primary-t  { color: $primary;  font-weight: 500; }
+.reveal .contrast-t { color: color-mix(in srgb, $contrast 80%, $ink); font-weight: 500; }
+.reveal .actor-a-t  { color: color-mix(in srgb, $actor-a 78%, $ink); font-weight: 500; }
+.reveal .actor-b-t  { color: $actor-b;  font-weight: 500; }
+.reveal .muted-t { color: $ink-3; }
+.reveal .kbd { font: 500 0.7em $mono; border: 1px solid $line; border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: $paper; }
+
+/* ---------- layouts: prose beside a stage, or stacked ---------- */
+
+.reveal .split { display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 0 44px; align-items: start; }
+.reveal .split.even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 28px; }
+.reveal .split.wide-left { grid-template-columns: minmax(0, 1fr) minmax(0, 400px); }
+.reveal .split.center-v { align-items: center; }
+.reveal .rule { border: 0; border-top: 1px solid $line; margin: 0.8em 0; }
+.reveal .split.cols { gap: 0; align-items: start; }
+.reveal .prose + .split.cols, .reveal .split.cols + .prose { margin-top: 1em; }
+.reveal .split.cols > * { padding: 0 32px; }
+.reveal .split.cols > :first-child { padding-left: 0; }
+.reveal .split.cols > :last-child { padding-right: 0; border-left: 1px solid $line; }
+.reveal .split.cols img { display: block; width: 100%; height: auto; margin: 0 0 10px; }
+.reveal .colhead { display: block; font: 700 1.15em/1.2 $display; letter-spacing: -0.01em; color: $ink; margin: 0 0 0.35em; }
+.reveal .split > * { min-width: 0; }
+.reveal .stack { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.reveal .stack .prose { max-width: 1000px; }
+
+.reveal .prose { font-size: 0.66em; line-height: 1.5; }
+.reveal .prose p { margin: 0 0 0.6em; }
+.reveal .prose > :last-child, .reveal .prose > :last-child > :last-child { margin-bottom: 0; }
+.reveal .prose .q { font-size: 1.15em; }
+.reveal .prose .source { font-size: 0.78em; }
+
+/* ---------- the stage: a fixed box the charts fill ---------- */
+
+.reveal .stage { height: 440px; display: flex; flex-direction: column; gap: 8px; min-width: 0; position: relative; font-size: 15px; }
+.reveal .stage.tall { height: 500px; }
+.reveal .stack .stage { height: 380px; }
+.reveal .stack .stage.tall { height: 470px; }
+.reveal .stage > .chart-wrap { flex: 1 1 auto; min-height: 0; display: flex; justify-content: center; }
+.reveal .stage svg.chart { width: 100%; height: 100%; display: block; overflow: visible; }
+.reveal .stage .ctl { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.reveal .stage .ctl .ctl { display: contents; }
+.reveal .caption { font: 400 14px/1.4 $body; color: $ink-2; margin: 0; }
+.reveal .caption .num { color: $ink; }
+.reveal .caption.status { font-family: $display; font-weight: 500; color: $ink; }
+/* .terse stages drop their captions; carry the source line in the prose instead */
+.reveal .stage.terse .caption:not(.status) { display: none; }
+
+/* chart typography */
+.reveal .chart text { font: 500 13px $mono; fill: $ink-2; }
+.reveal .chart .axis line { stroke: $line; stroke-width: 1; }
+.reveal .chart .axis line.grid { stroke: $paper-3; }
+.reveal .chart .axis-label { fill: $ink-3; font-family: $display; font-size: 12.5px; letter-spacing: 0.04em; text-transform: uppercase; }
+.reveal .chart .lbl { font: 700 14px $display; fill: $ink; paint-order: stroke; stroke: $paper; stroke-width: 3px; stroke-linejoin: round; }
+.reveal .chart .lbl.onbar { fill: $paper !important; stroke: none !important; }
+.reveal .chart .lbl-big { font: 800 24px $display; fill: $ink; }
+.reveal .chart .lbl-mono { font: 500 14px $mono; fill: $ink; }
+
+/* ---------- controls ---------- */
+
+.reveal .slider { display: grid; grid-template-columns: minmax(90px, auto) 1fr auto; align-items: center; gap: 10px; font: 500 14px $display; color: $ink-2; }
+.reveal .slider output { font: 500 14px $mono; color: $ink; min-width: 6ch; text-align: right; font-variant-numeric: tabular-nums; }
+.reveal input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; margin: 0; background: transparent; cursor: ew-resize; }
+.reveal input[type=range]::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: $paper-3; border: 1px solid $line; }
+.reveal input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 18px; height: 16px; margin-top: -7px;
+  background: $primary; border: 0; border-radius: 0; clip-path: polygon(50% 0, 100% 42%, 100% 100%, 0 100%, 0 42%);
+}
+.reveal input[type=range]::-moz-range-track { height: 4px; border-radius: 2px; background: $paper-3; border: 1px solid $line; }
+.reveal input[type=range]::-moz-range-thumb { width: 18px; height: 16px; background: $primary; border: 0; border-radius: 0; clip-path: polygon(50% 0, 100% 42%, 100% 100%, 0 100%, 0 42%); }
+.reveal input[type=range]:focus-visible { outline: none; }
+.reveal input[type=range]:focus-visible::-webkit-slider-thumb { background: $actor-b; }
+
+.reveal .toggle { display: inline-flex; align-items: center; gap: 8px; font: 500 14px $display; cursor: pointer; color: $ink; }
+.reveal .toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+.reveal .toggle-track { width: 34px; height: 20px; border-radius: 999px; background: $paper-3; border: 1px solid $line; position: relative; transition: background 0.15s; flex: none; }
+.reveal .toggle-track::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: $paper; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); transition: left 0.15s; }
+.reveal .toggle input:checked + .toggle-track { background: $ink; }
+.reveal .toggle input:checked + .toggle-track::after { left: 16px; }
+
+.reveal .chip { font: 500 14px $display; border: 1.5px solid $line; background: $paper; color: $ink; border-radius: 999px; padding: 5px 12px; cursor: pointer; transition: all 0.12s; }
+.reveal .chip:hover { border-color: $ink-3; }
+.reveal .chip[aria-pressed="true"] { background: $ink; color: $paper; border-color: $ink; }
+.reveal .btn { font: 700 14px $display; border: 1.5px solid $ink; background: $ink; color: $paper; border-radius: 10px; padding: 8px 14px; cursor: pointer; }
+.reveal .btn:hover { opacity: 0.9; }
+
+.reveal .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font: 500 13px $display; color: $ink-2; }
+.reveal .legend span::before { content: ""; display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 6px; background: var(--c, #{$ink}); vertical-align: -1px; }
+.reveal .legend .hatched::before { background: repeating-linear-gradient(106deg, var(--c) 0 1.4px, transparent 1.4px 3.6px), color-mix(in srgb, var(--c) 16%, transparent); }
+
+.reveal .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; min-height: 0; flex: 1 1 auto; }
+.reveal .bignum { font: 800 40px $display; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; color: $ink; }
+.reveal .bignum small { font: 500 13px $display; letter-spacing: 0.06em; text-transform: uppercase; color: $ink-3; display: block; margin-top: 8px; }
+
+/* two named cases side by side, each a glyph over a name */
+.reveal .two-up { flex: 1 1 auto; min-height: 0; display: flex; justify-content: space-around; align-items: flex-end; padding-bottom: 8px; }
+.reveal .two-up .case { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.reveal .two-up .case b { font: 800 28px $display; letter-spacing: -0.01em; }
+.reveal .two-up .case small { font: 500 13px $mono; color: $ink-2; }
+.reveal .two-up .case.actor-a b { color: $actor-a; }
+.reveal .two-up .case.actor-b b { color: $actor-b; }
+
+/* ---------- panels and cards ---------- */
+
+.reveal .panel { border: 1px solid $line; border-radius: 10px; padding: 12px 16px; background: $paper-2; display: flex; flex-direction: column; gap: 6px; min-height: 0; box-shadow: none; }
+.reveal .panel.quiet { background: transparent; }
+.reveal .panel.actor-a { border-left: 4px solid $actor-a; }
+.reveal .panel.actor-b { border-left: 4px solid $actor-b; }
+/* Small headings inside a slide are spans, not markdown headings: pandoc wraps a
+   heading in a <section> and reveal.js then treats the slide as a vertical stack. */
+.reveal .ph { display: block; font: 700 0.72em/1.2 $display; color: $ink; margin: 0 0 0.3em; }
+.reveal .panel .ph { margin: 0; }
+.reveal .stage .panel .ph { font-size: 14px; }
+.reveal .panel p { font-size: 0.66em; line-height: 1.45; margin: 0; }
+.reveal .prose .panel p { font-size: 1em; }
+.reveal .panel p + p { margin-top: 0.4em; }
+.reveal .stage .panel svg.chart { flex: 1 1 auto; min-height: 0; }
+
+.reveal .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 0.4em 0 0.7em; }
+.reveal .stats.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.reveal .stats.col { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.reveal .stat { background: $paper-2; border: 1px solid $line; border-radius: 10px; padding: 16px 18px; }
+.reveal .stat p { margin: 0; }
+.reveal .stat .k { display: block; font: 800 1.45em/1 $display; letter-spacing: -0.02em; color: $primary; font-variant-numeric: tabular-nums; }
+.reveal .stat .k.c { color: $contrast; }
+.reveal .stat .k.a { color: $actor-a; }
+.reveal .stat .k.b { color: $actor-b; }
+.reveal .stat .k.f { color: $ink; }
+.reveal .stat .l { display: block; margin-top: 10px; font: 400 0.5em/1.4 $body; color: $ink-2; }
+.reveal .prose .stat .k { font-size: 1.9em; }
+.reveal .prose .stat .l { font-size: 0.8em; }
+.reveal .prose .stat { padding: 14px 16px; }
+
+/* ---------- the claim list: numbered, one idea each ---------- */
+
+.reveal .claims ul { list-style: none; margin: 0; padding: 0; counter-reset: claim; }
+.reveal .claims li { position: relative; padding-left: 2.1em; margin: 0 0 0.6em; font-size: 0.78em; line-height: 1.4; }
+.reveal .claims li::before { content: counter(claim); counter-increment: claim; position: absolute; left: 0; top: -0.08em; font: 800 1.4em/1 $display; color: $ink-3; }
+.reveal .prose .claims li { font-size: 1em; }
+
+/* A hand-written formula, for decks that must work with no network at all. */
+.reveal .eq { font-family: $mono; font-size: 0.68em; text-align: center; color: $ink; margin: 0.6em 0; }
+.reveal .eq sub, .reveal .eq sup { font-size: 0.7em; }
+
+/* ---------- tables ---------- */
+
+.reveal table { font: 400 0.5em $display; border-collapse: collapse; margin: 0.6em 0; }
+.reveal table th { font-weight: 500; font-size: 0.85em; letter-spacing: 0.04em; text-transform: uppercase; color: $ink-3; border-bottom: 1px solid $line; text-align: left; padding: 0.4em 0.8em 0.4em 0; }
+.reveal table td { border-bottom: 1px solid $line; padding: 0.4em 0.8em 0.4em 0; vertical-align: top; font-variant-numeric: tabular-nums; }
+.reveal table tr:last-child td { border-bottom: 0; }
+
+/* ---------- the source's own figures ---------- */
+
+.reveal .slide img, .reveal p img { background: none; border: 0; box-shadow: none; margin: 0; }
+/* Converted figures are blended into the paper so their white plot box disappears.
+   Raster figures (photos, screenshots, anything with a dark ground) must not be: .raster. */
+.reveal .figwrap img { mix-blend-mode: multiply; }
+.reveal .figwrap.raster img { mix-blend-mode: normal; }
+.reveal .figwrap { display: flex; justify-content: center; gap: 16px; }
+.reveal .figwrap p { display: flex; justify-content: center; align-items: flex-start; gap: 16px; margin: 0; flex-wrap: wrap; width: 100%; }
+/* Converted figures carry a small intrinsic size, so the height is set and the
+   width follows; a figure taller than wide needs .tall or its own slide. */
+.reveal .figwrap img { height: 440px; width: auto; max-width: 100%; }
+.reveal .figwrap.tall img { height: 500px; }
+.reveal .figwrap.pair img { height: 370px; }
+.reveal .split .figwrap img { height: 420px; }
+.reveal .figcap { display: block; font: 400 0.5em/1.4 $body; color: $ink-2; text-align: center; margin-top: 0.5em; }
+
+/* ---------- title slide ---------- */
+
+.reveal #title-slide {
+  text-align: left;
+  .title { font-size: 2.6em; line-height: 1; letter-spacing: -0.025em; margin: 0 0 0.3em; max-width: 18ch; }
+  .subtitle { font: 400 0.82em/1.35 $body; color: $ink-2; margin: 0 0 0.9em; max-width: 44ch; }
+  .quarto-title-authors { justify-content: flex-start; margin: 0; }
+  .quarto-title-author { padding: 0; margin: 0; }
+  .quarto-title-author-name { font: 500 0.52em/1.4 $display; color: $ink-2; margin: 0; }
+  .quarto-title-affiliation { font: 400 0.44em/1.4 $display; color: $ink-3; margin: 0; }
+  .date { font: 500 0.42em/1.4 $display; color: $ink-3; margin: 0.4em 0 0; }
+}
+
+/* ---------- section dividers: a big assertion and one short rule ---------- */
+/* The rule is the place for a topic motif (the housing deck used a course of brick). */
+
+.reveal .quarto-title-block h2 { border-bottom: 0; }
+.reveal .divider h2 { font-size: 2em; line-height: 1.05; max-width: 22ch; margin: 0; }
+/* The deck's motif is the 60/40 split, the answer the models give most often: a bar
+   60 percent advice-vermilion and 40 percent grey, with a notch at the split. */
+.reveal .divider h2::after, .reveal #title-slide .title::after {
+  content: ""; display: block; width: 200px; height: 8px; margin-top: 28px;
+  background: linear-gradient(90deg, $primary 0 118px, $paper 118px 122px, $line 122px 200px);
+}
+
+/* ---------- references ---------- */
+
+.reveal #refs { font-size: 0.5em; line-height: 1.35; }
+.reveal #refs .csl-entry { margin-bottom: 0.5em; }
+
+/* ---------- motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .chart * { transition: none !important; }
+}
+
+/* =====================================================================
+   This deck
+   ===================================================================== */
+
+.reveal .emily-t { color: color-mix(in srgb, $actor-a 78%, $ink); font-weight: 500; }
+.reveal .yuki-t  { color: $actor-b; font-weight: 500; }
+.reveal .advice-t { color: $primary; font-weight: 500; }
+.reveal .theory-t { color: $contrast; font-weight: 500; }
+.reveal .jp { font-family: $jp; }
+
+/* prose column a little narrower when a stage needs the width */
+.reveal .split.narrow { grid-template-columns: minmax(0, 330px) minmax(0, 1fr); gap: 0 36px; }
+
+/* chart label roles */
+.reveal .chart .rowhead { font: 700 15px $display; fill: $ink; }
+.reveal .chart .rowlbl { font: 500 14px $display; fill: $ink-2; }
+.reveal .chart .rowlbl-strong { font: 700 15px $display; fill: $ink; }
+.reveal .chart .lbl-sm { font: 500 13px $display; fill: $ink-2; }
+.reveal .chart .cell { font: 500 12px $mono; }
+.reveal .chart .eyebrow-svg { font: 700 13px $display; letter-spacing: 0.1em; fill: $ink-3; }
+.reveal .chart .glyph-sym { font: 800 20px $display; }
+.reveal .legend .dot::before { border-radius: 50%; }
+.reveal .legend .ring::before { background: $paper; border: 2.5px solid var(--c); border-radius: 50%; width: 8px; height: 8px; }
+.reveal .legend span.diamond::before { background: $ink; transform: rotate(45deg) scale(0.8); border-radius: 0; }
+.reveal .stage .ctl .legend { margin-left: auto; }
+
+/* ---------- chat bubbles: a prompt as it was sent, an answer as it came back ---------- */
+
+.reveal .chat { font: 400 16px/1.5 $body; background: $paper-2; border: 1px solid $line; border-radius: 14px; padding: 12px 16px; color: $ink; margin: 0; }
+.reveal .chat.jp { font: 400 15px/1.7 $jp; }
+
+.reveal .chat b { font-weight: 500; }
+.reveal .chat.jp b { font-weight: 700; }
+.reveal .chat .who { display: block; font: 700 12px $display; letter-spacing: 0.08em; text-transform: uppercase; color: $ink-3; margin-bottom: 6px; }
+.reveal .chat .gloss { display: block; font: italic 400 14px/1.45 $body; color: $ink-2; margin-top: 10px; padding-top: 8px; border-top: 1px dashed $line; }
+.reveal .chat .ans { float: right; margin: -2px 0 6px 12px; font: 800 22px/1 $display; color: $paper; background: $primary; border-radius: 999px; padding: 6px 14px; letter-spacing: -0.01em; transition: opacity 0.25s; }
+.reveal .cue { background: $paper-3; border-radius: 3px; padding: 0 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.reveal .chat .cue { background: color-mix(in srgb, $ink 9%, $paper); }
+
+/* ---------- the characters ---------- */
+
+.reveal .hook { flex: 0 0 auto; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+.reveal .hook-col, .reveal .end-col { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.reveal .who-row { display: flex; align-items: flex-end; gap: 12px; }
+.reveal .who-row b { display: block; font: 800 28px/1.05 $display; letter-spacing: -0.01em; }
+.reveal .who-row small { display: block; font: 500 13px $display; color: $ink-2; margin-top: 4px; }
+.reveal .who-row.emily b { color: $actor-a; }
+.reveal .who-row.yuki b { color: $actor-b; }
+.reveal .end-num { font: 800 64px/1 $display; color: $primary; letter-spacing: -0.03em; margin-top: 4px; }
+.reveal .end-words { font: italic 400 19px/1.4 $body; color: $ink-2; border-left: 4px solid; padding-left: 12px; }
+.reveal .end-col.emily .end-words { border-color: $actor-a; }
+.reveal .end-col.yuki .end-words { border-color: $actor-b; }
+
+/* ---------- the three prompt versions ---------- */
+
+.reveal .three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 20px; }
+.reveal .three .vcard { display: flex; flex-direction: column; gap: 8px; }
+.reveal .three .vtag { font: 800 22px/1 $display; color: $ink; letter-spacing: -0.01em; }
+.reveal .three .vsub { font: 500 13px/1.35 $display; color: $ink-2; min-height: 2.7em; }
+.reveal .three .chat { font-size: 17px; }
+.reveal .three .chat.jp { font-size: 16px; line-height: 1.7; }
+.reveal .three .chat .gloss { font-size: 15px; }
+.reveal .contrasts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 20px; margin-top: 14px; font: 500 15px/1.35 $display; color: $ink; }
+.reveal .contrasts span { display: block; border-top: 2px solid $ink; padding-top: 6px; }
+.reveal .contrasts em { font-style: normal; color: $ink-3; font-weight: 500; }
+.reveal .strip { display: flex; flex-wrap: wrap; gap: 6px 26px; margin-top: 16px; font: 500 14px $display; color: $ink-2; }
+.reveal .strip b { font: 800 20px $display; color: $ink; margin-right: 4px; letter-spacing: -0.01em; }
+
+/* ---------- the lineup: three candidate advisors against three cues ---------- */
+
+.reveal table.lineup { font: 400 19px/1.35 $display; border-collapse: collapse; width: 100%; margin: 0.2em 0 0; }
+.reveal table.lineup th { font: 700 18px/1.25 $display; letter-spacing: 0; text-transform: none; color: $ink; border-bottom: 2px solid $ink; padding: 8px 12px 8px 0; vertical-align: bottom; }
+.reveal table.lineup th .sub { display: block; font: 400 15px/1.35 $body; color: $ink-2; margin-top: 2px; }
+.reveal table.lineup td { border-bottom: 1px solid $line; padding: 9px 12px 9px 0; vertical-align: middle; }
+.reveal table.lineup td.cue-name { font-weight: 700; }
+.reveal table.lineup td.pred { color: $contrast; font-weight: 500; }
+.reveal table.lineup td.miss { color: $ink-3; text-decoration: line-through; text-decoration-color: $ink; text-decoration-thickness: 2px; }
+.reveal table.lineup td.miss::after { content: "✗"; color: $ink; text-decoration: none; display: inline-block; margin-left: 8px; }
+.reveal table.lineup td.meas { font: 700 21px $mono; color: $primary; }
+.reveal table.lineup tr.verdict td { border-bottom: 0; font: 500 16px/1.35 $body; color: $ink-2; padding-top: 12px; }
+.reveal table.lineup tr.verdict td.win { color: $ink; font-weight: 500; }
+.reveal table.lineup .col-win { background: $paper-2; }
+
+/* ---------- conclusion and closing ---------- */
+
+.reveal .closing-q { font: 700 1.05em/1.25 $display; color: $ink; max-width: 30ch; text-wrap: balance; margin: 0 0 0.4em; }
+
+/* hand-set AER reference list */
+.reveal .refs-list { columns: 2; column-gap: 36px; font: 400 0.44em/1.38 $body; color: $ink; }
+.reveal .refs-list p { margin: 0 0 0.55em; padding-left: 1.4em; text-indent: -1.4em; break-inside: avoid; }
+
+.reveal .chart .halo { paint-order: stroke; stroke: $paper; stroke-width: 4px; stroke-linejoin: round; }
+.reveal #answers .split { align-items: stretch; }
+.reveal table.lineup td.cue-name { white-space: nowrap; }
+/* markdown tables inside prose keep a readable size */
+.reveal .prose table { font-size: 0.82em; }
+.reveal .prose table th { font-size: 0.78em; }
+
+/* room links: navigation, set small and quiet */
+.reveal .rooms { display: block; font: 500 0.72em/1.5 $display; color: $ink-3; margin-top: 0.8em; }
+.reveal .rooms a { color: $ink-2; }
+.reveal .claims li { font-size: 0.84em; }
+.reveal section > .stats .stat .l { font-size: 0.6em; }
+.reveal .end-line { font: 500 15px/1.4 $display; color: $ink-2; margin-top: 10px; }
+.reveal #answers .chat { height: 100%; box-sizing: border-box; }
+.reveal .strip-note { font: 500 14px/1.4 $display; color: $ink-2; margin: 8px 0 0; }
+.reveal .bridge { display: block; font: 700 0.95em/1.3 $display; color: $ink; margin-top: 0.7em; }
+
+/* ---------- chat grammar: who is speaking ---------- */
+/* A prompt is the investor speaking: filled in the investor's colour, tail bottom right.
+   A reply is the model speaking: paper with a hairline, tail bottom left. */
+.reveal .chat.ask { border: 0; border-radius: 16px 16px 4px 16px; position: relative; }
+.reveal .chat.ask.emily { background: $actor-a-soft; }
+.reveal .chat.ask.yuki { background: $actor-b-soft; }
+.reveal .chat.ask::after { content: ""; position: absolute; right: -8px; bottom: 0; width: 14px; height: 14px; background: inherit; clip-path: polygon(0 0, 0 100%, 100% 100%); }
+.reveal .chat.reply { background: $paper; border: 1px solid $line; border-radius: 16px 16px 16px 4px; position: relative; }
+.reveal .chat.reply.emily { box-shadow: inset 4px 0 0 $actor-a; }
+.reveal .chat.reply.yuki { box-shadow: inset 4px 0 0 $actor-b; }
+.reveal .chat.reply .reply-body { transition: opacity 0.25s; }
+.reveal .chat.ask .cue { background: color-mix(in srgb, $paper 55%, transparent); }
+.reveal .answers { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+.reveal .stage.h-answers { height: 330px; }
+.reveal .typing { position: absolute; left: 20px; top: 46px; display: flex; gap: 6px; }
+.reveal .typing i { width: 9px; height: 9px; border-radius: 50%; background: $ink-3; animation: dk-typing 1s infinite ease-in-out; }
+.reveal .typing i:nth-child(2) { animation-delay: 0.15s; }
+.reveal .typing i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes dk-typing { 0%, 80%, 100% { opacity: 0.25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-4px); } }
+
+/* ---------- the characters as initials ---------- */
+.reveal .avatar-letter { font: 800 38px $display; }
+.reveal .avatar-sym { font: 800 15px $display; }
+.reveal .chart .mark-letter { font-family: $display; font-weight: 800; paint-order: normal; stroke: none; }
+.reveal .bar6040 { width: 200px; height: 8px; margin: 6px 0 4px; background: linear-gradient(90deg, $primary 0 118px, $paper 118px 122px, $line 122px 200px); }
+
+/* ---------- the title slide: one question in every prompt language ---------- */
+.reveal #title-slide .qwall { position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 560px; text-align: right; font: 400 17px/1.62 $body; color: $ink-3; }
+.reveal #title-slide .q-line { white-space: nowrap; }
+.reveal #title-slide .q-line.en { color: $actor-a; font-weight: 500; }
+.reveal #title-slide .q-line.ja { color: $actor-b; font-family: $jp; font-weight: 500; }
+.reveal #title-slide .q-line.zh { font-family: "Noto Sans SC", "PingFang SC", sans-serif; }
+.reveal #title-slide .q-line.ko { font-family: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; }
+
+/* ---------- the appendix divider: the fan and the questions it answers ---------- */
+.reveal #appendix h2::after { display: none; }
+.reveal #appendix .split { margin-top: 24px; align-items: center; }
+.reveal .room-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 12px; }
+.reveal .room-menu a.chat { display: block; font: 500 15px/1.3 $display; padding: 8px 14px; background: $paper-3; color: $ink; text-decoration: none; }
+.reveal .room-menu a.chat:hover { background: $line; }
+
+/* ---------- the lineup: the questionnaire drawn as a form ---------- */
+.reveal table.lineup .col-win { border-left: 1.5px dashed $ink-3; border-right: 1.5px dashed $ink-3; padding-left: 12px; }
+.reveal table.lineup td.pred.col-win::before { content: "☑"; color: $ink; margin-right: 8px; }
+.reveal table.lineup td.pred.col-win.blank::before { content: "☐"; }
