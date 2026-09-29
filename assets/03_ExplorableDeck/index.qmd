@@ -5,6 +5,7 @@ author: "Claes Bäckman"
 institute: "Leibniz Institute for Financial Research SAFE"
 format:
   revealjs:
+    embed-resources: true
     theme: [default, theme/deck.scss]
     width: 1280
     height: 720
