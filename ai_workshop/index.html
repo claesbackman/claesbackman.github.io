@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Practical AI for Academics — Lugano 2026 — Claes Bäckman</title>
-<meta name="description" content="Slides, Claude Code skills, setup guides, and hands-on instructions from the workshop Practical AI for Academics, Lugano, 24–25 September 2026." />
+<title>Practical AI for Academics — Claes Bäckman</title>
+<meta name="description" content="Slides, Claude Code skills, setup guides, and hands-on instructions from the workshop Practical AI for Academics, 2026." />
 
 <!-- Open Graph / social preview -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Claes Bäckman" />
-<meta property="og:title" content="Practical AI for Academics — Lugano 2026" />
+<meta property="og:title" content="Practical AI for Academics" />
 <meta property="og:description" content="Slides, Claude Code skills, and guides from the workshop for academic economists." />
-<meta property="og:url" content="https://claesbackman.com/lugano/" />
+<meta property="og:url" content="https://claesbackman.com/ai_workshop/" />
 <meta property="og:image" content="https://claesbackman.com/assets/photo.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 
@@ -208,7 +208,7 @@
 <main class="wrap">
 
 <header class="page-header">
-  <p class="eyebrow">Workshop · Lugano · 24–25 September 2026</p>
+  <p class="eyebrow">Workshop</p>
   <h1>Practical AI for Academics</h1>
   <p class="muted">
     Everything from the workshop in one place: the slides, the Claude Code skills we use in the
@@ -218,7 +218,7 @@
   <ul class="toc">
     <li><a href="#schedule">Schedule</a></li>
     <li><a href="#slides">Slides</a></li>
-    <li><a href="#setup">Set up before Friday</a></li>
+    <li><a href="#setup">Set up before Session 2</a></li>
     <li><a href="#install">Install the skills</a></li>
     <li><a href="#skills">What each skill does</a></li>
     <li><a href="#handson">Hands-on blocks</a></li>
@@ -231,12 +231,12 @@
 <section id="schedule">
   <h2>Schedule</h2>
   <p>
-    Three blocks across Thursday afternoon and Friday. Thursday builds the conceptual foundation.
-    Friday morning is hands-on with your own materials. Friday afternoon is held open.
+    Two sessions and an optional block. Session 1 builds the conceptual foundation.
+    Session 2 is hands-on with your own materials. The optional block is held open.
   </p>
   <ul class="schedule">
     <li>
-      <span class="when">Thu · 15:00–17:00</span>
+      <span class="when">Session 1</span>
       <p class="what"><strong>Concepts and tools</strong>
         <span>What an LLM is and what it is not. The landscape and the pace of change. Use cases across
           research, coding, teaching, and admin. Chat versus agentic tools, the harness, context windows,
@@ -244,16 +244,16 @@
           How to verify what comes back.</span></p>
     </li>
     <li>
-      <span class="when">Fri · 09:00–12:00</span>
+      <span class="when">Session 2</span>
       <p class="what"><strong>Practical workflows</strong>
         <span>Workspace setup, <code>CLAUDE.md</code>, Overleaf. A referee report on your own paper.
           A <code>voice.md</code> from your own writing. Checking whether the code does what the paper
           claims. Building slides from a reusable style file. Teaching when AI can do the homework.</span></p>
     </li>
     <li>
-      <span class="when">Fri · 14:00–16:00</span>
+      <span class="when">Optional</span>
       <p class="what"><strong>Hands-on and troubleshooting</strong>
-        <span>Optional. For applying the morning's workflow to your own papers, or working through
+        <span>For applying the Session 2 workflow to your own papers, or working through
           something specific together.</span></p>
     </li>
   </ul>
@@ -263,16 +263,16 @@
   <h2>Slides</h2>
   <ul class="guide-list">
     <li>
-      <span class="guide-meta">Session 1 · Thursday · PDF</span>
-      <h3><a href="Lugano_Session1.pdf">An introduction to generative AI</a></h3>
+      <span class="guide-meta">Session 1 · PDF</span>
+      <h3><a href="AI_Workshop_Session1.pdf">An introduction to generative AI</a></h3>
       <p>What an LLM actually is, why it sounds confident when it is wrong, and where the field stands.
         Chat versus agentic tools, Claude Code versus Codex, pricing and model tiers. How the agent works,
         what a context window is, and the four checks for errors that do not crash. Teaching when students
         have the same tools, and what all of this means for academic work.</p>
     </li>
     <li>
-      <span class="guide-meta">Session 2 · Friday · PDF</span>
-      <h3><a href="Lugano_Session2.pdf">Hands-on with your own materials</a></h3>
+      <span class="guide-meta">Session 2 · PDF</span>
+      <h3><a href="AI_Workshop_Session2.pdf">Hands-on with your own materials</a></h3>
       <p>Setting up VS Code with Claude Code, linking Overleaf, and writing a <code>CLAUDE.md</code>.
         A referee report on your own draft with the <code>/review-paper</code> skill and what subagents
         add. Working with secure data. A <code>voice.md</code> from your own writing. Verifying the
@@ -280,17 +280,17 @@
     </li>
     <li>
       <span class="guide-meta">Overview · PDF</span>
-      <h3><a href="Lugano_Syllabus.pdf">Workshop syllabus</a></h3>
-      <p>The one-page outline of all three blocks.</p>
+      <h3><a href="AI_Workshop_Syllabus.pdf">Workshop syllabus</a></h3>
+      <p>The one-page outline of both sessions and the optional block.</p>
     </li>
   </ul>
 </section>
 
 <section id="setup">
-  <h2>Set up before Friday</h2>
+  <h2>Set up before Session 2</h2>
   <p>
-    Friday morning assumes the Thursday setup: VS Code, Claude Code, and a project folder with a
-    <code>CLAUDE.md</code>. Doing this on Thursday evening saves the first half hour.
+    Session 2 assumes the setup from Session 1: VS Code, Claude Code, and a project folder with a
+    <code>CLAUDE.md</code>. Doing this between the sessions saves the first half hour.
   </p>
   <ol class="steps">
     <li><strong>Install VS Code and Claude Code.</strong> The <a href="../claude-code-guide.html">Claude Code in VS Code</a> guide
@@ -307,14 +307,14 @@
   <div class="note">
     Nothing you put in a project folder is uploaded anywhere until you ask the agent to read it, but
     the agent does read what you point it at. Keep licensed and restricted data out of the folder.
-    Friday has a block on how to work alongside secure servers.
+    Session 2 has a block on how to work alongside secure servers.
   </div>
 </section>
 
 <section id="install">
   <h2>Install the skills</h2>
   <p>
-    A skill is a markdown file that Claude Code loads when you type its <code>/</code> command. Most skill sused in the workshop is in one public repository, <a href="https://github.com/claesbackman/AI-research-feedback">github.com/claesbackman/AI-research-feedback</a>
+    A skill is a markdown file that Claude Code loads when you type its <code>/</code> command. Most skills used in the workshop is in one public repository, <a href="https://github.com/claesbackman/AI-research-feedback">github.com/claesbackman/AI-research-feedback</a>
     (MIT licence). Fork them, edit them, make them yours. Two ways to install.
   </p>
   <div class="two-col">
@@ -388,7 +388,7 @@
         <td>Before any skill that needs to read a draft you only have as a PDF.</td></tr>
       <tr><td><code>/voice-extractor</code></td>
         <td>Reads a folder of your own papers and writes a <code>voice.md</code>: phrasing, sentence rhythm, hedging style, and a ban list. Written by Mihail Velikov. You can download it <a href="https://github.com/velikov-mihail/edhec-master-class/tree/main/demo2-voice-skill/.claude/skills/voice-extractor">here</a>.</td>
-        <td>The Friday voice block. Once per author.</td></tr>
+        <td>The Session 2 voice block. Once per author.</td></tr>
       <tr><td><code>/explorable-explanations</code></td>
         <td>Builds an interactive explanation of a topic as a tree of short HTML pages the reader moves through, in the style of Nicky Case's <a href="https://ncase.me/trust/">The Evolution of Trust</a>. Written by Nityesh Agarwal. You can download it <a href="https://github.com/nityeshaga/claude-home-base/tree/main/plugins/creative/skills/explorable-explanations">here</a>.</td>
         <td>Explaining a mechanism or a model to students or a non-specialist reader.</td></tr>
@@ -399,7 +399,7 @@
 
 <section id="handson">
   <h2>Hands-on blocks</h2>
-  <p>The instructions from the Friday slides, so you can follow them without switching windows.</p>
+  <p>The instructions from the Session 2 slides, so you can follow them without switching windows.</p>
 
   <div class="block">
     <h3>1. A referee report on your own draft</h3>
