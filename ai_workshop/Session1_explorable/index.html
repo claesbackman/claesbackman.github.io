@@ -1,0 +1,2677 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.27">
+
+  <meta name="author" content="Claes Bäckman">
+  <meta name="dcterms.date" content="2026-10-06">
+  <title>Practical AI for Academics</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-56ec6e1b23be39ea016b3a69d0b20bb2.css">
+  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <!-- The explorable's three faces. Each has a system fallback in the theme, so the
+
+       deck still presents offline; the fonts are the one thing that needs the network. -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Practical AI for Academics</h1>
+  <p class="subtitle">Session 1 — an introduction to Generative AI</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Claes Bäckman 
+</div>
+        <p class="quarto-title-affiliation">
+            Leibniz Institute for Financial Research SAFE
+          </p>
+    </div>
+</div>
+
+  <p class="date">6 October 2026</p>
+</section>
+<section id="lets-start-with-an-example-building-a-website-for-a-paper" class="slide level2 center">
+<h2>Let’s start with an example – building a website for a paper</h2>
+<!-- 
+## Two ways of working, one paper. {#hook}
+
+::: {.split .center-v}
+::: {.prose}
+[Anna]{.chat-t} uploads the PDF to a chatbot and asks for a website. She gets pages of HTML in a chat window, to copy somewhere herself.
+
+[Ben]{.agent-t} opens the paper's folder in an agent and types one sentence. The agent reads the paper, writes the files, opens the page, and fixes what broke.
+
+::: {.bet}
+[Who is looking at a finished page first, and by how much?]{.q}
+:::
+:::
+```{=html}
+<div class="stage" data-chart="two-researchers"></div>
+```
+:::
+-->
+<aside class="notes">
+<p>Before this slide: start the live demo in a terminal behind the deck. Open the example paper’s folder in Claude Code and type “build a website that presents this paper, following CLAUDE.md”. Let it run while you talk; the check-in slide at the end of section 3 switches to the browser.</p>
+<p>Ask the room how they would have done this last month: paste the paper into a chatbot, or hand the folder to an agent. Say that this is the day’s subject: what an agent does that a chat window does not, what it costs to set up, and what you have to check afterwards. Section 1 starts with what both tools have in common, the model.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="three-messages-ai-is-here-the-workflow-matters-more-than-the-model-and-verification-is-key." class="slide level2 center">
+<h2>Three messages: AI is here, the workflow matters more than the model, and verification is key.</h2>
+<div class="claims">
+<ul>
+<li><strong>The tools changed.</strong> Chat gave way to agents that read files, run code and iterate. The tool you tried in 2023 is not the tool of today.</li>
+<li><strong>The workflow is the value.</strong> The agent’s leverage comes from context (your files), standing instructions, and reusable skills — not from raw model IQ.</li>
+<li><strong>Judging the output is the new job.</strong> Silent errors and confident statements with no backing are what you should look out for.</li>
+</ul>
+</div>
+<p><span class="source">Workshop synthesis, drawing on <span class="citation" data-cites="mollick2026guide">Mollick (2026)</span>, <span class="citation" data-cites="velikov2026guide">Velikov (2026)</span> and Korinek (2025).</span></p>
+<aside class="notes">
+<p>This is the map, not the argument; the argument starts on the next section. Claim one is sections 1 and 2, claim two is sections 4 to 6, claim three is section 7. Section 8 applies all three to teaching. Say that each claim will be earned by something on a slide, and that the second one is what the website demo running in the background shows.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="a-brief-example-on-developments-since-2023" class="slide level2 center">
+<h2>A brief example on developments since 2023</h2>
+</section>
+<section id="eight-steps-now-hands-on-later" class="slide level2 center">
+<h2>Eight steps now, hands-on later</h2>
+<div class="agenda">
+<div><b>1</b><span>What an LLM is</span><small>Prediction, not lookup. Confident when wrong.</small></div>
+<div><b>2</b><span>Landscape</span><small>Three model generations; who uses them.</small></div>
+<div><b>3</b><span>Use cases</span><small>Research, coding, admin.</small></div>
+<div><b>4</b><span>How the tools work</span><small>The harness, context, the loop.</small></div>
+<div><b>5</b><span>Choosing a tool</span><small>Chat vs. agent; pricing and models.</small></div>
+<div><b>6</b><span>In practice</span><small>A prompt to copy; things to try.</small></div>
+<div><b>7</b><span>Verification</span><small>Four checks for silent errors.</small></div>
+<div><b>8</b><span>Teaching</span><small>Protect learning, then teach more.</small></div>
+</div>
+<div class="prose">
+<p><strong>Session 2.</strong> Hands-on with your own materials: a referee report on your draft, secure data, writing, the paper–code link.</p>
+<p><strong>Slides, skills and guides for both days:</strong> <a href="https://claesbackman.com/ai_workshop">claesbackman.com/ai_workshop</a>.</p>
+</div>
+<aside class="notes">
+<p>Point at the URL and say it will still be there next month. The guides linked from that page (Claude Code vs.&nbsp;Codex, VS Code setup, verification, Overleaf) cover what the slides skip. Do not read the eight boxes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="an-llm-predicts-the-next-token" class="slide level2 divider center" style="--fill:10%">
+<h2>1 · An LLM predicts the next token</h2>
+</section>
+<section id="next-token" class="slide level2 center">
+<h2>An LLM predicts the next token, over and over, very well</h2>
+<div class="stack">
+<div class="prose">
+<p>A token is a word or a piece of a word, about four characters of English. That is the whole training objective: given the text so far, predict the next token. Press the button.</p>
+</div>
+<div class="stage" data-chart="next-token"></div>
+</div>
+<aside class="notes">
+<p>The move: press “Sample the next token” six times, slowly. Each press appends the most likely candidate and recomputes the list. Say after the third press: “Notice that at no point did the model consult a table of Danish house prices. It has a distribution over words, that is all.” The probabilities are invented for the slide; the mechanism is not. If the stage does not respond, the static state shows the finished sentence, and you narrate the same thing. “LLM” is large language model; say it once.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="so-it-is-a-prediction-machine-not-a-lookup-machine" class="slide level2 center">
+<h2>So it is a prediction machine, not a lookup machine</h2>
+<div class="three">
+<div class="panel">
+<span class="ph">Not a database</span>
+<p>
+It does not look facts up. It generates text that is plausible given what it has seen.
+</p>
+</div>
+<div class="panel">
+<span class="ph">Not a calculator</span>
+<p>
+It predicts what an answer looks like. The arithmetic is right when the pattern is common, and the tools in section 4 exist because of this.
+</p>
+</div>
+<div class="panel">
+<span class="ph">Not connected to your files</span>
+<p>
+Or to the live web, unless the tool around it adds that. Out of the box it knows nothing about your paper.
+</p>
+</div>
+</div>
+<div class="prose">
+<p>An invented citation is a sequence of plausible tokens. “Smith and Jones (2019)” is very plausible.</p>
+</div>
+<aside class="notes">
+<p>Say the citation sentence and let it land: every failure the room has seen (invented references, wrong coauthors, confident nonsense) is the token stage again. The “not a calculator” panel is why agents run code instead of doing arithmetic in their head; that comes back on the harness slide.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="a-useful-mental-model" class="slide level2 center">
+<h2>A useful mental model</h2>
+<div class="big">
+<p><span class="q">A very well-read, very fast colleague who has read almost everything but remembers none of it precisely, has no access to your files, <strong>will never admit to not knowing</strong>, and is <strong>unapologetic about being wrong</strong>.</span></p>
+</div>
+<aside class="notes">
+<p>Read the sentence. Let the last two clauses land. “Never admits to not knowing” is an exaggeration in 2026, and say so if challenged: the models refuse and hedge more than they did, but they still fill gaps with plausible text. Then: what happens if the same colleague has the paper in front of them? Next slide.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!--
+## But give it the paper, and the same predictor becomes specific {#context-turn}
+
+::: {.split .even .cols}
+::: {.prose}
+[Ask about a paper it has not been given]{.colhead .chat}
+
+*"What is the identification strategy in Bäckman and Khorunzhina's paper on housing returns?"*
+
+The model has the title and its training data. It predicts what such a paper probably does: a plausible method, a plausible result, confidently. Some of it will be wrong.
+:::
+::: {.prose}
+[Ask with the paper in the conversation]{.colhead .agent}
+
+*Same question, PDF attached.*
+
+The predictions are now conditioned on the actual text. The answer quotes section 4, names the assumption, and can be checked against the page.
+:::
+:::
+
+::: {.prose}
+[Same model. The difference is what was in the context window: the text the model can see when it predicts.]{.q}
+:::
+
+::: {.notes}
+The first turn of the day and the sentence to repeat. If the demo machine is up, do this live in claude.ai with one of your own papers: ask without the PDF, then attach it and ask again. Anna's chatbot is not a worse model, it is a model with less to condition on. Ben's agent goes and gets the paper itself; that is section 4. "Mostly right" is deliberate: section 7 is about the rest.
+:::
+-->
+</section>
+<section id="the-message-in-one-sentence" class="slide level2 center">
+<h2>The message in one sentence</h2>
+<div class="big">
+<p><span class="q">Context improves AI tools tremendously, and the goal is to provide the right context.</span></p>
+<p><span class="sub">Everything else today is a way of doing that, or of checking what came back.</span></p>
+</div>
+<aside class="notes">
+<p>Say it, pause, move on. It comes back at the end of section 5 with the tools compared.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-landscape-moved-from-chat-to-agents" class="slide level2 divider center" style="--fill:22%">
+<h2>2 · The landscape moved from chat to agents</h2>
+</section>
+<section id="three-generations-in-four-years-chat-reasoning-agents" class="slide level2 center">
+<h2>Three generations in four years: chat, reasoning, agents</h2>
+<div class="stack">
+<div class="stage" data-chart="generations"></div>
+</div>
+<aside class="notes">
+<p>Walk left to right. “Spawns subagents” on the third box means the agent can start a fresh copy of itself with its own context window to do a sub-task; that is what “use a subagent” means when it comes up in section 7. The point of the third box: an agent can read the folder itself. The context problem from the last section is what agents solve.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="on-phd-level-science-questions-models-went-from-guessing-to-above-expert-level" class="slide level2 center">
+<h2>On PhD-level science questions, models went from guessing to above expert level</h2>
+<div class="figwrap wide">
+<p><img data-src="figs/GPQA_test.png"></p>
+</div>
+<p><span class="figcap">GPQA Diamond accuracy by model release date, 264 results; each dot is one model. Dashed lines: random guessing (25 percent) and expert human level (about 70 percent). Epoch AI, CC-BY.</span></p>
+<aside class="notes">
+<p>Three years from the bottom dashed line to above the top one; the figure’s own labels are small, so say the two levels aloud. Do not oversell benchmarks; say only that the trend is not a marketing claim, and that the vendor colours in the figure do not matter for the argument.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="models-differ" class="slide level2 center">
+<h2>Models differ</h2>
+<div class="figwrap wide">
+<p><img data-src="figs/AI%20iq%20test.jpg"></p>
+</div>
+</section>
+<section id="one-paper-in-three-hours-a-thousand-in-a-project" class="slide level2 center">
+<h2>One paper in three hours, a thousand in a project</h2>
+<div class="claims">
+<ul>
+<li><strong>Paul Novosad</strong> wrote a paper with AI in about three hours, then another one with the opposite result <span class="citation" data-cites="novosad2026ai">(Novosad 2026)</span>.</li>
+<li><strong>Project APE</strong> has automated 1,000 policy-evaluation papers.</li>
+<li><strong>Alejandro López-Lira</strong> built a system that finds a problem, generates a theory, verifies it adversarially and writes a publication-ready paper.</li>
+<li><strong><span class="citation" data-cites="novy2026artificial">Novy-Marx and Velikov (2026)</span></strong> describe how academic research could be automated with LLMs, and what that does to the literature.</li>
+</ul>
+</div>
+<p><span class="source">Links to Project APE and López-Lira’s system are on the workshop resources page.</span></p>
+<aside class="notes">
+<p>Dwell on Novosad: the same tool produced the opposite result on request. That anecdote is the verification section in miniature, and it comes back there. Nothing on this slide says the thousand papers are any good; that is the point of the next two sections.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="agents-raise-econometric-coding-success-from-74-to-96-percent" class="slide level2 center">
+<h2>Agents raise econometric coding success from 74 to 96 percent</h2>
+<div class="split even">
+<div class="prose">
+<p><span class="citation" data-cites="galiani2026ai">Galiani, López, and Sosa (2026)</span> benchmark applied econometric tasks in Stata, R and Python. Moving from a chatbot that writes one script to an agent that runs and revises its own code is what raises task success.</p>
+<p>Under the chatbot, results differ a lot by software. Under the agent, the differences largely disappear.</p>
+</div>
+<div class="prose">
+<div class="stats two">
+<div class="stat">
+<p><span class="k f">74 → 96%</span> <span class="l">task success, chatbot to constrained agent</span></p>
+</div>
+<div class="stat">
+<p><span class="k f">8 cents</span> <span class="l">extra cost per run</span></p>
+</div>
+</div>
+<p><span class="source"><span class="citation" data-cites="galiani2026ai">Galiani, López, and Sosa (2026)</span>, NBER working paper 35588, abstract. “Constrained agent”: one that runs its code and fixes errors, but within a fixed set of tools.</span></p>
+</div>
+</div>
+<aside class="notes">
+<p>Boris Cherny, who runs Claude Code at Anthropic, says “coding is largely solved”; quote it as a vendor’s claim and let Galiani et al.&nbsp;be the evidence. The agent’s advantage is exactly the loop: it runs the code, sees the error, fixes it. A chatbot hands you a script and hopes. The loop is drawn in section 4.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="but-the-frontier-is-jagged" class="slide level2 center">
+<h2>But the frontier is jagged</h2>
+<div class="split">
+<div class="prose">
+<p>Two tasks that look equally hard to you can sit on opposite sides of the line.</p>
+<p>Drafting prose, summarising a literature, re-deriving a table: inside. Judging how to frame your paper, or noticing a wrong fixed effect: probably outside.</p>
+<p>Consultants in Dell’Acqua et al.’s field experiment did better inside the frontier and worse outside it, because they trusted the tool in both places.</p>
+<p><span class="source"><span class="citation" data-cites="dell2026navigating">Dell’Acqua et al. (2026)</span>; Ethan Mollick’s “jagged frontier”.</span></p>
+</div>
+<div class="figwrap">
+<p><img data-src="figs/jagged_frontier.png"></p>
+</div>
+</div>
+<aside class="notes">
+<p>The BUT after three slides of pace. The dashed line is tasks that look equally hard to a person. The orange one sits inside the blue frontier, the red one outside it, the green one on the edge. Map the frontier for your own tasks before you trust it; the wrong-fixed-effect example is the one section 7 is built around.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section" class="slide level2 center">
+<h2></h2>
+<div class="big">
+<div class="bet">
+<p><span class="q">Who has used ChatGPT or Claude inside an IDE or terminal? Who has used Claude Code or the Claude desktop app?</span></p>
+</div>
+<p><span class="sub">What share of economists in a survey of 1,260 social scientists use a coding agent?</span></p>
+</div>
+<aside class="notes">
+<p>Two counts, then a number from the room. Write the guess on the whiteboard. The next slide animates the answer in.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="adoption" class="slide level2 center">
+<h2>Most social scientists use AI, few use an agent</h2>
+<div class="split">
+<div class="prose">
+<p>Open dots: anyone using AI at all.</p>
+<div class="fragment">
+<p>Four in five use some AI tool. One in five uses an agent. Economists are still under forty percent.</p>
+<p><strong>Most use chat only</strong></p>
+<p><strong>The caveat that this was a really long time ago (February/March).</strong></p>
+</div>
+<p><span class="source"><span class="citation" data-cites="lyttelton2026agents">Lyttelton, Massenkoff, and Wilmers (2026)</span>, survey of 1,260 social scientists, February–March 2026.</span></p>
+</div>
+<div class="stage tall" data-chart="adoption-field" data-animate=""></div>
+</div>
+<aside class="notes">
+<p>On arrival only the open dots are drawn. The move: click anywhere on the chart, and the blue dots detach from the open ones and slide left to their true values; the Economics answer is set large. Then press once for the sentence with the numbers, and compare with the guess on the whiteboard and the show of hands. Economics leads every other field on agents by a wide margin, and is still under forty percent. The respondents chose to answer an Anthropic survey, so the levels are upper bounds; the ordering is what to trust.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="adoption-falls-with-seniority" class="slide level2 center">
+<h2>Adoption falls with seniority</h2>
+<div class="split">
+<div class="prose">
+<p>About a quarter of PhD students use a coding agent. Fewer than one in ten full professors do.</p>
+<p>Different readings: seniors have less to gain, seniors have RAs who use agents, or seniors face the highest switching cost.</p>
+<p><span class="source"><span class="citation" data-cites="lyttelton2026agents">Lyttelton, Massenkoff, and Wilmers (2026)</span>.</span></p>
+</div>
+<div class="stage" data-chart="adoption-career"></div>
+</div>
+<aside class="notes">
+<p>The shaded band is people in training. Full professors also have RAs and coauthors to delegate to, which is the third reading; say it if asked. The admin slide in section 3 is the answer to all three.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="agent-users-do-more-of-everything-especially-drafting" class="slide level2 center">
+<h2>Agent users do more of everything, especially drafting</h2>
+<div class="split">
+<div class="prose">
+<p>Code is nearly universal among agent users.</p>
+<p>More than half of agent users draft with it, fewer than a third of other users do.</p>
+<p><span class="source"><span class="citation" data-cites="lyttelton2026agents">Lyttelton, Massenkoff, and Wilmers (2026)</span>.</span></p>
+</div>
+<div class="stage" data-chart="adoption-use"></div>
+</div>
+<aside class="notes">
+<p>Agent blue against chat ochre. This closes the landscape section and opens the question of what to use it for.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="use-cases-for-ai" class="slide level2 divider center" style="--fill:34%">
+<h2>3 · Use cases for AI</h2>
+</section>
+<section id="ai-is-going-to-change-how-we-do-research" class="slide level2 center">
+<h2>AI is going to change how we do research</h2>
+<div class="split even cols">
+<div class="prose">
+<p><span class="colhead">Same research, done faster</span></p>
+<p><strong>Faster coding.</strong> Stata, R and Python drafts, debugging error logs, robustness checks, replication packages.</p>
+<p><strong>Better writing.</strong> Structured critique, edits in your own voice, pre-submission referee reports.</p>
+</div>
+<div class="prose">
+<p><span class="colhead">New outputs, new projects</span></p>
+<p><strong>New ways to communicate a paper.</strong> An interactive website, a policy brief, a dashboard or an audio summary, all from the same paper.</p>
+<p><strong>New kinds of projects.</strong> Mass automation (Project APE), automated replication and extension <span class="citation" data-cites="schwartz2026llm">(Schwartz, Andrews, and Shapiro 2026)</span>, AI agents as simulated humans (Expected Parrot), ???</p>
+</div>
+</div>
+<aside class="notes">
+<p>The left column is the three-jobs slide in one line: the same work, faster. The right column is the change in how research gets done. Project APE and López-Lira came up in section 2 as evidence of pace; here they are examples of projects that were not feasible before. The website the demo is building is the first item on the right. The next slide says who gains most from both columns.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="three-jobs-for-an-agent-feedback-machine-talented-ra-personal-assistant" class="slide level2 center">
+<h2>Three jobs for an agent: feedback machine, talented RA, personal assistant</h2>
+<div class="three">
+<div class="panel">
+<p><span class="ph">1 · Research</span></p>
+<ul>
+<li>Literature-review summaries</li>
+<li>Pre-submission referee reports</li>
+<li>Feedback on your own drafts</li>
+<li>Responses to referees</li>
+</ul>
+<p class="mm">
+Mental model: a feedback machine.
+</p>
+</div>
+<div class="panel">
+<p><span class="ph">2 · Coding</span></p>
+<ul>
+<li>Stata, R and Python scripts</li>
+<li>Debugging error logs</li>
+<li>Robustness checks</li>
+<li>Replication packages</li>
+</ul>
+<p class="mm">
+Mental model: a talented RA.
+</p>
+</div>
+<div class="panel">
+<p><span class="ph">3 · Practical and admin</span></p>
+<ul>
+<li>Update slides and materials</li>
+<li>Mock exams and problem sets</li>
+<li>Conference budgets, CVs</li>
+<li>Websites for a paper</li>
+</ul>
+<p class="mm">
+Mental model: a personal assistant.
+</p>
+</div>
+</div>
+<aside class="notes">
+<p>Three mental models, one per column; Day 2 is mostly the first two. The next slide argues column three is undervalued.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="admin-is-the-undervalued-one" class="slide level2 center">
+<h2>Admin is the undervalued one</h2>
+<div class="split even">
+<div class="prose">
+<p><strong>Friction is highest.</strong> The cost of starting dominates the cost of doing.</p>
+<p><strong>The quality bar is lower.</strong> No referee, no audience: a funder checks the content, not the typesetting.</p>
+<p><strong>There is nobody else to delegate to.</strong> Small tasks are not worth giving to someone else.</p>
+</div>
+<div class="panel agent">
+<span class="ph">Example: a CV for research grants</span>
+<p>
+Different funders, different required formats.
+</p>
+<p>
+<b>Without an agent.</b> Reformat, re-order, drop sections, rewrite the bio.
+</p>
+<p>
+<b>With an agent.</b> Drop the master CV and the funder’s template in the folder. The agent reformats, you check.
+</p>
+<p class="mm">
+A task that is easy to verify and that nobody pays you for.
+</p>
+</div>
+</div>
+<aside class="notes">
+<p>The full professors from the career-stage slide: this is their entry point. “Easy to verify” is the operative phrase and comes back in section 7. The panel is in the agent colour because it is an agent task: the files are in a folder.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="ai-rewards-expertise-because-it-does-not-supply-the-question" class="slide level2 center">
+<h2>AI rewards expertise, because it does not supply the question</h2>
+<div class="split even cols">
+<div class="prose">
+<p><span class="colhead">What the expert brings</span></p>
+<p><strong>Better questions.</strong> An expert asks the question that is worth asking.</p>
+<p><strong>Steering.</strong> An expert knows which follow-up moves the conversation where it should go.</p>
+<p><strong>Validation.</strong> An expert can tell when the output is wrong.</p>
+</div>
+<div class="prose">
+<p><span class="colhead">What the tool does not</span></p>
+<p><strong>It does not supply the question.</strong> It lowers the cost of asking one seriously.</p>
+<p><strong>It does not replace judgment.</strong> You decide what to do and whether it is worth doing.</p>
+<p><strong>It does not know your institution’s rules</strong> unless you put them in the context: the journal’s AI policy, the funder’s format.</p>
+</div>
+</div>
+<div class="prose">
+<p><span class="q">Highly capable, confident on any question, and you are still in charge of the output.</span></p>
+</div>
+<aside class="notes">
+<p>Counter the fear in the room: the tool amplifies what you already know, and the three verbs on the left are the three places a non-expert gets stuck. The right column is the same fact from the tool’s side. The third item is the context lesson again: the rules exist, the model has not seen them until you show it.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="check-in-the-website" class="slide level2 divider center" style="--fill:40%">
+<h2>Check-in: the website</h2>
+<aside class="notes">
+<p>Switch to the browser and show what the agent built while you talked. Point at one thing it got right and one thing to check (a shortened abstract, a figure caption). Ask the room whether HTML pasted from a chat window would be on screen yet. If the demo failed, show the folder and the transcript instead: the loop that ran is the next slide, and a failed run is a fine example of step 8.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-agent-is-the-harness-around-the-model" class="slide level2 divider center" style="--fill:46%">
+<h2>4 · The agent is the harness around the model</h2>
+</section>
+<section id="harness" class="slide level2 center">
+<h2>The agent is a loop: prompt, model, tool, result, repeat</h2>
+<div class="split">
+<div class="prose">
+<p>Your prompt goes to the model together with the context: <a href="#/claude-md">CLAUDE.md</a>, a file of standing instructions the agent reads every session, plus the folder listing and the conversation so far.</p>
+<p>The model decides which tool to call. The harness runs it and puts the result back into the conversation. Repeat until the task is done, or the agent asks you a question.</p>
+<p><span class="source">Stylised trace of the website session. After Korinek (2025); figure adapted from <span class="citation" data-cites="velikov2026guide">Velikov (2026)</span>. <a href="#/tools">All six tools are in the appendix.</a></span></p>
+</div>
+<div class="stage terse" data-chart="harness-loop"></div>
+</div>
+<aside class="notes">
+<p>The move: press “step” nine times and read each log line aloud. The room should notice that the model never touches a file; it asks for Read, Write, or a command, and the harness does it. This is the website demo from the start of the session, stylised. Line 9 is the seed for section 7: the agent shortened the abstract and said so; a wrong number in a table it would not have flagged. ChatGPT, Claude.ai, Claude Code, Codex and Cursor are all harnesses around similar models. The harness is the source of capability. Under static or print the whole trace is shown at once.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="context-budget" class="slide level2 center">
+<h2>Context is a budget</h2>
+<div class="stack">
+<div class="prose">
+<p>Everything the model conditions on has to fit in one window: the standing instructions, the tool definitions, the conversation, and every file it reads. Drag the slider to the right.</p>
+</div>
+<div class="stage" data-chart="context-budget"></div>
+</div>
+<aside class="notes">
+<p>The stage starts at six long PDFs, about half the window. The move: drag right past ten 200-page PDFs and watch the grey stub, the standing instructions, get pushed out of the left edge of the window and drop below it. Say: “a 200-page PDF is ninety thousand tokens; ten of them and the window is full, and the first thing to fall out is your instructions.” The segments are rules of thumb, the arithmetic is the real one. Quality degrades well before the bar is full, which is why the next slide’s habits matter at far less than 100 percent.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="four-habits-keep-the-window-for-what-matters" class="slide level2 center">
+<h2>Four habits keep the window for what matters</h2>
+<div class="rows">
+<div class="row"><p class="rn">Point at files</p><p><span class="rc cmd">@filename</span></p><p class="rd">Name the file you mean; do not let the agent read everything in the folder.</p></div>
+<div class="row"><p class="rn">One task, one session</p><p><span class="rc cmd">/clear</span></p><p class="rd">Start a new session for a new task. Thirty turns or a shifted task: restart. <a href="#/drift">Signs of drift.</a></p></div>
+<div class="row"><p class="rn">Watch the meter</p><p><span class="rc cmd">/context</span></p><p class="rd">Shows what is filling the window and by how much.</p></div>
+<div class="row"><p class="rn">Convert once</p><p><span class="rc cmd">/pdf-to-markdown</span></p><p class="rd">Long PDFs become markdown once, up front; the markdown is committed and pointed at from then on. <a href="#/formats">Which formats need it.</a></p></div>
+</div>
+<p><span class="source">The commands are Claude Code’s; Codex has equivalents. The starter <a href="#/claude-md">CLAUDE.md</a> template is in the appendix.</span></p>
+<aside class="notes">
+<p>Four habits, each a direct consequence of the slider. The fourth has a side room in the appendix on which formats need converting: a PDF the agent has to re-read and re-parse every session costs the window every time; a markdown copy costs it once.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="five-prompting-rules-specific-iterate-correct-early-verify-restart" class="slide level2 center">
+<h2>Five prompting rules: specific, iterate, correct early, verify, restart</h2>
+<div class="agenda five">
+<div><b>1</b><span>Specific</span><small>“Feedback on the identification strategy in Section 4”, not “feedback on my paper”.</small></div>
+<div><b>2</b><span>Iterate</span><small>Ten to twenty turns, not one. Each turn adds context.</small></div>
+<div><b>3</b><span>Correct early</span><small>If the first answer is off, fix it now, or restart.</small></div>
+<div><b>4</b><span>Verify</span><small>Run the code. Re-read the passage. Check the citation.</small></div>
+<div><b>5</b><span>Restart</span><small>Thirty turns or a shifted task: a fresh session.</small></div>
+</div>
+<aside class="notes">
+<p>Rules one and two are the context lesson again: a specific request is context, and each turn adds it. Rule five is the budget slide. Rule four is section 7 in three verbs.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="choosing-a-tool" class="slide level2 divider center" style="--fill:58%">
+<h2>5 · Choosing a tool</h2>
+</section>
+<section id="providers-trade-places-monthly-switching-costs-are-low" class="slide level2 center">
+<h2>Providers trade places monthly; switching costs are low</h2>
+<div class="split even cols">
+<div class="prose">
+<p><span class="colhead">The frontier labs</span></p>
+<p>Claude, ChatGPT and Gemini have each led at some point in the last year. Grok (xAI) and Llama (Meta) compete. The leading provider changes with each release.</p>
+</div>
+<div class="prose">
+<p><span class="colhead">Open weights</span></p>
+<p>Cheaper to run, and many are not far behind on performance. Mistral is European, which can matter when a data-protection office asks where the model runs.</p>
+</div>
+</div>
+<div class="prose">
+<p><span class="q">Switching costs are low. It is more important to start.</span></p>
+</div>
+<aside class="notes">
+<p>Do not let the room turn this into a provider debate; the GPQA slide had the data, and the top cluster is four vendors within a few points. The workflow transfers; the next slides use Claude’s tiers because that is what Day 2 runs on.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="pro-at-20-a-month-is-enough-to-start" class="slide level2 center">
+<h2>Pro at $20 a month is enough to start</h2>
+<div class="rows">
+<div class="row"><p class="rn">Free</p><p><span class="rc ghost">$0</span></p><p class="rd">Casual chat on claude.ai; no real Claude Code usage</p></div>
+<div class="row here"><p class="rn">Pro</p><p><span class="rc">$20 / month</span></p><p class="rd">Light daily Claude Code use, projects, research<span class="tag">Start here</span></p></div>
+<div class="row"><p class="rn">Max</p><p><span class="rc">$100–200 / month</span></p><p class="rd">Heavy Claude Code use (5× or 20× the Pro limits); the frontier model all day</p></div>
+<div class="row"><p class="rn">API</p><p><span class="rc">pay per token</span></p><p class="rd">Automation, batching, custom-built tooling</p></div>
+</div>
+<p><span class="source">Claude’s tiers as of August 2026; OpenAI’s are similar.</span></p>
+<aside class="notes">
+<p>Pro is enough for the workshop and for the first month of real use. Say that Max exists so nobody feels they need it.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-default-model-is-enough-for-daily-work-step-up-for-review" class="slide level2 center">
+<h2>The default model is enough for daily work; step up for review</h2>
+<div class="rows">
+<div class="row"><p class="rn">Fast, cheap</p><p><span class="rc ghost">Haiku</span></p><p class="rd">Conversions, summaries, bulk tasks</p></div>
+<div class="row here"><p class="rn">Default</p><p><span class="rc">Sonnet</span></p><p class="rd">Daily coding, editing, drafting</p></div>
+<div class="row"><p class="rn">Frontier</p><p><span class="rc">Opus</span></p><p class="rd">Hard reasoning, adversarial review</p></div>
+<div class="row"><p class="rn">Most capable, slowest</p><p><span class="rc">Fable</span></p><p class="rd">Long-running agents, the hardest tasks; costs and waits more</p></div>
+</div>
+<p><span class="source">Claude’s model tiers as of August 2026.</span></p>
+<aside class="notes">
+<p>Model choice matters less than the room thinks; the harness slide is the reason. Use the default and step up for the review tasks in section 7, where a second opinion from a stronger model is worth the wait.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="effort-spends-the-same-token-budget-as-files" class="slide level2 center">
+<h2>Effort spends the same token budget as files</h2>
+<div class="split even">
+<div class="prose">
+<p>Effort sets how many tokens the model spends thinking before it answers. It is a setting in the tool, next to the model choice.</p>
+<p>Turn it up for deep analysis and adversarial review. Turn it down for speed on routine tasks.</p>
+</div>
+<div class="prose">
+<div class="stats two">
+<div class="stat">
+<p><span class="k f">3–4</span> <span class="l">characters of English per token</span></p>
+</div>
+<div class="stat">
+<p><span class="k f">15–30k</span> <span class="l">tokens in a short paper</span></p>
+</div>
+</div>
+<p>Tokens are the unit models bill and reason in. Thinking tokens and file tokens come out of the same window.</p>
+<p><span class="source">Rules of thumb from the source deck.</span></p>
+</div>
+</div>
+<aside class="notes">
+<p>Connect to the budget slide: effort spends output tokens, files spend input tokens, both are the same budget and the same bill.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="chat-vs-agent" class="slide level2 center">
+<h2>Chat runs in a sandbox; an agent runs on your computer</h2>
+<div class="split even pairs">
+<div class="panel chat">
+<p><span class="ph">Chat (ChatGPT, Claude.ai)</span></p>
+<ul>
+<li>Runs on the provider’s server, walled off from your machine</li>
+<li>Sees only what you paste or upload</li>
+<li>Gives text back; you move it where it belongs</li>
+<li>Answers get generic when the paste is thin</li>
+</ul>
+<p class="mm">
+When to use: brainstorming, polishing one paragraph, quick lookups.
+</p>
+</div>
+<div class="panel agent">
+<p><span class="ph">An agent (Claude Code, Codex)</span></p>
+<ul>
+<li>Runs in a folder on your computer</li>
+<li>Can read any file in the project, and edit it</li>
+<li>Runs code, shell commands, search, web, <a href="#/tools">MCP tools</a></li>
+<li>Output is grounded in your files and lands in them</li>
+</ul>
+<p class="mm">
+When to use: any task that touches more than one file or needs to execute code.
+</p>
+</div>
+</div>
+<aside class="notes">
+<p>The two tools one more time, now as a rule for choosing. “Sandbox” means the chat runs on the provider’s server with no access to your machine. The next slide is the BUT: the two are converging.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="but-the-two-are-converging" class="slide level2 center">
+<h2>But the two are converging</h2>
+<div class="split even cols">
+<div class="prose">
+<p><span class="colhead chat">What chat borrowed from agents</span></p>
+<p>Claude and ChatGPT both have <strong>projects</strong>: upload files, set standing instructions, keep a memory per project. That is the context half of what an agent has, in a chat window.</p>
+<p>Both apps now contain an agent: the <em>Code</em> and <em>Cowork</em> tabs in the Claude app, Codex inside ChatGPT.</p>
+</div>
+<div class="prose">
+<p><span class="colhead agent">What chat still lacks</span></p>
+<p>The loop. Projects hold context; they do not read your folder, write files, or run code and fix what broke.</p>
+</div>
+</div>
+<aside class="notes">
+<p>The convergence is the argument that context, not the surface, is the thing. Projects with memory get a chat user half of what an agent delivers; the other half needs the loop. The apps’ drawback: you cannot see the edits as easily as in an editor, which is why Day 2 uses VS Code.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-surface-is-your-choice-the-workflow-is-the-same" class="slide level2 center">
+<h2>The surface is your choice; the workflow is the same</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>surface</th>
+<th>what it is good for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>VS Code</strong></td>
+<td>What I use. File tree, diff view, integrated terminal, side-by-side PDF preview.</td>
+</tr>
+<tr class="even">
+<td>Terminal</td>
+<td><code>claude</code> or <code>codex</code> in any shell. Good for servers and quick one-shots.</td>
+</tr>
+<tr class="odd">
+<td>Desktop app</td>
+<td>Claude Desktop’s <em>Cowork</em> and <em>Code</em> tabs, or the Codex desktop app.</td>
+</tr>
+<tr class="even">
+<td>Web, cloud</td>
+<td><a href="https://claude.ai/code">claude.ai/code</a> or <a href="https://chatgpt.com/codex">chatgpt.com/codex</a>. Point at a GitHub repository.</td>
+</tr>
+<tr class="odd">
+<td>Mobile</td>
+<td>Capture ideas; monitor or redirect cloud agents. Not for editing.</td>
+</tr>
+<tr class="even">
+<td>Other editors</td>
+<td>Cursor, JetBrains, Zed. Keep your editor, add the agent.</td>
+</tr>
+</tbody>
+</table>
+<p><span class="source">More at <a href="https://claesbackman.com/agentic-ai-overview.html">claesbackman.com/agentic-ai-overview</a>.</span></p>
+<aside class="notes">
+<p>Day 2 sets up VS Code. Anyone who prefers the desktop app loses only the diff view.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="claude-code-vs.-codex-two-names-for-the-same-workflow" class="slide level2 center">
+<h2>Claude Code vs.&nbsp;Codex: two names for the same workflow</h2>
+<div class="prose">
+<p><strong>Both will</strong> read your files, run code, edit drafts, iterate, and hand sub-tasks to copies of themselves. A <em>skill</em> is a saved prompt invoked by name.</p>
+</div>
+<div class="split even pairs">
+<div class="panel agent">
+<span class="ph">Claude Code (Anthropic)</span>
+<p>
+<b>Standing instructions:</b> <code>CLAUDE.md</code><br><b>Skills trigger:</b> <code>/review-paper</code><br><b>Backed by:</b> Fable, Opus, Sonnet, Haiku<br><b>Surfaces:</b> VS Code, CLI, web, desktop
+</p>
+</div>
+<div class="panel agent">
+<span class="ph">Codex (OpenAI)</span>
+<p>
+<b>Standing instructions:</b> <code>AGENTS.md</code><br><b>Skills trigger:</b> <code>$review-paper</code><br><b>Backed by:</b> GPT family<br><b>Surfaces:</b> VS Code, CLI, web, mobile
+</p>
+</div>
+</div>
+<aside class="notes">
+<p>Two file names and one punctuation mark differ. Everything in the workshop applies to both, and section 7 will give a reason to have both: a second opinion from a model with different habits.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-difference-between-tools-is-how-easily-you-supply-context" class="slide level2 center">
+<h2>The difference between tools is how easily you supply context</h2>
+<div class="big">
+<p><span class="q">Context improves AI tools tremendously, and the goal is to provide the right context.</span></p>
+<p><span class="sub">Chat: you paste it. Projects: you upload it once. An agent: it goes and reads it.</span></p>
+</div>
+<aside class="notes">
+<p>The sentence from section 1, now with the tools compared. Pause here before the practice section.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="in-practice" class="slide level2 divider center" style="--fill:68%">
+<h2>6 · In practice</h2>
+</section>
+<section id="ecb-prompt" class="slide level2 center">
+<h2>For prompting: make a plan, documents the work, and get something you can check</h2>
+<div class="prompt">
+<p>Using the ECB Data Portal API, download two quarterly series from 2000 onwards: the euro-area residential property price index and the deposit facility rate averaged to quarterly. Look up both series keys first and show me the keys and your planned requests before you download anything.</p>
+<p>Save the merged series as <code>data/raw/ecb_hp_rate.csv</code> and write <code>data/README.md</code> giving each series key, its units, and its transformation. Use Python.</p>
+<p>Then plot the two series together, and report the 2008Q1 and 2022Q1 values of each so I can check them against the portal.</p>
+</div>
+<p><span class="source">Three paragraphs, three moves: plan first, document, verify. <a href="#/ecb-room">What the prompt is testing for</a> is in the appendix.</span></p>
+<aside class="notes">
+<p>Read the prompt’s three paragraphs as three rules. An API is a web address that returns data instead of a page; the ECB’s needs no registration. The last paragraph is the verification section in miniature: agents invent series keys that look plausible and return nothing, or the wrong series.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="six-things-to-try-this-week" class="slide level2 center">
+<h2>Six things to try this week</h2>
+<div class="six">
+<div class="panel">
+<span class="ph">Explain a paper</span>
+<p>
+And how it is relevant for your own work. Attach the PDF.
+</p>
+</div>
+<div class="panel">
+<span class="ph">Fetch data</span>
+<p>
+From a public API: ECB, FRED, Eurostat, World Bank. Plan first.
+</p>
+</div>
+<div class="panel">
+<span class="ph">Write code</span>
+<p>
+For a paper, one step at a time, running each step.
+</p>
+</div>
+<div class="panel">
+<span class="ph">Update teaching materials</span>
+<p>
+Slides with 2015 examples get current ones; the structure stays.
+</p>
+</div>
+<div class="panel">
+<span class="ph">Edit your writing</span>
+<p>
+In your own voice.
+</p>
+</div>
+<div class="panel">
+<span class="ph">Mock exams and problem sets</span>
+<p>
+Your students may already be doing this.
+</p>
+</div>
+</div>
+<aside class="notes">
+<p>Ask the room what else they would try. Write the answers down for Day 2’s hands-on.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="verification-is-the-new-bottleneck" class="slide level2 divider center" style="--fill:80%">
+<h2>7 · Verification is the new bottleneck</h2>
+</section>
+<section id="you-are-responsible-for-the-output-and-so-you-have-to-make-sure-that-it-is-right" class="slide level2 center">
+<h2>You are responsible for the output, and so you have to make sure that it is right</h2>
+<div class="prose">
+<p>Agents are fast, cheap and competent at code, including in languages you do not know.</p>
+</div>
+<div class="panel check">
+<span class="ph">The errors that matter are not code crashes</span>
+<p>
+Agents are very good at finding and fixing what crashes. Had an agent used the wrong fixed effect in your table, the code would still run and look plausible, but it would be wrong.
+</p>
+</div>
+<p><span class="source"><a href="https://claesbackman.com/verifying-llm-output.html">claesbackman.com/verifying-llm-output</a>; Litt (2026); Goldsmith-Pinkham (2026); Scott Cunningham.</span></p>
+<aside class="notes">
+<p>The reversal of the day: everything before this slide made output cheap, and this section is about what that does to your job. Recall Novosad from section 2, the same tool produced the opposite result on request. The silent error is the enemy, not the traceback. The panel is in the check colour: from here on, teal means a verification step.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="first-principle-read-whatever-goes-into-your-paper" class="slide level2 center">
+<h2>First principle: read whatever goes into your paper</h2>
+<div class="prose">
+<p><strong>The code is the analysis.</strong> Once a result is in the paper, you are responsible for it.</p>
+<p><strong>Not all code is equal.</strong> You don’t need to know the website code, but you should probably check the regressions.</p>
+</div>
+<aside class="notes">
+<p>Put the effort where the silent error would hurt: data cleaning and regressions, not styling. The four checks cost from minutes to hours and are ordered by cost on the slide after next.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="a-diff-is-a-smaller-thing-to-read-than-a-codebase" class="slide level2 center">
+<h2>A diff is a smaller thing to read than a codebase</h2>
+<div class="split even cols">
+<div class="prose">
+<p><span class="colhead">A reviewer that sees everything</span></p>
+<p>Spreads its attention thin, gives generic answers, and spends the window on files that did not change.</p>
+</div>
+<div class="prose">
+<p><span class="colhead">A reviewer that sees the diff</span></p>
+<p>Knows exactly what is new and compares it against code you already checked.</p>
+</div>
+</div>
+<div class="prose">
+<p>You can use <code>git diff</code>, or your agent can. A <em>diff</em> is the list of lines that changed since the last saved version.</p>
+<p>Version control is a verification tool. This is a good reason to use Git.</p>
+</div>
+<aside class="notes">
+<p>Day 2 covers GitHub Desktop, so no terminal is needed. Here the point is only that “what changed” is the unit of review, and the context-budget slide is why.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!--
+## Each check buys independence from the agent that wrote the code {#checks}
+
+::: {.stack}
+```{=html}
+<div class="stage" data-chart="checks-cost"></div>
+```
+::: {.prose}
+Cheap ones first, the expensive one for the main tables. [The full table is in the appendix.](#checks-table)
+:::
+:::
+
+::: {.notes}
+Four checks, four different kinds of independence: a fresh context, a different model, your own head, a different implementation. The next four slides take them in order, and each one is the answer to a weakness of the one before.
+:::
+-->
+</section>
+<section id="check-1" class="slide level2 center">
+<h2>Check 1: a fresh agent reviews the diff, and reports</h2>
+<div class="split even">
+<div class="prose">
+<p>Two ways to get a reviewer with no stake in the code:</p>
+<p><strong>Ask the current agent</strong> to hand the diff to a subagent, a fresh copy of itself with an empty context.</p>
+<p><strong>Open a new session</strong> and point it at the diff.</p>
+</div>
+<div class="panel check">
+<span class="ph">Have the reviewer report, not fix</span>
+<p>
+Look at what the agent found and verify whether you agree with them. .
+</p>
+<p class="mm">
+Weakness: a fresh copy of the same model shares its habits. Hence check 2.
+</p>
+</div>
+</div>
+<aside class="notes">
+<p>“Report, not fix” is the sentence to remember. Day 2’s /review-paper skill is built this way. The weakness line is the hinge to the next slide.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="check-2-a-different-model-breaks-shared-habits" class="slide level2 center">
+<h2>Check 2: a different model breaks shared habits</h2>
+<div class="big">
+<p><span class="q">Two copies of one model share training data and habits of thought, so they make the same mistakes. Send the same diff to a model from a different developer.</span></p>
+</div>
+<aside class="notes">
+<p>This is why the Codex slide was there. One subscription to each is the cheapest independent check available. Weakness: both models read the same paper you gave them, so a shared misreading survives; check 4 is for that.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="quiz" class="slide level2 center">
+<h2>Check 3: make the agent quiz you</h2>
+<div class="split even">
+<div class="prose">
+<p>Open a fresh session and ask:</p>
+<div class="prompt">
+<p>Read the last commit and the files it touches, then ask me three questions about what it changed. Do not tell me the answers until I have answered. If my answer is wrong, say so directly; do not tell me I was close.</p>
+</div>
+</div>
+<div class="prose">
+<p><strong>Always a new session</strong>, not the one that made the change. Starting fresh forces the agent to read the files instead of recalling the conversation.</p>
+<p><strong>A skill for it:</strong> <code>/explain-diff</code> writes one offline page about what changed, why, what it does to the results, and ends with a five-question quiz. <a href="#/skills">More skills in the appendix.</a></p>
+</div>
+</div>
+<aside class="notes">
+<p>This catches your own understanding gap, which no reviewer agent can. Fifteen minutes. A commit is a saved snapshot in version control; “the last commit” is the last batch of changes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="check-4-reimplement-the-analysis-in-another-language" class="slide level2 center">
+<h2>Check 4: reimplement the analysis in another language</h2>
+<div class="split even cols">
+<div class="prose">
+<p><span class="colhead">What and why</span></p>
+<p>If your code is Stata, a second agent writes the results in Python or R from the paper’s description alone. An idea from Scott Cunningham.</p>
+<p>If coding slips are independent across languages, differences in the output reveal the errors.</p>
+</div>
+<div class="prose">
+<p><span class="colhead">How to isolate it</span></p>
+<p>New folder, fresh session, a <code>spec.md</code> copied from the paper with the results deleted, a <code>README.md</code> describing the raw data.</p>
+<p>This is a major enterprise, so reserve it for the main tables and for things that matter.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Hours, not minutes, so it is for the results that carry the paper. If the second agent can see the first implementation, the errors are no longer independent.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="teaching-in-times-of-ai" class="slide level2 divider center" style="--fill:92%">
+<h2>8 · Teaching in times of AI</h2>
+</section>
+<section id="the-challenge-with-ai-take-home-grades-stopped-measuring-learning" class="slide level2 center">
+<h2>The challenge with AI: take-home grades stopped measuring learning</h2>
+<div class="split">
+<div class="prose">
+<p>Two dot per student, each is an exam.</p>
+<p>Almost everyone scored above 90 on the take-home midterm.</p>
+<p>On the in-person final the same students spread from 95 down to zero.</p>
+</div>
+<div class="figwrap">
+<p><img data-src="figs/midterm_final_grades_crop.jpg"></p>
+</div>
+</div>
+<aside class="notes">
+<p>Let the room read the scatter for ten seconds before speaking. Then place the bet: two guesses, homework and exams. Most rooms guess the direction and are surprised by the size. The data are for one course, one term, after 27 of 86 students had left; it is an anecdote with a clear shape, not an estimate.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="homework" class="slide level2 center">
+<h2>With AI, homework got better and faster</h2>
+<div class="figwrap pair wide">
+<p><img data-src="figs/homework_score.png"> <img data-src="figs/homework_time.png"></p>
+</div>
+<div class="stats two">
+<div class="stat">
+<p><span class="k f">+18%</span> <span class="l">homework score for pupils using AI</span></p>
+</div>
+<div class="stat">
+<p><span class="k f">−30%</span> <span class="l">homework completion time</span></p>
+</div>
+</div>
+<p><span class="figcap">Distributions for pupils in China: never used AI, before using AI, and using AI. Charts reproduced as published; study as cited in <span class="citation" data-cites="bryan2026eight">Bryan (2026)</span>.</span></p>
+<aside class="notes">
+<p>Half the bet paid. The second half is the next slide.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="but-exam-scores-fell" class="slide level2 center">
+<h2>But exam scores fell</h2>
+<div class="split wide-left">
+<div class="figwrap wide">
+<p><img data-src="figs/exam_score.png"></p>
+</div>
+<div class="prose">
+<div class="stat">
+<p><span class="k f">−20%</span> <span class="l">exam performance for the same pupils</span></p>
+</div>
+<p>Homework up, time down, exams down. The homework stopped teaching.</p>
+<p><span class="source">Same study and source as the previous slide.</span></p>
+</div>
+</div>
+<aside class="notes">
+<p>Homework up eighteen percent, time down thirty, exams down twenty. This is Serrano’s scatter as a distribution.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="homework-was-already-a-weak-signal" class="slide level2 center">
+<h2>Homework was already a weak signal</h2>
+<div class="stats two">
+<div class="stat">
+<p><span class="k f">40 → 27</span> <span class="l">hours a week of study, US college students, 1961–2003</span></p>
+</div>
+<div class="stat">
+<p><span class="k f">one in four</span> <span class="l">finance students copied wrong Chegg answers, and learned less</span></p>
+</div>
+</div>
+<div class="prose">
+<p><span class="source">Both figures as cited in <span class="citation" data-cites="bryan2026eight">Bryan (2026)</span>.</span></p>
+</div>
+<aside class="notes">
+<p>Pre-empts “this is new”. It is not new, it is cheaper. That is why the rules that follow are about design, not detection.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="ai-breaks-the-gradeknowledge-link-so-the-rules-have-to-change" class="slide level2 center">
+<h2>AI breaks the grade–knowledge link, so the rules have to change</h2>
+<div class="claims">
+<ul>
+<li><strong>The grade–knowledge link is broken.</strong> A good take-home grade no longer shows the student can do the thing.</li>
+<li><strong>Students need to use AI well later.</strong> Banning it everywhere leaves them untrained.</li>
+<li><strong>AI should let us teach more.</strong> Tutoring, feedback and individual practice used to be too expensive.</li>
+</ul>
+</div>
+<p><span class="source"><span class="citation" data-cites="bryan2026eight">Bryan (2026)</span>, kevinbryanecon.com/teachwithai.</span></p>
+<aside class="notes">
+<p>Three changes; the rest of the section is Bryan’s eight rules, split into protecting learning (rules 1 to 3) and teaching more (rules 4 to 7). Rule 8, the syllabus policy, is on the disclosure slide.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="protect-learning-decide-test-do-not-assign-what-ai-can-do" class="slide level2 center">
+<h2>Protect learning: decide, test, do not assign what AI can do</h2>
+<div class="claims">
+<ul>
+<li><strong>Decide what should be learned without AI.</strong> Be explicit about which assignments test AI-independent competence.</li>
+<li><strong>Give students an incentive to learn.</strong> Regular, graded checks. Effort follows tests.</li>
+<li><strong>Do not give AI-cheatable assignments.</strong> Bryan’s line: almost every take-home worth real credit can be done by a frontier model today.</li>
+</ul>
+</div>
+<p><span class="source">Rules 1–3 of <span class="citation" data-cites="bryan2026eight">Bryan (2026)</span>.</span></p>
+<aside class="notes">
+<p>Rule three is the Serrano scatter. Say it plainly: if a frontier model can do it at home, it is no longer a graded assignment.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="then-teach-more-with-ai" class="slide level2 center">
+<h2>Then teach more with AI</h2>
+<div class="split even cols">
+<div class="prose">
+<p><span class="colhead">For the students</span></p>
+<p><strong>Help them learn more efficiently.</strong> Class-specific tutoring, spaced repetition, mastery learning at scale.</p>
+<p><strong>Personalise assignments.</strong> Problems at the level each student is struggling with.</p>
+</div>
+<div class="prose">
+<p><span class="colhead">For the teacher</span></p>
+<p><strong>Improve your own teaching.</strong> Find out where you were confusing before the exam tells you.</p>
+<p><strong>Raise standards.</strong> If research and drafting are cheaper, the bar moves up.</p>
+</div>
+</div>
+<p><span class="source">Rules 4–7 of <span class="citation" data-cites="bryan2026eight">Bryan (2026)</span>.</span></p>
+<aside class="notes">
+<p>Old mechanisms at a new cost: tutoring and mastery learning worked before LLMs, they were just expensive.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!--
+## Students study when tested, so test them every week
+
+::: {.split .even}
+::: {.prose}
+**How to run it.** A weekly quiz, pass or fail, small weight each, most weeks count.
+
+**Generate the bank from your own notes**, then verify every answer key yourself: a next-token predictor is not a calculator.
+:::
+::: {.prompt}
+From `notes/week3.md`, write 15 multiple-choice questions at three levels, with distractors built from common misconceptions and a one-sentence explanation each.
+:::
+:::
+
+::: {.notes}
+"Verify every answer key yourself" is section 7 applied to teaching.
+:::
+-->
+</section>
+<section id="three-things-to-build-a-tutor-a-misconception-digest-levelled-problem-sets" class="slide level2 center">
+<h2>Three things to build: a tutor, a misconception digest, levelled problem sets</h2>
+<div class="three">
+<div class="panel">
+<span class="ph">Course tutor</span>
+<p>
+A shared assistant (a Claude project, custom GPT or NotebookLM) loaded with <em>your</em> lecture notes and problem sets.
+</p>
+<p class="mm">
+Standing instructions: use the course’s notation, never give the answer, ask the student to explain first, return to topics they missed.
+</p>
+</div>
+<div class="panel">
+<span class="ph">Misconception digest</span>
+<p>
+Each week, export the questions students asked, anonymised.
+</p>
+<p class="mm">
+Prompt: “Group these by underlying misconception, rank by frequency, and point to the lecture slide most likely to have caused each.”
+</p>
+</div>
+<div class="panel">
+<span class="ph">Levelled problem sets</span>
+<p>
+One problem, three difficulty tiers. Assign the tier by last week’s quiz result.
+</p>
+<p class="mm">
+Prompt: “Write this problem at three levels: scaffolded, standard, extension. Same concept, full solutions, and a rubric.”
+</p>
+</div>
+</div>
+<div class="prose">
+<p>Student questions are personal data. Anonymise before exporting and check the institutional policy once.</p>
+</div>
+<aside class="notes">
+<p>Three implementations of rules four to six. The anonymisation line is not optional.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-this-means-for-academic-work" class="slide level2 divider center" style="--fill:98%">
+<h2>What this means for academic work</h2>
+</section>
+<section id="friction-drops-the-bottleneck-moves-verification-becomes-the-edge" class="slide level2 center">
+<h2>Friction drops, the bottleneck moves, verification becomes the edge</h2>
+<div class="claims">
+<ul>
+<li><strong>Friction drops</strong> in writing, editing and admin: the paper website, the grant CV.</li>
+<li><strong>The bottleneck shifts</strong> from producing to judging.</li>
+<li><strong>Verification becomes the differentiator.</strong> Not typing speed, not LaTeX fluency.</li>
+<li><strong>Tooling will keep moving.</strong> The principles, specificity, iteration, verification, will not.</li>
+</ul>
+</div>
+<div class="prose">
+<p>The researchers who get the most out of these tools treat the AI as a colleague to argue with, which is what the mental model in section 1 said.</p>
+</div>
+<aside class="notes">
+<p>Four claims, one per part of the day: sections 2 and 3, section 4 to 6, section 7, and the closing. “Not the most technical”: the adoption data said economists and coders lead, so say instead that the edge is in the arguing, not in the typing.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="four-habits-for-text-output-run-check-read-re-read" class="slide level2 center">
+<h2>Four habits for text output: run, check, read, re-read</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>habit</th>
+<th>what to look for</th>
+<th>how</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Run the code</strong></td>
+<td>Plausible Stata, R or Python that does not always run</td>
+<td>Run it yourself</td>
+</tr>
+<tr class="even">
+<td><strong>Check the numbers</strong></td>
+<td>Statistics, dates and quotes get invented</td>
+<td>Re-derive from the table or the paper</td>
+</tr>
+<tr class="odd">
+<td><strong>Read the citations</strong></td>
+<td>Citations to papers that do not exist are common</td>
+<td>Look for it on Google Scholar</td>
+</tr>
+<tr class="even">
+<td><strong>Re-read the passage</strong></td>
+<td>Confident descriptions of text that is not in the draft</td>
+<td>Open the file, read the section</td>
+</tr>
+</tbody>
+</table>
+<p><span class="source">Adapted from Korinek (2025).</span></p>
+<aside class="notes">
+<p>Four habits that cost almost nothing. The fourth stays yours: no skill re-reads your draft for you.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="disclosure-and-data-norms-are-still-in-flux" class="slide level2 center">
+<h2>Disclosure and data norms are still in flux</h2>
+<div class="split even pairs">
+<div class="panel">
+<p><span class="ph">Disclosure</span></p>
+<ul>
+<li>Journals mostly require acknowledging AI assistance; the specifics vary</li>
+<li>Briefs, teaching and internal documents have no strong norm yet</li>
+<li>Default rule: disclose where your name is on it</li>
+</ul>
+<p class="mm">
+Bryan’s rule 8: write the AI policy into the syllabus, per assignment.
+</p>
+</div>
+<div class="panel">
+<p><span class="ph">Data handling</span></p>
+<ul>
+<li>An agent sends the files it reads to the model provider, not only your prompt</li>
+<li>Confidential microdata, HR material and DUA-covered data stay out until the institution says otherwise</li>
+<li>Web chat and a local agent are different tools with different policies</li>
+</ul>
+<p class="mm">
+Check once, before the first paste; Day 2 has the secure-server workflow.
+</p>
+</div>
+</div>
+<aside class="notes">
+<p>Day 2 has a full section on secure data and servers. Here only the rule: check once, before the first paste. For the register-data people in the room, say the secure-server workflow is tomorrow morning.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="publishing-gets-noisier-research-can-get-better" class="slide level2 center">
+<h2>Publishing gets noisier; research can get better</h2>
+<div class="split even cols">
+<div class="prose">
+<p><span class="colhead">Publishing gets noisier</span></p>
+<p>Journals fill with polished, competent-looking mediocrity. Signal-to-noise drops and reviewing gets harder. Editors and referees absorb the cost.</p>
+</div>
+<div class="prose">
+<p><span class="colhead">Research can still get better</span></p>
+<p>Ideas that could not be written before reach readers. The language barrier falls. Feedback that used to need a good department is available to anyone with a folder and twenty dollars.</p>
+</div>
+</div>
+<div class="prose">
+<p><span class="q">The open question: how do we evaluate research once competent-looking writing is free?</span></p>
+</div>
+<aside class="notes">
+<p>The day’s ending question. Leave it open and ask the room for a first answer; Day 2 gives them the tools that make the right-hand column true for them. Then the closing slide.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="end-of-session-1" class="slide level2 closing center">
+<h2>End of Session 1</h2>
+<div class="big">
+<p><span class="q">Later we will use agents together.<span class="cursor"></span></span></p>
+<p><span class="sub">Hands-on with your own materials: a referee report on your draft, a voice file from your own writing, your code and your paper side by side.</span></p>
+<p><span class="sub">Bring a draft you care about and four or five PDFs of your own writing. Slides, skills, guides: <a href="https://claesbackman.com/ai_workshop">claesbackman.com/ai_workshop</a></span></p>
+</div>
+<div class="window"></div>
+<p><span class="source">Claes Bäckman, SAFE</span></p>
+<aside class="notes">
+<p>Tell them what to install tonight if they want a head start: VS Code, the Claude Code extension, a Pro subscription. The setup slides are at the start of Day 2.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="appendix" class="slide level2 center" data-visibility="uncounted">
+<h2>Appendix</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>from</th>
+<th>slide</th>
+<th>what is in it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4 · Harness</td>
+<td><a href="#/claude-md">CLAUDE.md starter template</a></td>
+<td>Standing instructions to adapt for your own project</td>
+</tr>
+<tr class="even">
+<td>4 · Harness</td>
+<td><a href="#/tools">The six tools the harness adds</a></td>
+<td>Read, edit, shell, search, web, MCP</td>
+</tr>
+<tr class="odd">
+<td>4 · Harness</td>
+<td><a href="#/drift">Signs of session drift</a></td>
+<td>When to start a fresh session</td>
+</tr>
+<tr class="even">
+<td>4 · Harness</td>
+<td><a href="#/formats">Which file formats need converting</a></td>
+<td>Text, convert once, read through code, OCR</td>
+</tr>
+<tr class="odd">
+<td>4 · Harness</td>
+<td><a href="#/convert">Converting is one sentence</a></td>
+<td>A prompt that converts a folder of PDFs</td>
+</tr>
+<tr class="even">
+<td>6 · In practice</td>
+<td><a href="#/ecb-room">What the ECB prompt is testing for</a></td>
+<td>APIs, series keys, and what to check</td>
+</tr>
+<tr class="odd">
+<td>7 · Verification</td>
+<td><a href="#/skills">My skill library</a></td>
+<td>Nine skills on GitHub, free to fork</td>
+</tr>
+<tr class="even">
+<td>7 · Verification</td>
+<td><a href="#/checks-table">Four checks, the full table</a></td>
+<td>What each check catches and what it costs</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><a href="#/references">References</a></td>
+<td>Everything cited on the slides</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="claude-md" class="slide level2 center" data-visibility="uncounted">
+<h2>CLAUDE.md starter template</h2>
+<div class="split even">
+<div class="prose">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href=""></a><span class="fu"># About me</span></span>
+<span id="cb1-2"><a href=""></a>I am a researcher in <span class="co">[</span><span class="ot">field</span><span class="co">]</span>.</span>
+<span id="cb1-3"><a href=""></a></span>
+<span id="cb1-4"><a href=""></a><span class="fu"># How I want you to work with me</span></span>
+<span id="cb1-5"><a href=""></a><span class="ss">- </span>Ask clarifying questions before generating long output.</span>
+<span id="cb1-6"><a href=""></a><span class="ss">- </span>Critical, skeptical tone in feedback. Do not flatter.</span>
+<span id="cb1-7"><a href=""></a><span class="ss">- </span>When editing, preserve my voice (see voice.md).</span>
+<span id="cb1-8"><a href=""></a>  No generic LLM phrasing.</span>
+<span id="cb1-9"><a href=""></a><span class="ss">- </span>Avoid bullet lists and passive voice in formal writing.</span>
+<span id="cb1-10"><a href=""></a><span class="ss">- </span>Cite the specific line or section you are commenting on.</span>
+<span id="cb1-11"><a href=""></a></span>
+<span id="cb1-12"><a href=""></a><span class="fu"># Things to avoid</span></span>
+<span id="cb1-13"><a href=""></a><span class="ss">- </span>Do not fabricate citations.</span>
+<span id="cb1-14"><a href=""></a><span class="ss">- </span>Do not over-claim causality.</span>
+<span id="cb1-15"><a href=""></a><span class="ss">- </span>Do not insert emoji or markdown decorations in formal docs.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="prose">
+<p>Always loaded, every session. Standing instructions, the things you would otherwise repeat in every prompt.</p>
+<p>Day 2 builds one for your own project with <code>/init</code>.</p>
+<p><span class="source">Back to <a href="#/harness">the harness</a>, <a href="#/four-habits-keep-the-window-for-what-matters">the habits</a> or the <a href="#/appendix">appendix overview</a>.</span></p>
+</div>
+</div>
+</section>
+<section id="tools" class="slide level2 center" data-visibility="uncounted">
+<h2>The harness adds six things the model cannot do alone</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>capability</th>
+<th>what it lets the agent do</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Project files (<code>Read</code>)</td>
+<td>Read files, inspect folders, understand the project structure</td>
+</tr>
+<tr class="even">
+<td>Editing (<code>Edit</code>, <code>Write</code>)</td>
+<td>Propose and apply changes; create or modify files</td>
+</tr>
+<tr class="odd">
+<td>Shell (<code>Bash</code>)</td>
+<td>Run commands such as <code>Rscript</code>, <code>pdflatex</code>, tests, linters</td>
+</tr>
+<tr class="even">
+<td>Search (<code>Grep</code>, <code>Glob</code>)</td>
+<td>Search file names and file contents in the project</td>
+</tr>
+<tr class="odd">
+<td>Web (<code>WebSearch</code>)</td>
+<td>Search or fetch web pages when web access is enabled</td>
+</tr>
+<tr class="even">
+<td>MCP and plugins</td>
+<td>Connect to external tools (GitHub, databases, custom servers) through a standard interface, the model context protocol</td>
+</tr>
+</tbody>
+</table>
+<p><span class="source">The names are Claude Code’s; Codex has the same six under other names. Back to <a href="#/harness">the loop</a> or the <a href="#/appendix">appendix overview</a>.</span></p>
+<aside class="notes">
+<p>The first three rows are the tool boxes on the loop slide; the last three are the same idea extended. MCP is the “model context protocol”, a standard way to plug an external service in as a tool.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="drift" class="slide level2 center" data-visibility="uncounted">
+<h2>Signs of session drift</h2>
+<div class="split even">
+<div class="claims">
+<ul>
+<li>Claude ignores <code>CLAUDE.md</code></li>
+<li>Repeats mistakes you already corrected</li>
+<li>Invents files that do not exist</li>
+<li>Gives circular answers</li>
+<li>Forgets the last three turns</li>
+</ul>
+</div>
+<div class="prose">
+<p><strong>Fix.</strong> Start a fresh session or close and reopen. Re-state the task. Re-attach the relevant file.</p>
+<p><em>Thirty turns, or the task has shifted: start fresh. Always.</em></p>
+<p><span class="source">Back to <a href="#/four-habits-keep-the-window-for-what-matters">the habits</a> or the <a href="#/appendix">appendix overview</a>.</span></p>
+</div>
+</div>
+</section>
+<section id="formats" class="slide level2 center" data-visibility="uncounted">
+<h2>Text formats are free; binaries cost a conversion</h2>
+<div class="rows buckets">
+<div class="row"><span></span><p class="rn">Native, no friction</p><p class="rd"><code>.md</code>, <code>.tex</code>, <code>.txt</code>, <code>.bib</code>, <code>.csv</code>, <code>.json</code>, <code>.yaml</code>, and code: <code>.py</code>, <code>.R</code>, <code>.do</code>, <code>.ipynb</code></p></div>
+<div class="row"><span></span><p class="rn">Convert once</p><p class="rd"><code>.docx</code>, born-digital <code>.pdf</code>, <code>.xlsx</code>: to markdown or CSV, saved next to the original</p></div>
+<div class="row"><span></span><p class="rn">Read through code, not as text</p><p class="rd">Data binaries such as <code>.dta</code> and <code>.rds</code>: the agent loads them in Stata, R or pandas and looks at the output</p></div>
+<div class="row"><span></span><p class="rn">Hard: OCR or skip</p><p class="rd">Scanned PDFs, survey exports such as <code>.qsf</code></p></div>
+</div>
+<div class="prose">
+<p>Convert once, commit the markdown alongside the original, point the agent at the markdown.</p>
+</div>
+<p><span class="source">Back to <a href="#/four-habits-keep-the-window-for-what-matters">the habits</a>, on to <a href="#/convert">converting</a>, or the <a href="#/appendix">appendix overview</a>.</span></p>
+<aside class="notes">
+<p>Four rows, one rule. The data-binary row is the one Stata users ask about: nobody OCRs a .dta; the agent writes one line of Stata and reads the result, which is the harness slide again.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="convert" class="slide level2 center" data-visibility="uncounted">
+<h2>Converting is one sentence to the agent</h2>
+<div class="big">
+<p><span class="q">“Convert every PDF in <code>papers/</code> to markdown, save each next to the original, and tell me which ones came out garbled.”</span></p>
+</div>
+<p><span class="source">Back to <a href="#/formats">the file formats</a> or the <a href="#/appendix">appendix overview</a>.</span></p>
+<aside class="notes">
+<p>Show it live if the demo machine is up: /pdf-to-markdown on one file takes under a minute. Asking for the list of garbled files is deliberate; section 7 says why you never take the agent’s word for what came out well.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="ecb-room" class="slide level2 center" data-visibility="uncounted">
+<h2>What the ECB prompt is testing for</h2>
+<div class="claims">
+<ul>
+<li><strong>What an API is.</strong> A URL that returns data as CSV or JSON instead of a web page. The ECB Data Portal serves every published series with no registration and no key.</li>
+<li><strong>The series key is the whole trick.</strong> A series is addressed by a dotted key such as <code>RPP.Q.I9.N.TD.00.3.00</code>. The agent must look the key up before it can fetch anything, which is why the prompt asks to see the keys first.</li>
+<li><strong>Same pattern elsewhere.</strong> FRED, Eurostat, SNB, BIS, World Bank, OECD.</li>
+<li><strong>Verify.</strong> Agents invent series keys that look plausible and return nothing, or the wrong series. Check a few values against the portal’s own interface.</li>
+</ul>
+</div>
+<p><span class="source">Back to <a href="#/ecb-prompt">the prompt</a> or the <a href="#/appendix">appendix overview</a>.</span></p>
+</section>
+<section id="skills" class="slide level2 center" data-visibility="uncounted">
+<h2>My skill library</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>skill</th>
+<th>use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/review-paper</code></td>
+<td>Pre-submission referee report, 8 agents</td>
+</tr>
+<tr class="even">
+<td><code>/review-paper-light</code></td>
+<td>Fast 2-agent version, about 1 minute</td>
+</tr>
+<tr class="odd">
+<td><code>/review-paper-code</code></td>
+<td>Paper and code alignment review</td>
+</tr>
+<tr class="even">
+<td><code>/review-grant</code></td>
+<td>Pre-submission grant review, 6 agents</td>
+</tr>
+<tr class="odd">
+<td><code>/review-pap</code></td>
+<td>Pre-analysis-plan review</td>
+</tr>
+<tr class="even">
+<td><code>/audit-analysis</code></td>
+<td>Adversarial audit of changed analysis code</td>
+</tr>
+<tr class="odd">
+<td><code>/explain-diff</code></td>
+<td>Explain a code change as an HTML page with a quiz</td>
+</tr>
+<tr class="even">
+<td><code>/paper-version</code></td>
+<td>Paper to policy brief, 1-page or 5-page summary</td>
+</tr>
+<tr class="odd">
+<td><code>/pdf-to-markdown</code></td>
+<td>Convert PDFs to readable markdown</td>
+</tr>
+</tbody>
+</table>
+<p><span class="source">All at <a href="https://github.com/claesbackman/AI-research-feedback">github.com/claesbackman/AI-research-feedback</a> (MIT), linked from claesbackman.com/ai_workshop. Fork them, modify them, make them yours. Back to <a href="#/quiz">check 3</a> or the <a href="#/appendix">appendix overview</a>.</span></p>
+</section>
+<section id="checks-table" class="slide level2 center" data-visibility="uncounted">
+<h2>Four checks, the full table</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>check</th>
+<th>what you do</th>
+<th>what it catches</th>
+<th>cost</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Fresh agent attacks the diff</strong></td>
+<td>A fresh chat or subagent reviews the diff</td>
+<td>Errors invisible to the agent that wrote the code</td>
+<td>Minutes</td>
+</tr>
+<tr class="even">
+<td><strong>Different model</strong></td>
+<td>Same diff, model from another developer (Codex vs.&nbsp;Claude)</td>
+<td>Shared habits: two copies of one model make the same mistakes</td>
+<td>Minutes</td>
+</tr>
+<tr class="odd">
+<td><strong>Make the agent quiz you</strong></td>
+<td>Fresh session explains the change, then quizzes you</td>
+<td>Your own understanding gap</td>
+<td>10–15 min</td>
+</tr>
+<tr class="even">
+<td><strong>Reimplement in another language</strong></td>
+<td>Fresh folder, <code>spec.md</code> and <code>README.md</code> only, other language and model, you run it</td>
+<td>Code that faithfully implements something other than the paper</td>
+<td>Hours</td>
+</tr>
+</tbody>
+</table>
+<p><span class="source">Back to <a href="#/check-1">the four checks</a> or the <a href="#/appendix">appendix overview</a>.</span></p>
+</section>
+<section id="references" class="slide level2 smaller scrollable" data-visibility="uncounted">
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bryan2026eight" class="csl-entry" role="listitem">
+Bryan, Kevin A. 2026. <span>“Eight Rules for Teaching in <span>AI</span> World.”</span> <a href="https://kevinbryanecon.com/teachwithai.html" class="uri">https://kevinbryanecon.com/teachwithai.html</a>.
+</div>
+<div id="ref-dell2026navigating" class="csl-entry" role="listitem">
+Dell’Acqua, Fabrizio, Edward McFowland III, Ethan Mollick, Hila Lifshitz, Katherine C Kellogg, Saran Rajendran, Lisa Krayer, François Candelon, and Karim R Lakhani. 2026. <span>“Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of Artificial Intelligence on Knowledge Worker Productivity and Quality.”</span> <em>Organization Science</em> 37 (2): 403–23.
+</div>
+<div id="ref-galiani2026ai" class="csl-entry" role="listitem">
+Galiani, Sebastian, Federico Ariel López, and Raul A Sosa. 2026. <span>“AI Agents and Prompt Engineering in Econometric Coding.”</span> National Bureau of Economic Research.
+</div>
+<div id="ref-lyttelton2026agents" class="csl-entry" role="listitem">
+Lyttelton, Thomas, Maxim Massenkoff, and Nathan Wilmers. 2026. <span>“Coding Agents in the Social Sciences.”</span> <a href="https://www.anthropic.com/research/coding-agents-social-sciences">https://www.anthropic.com/research/coding-agents-social-sciences</a>.
+</div>
+<div id="ref-mollick2026guide" class="csl-entry" role="listitem">
+Mollick, Ethan. 2026. <span>“A Guide to Which AI to Use in the Agentic Era.”</span>
+</div>
+<div id="ref-novosad2026ai" class="csl-entry" role="listitem">
+Novosad, Paul. 2026. <span>“Writing a Paper with AI in Three Hours.”</span>
+</div>
+<div id="ref-novy2026artificial" class="csl-entry" role="listitem">
+Novy-Marx, Robert, and Mihail Velikov. 2026. <span>“Artificial Intelligence–Powered (Finance) Scholarship.”</span> <em>Journal of Economic Literature</em> 64 (1): 5–37.
+</div>
+<div id="ref-schwartz2026llm" class="csl-entry" role="listitem">
+Schwartz, Matthew, Isaiah Andrews, and Jesse M Shapiro. 2026. <span>“An LLM Workflow That Reproduces, Improves, and Extends Published Economics Research.”</span> National Bureau of Economic Research.
+</div>
+<div id="ref-velikov2026guide" class="csl-entry" role="listitem">
+Velikov, Mihail. 2026. <span>“EDHEC Master Class — Using AI for Research.”</span>
+</div>
+</div>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":false},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'speaker',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'fast',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 6.0e-2,
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <!-- The deck's charts: the library first, then the stages. Order matters. -->
+
+    <script src="js/lib.js"></script>
+
+    <script src="js/deck-charts.js"></script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

@@ -197,7 +197,8 @@
     <ul>
       <li><a href="../index.html">Home</a></li>
       <li><a href="../research.html">Research</a></li>
-      <li><a href="../resources.html">Resources</a></li>
+      <li><a href      <li><a href="../ai_workshop/index.html" aria-current="page">AI workshop</a></li>
+="../resources.html">Resources</a></li>
       <li><a href="../yoho.html">YoHo</a></li>
       <li><a href="../teaching.html">Teaching</a></li>
       <li><a href="../ai-guides.html">AI guides</a></li>
@@ -264,7 +265,7 @@
   <ul class="guide-list">
     <li>
       <span class="guide-meta">Session 1 · PDF</span>
-      <h3><a href="AI_Workshop_Session1.pdf">An introduction to generative AI</a></h3>
+      <h3><a href="Session1_explorable/index.html">An introduction to generative AI</a></h3>
       <p>What an LLM actually is, why it sounds confident when it is wrong, and where the field stands.
         Chat versus agentic tools, Claude Code versus Codex, pricing and model tiers. How the agent works,
         what a context window is, and the four checks for errors that do not crash. Teaching when students
@@ -347,9 +348,7 @@
 
 <section id="skills">
   <h2>What each skill does</h2>
-  <p>
-    The review skills run only when you type the command. Claude will not launch a multi-agent review
-    on its own. Each report is saved to a <code>reviews/</code> folder next to your draft, and each
+  <p>An overview of some of the skills that we cover in the workshop. Each
     skill is a few hundred lines of plain markdown you can open and change.
   </p>
   <div class="table-wrap">
@@ -359,19 +358,19 @@
       <tr><td><code>/review-paper</code></td>
         <td>Pre-submission referee report. Eight subagents run in parallel: spelling and style, internal consistency, unsupported claims and identification, mathematics, tables and figures, a referee assessment, a contribution advocate, and a contribution skeptic. Add a journal: <code>/review-paper JF</code>.</td>
         <td>A draft you are about to circulate or submit. Ten to fifteen minutes.</td></tr>
-      <tr><td><code>/review-paper-light</code></td>
+      <!-- <tr><td><code>/review-paper-light</code></td>
         <td>Two agents, contribution and identification only. Flags causal over-claiming.</td>
-        <td>Quick iteration on a draft. About a minute.</td></tr>
+        <td>Quick iteration on a draft. About a minute.</td></tr> -->
       <tr><td><code>/review-paper-code</code></td>
         <td>Maps the paper's empirical claims to the code. Checks reproducibility, sample restrictions, clustering, fixed effects.</td>
         <td>Before a replication package leaves your hands.</td></tr>
-      <tr><td><code>/audit-analysis</code></td>
+      <!-- <tr><td><code>/audit-analysis</code></td>
         <td>Adversarial audit of changed analysis code. Looks for the errors that run cleanly and produce a plausible number.</td>
-        <td>After a substantive change to an estimation script.</td></tr>
+        <td>After a substantive change to an estimation script.</td></tr> -->
       <tr><td><code>/explain-diff</code></td>
         <td>Explains a code change as an offline HTML page: what the code did before, what changed, what it does to the results, and a five-question quiz.</td>
         <td>When you need to understand a change well enough to defend it.</td></tr>
-      <tr><td><code>/review-grant</code></td>
+      <!-- <tr><td><code>/review-grant</code></td>
         <td>Six-agent panel review of a grant proposal against a named funder: <code>/review-grant ERC</code>.</td>
         <td>Before submission.</td></tr>
       <tr><td><code>/review-pap</code></td>
@@ -385,13 +384,15 @@
         <td>A paragraph that feels awkward and you cannot say why.</td></tr>
       <tr><td><code>/pdf-to-markdown</code></td>
         <td>Converts a PDF into readable markdown so the agent can work with it.</td>
-        <td>Before any skill that needs to read a draft you only have as a PDF.</td></tr>
+        <td>Before any skill that needs to read a draft you only have as a PDF.</td></tr> -->
       <tr><td><code>/voice-extractor</code></td>
         <td>Reads a folder of your own papers and writes a <code>voice.md</code>: phrasing, sentence rhythm, hedging style, and a ban list. Written by Mihail Velikov. You can download it <a href="https://github.com/velikov-mihail/edhec-master-class/tree/main/demo2-voice-skill/.claude/skills/voice-extractor">here</a>.</td>
         <td>The Session 2 voice block. Once per author.</td></tr>
       <tr><td><code>/explorable-explanations</code></td>
         <td>Builds an interactive explanation of a topic as a tree of short HTML pages the reader moves through, in the style of Nicky Case's <a href="https://ncase.me/trust/">The Evolution of Trust</a>. Written by Nityesh Agarwal. You can download it <a href="https://github.com/nityeshaga/claude-home-base/tree/main/plugins/creative/skills/explorable-explanations">here</a>.</td>
         <td>Explaining a mechanism or a model to students or a non-specialist reader.</td></tr>
+        <tr><td><code>/explorable-deck  </code></td>
+        <td>Builds an interactive presentation based on the same format as /explorable-explanations. The presentation is done in Quarto-Markdown and is best done by Fable. </a>.</td> <td>Creating an interactive presentation with a clear narrative. </td></tr>
     </tbody>
   </table>
   </div>
