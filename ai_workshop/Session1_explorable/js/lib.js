@@ -118,7 +118,7 @@
         { from: 'edit', to: 'model', log: 'Files written' },
         { from: 'model', to: 'bash', log: 'Model asks the harness to open the page in a browser' },
         { from: 'bash', to: 'model', log: 'One figure missing; model fixes the path and retries' },
-        { from: 'model', to: 'you', log: '“Done. I shortened the abstract; check section 2.”' },
+        { from: 'model', to: 'you', log: '“Done.”' },
       ],
     },
 

@@ -6,8 +6,8 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.27">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-f3c7c545dc2e91a45c874a71090d670a.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Claes Bäckman">
   <meta name="dcterms.date" content="2026-10-06">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -99,7 +105,6 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
-      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -116,7 +121,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-56ec6e1b23be39ea016b3a69d0b20bb2.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-ba9d57f385de44d5e73739a010ef3bd3.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -209,13 +214,9 @@
     }
   </style>
   <!-- The explorable's three faces. Each has a system fallback in the theme, so the
-
        deck still presents offline; the fonts are the one thing that needs the network. -->
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
-
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -228,7 +229,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Claes Bäckman 
+Claes Bäckman
 </div>
         <p class="quarto-title-affiliation">
             Leibniz Institute for Financial Research SAFE
@@ -483,8 +484,8 @@ The first turn of the day and the sentence to repeat. If the demo machine is up,
           display:block!important;
       }</style></aside>
 </section>
-<section id="on-phd-level-science-questions-models-went-from-guessing-to-above-expert-level" class="slide level2 center">
-<h2>On PhD-level science questions, models went from guessing to above expert level</h2>
+<section id="on-phd-level-science-questions-models-are-now-above-expert-level" class="slide level2 center">
+<h2>On PhD-level science questions, models are now above expert level</h2>
 <div class="figwrap wide">
 <p><img data-src="figs/GPQA_test.png"></p>
 </div>
@@ -509,8 +510,8 @@ The first turn of the day and the sentence to repeat. If the demo machine is up,
 <p><img data-src="figs/AI%20iq%20test.jpg"></p>
 </div>
 </section>
-<section id="one-paper-in-three-hours-a-thousand-in-a-project" class="slide level2 center">
-<h2>One paper in three hours, a thousand in a project</h2>
+<section id="efforts-underway-to-automate-research" class="slide level2 center">
+<h2>Efforts underway to automate research</h2>
 <div class="claims">
 <ul>
 <li><strong>Paul Novosad</strong> wrote a paper with AI in about three hours, then another one with the opposite result <span class="citation" data-cites="novosad2026ai">(Novosad 2026)</span>.</li>
@@ -538,7 +539,7 @@ The first turn of the day and the sentence to repeat. If the demo machine is up,
 <h2>Agents raise econometric coding success from 74 to 96 percent</h2>
 <div class="split even">
 <div class="prose">
-<p><span class="citation" data-cites="galiani2026ai">Galiani, López, and Sosa (2026)</span> benchmark applied econometric tasks in Stata, R and Python. Moving from a chatbot that writes one script to an agent that runs and revises its own code is what raises task success.</p>
+<p><span class="citation" data-cites="galiani2026ai">Galiani et al. (2026)</span> benchmark applied econometric tasks in Stata, R and Python. Moving from a chatbot that writes one script to an agent that runs and revises its own code is what raises task success.</p>
 <p>Under the chatbot, results differ a lot by software. Under the agent, the differences largely disappear.</p>
 </div>
 <div class="prose">
@@ -550,7 +551,7 @@ The first turn of the day and the sentence to repeat. If the demo machine is up,
 <p><span class="k f">8 cents</span> <span class="l">extra cost per run</span></p>
 </div>
 </div>
-<p><span class="source"><span class="citation" data-cites="galiani2026ai">Galiani, López, and Sosa (2026)</span>, NBER working paper 35588, abstract. “Constrained agent”: one that runs its code and fixes errors, but within a fixed set of tools.</span></p>
+<p><span class="source"><span class="citation" data-cites="galiani2026ai">Galiani et al. (2026)</span>, NBER working paper 35588, abstract. “Constrained agent”: one that runs its code and fixes errors, but within a fixed set of tools.</span></p>
 </div>
 </div>
 <aside class="notes">
@@ -572,7 +573,7 @@ The first turn of the day and the sentence to repeat. If the demo machine is up,
 <div class="split">
 <div class="prose">
 <p>Two tasks that look equally hard to you can sit on opposite sides of the line.</p>
-<p>Drafting prose, summarising a literature, re-deriving a table: inside. Judging how to frame your paper, or noticing a wrong fixed effect: probably outside.</p>
+<p>Drafting prose, summarising a literature, re-deriving a table: inside. But some things are outside, and figuring out which is difficult ex-ante.</p>
 <p>Consultants in Dell’Acqua et al.’s field experiment did better inside the frontier and worse outside it, because they trusted the tool in both places.</p>
 <p><span class="source"><span class="citation" data-cites="dell2026navigating">Dell’Acqua et al. (2026)</span>; Ethan Mollick’s “jagged frontier”.</span></p>
 </div>
@@ -626,7 +627,7 @@ The first turn of the day and the sentence to repeat. If the demo machine is up,
 <p><strong>Most use chat only</strong></p>
 <p><strong>The caveat that this was a really long time ago (February/March).</strong></p>
 </div>
-<p><span class="source"><span class="citation" data-cites="lyttelton2026agents">Lyttelton, Massenkoff, and Wilmers (2026)</span>, survey of 1,260 social scientists, February–March 2026.</span></p>
+<p><span class="source"><span class="citation" data-cites="lyttelton2026agents">Lyttelton et al. (2026)</span>, survey of 1,260 social scientists, February–March 2026.</span></p>
 </div>
 <div class="stage tall" data-chart="adoption-field" data-animate=""></div>
 </div>
@@ -650,7 +651,7 @@ The first turn of the day and the sentence to repeat. If the demo machine is up,
 <div class="prose">
 <p>About a quarter of PhD students use a coding agent. Fewer than one in ten full professors do.</p>
 <p>Different readings: seniors have less to gain, seniors have RAs who use agents, or seniors face the highest switching cost.</p>
-<p><span class="source"><span class="citation" data-cites="lyttelton2026agents">Lyttelton, Massenkoff, and Wilmers (2026)</span>.</span></p>
+<p><span class="source"><span class="citation" data-cites="lyttelton2026agents">Lyttelton et al. (2026)</span>.</span></p>
 </div>
 <div class="stage" data-chart="adoption-career"></div>
 </div>
@@ -674,7 +675,7 @@ The first turn of the day and the sentence to repeat. If the demo machine is up,
 <div class="prose">
 <p>Code is nearly universal among agent users.</p>
 <p>More than half of agent users draft with it, fewer than a third of other users do.</p>
-<p><span class="source"><span class="citation" data-cites="lyttelton2026agents">Lyttelton, Massenkoff, and Wilmers (2026)</span>.</span></p>
+<p><span class="source"><span class="citation" data-cites="lyttelton2026agents">Lyttelton et al. (2026)</span>.</span></p>
 </div>
 <div class="stage" data-chart="adoption-use"></div>
 </div>
@@ -706,7 +707,7 @@ The first turn of the day and the sentence to repeat. If the demo machine is up,
 <div class="prose">
 <p><span class="colhead">New outputs, new projects</span></p>
 <p><strong>New ways to communicate a paper.</strong> An interactive website, a policy brief, a dashboard or an audio summary, all from the same paper.</p>
-<p><strong>New kinds of projects.</strong> Mass automation (Project APE), automated replication and extension <span class="citation" data-cites="schwartz2026llm">(Schwartz, Andrews, and Shapiro 2026)</span>, AI agents as simulated humans (Expected Parrot), ???</p>
+<p><strong>New kinds of projects.</strong> Mass automation (Project APE), automated replication and extension <span class="citation" data-cites="schwartz2026llm">(Schwartz et al. 2026)</span>, AI agents as simulated humans (Expected Parrot), ???</p>
 </div>
 </div>
 <aside class="notes">
@@ -777,12 +778,12 @@ Mental model: a personal assistant.
           display:block!important;
       }</style></aside>
 </section>
-<section id="admin-is-the-undervalued-one" class="slide level2 center">
-<h2>Admin is the undervalued one</h2>
+<section id="admin-is-an-important-use-case" class="slide level2 center">
+<h2>Admin is an important use case</h2>
 <div class="split even">
 <div class="prose">
 <p><strong>Friction is highest.</strong> The cost of starting dominates the cost of doing.</p>
-<p><strong>The quality bar is lower.</strong> No referee, no audience: a funder checks the content, not the typesetting.</p>
+<p><strong>The quality bar is lower.</strong> No referee, no audience: a funder checks the contents.</p>
 <p><strong>There is nobody else to delegate to.</strong> Small tasks are not worth giving to someone else.</p>
 </div>
 <div class="panel agent">
@@ -815,8 +816,8 @@ A task that is easy to verify and that nobody pays you for.
           display:block!important;
       }</style></aside>
 </section>
-<section id="ai-rewards-expertise-because-it-does-not-supply-the-question" class="slide level2 center">
-<h2>AI rewards expertise, because it does not supply the question</h2>
+<section id="ai-rewards-expertise" class="slide level2 center">
+<h2>AI rewards expertise</h2>
 <div class="split even cols">
 <div class="prose">
 <p><span class="colhead">What the expert brings</span></p>
@@ -830,9 +831,6 @@ A task that is easy to verify and that nobody pays you for.
 <p><strong>It does not replace judgment.</strong> You decide what to do and whether it is worth doing.</p>
 <p><strong>It does not know your institution’s rules</strong> unless you put them in the context: the journal’s AI policy, the funder’s format.</p>
 </div>
-</div>
-<div class="prose">
-<p><span class="q">Highly capable, confident on any question, and you are still in charge of the output.</span></p>
 </div>
 <aside class="notes">
 <p>Counter the fear in the room: the tool amplifies what you already know, and the three verbs on the left are the three places a non-expert gets stuck. The right column is the same fact from the tool’s side. The third item is the context lesson again: the rules exist, the model has not seen them until you show it.</p>
@@ -913,8 +911,8 @@ A task that is easy to verify and that nobody pays you for.
           display:block!important;
       }</style></aside>
 </section>
-<section id="four-habits-keep-the-window-for-what-matters" class="slide level2 center">
-<h2>Four habits keep the window for what matters</h2>
+<section id="four-good-habits" class="slide level2 center">
+<h2>Four good habits</h2>
 <div class="rows">
 <div class="row"><p class="rn">Point at files</p><p><span class="rc cmd">@filename</span></p><p class="rd">Name the file you mean; do not let the agent read everything in the folder.</p></div>
 <div class="row"><p class="rn">One task, one session</p><p><span class="rc cmd">/clear</span></p><p class="rd">Start a new session for a new task. Thirty turns or a shifted task: restart. <a href="#/drift">Signs of drift.</a></p></div>
@@ -2018,21 +2016,21 @@ Check once, before the first paste; Day 2 has the secure-server workflow.
 <h2>CLAUDE.md starter template</h2>
 <div class="split even">
 <div class="prose">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href=""></a><span class="fu"># About me</span></span>
-<span id="cb1-2"><a href=""></a>I am a researcher in <span class="co">[</span><span class="ot">field</span><span class="co">]</span>.</span>
-<span id="cb1-3"><a href=""></a></span>
-<span id="cb1-4"><a href=""></a><span class="fu"># How I want you to work with me</span></span>
-<span id="cb1-5"><a href=""></a><span class="ss">- </span>Ask clarifying questions before generating long output.</span>
-<span id="cb1-6"><a href=""></a><span class="ss">- </span>Critical, skeptical tone in feedback. Do not flatter.</span>
-<span id="cb1-7"><a href=""></a><span class="ss">- </span>When editing, preserve my voice (see voice.md).</span>
-<span id="cb1-8"><a href=""></a>  No generic LLM phrasing.</span>
-<span id="cb1-9"><a href=""></a><span class="ss">- </span>Avoid bullet lists and passive voice in formal writing.</span>
-<span id="cb1-10"><a href=""></a><span class="ss">- </span>Cite the specific line or section you are commenting on.</span>
-<span id="cb1-11"><a href=""></a></span>
-<span id="cb1-12"><a href=""></a><span class="fu"># Things to avoid</span></span>
-<span id="cb1-13"><a href=""></a><span class="ss">- </span>Do not fabricate citations.</span>
-<span id="cb1-14"><a href=""></a><span class="ss">- </span>Do not over-claim causality.</span>
-<span id="cb1-15"><a href=""></a><span class="ss">- </span>Do not insert emoji or markdown decorations in formal docs.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="" aria-label="1"></a><span class="fu"># About me</span></span>
+<span id="cb1-2"><a href="" aria-label="2"></a>I am a researcher in <span class="co">[</span><span class="ot">field</span><span class="co">]</span>.</span>
+<span id="cb1-3"><a href="" aria-label="3"></a></span>
+<span id="cb1-4"><a href="" aria-label="4"></a><span class="fu"># How I want you to work with me</span></span>
+<span id="cb1-5"><a href="" aria-label="5"></a><span class="ss">- </span>Ask clarifying questions before generating long output.</span>
+<span id="cb1-6"><a href="" aria-label="6"></a><span class="ss">- </span>Critical, skeptical tone in feedback. Do not flatter.</span>
+<span id="cb1-7"><a href="" aria-label="7"></a><span class="ss">- </span>When editing, preserve my voice (see voice.md).</span>
+<span id="cb1-8"><a href="" aria-label="8"></a>  No generic LLM phrasing.</span>
+<span id="cb1-9"><a href="" aria-label="9"></a><span class="ss">- </span>Avoid bullet lists and passive voice in formal writing.</span>
+<span id="cb1-10"><a href="" aria-label="10"></a><span class="ss">- </span>Cite the specific line or section you are commenting on.</span>
+<span id="cb1-11"><a href="" aria-label="11"></a></span>
+<span id="cb1-12"><a href="" aria-label="12"></a><span class="fu"># Things to avoid</span></span>
+<span id="cb1-13"><a href="" aria-label="13"></a><span class="ss">- </span>Do not fabricate citations.</span>
+<span id="cb1-14"><a href="" aria-label="14"></a><span class="ss">- </span>Do not over-claim causality.</span>
+<span id="cb1-15"><a href="" aria-label="15"></a><span class="ss">- </span>Do not insert emoji or markdown decorations in formal docs.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="prose">
 <p>Always loaded, every session. Standing instructions, the things you would otherwise repeat in every prompt.</p>
@@ -2271,33 +2269,33 @@ Check once, before the first paste; Day 2 has the secure-server workflow.
 </section>
 <section id="references" class="slide level2 smaller scrollable" data-visibility="uncounted">
 <h2>References</h2>
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-bryan2026eight" class="csl-entry" role="listitem">
-Bryan, Kevin A. 2026. <span>“Eight Rules for Teaching in <span>AI</span> World.”</span> <a href="https://kevinbryanecon.com/teachwithai.html" class="uri">https://kevinbryanecon.com/teachwithai.html</a>.
+Bryan, Kevin A. 2026. <em>Eight Rules for Teaching in <span>AI</span> World</em>. <a href="https://kevinbryanecon.com/teachwithai.html" class="uri">Https://kevinbryanecon.com/teachwithai.html</a>.
 </div>
 <div id="ref-dell2026navigating" class="csl-entry" role="listitem">
-Dell’Acqua, Fabrizio, Edward McFowland III, Ethan Mollick, Hila Lifshitz, Katherine C Kellogg, Saran Rajendran, Lisa Krayer, François Candelon, and Karim R Lakhani. 2026. <span>“Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of Artificial Intelligence on Knowledge Worker Productivity and Quality.”</span> <em>Organization Science</em> 37 (2): 403–23.
+Dell’Acqua, Fabrizio, Edward McFowland III, Ethan Mollick, et al. 2026. <span>“Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of Artificial Intelligence on Knowledge Worker Productivity and Quality.”</span> <em>Organization Science</em> 37 (2): 403–23.
 </div>
 <div id="ref-galiani2026ai" class="csl-entry" role="listitem">
-Galiani, Sebastian, Federico Ariel López, and Raul A Sosa. 2026. <span>“AI Agents and Prompt Engineering in Econometric Coding.”</span> National Bureau of Economic Research.
+Galiani, Sebastian, Federico Ariel López, and Raul A Sosa. 2026. <em>AI Agents and Prompt Engineering in Econometric Coding</em>. National Bureau of Economic Research.
 </div>
 <div id="ref-lyttelton2026agents" class="csl-entry" role="listitem">
-Lyttelton, Thomas, Maxim Massenkoff, and Nathan Wilmers. 2026. <span>“Coding Agents in the Social Sciences.”</span> <a href="https://www.anthropic.com/research/coding-agents-social-sciences">https://www.anthropic.com/research/coding-agents-social-sciences</a>.
+Lyttelton, Thomas, Maxim Massenkoff, and Nathan Wilmers. 2026. <em>Coding Agents in the Social Sciences</em>. <a href="https://www.anthropic.com/research/coding-agents-social-sciences">https://www.anthropic.com/research/coding-agents-social-sciences</a>.
 </div>
 <div id="ref-mollick2026guide" class="csl-entry" role="listitem">
-Mollick, Ethan. 2026. <span>“A Guide to Which AI to Use in the Agentic Era.”</span>
+Mollick, Ethan. 2026. <em>A Guide to Which AI to Use in the Agentic Era</em>.
 </div>
 <div id="ref-novosad2026ai" class="csl-entry" role="listitem">
-Novosad, Paul. 2026. <span>“Writing a Paper with AI in Three Hours.”</span>
+Novosad, Paul. 2026. <em>Writing a Paper with AI in Three Hours</em>.
 </div>
 <div id="ref-novy2026artificial" class="csl-entry" role="listitem">
 Novy-Marx, Robert, and Mihail Velikov. 2026. <span>“Artificial Intelligence–Powered (Finance) Scholarship.”</span> <em>Journal of Economic Literature</em> 64 (1): 5–37.
 </div>
 <div id="ref-schwartz2026llm" class="csl-entry" role="listitem">
-Schwartz, Matthew, Isaiah Andrews, and Jesse M Shapiro. 2026. <span>“An LLM Workflow That Reproduces, Improves, and Extends Published Economics Research.”</span> National Bureau of Economic Research.
+Schwartz, Matthew, Isaiah Andrews, and Jesse M Shapiro. 2026. <em>An LLM Workflow That Reproduces, Improves, and Extends Published Economics Research</em>. National Bureau of Economic Research.
 </div>
 <div id="ref-velikov2026guide" class="csl-entry" role="listitem">
-Velikov, Mihail. 2026. <span>“EDHEC Master Class — Using AI for Research.”</span>
+Velikov, Mihail. 2026. <em>EDHEC Master Class — Using AI for Research</em>.
 </div>
 </div>
 
@@ -2499,11 +2497,8 @@ Velikov, Mihail. 2026. <span>“EDHEC Master Class — Using AI for Research.”
       });
     </script>
     <!-- The deck's charts: the library first, then the stages. Order matters. -->
-
     <script src="js/lib.js"></script>
-
     <script src="js/deck-charts.js"></script>
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

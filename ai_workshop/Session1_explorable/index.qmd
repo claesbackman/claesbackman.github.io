@@ -203,7 +203,7 @@ Say it, pause, move on. It comes back at the end of section 5 with the tools com
 Walk left to right. "Spawns subagents" on the third box means the agent can start a fresh copy of itself with its own context window to do a sub-task; that is what "use a subagent" means when it comes up in section 7. The point of the third box: an agent can read the folder itself. The context problem from the last section is what agents solve.
 :::
 
-## On PhD-level science questions, models went from guessing to above expert level
+## On PhD-level science questions, models are now above expert level
 
 ::: {.figwrap .wide}
 ![](figs/GPQA_test.png)
@@ -222,7 +222,7 @@ Three years from the bottom dashed line to above the top one; the figure's own l
 :::
 
 
-## One paper in three hours, a thousand in a project
+## Efforts underway to automate research 
 
 ::: {.claims}
 - **Paul Novosad** wrote a paper with AI in about three hours, then another one with the opposite result [@novosad2026ai].
@@ -271,7 +271,7 @@ Boris Cherny, who runs Claude Code at Anthropic, says "coding is largely solved"
 ::: {.prose}
 Two tasks that look equally hard to you can sit on opposite sides of the line.
 
-Drafting prose, summarising a literature, re-deriving a table: inside. Judging how to frame your paper, or noticing a wrong fixed effect: probably outside.
+Drafting prose, summarising a literature, re-deriving a table: inside. But some things are outside, and figuring out which is difficult ex-ante. 
 
 Consultants in Dell'Acqua et al.'s field experiment did better inside the frontier and worse outside it, because they trusted the tool in both places.
 
@@ -430,13 +430,13 @@ The left column is the three-jobs slide in one line: the same work, faster. The 
 Three mental models, one per column; Day 2 is mostly the first two. The next slide argues column three is undervalued.
 :::
 
-## Admin is the undervalued one
+## Admin is an important use case 
 
 ::: {.split .even}
 ::: {.prose}
 **Friction is highest.** The cost of starting dominates the cost of doing.
 
-**The quality bar is lower.** No referee, no audience: a funder checks the content, not the typesetting.
+**The quality bar is lower.** No referee, no audience: a funder checks the contents. 
 
 **There is nobody else to delegate to.** Small tasks are not worth giving to someone else.
 :::
@@ -453,7 +453,7 @@ Three mental models, one per column; Day 2 is mostly the first two. The next sli
 The full professors from the career-stage slide: this is their entry point. "Easy to verify" is the operative phrase and comes back in section 7. The panel is in the agent colour because it is an agent task: the files are in a folder.
 :::
 
-## AI rewards expertise, because it does not supply the question
+## AI rewards expertise
 
 ::: {.split .even .cols}
 ::: {.prose}
@@ -476,9 +476,6 @@ The full professors from the career-stage slide: this is their entry point. "Eas
 :::
 :::
 
-::: {.prose}
-[Highly capable, confident on any question, and you are still in charge of the output.]{.q}
-:::
 
 ::: {.notes}
 Counter the fear in the room: the tool amplifies what you already know, and the three verbs on the left are the three places a non-expert gets stuck. The right column is the same fact from the tool's side. The third item is the context lesson again: the rules exist, the model has not seen them until you show it.
@@ -528,7 +525,7 @@ Everything the model conditions on has to fit in one window: the standing instru
 The stage starts at six long PDFs, about half the window. The move: drag right past ten 200-page PDFs and watch the grey stub, the standing instructions, get pushed out of the left edge of the window and drop below it. Say: "a 200-page PDF is ninety thousand tokens; ten of them and the window is full, and the first thing to fall out is your instructions." The segments are rules of thumb, the arithmetic is the real one. Quality degrades well before the bar is full, which is why the next slide's habits matter at far less than 100 percent.
 :::
 
-## Four habits keep the window for what matters
+## Four good habits
 
 ```{=html}
 <div class="rows">
