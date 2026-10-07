@@ -1,0 +1,1099 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Repayment Schedules and Household Borrowing</title>
+<meta name="description" content="Policy summary of Bäckman, Moran and van Santen (2026), Review of Financial Studies: how Sweden's mortgage amortization requirement changed household borrowing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..650;1,8..60,400&display=swap">
+<style>
+/* Layout: a 66ch reading column for the argument, with figure panels that widen to 1080px; sticky section nav on top. */
+:root{
+  --paper:#f2f4f5; --surface:#ffffff; --tint:#e8edf1;
+  --ink:#16212c; --ink-2:#3f4c58; --muted:#5d6975; --rule:#d3dadf; --grid:#e5e9ec;
+  --before:#3a64b0; --after:#d65f1c; --teal:#14937c; --base:#8a959f;
+  --before-a:rgba(58,100,176,.15); --after-a:rgba(214,95,28,.18);
+  --zone-1:#f6d9c6; --zone-2:#eaa77c;
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-ui:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --wrap:1080px; --measure:66ch;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f151b; --surface:#151c23; --tint:#1b242c;
+    --ink:#e6ebef; --ink-2:#bcc6ce; --muted:#909ca7; --rule:#2b353f; --grid:#222b34;
+    --before:#5b86d3; --after:#e0692a; --teal:#25a58c; --base:#7f8b96;
+    --before-a:rgba(91,134,211,.20); --after-a:rgba(224,105,42,.22);
+    --zone-1:#4a2c1c; --zone-2:#8a4420;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f151b; --surface:#151c23; --tint:#1b242c;
+  --ink:#e6ebef; --ink-2:#bcc6ce; --muted:#909ca7; --rule:#2b353f; --grid:#222b34;
+  --before:#5b86d3; --after:#e0692a; --teal:#25a58c; --base:#7f8b96;
+  --before-a:rgba(91,134,211,.20); --after-a:rgba(224,105,42,.22);
+  --zone-1:#4a2c1c; --zone-2:#8a4420;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+[hidden]{display:none!important}
+a{color:inherit;text-decoration-color:var(--after);text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{text-decoration-color:var(--ink)}
+:focus-visible{outline:2px solid var(--before);outline-offset:2px;border-radius:2px}
+
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+.measure{max-width:var(--measure)}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;align-items:center;gap:20px;min-height:52px}
+.brand{font-family:var(--f-ui);font-weight:700;font-stretch:82%;font-size:15px;letter-spacing:.01em;white-space:nowrap;text-decoration:none}
+.brand span{color:var(--after)}
+.nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-family:var(--f-ui);font-size:14px;color:var(--ink-2);text-decoration:none;padding:6px 10px;border-radius:4px;white-space:nowrap}
+.nav a:hover{background:var(--tint);color:var(--ink)}
+.top .paper-link{font-family:var(--f-ui);font-size:14px;font-weight:600;white-space:nowrap;text-decoration:none;border:1px solid var(--ink);padding:5px 12px;border-radius:4px}
+.top .paper-link:hover{background:var(--ink);color:var(--paper)}
+@media (max-width:720px){.top .paper-link{display:none}}
+
+/* type */
+.eyebrow{font-family:var(--f-ui);font-size:12.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h1{font-size:clamp(2.2rem,4.2vw + 1rem,4rem);font-weight:760;font-stretch:78%;line-height:1.0;letter-spacing:-.012em;max-width:18ch}
+h2{font-size:clamp(1.65rem,1.6vw + 1.1rem,2.35rem);font-weight:720;font-stretch:84%;line-height:1.08;letter-spacing:-.006em;max-width:26ch}
+h3{font-size:1.18rem;font-weight:700;font-stretch:90%;line-height:1.25}
+p{margin:0}
+.prose{display:grid;gap:1em;max-width:var(--measure)}
+.dek{font-size:clamp(1.12rem,.5vw + 1rem,1.3rem);line-height:1.5;color:var(--ink-2);max-width:56ch}
+.small{font-size:15px;line-height:1.55;color:var(--ink-2)}
+.ui{font-family:var(--f-ui)}
+.num{font-variant-numeric:tabular-nums}
+
+/* hero */
+.hero{padding-block:44px 8px;scroll-margin-top:60px}
+.hero-grid{display:grid;gap:22px}
+.byline{font-family:var(--f-ui);font-size:14.5px;color:var(--muted)}
+.byline b{color:var(--ink);font-weight:600}
+
+/* panels (figures only) */
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:clamp(14px,2.4vw,24px);display:grid;gap:14px;min-width:0}
+.panel-head{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:flex-end;justify-content:space-between}
+.panel-title{font-family:var(--f-ui);font-weight:700;font-size:16px;font-stretch:92%}
+.panel-sub{font-family:var(--f-ui);font-size:13.5px;color:var(--muted)}
+.controls{display:flex;flex-wrap:wrap;gap:10px}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:5px;overflow:hidden;background:var(--paper)}
+.seg button{font-family:var(--f-ui);font-size:13.5px;font-weight:600;color:var(--ink-2);background:transparent;border:0;padding:7px 12px;cursor:pointer;border-right:1px solid var(--rule);min-height:34px}
+.seg button:last-child{border-right:0}
+.seg button:hover{color:var(--ink);background:var(--tint)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--f-ui);font-size:13.5px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{display:inline-block;width:12px;height:12px;border-radius:2px}
+.sw.line{height:0;width:18px;border-top:2.5px solid;border-radius:0}
+.sw.dash{height:0;width:18px;border-top:2px dashed;border-radius:0}
+.plot{position:relative;width:100%;min-width:0}
+.plot svg{display:block;width:100%;height:auto;overflow:visible}
+.caption{font-family:var(--f-ui);font-size:13px;line-height:1.5;color:var(--muted);max-width:90ch}
+
+/* svg classes */
+.grid{stroke:var(--grid);stroke-width:1}
+.axis{stroke:var(--rule);stroke-width:1}
+.tick{font-family:var(--f-ui);font-size:12px;fill:var(--muted);font-variant-numeric:tabular-nums}
+.axis-title{font-family:var(--f-ui);font-size:12.5px;fill:var(--muted)}
+.lab{font-family:var(--f-ui);font-size:12.5px;fill:var(--ink-2)}
+.lab-b{font-family:var(--f-ui);font-size:13px;font-weight:700;fill:var(--ink)}
+.thr{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:4 4;opacity:.75}
+.bar-after{fill:var(--after);opacity:.5}
+.bar-after.hi{opacity:1}
+.bar-after.hov,.bar-m.hov{opacity:1;stroke:var(--ink);stroke-width:1}
+.line-before{fill:none;stroke:var(--before);stroke-width:2.25;stroke-linejoin:round}
+.line-after{fill:none;stroke:var(--after);stroke-width:2.25;stroke-linejoin:round}
+.line-base{fill:none;stroke:var(--base);stroke-width:2;stroke-linejoin:round}
+.area-int{fill:var(--before-a)}
+.area-rep{fill:var(--after-a)}
+.cursor{stroke:var(--ink);stroke-width:1;opacity:.55}
+.dot-b{fill:var(--before);stroke:var(--surface);stroke-width:2}
+.dot-a{fill:var(--after);stroke:var(--surface);stroke-width:2}
+.dot-ink{fill:var(--ink);stroke:var(--surface);stroke-width:2}
+.whisker{stroke:var(--ink-2);stroke-width:2;stroke-linecap:round}
+.ref{stroke:var(--muted);stroke-width:1.25;stroke-dasharray:3 4}
+.bar-m{opacity:.9}
+.m-baseline{fill:var(--base)} .m-notch{fill:var(--after)} .m-flow{fill:var(--teal)}
+.hit{fill:transparent;cursor:crosshair}
+.bracket{fill:none;stroke:var(--ink-2);stroke-width:1.25}
+.halo{paint-order:stroke;stroke:var(--surface);stroke-width:4px;stroke-linejoin:round}
+
+.tip{position:absolute;z-index:5;pointer-events:none;background:var(--ink);color:var(--surface);font-family:var(--f-ui);font-size:13px;line-height:1.45;padding:8px 10px;border-radius:5px;max-width:240px;font-variant-numeric:tabular-nums;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.tip b{font-weight:700}
+.tip .k{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:baseline}
+
+/* estimate strip */
+.estimates{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px 24px;border-top:1px solid var(--rule);padding-top:14px}
+.est .v{font-family:var(--f-display);font-stretch:85%;font-weight:700;font-size:1.6rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.est .v small{font-family:var(--f-ui);font-size:13px;font-weight:500;color:var(--muted);margin-left:6px}
+.est .l{font-family:var(--f-ui);font-size:13.5px;line-height:1.45;color:var(--ink-2);margin-top:4px}
+
+/* key numbers */
+.keys{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:30px;border-top:2px solid var(--ink)}
+.key{padding:16px 20px 4px 0;display:grid;gap:6px;align-content:start}
+.key + .key{padding-left:20px;border-left:1px solid var(--rule)}
+.key .n{font-family:var(--f-display);font-weight:780;font-stretch:76%;font-size:clamp(2.4rem,3vw + 1rem,3.3rem);line-height:.95;font-variant-numeric:tabular-nums}
+.key .n.accent{color:var(--after)}
+.key p{font-family:var(--f-ui);font-size:14.5px;line-height:1.45;color:var(--ink-2)}
+@media (max-width:860px){.keys{grid-template-columns:repeat(2,minmax(0,1fr))}.key:nth-child(3){padding-left:0;border-left:0}.key:nth-child(n+3){border-top:1px solid var(--rule)}}
+@media (max-width:440px){.keys{grid-template-columns:1fr}.key,.key + .key{padding-left:0;border-left:0}.key + .key{border-top:1px solid var(--rule)}}
+
+/* sections */
+.sec{padding-block:64px 8px;scroll-margin-top:60px}
+.sec-inner{display:grid;gap:26px}
+.sec-head{display:grid;gap:14px}
+.sec{border-top:1px solid var(--rule);margin-top:56px}
+
+/* LTV ruler */
+.ruler{display:grid;gap:6px}
+.ruler-bar{display:flex;height:58px;border-radius:5px;overflow:hidden;border:1px solid var(--rule)}
+.zone{display:flex;flex-direction:column;justify-content:center;padding-inline:12px;font-family:var(--f-ui);min-width:0;border-right:2px solid var(--surface)}
+.zone:last-child{border-right:0}
+.zone b{font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zone span{font-size:12.5px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zone em{font-style:normal}
+@media (max-width:560px){.zone{padding-inline:8px}.zone span,.zone em{display:none}.zone b{font-size:14px}}
+.z0{flex:50;background:var(--tint)} .z1{flex:20;background:var(--zone-1)} .z2{flex:15;background:var(--zone-2)}
+.ruler-ticks{position:relative;height:18px;font-family:var(--f-ui);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ruler-ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.ruler-ticks span:first-child{transform:none}
+.ruler-ticks span:last-child{transform:translateX(-100%)}
+
+/* timeline */
+.timeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border-top:1px solid var(--rule)}
+.tl{padding:12px 14px 0 0;display:grid;gap:4px;align-content:start;position:relative}
+.tl::before{content:"";position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:50%;background:var(--muted)}
+.tl.on::before{background:var(--after)}
+.tl .d{font-family:var(--f-ui);font-weight:700;font-size:14px;font-variant-numeric:tabular-nums}
+.tl p{font-family:var(--f-ui);font-size:13.5px;line-height:1.45;color:var(--ink-2)}
+@media (max-width:760px){.timeline{grid-template-columns:1fr;border-top:0;border-left:1px solid var(--rule);gap:14px}.tl{padding:0 0 0 16px}.tl::before{top:6px;left:-5px}}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px 32px}
+@media (max-width:860px){.calc{grid-template-columns:1fr}}
+.field{display:grid;gap:6px}
+.field label{display:flex;justify-content:space-between;gap:12px;font-family:var(--f-ui);font-size:14px;font-weight:600}
+.field output{font-weight:700;font-variant-numeric:tabular-nums}
+.field input[type=range]{width:100%;accent-color:var(--after);margin:0;height:28px}
+.fields{display:grid;gap:14px}
+.bill{display:grid;gap:8px;border-top:1px solid var(--rule);padding-top:14px}
+.bill-row{display:flex;justify-content:space-between;gap:12px;font-family:var(--f-ui);font-size:15px;font-variant-numeric:tabular-nums}
+.bill-row .k{display:inline-flex;align-items:center;gap:8px;color:var(--ink-2)}
+.bill-row.total{font-weight:700;font-size:17px;border-top:1px solid var(--rule);padding-top:8px}
+.bill-row.total .k{color:var(--ink)}
+.alt{background:var(--tint);border-radius:5px;padding:14px 16px;display:grid;gap:8px}
+.alt p{font-family:var(--f-ui);font-size:14.5px;line-height:1.5;color:var(--ink-2)}
+.alt p b{color:var(--ink)}
+.takeaway{font-size:1.08rem;line-height:1.55;max-width:var(--measure);border-left:3px solid var(--after);padding-left:16px}
+
+/* findings grid */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px 32px}
+.card{display:grid;gap:6px;align-content:start;border-top:1px solid var(--rule);padding-top:12px}
+.card h3{font-size:1.06rem}
+.card p{font-size:15.5px;line-height:1.55;color:var(--ink-2)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:860px){.two{grid-template-columns:1fr}}
+
+/* mechanism table */
+.mtable-wrap{overflow-x:auto}
+.mtable{width:100%;border-collapse:collapse;font-family:var(--f-ui);font-size:14px;min-width:460px}
+.mtable th,.mtable td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule);vertical-align:middle}
+.mtable thead th{font-size:12.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.mtable tbody tr{cursor:pointer}
+.mtable tbody tr:hover{background:var(--tint)}
+.mtable tbody tr.sel{background:var(--tint)}
+.mtable tbody tr.sel th{box-shadow:inset 3px 0 0 var(--ink)}
+.mtable th[scope=row]{font-weight:700}
+.yes,.no,.part{display:inline-flex;align-items:center;gap:6px;font-weight:600}
+.yes::before,.no::before,.part::before{content:"";width:10px;height:10px;border-radius:50%}
+.yes::before{background:var(--ink)}
+.no::before{border:2px solid var(--muted);width:6px;height:6px}
+.part::before{background:linear-gradient(90deg,var(--ink) 50%,transparent 50%);border:1px solid var(--ink);width:8px;height:8px}
+
+/* stacked bars in html */
+.hbar{display:flex;height:34px;border-radius:4px;overflow:hidden;background:var(--tint)}
+.hbar > div{display:flex;align-items:center;padding-inline:10px;font-family:var(--f-ui);font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;min-width:0;transition:flex-basis .45s ease, width .45s ease}
+.hbar > div + div{border-left:2px solid var(--surface)}
+.f-before{background:var(--before);color:#fff}
+.f-after{background:var(--after);color:#fff}
+.f-grey{background:var(--base);color:#fff}
+.scale{position:relative;height:18px;font-family:var(--f-ui);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.scale span{position:absolute;transform:translateX(-50%)}
+.scale span:first-child{transform:none}
+.scale span:last-child{transform:translateX(-100%)}
+.big{font-family:var(--f-display);font-weight:780;font-stretch:76%;font-size:clamp(2.6rem,3vw + 1.4rem,3.6rem);line-height:1;font-variant-numeric:tabular-nums}
+
+.dots{display:grid;gap:12px}
+.drow{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr) 3.4rem;gap:14px;align-items:center;font-family:var(--f-ui);font-size:14px}
+.drow .t{position:relative;height:22px}
+.drow .t::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--grid)}
+.drow .t i{position:absolute;top:50%;width:14px;height:14px;border-radius:50%;transform:translate(-50%,-50%);background:var(--ink);box-shadow:0 0 0 2px var(--surface)}
+.drow .t i.b{background:var(--before)} .drow .t i.a{background:var(--after)} .drow .t i.g{background:var(--base)}
+.drow .val{font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:560px){.drow{grid-template-columns:minmax(0,1fr) 3.4rem}.drow .t{grid-column:1 / -1;grid-row:2}.scale-row > span{display:none}.scale-row .scale{grid-column:1 / -1}}
+
+/* citation */
+.cite{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:18px 20px;display:grid;gap:12px}
+.cite p{font-size:16px;line-height:1.55}
+.btn{font-family:var(--f-ui);font-size:14px;font-weight:600;color:var(--ink);background:transparent;border:1px solid var(--ink);border-radius:4px;padding:7px 14px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;min-height:36px}
+.btn:hover{background:var(--ink);color:var(--surface)}
+.btn.solid{background:var(--ink);color:var(--surface)}
+.btn.solid:hover{background:var(--ink-2)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.status{font-family:var(--f-ui);font-size:13.5px;color:var(--muted)}
+
+footer{margin-top:64px;border-top:1px solid var(--rule);padding-block:28px 48px}
+footer p{font-family:var(--f-ui);font-size:13.5px;line-height:1.55;color:var(--muted);max-width:90ch}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#finding">Repayment <span>&amp;</span> Borrowing</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#rule">The rule</a>
+      <a href="#checks">Checks</a>
+      <a href="#who">Who responded</a>
+      <a href="#why">Why</a>
+      <a href="#policy">Policy</a>
+      <a href="#limits">Limits</a>
+      <a href="#study">The study</a>
+    </nav>
+    <a class="paper-link" href="https://doi.org/10.1093/rfs/hhaf115">Read the article</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="finding">
+  <div class="wrap hero-grid">
+    <p class="eyebrow">Policy summary &middot; Review of Financial Studies, 2026</p>
+    <h1>Mortgage repayment rules change how much households borrow</h1>
+    <p class="dek">In 2016 Sweden required new mortgages above half the home&rsquo;s value to be paid down. Many borrowers responded by borrowing exactly half. Most of them could have afforded to borrow more.</p>
+    <p class="byline">Research by <b>Claes Bäckman</b> (University of Mannheim and SAFE), <b>Patrick Moran</b> (Federal Reserve Board) and <b>Peter van Santen</b> (University of Groningen)</p>
+
+    <figure class="panel" style="margin:12px 0 0" aria-labelledby="dist-title">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title" id="dist-title">New mortgages by loan-to-value ratio</div>
+          <div class="panel-sub">Share of new loans in each half-point band, %</div>
+        </div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Threshold">
+            <button type="button" data-t="50" aria-pressed="true">50% line</button>
+            <button type="button" data-t="70" aria-pressed="false">70% line</button>
+          </div>
+          <div class="seg" role="group" aria-label="Years after the rule">
+            <button type="button" data-yr="all" aria-pressed="true">2016&ndash;18</button>
+            <button type="button" data-yr="2016" aria-pressed="false">2016</button>
+            <button type="button" data-yr="2017" aria-pressed="false">2017</button>
+            <button type="button" data-yr="2018" aria-pressed="false">2018</button>
+          </div>
+        </div>
+      </div>
+      <div class="legend" id="dist-legend">
+        <span><i class="sw" style="background:var(--after)"></i><span id="leg-after">After the rule, 2016&ndash;2018</span></span>
+        <span><i class="sw line" style="border-color:var(--before)"></i>Before the rule, 2011&ndash;2015</span>
+        <span><i class="sw dash" style="border-color:var(--ink)"></i>Repayment threshold</span>
+      </div>
+      <div class="plot" id="chart-dist"></div>
+      <div class="estimates" id="dist-est"></div>
+      <figcaption class="caption" id="dist-cap">Hover or tap a bar for exact values. Bars are half-point bands labelled by their lower edge. The band at 50 includes loans at exactly 50%.</figcaption>
+    </figure>
+
+    <div class="keys">
+      <div class="key"><div class="n accent num">5%</div><p>Less borrowing by households that moved to the 50% line. Their loan-to-value ratio fell by up to 2.57 points.</p></div>
+      <div class="key"><div class="n num">3&times;</div><p>About three times as many new loans at the 50% line after the rule as before it.</p></div>
+      <div class="key"><div class="n num">86%</div><p>Of borrowers at the line could have taken a larger loan and still passed the banks&rsquo; affordability test.</p></div>
+      <div class="key"><div class="n num">+33%</div><p>Mortgage debt when interest-only loans are allowed, in the authors&rsquo; calibrated model.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="rule">
+  <div class="wrap sec-inner">
+    <div class="sec-head">
+      <p class="eyebrow">The rule</p>
+      <h2>Sweden made repayment mandatory above 50% loan-to-value</h2>
+    </div>
+    <div class="prose">
+      <p>Swedish house prices rose 31% between 2011 and 2015, and credit growth rose from 5% in 2012 to over 8% in 2015. To bring debt down over time, Finansinspektionen, the Swedish financial supervisor, introduced the amortization requirement (<i>amorteringskravet</i>) for all new mortgages from 1 June 2016. Before then, about 60% of new mortgages near 50% loan-to-value were interest-only.</p>
+    </div>
+
+    <div class="ruler" aria-label="Required repayment by loan-to-value ratio">
+      <div class="ruler-bar">
+        <div class="zone z0"><b>No repayment</b><span>Interest-only allowed</span></div>
+        <div class="zone z1"><b>1%<em> a year</em></b><span>of the original loan</span></div>
+        <div class="zone z2"><b>2%<em> a year</em></b><span>of the original loan</span></div>
+      </div>
+      <div class="ruler-ticks" aria-hidden="true">
+        <span style="left:0">0%</span><span style="left:58.82%">50%</span><span style="left:82.35%">70%</span><span style="left:100%">85% (maximum)</span>
+      </div>
+      <p class="caption">Loan-to-value ratio at the time the mortgage is taken out. Since 2010, no Swedish mortgage may exceed 85% of the home&rsquo;s value.</p>
+    </div>
+
+    <div class="prose">
+      <p>Swedish mortgages are repaid in equal slices of the original loan, so the monthly payment jumps as soon as a loan crosses 50%. The interest rate does not change at the line. Once a borrower has repaid down to 50%, they may stop repaying. At the eight banks in the data this takes a phone call or an online request, with no new credit check. Only one bank charged a fee, of 1,500 SEK (about US$150). Home values can be reassessed only every five years, and only for renovations, so rising market prices do not release a borrower from the requirement.</p>
+    </div>
+
+    <div class="timeline" aria-label="Timeline">
+      <div class="tl"><span class="d">Nov 2014</span><p>Finansinspektionen announces it will propose a repayment rule.</p></div>
+      <div class="tl"><span class="d">Dec 2015</span><p>The requirement is formally proposed.</p></div>
+      <div class="tl on"><span class="d">1 Jun 2016</span><p>Requirement applies to all new mortgages.</p></div>
+      <div class="tl"><span class="d">Mar 2018</span><p>One more point of repayment for debt above 4.5 times income.</p></div>
+      <div class="tl"><span class="d">2020</span><p>Paused temporarily during the pandemic.</p></div>
+    </div>
+
+    <figure class="panel" style="margin:8px 0 0" aria-labelledby="calc-title">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title" id="calc-title">What the line means for one household</div>
+          <div class="panel-sub">Illustrative example. Move the sliders, or tap the chart to pick a loan-to-value ratio.</div>
+        </div>
+      </div>
+      <div class="calc">
+        <div style="display:grid;gap:16px;align-content:start;min-width:0">
+          <div class="fields">
+            <div class="field">
+              <label for="calc-v">Home value <output id="out-v" for="calc-v"></output></label>
+              <input type="range" id="calc-v" min="1000000" max="8000000" step="50000" value="3200000">
+            </div>
+            <div class="field">
+              <label for="calc-ltv">Loan-to-value <output id="out-ltv" for="calc-ltv"></output></label>
+              <input type="range" id="calc-ltv" min="30" max="85" step="0.5" value="52">
+            </div>
+            <div class="field">
+              <label for="calc-r">Mortgage rate <output id="out-r" for="calc-r"></output></label>
+              <input type="range" id="calc-r" min="0.5" max="6" step="0.1" value="1.6">
+            </div>
+          </div>
+          <div class="bill" aria-live="polite">
+            <div class="bill-row"><span class="k">Loan</span><span id="b-loan"></span></div>
+            <div class="bill-row"><span class="k"><i class="sw" style="background:var(--before)"></i>Interest</span><span id="b-int"></span></div>
+            <div class="bill-row"><span class="k"><i class="sw" style="background:var(--after)"></i>Required repayment</span><span id="b-rep"></span></div>
+            <div class="bill-row total"><span class="k">Monthly payment</span><span id="b-tot"></span></div>
+          </div>
+          <div class="alt" id="calc-alt"></div>
+        </div>
+        <div style="display:grid;gap:10px;align-content:start;min-width:0">
+          <div class="legend">
+            <span><i class="sw" style="background:var(--before-a);border:1.5px solid var(--before)"></i>Interest</span>
+            <span><i class="sw" style="background:var(--after-a);border:1.5px solid var(--after)"></i>Required repayment</span>
+          </div>
+          <div class="plot" id="chart-pay"></div>
+          <p class="caption">Monthly payment in SEK by loan-to-value ratio, for the home value and rate chosen. Payments are before Sweden&rsquo;s 30% tax deduction on interest.</p>
+        </div>
+      </div>
+    </figure>
+    <p class="takeaway" id="calc-take"></p>
+  </div>
+</section>
+
+<section class="sec" id="checks">
+  <div class="wrap sec-inner">
+    <div class="sec-head">
+      <p class="eyebrow">Checks</p>
+      <h2>Borrowers chose the smaller loans themselves</h2>
+    </div>
+    <div class="prose">
+      <p>A pile-up at 50% could in principle come from banks steering customers or adjusting valuations. The authors test each of these channels and find no sign of them. The rule changed which loans borrowers chose.</p>
+    </div>
+
+    <figure class="panel" style="margin:0" aria-labelledby="io-title">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title" id="io-title">Share of new mortgages that are interest-only</div>
+          <div class="panel-sub">By loan-to-value band, %</div>
+        </div>
+      </div>
+      <div class="legend">
+        <span><i class="sw line" style="border-color:var(--before)"></i>Before the rule, 2012&ndash;2015</span>
+        <span><i class="sw line" style="border-color:var(--after)"></i>After the rule, 2016&ndash;2018</span>
+      </div>
+      <div class="plot" id="chart-io"></div>
+      <figcaption class="caption">Just above 50%, interest-only loans fall from more than half of new mortgages to about one in ten, and lower still above 70%. Below 50% the share barely changes, and it rises at exactly 50%. Bands with fewer than 20 loans are left out.</figcaption>
+    </figure>
+
+    <div class="cards">
+      <div class="card"><h3>Interest rates are flat across the line</h3><p>Average mortgage rates are the same just below and just above 50%, both before and after 2016. Banks did not use pricing to push borrowers toward the threshold.</p></div>
+      <div class="card"><h3>Refinancers respond like buyers</h3><p>When existing owners refinance, the bank sets the home value. Their loan-to-value still fell by 2.4 to 2.9 points, close to the 2.2 points for buyers. The response therefore comes from smaller loans.</p></div>
+      <div class="card"><h3>Valuations show no jump</h3><p>Assessed home values do not jump at the threshold. Banks value homes mostly with statistical models or the purchase price, and do so before the borrower picks a loan size.</p></div>
+      <div class="card"><h3>Capital rules have no step at 50%</h3><p>Neither the banks nor the bankers&rsquo; association reported a change in risk weights at the threshold. Swedish mortgages also carry a 25% risk-weight floor.</p></div>
+      <div class="card"><h3>The effect lasted</h3><p>The pile-up is about the same size in 2016, 2017 and 2018. Use the year buttons in the first chart to compare.</p></div>
+      <div class="card"><h3>Earlier years are a sound benchmark</h3><p>Placebo tests show that years before 2016 predict one another&rsquo;s loan-to-value distribution well, so they give a reliable picture of borrowing without the rule.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="who">
+  <div class="wrap sec-inner">
+    <div class="sec-head">
+      <p class="eyebrow">Who responded</p>
+      <h2>Most households that moved to the line could have borrowed more</h2>
+    </div>
+    <div class="prose">
+      <p>Swedish banks check that a borrower can afford interest and repayment at a stressed interest rate of about 7% and still cover basic living costs. The authors work out how much monthly income each borrower would have had left over after this test had they borrowed one point more.</p>
+      <p>Only 13.6% of borrowers at the 50% line would have failed the test. The rest could have borrowed at least another US$67,000 (44% of the sample average) before reaching the limit. Credit constraints therefore cannot explain most of the response.</p>
+    </div>
+
+    <figure class="panel" style="margin:0" aria-labelledby="who-title">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title" id="who-title">How far borrowers moved to avoid repayment</div>
+          <div class="panel-sub">Reduction in loan-to-value ratio at the 50% line, percentage points, with 95% confidence interval</div>
+        </div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Group borrowers by">
+            <button type="button" data-g="pti" aria-pressed="true">Room in the budget</button>
+            <button type="button" data-g="val" aria-pressed="false">Buyer or refinancer</button>
+          </div>
+        </div>
+      </div>
+      <div class="plot" id="chart-who"></div>
+      <figcaption class="caption" id="who-cap"></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="why">
+  <div class="wrap sec-inner">
+    <div class="sec-head">
+      <p class="eyebrow">Why</p>
+      <h2>Households treat repayment as an ongoing cost</h2>
+    </div>
+    <div class="prose">
+      <p>A standard economic model of borrowing explains why households short of cash avoid repayment. It does not explain why well-off households do. The authors build such a model, calibrate it to Sweden, and find no pile-up at 50%. In the model, required repayment makes every household worse off, and the loss grows smoothly with the size of the loan, with no step at the line.</p>
+      <p>They then add two possible reasons for disliking repayment. Each leaves a different mark on the distribution of loans. Pick one to see its pattern.</p>
+    </div>
+
+    <figure class="panel" style="margin:0" aria-labelledby="mech-title">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title" id="mech-title">Loan-to-value at purchase in the model, under a 50% repayment rule</div>
+          <div class="panel-sub">Share of simulated borrowers between 40% and 60%, in two-point bands, %</div>
+        </div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Model" id="mech-seg">
+            <button type="button" data-m="baseline" aria-pressed="false">Standard model</button>
+            <button type="button" data-m="notch" aria-pressed="false">One-off hassle</button>
+            <button type="button" data-m="flow" aria-pressed="true">Ongoing dislike</button>
+          </div>
+        </div>
+      </div>
+      <div class="legend" id="mech-legend"></div>
+      <div class="plot" id="chart-mech"></div>
+      <p class="small" id="mech-text" style="max-width:var(--measure)"></p>
+      <div class="mtable-wrap">
+        <table class="mtable" id="mech-table">
+          <thead><tr><th scope="col">Explanation</th><th scope="col">Pile-up at 50%</th><th scope="col">Hole just above 50%</th><th scope="col">Matches Sweden</th></tr></thead>
+          <tbody>
+            <tr data-m="baseline"><th scope="row">Standard model</th><td><span class="no">No</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td></tr>
+            <tr data-m="notch"><th scope="row">One-off hassle</th><td><span class="yes">Yes</span></td><td><span class="yes">Large</span></td><td><span class="part">In part</span></td></tr>
+            <tr data-m="flow"><th scope="row">Ongoing dislike</th><td><span class="yes">Yes</span></td><td><span class="no">Little</span></td><td><span class="yes">Mostly</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </figure>
+
+    <div class="two">
+      <div class="prose">
+        <p class="takeaway">In the Swedish data, the dip just above 50% is less than 15% of the size of the pile-up. The pattern of an ongoing dislike of repaying fits this best. A one-off hassle can account for a small part at most.</p>
+        <p>Several kinds of behavior could produce this dislike. Households may aim for a target monthly payment, may not count repayment as saving, or may prefer to leave investments untouched rather than draw on them each month. The study does not tell these explanations apart.</p>
+      </div>
+      <figure class="panel" style="margin:0;align-self:start" aria-labelledby="svy-title">
+        <div>
+          <div class="panel-title" id="svy-title">How Swedes see amortization</div>
+          <div class="panel-sub">Survey of Swedish households, SBAB (2018), % of respondents</div>
+        </div>
+        <div class="hbar" role="img" aria-label="38% say a cost, 44% say saving, 18% do not know">
+          <div class="f-after" style="flex:0 0 38%">38% a cost</div>
+          <div class="f-before" style="flex:0 0 44%">44% saving</div>
+          <div class="f-grey" style="flex:0 0 18%">18%</div>
+        </div>
+        <div class="legend">
+          <span><i class="sw" style="background:var(--after)"></i>Amortization is a cost</span>
+          <span><i class="sw" style="background:var(--before)"></i>It is a form of saving</span>
+          <span><i class="sw" style="background:var(--base)"></i>Do not know</span>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="policy">
+  <div class="wrap sec-inner">
+    <div class="sec-head">
+      <p class="eyebrow">Policy</p>
+      <h2>Repayment schedules are a strong lever on household debt</h2>
+    </div>
+    <div class="prose">
+      <p>If households weigh the monthly payment more heavily than the lifetime cost of a loan, then the design of the repayment schedule shapes how much they borrow. The authors use their model to put a size on this.</p>
+    </div>
+
+    <div class="two">
+      <figure class="panel" style="margin:0" aria-labelledby="io-exp-title">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title" id="io-exp-title">Experiment: allow interest-only loans</div>
+            <div class="panel-sub">Change in mortgage debt in the model, starting from an economy with only 30-year repayment mortgages</div>
+          </div>
+        </div>
+        <div class="seg" role="group" aria-label="Model households" style="justify-self:start">
+          <button type="button" data-x="flow" aria-pressed="true">Households dislike repaying</button>
+          <button type="button" data-x="std" aria-pressed="false">Standard model</button>
+        </div>
+        <div class="big num" id="x-big">+33.4%</div>
+        <div>
+          <div class="hbar" id="x-bar" role="img" aria-label="">
+            <div class="f-before" id="x-seg1" style="flex:0 0 22.75%">9.1</div>
+            <div class="f-after" id="x-seg2" style="flex:0 0 60.75%">24.3</div>
+          </div>
+          <div class="scale" aria-hidden="true"><span style="left:0">0%</span><span style="left:25%">10%</span><span style="left:50%">20%</span><span style="left:75%">30%</span><span style="left:100%">40%</span></div>
+        </div>
+        <div class="legend">
+          <span><i class="sw" style="background:var(--before)"></i>More flexibility to smooth spending</span>
+          <span id="x-leg2"><i class="sw" style="background:var(--after)"></i>Avoiding repayments households dislike</span>
+        </div>
+        <p class="small" id="x-text"></p>
+      </figure>
+
+      <figure class="panel" style="margin:0" aria-labelledby="mwa-title">
+        <div>
+          <div class="panel-title" id="mwa-title">Required repayment builds wealth</div>
+          <div class="panel-sub">Extra net wealth per unit of extra required repayment, after two years, in cents per euro or dollar</div>
+        </div>
+        <div class="dots">
+          <div class="drow"><span>Netherlands, data (Bernstein and Koudijs 2024)</span><span class="t"><i style="left:99.7%"></i></span><span class="val">99.7</span></div>
+          <div class="drow"><span>Model, households dislike repaying</span><span class="t"><i class="a" style="left:98.1%"></i></span><span class="val">98.1</span></div>
+          <div class="drow"><span>Model, standard</span><span class="t"><i class="g" style="left:85.6%"></i></span><span class="val">85.6</span></div>
+        </div>
+        <div class="drow scale-row" aria-hidden="true"><span></span><div class="scale"><span style="left:0">0</span><span style="left:50%">50</span><span style="left:100%">100</span></div><span></span></div>
+        <p class="small">Households pay for required repayment mostly by spending less, and they barely run down their savings. Almost every extra unit repaid shows up as extra net wealth. The model with a dislike of repaying matches the Dutch evidence most closely.</p>
+      </figure>
+    </div>
+
+    <h3 style="margin-top:12px">Lessons for policy design</h3>
+    <div class="cards">
+      <div class="card"><h3>Repayment rules reach borrowers that affordability caps miss</h3><p>Near the 50% line, the banks&rsquo; affordability test was binding for only about one borrower in seven. The repayment requirement changed borrowing among the rest as well.</p></div>
+      <div class="card"><h3>Low-initial-payment loans raise debt and lifetime interest</h3><p>Interest-only loans, longer maturities and other ways to defer repayment raise borrowing well beyond what credit constraints alone predict. The authors expect similar effects in consumer credit with longer maturities or lower initial payments.</p></div>
+      <div class="card"><h3>Thresholds draw borrowers, and the effect spreads above them</h3><p>Expect borrowers to gather just below a loan-to-value threshold. In the model that fits the data, borrowers well above the line also borrow less, so the effect on total debt is broader than the spike suggests.</p></div>
+      <div class="card"><h3>Required repayment adds to household wealth</h3><p>Because households fund repayment mainly by spending less, required amortization adds close to one-for-one to their net wealth in the form of home equity.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="limits">
+  <div class="wrap sec-inner">
+    <div class="sec-head">
+      <p class="eyebrow">Limits</p>
+      <h2>What the study does not tell you</h2>
+    </div>
+    <div class="prose">
+      <p>The study does not say whether the requirement made households better or worse off. Required repayment limits households&rsquo; ability to spread spending over time, which the standard model counts as a cost for everyone. If households dislike repaying because of behavioral biases, that may justify regulation. If they dislike it because they prefer to keep money invested elsewhere, it would not. The data cannot separate the two, and the authors caution against reading the results as a verdict on the policy.</p>
+      <p>The estimates describe the size of new loans at the moment they are taken out. They do not cover households that stayed out of the market, borrowing in later years, house prices, or financial stability.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="study">
+  <div class="wrap sec-inner">
+    <div class="sec-head">
+      <p class="eyebrow">The study</p>
+      <h2>Data, method and citation</h2>
+    </div>
+    <div class="two">
+      <div class="prose">
+        <p><b>Data.</b> Finansinspektionen&rsquo;s Mortgage Survey (<i>Bolåneundersökningen</i>), 2011&ndash;2018. It records every new mortgage issued by the eight largest Swedish banks on survey days between August and October that the banks learn of only afterwards, with income, debt, loan size, interest rate, repayment and collateral value. The analysis at the 50% line draws on 35,747 loans.</p>
+        <p><b>Method.</b> The authors compare the share of new loans in each half-point loan-to-value band after the rule (2016&ndash;2018) with the share in the same band before it (2011&ndash;2015). The extra loans at the threshold measure the pile-up, and the shortfall just above it measures the hole. A life-cycle model of housing and mortgage choice then tests which explanations reproduce both.</p>
+      </div>
+      <div style="display:grid;gap:14px;align-content:start;min-width:0">
+        <div class="cite">
+          <p id="cite-text">Bäckman, Claes, Patrick Moran, and Peter van Santen. 2026. &ldquo;Mortgage Design, Repayment Schedules, and Household Borrowing.&rdquo; <i>Review of Financial Studies</i> 39 (8): 2549&ndash;94.</p>
+          <div class="btns">
+            <button type="button" class="btn" id="copy-cite">Copy citation</button>
+            <span class="status" id="copy-status" aria-live="polite"></span>
+          </div>
+        </div>
+        <div class="btns">
+          <a class="btn solid" href="https://doi.org/10.1093/rfs/hhaf115">Read the article</a>
+          <a class="btn" href="https://doi.org/10.7910/DVN/DZUGKD">Replication code</a>
+        </div>
+        <p class="small">Article DOI: <span class="num">10.1093/rfs/hhaf115</span><br>Replication package DOI: <span class="num">10.7910/DVN/DZUGKD</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap" style="display:grid;gap:10px">
+    <p>Charts use the authors&rsquo; binned data from the Mortgage Survey and show shares of loans only. Bands are half-point intervals labelled by their lower edge. The article rounds loan-to-value ratios to the nearest half point, so bar heights differ slightly from its figures. All estimates quoted on this page are the published ones. Model results come from the authors&rsquo; calibrated life-cycle model.</p>
+    <p>The views expressed are the authors&rsquo; own and do not represent the views of the Federal Reserve Board, the Federal Reserve System, or Sveriges Riksbank.</p>
+  </div>
+</footer>
+
+<script>
+const D = {"dist":{"50":{"edges":[40.0,40.5,41.0,41.5,42.0,42.5,43.0,43.5,44.0,44.5,45.0,45.5,46.0,46.5,47.0,47.5,48.0,48.5,49.0,49.5,50.0,50.5,51.0,51.5,52.0,52.5,53.0,53.5,54.0,54.5,55.0,55.5,56.0,56.5,57.0,57.5,58.0,58.5,59.0,59.5],"before":[1.49,1.02,1.05,0.97,1.11,1.44,1.02,0.81,1.14,0.8,1.12,0.89,1.17,1.06,1.01,1.01,1.05,1.15,1.07,0.81,2.65,0.97,1.15,0.94,1.08,1.21,1.31,1.14,1.08,1.19,1.22,1.53,1.14,1.11,1.43,1.17,1.32,1.25,1.22,1.02],"after":{"all":[1.55,0.87,0.91,1.12,1.09,1.27,1.09,0.86,1.33,0.9,1.41,0.92,1.18,1.18,1.07,1.35,1.46,1.5,1.66,2.13,7.33,0.69,0.87,0.84,0.93,1.02,1.11,1.04,1.16,0.96,1.23,1.23,1.21,1.28,1.3,1.01,1.25,1.45,1.29,1.09],"2016":[1.84,0.78,0.9,1.08,1.25,1.25,1.02,0.9,1.57,1.0,1.27,0.94,1.08,1.25,1.04,1.65,1.35,1.49,1.41,1.84,7.21,0.82,0.98,0.63,0.92,1.1,1.1,1.25,1.31,1.0,1.29,1.41,1.41,1.12,1.31,0.8,0.9,1.69,1.04,1.04],"2017":[1.32,0.89,0.99,1.04,1.15,1.17,1.2,0.82,1.15,0.87,1.53,0.86,1.28,1.25,0.99,1.04,1.48,1.41,1.83,2.06,7.55,0.66,0.86,1.04,0.86,1.02,1.22,0.92,1.12,0.87,1.17,1.17,1.09,1.48,1.37,1.05,1.41,1.28,1.46,0.99],"2018":[1.54,0.93,0.82,1.27,0.87,1.41,1.01,0.87,1.31,0.84,1.39,0.97,1.14,1.03,1.2,1.44,1.56,1.63,1.71,2.51,7.18,0.59,0.76,0.8,1.03,0.95,0.99,0.97,1.06,1.03,1.25,1.14,1.16,1.18,1.22,1.18,1.41,1.41,1.31,1.27]}},"70":{"edges":[60.0,60.5,61.0,61.5,62.0,62.5,63.0,63.5,64.0,64.5,65.0,65.5,66.0,66.5,67.0,67.5,68.0,68.5,69.0,69.5,70.0,70.5,71.0,71.5,72.0,72.5,73.0,73.5,74.0,74.5,75.0,75.5,76.0,76.5,77.0,77.5,78.0,78.5,79.0,79.5],"before":[1.77,1.08,1.1,1.28,0.96,1.59,1.28,1.37,1.43,1.26,1.61,1.39,1.16,2.4,1.23,1.35,1.63,1.66,1.72,2.03,3.96,1.45,1.99,1.35,1.91,1.98,1.78,2.22,2.91,4.58,20.83,0.85,1.19,1.32,1.23,1.28,1.56,1.6,1.44,1.62],"after":{"all":[1.79,1.22,1.15,1.51,1.29,1.86,1.39,1.61,1.67,1.68,1.78,1.65,1.4,2.64,1.42,1.79,2.2,2.69,3.03,4.64,11.22,1.1,1.42,0.97,1.35,1.48,1.26,1.44,1.61,1.74,6.74,1.43,1.52,1.58,1.7,1.75,1.59,1.84,1.78,1.42],"2016":[1.6,1.1,1.03,1.36,1.2,1.95,1.36,1.48,1.5,1.48,1.48,1.46,1.34,2.72,1.4,2.07,2.37,2.76,3.12,4.24,10.8,1.01,1.97,0.99,1.75,1.81,1.28,1.66,1.75,1.85,8.12,1.38,1.52,1.34,1.77,1.83,1.54,1.85,1.54,1.36],"2017":[1.9,1.3,1.18,1.69,1.37,1.81,1.49,1.9,1.86,1.76,1.93,1.67,1.35,2.73,1.44,1.55,2.1,2.34,2.89,4.87,11.79,1.14,1.18,0.87,0.96,1.21,1.23,1.54,1.52,1.64,6.94,1.49,1.37,1.5,1.66,1.55,1.57,1.49,1.69,1.4],"2018":[1.84,1.27,1.23,1.43,1.31,1.82,1.31,1.41,1.59,1.78,1.9,1.8,1.53,2.45,1.41,1.8,2.15,3.04,3.11,4.78,10.97,1.12,1.16,1.06,1.41,1.47,1.27,1.1,1.57,1.76,5.13,1.41,1.72,1.9,1.7,1.9,1.65,2.27,2.12,1.49]}}},"io":{"edges":[40.0,40.5,41.0,41.5,42.0,42.5,43.0,43.5,44.0,44.5,45.0,45.5,46.0,46.5,47.0,47.5,48.0,48.5,49.0,49.5,50.0,50.5,51.0,51.5,52.0,52.5,53.0,53.5,54.0,54.5,55.0,55.5,56.0,56.5,57.0,57.5,58.0,58.5,59.0,59.5,60.0,60.5,61.0,61.5,62.0,62.5,63.0,63.5,64.0,64.5,65.0,65.5,66.0,66.5,67.0,67.5,68.0,68.5,69.0,69.5,70.0,70.5,71.0,71.5,72.0,72.5,73.0,73.5,74.0,74.5,75.0,75.5,76.0,76.5,77.0,77.5,78.0,78.5,79.0,79.5],"before":[55.26,48.17,60.29,57.54,36.84,41.2,63.49,57.52,57.27,42.86,56.52,57.49,58.94,58.38,53.48,54.74,54.97,59.62,57.35,46.1,60.56,46.37,53.05,57.07,56.0,57.85,56.8,53.24,46.63,53.15,59.29,59.52,57.28,54.81,51.69,55.16,53.85,61.76,56.96,50.25,61.87,52.8,51.56,53.04,52.38,57.89,54.64,52.68,55.96,53.55,53.46,56.63,57.45,57.19,51.28,55.74,58.96,56.84,56.08,58.37,64.4,50.76,48.55,43.09,43.12,41.78,38.15,42.61,43.85,52.86,60.37,27.0,14.34,11.73,10.42,11.49,8.33,10.14,9.34,9.11],"after":[51.85,48.53,52.45,50.57,51.74,52.76,52.63,52.59,57.42,47.89,59.28,56.25,58.38,47.85,55.95,51.42,59.57,62.71,67.82,74.55,73.18,13.89,15.44,9.85,7.53,11.18,9.14,13.5,7.69,10.6,10.36,10.31,12.11,7.96,8.78,6.92,7.61,5.26,7.43,9.94,3.57,7.29,4.44,8.05,5.42,3.44,6.88,6.32,8.81,4.56,4.66,4.26,5.91,6.04,6.76,3.91,6.67,4.5,4.0,4.12,4.78,5.81,2.69,3.95,4.27,2.59,3.55,1.77,2.78,2.2,5.11,4.46,1.67,3.24,1.87,1.09,0.8,1.73,1.08,1.8]},"model":{"edges":[40,42,44,46,48,50,52,54,56,58,60],"baseline":[9.62,9.48,8.9,8.66,10.1,11.59,9.86,10.29,10.49,11.01],"notch":[12.7,11.55,11.32,12.2,42.71,0.0,0.04,0.46,2.53,6.49],"flow":[9.89,7.74,8.47,8.09,26.07,11.51,6.18,6.61,6.67,8.76]}};
+const NS = 'http://www.w3.org/2000/svg';
+const nf0 = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+const $ = id => document.getElementById(id);
+
+function S(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  if (attrs) for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function T(parent, x, y, text, cls, anchor) {
+  const t = S('text', { x, y, class: cls || 'lab', 'text-anchor': anchor || 'start' }, parent);
+  t.textContent = text;
+  return t;
+}
+function barPath(x, y, w, h, r) {
+  if (h <= 0) return '';
+  r = Math.min(r, w / 2, h);
+  return `M${x},${y + h}V${y + r}Q${x},${y} ${x + r},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h}Z`;
+}
+function niceStep(max, n) {
+  const raw = max / n, p = Math.pow(10, Math.floor(Math.log10(raw)));
+  const m = raw / p;
+  return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p;
+}
+function range(a, b, s) { const out = []; for (let v = a; v <= b + 1e-9; v += s) out.push(+v.toFixed(4)); return out; }
+
+// Chart frame: clears the host, draws grid and axes, returns scales.
+function frame(host, o) {
+  host.innerHTML = '';
+  const W = Math.max(280, host.clientWidth);
+  const H = o.h(W);
+  const m = Object.assign({ t: 16, r: 14, b: 42, l: 46 }, o.m || {});
+  const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img', 'aria-label': o.label || '' }, host);
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const x = v => m.l + (v - o.x[0]) / (o.x[1] - o.x[0]) * iw;
+  const y = v => m.t + ih - (v - o.y[0]) / (o.y[1] - o.y[0]) * ih;
+  const back = S('g', {}, svg);
+  (o.yt || []).forEach(v => {
+    S('line', { x1: m.l, x2: m.l + iw, y1: y(v), y2: y(v), class: 'grid' }, back);
+    T(back, m.l - 8, y(v) + 4, o.yf ? o.yf(v) : v, 'tick', 'end');
+  });
+  S('line', { x1: m.l, x2: m.l + iw, y1: y(o.y[0]), y2: y(o.y[0]), class: 'axis' }, back);
+  (o.xt || []).forEach(v => {
+    S('line', { x1: x(v), x2: x(v), y1: m.t + ih, y2: m.t + ih + 4, class: 'axis' }, back);
+    T(back, x(v), m.t + ih + 18, o.xf ? o.xf(v) : v, 'tick', 'middle');
+  });
+  if (o.xTitle) T(back, m.l + iw / 2, H - 4, o.xTitle, 'axis-title', 'middle');
+  const plot = S('g', {}, svg), front = S('g', {}, svg), hits = S('g', {}, svg);
+  const tip = document.createElement('div');
+  tip.className = 'tip'; tip.hidden = true; host.appendChild(tip);
+  return { svg, W, H, m, iw, ih, x, y, plot, front, hits, tip };
+}
+function showTip(f, html, px, py) {
+  const tip = f.tip;
+  tip.innerHTML = html; tip.hidden = false;
+  const hw = f.W, tw = tip.offsetWidth, th = tip.offsetHeight;
+  let left = px + 14;
+  if (left + tw > hw) left = px - tw - 14;
+  if (left < 0) left = Math.max(0, Math.min(hw - tw, px - tw / 2));
+  let top = py - th - 10;
+  if (top < 0) top = py + 16;
+  tip.style.left = left + 'px'; tip.style.top = top + 'px';
+}
+function hideTip(f) { f.tip.hidden = true; }
+const key = c => `<i class="k" style="background:var(${c})"></i>`;
+
+// Re-render registry: charts redraw when their container width changes.
+const charts = [];
+const ro = 'ResizeObserver' in window ? new ResizeObserver(entries => {
+  for (const e of entries) {
+    const c = charts.find(c => c.host === e.target);
+    if (c && Math.abs(c.host.clientWidth - c.w) > 2) { c.w = c.host.clientWidth; c.draw(); }
+  }
+}) : null;
+function reg(host, draw) {
+  const c = { host, draw, w: host.clientWidth };
+  charts.push(c); draw();
+  if (ro) ro.observe(host);
+  return c;
+}
+function segBind(attr, onPick) {
+  document.querySelectorAll(`button[data-${attr}]`).forEach(b => {
+    b.addEventListener('click', () => {
+      b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+      onPick(b.dataset[attr]);
+    });
+  });
+}
+
+/* ---------------- 1. Distribution of new loans ---------------- */
+const PUB = {
+  '50': { B: [7.47, 0.31], M: [0.83, 0.16], d: [2.57, 0.16] },
+  '70': { B: [12.93, 0.38], M: [1.43, 0.20], d: [2.73, 0.12] },
+};
+const dist = { t: '50', yr: 'all' };
+const YR = { all: '2016–2018', '2016': '2016', '2017': '2017', '2018': '2018' };
+const distHost = $('chart-dist');
+const distChart = reg(distHost, () => {
+  const d = D.dist[dist.t], Tn = +dist.t, E = d.edges, A = d.after[dist.yr], B = d.before;
+  const lo = E[0] - 0.25, hi = E[E.length - 1] + 0.25;
+  const ymax = dist.t === '50' ? 8 : 22;
+  const f = frame(distHost, {
+    h: W => W < 560 ? 280 : 350, x: [lo, hi], y: [0, ymax], m: { t: 30, l: 40 },
+    yt: dist.t === '50' ? [0, 2, 4, 6, 8] : [0, 5, 10, 15, 20], yf: v => v + '%',
+    xt: range(E[0], E[E.length - 1], distHost.clientWidth < 520 ? 5 : 2), xf: v => v + '%',
+    xTitle: 'Loan-to-value ratio at origination',
+    label: `Share of new mortgages by loan-to-value ratio around the ${Tn}% threshold, before and after the rule`,
+  });
+  const bw = f.x(0.5) - f.x(0);
+  const gap = bw > 6 ? 1 : 0.5;
+  const bars = E.map((e, i) => S('path', {
+    d: barPath(f.x(e - 0.25) + gap, f.y(A[i]), Math.max(1, bw - 2 * gap), f.y(0) - f.y(A[i]), 3),
+    class: 'bar-after' + (e === Tn ? ' hi' : ''),
+  }, f.plot));
+  let p = `M${f.x(E[0] - 0.25)},${f.y(B[0])}`;
+  E.forEach((e, i) => { p += `H${f.x(e + 0.25)}`; if (i < E.length - 1) p += `V${f.y(B[i + 1])}`; });
+  S('path', { d: p, class: 'line-before' }, f.plot);
+
+  const xl = f.x(Tn + 0.25);
+  S('line', { x1: xl, x2: xl, y1: f.m.t - 22, y2: f.y(0), class: 'thr' }, f.front);
+  const narrow = f.W < 560;
+  T(f.front, xl + 7, f.m.t - 12, Tn === 50 ? (narrow ? '1% repayment →' : 'Repayment required above 50% →') : (narrow ? '2% →' : '2% repayment above 70% →'), 'lab', 'start');
+  T(f.front, xl - 7, f.m.t - 12, Tn === 50 ? (narrow ? '← None' : '← No repayment') : (narrow ? '← 1%' : '← 1% repayment'), 'lab', 'end');
+
+  const i0 = E.indexOf(Tn);
+  const ax = f.x(Tn - 0.25) - 8, ay = f.y(A[i0]) + 4;
+  T(f.front, ax, ay, `After: ${A[i0].toFixed(1)}% of loans`, 'lab-b', 'end');
+  T(f.front, ax, ay + 17, `Before: ${B[i0].toFixed(1)}%`, 'lab', 'end');
+  if (Tn === 70) {
+    const j = E.indexOf(75);
+    if (narrow) T(f.front, f.x(74.75) - 6, f.y(B[j]) + 4, 'Old 75% rate step', 'lab halo', 'end');
+    else {
+      T(f.front, f.x(74.75) - 6, f.y(B[j]) + 4, 'Before 2016, many loans', 'lab halo', 'end');
+      T(f.front, f.x(74.75) - 6, f.y(B[j]) + 20, 'sat at a 75% rate step', 'lab halo', 'end');
+    }
+  }
+
+  E.forEach((e, i) => {
+    const r = S('rect', { x: f.x(e - 0.25), y: f.m.t, width: bw, height: f.ih, class: 'hit' }, f.hits);
+    const on = ev => {
+      bars.forEach((b, k) => b.classList.toggle('hov', k === i));
+      const extra = e === Tn ? `<br><span style="opacity:.8">Includes loans at exactly ${Tn}%</span>` : '';
+      showTip(f, `<b>LTV ${e.toFixed(1)}–${(e + 0.5).toFixed(1)}%</b><br>${key('--after')}After (${YR[dist.yr]}): ${A[i].toFixed(2)}%<br>${key('--before')}Before (2011–2015): ${B[i].toFixed(2)}%${extra}`,
+        f.x(e), f.y(Math.max(A[i], B[i])));
+    };
+    r.addEventListener('pointerenter', on);
+    r.addEventListener('pointerdown', on);
+  });
+  f.svg.addEventListener('pointerleave', () => { bars.forEach(b => b.classList.remove('hov')); hideTip(f); });
+
+  const P = PUB[dist.t];
+  $('dist-est').innerHTML = `
+    <div class="est"><div class="v">${P.B[0].toFixed(2)}<small>pp (SE ${P.B[1].toFixed(2)})</small></div><div class="l">Extra share of all new loans at or just below ${Tn}%</div></div>
+    <div class="est"><div class="v">${P.M[0].toFixed(2)}<small>pp (SE ${P.M[1].toFixed(2)})</small></div><div class="l">Shortfall of loans just above ${Tn}%</div></div>
+    <div class="est"><div class="v">${P.d[0].toFixed(2)}<small>points (SE ${P.d[1].toFixed(2)})</small></div><div class="l">Largest cut in loan-to-value by a borrower moving to the line, about ${Math.round(P.d[0] / Tn * 100)}% of the loan</div></div>`;
+  $('leg-after').textContent = `After the rule, ${YR[dist.yr]}`;
+  $('dist-cap').innerHTML = (Tn === 70
+    ? 'Before 2016, banks recommended repayment above 70% and several charged a higher rate on loan amounts above 75%, which explains the earlier spikes at 70% and 75%. The estimates account for spikes that were already present. '
+    : '') + 'Published estimates use the pooled 2016–2018 data, with standard errors in parentheses. Hover or tap a bar for exact values. Bars are half-point bands labelled by their lower edge.';
+});
+segBind('t', v => { dist.t = v; distChart.draw(); });
+segBind('yr', v => { dist.yr = v; distChart.draw(); });
+
+/* ---------------- 2. Payment calculator ---------------- */
+const cv = $('calc-v'), cl = $('calc-ltv'), cr = $('calc-r');
+const sek = v => nf0.format(Math.round(v)) + ' SEK';
+function amortRate(l) { return l > 70 ? 0.02 : l > 50 ? 0.01 : 0; }
+function pay(V, l, r) {
+  const L = V * l / 100, a = amortRate(l);
+  return { L, a, int: L * r / 100 / 12, rep: L * a / 12 };
+}
+function yearsTo50(V, l) {
+  const L = V * l / 100;
+  if (l <= 50) return 0;
+  if (l <= 70) return (L - 0.5 * V) / (0.01 * L);
+  return (L - 0.7 * V) / (0.02 * L) + (0.2 * V) / (0.01 * L);
+}
+const payHost = $('chart-pay');
+const payChart = reg(payHost, () => {
+  const V = +cv.value, l = +cl.value, r = +cr.value;
+  const top = pay(V, 85, r); const ymaxRaw = (top.int + top.rep) * 1.08;
+  const step = niceStep(ymaxRaw, 4), ymax = Math.ceil(ymaxRaw / step) * step;
+  const f = frame(payHost, {
+    h: W => W < 480 ? 260 : 300, x: [30, 85], y: [0, ymax], m: { l: 58, t: 18 },
+    yt: range(0, ymax, step), yf: v => nf0.format(v),
+    xt: [30, 40, 50, 60, 70, 80], xf: v => v + '%', xTitle: 'Loan-to-value ratio',
+    label: 'Monthly payment by loan-to-value ratio, split into interest and required repayment',
+  });
+  const I = v => pay(V, v, r).int;
+  const knots = [[30, 0], [50, 0], [50, 0.01], [70, 0.01], [70, 0.02], [85, 0.02]];
+  const totalPts = knots.map(([v, a]) => [f.x(v), f.y(I(v) + V * v / 100 * a / 12)]);
+  const intPts = [[f.x(30), f.y(I(30))], [f.x(85), f.y(I(85))]];
+  S('path', { d: `M${f.x(30)},${f.y(0)}L${intPts[0]}L${intPts[1]}L${f.x(85)},${f.y(0)}Z`, class: 'area-int' }, f.plot);
+  S('path', { d: `M${totalPts.map(p => p.join(',')).join('L')}L${intPts[1]}L${intPts[0]}Z`, class: 'area-rep' }, f.plot);
+  S('path', { d: `M${intPts[0]}L${intPts[1]}`, class: 'line-before' }, f.plot);
+  S('path', { d: `M${totalPts.map(p => p.join(',')).join('L')}`, class: 'line-after' }, f.plot);
+  [50, 70].forEach(v => S('line', { x1: f.x(v), x2: f.x(v), y1: f.m.t, y2: f.y(0), class: 'thr' }, f.plot));
+
+  T(f.front, f.x(31.5), f.y(I(31.5)) - 8, 'Interest', 'lab', 'start');
+  const rx = 77.5;
+  T(f.front, f.x(rx), f.y(I(rx) + V * rx / 100 * 0.02 / 24) + 4, 'Repayment', 'lab', 'middle');
+
+  const P = pay(V, l, r), tot = P.int + P.rep;
+  S('line', { x1: f.x(l), x2: f.x(l), y1: f.y(tot), y2: f.y(0), class: 'cursor' }, f.front);
+  S('circle', { cx: f.x(l), cy: f.y(P.int), r: 5, class: 'dot-b' }, f.front);
+  S('circle', { cx: f.x(l), cy: f.y(tot), r: 6, class: 'dot-a' }, f.front);
+  const lx = f.x(l), anchor = l > 74 ? 'end' : 'start';
+  T(f.front, lx + (anchor === 'end' ? -10 : 10), f.y(tot) - 10, sek(tot) + ' a month', 'lab-b halo', anchor);
+
+  const hit = S('rect', { x: f.m.l, y: f.m.t, width: f.iw, height: f.ih, class: 'hit' }, f.hits);
+  const toLtv = ev => {
+    const bb = f.svg.getBoundingClientRect();
+    const px = (ev.clientX - bb.left) * (f.W / bb.width);
+    const v = 30 + (px - f.m.l) / f.iw * 55;
+    return Math.max(30, Math.min(85, Math.round(v * 2) / 2));
+  };
+  hit.addEventListener('pointermove', ev => {
+    const v = toLtv(ev), q = pay(V, v, r);
+    showTip(f, `<b>LTV ${v.toFixed(1)}%</b><br>${key('--before')}Interest: ${sek(q.int)}<br>${key('--after')}Repayment: ${sek(q.rep)}<br>Total: ${sek(q.int + q.rep)}`, f.x(v), f.y(q.int + q.rep));
+  });
+  hit.addEventListener('pointerleave', () => hideTip(f));
+  hit.addEventListener('click', ev => { cl.value = toLtv(ev); updateCalc(); });
+});
+function updateCalc() {
+  const V = +cv.value, l = +cl.value, r = +cr.value;
+  $('out-v').textContent = sek(V);
+  $('out-ltv').textContent = l.toFixed(1) + '%';
+  $('out-r').textContent = r.toFixed(1) + '%';
+  const P = pay(V, l, r), tot = P.int + P.rep;
+  $('b-loan').textContent = sek(P.L);
+  $('b-int').textContent = sek(P.int) + ' / month';
+  $('b-rep').textContent = sek(P.rep) + ' / month';
+  $('b-tot').textContent = sek(tot) + ' / month';
+  const at50 = pay(V, 50, r);
+  let alt, take;
+  if (l > 50) {
+    const extra = P.L - at50.L, yrs = yearsTo50(V, l);
+    const cut = 1 - at50.int / tot;
+    alt = `<p><b>The alternative.</b> Put down ${sek(extra)} more and borrow exactly 50%. The monthly payment falls to <b>${sek(at50.int)}</b>, ${Math.round(cut * 100)}% less.</p>
+           <p><b>Or keep this loan.</b> Repaying the minimum brings it down to 50% in ${yrs.toFixed(1)} years, and then repayment can stop. Those repayments add the same ${sek(extra)} to the household&rsquo;s home equity.</p>`;
+    take = `Either way the household ends up owning the same share of its home. Crossing the line raises the monthly bill by ${Math.round((tot / at50.int - 1) * 100)}%, yet the extra money goes into the household&rsquo;s own equity. A household that focuses on the monthly bill will still want to stay at 50%.`;
+  } else {
+    const j = pay(V, 50.5, r), jt = j.int + j.rep;
+    alt = `<p><b>At or below 50%</b> no repayment is required, so this household may pay interest only.</p>
+           <p>Borrowing just above the line, at 50.5%, would raise the monthly payment to <b>${sek(jt)}</b>, ${Math.round((jt / at50.int - 1) * 100)}% more than at 50%.</p>`;
+    take = `The step in the monthly bill at 50% is large, while the extra money is saving that stays with the household. Many households responded to the step by borrowing exactly 50%.`;
+  }
+  $('calc-alt').innerHTML = alt;
+  $('calc-take').innerHTML = take;
+  payChart && payChart.draw();
+}
+[cv, cl, cr].forEach(i => i.addEventListener('input', updateCalc));
+updateCalc();
+
+/* ---------------- 3. Interest-only share ---------------- */
+const ioHost = $('chart-io');
+reg(ioHost, () => {
+  const E = D.io.edges, Bv = D.io.before, Av = D.io.after;
+  const f = frame(ioHost, {
+    h: W => W < 560 ? 250 : 300, x: [39.75, 79.75], y: [0, 100], m: { t: 26, l: 44 },
+    yt: [0, 25, 50, 75, 100], yf: v => v + '%', xt: range(40, 80, ioHost.clientWidth < 520 ? 10 : 5), xf: v => v + '%',
+    xTitle: 'Loan-to-value ratio at origination',
+    label: 'Share of new mortgages that are interest-only by loan-to-value ratio, before and after the rule',
+  });
+  const path = arr => {
+    let d = '', pen = false;
+    E.forEach((e, i) => {
+      const v = arr[i];
+      if (v == null) { pen = false; return; }
+      d += (pen ? 'L' : 'M') + f.x(e) + ',' + f.y(v); pen = true;
+    });
+    return d;
+  };
+  [50, 70].forEach(v => {
+    S('line', { x1: f.x(v + 0.25), x2: f.x(v + 0.25), y1: f.m.t - 16, y2: f.y(0), class: 'thr' }, f.plot);
+    T(f.front, f.x(v + 0.25) + 6, f.m.t - 6, v === 50 ? '1% required →' : '2% required →', 'lab', 'start');
+  });
+  S('path', { d: path(Bv), class: 'line-before' }, f.plot);
+  S('path', { d: path(Av), class: 'line-after' }, f.plot);
+  const cur = S('line', { x1: 0, x2: 0, y1: f.m.t, y2: f.y(0), class: 'cursor', visibility: 'hidden' }, f.front);
+  const dB = S('circle', { r: 5, class: 'dot-b', visibility: 'hidden' }, f.front);
+  const dA = S('circle', { r: 5, class: 'dot-a', visibility: 'hidden' }, f.front);
+  const hit = S('rect', { x: f.m.l, y: f.m.t, width: f.iw, height: f.ih, class: 'hit' }, f.hits);
+  const move = ev => {
+    const bb = f.svg.getBoundingClientRect();
+    const px = (ev.clientX - bb.left) * (f.W / bb.width);
+    const v = 39.75 + (px - f.m.l) / f.iw * 40;
+    const i = Math.max(0, Math.min(E.length - 1, Math.round((v - 40) * 2)));
+    const e = E[i], cx = f.x(e);
+    cur.setAttribute('x1', cx); cur.setAttribute('x2', cx); cur.setAttribute('visibility', 'visible');
+    [[dB, Bv[i]], [dA, Av[i]]].forEach(([c, val]) => {
+      if (val == null) c.setAttribute('visibility', 'hidden');
+      else { c.setAttribute('cx', cx); c.setAttribute('cy', f.y(val)); c.setAttribute('visibility', 'visible'); }
+    });
+    const fm = v => v == null ? 'too few loans' : v.toFixed(0) + '%';
+    showTip(f, `<b>LTV ${e.toFixed(1)}–${(e + 0.5).toFixed(1)}%</b><br>${key('--before')}Before: ${fm(Bv[i])}<br>${key('--after')}After: ${fm(Av[i])}`, cx, f.y(Math.max(Bv[i] ?? 0, Av[i] ?? 0)));
+  };
+  hit.addEventListener('pointermove', move);
+  hit.addEventListener('pointerdown', move);
+  hit.addEventListener('pointerleave', () => { hideTip(f); [cur, dB, dA].forEach(c => c.setAttribute('visibility', 'hidden')); });
+});
+
+/* ---------------- 4. Who responded ---------------- */
+const WHO = {
+  pti: {
+    rows: [
+      { s: 'Close to the limit', l: 'Close to the limit (under 5,000 SEK a month to spare)', v: 1.98, se: 0.27, B: 5.01, N: 13350 },
+      { s: 'Some room', l: 'Some room (5,000–15,000 SEK a month)', v: 3.45, se: 0.34, B: 10.17, N: 10471 },
+      { s: 'Far from the limit', l: 'Far from the limit (over 15,000 SEK a month)', v: 2.92, se: 0.30, B: 9.41, N: 10182 },
+    ],
+    cap: 'Money to spare is monthly income left over after taxes, basic living costs and loan payments at a stressed interest rate of about 7%, had the borrower borrowed one point more. Households furthest from the limit respond about as strongly as anyone. They also have higher incomes and lower debt relative to income.',
+  },
+  val: {
+    rows: [
+      { s: 'Refinancer, bank model', l: 'Refinancer, home valued by the bank’s model', v: 2.44, se: 0.17, B: 7.10, N: 28588 },
+      { s: 'Refinancer, external value', l: 'Refinancer, home valued externally', v: 2.89, se: 0.47, B: 7.38, N: 4948 },
+      { s: 'Buyer, purchase price', l: 'Home buyer, valued at purchase price', v: 2.18, se: 0.56, B: 9.30, N: 2211 },
+    ],
+    cap: 'For refinancers the bank sets the home value, so the household can only change the size of the loan. Their response matches that of buyers, so it does not come from buying cheaper homes.',
+  },
+};
+let whoG = 'pti';
+const whoHost = $('chart-who');
+const whoChart = reg(whoHost, () => {
+  const G = WHO[whoG], n = G.rows.length, rowH = 62;
+  const f = frame(whoHost, {
+    h: () => 26 + n * rowH + 38, x: [0, 5], y: [0, 1], m: { t: 26, l: 14, r: 46, b: 38 },
+    xt: [0, 1, 2, 3, 4, 5], xf: v => v, xTitle: 'Points of loan-to-value',
+    label: 'Reduction in loan-to-value ratio by group, with 95% confidence intervals',
+  });
+  S('line', { x1: f.x(2.57), x2: f.x(2.57), y1: f.m.t - 14, y2: f.m.t + f.ih, class: 'ref' }, f.plot);
+  T(f.front, f.x(2.57) + 6, f.m.t - 6, 'All borrowers: 2.57', 'lab halo', 'start');
+  G.rows.forEach((r, i) => {
+    const cy = f.m.t + i * rowH + 40;
+    const lo = r.v - 1.96 * r.se, hi = r.v + 1.96 * r.se;
+    T(f.front, f.x(0), cy - 16, f.W < 520 ? r.s : r.l, 'lab halo', 'start');
+    S('line', { x1: f.x(lo), x2: f.x(hi), y1: cy, y2: cy, class: 'whisker' }, f.plot);
+    S('circle', { cx: f.x(r.v), cy, r: 6.5, class: 'dot-ink' }, f.plot);
+    T(f.front, f.x(hi) + 8, cy + 4, r.v.toFixed(2), 'lab-b halo', 'start');
+    const h = S('rect', { x: 0, y: cy - 30, width: f.W, height: rowH - 4, class: 'hit' }, f.hits);
+    const on = () => showTip(f, `<b>${r.l}</b><br>Cut in LTV: ${r.v.toFixed(2)} points<br>95% interval: ${lo.toFixed(2)} to ${hi.toFixed(2)}<br>Extra loans at the line: ${r.B.toFixed(2)} pp<br>Loans in group: ${nf0.format(r.N)}`, f.x(r.v), cy - 8);
+    h.addEventListener('pointerenter', on); h.addEventListener('pointerdown', on);
+    h.addEventListener('pointerleave', () => hideTip(f));
+  });
+  $('who-cap').textContent = G.cap;
+});
+segBind('g', v => { whoG = v; whoChart.draw(); });
+
+/* ---------------- 5. Mechanisms ---------------- */
+const MECH = {
+  baseline: { name: 'Standard model', cls: 'm-baseline', color: '--base',
+    text: 'Credit constraints and income risk only. Required repayment lowers welfare for everyone, but smoothly, so no borrower gains much by moving exactly to 50%. The distribution looks the same on both sides of the line.' },
+  notch: { name: 'One-off hassle', cls: 'm-notch', color: '--after',
+    text: 'Households dislike a one-time step, such as calling the bank later to switch repayment off, or feel unsure they will be allowed to. Only borrowers just above 50% find it worth moving, and nearly all of them do. This leaves a deep hole just above the line.' },
+  flow: { name: 'Ongoing dislike', cls: 'm-flow', color: '--teal',
+    text: 'Households experience every repayment as a cost, much like interest. Everyone above 50% borrows somewhat less. Borrowers close to the line move all the way to it, and those further away move part of the way and fill in the space above. The result is a pile-up with no hole, as in the Swedish data.' },
+};
+let mech = 'flow';
+const mechHost = $('chart-mech');
+const mechChart = reg(mechHost, () => {
+  const E = D.model.edges, H = D.model[mech], Bs = D.model.baseline, M = MECH[mech];
+  const f = frame(mechHost, {
+    h: W => W < 560 ? 260 : 310, x: [40, 60], y: [0, 45], m: { t: 30, l: 40 },
+    yt: [0, 10, 20, 30, 40], yf: v => v + '%', xt: range(40, 60, 4), xf: v => v + '%',
+    xTitle: 'Loan-to-value ratio at purchase (model)',
+    label: `Simulated loan-to-value distribution: ${M.name}`,
+  });
+  const bars = [];
+  for (let i = 0; i < E.length - 1; i++) {
+    const x0 = f.x(E[i]) + 1.5, w = f.x(E[i + 1]) - f.x(E[i]) - 3;
+    bars.push(S('path', { d: barPath(x0, f.y(H[i]), w, f.y(0) - f.y(H[i]), 4), class: 'bar-m ' + M.cls }, f.plot));
+  }
+  if (mech !== 'baseline') {
+    let p = `M${f.x(E[0])},${f.y(Bs[0])}`;
+    for (let i = 0; i < E.length - 1; i++) { p += `H${f.x(E[i + 1])}`; if (i < E.length - 2) p += `V${f.y(Bs[i + 1])}`; }
+    S('path', { d: p, class: 'line-base' }, f.plot);
+  }
+  S('line', { x1: f.x(50), x2: f.x(50), y1: f.m.t - 22, y2: f.y(0), class: 'thr' }, f.front);
+  T(f.front, f.x(50) + 7, f.m.t - 12, '1% repayment →', 'lab', 'start');
+  if (mech === 'notch') {
+    const y0 = f.y(8);
+    S('path', { d: `M${f.x(50.3)},${y0 + 6}V${y0}H${f.x(55.7)}V${y0 + 6}`, class: 'bracket' }, f.front);
+    T(f.front, f.x(53), y0 - 8, 'Hole', 'lab-b', 'middle');
+    T(f.front, f.x(47.8), f.y(H[4]) + 4, 'Pile-up', 'lab-b', 'end');
+  } else if (mech === 'flow') {
+    T(f.front, f.x(47.8), f.y(H[4]) + 4, 'Pile-up', 'lab-b', 'end');
+    T(f.front, f.x(55), f.y(14), 'No hole', 'lab-b', 'middle');
+  } else {
+    T(f.front, f.x(50), f.y(20), 'No pile-up at the line', 'lab-b halo', 'middle');
+  }
+  for (let i = 0; i < E.length - 1; i++) {
+    const r = S('rect', { x: f.x(E[i]), y: f.m.t, width: f.x(E[i + 1]) - f.x(E[i]), height: f.ih, class: 'hit' }, f.hits);
+    const on = () => {
+      bars.forEach((b, k) => b.classList.toggle('hov', k === i));
+      const base = mech === 'baseline' ? '' : `<br>${key('--base')}Standard model: ${Bs[i].toFixed(1)}%`;
+      showTip(f, `<b>LTV ${E[i]}–${E[i + 1]}%</b><br>${key(M.color)}${M.name}: ${H[i].toFixed(1)}%${base}`, f.x((E[i] + E[i + 1]) / 2), f.y(Math.max(H[i], Bs[i])));
+    };
+    r.addEventListener('pointerenter', on); r.addEventListener('pointerdown', on);
+  }
+  f.svg.addEventListener('pointerleave', () => { bars.forEach(b => b.classList.remove('hov')); hideTip(f); });
+
+  $('mech-legend').innerHTML = `<span><i class="sw" style="background:var(${M.color})"></i>${M.name}</span>` +
+    (mech === 'baseline' ? '' : '<span><i class="sw line" style="border-color:var(--base)"></i>Standard model, for comparison</span>');
+  $('mech-text').textContent = M.text;
+  document.querySelectorAll('#mech-table tbody tr').forEach(tr => tr.classList.toggle('sel', tr.dataset.m === mech));
+});
+function pickMech(m) {
+  mech = m;
+  document.querySelectorAll('#mech-seg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.m === m ? 'true' : 'false'));
+  mechChart.draw();
+}
+segBind('m', pickMech);
+document.querySelectorAll('#mech-table tbody tr').forEach(tr => tr.addEventListener('click', () => pickMech(tr.dataset.m)));
+
+/* ---------------- 6. Interest-only experiment ---------------- */
+function setX(v) {
+  const flow = v === 'flow';
+  $('x-big').textContent = flow ? '+33.4%' : '+9.1%';
+  $('x-seg1').style.flexBasis = (9.1 / 40 * 100) + '%';
+  $('x-seg2').style.flexBasis = flow ? (24.3 / 40 * 100) + '%' : '0%';
+  $('x-seg2').style.padding = flow ? '' : '0';
+  $('x-seg2').style.borderLeftWidth = flow ? '' : '0';
+  $('x-seg2').textContent = flow ? '24.3' : '';
+  $('x-leg2').style.opacity = flow ? '1' : '.4';
+  $('x-bar').setAttribute('aria-label', flow ? 'Debt rises 33.4%: 9.1 points from flexibility, 24.3 points from avoiding disliked repayments' : 'Debt rises 9.1% in the standard model');
+  $('x-text').textContent = flow
+    ? 'In the model that matches the Swedish evidence, allowing interest-only loans raises mortgage debt by 33.4%, and lifetime interest payments rise by the same proportion. More than two-thirds of the increase comes from households avoiding repayments they dislike.'
+    : 'In the standard model, allowing interest-only loans raises mortgage debt by only 9.1%. The gain comes from more flexibility to smooth spending over time. Leaving out households’ dislike of repaying understates the effect by more than two-thirds.';
+}
+segBind('x', setX);
+setX('flow');
+
+/* ---------------- Citation copy ---------------- */
+$('copy-cite').addEventListener('click', () => {
+  const text = $('cite-text').textContent.replace(/\s+/g, ' ').trim() + ' https://doi.org/10.1093/rfs/hhaf115';
+  const done = msg => { $('copy-status').textContent = msg; };
+  const fallback = () => {
+    const sel = window.getSelection(), rg = document.createRange();
+    rg.selectNodeContents($('cite-text')); sel.removeAllRanges(); sel.addRange(rg);
+    done('Citation selected. Press Ctrl+C or ⌘C to copy.');
+  };
+  try {
+    navigator.clipboard.writeText(text).then(() => done('Citation copied.'), fallback);
+  } catch (e) { fallback(); }
+});
+</script>
+
+</html>

@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mortgage Design, Repayment Schedules, and Household Borrowing</title>
+<meta name="description" content="Interactive companion to Bäckman, Moran and van Santen (Review of Financial Studies). Re-estimate the bunching at Sweden's 50% LTV amortization threshold, compare published specifications, and explore the structural model.">
+
+<!-- Bibliographic metadata for Google Scholar, Zotero and other reference managers -->
+<meta name="citation_title" content="Mortgage Design, Repayment Schedules, and Household Borrowing">
+<meta name="citation_author" content="Bäckman, Claes">
+<meta name="citation_author" content="Moran, Patrick">
+<meta name="citation_author" content="van Santen, Peter">
+<meta name="citation_journal_title" content="The Review of Financial Studies">
+<meta name="citation_volume" content="39">
+<meta name="citation_issue" content="8">
+<meta name="citation_firstpage" content="2549">
+<meta name="citation_lastpage" content="2594">
+<meta name="citation_publication_date" content="2026/08">
+<meta name="citation_online_date" content="2025/12/26">
+<meta name="citation_doi" content="10.1093/rfs/hhaf115">
+<meta name="citation_publisher" content="Oxford University Press">
+<meta property="og:title" content="Mortgage Design, Repayment Schedules, and Household Borrowing">
+<meta property="og:description" content="Bäckman, Moran and van Santen, Review of Financial Studies 39(8). Interactive results and model.">
+<meta property="og:type" content="article">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232a78d6'/%3E%3Crect x='7' y='16' width='4' height='9' rx='1' fill='%23fff'/%3E%3Crect x='14' y='7' width='4' height='18' rx='1' fill='%23fff'/%3E%3Crect x='21' y='14' width='4' height='11' rx='1' fill='%23fff'/%3E%3C/svg%3E">
+<script>
+  try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">Bäckman, Moran &amp; van Santen <span class="brand-venue">RFS</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#evidence">Evidence</a>
+      <a href="#specifications">Specifications</a>
+      <a href="#model">Model</a>
+      <a href="#implications">Implications</a>
+    </nav>
+    <div class="topbar-actions">
+      <a class="btn btn-ghost" href="https://doi.org/10.1093/rfs/hhaf115">Paper</a>
+      <a class="btn btn-primary" href="#cite">Cite</a>
+      <button class="btn btn-icon" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============================================================ HERO -->
+<section class="hero">
+  <p class="eyebrow">The Review of Financial Studies · Vol. 39, No. 8 · 2026</p>
+  <h1>Mortgage Design, Repayment Schedules, and Household Borrowing</h1>
+  <p class="authors">Claes Bäckman · Patrick Moran · Peter van Santen</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="https://doi.org/10.1093/rfs/hhaf115">Read the paper</a>
+    <a class="btn" href="#cite">Cite this paper</a>
+    <a class="btn" href="https://doi.org/10.7910/DVN/DZUGKD">Replication package</a>
+    <a class="btn btn-ghost" href="data/published_estimates.csv" download>All estimates (CSV)</a>
+  </div>
+  <p class="abstract">How does the design of debt repayment schedules affect household borrowing? We exploit a Swedish policy reform that eliminated interest-only mortgages for loan-to-value ratios above 50%. We document substantial bunching at the threshold, leading to 5% lower borrowing. Wealthy borrowers drive the results, challenging credit constraints as the primary explanation. A life-cycle model shows that much of the effect comes from households experiencing ongoing flow disutility to amortization payments. Mortgage contracts with low initial payments substantially increase household borrowing and lifetime interest costs.</p>
+
+  <div class="tiles">
+    <div class="tile">
+      <div class="tile-num">7.47<span class="tile-unit">pp</span></div>
+      <div class="tile-label">excess mass of borrowers at LTV 48.5–50 after the reform (SE 0.31)</div>
+    </div>
+    <div class="tile">
+      <div class="tile-num">−5<span class="tile-unit">%</span></div>
+      <div class="tile-label">lower LTV for the marginal buncher (ΔLTV = 2.57). Semi-elasticity 0.25</div>
+    </div>
+    <div class="tile">
+      <div class="tile-num">86<span class="tile-unit">%</span></div>
+      <div class="tile-label">of bunchers would still pass the bank's payment-to-income test if they borrowed more</div>
+    </div>
+    <div class="tile">
+      <div class="tile-num">+33.4<span class="tile-unit">%</span></div>
+      <div class="tile-label">mortgage debt when the model economy introduces interest-only loans, against +9.1% without flow disutility</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ POLICY -->
+<section class="section" id="policy">
+  <div class="section-head">
+    <p class="kicker">Setting</p>
+    <h2>The 2016 Swedish amortization requirement</h2>
+  </div>
+  <div class="two-col">
+    <div class="prose">
+      <p>From June 2016, new Swedish mortgages with a loan-to-value ratio above 50% must repay at least 1% of the original loan each year, and those above 70% at least 2%. Below 50%, interest-only remains allowed. Swedish mortgages have linear repayment schedules, so the jump in the monthly payment at the threshold is entirely principal, not interest.</p>
+      <p>The rule applies to the whole loan, not the part above the threshold. A borrower just above 50% therefore faces a large implicit marginal amortization rate on the last percentage points of LTV. Once the balance falls below the threshold, a phone call to the bank turns amortization off. Seven of the eight large banks charge no fee, there is no new credit check, and no new appraisal.</p>
+      <p>Data come from Finansinspektionen's Mortgage Survey, 2011–2018, which covers all new mortgages issued by the eight largest banks on sampled days each autumn.</p>
+    </div>
+    <figure class="figure">
+      <div class="chart" id="chart-policy" style="--h:240px"></div>
+      <figcaption>Minimum annual amortization rate by LTV at origination. Before 2016 the bankers' association recommended, but did not require, amortization above 70–75% LTV.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ EVIDENCE -->
+<section class="section" id="evidence">
+  <div class="section-head">
+    <p class="kicker">Evidence explorer</p>
+    <h2>Re-estimate the bunching yourself</h2>
+    <p class="lede">The counterfactual is the pre-reform LTV distribution, bin by bin. Choose the threshold, the years that form the counterfactual, and the limits of the excluded window. All four statistics update from the binned data.</p>
+  </div>
+
+  <div class="controls" role="group" aria-label="Estimation choices">
+    <div class="control">
+      <span class="control-label">Threshold</span>
+      <div class="seg" id="ev-threshold">
+        <button type="button" data-v="50" aria-pressed="true">LTV 50</button>
+        <button type="button" data-v="70" aria-pressed="false">LTV 70</button>
+      </div>
+    </div>
+    <div class="control">
+      <span class="control-label">Counterfactual years</span>
+      <div class="chips" id="ev-pre"></div>
+    </div>
+    <div class="control">
+      <span class="control-label">Post-reform years</span>
+      <div class="chips" id="ev-post"></div>
+    </div>
+    <div class="control control-slider">
+      <label class="control-label" for="ev-L">Lower limit <var>L</var> <output id="ev-L-out"></output></label>
+      <input type="range" id="ev-L" step="0.5">
+    </div>
+    <div class="control control-slider">
+      <label class="control-label" for="ev-U">Upper limit <var>U</var> <output id="ev-U-out"></output></label>
+      <input type="range" id="ev-U" step="0.5">
+    </div>
+    <button type="button" class="btn btn-ghost btn-small" id="ev-reset">Reset to paper</button>
+  </div>
+
+  <div class="ev-grid">
+    <figure class="figure">
+      <div class="legend" id="ev-legend"></div>
+      <div class="chart" id="chart-evidence" style="--h:360px"></div>
+      <figcaption id="ev-caption"></figcaption>
+    </figure>
+    <div class="readouts" id="ev-readouts" aria-live="polite"></div>
+  </div>
+
+  <details class="note">
+    <summary>Why the live numbers differ slightly from the paper</summary>
+    <p>The paper bins the confidential microdata by rounding LTV to the nearest 0.5 (so the bin labelled 50 covers 49.75–50.25). The public file behind this page uses bins [<var>a</var>, <var>a</var>+0.5), which cannot be re-rounded. The bin [50, 50.5) mostly holds loans at exactly 50% (70% of them interest-only in 2016), but it also contains some loans just above the threshold. The live estimates are therefore close to, but not identical to, the published ones, and the live page reports no bootstrap standard errors. The published estimate, with its standard error, is always shown alongside. The page publishes shares only, no counts.</p>
+  </details>
+
+  <details class="note">
+    <summary>Method: the difference-in-bunching estimator</summary>
+    <div class="eq-block">
+      <p>Let <var>n<sub>j</sub></var> be the post-reform percent of loans in bin <var>j</var> and <var>n̂<sub>j</sub></var> the percent in the same bin before the reform. With threshold <var>T</var> and window limits <var>L</var> and <var>U</var>:</p>
+      <p class="eq">B̂ = Σ<sub><var>j</var>=<var>L</var></sub><sup><var>T</var></sup> (<var>n<sub>j</sub></var> − <var>n̂<sub>j</sub></var>)&emsp;&emsp;M̂ = Σ<sub><var>j</var>&gt;<var>T</var></sub><sup><var>U</var></sup> (<var>n<sub>j</sub></var> − <var>n̂<sub>j</sub></var>)</p>
+      <p class="eq">ΔLTV = B̂ / ĝ(<var>T</var>)&emsp;where ĝ is the average counterfactual density over [<var>L</var>, <var>T</var>]</p>
+      <p class="eq">e<sup>α</sup> = (ΔLTV / <var>T</var>) / (α* − α<sub>0</sub>),&emsp;α* = α<sub>0</sub> + Δα + Δα · <var>T</var> / ΔLTV</p>
+      <p>The identifying assumption is that, absent the reform, the share of loans in each bin would have equalled its pre-reform share. This allows for round-number spikes at 50 that are stable over time, which a smooth polynomial counterfactual would attribute to the policy. M is negative when mass is missing above the threshold. The estimation sample is LTV 20–65 for the 50% threshold and 55–80 for the 70% threshold. At 50, α<sub>0</sub> = 0 and Δα = 0.01. At 70, α<sub>0</sub> = 0.01 and Δα = 0.01.</p>
+    </div>
+  </details>
+
+  <div class="subhead">
+    <h3>Year by year</h3>
+    <p>Each panel shows one survey year. The pile at the threshold appears in 2016 and persists through 2018.</p>
+  </div>
+  <div class="multiples" id="ev-multiples"></div>
+
+  <div class="subhead">
+    <h3>Supply-side checks</h3>
+    <p>Mortgage rates show no discontinuity at the threshold, before or after the reform. The share of interest-only loans above 50% collapses after the reform, which is the policy itself.</p>
+  </div>
+  <div class="two-col">
+    <figure class="figure">
+      <div class="legend" id="leg-io"></div>
+      <div class="chart" id="chart-io" style="--h:240px"></div>
+      <figcaption>Share of loans that are interest-only, by LTV bin. Pre: 2012–2015. Post: 2016–2018. Bins with fewer than 20 loans are omitted.</figcaption>
+    </figure>
+    <figure class="figure">
+      <div class="legend" id="leg-rate"></div>
+      <div class="chart" id="chart-rate" style="--h:240px"></div>
+      <figcaption>Average mortgage rate by LTV bin, normalized to the 2017 mean. No discount for staying at or below the threshold.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ SPECIFICATIONS -->
+<section class="section" id="specifications">
+  <div class="section-head">
+    <p class="kicker">Specification explorer</p>
+    <h2>Every published estimate, side by side</h2>
+    <p class="lede">Point estimates with 95% confidence intervals from bootstrapped standard errors (500 draws). Choose a statistic and a group, then select a row for details.</p>
+  </div>
+  <div class="controls">
+    <div class="control">
+      <span class="control-label">Statistic</span>
+      <div class="seg" id="sp-stat">
+        <button type="button" data-v="B" aria-pressed="true">Bunching B</button>
+        <button type="button" data-v="M" aria-pressed="false">Missing mass M</button>
+        <button type="button" data-v="dLTV" aria-pressed="false">ΔLTV</button>
+        <button type="button" data-v="e" aria-pressed="false">Elasticity</button>
+        <button type="button" data-v="ratio" aria-pressed="false">|M| / B</button>
+      </div>
+    </div>
+    <div class="control">
+      <span class="control-label">Threshold</span>
+      <div class="seg" id="sp-t">
+        <button type="button" data-v="50" aria-pressed="true">LTV 50</button>
+        <button type="button" data-v="70" aria-pressed="false">LTV 70</button>
+        <button type="button" data-v="all" aria-pressed="false">Both</button>
+      </div>
+    </div>
+  </div>
+  <div class="sp-grid">
+    <figure class="figure">
+      <div class="chart" id="chart-spec"></div>
+      <figcaption id="sp-caption"></figcaption>
+    </figure>
+    <aside class="detail" id="sp-detail" aria-live="polite"></aside>
+  </div>
+</section>
+
+<!-- ============================================================ MODEL -->
+<section class="section" id="model">
+  <div class="section-head">
+    <p class="kicker">Model explorer</p>
+    <h2>What kind of preference produces this pile?</h2>
+    <p class="lede">A life-cycle model with housing, liquid savings, long-term mortgages, income risk and credit constraints, in the spirit of Campbell and Cocco (2003) and Cocco (2004). The model is solved in Julia. The charts below show its actual output.</p>
+  </div>
+
+  <div class="subhead"><h3>Three versions of the household</h3></div>
+  <div class="controls">
+    <div class="control">
+      <span class="control-label">Preferences</span>
+      <div class="seg" id="mo-mech">
+        <button type="button" data-v="baseline" aria-pressed="true">Standard</button>
+        <button type="button" data-v="notch" aria-pressed="false">One-off cost (notch)</button>
+        <button type="button" data-v="flow" aria-pressed="false">Flow disutility (kink)</button>
+      </div>
+    </div>
+  </div>
+  <p class="mech-text" id="mo-text"></p>
+  <div class="two-col">
+    <figure class="figure">
+      <div class="legend" id="leg-mo-hist"></div>
+      <div class="chart" id="chart-mo-hist" style="--h:280px"></div>
+      <figcaption>Simulated LTV at home purchase under the Swedish amortization requirement, 2pp bins, percent of loans with LTV 40–60.</figcaption>
+    </figure>
+    <figure class="figure">
+      <div class="legend" id="leg-mo-vf"></div>
+      <div class="chart" id="chart-mo-vf" style="--h:280px"></div>
+      <figcaption>Expected discounted utility as a function of LTV at origination, all other states held fixed.</figcaption>
+    </figure>
+  </div>
+
+  <div class="subhead">
+    <h3>Calibration and identification</h3>
+    <p>Move the disutility parameter and read off the excess mass and missing mass the model implies. A flow disutility of Δ<sub>k</sub> = 0.08 reproduces the empirical excess mass (model B = 7.53, data B = 7.47) with almost no hole. A one-off cost generates a large hole relative to the pile, which the data do not show.</p>
+  </div>
+  <div class="controls">
+    <div class="control">
+      <span class="control-label">Mechanism</span>
+      <div class="seg" id="ca-mech">
+        <button type="button" data-v="flow" aria-pressed="true">Flow Δ<sub>k</sub></button>
+        <button type="button" data-v="oneoff" aria-pressed="false">One-off Δ<sub>n</sub></button>
+      </div>
+    </div>
+    <div class="control control-slider">
+      <label class="control-label" for="ca-k">Disutility <output id="ca-k-out"></output></label>
+      <input type="range" id="ca-k" min="0" step="1">
+    </div>
+  </div>
+  <div class="ca-grid">
+    <figure class="figure">
+      <div class="chart" id="chart-ca-b" style="--h:280px"></div>
+      <figcaption id="ca-b-cap"></figcaption>
+    </figure>
+    <figure class="figure">
+      <div class="legend" id="leg-ca-plane"></div>
+      <div class="chart" id="chart-ca-plane" style="--h:280px"></div>
+      <figcaption><span class="badge">Supplementary</span> Not reported in the paper. Model loci of (B, M) traced by each parameter, from the calibration loops (Δ<sub>n</sub> simulated up to 0.25), against the empirical estimate with its 95% interval. The ratio |M|/B does not depend on the size of the pile and is the most direct comparison.</figcaption>
+    </figure>
+    <div class="readouts" id="ca-readouts" aria-live="polite"></div>
+  </div>
+
+  <div class="subhead">
+    <h3>The standard model does not bunch under alternative calibrations</h3>
+    <p>Without a psychic cost the value function stays smooth at 50%, whatever the calibration. Each alternative is simulated under interest-only and under the Swedish requirement.</p>
+  </div>
+  <div class="controls">
+    <div class="control">
+      <label class="control-label" for="rb-sel">Calibration</label>
+      <select id="rb-sel" class="select"></select>
+    </div>
+  </div>
+  <div class="two-col">
+    <figure class="figure">
+      <div class="legend" id="leg-rb-hist"></div>
+      <div class="chart" id="chart-rb-hist" style="--h:260px"></div>
+      <figcaption id="rb-cap"></figcaption>
+    </figure>
+    <figure class="figure">
+      <div class="legend" id="leg-rb-vf"></div>
+      <div class="chart" id="chart-rb-vf" style="--h:260px"></div>
+      <figcaption>Value function under each regime for the chosen calibration.</figcaption>
+    </figure>
+  </div>
+
+  <details class="note">
+    <summary>Model parameters</summary>
+    <div class="table-wrap">
+    <table class="params">
+      <thead><tr><th>Parameter</th><th>Symbol</th><th>Value</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr class="grp"><td colspan="4">Income process</td></tr>
+        <tr><td>Income persistence</td><td>ρ</td><td>0.97</td><td>Kovacs and Moran (2021)</td></tr>
+        <tr><td>Std. dev. of income shocks</td><td>σ<sub>ε</sub></td><td>0.180</td><td>Kovacs and Moran (2021)</td></tr>
+        <tr><td>Std. dev. of initial income</td><td>σ<sub>0</sub></td><td>0.410</td><td>Kovacs and Moran (2021)</td></tr>
+        <tr><td>Share with zero initial assets</td><td>a<sub>0</sub><sup>zero</sup></td><td>0.433</td><td>Kovacs and Moran (2021)</td></tr>
+        <tr class="grp"><td colspan="4">Preferences</td></tr>
+        <tr><td>Time preference</td><td>β</td><td>0.96</td><td>Cocco (2004)</td></tr>
+        <tr><td>Risk aversion</td><td>γ</td><td>5.0</td><td>Cocco (2004)</td></tr>
+        <tr><td>Housing utility share</td><td>θ</td><td>0.1</td><td>Cocco (2004)</td></tr>
+        <tr><td>Disutility of renting</td><td>ζ</td><td>0.03</td><td>Leombroni et al. (2020)</td></tr>
+        <tr><td>Flow disutility of amortization</td><td>Δ<sub>k</sub></td><td>0.08</td><td>Calibrated to B = 7.47</td></tr>
+        <tr><td>One-off disutility of amortization</td><td>Δ<sub>n</sub></td><td>0.35</td><td>Calibrated</td></tr>
+        <tr class="grp"><td colspan="4">Assets and mortgages</td></tr>
+        <tr><td>Real return on liquid asset</td><td>r</td><td>0.018</td><td>Swedish 3-month T-bill</td></tr>
+        <tr><td>Real return on housing</td><td>r<sup>H</sup></td><td>0.029</td><td>Statistics Sweden</td></tr>
+        <tr><td>Mortgage interest rate</td><td>r<sup>M</sup></td><td>0.043</td><td>Statistics Sweden</td></tr>
+        <tr><td>Maximum LTV</td><td>1 − ψ</td><td>0.85</td><td>Swedish law</td></tr>
+        <tr><td>Refinancing cost (proportional / fixed)</td><td>f<sub>2</sub>, f<sub>3</sub></td><td>5% / $3,000</td><td>Federal Reserve Board</td></tr>
+        <tr><td>Transaction cost of moving</td><td>f<sub>1</sub></td><td>0.05</td><td>OECD (2011)</td></tr>
+        <tr class="grp"><td colspan="4">Demographics</td></tr>
+        <tr><td>Entry, retirement, death</td><td>t = 0, W, T</td><td>22, 65, 120</td><td>Attanasio et al. (2012)</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </details>
+</section>
+
+<!-- ============================================================ IMPLICATIONS -->
+<section class="section" id="implications">
+  <div class="section-head">
+    <p class="kicker">Implications</p>
+    <h2>Why a kink matters beyond Sweden</h2>
+  </div>
+  <div class="two-col">
+    <div>
+      <h3 class="h3-tight">Financial innovation and household debt</h3>
+      <p class="prose-small">Start from a model economy with only fully amortizing mortgages and introduce interest-only loans. Mortgage debt rises by 33.4% when households have flow disutility, and by 9.1% without it. A notch would affect only borrowers near a threshold. A kink shifts everyone who amortizes, which is why the amplification is large.</p>
+      <figure class="figure">
+        <div class="legend" id="leg-io-innov"></div>
+        <div class="chart" id="chart-innov" style="--h:170px"></div>
+        <figcaption>Increase in steady-state mortgage debt after interest-only loans are introduced, in the model. The paper attributes over two-thirds of the 33.4% increase to flow disutility and just under one-third to greater consumption-smoothing flexibility.</figcaption>
+      </figure>
+    </div>
+    <div>
+      <h3 class="h3-tight">Forced repayment and wealth accumulation</h3>
+      <p class="prose-small">Bernstein and Koudijs (2024) find that each euro of mandatory amortization raises net wealth by almost a euro, even for households with liquid savings. Re-running their instrumental-variables design on simulated data, only the model with flow disutility matches both facts.</p>
+      <div class="controls controls-tight">
+        <div class="seg" id="mwa-sample">
+          <button type="button" data-v="3" aria-pressed="true">Full sample</button>
+          <button type="button" data-v="4" aria-pressed="false">Liquid assets &gt; 10,000</button>
+        </div>
+      </div>
+      <figure class="figure">
+        <div class="chart" id="chart-mwa" style="--h:230px"></div>
+        <figcaption>Marginal wealth building from amortization (2SLS). One means every extra unit of repayment becomes an extra unit of net wealth.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CITE -->
+<section class="section cite" id="cite">
+  <div class="section-head">
+    <p class="kicker">Cite</p>
+    <h2>How to cite this paper</h2>
+  </div>
+  <div class="cite-ref" id="cite-text">Bäckman, Claes, Patrick Moran, and Peter van Santen. 2026. “Mortgage Design, Repayment Schedules, and Household Borrowing.” <em>Review of Financial Studies</em> 39 (8): 2549–94. https://doi.org/10.1093/rfs/hhaf115.</div>
+  <div class="cite-actions">
+    <button type="button" class="btn btn-primary" data-copy="cite-text">Copy reference</button>
+    <button type="button" class="btn" data-copy="bibtex">Copy BibTeX</button>
+    <a class="btn" id="dl-bib" download="backman_moran_vansanten_2026.bib">Download .bib</a>
+    <a class="btn" id="dl-ris" download="backman_moran_vansanten_2026.ris">Download .ris</a>
+    <span class="copied" id="copied" role="status"></span>
+  </div>
+<pre class="bibtex" id="bibtex">@article{backman2026mortgage,
+  author  = {B{\"a}ckman, Claes and Moran, Patrick and van Santen, Peter},
+  title   = {Mortgage Design, Repayment Schedules, and Household Borrowing},
+  journal = {The Review of Financial Studies},
+  year    = {2026},
+  volume  = {39},
+  number  = {8},
+  pages   = {2549--2594},
+  doi     = {10.1093/rfs/hhaf115}
+}</pre>
+  <ul class="links">
+    <li><a href="https://doi.org/10.1093/rfs/hhaf115">Published article and Internet Appendix</a> (Oxford University Press)</li>
+    <li><a href="https://doi.org/10.7910/DVN/DZUGKD">Replication package</a> (Harvard Dataverse, doi:10.7910/DVN/DZUGKD)</li>
+    <li><a href="https://scholar.google.com/scholar?q=%22Mortgage+Design%2C+Repayment+Schedules%2C+and+Household+Borrowing%22">Google Scholar</a></li>
+  </ul>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p>Empirical data: Finansinspektionen Mortgage Survey (Bolåneundersökningen), 2011–2018. This site publishes only aggregated shares of loans by LTV bin and bin-level averages over at least 20 loans. The views expressed are those of the authors and do not represent the views of the Federal Reserve Board, the Federal Reserve System, or Sveriges Riksbank.</p>
+  <p>Correspondence: Claes Bäckman, Leibniz Institute for Financial Research SAFE.</p>
+</footer>
+
+<div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+<script type="module" src="js/app.js?v=1"></script>
+</body>
+</html>
