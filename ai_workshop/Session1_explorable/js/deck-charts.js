@@ -13,7 +13,7 @@
  *   two-researchers   Anna and Ben, the hook
  *   next-token        the presenter samples tokens one at a time
  *   generations       chat → reasoning → agentic, drawn in palette
- *   frontier          the jagged frontier, stylised after Mollick
+ *   frontier          the jagged frontier moving out, 2022 to 2026, a year per press
  *   adoption-field    AI use vs coding-agent use by discipline (builds in after the bet)
  *   adoption-career   the same by career stage
  *   adoption-use      what agent users and other AI users do
@@ -137,39 +137,75 @@
     };
 
     // =====================================================================
-    // frontier: the jagged frontier, stylised. Tasks along x in the order a
-    // person would rank their difficulty; AI performance on y; a dashed line
-    // marks "good enough". Inside the frontier is above the line.
+    // frontier: the jagged frontier moving out, one year per press. Each task
+    // sits on its own spoke at the distance a person would rank its
+    // difficulty; the frontier reaches out along every spoke by a different
+    // amount. Earlier years stay behind as thin rings.
     // =====================================================================
     CH.frontier = (el) => {
-      const W = 660, H = 380;
-      const c = L.chart(W, H, { l: 50, r: 20, t: 30, b: 50 }, [0, 100], [0, 100]);
-      const g = S('g', { class: 'axis' });
-      g.append(S('line', { x1: c.m.l, x2: c.W - c.m.r, y1: c.H - c.m.b, y2: c.H - c.m.b }));
-      g.append(S('line', { x1: c.m.l, x2: c.m.l, y1: c.m.t, y2: c.H - c.m.b }));
-      g.append(txt(c.m.l, c.H - 8, 'tasks, in the order a person would rank their difficulty →', { class: 'axis-label' }));
-      g.append(txt(c.m.l - 8, c.m.t + 4, 'AI', { class: 'axis-label', 'text-anchor': 'end' }));
-      g.append(txt(c.m.l - 8, c.m.t + 18, 'success', { class: 'axis-label', 'text-anchor': 'end' }));
-      c.g.append(g);
-      // "good enough" line
-      const gy = c.y(62);
-      c.g.append(S('line', { x1: c.m.l, x2: c.W - c.m.r, y1: gy, y2: gy, stroke: 'var(--ink-3)', 'stroke-width': 2, 'stroke-dasharray': '7 6' }));
-      c.g.append(txt(c.W - c.m.r, gy - 8, 'good enough to use', { class: 'lbl', 'text-anchor': 'end', fill: 'var(--ink-2)' }));
-      c.g.append(txt(c.x(2), c.y(4), 'hatched: inside the frontier, where the AI does the task', { class: 'boxsub', style: 'font-size:12px' }));
-      // the jagged curve: high on the left, dips sharply, recovers, dips again
-      const pts = [[0, 88], [8, 92], [16, 90], [22, 80], [27, 40], [31, 30], [36, 55], [44, 86], [52, 90], [58, 84], [63, 68], [68, 34], [73, 22], [78, 30], [84, 74], [90, 80], [96, 48], [100, 40]];
-      const path = pts.map((p, i) => (i ? 'L' : 'M') + c.x(p[0]).toFixed(1) + ' ' + c.y(p[1]).toFixed(1)).join(' ');
-      const ground = L.hatch(c.svg, 'h-front', 'var(--ink-3)');
-      c.g.append(S('path', { d: `${path} L${c.x(100)} ${c.y(0)} L${c.x(0)} ${c.y(0)} Z`, fill: ground, stroke: 'none' }));
-      c.g.append(S('path', { d: path, stroke: 'var(--ink)', 'stroke-width': 3.5, fill: 'none', 'stroke-linejoin': 'round' }));
-      // two tasks of similar difficulty to a person, on opposite sides
-      const mark = (x, y) => c.g.append(S('circle', { cx: c.x(x), cy: c.y(y), r: 8, fill: 'var(--paper)', stroke: 'var(--ink)', 'stroke-width': 3 }));
-      mark(52, 90); mark(31, 30); mark(68, 34); mark(90, 80);
-      c.g.append(txt(c.x(52), c.y(90) - 16, 'draft the literature summary', { class: 'lbl', 'text-anchor': 'middle' }));
-      c.g.append(txt(c.x(31) + 12, c.y(30) + 5, 'judge how to frame the paper', { class: 'lbl' }));
-      c.g.append(txt(c.x(68) + 12, c.y(34) + 5, 'spot the wrong fixed effect', { class: 'lbl' }));
-      c.g.append(txt(c.x(90), c.y(80) - 16, 're-derive table 3', { class: 'lbl', 'text-anchor': 'middle' }));
-      el.append(wrap(c.svg, LEFT), cap('Stylised, after Mollick and Dell’Acqua et al. (2026). Nothing here is measured; the shape is the claim. Tasks that look equally hard to a person land on opposite sides of the line, so the frontier has to be mapped task by task.'));
+      const F = D.frontier, T = F.tasks, Y = F.years, last = Y.length - 1;
+      const W = 760, H = 380, cx = 380, cy = 188, R = 158, step = 360 / T.length;
+      const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart' });
+      const ang = (i) => (-90 + i * step) * Math.PI / 180;
+      const pt = (a, d) => [cx + R * d / 100 * Math.cos(a), cy + R * d / 100 * Math.sin(a)];
+      // reach along a spoke at time t, where t runs from 0 (first year) to last
+      const reach = (task, t) => { const k = Math.min(Math.floor(t), last - 1); return L.lerp(task.reach[k], task.reach[k + 1], t - k); };
+      // one vertex on each task's spoke, two jags between neighbours
+      const outline = (t) => {
+        const pts = [];
+        T.forEach((task, i) => {
+          const r0 = reach(task, t), r1 = reach(T[(i + 1) % T.length], t);
+          pts.push(pt(ang(i), r0));
+          for (const j of [1, 2]) pts.push(pt(ang(i + j / 3), Math.max(3, L.lerp(r0, r1, j / 3) + F.jags[2 * i + j - 1])));
+        });
+        return L.linePath(pts) + ' Z';
+      };
+      // one spoke per task, named at the rim
+      T.forEach((task, i) => {
+        const a = ang(i), c = Math.cos(a), s = Math.sin(a), [x0, y0] = pt(a, 0), [x1, y1] = pt(a, 100), [lx, ly] = pt(a, 106);
+        const anchor = c > 0.3 ? 'start' : c < -0.3 ? 'end' : 'middle';
+        svg.append(S('line', { x1: x0, y1: y0, x2: x1, y2: y1, stroke: 'var(--line)', 'stroke-width': 1 }));
+        svg.append(txt(lx, ly + (anchor === 'middle' ? (s < 0 ? -2 : 12) : 5), task.name, { class: 'lbl', 'text-anchor': anchor }));
+      });
+      const area = S('path', { fill: 'var(--paper-3)', stroke: 'none' });
+      const rings = Y.slice(0, last).map((_, k) => S('path', { d: outline(k), fill: 'none', stroke: 'var(--ink-3)', 'stroke-width': 1.3, 'stroke-linejoin': 'round' }));
+      const edge = S('path', { fill: 'none', stroke: 'var(--ink)', 'stroke-width': 3, 'stroke-linejoin': 'round' });
+      svg.append(area, ...rings, S('circle', { cx, cy, r: R * F.equal / 100, fill: 'none', stroke: 'var(--ink-2)', 'stroke-width': 1.5, 'stroke-dasharray': '6 5' }), edge);
+      const dots = T.map((task, i) => { const [x, y] = pt(ang(i), task.d); const d = S('circle', { cx: x, cy: y, r: 7, 'stroke-width': 2.5, stroke: 'var(--ink)' }); svg.append(d); return d; });
+      const year = txt(W, H - 54, '', { class: 'lbl-big', 'text-anchor': 'end', style: 'font-size:34px' });
+      const model = txt(W, H - 26, '', { class: 'lbl-mono', 'text-anchor': 'end', fill: 'var(--ink-2)' });
+      const count = txt(W, H - 6, '', { class: 'lbl-mono', 'text-anchor': 'end', fill: 'var(--ink-2)' });
+      svg.append(year, model, count);
+      const draw = (t) => {
+        area.setAttribute('d', outline(t)); edge.setAttribute('d', outline(t));
+        rings.forEach((r, k) => r.setAttribute('visibility', k < t - 1e-6 ? 'visible' : 'hidden'));
+        let inside = 0;
+        T.forEach((task, i) => { const on = reach(task, t) >= task.d; inside += on; dots[i].setAttribute('fill', on ? 'var(--ink)' : 'var(--paper)'); });
+        count.textContent = `${inside} of ${T.length} tasks inside`;
+      };
+      let k = STATIC ? last : 0, now = k, run = 0;
+      const st = status('');
+      const next = btn('Next year', () => go(k + 1));
+      const chips = Y.map((y, j) => chipBtn(String(y.year), () => go(j)));
+      const label = () => {
+        year.textContent = Y[k].year; model.textContent = Y[k].model;
+        st.textContent = Y[k].note;
+        next.disabled = k >= last;
+        chips.forEach((c, j) => c.setAttribute('aria-pressed', j === k ? 'true' : 'false'));
+      };
+      // a second press mid-tween starts from where the frontier is and silences the first tween
+      const go = (j) => {
+        if (j < 0 || j > last || j === k) return;
+        const from = now, id = ++run; k = j; label();
+        L.tween(from, j, 500 + 500 * Math.abs(j - from), (t) => { if (id !== run) return; now = t; draw(t); });
+      };
+      draw(k); label();
+      const leg = E('div', { class: 'legend' }, [
+        E('span', { class: 'frontier-area', style: '--c:var(--paper-3)', text: 'inside the frontier: the AI does it' }),
+        E('span', { class: 'solid-line', style: '--c:var(--ink-3)', text: 'the frontier in earlier years' }),
+        E('span', { class: 'dashed-line', style: '--c:var(--ink-2)', text: 'tasks equally hard for a person' }),
+      ]);
+      el.append(wrap(svg, LEFT), leg, E('div', { class: 'ctl' }, [next, ...chips]), st, cap('Stylised, after Mollick (2023) and Dell’Acqua et al. (2026). Distance from the centre is how hard a task is for a person. Which year each task moves inside is the deck’s reading of model releases, not a measurement.'));
     };
 
     // =====================================================================

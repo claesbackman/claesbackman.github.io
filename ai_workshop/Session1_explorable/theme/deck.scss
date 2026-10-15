@@ -199,6 +199,9 @@ $code-block-font-size: 0.6em;
 .reveal .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font: 500 13px $display; color: $ink-2; }
 .reveal .legend span::before { content: ""; display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 6px; background: var(--c, #{$ink}); vertical-align: -1px; }
 .reveal .legend .hatched::before { background: repeating-linear-gradient(106deg, var(--c) 0 1.4px, transparent 1.4px 3.6px), color-mix(in srgb, var(--c) 16%, transparent); }
+.reveal .legend .solid-line::before, .reveal .legend .dashed-line::before { width: 18px; height: 0; border-radius: 0; background: none; border-top: 2px solid var(--c); vertical-align: 4px; }
+.reveal .legend .dashed-line::before { border-top-style: dashed; }
+.reveal .legend .frontier-area::before { box-shadow: inset 0 0 0 2px $ink; }
 
 .reveal .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; min-height: 0; flex: 1 1 auto; }
 .reveal .bignum { font: 800 40px $display; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; color: $ink; }

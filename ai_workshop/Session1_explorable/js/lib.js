@@ -154,6 +154,39 @@
       { name: 'Reasoning models', years: '2024–2025', lines: ['Structured, step-by-step thinking', 'Multi-step problems', 'Still text in, text out'], eg: 'o1, Claude 3.7 thinking', color: 'var(--ink-2)' },
       { name: 'Agentic systems', years: '2025–today', lines: ['Reads files, runs code', 'Long-horizon workflows', 'Spawns subagents'], eg: 'Claude Code, Codex, Cursor', color: 'var(--agent)' },
     ],
+
+    // The jagged frontier over time, stylised after Mollick (2023) and
+    // Dell'Acqua et al. (2026). Nothing here is measured. d is how hard the
+    // task is for a person (0–100, the distance from the centre); reach is
+    // how far the frontier extends along that task's spoke in each year, on
+    // the same scale. A task is inside once reach >= d. The year each task
+    // crosses is the deck's reading of model releases and widely reported
+    // failures; the notes in `years` must name the tasks that cross.
+    frontier: {
+      equal: 60,  // the dashed circle: tasks equally hard for a person
+      years: [
+        { year: 2022, model: 'ChatGPT (GPT-3.5)', note: 'ChatGPT polishes a paragraph. It cannot take in a whole paper, invents its citations and miscounts letters.' },
+        { year: 2023, model: 'GPT-4', note: 'GPT-4 summarises a paper and writes a working script. This is the model in Dell’Acqua et al.’s experiment.' },
+        { year: 2024, model: 'o1, a reasoning model', note: 'Reasoning models think before they answer. Counting letters moves inside, and arithmetic on a table reaches the edge.' },
+        { year: 2025, model: 'Claude Code, Codex', note: 'Agents run code and search the web. Re-deriving a table and finding real citations move inside.' },
+        { year: 2026, model: 'today', note: 'Agents run a replication package end to end. Catching a silent error and choosing the question are still outside.' },
+      ],
+      // clockwise from the top of the circle, one spoke every 40 degrees
+      tasks: [
+        { name: 'run a replication package', d: 78, reach: [14, 26, 40, 68, 84] },
+        { name: 'catch a silent coding error', d: 60, reach: [20, 28, 36, 46, 54] },
+        { name: 're-derive a table’s numbers', d: 60, reach: [22, 34, 56, 78, 86] },
+        { name: 'write a Stata script', d: 60, reach: [50, 64, 76, 90, 94] },
+        { name: 'summarise a paper', d: 60, reach: [44, 74, 82, 88, 92] },
+        { name: 'count the r’s in “strawberry”', d: 12, reach: [6, 8, 34, 44, 50] },
+        { name: 'polish a paragraph', d: 40, reach: [62, 78, 86, 90, 94] },
+        { name: 'give real citations', d: 40, reach: [18, 24, 32, 62, 74] },
+        { name: 'pick the question worth asking', d: 88, reach: [30, 40, 50, 60, 66] },
+      ],
+      // the jags between spokes, two per gap, fixed so the shape keeps its
+      // character as it grows
+      jags: [10, -8, 6, -11, 9, -5, 12, -9, 7, -10, 8, -6, 11, -7, 5, -12, 9, -8],
+    },
   };
 
   // ---------- SVG helpers ----------
