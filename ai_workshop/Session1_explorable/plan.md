@@ -48,7 +48,7 @@ Two economists get the same paper and the same request: *build a website for thi
 13. **GPQA: from guessing to above expert level.** Epoch AI figure, full width.
 14. **One paper in three hours, a thousand in a project.** Novosad first; the opposite-result twist is on the slide.
 15. **Agents raise econometric coding success from 74 to 96 percent.** Galiani et al.; Cherny's quote in the note.
-16. **But the frontier is jagged.** Stage `frontier` redrawn with axes and a "good enough" line; two tasks of similar difficulty on opposite sides.
+16. **But the frontier is jagged.** Stage `frontier`: a radial frontier, one spoke per research task, distance from the centre is how hard the task is for a person. The presenter steps it from 2022 to 2026; it grows outward unevenly and stays jagged. In 2023 two of the four equally hard tasks are inside and two outside; in 2026 catching a silent coding error is still outside.
 17. **Who in the room uses an agent?** Bet slide: hands, then a guessed number.
 18. **Most social scientists use AI, few use an agent.** Stage `adoption-field` builds in; the numbers arrive on a fragment after the chart. Reveal.
 19. **Adoption falls with seniority.** Two readings named.

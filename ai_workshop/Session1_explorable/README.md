@@ -49,11 +49,12 @@ to the browser. The speaker note on the hook slide has the wording.
 | slide | stage | the move |
 |---|---|---|
 | 6 | `next-token` | Press *Sample the next token* six times; each press appends the top candidate and recomputes the list. *Reset* starts over. |
+| 17 | `frontier` | Arrives at 2022. Press *Next year* four times: the frontier grows outward unevenly, each earlier year stays behind as a thin ring, and a task's dot fills once the frontier passes it. Pause at 2023 (GPT-4, Dell'Acqua et al.'s experiment). The year chips jump to any year. `?static` and print show 2026 with every ring. |
 | 18 | `adoption-field` | Arrives with only the open dots (any AI tool). Click anywhere on the chart and the agent dots slide out to their true values. Then one keypress reveals the sentence with the numbers. |
 | 27 | `harness-loop` | Press *Step* nine times; each press lights one arrow and adds one log line of Ben's website session. |
 | 29 | `context-budget` | Starts at 1,200 pages (six long PDFs). Drag the slider right past about 2,100 pages and the grey stub (system prompt and CLAUDE.md) is pushed out of the left edge of the window and drops below it. |
 
-Every other stage (Anna and Ben, generations, frontier, career, use cases,
+Every other stage (Anna and Ben, generations, career, use cases,
 checks, the Serrano scatter) is static and needs no move. If a stage fails to
 draw it prints "This chart failed to draw" in place; the caption under each one
 says what it would have shown.
@@ -67,7 +68,7 @@ Charts read `L.DATA` in `js/lib.js`. Each entry names its source:
 - `tokens`: a 1-million-token window and 80–100k tokens for a 200-page PDF, both from the source deck; the fixed segments are rules of thumb and the stage says so.
 - `china`, `studyTime`: Bryan (2026), as quoted in the source deck.
 - `serrano`: all 59 midterm and final pairs, read off the Datawrapper chart reproduced in Bryan (2026) (`../assets/midterm_final_grades.png`).
-- `nextToken`, `loop`, `checks`: stylised, and the captions say so.
+- `nextToken`, `loop`, `checks`, `frontier`: stylised, and the captions say so. The frontier's task placements and crossing years are the deck's reading of model releases; the note for each year must name the tasks that cross that year.
 
 Prose numbers on the slides are transcribed from the source deck. Change a
 number in both places; `grep` the `.qmd` for the old value.

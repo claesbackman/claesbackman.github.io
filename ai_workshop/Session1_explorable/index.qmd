@@ -3,7 +3,6 @@ title: "Practical AI for Academics"
 subtitle: "Session 1 — an introduction to Generative AI"
 author: "Claes Bäckman"
 institute: "Leibniz Institute for Financial Research SAFE"
-date: "2026-10-06"
 date-format: "D MMMM YYYY"
 format:
   revealjs:
@@ -19,6 +18,7 @@ format:
     transition: fade
     transition-speed: fast
     background-transition: none
+    embed-resources: true
     hash: true
     history: false
     auto-stretch: false
@@ -237,6 +237,24 @@ Three years from the bottom dashed line to above the top one; the figure's own l
 Dwell on Novosad: the same tool produced the opposite result on request. That anecdote is the verification section in miniature, and it comes back there. Nothing on this slide says the thousand papers are any good; that is the point of the next two sections.
 :::
 
+
+## Are we there yet? 
+
+::: {.figwrap .wide}
+![](figs/APE_evaluation.png)
+:::
+
+## 
+
+::: {.big}
+::: {.bet}
+["We conclude that, in the first half of 2026, our autonomous policy evaluations remained unreliable despite our best efforts with frontier models and research workflows designed for reliability."]{.q}
+:::
+
+[APE Briefs, October 2026]{.sub}
+:::
+
+
 ## Agents raise econometric coding success from 74 to 96 percent
 
 ::: {.split .even}
@@ -277,13 +295,17 @@ Consultants in Dell'Acqua et al.'s field experiment did better inside the fronti
 
 [@dell2026navigating; Ethan Mollick's "jagged frontier".]{.source}
 :::
-::: {.figwrap}
-![](figs/jagged_frontier.png)
-:::
+```{=html}
+<div class="stage tall" data-chart="frontier" style="height:560px"></div>
+```
 :::
 
 ::: {.notes}
-The BUT after three slides of pace. The dashed line is tasks that look equally hard to a person. The orange one sits inside the blue frontier, the red one outside it, the green one on the edge. Map the frontier for your own tasks before you trust it; the wrong-fixed-effect example is the one section 7 is built around.
+The BUT after three slides of pace. The stage arrives at 2022. Say first how to read it: distance from the centre is how hard a task is for a person, and the dashed circle is tasks equally hard for a person. Hatched is inside the frontier.
+
+The move: press "Next year" four times, pausing on each. 2023 is the stop that matters: GPT-4 is the model in Dell'Acqua et al.'s experiment, and of the four tasks on the dashed circle, two are inside and two are outside. In 2024 the notch at the bottom closes: counting the r's in "strawberry", trivial for a person, was outside until reasoning models. At 2026, point at what is still outside: catching a silent coding error is the task section 7 is built around. The frontier moved a long way, and it is still jagged.
+
+The year chips jump to any year, for questions. The placement of tasks is the deck's stylised reading of model releases; say so if challenged. If the stage does not respond, the static state shows 2026 with the earlier years as rings, and figs/jagged_frontier.png is the old static picture.
 :::
 
 ## 
