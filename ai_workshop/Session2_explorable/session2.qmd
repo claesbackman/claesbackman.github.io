@@ -67,6 +67,19 @@ Walk the room while they check. The three failures are always the same: the webs
 :::
 
 
+## The goal is to provide the right context, and the tools differ in how easily you can {#message}
+
+::: {.big}
+[Context improves AI tools tremendously, and the goal is to provide the right context.]{.q}
+
+[Chat: you paste it. A project: you upload it once. An agent: it reads the folder. This afternoon you put it in the folder six times and checked what came back six times.]{.sub}
+:::
+
+::: {.notes}
+The morning's sentence, now earned three times over. Pause, then the recap.
+:::
+
+
 ## The agenda for the session {#agenda}
 
 ```{=html}
@@ -305,6 +318,22 @@ An explorable deck is still a talk, read in one order. The website lets the read
 The paper stays the record of the research. Each box around it is a draft written from the paper for one audience, and each one is checked against the paper, the same check as the rest of the afternoon. The policy brief is /paper-version from the skill library. The explorable website is the previous slide.
 :::
 
+## Innovations are already happening 
+
+::: {.figwrap .raster .tweets}
+![](figs/paper_in_ai_age.jpg){width="30%"}
+[Figure from [https://nobel-prizes.devdatalab.org/](https://nobel-prizes.devdatalab.org/)]{.figcap}
+
+::: {.fragment}
+![](figs/erzo_luttmer.png){style="width: 500px"}
+:::
+:::
+
+::: {.figwrap .wide}
+![](figs/)
+:::
+
+
 
 ## 3 · Writing with agentic AI {.divider .center}
 
@@ -416,7 +445,7 @@ Close the block. The room will ask whether detectors work; the honest answer is 
 
 
 
-## 4 · Does the code do what the paper says? {.divider .center}
+## 4 · Verifying code and changes {.divider .center}
 
 ```{=html}
 <div class="cmdline"><span class="typed"><span class="ctx">/review-paper-code</span></span><span class="cursor"></span></div>
@@ -424,37 +453,25 @@ Close the block. The room will ask whether detectors work; the honest answer is 
 
 ## /review-paper-code maps the paper's claims to the scripts that produce them {#paper-code}
 
-::: {.split}
-::: {.prose}
-It finds your main `.tex` and your code folder on its own, in Stata, R or Python. It reads the paper for the sample, the specification and the headline numbers, and writes `reviews/code_review_report.md`: a reproducibility checklist, the map on the right, the discrepancies, and next steps in order.
-
-Add `full` to review every file, not just the ones the paper points at.
-
-[Optional, if your code is on this laptop: type `/review-paper-code` now and read the dashed rows first while we go on.]{.opt}
-
-[The five rows are an invented example; the three statuses are the report's.]{.source}
-:::
 ```{=html}
 <div class="stage tall" data-chart="paper-code-map"></div>
 ```
-:::
 
 ::: {.notes}
 Static stage. Walk the three link types: teal, the code does what the paper says; dashed, the two disagree and one of them is wrong, which is the row you read first; hatched, the paper shows something no script in the folder produces. The example rows are invented, and say so; the room will recognise the winsorising row from their own projects. For the register-data people: the code review works on the do-files, which are on the laptop; the logs are on the server, so the reproducibility checklist is what the tool can do and the fresh-folder run happens on the server. This is this morning's "the code is the analysis" as a skill.
 :::
 
-## A diff is the unit of review, so the code needs a history {#diff}
+## Git diff is a very useful command for agents {#diff}
 
 ::: {.split .even}
 ::: {.prose}
-Three words, once. A **repository** is a folder with a history. A **commit** is a saved snapshot of it. A **diff** is the list of lines that changed between two snapshots.
+A **repository** is a folder with a history. A **commit** is a saved snapshot of it. A **diff** is the list of lines that changed between two snapshots.
 
-A reviewer that sees only the diff knows exactly what is new and compares it against code you already checked. That is why every review skill wants a history to work from.
+An agent that sees only the diff knows exactly what is new. 
 :::
 ::: {.panel}
 [`/explain-diff`: the check for this block]{.ph}
 <p>Point it at a repository and it writes one offline HTML page about the last change: what the code did before, what changed and why, what it does to the results, and a five-question quiz.</p>
-<p class="mm">This morning's check 3, as a skill. Take the quiz seriously: a wrong answer on question 3 is where you go and read the code. Register data: it can read the do-files, not the logs on the server.</p>
 :::
 :::
 
@@ -462,7 +479,7 @@ A reviewer that sees only the diff knows exactly what is new and compares it aga
 Three definitions in one breath, then the tool that uses them. The quiz is the point, not the page. Then the practical question: how do you get a history without a terminal? Next slide.
 :::
 
-## GitHub or Dropbox: the review skills want a history, the coauthor wants Overleaf {#sync}
+## GitHub or Dropbox? {#sync}
 
 | | GitHub | Dropbox |
 |---|---|---|
@@ -471,9 +488,7 @@ Three definitions in one breath, then the tool that uses them. The quiz is the p
 | **Best for** | Versioned drafts; the review skills | Live coauthoring in Overleaf |
 | **Conflicts** | A merge you resolve | “Conflicted copy” files |
 
-::: {.prose}
-[Pick one per project. Both at once means duplicate-file chaos. A coauthor who lives in Overleaf is the case for Dropbox; [the two Overleaf routes](#overleaf) are in the appendix.]{.q}
-:::
+
 
 ::: {.notes}
 The THEREFORE is in the title: the skills need a history to diff against, which is the argument for GitHub even for people who never type git, and GitHub Desktop gives them commits by clicking. Dropbox wins for a coauthor who lives in Overleaf. The Overleaf room has the click-by-click for both.
@@ -490,7 +505,7 @@ The THEREFORE is in the title: the skills need a history to diff against, which 
 
 ::: {.split}
 ::: {.prose}
-One dot per student. The median take-home mark was []{.data key="serrano.medMidterm"}; the median in-person final, for the same students, was []{.data key="serrano.medFinal" d="1"}.
+The median take-home mark was []{.data key="serrano.medMidterm"}; the median in-person final, for the same students, was []{.data key="serrano.medFinal" d="1"}.
 
 **Three things this changes.** A good take-home grade no longer shows the student can do the thing. Students will need to use AI well later, so banning it everywhere leaves them untrained. And tutoring, feedback and individual practice used to be too expensive; AI should let us teach more.
 
@@ -527,43 +542,6 @@ From `notes/week3.md`, write 15 multiple-choice questions at three levels, with 
 Step 3 is the exercise. The bet is the number of wrong keys; collect it before anyone runs the prompt, then in the debrief count the wrong keys the room reports and read the count against the guesses. There is usually at least one wrong key in the room, which makes this morning's "a next-token predictor is not a calculator" concrete. The weekly quiz design is Bryan's rule 2, students study when tested; the rules room has the rest.
 :::
 
-## The goal is to provide the right context, and the tools differ in how easily you can {#message}
-
-::: {.big}
-[Context improves AI tools tremendously, and the goal is to provide the right context.]{.q}
-
-[Chat: you paste it. A project: you upload it once. An agent: it reads the folder. This afternoon you put it in the folder six times and checked what came back six times.]{.sub}
-:::
-
-::: {.notes}
-The morning's sentence, now earned three times over. Pause, then the recap.
-:::
-
-## Six times today: files in the folder, one command, one check {#recap}
-
-```{=html}
-<div class="recap">
-<p class="colhead context">What you put in the window</p>
-<p class="colhead check">What you checked</p>
-<div class="cell context"><b>Your draft and a skill</b> /review-paper</div>
-<div class="cell check"><b>An adversary</b> a fresh subagent against the report, against your two guesses</div>
-<div class="cell context"><b>A codebook and a simulated dataset</b> everything that explains the data</div>
-<div class="cell check"><b>The real log, read by you</b> on the server; an error code comes back, never a result</div>
-<div class="cell context"><b>Four PDFs of your prose</b> a voice file, then one line in CLAUDE.md</div>
-<div class="cell check"><b>Your edit of voice.md</b> the first sentence you deleted</div>
-<div class="cell context"><b>Your paper and your code folder</b> /review-paper-code</div>
-<div class="cell check"><b>The dashed rows</b> where paper and code disagree, read first</div>
-<div class="cell context"><b>Your paper and a deck skill; a Code/ folder</b> a deck that is not a parrot, a README</div>
-<div class="cell check"><b>Is it the right story? Run it in a fresh folder</b> and practise; and diff the tables</div>
-<div class="cell context"><b>A week of notes</b> fifteen questions</div>
-<div class="cell check"><b>Every answer key</b> against the number you guessed</div>
-</div>
-```
-
-::: {.notes}
-Read down the left column, then down the right. Every row is the same move the agenda promised. Then the closing slide.
-:::
-
 
 
 ## 6 · Working with secure data {.divider .center}
@@ -597,18 +575,9 @@ This reconciles the morning's warning with what the room did an hour ago: the dr
 
 ## The agent never sees the data, but it sees everything that explains the data {#secure}
 
-::: {.split}
-::: {.prose}
-Register data lives on a secure server the agent cannot reach. So the agent gets what explains the data and nothing that is the data: the codebook, a simulated dataset with the same variable names and types, a project description, and your do-file.
-
-You carry the do-file across by whatever route your data provider allows, run it, and read the log there. What comes back is what you type: a request, or an error code, never a result.
-
-[The workflow stepped through; file and register names are stylised.]{.source}
-:::
 ```{=html}
 <div class="stage tall" data-chart="server-wall"></div>
 ```
-:::
 
 ::: {.notes}
 The move: press "step" six times and read each line. At step 3 point at the dashed arrow: it is you, by remote desktop or the provider's upload route, not the agent. At step 5 point at the struck-out chat bubble: pasting the log into a chat window is the same as the agent reading it, so what crosses back is your sentence, or the error code, which carries no data. The agent writes correct Stata against a schema; it does not need the values. If the step button does nothing, the static picture is the finished state; walk it left to right. If asked whether step 2 works with a real codebook: tested on two Danish register codebooks, the agent produced 55,000 simulated rows with correct value codes and a working merge key. Say it as an anecdote, not a result.
@@ -627,10 +596,6 @@ The move: press "step" six times and read each line. At step 3 point at the dash
 <p>Same variable names, types and ranges; not the real values. Some replication packages ship one.</p>
 <p>Or ask the agent to generate it from the codebook: one prompt, fifty thousand rows.</p>
 :::
-:::
-
-::: {.prose}
-Both are context the agent conditions on; neither is data. Made once per project. [Which file formats need converting.](#formats)
 :::
 
 ::: {.notes}
@@ -652,9 +617,6 @@ Correlations, magnitudes, selection, missingness, sign conventions, duplicate ke
 :::
 :::
 
-::: {.prose}
-[The check for this block is the one you already do: read the real log yourself, and run this morning's four checks on the do-file.]{.q}
-:::
 
 ::: {.notes}
 The block's BUT. A do-file that runs on simulated data can still compute the wrong thing on real data, silently. Teal is on the left because that is the part that is a verification step; the right column is what you still owe, and it is the same list as this morning's silent-error slide.
