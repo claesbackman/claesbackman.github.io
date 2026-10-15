@@ -23,7 +23,9 @@ format:
     history: false
     auto-stretch: false
     fig-align: center
-    include-in-header: theme/fonts.html
+    include-in-header:
+      - theme/fonts.html
+      - theme/analytics.html
     include-after-body: js/include.html
 html-math-method: katex
 bibliography: references.bib
