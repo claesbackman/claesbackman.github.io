@@ -67,12 +67,10 @@ Walk the room while they check. The three failures are always the same: the webs
 :::
 
 
-## The goal is to provide the right context, and the tools differ in how easily you can {#message}
+##  {#message}
 
 ::: {.big}
 [Context improves AI tools tremendously, and the goal is to provide the right context.]{.q}
-
-[Chat: you paste it. A project: you upload it once. An agent: it reads the folder. This afternoon you put it in the folder six times and checked what came back six times.]{.sub}
 :::
 
 ::: {.notes}
