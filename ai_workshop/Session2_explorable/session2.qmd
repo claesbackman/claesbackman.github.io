@@ -70,24 +70,24 @@ Walk the room while they check. The three failures are always the same: the webs
 ## The agenda for the session {#agenda}
 
 ```{=html}
-<div class="agenda seven">
+<div class="agenda seven six">
 <div><b>1</b><span>Referee report</span><span class="cmdline mini"><span class="ctx">/review-paper</span></span><small>then verify</small></div>
-<div><b>2</b><span>Secure data</span><span class="cmdline mini">read <span class="ctx">@codebook.md</span></span><small>what never leaves the server</small></div>
+<div><b>2</b><span>Slides</span><span class="cmdline mini"><span class="ctx">/explorable-deck</span></span><small>not a Beamer parrot</small></div>
 <div><b>3</b><span>Writing</span><span class="cmdline mini"><span class="ctx">/voice-extractor</span></span><small>your voice as a file</small></div>
 <div><b>4</b><span>Paper and code</span><span class="cmdline mini"><span class="ctx">/review-paper-code</span></span><small>does the code do what the paper says?</small></div>
-<div><b>5</b><span>Slides</span><span class="cmdline mini"><span class="ctx">/explorable-deck</span></span><small>not a Beamer parrot</small></div>
-<div><b>6</b><span>Teaching</span><span class="cmdline mini">from <span class="ctx">@notes/week3.md</span></span><small>write 15 questions</small></div>
+<div><b>5</b><span>Teaching</span><span class="cmdline mini">from <span class="ctx">@notes/week3.md</span></span><small>write 15 questions</small></div>
+<div><b>6</b><span>Secure data</span><span class="cmdline mini">read <span class="ctx">@codebook.md</span></span><small>what never leaves the server</small></div>
 </div>
 ```
 
 ::: {.prose}
-Every block is the same move as this morning's argument: put the right files in the folder, type one command, and read what comes back as a draft to check, not an answer to accept. Blocks 1, 3 and 7 have a timed exercise; block 4 has an optional one. **Break after block 3, around 15:30.**
+Every block is the same move as this morning's argument: put the right files in the folder, type one command, and read what comes back as a draft to check, not an answer to accept. Blocks 1, 3 and 5 have a timed exercise; block 4 has an optional one. **Break after block 3, around 15:30.**
 
 **Slides, skills and guides for both sessions:** [claesbackman.com/lugano](https://claesbackman.com/ai_workshops).
 :::
 
 ::: {.notes}
-Do not read the seven boxes. Say the one sentence about the move and point at the three timed blocks. The break time is here and nowhere else. The resources page is the one from the Lugano workshop and still applies; say so if someone asks about the name.
+Do not read the six boxes. Say the one sentence about the move and point at the three timed blocks. The break time is here and nowhere else. The resources page is the one from the Lugano workshop and still applies; say so if someone asks about the name.
 :::
 
 ## 1 · A referee report on your paper {.divider .center}
@@ -187,27 +187,8 @@ The move: press "Run /review-paper" and let the eight bars fill; the report box 
 ::: {.notes}
 The block's reversal. Before advancing, ask the room: "If you now type 'is this report right?', what will it say?" Everyone knows. That is the point: the answer is worthless because of what is in the window, not because the model is weak. Point at the blue segment in the top window and the brick one in the bottom: the same report, once as the author's own output, once as a file handed to a stranger. "Report, do not fix" is check 1 from this morning. The exercise itself is two slides on, once the reports are in.
 :::
-<!--
-## One sentence spawns an adversary
 
-```{=html}
-<div class="agenda five">
-<div><b>1</b><span>Before accepting a long answer</span><small>“Is this actually right?”</small></div>
-<div><b>2</b><span>After the agent edited many files</span><small>“What did we break?”</small></div>
-<div><b>3</b><span>When you suspect flattery</span><small>“Give me the honest version.”</small></div>
-<div><b>4</b><span>Before sending</span><small>“Read this as a hostile reader.”</small></div>
-<div><b>5</b><span>When two answers disagree</span><small>“Which is right, and why?”</small></div>
-</div>
-```
 
-::: {.prose}
-“Spawn a subagent” or “launch an agent” are the trigger words; the main agent writes the subagent's instructions, you set the framing. A fresh window is the cheapest second look you have. The independent one is a different model, and it costs a second subscription.
-:::
--->
-
-::: {.notes}
-Five sentences the room can copy. Moment 3 gets a laugh and is the most useful: the models agree with you more than a colleague would, and a fresh agent that never saw you be pleased with the draft does not. Moment 2 is what to do after any session that edited files on your behalf. Keep the independence caveat: a fresh window of the same model is a second look, not a second opinion.
-:::
 
 ## You still need to verify the report {#debrief}
 
@@ -232,7 +213,7 @@ Five sentences the room can copy. Moment 3 gets a laugh and is the most useful: 
 
 ::: {.notes}
 Collect answers to question 2 first, wrong ones before right ones: the room needs to hear that the report invented a missing robustness check or misread a table, so that nobody leaves thinking the output is to be accepted. Then the adversary: usually it softens two of the report's findings and adds one, which is the mechanism of the previous slide made visible. Four things to say if the room does not: the report is about their draft, with line references, not a checklist; the eight fresh windows are why it works; it is a pre-flight check, not a substitute for a referee; and the whole thing is a markdown file they can fork. End on the sentence in large type.
-:::m
+:::
 
 ## 2 · Slides and communication {.divider .center}
 
@@ -325,7 +306,267 @@ The paper stays the record of the research. Each box around it is a draft writte
 :::
 
 
-## 3 · Working with secure data {.divider .center}
+## 3 · Writing with agentic AI {.divider .center}
+
+```{=html}
+<div class="cmdline"><span class="typed"><span class="ctx">/voice-extractor</span> <span class="ctx">sample-papers</span></span><span class="cursor"></span></div>
+```
+
+## Use AI to edit your draft; do not edit the AI's draft {#edit}
+
+::: {.split .even .pairs}
+::: {.panel}
+[Writing is thinking]{.ph}
+<p>Remove too much of the writing friction and it gets harder to find out what your paper is about. The first draft is where the argument is discovered.</p>
+:::
+::: {.panel}
+[Readers discount prose they think is generated]{.ph}
+<p>Once a reader decides a paragraph was generated, by instinct or with a detector, they discount the idea in it. That is a cost to the idea, not to the prose.</p>
+:::
+:::
+
+::: {.prose}
+[Most of the value is not in having AI write your text. Use it for what it is good at, in your voice, and learn to ignore some of what it says.]{.q}
+:::
+
+::: {.notes}
+Two reasons, one rule, and the personal line: I like writing and do not want AI to take the part of the job I like. The second panel is why the voice file matters: an edit that sounds like you does not trigger the discount. Detectors come back at the end of the block.
+:::
+
+## A voice file puts your prose in the window {#voice}
+
+::: {.split .even}
+::: {.prompt}
+When editing my prose, match the voice in `voice.md`. Do not use em-dashes, bullet lists, or passive constructions unless the original does. Do not use “it's not x, it's y” constructions.
+:::
+::: {.prose}
+**What goes in.** Five to ten thousand words of your own prose: introductions, abstracts, paragraphs you are proud of. The skill picks them out of the PDFs you give it.
+
+**What stays out.** Coauthored passages that are not yours. Anything AI-edited.
+
+**Where it goes.** Next to `CLAUDE.md`. Point at it from there, so every session loads your voice, or with `@voice.md` only when editing, to keep the permanent window small. [The files that hold durable context.](#files)
+:::
+:::
+
+::: {.notes}
+The instruction on the left is the whole mechanism: the model conditions on your paragraphs, so its edits regress towards you instead of towards the average of the internet. The exclusions matter more than the inclusions; an AI-edited paragraph in the sample teaches the agent its own tics. The two placements are the previous block's cost argument applied: a voice file is about the size of the skill, and it is up to you whether it is permanent.
+:::
+
+## Analyze your own voice {#ex2}
+
+::: {.split .wide-left}
+::: {.prose}
+::: {.task}
+<p class="th"><b>Exercise 2 · <code>/voice-extractor</code></b><span class="time">15 min</span></p>
+
+1. Inside the project folder, make a folder `sample-papers` with three or four PDFs of your own writing. Coauthored? Pick the papers where the introduction is yours.
+2. Type `/voice-extractor sample-papers`. No skill? Type *Read the PDFs in sample-papers and write voice.md: how I build paragraphs, sentence length, words I use and avoid, with quoted examples.*
+3. Read `voice.md` and delete or edit anything that does not sound like you.
+4. Add one line to `CLAUDE.md`: “When editing my prose, match the voice in voice.md.” No `CLAUDE.md` yet? Type `/init` first.
+
+<p class="debrief"><b>Debrief:</b> which sentence in <code>voice.md</code> did you delete first? Did it name a habit you did not know you had?</p>
+:::
+:::
+
+:::
+
+::: {.notes}
+Start the clock. Step 3 is the exercise; steps 1, 2 and 4 are typing. The skill is Mihail Velikov's, linked from the resources page and in the library room; the fallback prompt in step 2 gets most of the way without it. Walk the room and look at the voice files: the skill over-describes rhythm and under-describes what the writer never does, which is the more useful half. PhD students with one paper use the thesis chapters. The debrief answer that matters is the deleted sentence: the first time today somebody edited the agent's output rather than accepting it.
+:::
+
+## /prose-revision fixes the order of ideas before the choice of words {#prose-revision}
+
+::: {.split .even .cols}
+::: {.prose}
+[What comes back]{.colhead}
+
+A diagnosis of the idea flow first. Then two or three rewrites that differ in how far they restructure, and a short note on the trade-off between them. Claims, citations and notation come through unchanged.
+:::
+::: {.prose}
+[Where it stops]{.colhead}
+
+It will not add or drop an idea without saying so, and it is not a proofreader. Revision first, the typo pass last.
+:::
+:::
+
+[A skill in the library, after a method described by alz_zyd on X (x.com/alz_zyd_).]{.source}
+
+::: {.notes}
+The second writing skill, for a paragraph that is yours and does not flow. The order matters: fix which idea comes first before anyone touches a word, or the polishing hides the structural problem. Run it live on one paragraph from a volunteer if there is time; otherwise it is in the library.
+:::
+
+##  {#detectors}
+
+::: {.big}
+[But: AI detectors can tell AI generated writing]{.q}
+
+[Pangram is the most-cited detector at the moment: a classifier trained on the fingerprint of model text, with a low false-positive rate in its own reporting. ]{.sub}
+:::
+
+::: {.notes}
+Close the block. The room will ask whether detectors work; the honest answer is "well enough that assuming you will not be noticed is a mistake", and the useful answer is that the discount by a human reader is what you are actually avoiding. Break here, about 15:30.
+:::
+
+## The current state of play on writing 
+
+::: {.figwrap .wide}
+![](figs/Ai_writing_PaulGP.png)
+:::
+[Figure from [Paul Goldsmith-Pinkham, A Causal Affair on Substack](https://paulgp.substack.com/p/how-do-we-know-if-writing-is-ai)]{.figcap}
+
+
+
+## 4 · Does the code do what the paper says? {.divider .center}
+
+```{=html}
+<div class="cmdline"><span class="typed"><span class="ctx">/review-paper-code</span></span><span class="cursor"></span></div>
+```
+
+## /review-paper-code maps the paper's claims to the scripts that produce them {#paper-code}
+
+::: {.split}
+::: {.prose}
+It finds your main `.tex` and your code folder on its own, in Stata, R or Python. It reads the paper for the sample, the specification and the headline numbers, and writes `reviews/code_review_report.md`: a reproducibility checklist, the map on the right, the discrepancies, and next steps in order.
+
+Add `full` to review every file, not just the ones the paper points at.
+
+[Optional, if your code is on this laptop: type `/review-paper-code` now and read the dashed rows first while we go on.]{.opt}
+
+[The five rows are an invented example; the three statuses are the report's.]{.source}
+:::
+```{=html}
+<div class="stage tall" data-chart="paper-code-map"></div>
+```
+:::
+
+::: {.notes}
+Static stage. Walk the three link types: teal, the code does what the paper says; dashed, the two disagree and one of them is wrong, which is the row you read first; hatched, the paper shows something no script in the folder produces. The example rows are invented, and say so; the room will recognise the winsorising row from their own projects. For the register-data people: the code review works on the do-files, which are on the laptop; the logs are on the server, so the reproducibility checklist is what the tool can do and the fresh-folder run happens on the server. This is this morning's "the code is the analysis" as a skill.
+:::
+
+## A diff is the unit of review, so the code needs a history {#diff}
+
+::: {.split .even}
+::: {.prose}
+Three words, once. A **repository** is a folder with a history. A **commit** is a saved snapshot of it. A **diff** is the list of lines that changed between two snapshots.
+
+A reviewer that sees only the diff knows exactly what is new and compares it against code you already checked. That is why every review skill wants a history to work from.
+:::
+::: {.panel}
+[`/explain-diff`: the check for this block]{.ph}
+<p>Point it at a repository and it writes one offline HTML page about the last change: what the code did before, what changed and why, what it does to the results, and a five-question quiz.</p>
+<p class="mm">This morning's check 3, as a skill. Take the quiz seriously: a wrong answer on question 3 is where you go and read the code. Register data: it can read the do-files, not the logs on the server.</p>
+:::
+:::
+
+::: {.notes}
+Three definitions in one breath, then the tool that uses them. The quiz is the point, not the page. Then the practical question: how do you get a history without a terminal? Next slide.
+:::
+
+## GitHub or Dropbox: the review skills want a history, the coauthor wants Overleaf {#sync}
+
+| | GitHub | Dropbox |
+|---|---|---|
+| **Sync** | Manual push and pull, in GitHub Desktop, no terminal | Automatic, within seconds |
+| **History** | Full history, diffs, branches | Dropbox revisions only |
+| **Best for** | Versioned drafts; the review skills | Live coauthoring in Overleaf |
+| **Conflicts** | A merge you resolve | “Conflicted copy” files |
+
+::: {.prose}
+[Pick one per project. Both at once means duplicate-file chaos. A coauthor who lives in Overleaf is the case for Dropbox; [the two Overleaf routes](#overleaf) are in the appendix.]{.q}
+:::
+
+::: {.notes}
+The THEREFORE is in the title: the skills need a history to diff against, which is the argument for GitHub even for people who never type git, and GitHub Desktop gives them commits by clicking. Dropbox wins for a coauthor who lives in Overleaf. The Overleaf room has the click-by-click for both.
+:::
+
+
+## 5 · Teaching {#teaching-block .divider .center}
+
+```{=html}
+<div class="cmdline"><span class="typed">from <span class="ctx">@notes/week3.md</span>, write 15 multiple-choice questions at three levels</span><span class="cursor"></span></div>
+```
+
+## Take-home grades stopped predicting in-person grades {#teaching}
+
+::: {.split}
+::: {.prose}
+One dot per student. The median take-home mark was []{.data key="serrano.medMidterm"}; the median in-person final, for the same students, was []{.data key="serrano.medFinal" d="1"}.
+
+**Three things this changes.** A good take-home grade no longer shows the student can do the thing. Students will need to use AI well later, so banning it everywhere leaves them untrained. And tutoring, feedback and individual practice used to be too expensive; AI should let us teach more.
+
+[@bryan2026eight. [The eight rules](#rules) and [three things to build](#build) are in the appendix.]{.source}
+:::
+```{=html}
+<div class="stage tall" data-chart="serrano"></div>
+```
+:::
+
+::: {.notes}
+A recap, not a rerun: ten seconds on the scatter, then the three changes in one breath. The room saw the homework-up, exams-down evidence this morning; if anyone missed it, the numbers are eighteen percent up on homework, thirty percent less time, twenty percent down on the exam, for pupils in China as cited by Bryan. The rules and the three things to build are rooms, for questions.
+:::
+
+## Build a weekly quiz bank from your notes {#ex3}
+
+::: {.prose}
+::: {.task}
+<p class="th"><b>Exercise 3 · a quiz bank</b><span class="time">10 min</span></p>
+
+1. Save one week's lecture notes as `notes/week3.md` in the project folder, as markdown or LaTeX; a PDF or `.pptx` converts first. No notes? Use the example notes on the resources page.
+2. Type the prompt:
+
+::: {.prompt}
+From `notes/week3.md`, write 15 multiple-choice questions at three levels, with distractors built from common misconceptions and a one-sentence explanation each.
+:::
+
+3. Read every question. **Verify every answer key yourself.**
+
+:::
+:::
+
+::: {.notes}
+Step 3 is the exercise. The bet is the number of wrong keys; collect it before anyone runs the prompt, then in the debrief count the wrong keys the room reports and read the count against the guesses. There is usually at least one wrong key in the room, which makes this morning's "a next-token predictor is not a calculator" concrete. The weekly quiz design is Bryan's rule 2, students study when tested; the rules room has the rest.
+:::
+
+## The goal is to provide the right context, and the tools differ in how easily you can {#message}
+
+::: {.big}
+[Context improves AI tools tremendously, and the goal is to provide the right context.]{.q}
+
+[Chat: you paste it. A project: you upload it once. An agent: it reads the folder. This afternoon you put it in the folder six times and checked what came back six times.]{.sub}
+:::
+
+::: {.notes}
+The morning's sentence, now earned three times over. Pause, then the recap.
+:::
+
+## Six times today: files in the folder, one command, one check {#recap}
+
+```{=html}
+<div class="recap">
+<p class="colhead context">What you put in the window</p>
+<p class="colhead check">What you checked</p>
+<div class="cell context"><b>Your draft and a skill</b> /review-paper</div>
+<div class="cell check"><b>An adversary</b> a fresh subagent against the report, against your two guesses</div>
+<div class="cell context"><b>A codebook and a simulated dataset</b> everything that explains the data</div>
+<div class="cell check"><b>The real log, read by you</b> on the server; an error code comes back, never a result</div>
+<div class="cell context"><b>Four PDFs of your prose</b> a voice file, then one line in CLAUDE.md</div>
+<div class="cell check"><b>Your edit of voice.md</b> the first sentence you deleted</div>
+<div class="cell context"><b>Your paper and your code folder</b> /review-paper-code</div>
+<div class="cell check"><b>The dashed rows</b> where paper and code disagree, read first</div>
+<div class="cell context"><b>Your paper and a deck skill; a Code/ folder</b> a deck that is not a parrot, a README</div>
+<div class="cell check"><b>Is it the right story? Run it in a fresh folder</b> and practise; and diff the tables</div>
+<div class="cell context"><b>A week of notes</b> fifteen questions</div>
+<div class="cell check"><b>Every answer key</b> against the number you guessed</div>
+</div>
+```
+
+::: {.notes}
+Read down the left column, then down the right. Every row is the same move the agenda promised. Then the closing slide.
+:::
+
+
+
+## 6 · Working with secure data {.divider .center}
 
 ```{=html}
 <div class="cmdline"><span class="typed">read <span class="ctx">@codebook.md</span> and the first rows of <span class="ctx">@sim_data.csv</span>, then write analysis.do</span><span class="cursor"></span></div>
@@ -417,267 +658,6 @@ Correlations, magnitudes, selection, missingness, sign conventions, duplicate ke
 
 ::: {.notes}
 The block's BUT. A do-file that runs on simulated data can still compute the wrong thing on real data, silently. Teal is on the left because that is the part that is a verification step; the right column is what you still owe, and it is the same list as this morning's silent-error slide.
-:::
-
-## 3 · Writing with agentic AI {.divider .center}
-
-```{=html}
-<div class="cmdline"><span class="typed"><span class="ctx">/voice-extractor</span> <span class="ctx">sample-papers</span></span><span class="cursor"></span></div>
-```
-
-## Use AI to edit your draft; do not edit the AI's draft {#edit}
-
-::: {.split .even .pairs}
-::: {.panel}
-[Writing is thinking]{.ph}
-<p>Remove too much of the writing friction and it gets harder to find out what your paper is about. The first draft is where the argument is discovered.</p>
-:::
-::: {.panel}
-[Readers discount prose they think is generated]{.ph}
-<p>Once a reader decides a paragraph was generated, by instinct or with a detector, they discount the idea in it. That is a cost to the idea, not to the prose.</p>
-:::
-:::
-
-::: {.prose}
-[Most of the value is not in having AI write your text. Use it for what it is good at, in your voice, and learn to ignore some of what it says.]{.q}
-:::
-
-::: {.notes}
-Two reasons, one rule, and the personal line: I like writing and do not want AI to take the part of the job I like. The second panel is why the voice file matters: an edit that sounds like you does not trigger the discount. Detectors come back at the end of the block.
-:::
-
-## A voice file puts your prose in the window {#voice}
-
-::: {.split .even}
-::: {.prompt}
-When editing my prose, match the voice in `voice.md`. Do not use em-dashes, bullet lists, or passive constructions unless the original does. Do not use “it's not x, it's y” constructions.
-:::
-::: {.prose}
-**What goes in.** Five to ten thousand words of your own prose: introductions, abstracts, paragraphs you are proud of. The skill picks them out of the PDFs you give it.
-
-**What stays out.** Coauthored passages that are not yours. Anything AI-edited.
-
-**Where it goes.** Next to `CLAUDE.md`. Point at it from there, so every session loads your voice, or with `@voice.md` only when editing, to keep the permanent window small. [The files that hold durable context.](#files)
-:::
-:::
-
-::: {.notes}
-The instruction on the left is the whole mechanism: the model conditions on your paragraphs, so its edits regress towards you instead of towards the average of the internet. The exclusions matter more than the inclusions; an AI-edited paragraph in the sample teaches the agent its own tics. The two placements are the previous block's cost argument applied: a voice file is about the size of the skill, and it is up to you whether it is permanent.
-:::
-
-## Exercise 2: fifteen minutes puts your voice in the window {#ex2}
-
-::: {.split .wide-left}
-::: {.prose}
-::: {.task}
-<p class="th"><b>Exercise 2 · <code>/voice-extractor</code></b><span class="time">15 min</span></p>
-
-1. Inside the project folder, make a folder `sample-papers` with three or four PDFs of your own writing. Coauthored? Pick the papers where the introduction is yours.
-2. Type `/voice-extractor sample-papers`. No skill? Type *Read the PDFs in sample-papers and write voice.md: how I build paragraphs, sentence length, words I use and avoid, with quoted examples.*
-3. Read `voice.md` and delete or edit anything that does not sound like you.
-4. Add one line to `CLAUDE.md`: “When editing my prose, match the voice in voice.md.” No `CLAUDE.md` yet? Type `/init` first.
-
-<p class="debrief"><b>Debrief:</b> which sentence in <code>voice.md</code> did you delete first? Did it name a habit you did not know you had?</p>
-:::
-:::
-```{=html}
-<div class="stage clock" data-chart="timer" data-minutes="15" data-cmd="<span class='ctx'>/voice-extractor</span> <span class='ctx'>sample-papers</span>"></div>
-```
-:::
-
-::: {.notes}
-Start the clock. Step 3 is the exercise; steps 1, 2 and 4 are typing. The skill is Mihail Velikov's, linked from the resources page and in the library room; the fallback prompt in step 2 gets most of the way without it. Walk the room and look at the voice files: the skill over-describes rhythm and under-describes what the writer never does, which is the more useful half. PhD students with one paper use the thesis chapters. The debrief answer that matters is the deleted sentence: the first time today somebody edited the agent's output rather than accepting it.
-:::
-
-## /prose-revision fixes the order of ideas before the choice of words {#prose-revision}
-
-::: {.split .even .cols}
-::: {.prose}
-[What comes back]{.colhead}
-
-A diagnosis of the idea flow first. Then two or three rewrites that differ in how far they restructure, and a short note on the trade-off between them. Claims, citations and notation come through unchanged.
-:::
-::: {.prose}
-[Where it stops]{.colhead}
-
-It will not add or drop an idea without saying so, and it is not a proofreader. Revision first, the typo pass last.
-:::
-:::
-
-[A skill in the library, after a method described by alz_zyd on X (x.com/alz_zyd_).]{.source}
-
-::: {.notes}
-The second writing skill, for a paragraph that is yours and does not flow. The order matters: fix which idea comes first before anyone touches a word, or the polishing hides the structural problem. Run it live on one paragraph from a volunteer if there is time; otherwise it is in the library.
-:::
-
-## Whether a detector catches you matters less than whether the reader does {#detectors}
-
-::: {.big}
-[The reader's discount is the cost. The voice file is the answer to both.]{.q}
-
-[Pangram is the most-cited detector at the moment: a classifier trained on the fingerprint of model text, with a low false-positive rate in its own reporting. Assume detection works well enough that being noticed is the likely case.]{.sub}
-:::
-
-::: {.notes}
-Close the block. The room will ask whether detectors work; the honest answer is "well enough that assuming you will not be noticed is a mistake", and the useful answer is that the discount by a human reader is what you are actually avoiding. Break here, about 15:30.
-:::
-
-## 4 · Does the code do what the paper says? {.divider .center}
-
-```{=html}
-<div class="cmdline"><span class="typed"><span class="ctx">/review-paper-code</span></span><span class="cursor"></span></div>
-```
-
-## /review-paper-code maps the paper's claims to the scripts that produce them {#paper-code}
-
-::: {.split}
-::: {.prose}
-It finds your main `.tex` and your code folder on its own, in Stata, R or Python. It reads the paper for the sample, the specification and the headline numbers, and writes `reviews/code_review_report.md`: a reproducibility checklist, the map on the right, the discrepancies, and next steps in order.
-
-Add `full` to review every file, not just the ones the paper points at.
-
-[Optional, if your code is on this laptop: type `/review-paper-code` now and read the dashed rows first while we go on.]{.opt}
-
-[The five rows are an invented example; the three statuses are the report's.]{.source}
-:::
-```{=html}
-<div class="stage tall" data-chart="paper-code-map"></div>
-```
-:::
-
-::: {.notes}
-Static stage. Walk the three link types: teal, the code does what the paper says; dashed, the two disagree and one of them is wrong, which is the row you read first; hatched, the paper shows something no script in the folder produces. The example rows are invented, and say so; the room will recognise the winsorising row from their own projects. For the register-data people: the code review works on the do-files, which are on the laptop; the logs are on the server, so the reproducibility checklist is what the tool can do and the fresh-folder run happens on the server. This is this morning's "the code is the analysis" as a skill.
-:::
-
-## A diff is the unit of review, so the code needs a history {#diff}
-
-::: {.split .even}
-::: {.prose}
-Three words, once. A **repository** is a folder with a history. A **commit** is a saved snapshot of it. A **diff** is the list of lines that changed between two snapshots.
-
-A reviewer that sees only the diff knows exactly what is new and compares it against code you already checked. That is why every review skill wants a history to work from.
-:::
-::: {.panel}
-[`/explain-diff`: the check for this block]{.ph}
-<p>Point it at a repository and it writes one offline HTML page about the last change: what the code did before, what changed and why, what it does to the results, and a five-question quiz.</p>
-<p class="mm">This morning's check 3, as a skill. Take the quiz seriously: a wrong answer on question 3 is where you go and read the code. Register data: it can read the do-files, not the logs on the server.</p>
-:::
-:::
-
-::: {.notes}
-Three definitions in one breath, then the tool that uses them. The quiz is the point, not the page. Then the practical question: how do you get a history without a terminal? Next slide.
-:::
-
-## GitHub or Dropbox: the review skills want a history, the coauthor wants Overleaf {#sync}
-
-| | GitHub | Dropbox |
-|---|---|---|
-| **Sync** | Manual push and pull, in GitHub Desktop, no terminal | Automatic, within seconds |
-| **History** | Full history, diffs, branches | Dropbox revisions only |
-| **Best for** | Versioned drafts; the review skills | Live coauthoring in Overleaf |
-| **Conflicts** | A merge you resolve | “Conflicted copy” files |
-
-::: {.prose}
-[Pick one per project. Both at once means duplicate-file chaos. A coauthor who lives in Overleaf is the case for Dropbox; [the two Overleaf routes](#overleaf) are in the appendix.]{.q}
-:::
-
-::: {.notes}
-The THEREFORE is in the title: the skills need a history to diff against, which is the argument for GitHub even for people who never type git, and GitHub Desktop gives them commits by clicking. Dropbox wins for a coauthor who lives in Overleaf. The Overleaf room has the click-by-click for both.
-:::
-
-
-## 6 · Teaching, continued {.divider .center}
-
-```{=html}
-<div class="cmdline"><span class="typed">from <span class="ctx">@notes/week3.md</span>, write 15 multiple-choice questions at three levels</span><span class="cursor"></span></div>
-```
-
-## This morning: take-home grades stopped predicting in-person grades {#teaching}
-
-::: {.split}
-::: {.prose}
-One dot per student. The median take-home mark was []{.data key="serrano.medMidterm"}; the median in-person final, for the same students, was []{.data key="serrano.medFinal" d="1"}.
-
-**Three things this changes.** A good take-home grade no longer shows the student can do the thing. Students will need to use AI well later, so banning it everywhere leaves them untrained. And tutoring, feedback and individual practice used to be too expensive; AI should let us teach more.
-
-[@bryan2026eight. [The eight rules](#rules) and [three things to build](#build) are in the appendix.]{.source}
-:::
-```{=html}
-<div class="stage tall" data-chart="serrano"></div>
-```
-:::
-
-::: {.notes}
-A recap, not a rerun: ten seconds on the scatter, then the three changes in one breath. The room saw the homework-up, exams-down evidence this morning; if anyone missed it, the numbers are eighteen percent up on homework, thirty percent less time, twenty percent down on the exam, for pupils in China as cited by Bryan. The rules and the three things to build are rooms, for questions.
-:::
-
-## Exercise 3: students study when tested, so build a weekly quiz bank from your notes {#ex3}
-
-::: {.split .wide-left}
-::: {.prose}
-::: {.task}
-<p class="th"><b>Exercise 3 · a quiz bank</b><span class="time">10 min</span></p>
-
-1. Save one week's lecture notes as `notes/week3.md` in the project folder, as markdown or LaTeX; a PDF or `.pptx` converts first. No notes? Use the example notes on the resources page.
-2. Type the prompt:
-
-::: {.prompt}
-From `notes/week3.md`, write 15 multiple-choice questions at three levels, with distractors built from common misconceptions and a one-sentence explanation each.
-:::
-
-3. Read every question. **Verify every answer key yourself.**
-
-::: {.bet}
-[Before you press enter: of fifteen answer keys, how many will be wrong? Write the number down.]{.q}
-:::
-
-<p class="debrief"><b>Debrief:</b> how many were wrong, against your guess? Which level was too easy? Would a weekly pass-or-fail quiz, small weight, most weeks counting, run in your course?</p>
-:::
-:::
-```{=html}
-<div class="stage clock" data-chart="timer" data-minutes="10" data-cmd="from <span class='ctx'>@notes/week3.md</span>, write 15 questions" data-tally="15"></div>
-```
-:::
-
-::: {.notes}
-Start the clock. Step 3 is the exercise. The bet is the number of wrong keys; collect it before anyone runs the prompt, then in the debrief click one square in the tally under the clock for each wrong key the room reports, and read the count against the guesses. There is usually at least one wrong key in the room, which makes this morning's "a next-token predictor is not a calculator" concrete. The weekly quiz design is Bryan's rule 2, students study when tested; the rules room has the rest.
-:::
-
-## The goal is to provide the right context, and the tools differ in how easily you can {#message}
-
-::: {.big}
-[Context improves AI tools tremendously, and the goal is to provide the right context.]{.q}
-
-[Chat: you paste it. A project: you upload it once. An agent: it reads the folder. This afternoon you put it in the folder six times and checked what came back six times.]{.sub}
-:::
-
-::: {.notes}
-The morning's sentence, now earned three times over. Pause, then the recap.
-:::
-
-## Six times today: files in the folder, one command, one check {#recap}
-
-```{=html}
-<div class="recap">
-<p class="colhead context">What you put in the window</p>
-<p class="colhead check">What you checked</p>
-<div class="cell context"><b>Your draft and a skill</b> /review-paper</div>
-<div class="cell check"><b>An adversary</b> a fresh subagent against the report, against your two guesses</div>
-<div class="cell context"><b>A codebook and a simulated dataset</b> everything that explains the data</div>
-<div class="cell check"><b>The real log, read by you</b> on the server; an error code comes back, never a result</div>
-<div class="cell context"><b>Four PDFs of your prose</b> a voice file, then one line in CLAUDE.md</div>
-<div class="cell check"><b>Your edit of voice.md</b> the first sentence you deleted</div>
-<div class="cell context"><b>Your paper and your code folder</b> /review-paper-code</div>
-<div class="cell check"><b>The dashed rows</b> where paper and code disagree, read first</div>
-<div class="cell context"><b>Your paper and a deck skill; a Code/ folder</b> a deck that is not a parrot, a README</div>
-<div class="cell check"><b>Is it the right story? Run it in a fresh folder</b> and practise; and diff the tables</div>
-<div class="cell context"><b>A week of notes</b> fifteen questions</div>
-<div class="cell check"><b>Every answer key</b> against the number you guessed</div>
-</div>
-```
-
-::: {.notes}
-Read down the left column, then down the right. Every row is the same move the agenda promised. Then the closing slide.
 :::
 
 ## Your turn {.closing}

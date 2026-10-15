@@ -535,6 +535,7 @@ $folder: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBo
 
 /* seven agenda blocks */
 .reveal .agenda.seven { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.reveal .agenda.six { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 .reveal .agenda.seven div { min-height: 170px; padding: 14px 10px; }
 .reveal .agenda small code { font: 0.95em $mono; background: none; color: $ink; }
 
