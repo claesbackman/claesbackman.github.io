@@ -144,6 +144,14 @@ body {
   font-weight: 600;
   line-height: 1.35;
 }
+.paper.card h3 a {
+  color: var(--ink);
+  border-bottom: none;
+}
+.paper.card h3 a:hover {
+  color: var(--accent-hover);
+  border-bottom: 1px solid var(--accent-hover);
+}
 .paper.card .authors,
 .paper.card .venue {
   margin: 0;
