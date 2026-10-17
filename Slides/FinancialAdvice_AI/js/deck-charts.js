@@ -13,7 +13,7 @@
  * Spine:    hook, reveal, countries, words, three, bench, levers, asym, ending
  * Colour:   vermilion is always advice. In the rows of country effects a filled dot
  *           survives the Holm correction and a hollow one does not.
- * Rooms:    grid, round, decomp, mortbench, inflation, prefs
+ * Rooms:    grid, round, decomp, mortbench, inflation, prefs, anchors (waves is in the spine)
  */
 (function () {
   'use strict';
@@ -404,7 +404,7 @@
       });
       say(false);
       el.append(E('div', { class: 'ctl' }, [tg.row, E('span', { class: 'legend' }, [E('span', { class: 'dot', style: '--c:var(--advice)', text: 'advice' }), E('span', { class: 'ring', style: '--c:var(--theory)', text: 'theory' })])]),
-        wrap(svg), cap(`Advice: mean recommendation, Question 1, Version B, age 40. Theory: the Merton share at relative risk aversion 3. Hedged, theory is ${pct(byKey.USA.alphaH)} everywhere and the advice is within ${(100 * maxGapH).toFixed(0)} points of it.`));
+        wrap(svg), cap(`Advice: mean recommendation, Question 1, Version B, age 40. Theory: the Merton share at relative risk aversion 3. Hedged, theory is ${pct(byKey.USA.alphaH)} everywhere.`));
     };
 
     // =====================================================================
@@ -462,7 +462,7 @@
         }
         y += rowH;
       });
-      el.append(wrap(svg), cap(`Measured effects with 95% wild cluster bootstrap intervals, country and model fixed effects. The pension effect is for the risk-averse investor, ${sgn(s.pension.est + s.inter.est)} for the risk-tolerant one. Teal: the direction theory predicts, not its size.`));
+      el.append(wrap(svg), cap(`Measured effects with 95% wild cluster bootstrap intervals, country and model fixed effects. The pension effect is for the risk-averse investor, ${sgn(s.pension.est + s.inter.est)} for the risk-tolerant one. Teal: the direction theory predicts.`));
       if (!o.animate) return;
       bars.forEach((b) => { b.bar.setAttribute('width', 0); b.bar.setAttribute('x', b.zero); });
       extras.forEach((g) => g.setAttribute('opacity', 0));
@@ -570,6 +570,92 @@
     // =====================================================================
     // Rooms
     // =====================================================================
+
+    // waves: the reveal's picture again, in the July collection and in the September wave,
+    // on the English slice both share. Static: the build-in belongs to the reveal.
+    CH.waves = (el) => {
+      const WV = [D.waves.first, D.waves.last];
+      const W = 1100, m = { l: 150, r: 150 }, x0 = 30, x1 = 78, rowH = 78, blockGap = 40, top = 40;
+      const x = L.scale(x0, x1, m.l, W - m.r);
+      const yOf = (wi, r) => top + wi * (2 * rowH + blockGap) + r * rowH + 18;
+      const base = yOf(1, 1) + 62, H = base + 44;
+      const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart' });
+      const ax = S('g', { class: 'axis' });
+      ax.appendChild(S('line', { x1: x(x0), x2: x(x1), y1: base, y2: base }));
+      for (let t = 30; t <= 70; t += 10) {
+        ax.appendChild(S('line', { x1: x(t), x2: x(t), y1: top - 14, y2: base, class: 'grid' }));
+        ax.appendChild(T(x(t), base + 18, t + '%', null, { 'text-anchor': 'middle' }));
+      }
+      ax.appendChild(T(x((x0 + x1) / 2), base + 40, 'mean recommended share in the stock fund', 'axis-label', { 'text-anchor': 'middle' }));
+      svg.appendChild(ax);
+      const dodge = (vals, gap = 12) => {
+        const lanes = [0, -10, 10, -20, 20], placed = [];
+        return vals.map((v) => {
+          const px = x(v.v);
+          for (const ln of lanes) if (!placed.some((p) => p.ln === ln && Math.abs(p.px - px) < gap)) { placed.push({ ln, px }); return Object.assign({ px, ln }, v); }
+          placed.push({ ln: 0, px }); return Object.assign({ px, ln: 0 }, v);
+        });
+      };
+      const bracket = (a, b, y, label) => svg.append(
+        S('path', { d: `M${x(a)} ${y - 6} V${y} H${x(b)} V${y - 6}`, fill: 'none', stroke: 'var(--ink)', 'stroke-width': 2 }),
+        T(x(b) + 10, y + 5, label, 'lbl', { 'text-anchor': 'start' }));
+      WV.forEach((w, wi) => {
+        const yC = yOf(wi, 0), yM = yOf(wi, 1);
+        const nNew = w.newOnly ? w.newOnly.n : 0;
+        svg.appendChild(T(m.l - 140, yC - 34, w.label + (nNew ? `: ${w.nModels} models, ${nNew} of them released after July` : `: the ${w.nModels} models of the main collection`), 'rowhead'));
+        svg.append(T(m.l - 16, yC + 4, '21 countries', 'rowlbl', { 'text-anchor': 'end' }), T(m.l - 16, yM + 4, `${w.nModels} models`, 'rowlbl', { 'text-anchor': 'end' }));
+        const cv = Object.entries(w.countries).map(([k, v]) => ({ v, c: byKey[k] }));
+        dodge(cv.sort((a, b) => (WHO[b.c.key] ? 1 : 0) - (WHO[a.c.key] ? 1 : 0) || a.v - b.v)).forEach((d) => {
+          if (WHO[d.c.key]) return;
+          svg.appendChild(S('circle', { cx: d.px, cy: yC + d.ln, r: 5.5, fill: 'var(--advice)', 'fill-opacity': 0.8, stroke: 'var(--paper)', 'stroke-width': 1.5 }));
+        });
+        ['USA', 'Germany'].forEach((k) => svg.appendChild(markAt(byKey[k], x(w.countries[k]), yC, 8)));
+        dodge(w.models.map((md) => ({ v: md.mean, md }))).forEach((d) => {
+          const ring = nNew && !d.md.new;
+          svg.appendChild(S('circle', { cx: d.px, cy: yM + d.ln, r: 6, fill: ring ? 'var(--paper)' : 'var(--advice)', stroke: ring ? 'var(--advice)' : 'var(--paper)', 'stroke-width': ring ? 2 : 1.5 }));
+        });
+        const cs = Object.values(w.countries), cLo = Math.min(...cs), cHi = Math.max(...cs);
+        const lo = w.models[0], hi = w.models[w.models.length - 1];
+        const cKeyLo = Object.keys(w.countries).find((k) => w.countries[k] === cLo);
+        svg.append(T(x(cLo) - 12, yC + 4, nameOf(byKey[cKeyLo]), 'lbl-sm', { 'text-anchor': 'end' }),
+          T(x(lo.mean) - 12, yM + 4, lo.name, 'lbl-sm', { 'text-anchor': 'end' }));
+        bracket(cLo, cHi, yC + 30, `${Math.round(cHi - cLo)} points`);
+        bracket(lo.mean, hi.mean, yM + 30, `${Math.round(hi.mean - lo.mean)} points`);
+        if (nNew) bracket(w.newOnly.lo, w.newOnly.hi, yM + 50, `the ${nNew} new models: ${Math.round(w.newOnly.hi - w.newOnly.lo)} points`);
+      });
+      el.append(wrap(svg), cap('Question 1, age 40, one English prompt per country (Version B in the six English-prompt countries, B-cross in the other fifteen). July: the main collection cut to this slice, 50 answers per cell. September 19: 25 answers per cell. Model rows: filled, released after July; ring, carried over under the same identifier. Exploratory, outside the pre-registration.'));
+    };
+
+    // anchors: the seven models asked under the same identifier in July and September
+    CH.anchors = (el) => {
+      const A = D.anchors, W = 1060, lx = 190, top = 36, rowH = 50, H = top + A.length * rowH + 58;
+      const x = L.scale(-12, 17, lx, W - 110);
+      const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart' });
+      const base = top + A.length * rowH + 4;
+      const ax = S('g', { class: 'axis' });
+      for (const t of [-10, -5, 0, 5, 10, 15]) {
+        ax.appendChild(S('line', { x1: x(t), x2: x(t), y1: top - 10, y2: base, class: t ? 'grid' : null, stroke: t ? null : 'var(--ink)', 'stroke-width': t ? null : 1.5 }));
+        ax.appendChild(T(x(t), base + 18, t > 0 ? '+' + t : minus(t), null, { 'text-anchor': 'middle' }));
+      }
+      ax.appendChild(T((lx + W - 110) / 2, base + 40, 'September minus July, percentage points of stock', 'axis-label', { 'text-anchor': 'middle' }));
+      svg.append(ax, T(W - 20, top - 16, 'average', 'lbl-sm', { 'text-anchor': 'end' }));
+      A.forEach((a, i) => {
+        const y = top + i * rowH + rowH / 2;
+        svg.appendChild(T(lx - 16, y + 4, a.name, 'rowlbl', { 'text-anchor': 'end' }));
+        const placed = [];
+        Object.entries(a.cells).sort((p, q) => (WHO[p[0]] ? 1 : 0) - (WHO[q[0]] ? 1 : 0)).forEach(([k, v]) => {
+          const px = x(v);
+          const ln = [0, -8, 8, -16, 16].find((l) => !placed.some((p) => p.l === l && Math.abs(p.px - px) < 9)) ?? 0;
+          placed.push({ l: ln, px });
+          svg.appendChild(S('circle', { cx: px, cy: y + ln, r: WHO[k] ? 5 : 4, fill: WHO[k] || 'var(--ink-3)', 'fill-opacity': WHO[k] ? 1 : 0.55 }));
+        });
+        const [kMax, vMax] = Object.entries(a.cells).reduce((b, e) => (Math.abs(e[1]) > Math.abs(b[1]) ? e : b));
+        if (Math.abs(vMax) > 8) svg.appendChild(T(x(vMax) + (vMax > 0 ? 10 : -10), y - 10, `${nameOf(byKey[kMax])} ${sgn(vMax, 0)}`, 'lbl-sm halo', { 'text-anchor': vMax > 0 ? 'start' : 'end' }));
+        svg.append(S('rect', { x: x(a.diff) - 2, y: y - 14, width: 4, height: 28, fill: 'var(--advice)' }),
+          T(W - 20, y + 5, sgn(a.diff), 'lbl', { 'text-anchor': 'end', fill: 'var(--advice)' }));
+      });
+      el.append(wrap(svg), cap('Each grey dot is one country, the September 19 cell mean minus the July 2–4 cell mean, Question 1, age 40, one English prompt per country. Vermilion bar: the model\'s average change across the 21 countries. Emily\'s United States and Lena\'s Germany in their colours. Exploratory, outside the pre-registration.'));
+    };
 
     // grid: the 21 × 13 country-by-model cell means
     CH.grid = (el) => {
