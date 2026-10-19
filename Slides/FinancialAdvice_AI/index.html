@@ -162,6 +162,10 @@
       margin-right: 0; 
     }
   </style>
+  <!-- The deck's faces. Each has a system fallback in the theme, so the deck still
+       presents offline; the fonts are the one thing that needs the network.
+       Noto Sans JP, SC and KR set the Japanese, Chinese and Korean text; Google serves it in
+       unicode-range subsets, so only the glyphs on the slides are fetched. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Noto+Sans+JP:wght@400;500;700&amp;family=Noto+Sans+SC:wght@400&amp;family=Noto+Sans+KR:wght@400&amp;display=swap">
 </head>
@@ -188,25 +192,68 @@ Claes Bäckman
 <section id="hook" class="slide level2 center">
 <h2>Who is told to hold more stock?</h2>
 <div class="stage" data-chart="hook"></div>
+<aside class="notes">
+<p>“Show of hands. Who thinks Lena is told to hold less stock than Emily? More? About the same?” Most rooms say less. If they hesitate, give them the textbook reason: a euro investor who buys a world index fund carries exchange-rate risk that a dollar investor does not, so a careful advisor might give Lena less. That reason comes back on the benchmark slide, where the euro turns out to add almost none.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="reveal" class="slide level2 center">
 <h2>The advice varies little depending on the country</h2>
 <div class="stage" data-chart="reveal" data-animate="once"></div>
 <p><span class="rooms"><a href="#/room-models">The model grid</a></span></p>
+<aside class="notes">
+<p>Say one sentence that tells the room the model row is only for scale. For example: “For scale, switching the model moves the advice 34 points. This talk is about the 12.” That stops the audience waiting for an explanation of why models differ, which the talk never gives.</p>
+<p><span class="rooms"><span class="data" data-key="variance.q1.model" data-d="0"></span>% of the variance comes from which model is asked. <span class="data" data-key="variance.q1.country" data-d="0"></span>% from the country.</span></p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="setup" class="slide level2 center">
 <h2>Households everywhere now ask the same few models for financial advice</h2>
 <div class="claims bullets">
 <ul>
 <li><strong>LLMs are becoming financial advisors.</strong> Over one third of individuals across OECD countries reported using AI tools <span class="citation" data-cites="oecd2026ai">(<a href="#/references" role="doc-biblioref" onclick="">OECD 2026</a>)</span>. 51% of US consumers reported using AI to obtain financial information or advice <span class="citation" data-cites="jdpower2025">(<a href="#/references" role="doc-biblioref" onclick="">J.D. Power 2025</a>)</span></li>
-<li><strong>LLM advice comes from a handful of models.</strong> The models are trained overwhelmingly on U.S.-English text, and the same ones answer in every language.</li>
+<li><strong>LLM advice comes from a handful of models.</strong> The models are trained overwhelmingly on U.S.-English text.</li>
 <li><strong>Advice markets are national.</strong> They reflect local norms, pension systems and regulation.</li>
 <li><strong>This paper.</strong> Does LLM advice differ across countries, and does it adapt to local circumstances?</li>
 </ul>
 </div>
+<aside class="notes">
+<p>Forty-five seconds, one bullet at a time.</p>
+<p>The three questions get their own slide after the outline.</p>
+<p>Answering the question also shows what kind of advisor an LLM is, and so whether it can tailor advice to anything beyond what U.S.-English texts on financial advice contain.</p>
+<p>Bridge: Emily and Lena are one instance of this question.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="literature" class="slide level2 center">
-<h2>Prior work varies the investor and holds the country fixed</h2>
+<h2>Prior work varies the investor</h2>
 <div class="claims">
 <ul>
 <li><strong><span class="citation" data-cites="choukhmane2026ai">Choukhmane et al. (<a href="#/references" role="doc-biblioref" onclick="">2026</a>)</span>.</strong> U.S. households’ own prompts against a life-cycle model: moderately risk-averse advice in round numbers.</li>
@@ -215,6 +262,21 @@ Claes Bäckman
 <li><strong>Human and robo-advisors.</strong> Advisor fixed effects dominate client traits <span class="citation" data-cites="foerster2017retail">(<a href="#/references" role="doc-biblioref" onclick="">Foerster et al. 2017</a>)</span>, and robo-advice improves diversification <span class="citation" data-cites="dacunto2019promises rossi2024needs">(<a href="#/references" role="doc-biblioref" onclick="">D’Acunto et al. 2019</a>; <a href="#/references" role="doc-biblioref" onclick="">Rossi and Utkus 2024</a>)</span>.</li>
 </ul>
 </div>
+<aside class="notes">
+<p>One minute. The first two are the closest papers, and both hold the investor’s country fixed by construction. Ross and Lo call the dominance of stated risk tolerance “heuristic collapse” and reach the same conclusion about the advice rule from the other direction, which strengthens both readings.</p>
+<p>Foltyn and Olsson is the framework this experiment adapts, replacing gender with country. Keep their under-two-points gender gap in mind as a yardstick. What this paper adds is the next slide.</p>
+<p>The fourth line, for advice people: Foerster et al.&nbsp;(2017) find that advisor fixed effects explain more of client portfolios than client characteristics, and D’Acunto, Prabhala and Rossi (2019) and Rossi and Utkus (2024) find first-generation robo-advisors improving diversification. LLMs differ in being general-purpose and deployed in every language at once. Reuter and Schoar (2024) survey the market for advice.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="outline" class="slide level2 center">
 <h2>This paper</h2>
@@ -225,14 +287,46 @@ Claes Bäckman
 <li><strong>How do the models explain their advice?</strong><br>
 → They know the country, but only use it when required: local words in the explanations, country differences on the mortgage.</li>
 <li><strong>Does the advice track country fundamentals?</strong><br>
-→ Uniform advice is defensible, but the balance sheet should matter. Advice does not track measured risk aversion or financial literacy</li>
+→ Uniform advice is defensible. Advice does not track measured risk aversion or financial literacy</li>
 <li><strong>What rule produces the advice?</strong><br>
-→ A retail risk questionnaire, or something akin to “popular financial advice” <span class="citation" data-cites="canner1997 choi2022popular">(<a href="#/references" role="doc-biblioref" onclick="">Canner et al. 1997</a>; <a href="#/references" role="doc-biblioref" onclick="">Choi 2022</a>)</span>.</li>
+→ Something akin to “popular financial advice” <span class="citation" data-cites="canner1997 choi2022popular">(<a href="#/references" role="doc-biblioref" onclick="">Canner et al. 1997</a>; <a href="#/references" role="doc-biblioref" onclick="">Choi 2022</a>)</span>.</li>
 </ul>
 </div>
+<aside class="notes">
+<p>Does the advice differ across countries? 21 countries and 13 models, with the language, the country name and local instruments varied separately.</p>
+<ul>
+<li><strong>How do the models explain their advice?</strong> Every explanation is coded.<br>
+</li>
+</ul>
+<p>A Merton benchmark with currency risk and background wealth (Merton 1969, Campbell and Viceira 2002, Cocco, Gomes and Maenhout 2005).</p>
+<p>Cross-country household finance comes in Part 3: the country effects are set against measured risk preferences <span class="citation" data-cites="falk2018global">(<a href="#/references" role="doc-biblioref" onclick="">Falk et al. 2018</a>)</span> and financial literacy <span class="citation" data-cites="klapper2015finlit">(<a href="#/references" role="doc-biblioref" onclick="">Klapper et al. 2015</a>)</span>.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="sec-design" class="slide level2 divider center">
 <h2>Experimental design</h2>
+<aside class="notes">
+<p>Five seconds. The next three slides are the questions, the three prompt versions and the inference.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="questions" class="slide level2 center">
 <h2>Each model is asked three questions</h2>
@@ -243,6 +337,22 @@ Claes Bäckman
 <li><strong>Inflation.</strong> How to protect $50,000 earning 1% in a savings account against 3% inflation: the fraction to move and the primary instrument. Age 40.</li>
 </ul>
 </div>
+<aside class="notes">
+<ul>
+<li><strong>Every answer.</strong> The same English instructions ask for JSON with the fraction and an explanation of at most 200 words. Fifty answers per cell, temperature 0.7, no system prompt.</li>
+</ul>
+<p>The last line is what makes the explanation slides possible: every answer carries its own reasoning, in the language of the question. A JSON-first parser recovered a number from 99.9 percent of answers, and there were no refusals in 267,150.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="design" class="slide level2 center">
 <h2>Three versions of each prompt</h2>
@@ -265,6 +375,23 @@ Claes Bäckman
 </div>
 
 
+<aside class="notes">
+<p>The design in one slide. Fifteen countries are asked in the local language and six in English (U.S., UK, Canada, Australia, India, South Africa), so B-cross exists for the fifteen. The amount is the round local-currency equivalent of $50,000 in native number format.</p>
+<p>The same prompt returns different answers each time at temperature 0.7, which is why every cell is asked 50 times. The instructions block with the JSON schema is English everywhere. Only the question is translated, by DeepL, then reviewed by native speakers in all fifteen languages.</p>
+<p>“Where is Version A?” A translated prompt that named no country. It was dropped before collection because it could not separate the language from the style of a translation. The letters follow the pre-registration.</p>
+<p>Collected 3–4 July 2026, the day after filing.</p>
+<p>Primary cell for everything that follows: the portfolio question, Version B, age 40.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="inference" class="slide level2 center">
 <h2>Empirical specification</h2>
@@ -275,10 +402,26 @@ Claes Bäckman
 <ul>
 <li><strong>Within model.</strong> <span class="math inline">y_{imc}</span> is the equity share in repetition <span class="math inline">i</span> by model <span class="math inline">m</span> for country <span class="math inline">c</span>. The model fixed effects <span class="math inline">\alpha_m</span> make each <span class="math inline">\gamma_c</span> a within-model contrast with the U.S.</li>
 <li><strong>Thirteen clusters.</strong> Standard errors cluster on 13 models</li>
-<li><strong>Multiple testing.</strong> The twenty country contrasts form one Holm family, so the chance of even one false rejection among them is at most 5 percent.</li>
+<li><strong>Multiple testing.</strong> The twenty country contrasts form one Holm family.</li>
 <li><strong>Pre-registered.</strong> Filed at OSF on 2 July 2026 and collected on 3–4 July. Primary cell: the portfolio question, Version B, age 40.</li>
 </ul>
 </div>
+<aside class="notes">
+<p>With G = 13, every p-value is a wild cluster bootstrap with Webb six-point weights and 9,999 replications.</p>
+<p>Why Holm: like Bonferroni, it caps the chance of any false rejection among the twenty at 5 percent, whatever the correlation between the tests. It rejects at least as often, because only the smallest p-value faces the full 0.05/20 threshold. It is applied to the wild-bootstrap p-values. In the results, thirteen of the twenty contrasts are significant on their own and seven survive the correction.</p>
+<p>The 4 and 6 points are the pre-registered detectable effects at the 5 percent threshold (5.5 and 7.6 at 80 percent power), computed before collection from an assumed spread across models. Realized precision varies by country: Mexico’s interval is narrow enough that a 2.7-point gap survives. The Netherlands is the marginal survivor, at Holm p = 0.049.</p>
+<p>Collection details if asked: temperature 0.7, no system prompt, at most 4,000 tokens, truncated answers excluded. The whole grid of 267,150 queries ran in two days.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="sec-results1" class="slide level2 divider center">
 <h2>Results for country and language</h2>
@@ -287,6 +430,22 @@ Claes Bäckman
 <h2>Every country gap that survives correction is negative</h2>
 <div class="stage" data-chart="countries"></div>
 <p><span class="rooms"><a href="#/room-robust">Robustness</a></span></p>
+<aside class="notes">
+<p>Point at the top: Brazil, Italy, Poland, France, Spain, the Netherlands, Mexico. Southern and central Europe plus Latin America. Every contrast that survives is negative, and the U.S. sits near the top of the band.</p>
+<p>The yardstick for the rest of the talk: country effects are 3 to 11 points. That is small beside the 34-point model spread and beside what the stated investor does later, but larger than the under-two-points gender gaps of Foltyn and Olsson.</p>
+<p>Whether these gaps are errors is the benchmark slide’s question. Brazil’s benchmark is low, so its gap may be a move toward theory. Germany: −4.0 points, interval −7.7 to −0.4, so it rejects on its own (p = 0.03) but not after Holm (p = 0.34), one of the hollow rings.</p>
+<p>If asked about the rank of the covariance matrix: the joint test is the bootstrap Wald statistic. The asymptotic cluster-robust test can impose only 12 of the 20 restrictions with 13 clusters, and it also rejects, F(12, 12) = 34.26.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="round" class="slide level2 center">
 <h2>The advice bunches at round numbers and loosely follows 100 minus age</h2>
@@ -297,10 +456,41 @@ Claes Bäckman
 <div class="stage" data-chart="round"></div>
 </div>
 <p><span class="source">The rule and its optimal tails: <span class="citation" data-cites="love2013rules">Love (<a href="#/references" role="doc-biblioref" onclick="">2013</a>)</span>. Exploratory, not pre-registered.</span></p>
+<aside class="notes">
+<p>Age 30 is told 6.2 points more than age 40 and age 55 11.1 points less. The interaction with the pension replacement rate is an exact zero (ψ = −0.0002, p = 0.96): the same glide path in the most and least generous pension systems.</p>
+<p>The deviations from the rule go toward conservatism at both ends, where Love (2013) puts the optimum above the rule. This is the same early-life conservatism Choukhmane et al.&nbsp;(2026) find a life-cycle model cannot rationalize. Exploratory, not pre-registered.</p>
+<p>Explicit citations of the heuristic (“rule of thumb”, “100 minus age”) appear in 15 to 17 percent of U.S. and Indian explanations and in under 1 percent outside the English-prompt countries, while the allocations bunch identically.</p>
+<p>Skippable if time is short: the round-number point is already on the reveal slide.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="decomp" class="slide level2 center">
 <h2>In the large-effect countries, most of the gap attaches to the country name</h2>
 <div class="stage tall" data-chart="decomp"></div>
+<aside class="notes">
+<p>Each bar stacks the three cues into the gap between the fully localized Version C and the U.S. English generic prompt. In the large-effect countries, Brazil, Italy, Poland, Mexico, the dark country-name slab carries most of it. The country-name slab also changes the currency and the numeral of the amount, which move with the country reference.</p>
+<p>Japan is the clearest exception: a positive language slab of about four points. The dollar-stake room checks whether the yen numeral drives it.</p>
+<p>Skippable if time is short.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="language" class="slide level2 center">
 <h2>Language and local instruments move the advice about a point</h2>
@@ -316,11 +506,44 @@ Claes Bäckman
 <p><span class="source">Pre-registered tests, the portfolio question at age 40, model and country fixed effects. 15 countries have a translated prompt, 20 a Version C.</span></p>
 <p><span class="rooms"><a href="#/room-robust">The dollar-denominated stake</a></span></p>
 </div>
+<aside class="notes">
+<p>Two numbers, each about a point. Asking Lena’s question in German rather than English lowers the share by 1.3 points: significant, and an order of magnitude below the largest country effects. Naming the bAV, an MSCI World ETF and Bunds moves it by −0.7, not significant at 5 percent.</p>
+<p>Why a small language effect is plausible: interpretability work finds that multilingual models solve tasks in a shared concept space that sits closer to English than to any other language (Wendler et al.&nbsp;2024). It was not guaranteed: the same model often asserts different facts in different languages.</p>
+<p>The United Kingdom is the pre-registered test of naming a country without changing the language: +0.7 points, interval −0.8 to +2.2, inside the ±5 margin registered for that test alone.</p>
+<p>The country reference also changes the currency and the numeral of the amount, so “the country” here is the country, its currency and its number format together. The dollar-stake cell rules the numeral out for Germany, Japan and Sweden.</p>
+<p>Bridge: the next slide splits each country’s gap into the three cues. If short of time, skip it and the September slide and go straight to the recap.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="tracking" class="slide level2 center">
 <h2>Eleven weeks later, the results are similar</h2>
 <div class="stage tall" data-chart="waves"></div>
 <p><span class="source">Variance shares, model and country: July <span class="data" data-key="waves.first.share.model" data-d="0"></span>% and <span class="data" data-key="waves.first.share.country" data-d="0"></span>%, September <span class="data" data-key="waves.last.share.model" data-d="0"></span>% and <span class="data" data-key="waves.last.share.country" data-d="0"></span>%, the 14 new models alone <span class="data" data-key="waves.last.newOnly.share.model" data-d="0"></span>% and <span class="data" data-key="waves.last.newOnly.share.country" data-d="0"></span>%. <a href="#/room-anchors">The same models, July and September</a></span></p>
+<aside class="notes">
+<p>The picture from the reveal slide, redrawn for both collections on the English slice they share. Top block: July, the thirteen models of the main collection. Bottom block: September, twenty-one models. Point at the two country brackets, 9 and 10 points, then the two model brackets, 36 and 35. Then the second bracket in the September model row: the fourteen new models agree with each other far more, 16 points, which is why the country’s share of the variance rises among them.</p>
+<p>The English slice is a conservative test for country effects: asking in the local language roughly doubles the country share. Among the new models Brazil gets 38 percent and Turkey 51, and Turkey, where the unhedged benchmark is lowest, ranks near the top.</p>
+<p>The rings are the seven models carried over under the same identifier. Four of them give the same average within half a point. DeepSeek V4 Flash moved 8.5 points, the size of a country contrast, so replications should report the collection date. The appendix room shows all seven, country by country.</p>
+<p>Skippable if time is short, but it answers the most likely question about the panel.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="mortgage" class="slide level2 center">
 <h2>More cross-country variation in the other questions</h2>
@@ -336,11 +559,43 @@ Claes Bäckman
 <div class="prose">
 <p><span class="source">An illustrative pair of real answers from Gemini 3 Flash, Version B, age 40. The English under the German is a close translation, with omitted sentences marked. The next slide counts all 13,639 answers.</span></p>
 </div>
+<aside class="notes">
+<p>The payoff for the bet on the recap slide. Two real answers, same model, same prompt apart from the country and the language. Both say 60 percent. Only Lena’s names a local rule: the Teilfreistellung, Germany’s 30 percent partial tax exemption on equity-fund returns.</p>
+<p>Lena’s answer also cites the 100-minus-age rule, in German, and Emily’s calls 60/40 classic. The number is the same retail convention in both languages.</p>
+<p>This pair was picked to show the pattern, so the next slide counts it. If asked how typical the 60 is: this model answers 60 percent in 48 of its 50 U.S. answers and in 35 of its 50 German ones, the rest 50.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="words" class="slide level2 center">
 <h2>The explanations localize, but the number barely moves</h2>
 <div class="stage tall" data-chart="words"></div>
 <p><span class="rooms"><a href="#/room-coding">How the text is coded</a></span></p>
+<aside class="notes">
+<p>Start on Version B. Point at the two coloured rows: the U.S. at 18 percent and Germany at 63. Outside the U.S. the models reach for local instruments, taxes and pensions in half to nearly all of their explanations. So they know where the investor lives. Both panels share one 0 to 100 percent scale: the words range across the whole axis, the numbers sit in a narrow band.</p>
+<p>The move: flip the switch to Version C, where the prompt names each country’s own pension, bonds and index fund. The hatched bars jump toward 100 percent, a 23-point rise, and the dots barely move, −0.7 points pooled. Dashed rings mark where each dot was. Brazil moves most, about 3 points, and the pooled effect is not significant at 5 percent.</p>
+<p>The same country regression that finds a few points on the equity share finds up to 78 points on whether local context is named, so the design can see country variation where the answers contain it.</p>
+<p>Objection, “the coder just finds the words you put in the prompt”: that is why Version B, which names no instruments, is the main test, and 47 to 96 percent there is unprompted. Under Version C the U.S. rate rises from 18 to 84 percent, so the coder does count U.S. instruments as local context.</p>
+<p>If the switch fails, the caption carries the result.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="sec-benchmark" class="slide level2 divider center">
 <h2>Should advice differ across countries?</h2>
@@ -362,11 +617,64 @@ Claes Bäckman
 <section id="bench" class="slide level2 center">
 <h2>Answer depends whether the advice should take currency hedging into account</h2>
 <div class="stage tall" data-chart="bench"></div>
+<aside class="notes">
+<p>Start unhedged. Teal rings are what theory prescribes, vermilion dots what the models say. Theory spreads over thirty-two points, from 21 percent in Turkey to 53 in Korea. Lena’s euro adds almost nothing: theory gives her 52 and Emily 52, so the textbook reason for “less” from the hook is worth half a point for her. The advice spans twelve, and a regression of advice on theory gives a slope of 0.13, which rejects one and does not reject zero. The slope rests on Brazil and Turkey: dropping Brazil lowers it to 0.03, dropping Turkey raises it to 0.21, and every other leave-one-out slope is between 0.11 and 0.15.</p>
+<p>The move: switch on the hedge. Every ring slides onto 52 percent, and the advice sits within six points of it in every country. This is true by construction, since the equity premium is common by uncovered interest parity and only the volatility differs, and that is the point: the whole spread in theory was exchange-rate risk.</p>
+<p>What to say: under integrated markets the risky portfolio is the same world index everywhere, which rationalizes uniform advice. So the uniformity is defensible. The balance sheet is where theory and the advice part: counting pensions and human capital as safe wealth, theory is at the 100 percent corner in every country. Say that sentence out loud, it is the bridge to Part 4: does a stated balance sheet move the advice?</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="prefs" class="slide level2 center">
 <h2>The country effects are only weakly related to national risk preferences and literacy</h2>
 <div class="stage" data-chart="prefs"></div>
 <p><span class="source">Risk taking from <span class="citation" data-cites="falk2018global">Falk et al. (<a href="#/references" role="doc-biblioref" onclick="">2018</a>)</span>. Literacy from <span class="citation" data-cites="klapper2015finlit">Klapper et al. (<a href="#/references" role="doc-biblioref" onclick="">2015</a>)</span>.</span></p>
+<aside class="notes">
+<p>A country one standard deviation more risk-tolerant gets under three points more equity, and the widest preference contrast in the panel, Japan to South Africa, predicts under four. South Africa, by far the most risk-tolerant, gets slightly less than the U.S.</p>
+<p>This is descriptive: the prompt describes one investor, not a country mean, and imputing national risk-taking to her is an ecological inference an advisor need not make. Leave-one-out slopes stay positive and small. The two-stage bootstrap intervals exclude zero, and the wild bootstrap over countries does not.</p>
+<p>Skippable if time is short.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!--
+## On the mortgage, advice sits 13 to 36 points above the benchmark in every calibration country {#mortbench}
+
+::: {.split .wide-left .center-v}
+```{=html}
+<div class="stage" data-chart="mortbench"></div>
+```
+
+::: {.prose}
+Prepaying a mortgage earns the after-tax real mortgage rate for sure, so the benchmark is the Merton share with that rate as the safe return.
+
+Advice exceeds it in all 16 calibration countries, by 13 to 36 points. Emily's gap is the largest: theory [ ]{.data key="c.USA.q2alpha" pct="0"}%, advice [ ]{.data key="c.USA.q2mean" pct="0"}%. The slope of advice on theory, 0.24, is not distinguishable from zero.
+
+[Exploratory, not in the pre-registration. Question 2, Version B, age 40, at the paper's baseline calibration.]{.source}
+:::
+:::
+
+::: {.notes}
+Japan has the lowest benchmark, 20 percent, because its after-tax real mortgage rate is the highest, and it gets the lowest advice, 54 percent. Among the nine non-U.S. countries with benchmarks below 0.40 the gap stays between 29 and 34 points, so the advice rises with the benchmark almost point for point there.
+
+The calibration slope is 0.24 on the mortgage question against 0.07 on the portfolio question for the same fifteen countries. With fifteen countries neither is distinguishable from zero, and both intervals exclude one.
+:::
+-->
 </section>
 <section id="what-rule-produces-the-advice" class="slide level2 divider center">
 <h2>What rule produces the advice?</h2>
@@ -386,6 +694,23 @@ Claes Bäckman
 <div class="prose">
 <p><span class="source">English Question 1, age 40, all 21 countries with their local amounts: Version B in the six English-prompt countries, B-cross in the other fifteen. Risk and pension crossed at five years (four cells), two horizon cells, about 13,600 answers per cell. Three pre-registered single tests.</span></p>
 </div>
+<aside class="notes">
+<p>I add one sentence about the investor to the English prompt and hold everything else fixed. Each sentence moves one term of the benchmark for the stake inside the balance sheet:</p>
+<p><span class="q">Theory predicts a response to tolerance, a response to the pension if the balance sheet counts, and none to the horizon.</span></p>
+<p>The full sentences, if asked. Tolerant: “I am comfortable with substantial fluctuations in my portfolio value, including potential short-term losses, if it means higher expected returns over time.” Averse: “I am uncomfortable with large fluctuations in my portfolio value and would prefer to limit potential losses, even if it means lower expected returns.” Generous: “I will receive a substantial pension when I retire, projected to replace most of my pre-retirement income.” Limited: “I will receive only a small pension when I retire, covering a modest fraction of my pre-retirement income.” The statements are length-matched and institution-free, so acting on them needs no knowledge of local pension systems.</p>
+<p>Objection, “mean reversion makes the horizon matter” (Campbell and Viceira 2002): that comes up on the comparison slide after the results.</p>
+<p>After the next slide, if asked about heterogeneity: two of thirteen models are nearly horizon-invariant, while the most responsive moves 79 points between one year and twenty. The risk-tolerance response is positive for all thirteen models and within a 3-point band across the 21 countries.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="levers" class="slide level2 center">
 <h2>A stated horizon moves the advice 40 points</h2>
@@ -396,11 +721,65 @@ Claes Bäckman
 <div class="stage tall" data-chart="levers" data-animate="once"></div>
 </div>
 <p><span class="source">Pre-registered tests. Intervals: risk tolerance <span class="data" data-key="stated.risk.lo" data-d="1"></span> to <span class="data" data-key="stated.risk.hi" data-d="1"></span>, horizon <span class="data" data-key="stated.horizon.lo" data-d="1"></span> to <span class="data" data-key="stated.horizon.hi" data-d="1"></span>, generous pension <span class="data" data-key="stated.pension.lo" data-d="1"></span> to <span class="data" data-key="stated.pension.hi" data-d="1"></span> points.</span></p>
+<aside class="notes">
+<p>One sentence about the investor, added to the English prompt in all 21 countries. A one-year horizon gets <span class="data" data-key="stated.cells.h1" data-pct="0"></span>% in stocks and a twenty-year horizon <span class="data" data-key="stated.cells.h20" data-pct="0"></span>%. <span class="rooms"><a href="#/room-cells">Cell means</a></span></p>
+<p>The payoff for the horizon-or-pension bet. The bars grow in one by one. Say the numbers as they land. Stated risk tolerance: +46 points, from 30 to 78 percent. Horizon, twenty years against one: +40. Generous pension: −1.0 for the risk-averse investor, +2.6 for the risk-tolerant one. For scale, the largest country contrast is Brazil at −11, and language and instruments are about a point.</p>
+<p>The teal marks are theory’s direction only. With constant relative risk aversion and independent returns the horizon is irrelevant. A lifecycle planner who counts pension wealth treats a generous pension as a bond and holds more stock.</p>
+<p>Why English: the statements are added to the English prompt (Version B in the six English-speaking countries, B-cross elsewhere), so no translation stands between the sentence and the model.</p>
+<p>Objection, “a one-year horizon is a spending date, and any planner holds bonds for that”: the twenty-year cell alone sits about 20 points above the five-year prompt with no added sentence, so the response is not only year-one liquidity.</p>
+<p>Ross and Lo find the same dominance of risk tolerance with one vendor. New here: 13 models, 21 countries, and the contrast with a stated pension.</p>
+<p>Bridge: the pension null is not blindness, though. The next slide shows the balance sheet does register, on one side.</p>
+<p>The bet before advancing: “If Emily says her pension is invested in stocks, the models cut her stock share. If she says it is a guaranteed annuity, do they raise it as much?” Theory says yes, symmetrically.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="asym" class="slide level2 center">
 <h2>Stated risks cut the stock share sharply, stated safety barely raises it</h2>
 <div class="stage tall" data-chart="asym"></div>
 <p><span class="source">Exploratory probes collected in August 2026, after the pre-registered results were examined.</span></p>
+<aside class="notes">
+<p>Three pairs of sentences, each adding exposure or safety to the investor’s balance sheet.</p>
+<p>Exposure cuts the share by up to <span class="data" data-key="probes.1.r.est" data-d="0" data-abs=""></span> points. The mirror statements of safety raise it by at most <span class="data" data-key="probes.0.s.est" data-d="0"></span>.</p>
+<p>A currency hedge, the direct test of the benchmark slide, moves nothing.</p>
+<p>A pension invested in stocks: −17 points, the right sign. A guaranteed inflation-linked annuity, which should crowd stock in: +4.8, barely significant. The stake is all my liquid wealth: −23. The stake is a third of my liquid wealth with twice as much in safe savings: +2.5, when the benchmark is already at its 100 percent corner. The hedge: nothing either way, for a statement that should matter most where currencies are volatile.</p>
+<p>What to say: the models de-risk on stated exposure and let stated safety raise the share very little.</p>
+<p>Objection, “all my liquid wealth means no emergency buffer, and cutting stock is standard advice”: agreed, and the benchmark has the same sign. The asymmetry is on the safe side, where a large cushion barely moves the number.</p>
+<p>The wealth statements were asked in the U.S. prompt only, and a third wealth statement, half of liquid wealth, gives +1.4. Everything here is exploratory and post hoc, tested two-sided against the benchmark’s sign.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside class="notes">
+<p>One minute, the callback to Part 2. Horizon and pension are both named in nearly every explanation, and only the horizon moves the number. The models mention the pension everywhere and decline to size the allocation to it. So counting mentions, as on the explanation slide, tells us what the models know, not what drives the advice.</p>
+<p>For the risk-tolerant investor the generous pension raises the share by 2.6 points, an order of magnitude below the background-wealth adjustment.</p>
+<p>Bridge: three candidate rules and five stated cues. The next slide lines them up.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="lineup" class="slide level2 center">
 <h2>The pattern fits a retail risk questionnaire, not a portfolio planner</h2>
@@ -462,32 +841,70 @@ Claes Bäckman
 <div class="prose">
 <p><span class="source">Measured: the stated-investor effects, in percentage points. Last two rows: exploratory probes collected in August 2026, after the pre-registered results were examined. Struck through and marked ✗: a prediction the measured effect contradicts. The comparison follows the popular-advice reading of <span class="citation" data-cites="canner1997">Canner et al. (<a href="#/references" role="doc-biblioref" onclick="">1997</a>)</span> and <span class="citation" data-cites="choi2022popular">Choi (<a href="#/references" role="doc-biblioref" onclick="">2022</a>)</span>.</span></p>
 </div>
-</section>
-<section id="implications" class="slide level2 center">
-<h2>One rule answering every country makes its errors common and hard to see</h2>
-<div class="claims bullets">
-<ul>
-<li><strong>Errors are common, not idiosyncratic.</strong> A handful of models answer every country, so a mistake in one rule reaches every household that asks it. Human advice already clusters by advisor <span class="citation" data-cites="foerster2017retail">(<a href="#/references" role="doc-biblioref" onclick="">Foerster et al. 2017</a>)</span>.</li>
-<li><strong>The neglected margin is the one suitability rules target.</strong> Those rules oblige a human advisor to weigh the client’s balance sheet. The models weigh it only as a hazard.</li>
-<li><strong>The uniformity is hard to see.</strong> The explanation adapts to the country, and the number does not.</li>
-<li><strong>Outside the perimeter.</strong> The same service, supplied by humans, is regulated country by country.</li>
-</ul>
-</div>
+<aside class="notes">
+<p>Walk the columns left to right, then the rows top to bottom. The first three rows are the pre-registered tests. The Merton planner gets risk tolerance and the pension right, because on the stake alone a pension does not enter, but it predicts no horizon effect, and the data show forty points. It also predicts no response to exposure outside the stake, and a hedge should raise its share where currencies are volatile. The lifecycle planner gets the sign of exposure right and is contradicted on the horizon, the pension and safety.</p>
+<p>The questionnaire needs one addition that the probes reveal: a loss screen, the “can you afford to lose it” question. UK suitability guidance calls this capacity for loss, MiFID II the ability to bear losses. In practice it lowers the risk level that stated tolerance implies and does not raise it. That one-sided screen is the asymmetry of the last slide.</p>
+<p>Say plainly that the last two rows are exploratory and that the loss screen was added after seeing them. The pre-registered rows alone already separate the questionnaire from both planners.</p>
+<p>The questionnaire column is the one reading consistent with all five rows. It is a reading, and the paper says “fits”, not “proves”. The levels also fit a Merton planner with relative risk aversion between 2 and 5, so the levels alone cannot discriminate. The comparative statics can.</p>
+<p>Objection, “the lifecycle benchmark sits at its 100 percent corner, so it predicts no response to safety either”: then it prescribes 100 percent with no statement at all, against advice near 54 percent. At the corner the lifecycle planner fails on the level, and off the corner it fails on the comparative statics.</p>
+<p>Objection, “mean reversion rationalizes the horizon effect” (Campbell and Viceira 2002): yes, but a planner sophisticated enough to price return dynamics into forty points should not ignore pension wealth.</p>
+<p>Bridge: the loss screen is where the implications start. Suitability rules oblige a human advisor to weigh the whole balance sheet, and the models weigh it only as a hazard.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!--
+## One rule answering every country makes its errors common and hard to see {#implications}
+
+::: {.claims .bullets}
+- **Errors are common, not idiosyncratic.** A handful of models answer every country, so a mistake in one rule reaches every household that asks it. Human advice already clusters by advisor [@foerster2017retail]. 
+- **The neglected margin is the one suitability rules target.** Those rules oblige a human advisor to weigh the client's balance sheet. The models weigh it only as a hazard.
+- **The uniformity is hard to see.** The explanation adapts to the country, and the number does not.
+- **Outside the perimeter.** The same service, supplied by humans, is regulated country by country.
+:::
+
+::: {.notes}
+Ninety seconds. If asked for examples of the suitability rules: MiFID II suitability assessments in the EU and Regulation Best Interest in the U.S.
+
+The third line is the household's problem: nothing in a localized explanation tells the reader that the number would have been about the same in twenty other countries.
+:::
+-->
 </section>
 <section id="conclusion" class="slide level2 center">
 <h2>Conclusions</h2>
 <div class="claims">
 <ul>
-<li><strong>Small, one-sided country effects.</strong> Country averages span 12 points and model averages 34, and every gap that survives correction is negative.</li>
+<li><strong>Small, one-sided country effects.</strong> Country averages span 12 points and model averages 34.</li>
 <li><strong>The models know the country.</strong> Explanations fill with local context while the share barely moves, but on the mortgage question the country explains more of the variance than the model.</li>
 <li><strong>Uniformity is defensible, the balance sheet is not.</strong> A hedged world fund rationalizes one number everywhere, and theory and the advice part on the balance sheet.</li>
 <li><strong>A questionnaire, not a balance-sheet rule.</strong> A stated horizon moves the advice 40 points, a stated pension about 1, and stated safety raises it by at most 5.</li>
 </ul>
 </div>
 <div class="prose">
-<p><span class="q">Each of a handful of models answers households in every language, so an error in its rule reaches everyone who asks it.</span></p>
 <p><span class="rooms"><a href="#/room-limits">What the design cannot show</a></span></p>
 </div>
+<aside class="notes">
+<p>Four claims, one breath each. The numbers behind them if someone wants them: seven significant contrasts, all negative, 3 to 11 points, and hedged theory at 52 percent everywhere. Version C raises local references by 23 points and moves the share by −0.7. On the mortgage question the country explains 27 percent of the variance and the model 15. Stated tolerance moves the advice 46 points, stated risks cut it by up to 23, stated safety raises it by at most 5.</p>
+<p>Then the market-structure sentence: advice used to be a nationally segmented service, walled in by regulation, trust and language. The same handful of models now answer in every language at negligible marginal cost, outside the regulatory perimeter that bound human advisors. The error is common within a model, across all the households that ask it.</p>
+<p>Limits, if asked: open the limits room.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="closing" class="slide level2 center">
 <h2>Emily and Lena get nearly the same number, but explained in local words</h2>
@@ -498,6 +915,20 @@ Claes Bäckman
 <p><span class="source">Claes Bäckman · Leibniz Institute for Financial Research SAFE · claes.backman@gmail.com · pre-registration at osf.io/2ch5z</span></p>
 </div>
 </div>
+<aside class="notes">
+<p>Back to Emily and Lena. Both got 60 percent. Emily was told it is a classic balanced approach. Lena was told about the Teilfreistellung. Nothing in either answer says the number would have been about the same in 21 countries, would have moved thirty points with the model they happened to open, and would barely have moved had either of them mentioned a generous pension.</p>
+<p>Leave the question on the screen. Take questions.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="appendix" class="slide level2 divider center" data-visibility="uncounted">
 <h2>Appendix</h2>
@@ -518,16 +949,57 @@ Claes Bäckman
   <a class="chat ask" href="#/room-limits">What can the design not show?</a>
 </div>
 </div>
+<aside class="notes">
+<p>The Q&amp;A menu. Click the question someone asks. Each room has a link back to the slide that raised it. Left: the 60/40 motif once per model, split at that model’s average answer, from 37 to 71 percent.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="room-models" class="slide level2 center" data-visibility="uncounted">
 <h2>Which model is asked matters more than any country</h2>
 <div class="stage tall" data-chart="grid"></div>
 <p><span class="figcap"><a href="#/reveal">Back to the talk</a></span></p>
+<aside class="notes">
+<p>Each cell is 50 answers. Read a column: a model gives nearly the same number to every country. Read a row: a country gets whatever its model gives. The model ordering follows neither vendor nor scale: Google’s models span nearly the whole range, and the four Anthropic models all sit above the pooled mean.</p>
+<p>Variance shares on the primary cell: model 69.5 percent, country 5.7, their interaction 9.5, repetitions 15.3. Equal-weighted over this panel, not market-share weighted.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="room-anchors" class="slide level2 center" data-visibility="uncounted">
 <h2>Under an unchanged name, a model’s advice can move as much as a country contrast</h2>
 <div class="stage tall" data-chart="anchors"></div>
 <p><span class="figcap"><a href="#/tracking">Back to the talk</a></span></p>
+<aside class="notes">
+<p>The seven models asked under the same identifier in July and in September. DeepSeek V4 Flash gives 8.5 points more equity on average and 15 more in the U.S. cell. Gemini 3 Flash keeps its average but cuts Brazil by 9 points. Four of the seven stay within half a point on average.</p>
+<p>Shifts of this size match the country contrasts of the main results, 2.7 to 11 points. The main collection itself ran in two days with no identifier rotation, so the drift is between collections, not within one. Replications need the collection date, not only the model name.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="room-robust" class="slide level2 center" data-visibility="uncounted">
 <h2>Temperature and the currency of the stake leave the contrasts in place</h2>
@@ -604,6 +1076,20 @@ Claes Bäckman
 </div>
 </div>
 <p><span class="source">Pre-registered robustness cells, collected 6 July 2026, Question 1, Version B, age 40. <a href="#/countries">Back to the talk</a>.</span></p>
+<aside class="notes">
+<p>Temperature only affects dispersion, and mildly: the mean within-cell standard deviation rises from 0.035 at temperature 0 to 0.041 at 1.0. Numeral anchoring cannot manufacture Brazil’s eleven points: Japan’s contrast is +1.2 with native numerals and an implied −1.6 with the dollar statement, small either way.</p>
+<p>Replacing the thirteen model fixed effects with six vendor fixed effects leaves every contrast essentially unchanged, though six clusters support no formal inference.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="room-coding" class="slide level2 center" data-visibility="uncounted">
 <h2>A separate model codes every explanation, and pension and horizon appear in nearly all of them</h2>
@@ -622,11 +1108,39 @@ Claes Bäckman
 <p>One model outside the panel, Claude Opus 4.7, codes each explanation, shown only its text and not the country, the model or the allocation. A panel of four judges from other vendor families validated the codes before any coefficient was estimated, with minimum pairwise Cohen’s κ of 0.95 for inflation, 0.95 for pension and 0.87 for local context.</p>
 <p><span class="source">Version B, Question 1, age 40, all 21 countries. <a href="#/words">Back to the talk</a>.</span></p>
 </div>
+<aside class="notes">
+<p>The horizon category is in every explanation, so it has no country variation to test. Pension and horizon are both named in essentially every answer, and only horizon moves the number: how often a consideration is mentioned says nothing about whether it is used.</p>
+<p>Inflation reasoning is elevated exactly in the high-inflation economies: +56 points in Turkey and +33 in South Africa against a U.S. base of 34 percent. A multilingual keyword dictionary agrees with the judge on 99, 96 and 73 percent of rows.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="room-inflation" class="slide level2 center" data-visibility="uncounted">
 <h2>In Brazil, Turkey and Mexico the inflation answer switches to inflation-linked bonds</h2>
 <div class="stage tall" data-chart="inflation"></div>
 <p><span class="figcap"><a href="#/mortgage">Back to the talk</a></span></p>
+<aside class="notes">
+<p>Equities are the primary instrument in 93 percent or more of answers in fourteen countries. Brazil: 87 percent inflation-linked bonds. Turkey: 66 percent linkers and 16 percent gold. Mexico 58 percent linkers, Poland split. Even inside the English-prompting group, India and South Africa tilt toward protection, against under 3 percent in the U.S., UK, Canada and Australia.</p>
+<p>There were no refusals on this question, although several models noted the 1 percent rate was unrealistically low, most often for Turkey.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="room-cells" class="slide level2 center" data-visibility="uncounted">
 <h2>In the cell means, tolerance moves the share about 46 points and a generous pension about one</h2>
@@ -660,6 +1174,19 @@ Claes Bäckman
 <p>The horizon cells: one year <span class="data" data-key="stated.cells.h1" data-d="2"></span>, twenty years <span class="data" data-key="stated.cells.h20" data-d="2"></span>.</p>
 <p><span class="source">Mean recommended equity share, English Question 1, age 40, all 21 countries, about 13,600 answers per cell. <a href="#/levers">Back to the talk</a>.</span></p>
 </div>
+<aside class="notes">
+<p>The 46-point tolerance effect is the estimate at the limited pension. The pooled means of 0.30 and 0.78 average over both pension cells, which is why they differ by 48.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="room-limits" class="slide level2 center" data-visibility="uncounted">
 <h2>The design observes advice, not the computation behind it</h2>
@@ -671,8 +1198,21 @@ Claes Bäckman
 </ul>
 </div>
 <p><span class="figcap"><a href="#/conclusion">Back to the talk</a></span></p>
+<aside class="notes">
+<p>The three limitations of the paper’s conclusion. The September re-collection is on the tracking slide in Part 1.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="mentioned" class="slide level2 center">
+<section id="mentioned" class="slide level2 center" data-visibility="uncounted">
 <h2>The pension is mentioned in nearly every explanation, and barely moves the advice</h2>
 <div class="stats two">
 <div class="stat">
@@ -683,7 +1223,7 @@ Claes Bäckman
 </div>
 </div>
 </section>
-<section id="references" class="slide level2 smaller scrollable">
+<section id="references" class="slide level2 smaller scrollable" data-visibility="uncounted">
 <h2>References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-bodie1992labor" class="csl-entry" role="listitem">
@@ -746,6 +1286,7 @@ Rossi, Alberto G., and Stephen P. Utkus. 2024. <span>“The Diversification and 
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="FinancialAdvice_AI_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
   <script src="FinancialAdvice_AI_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
   <script src="FinancialAdvice_AI_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="FinancialAdvice_AI_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
@@ -932,6 +1473,7 @@ Rossi, Alberto G., and Stephen P. Utkus. 2024. <span>“The Diversification and 
         ]
       });
     </script>
+    <!-- The deck's charts: the data first, then the library, then the stages. Order matters. -->
     <script src="js/data.js"></script>
     <script src="js/lib.js"></script>
     <script src="js/deck-charts.js"></script>

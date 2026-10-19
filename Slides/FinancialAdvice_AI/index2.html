@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="FinancialAdvice_AI_files/libs/clipboard/clipboard.min.js"></script>
+<script src="FinancialAdvice_AI_files/libs/quarto-html/tabby.min.js"></script>
+<script src="FinancialAdvice_AI_files/libs/quarto-html/popper.min.js"></script>
+<script src="FinancialAdvice_AI_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="FinancialAdvice_AI_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="FinancialAdvice_AI_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="FinancialAdvice_AI_files/libs/quarto-html/quarto-syntax-highlighting-f3c7c545dc2e91a45c874a71090d670a.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
+
+  <meta name="author" content="Claes Bäckman">
+  <title>One Advisor for the Whole World?</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="FinancialAdvice_AI_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="FinancialAdvice_AI_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="FinancialAdvice_AI_files/libs/revealjs/dist/theme/quarto-7dd29a4ad5eaf9d92c773e0bde9e1802.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+  <link href="FinancialAdvice_AI_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="FinancialAdvice_AI_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="FinancialAdvice_AI_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="FinancialAdvice_AI_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Noto+Sans+JP:wght@400;500;700&amp;family=Noto+Sans+SC:wght@400&amp;family=Noto+Sans+KR:wght@400&amp;display=swap">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">One Advisor for the Whole World?</h1>
+  <p class="subtitle">Cross-country evidence on financial advice from large language models</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Claes Bäckman
+</div>
+        <p class="quarto-title-affiliation">
+            Leibniz Institute for Financial Research SAFE
+          </p>
+    </div>
+</div>
+
+</section>
+<section id="hook" class="slide level2 center">
+<h2>Who is told to hold more stock?</h2>
+<div class="stage" data-chart="hook"></div>
+</section>
+<section id="reveal" class="slide level2 center">
+<h2>The advice varies little depending on the country</h2>
+<div class="stage" data-chart="reveal" data-animate="once"></div>
+<p><span class="rooms"><a href="#/room-models">The model grid</a></span></p>
+</section>
+<section id="setup" class="slide level2 center">
+<h2>Households everywhere now ask the same few models for financial advice</h2>
+<div class="claims bullets">
+<ul>
+<li><strong>LLMs are becoming financial advisors.</strong> Over one third of individuals across OECD countries reported using AI tools <span class="citation" data-cites="oecd2026ai">(<a href="#/references" role="doc-biblioref" onclick="">OECD 2026</a>)</span>. 51% of US consumers reported using AI to obtain financial information or advice <span class="citation" data-cites="jdpower2025">(<a href="#/references" role="doc-biblioref" onclick="">J.D. Power 2025</a>)</span></li>
+<li><strong>LLM advice comes from a handful of models.</strong> The models are trained overwhelmingly on U.S.-English text, and the same ones answer in every language.</li>
+<li><strong>Advice markets are national.</strong> They reflect local norms, pension systems and regulation.</li>
+<li><strong>This paper.</strong> Does LLM advice differ across countries, and does it adapt to local circumstances?</li>
+</ul>
+</div>
+</section>
+<section id="literature" class="slide level2 center">
+<h2>Prior work varies the investor and holds the country fixed</h2>
+<div class="claims">
+<ul>
+<li><strong><span class="citation" data-cites="choukhmane2026ai">Choukhmane et al. (<a href="#/references" role="doc-biblioref" onclick="">2026</a>)</span>.</strong> U.S. households’ own prompts against a life-cycle model: moderately risk-averse advice in round numbers.</li>
+<li><strong><span class="citation" data-cites="ross2026one">Ross and Lo (<a href="#/references" role="doc-biblioref" onclick="">2026</a>)</span>.</strong> Synthetic U.S. clients, stated risk tolerance carries most of the weight.</li>
+<li><strong><span class="citation" data-cites="foltyn2026gender">Foltyn and Olsson (<a href="#/references" role="doc-biblioref" onclick="">2026</a>)</span>.</strong> Gender gaps in financial advice in English are under two points.</li>
+<li><strong>Human and robo-advisors.</strong> Advisor fixed effects dominate client traits <span class="citation" data-cites="foerster2017retail">(<a href="#/references" role="doc-biblioref" onclick="">Foerster et al. 2017</a>)</span>, and robo-advice improves diversification <span class="citation" data-cites="dacunto2019promises rossi2024needs">(<a href="#/references" role="doc-biblioref" onclick="">D’Acunto et al. 2019</a>; <a href="#/references" role="doc-biblioref" onclick="">Rossi and Utkus 2024</a>)</span>.</li>
+</ul>
+</div>
+</section>
+<section id="outline" class="slide level2 center">
+<h2>This paper</h2>
+<div class="claims">
+<ul>
+<li><strong>Does the advice differ across countries?</strong><br>
+→ The portfolio answer barely does: small gaps, all in one direction.</li>
+<li><strong>How do the models explain their advice?</strong><br>
+→ They know the country, but only use it when required: local words in the explanations, country differences on the mortgage.</li>
+<li><strong>Does the advice track country fundamentals?</strong><br>
+→ Uniform advice is defensible, but the balance sheet should matter. Advice does not track measured risk aversion or financial literacy</li>
+<li><strong>What rule produces the advice?</strong><br>
+→ A retail risk questionnaire, or something akin to “popular financial advice” <span class="citation" data-cites="canner1997 choi2022popular">(<a href="#/references" role="doc-biblioref" onclick="">Canner et al. 1997</a>; <a href="#/references" role="doc-biblioref" onclick="">Choi 2022</a>)</span>.</li>
+</ul>
+</div>
+</section>
+<section id="sec-design" class="slide level2 divider center">
+<h2>Experimental design</h2>
+</section>
+<section id="questions" class="slide level2 center">
+<h2>Each model is asked three questions</h2>
+<div class="claims bullets">
+<ul>
+<li><strong>Portfolio.</strong> How to split the local equivalent of $50,000 between a broad stock-market index fund and government bonds over five years. Ages 30, 40 and 55.</li>
+<li><strong>Mortgage.</strong> Whether to invest savings in an index fund or prepay a 4% mortgage with twenty years left. Age 40.</li>
+<li><strong>Inflation.</strong> How to protect $50,000 earning 1% in a savings account against 3% inflation: the fraction to move and the primary instrument. Age 40.</li>
+</ul>
+</div>
+</section>
+<section id="design" class="slide level2 center">
+<h2>Three versions of each prompt</h2>
+<div class="three">
+  <div class="vcard">
+    <div class="vtag">Version B</div>
+    <div class="vsub">German · country named · generic instruments</div>
+    <div class="chat ask lena">…Ich verfüge außerdem über <span class="cue">eine reguläre Altersvorsorge</span>. <span class="cue">Ich wohne in Deutschland.</span> …einen breit gefassten Aktienindexfonds und einige Staatsanleihen…<span class="gloss">a standard pension plan · I live in Germany · a broad stock index fund and government bonds</span></div>
+  </div>
+  <div class="vcard">
+    <div class="vtag">Version B-cross</div>
+    <div class="vsub">English · country named · generic instruments</div>
+    <div class="chat ask lena">…I have <span class="cue">a standard pension plan</span> otherwise. <span class="cue">I live in Germany.</span> I am thinking of splitting my investment between a broad stock market index fund and some government bonds…<span class="gloss">the same euro amount, €45,000</span></div>
+  </div>
+  <div class="vcard">
+    <div class="vtag">Version C</div>
+    <div class="vsub">German · country named · local instruments</div>
+    <div class="chat ask lena">…Ich verfüge außerdem über <span class="cue">eine reguläre betriebliche Altersvorsorge (bAV)</span> über meinen Arbeitgeber. Ich wohne in Deutschland. …<span class="cue">einen ETF des MSCI World</span> und <span class="cue">deutsche Staatsanleihen (Bundesanleihen)</span>…<span class="gloss">an occupational pension (bAV) · an MSCI World ETF · Bunds</span></div>
+  </div>
+</div>
+
+
+</section>
+<section id="inference" class="slide level2 center">
+<h2>Empirical specification</h2>
+<div class="prose">
+<p><span class="math display">y_{imc} = \alpha_m + \gamma_c + \varepsilon_{imc}</span></p>
+</div>
+<div class="claims bullets">
+<ul>
+<li><strong>Within model.</strong> <span class="math inline">y_{imc}</span> is the equity share in repetition <span class="math inline">i</span> by model <span class="math inline">m</span> for country <span class="math inline">c</span>. The model fixed effects <span class="math inline">\alpha_m</span> make each <span class="math inline">\gamma_c</span> a within-model contrast with the U.S.</li>
+<li><strong>Thirteen clusters.</strong> Standard errors cluster on 13 models</li>
+<li><strong>Multiple testing.</strong> The twenty country contrasts form one Holm family, so the chance of even one false rejection among them is at most 5 percent.</li>
+<li><strong>Pre-registered.</strong> Filed at OSF on 2 July 2026 and collected on 3–4 July. Primary cell: the portfolio question, Version B, age 40.</li>
+</ul>
+</div>
+</section>
+<section id="sec-results1" class="slide level2 divider center">
+<h2>Results for country and language</h2>
+</section>
+<section id="countries" class="slide level2 center">
+<h2>Every country gap that survives correction is negative</h2>
+<div class="stage" data-chart="countries"></div>
+<p><span class="rooms"><a href="#/room-robust">Robustness</a></span></p>
+</section>
+<section id="round" class="slide level2 center">
+<h2>The advice bunches at round numbers and loosely follows 100 minus age</h2>
+<div class="stack">
+<div class="prose">
+<p>All 13,639 answers in the primary cell is a multiple of five, 85% are multiples of ten, with none below 10 or above 80.</p>
+</div>
+<div class="stage" data-chart="round"></div>
+</div>
+<p><span class="source">The rule and its optimal tails: <span class="citation" data-cites="love2013rules">Love (<a href="#/references" role="doc-biblioref" onclick="">2013</a>)</span>. Exploratory, not pre-registered.</span></p>
+</section>
+<section id="decomp" class="slide level2 center">
+<h2>In the large-effect countries, most of the gap attaches to the country name</h2>
+<div class="stage tall" data-chart="decomp"></div>
+</section>
+<section id="language" class="slide level2 center">
+<h2>Language and local instruments move the advice about a point</h2>
+<div class="stats two">
+<div class="stat">
+<p><span class="k f"><span class="data" data-key="stats.lambda" data-d="1"></span></span> <span class="l">points when the question is asked in the local language instead of English (B against B-cross, p = <span class="data" data-key="stats.lambdaP" data-d="3"></span>)</span></p>
+</div>
+<div class="stat">
+<p><span class="k f"><span class="data" data-key="stats.phi" data-d="1"></span></span> <span class="l">points when the prompt names the local pension, bonds and index fund (C against B, p = <span class="data" data-key="stats.phiP" data-d="3"></span>)</span></p>
+</div>
+</div>
+<div class="prose">
+<p><span class="source">Pre-registered tests, the portfolio question at age 40, model and country fixed effects. 15 countries have a translated prompt, 20 a Version C.</span></p>
+<p><span class="rooms"><a href="#/room-robust">The dollar-denominated stake</a></span></p>
+</div>
+</section>
+<section id="tracking" class="slide level2 center">
+<h2>Eleven weeks later, the results are similar</h2>
+<div class="stage tall" data-chart="waves"></div>
+<p><span class="source">Variance shares, model and country: July <span class="data" data-key="waves.first.share.model" data-d="0"></span>% and <span class="data" data-key="waves.first.share.country" data-d="0"></span>%, September <span class="data" data-key="waves.last.share.model" data-d="0"></span>% and <span class="data" data-key="waves.last.share.country" data-d="0"></span>%, the 14 new models alone <span class="data" data-key="waves.last.newOnly.share.model" data-d="0"></span>% and <span class="data" data-key="waves.last.newOnly.share.country" data-d="0"></span>%. <a href="#/room-anchors">The same models, July and September</a></span></p>
+</section>
+<section id="mortgage" class="slide level2 center">
+<h2>More cross-country variation in the other questions</h2>
+<div class="stage tall" data-chart="three"></div>
+<p><span class="rooms"><a href="#/room-inflation">Inflation instruments</a></span></p>
+</section>
+<section id="sec-explanations" class="slide level2 divider center">
+<h2>How do the models explain themselves?</h2>
+</section>
+<section id="answers" class="slide level2 center">
+<h2></h2>
+<div class="stage h-answers" data-chart="answers"></div>
+<div class="prose">
+<p><span class="source">An illustrative pair of real answers from Gemini 3 Flash, Version B, age 40. The English under the German is a close translation, with omitted sentences marked. The next slide counts all 13,639 answers.</span></p>
+</div>
+</section>
+<section id="words" class="slide level2 center">
+<h2>The explanations localize, but the number barely moves</h2>
+<div class="stage tall" data-chart="words"></div>
+<p><span class="rooms"><a href="#/room-coding">How the text is coded</a></span></p>
+</section>
+<section id="sec-benchmark" class="slide level2 divider center">
+<h2>Should advice differ across countries?</h2>
+</section>
+<section id="benchmark" class="slide level2 center">
+<h2>A way to think about the share across countries</h2>
+<div class="prose">
+<p>For the investor with stake <span class="math inline">L</span>, write the optimal share as: <span class="math display">\theta^{*}_c = \min\left\{1,\; \overbrace{{\color{#C4452A}\frac{\mu_c - r_c}{\gamma_c\,\sigma_c^{2}}}}^{\text{Merton (1969)}} \times \underbrace{\left(1+\frac{B_c}{L}\right)}_{\text{Adjustment for other wealth}}\right\}</span></p>
+</div>
+<div class="claims bullets prose">
+<ul>
+<li><strong>Risk aversion <span class="math inline">\gamma_c</span>.</strong> is not stated in the prompt, but could be imputed by the model.</li>
+<li><strong>The equity premium <span class="math inline">\mu_c - r_c</span></strong> is the same in every currency under uncovered interest parity.</li>
+<li><strong>Volatility <span class="math inline">\sigma_c</span></strong> may or may not differ by country depending on currency hedging <span class="citation" data-cites="campbell2002strategic">(<a href="#/references" role="doc-biblioref" onclick="">Campbell and Viceira 2002</a>)</span>.</li>
+<li><strong>Adjustment for other wealth.</strong> Counting the pension and human capital as safe wealth <span class="math inline">B_c</span> beside the stake raises the share in stocks <span class="citation" data-cites="bodie1992labor cocco2005">(<a href="#/references" role="doc-biblioref" onclick="">Bodie et al. 1992</a>; <a href="#/references" role="doc-biblioref" onclick="">Cocco et al. 2005</a>)</span></li>
+</ul>
+</div>
+</section>
+<section id="bench" class="slide level2 center">
+<h2>Answer depends whether the advice should take currency hedging into account</h2>
+<div class="stage tall" data-chart="bench"></div>
+</section>
+<section id="prefs" class="slide level2 center">
+<h2>The country effects are only weakly related to national risk preferences and literacy</h2>
+<div class="stage" data-chart="prefs"></div>
+<p><span class="source">Risk taking from <span class="citation" data-cites="falk2018global">Falk et al. (<a href="#/references" role="doc-biblioref" onclick="">2018</a>)</span>. Literacy from <span class="citation" data-cites="klapper2015finlit">Klapper et al. (<a href="#/references" role="doc-biblioref" onclick="">2015</a>)</span>.</span></p>
+</section>
+<section id="what-rule-produces-the-advice" class="slide level2 divider center">
+<h2>What rule produces the advice?</h2>
+</section>
+<section id="wording" class="slide level2 center">
+<h2>What happens if you change the investor?</h2>
+<div class="prose">
+<p><span class="math display">\theta^{*}_c = \min\left\{1,\; \overbrace{\frac{\mu_c - r_c}{\textcolor{#C4452A}{\gamma_c}\,\sigma_c^{2}}}^{\text{Merton (1969)}} \times \underbrace{\left(1+\frac{\textcolor{#C4452A}{B^{s}_c} + \textcolor{#C4452A}{B^{r}_c}}{L}\right)}_{\text{total wealth over the stake}} - \underbrace{\frac{\textcolor{#C4452A}{B^{r}_c}}{L}}_{\text{stocks held outside}}\right\}</span></p>
+</div>
+<div class="claims bullets">
+<ul>
+<li><strong>Risk tolerance moves <span class="math inline">\gamma</span>.</strong> “I am comfortable with substantial fluctuations…” against “I am uncomfortable with large fluctuations…”.</li>
+<li><strong>Pension generosity moves <span class="math inline">B^{s}</span>.</strong> “A substantial pension…, projected to replace most of my pre-retirement income” against “only a small pension”.</li>
+<li><strong>The horizon is not in the formula.</strong> “Over a five-year horizon” becomes one year or twenty.</li>
+</ul>
+</div>
+<div class="prose">
+<p><span class="source">English Question 1, age 40, all 21 countries with their local amounts: Version B in the six English-prompt countries, B-cross in the other fifteen. Risk and pension crossed at five years (four cells), two horizon cells, about 13,600 answers per cell. Three pre-registered single tests.</span></p>
+</div>
+</section>
+<section id="levers" class="slide level2 center">
+<h2>A stated horizon moves the advice 40 points</h2>
+<div class="stack">
+<div class="prose">
+
+</div>
+<div class="stage tall" data-chart="levers" data-animate="once"></div>
+</div>
+<p><span class="source">Pre-registered tests. Intervals: risk tolerance <span class="data" data-key="stated.risk.lo" data-d="1"></span> to <span class="data" data-key="stated.risk.hi" data-d="1"></span>, horizon <span class="data" data-key="stated.horizon.lo" data-d="1"></span> to <span class="data" data-key="stated.horizon.hi" data-d="1"></span>, generous pension <span class="data" data-key="stated.pension.lo" data-d="1"></span> to <span class="data" data-key="stated.pension.hi" data-d="1"></span> points.</span></p>
+</section>
+<section id="asym" class="slide level2 center">
+<h2>Stated risks cut the stock share sharply, stated safety barely raises it</h2>
+<div class="stage tall" data-chart="asym"></div>
+<p><span class="source">Exploratory probes collected in August 2026, after the pre-registered results were examined.</span></p>
+</section>
+<section id="lineup" class="slide level2 center">
+<h2>The pattern fits a retail risk questionnaire, not a portfolio planner</h2>
+<table class="lineup caption-top">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">A stated…</th>
+<th data-quarto-table-cell-role="th">Merton planner<span class="sub">the stake alone, CRRA, i.i.d. returns</span></th>
+<th data-quarto-table-cell-role="th">Lifecycle planner<span class="sub">the stake inside the whole balance sheet</span></th>
+<th class="col-win" data-quarto-table-cell-role="th">Retail risk questionnaire<span class="sub">how do you feel about losses, when do you need the money, can you afford to lose it</span></th>
+<th data-quarto-table-cell-role="th">Measured</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="cue-name">risk tolerance</td>
+<td class="pred">raises it</td>
+<td class="pred">raises it</td>
+<td class="pred col-win">raises it</td>
+<td class="meas"><span class="data" data-key="stated.risk.est" data-d="0" data-sign=""></span></td>
+</tr>
+<tr class="even">
+<td class="cue-name">20-year horizon</td>
+<td class="pred miss">no effect</td>
+<td class="pred miss">no effect</td>
+<td class="pred col-win">raises it</td>
+<td class="meas"><span class="data" data-key="stated.horizon.est" data-d="0" data-sign=""></span></td>
+</tr>
+<tr class="odd">
+<td class="cue-name">generous pension</td>
+<td class="pred">no effect</td>
+<td class="pred miss">raises it a lot</td>
+<td class="pred col-win blank">no effect, it is not asked</td>
+<td class="meas"><span class="data" data-key="stated.pension.est" data-d="0"></span></td>
+</tr>
+<tr class="probe first even">
+<td class="cue-name">exposure<span class="sub">pension in stocks, all my liquid wealth</span></td>
+<td class="pred miss">no effect</td>
+<td class="pred">lowers it</td>
+<td class="pred col-win">lowers it</td>
+<td class="meas"><span class="data" data-key="probes.0.r.est" data-d="0"></span>, <span class="data" data-key="probes.1.r.est" data-d="0"></span></td>
+</tr>
+<tr class="probe odd">
+<td class="cue-name">safety<span class="sub">annuity, cash cushion, currency hedge</span></td>
+<td class="pred miss">the hedge raises it</td>
+<td class="pred miss">raises it a lot</td>
+<td class="pred col-win">no effect, the screen only cuts</td>
+<td class="meas"><span class="data" data-key="probes.2.s.est" data-d="1" data-sign=""></span> to <span class="data" data-key="probes.0.s.est" data-d="1" data-sign=""></span></td>
+</tr>
+<tr class="verdict even">
+<td></td>
+<td>Contradicted on the horizon, exposure and the hedge</td>
+<td>Contradicted on the horizon, the pension and safety</td>
+<td class="win col-win">Consistent with all five</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="prose">
+<p><span class="source">Measured: the stated-investor effects, in percentage points. Last two rows: exploratory probes collected in August 2026, after the pre-registered results were examined. Struck through and marked ✗: a prediction the measured effect contradicts. The comparison follows the popular-advice reading of <span class="citation" data-cites="canner1997">Canner et al. (<a href="#/references" role="doc-biblioref" onclick="">1997</a>)</span> and <span class="citation" data-cites="choi2022popular">Choi (<a href="#/references" role="doc-biblioref" onclick="">2022</a>)</span>.</span></p>
+</div>
+</section>
+<section id="implications" class="slide level2 center">
+<h2>One rule answering every country makes its errors common and hard to see</h2>
+<div class="claims bullets">
+<ul>
+<li><strong>Errors are common, not idiosyncratic.</strong> A handful of models answer every country, so a mistake in one rule reaches every household that asks it. Human advice already clusters by advisor <span class="citation" data-cites="foerster2017retail">(<a href="#/references" role="doc-biblioref" onclick="">Foerster et al. 2017</a>)</span>.</li>
+<li><strong>The neglected margin is the one suitability rules target.</strong> Those rules oblige a human advisor to weigh the client’s balance sheet. The models weigh it only as a hazard.</li>
+<li><strong>The uniformity is hard to see.</strong> The explanation adapts to the country, and the number does not.</li>
+<li><strong>Outside the perimeter.</strong> The same service, supplied by humans, is regulated country by country.</li>
+</ul>
+</div>
+</section>
+<section id="conclusion" class="slide level2 center">
+<h2>Conclusions</h2>
+<div class="claims">
+<ul>
+<li><strong>Small, one-sided country effects.</strong> Country averages span 12 points and model averages 34, and every gap that survives correction is negative.</li>
+<li><strong>The models know the country.</strong> Explanations fill with local context while the share barely moves, but on the mortgage question the country explains more of the variance than the model.</li>
+<li><strong>Uniformity is defensible, the balance sheet is not.</strong> A hedged world fund rationalizes one number everywhere, and theory and the advice part on the balance sheet.</li>
+<li><strong>A questionnaire, not a balance-sheet rule.</strong> A stated horizon moves the advice 40 points, a stated pension about 1, and stated safety raises it by at most 5.</li>
+</ul>
+</div>
+<div class="prose">
+<p><span class="q">Each of a handful of models answers households in every language, so an error in its rule reaches everyone who asks it.</span></p>
+<p><span class="rooms"><a href="#/room-limits">What the design cannot show</a></span></p>
+</div>
+</section>
+<section id="closing" class="slide level2 center">
+<h2>Emily and Lena get nearly the same number, but explained in local words</h2>
+<div class="split even center-v">
+<div class="stage" data-chart="ending"></div>
+<div class="prose">
+<p><strong>Thank you.</strong></p>
+<p><span class="source">Claes Bäckman · Leibniz Institute for Financial Research SAFE · claes.backman@gmail.com · pre-registration at osf.io/2ch5z</span></p>
+</div>
+</div>
+</section>
+<section id="appendix" class="slide level2 divider center" data-visibility="uncounted">
+<h2>Appendix</h2>
+<div class="split even">
+<div class="stage" data-chart="fan"></div>
+<div class="room-menu">
+  <a class="chat ask" href="#/room-models">Which model says what?</a>
+  <a class="chat ask" href="#/round">Why is 60 the answer?</a>
+  <a class="chat ask" href="#/tracking">Is this just July's models?</a>
+  <a class="chat ask" href="#/room-anchors">Did the same model change?</a>
+  <a class="chat ask" href="#/inference">Inference with 13 models?</a>
+  <a class="chat ask" href="#/decomp">How much of a gap is language?</a>
+  <a class="chat ask" href="#/room-robust">Temperature, or the currency?</a>
+  <a class="chat ask" href="#/room-coding">How is the text coded?</a>
+  <a class="chat ask" href="#/room-inflation">What protects against inflation?</a>
+  <a class="chat ask" href="#/prefs">National risk preferences?</a>
+  <a class="chat ask" href="#/room-cells">The stated-investor cells?</a>
+  <a class="chat ask" href="#/room-limits">What can the design not show?</a>
+</div>
+</div>
+</section>
+<section id="room-models" class="slide level2 center" data-visibility="uncounted">
+<h2>Which model is asked matters more than any country</h2>
+<div class="stage tall" data-chart="grid"></div>
+<p><span class="figcap"><a href="#/reveal">Back to the talk</a></span></p>
+</section>
+<section id="room-anchors" class="slide level2 center" data-visibility="uncounted">
+<h2>Under an unchanged name, a model’s advice can move as much as a country contrast</h2>
+<div class="stage tall" data-chart="anchors"></div>
+<p><span class="figcap"><a href="#/tracking">Back to the talk</a></span></p>
+</section>
+<section id="room-robust" class="slide level2 center" data-visibility="uncounted">
+<h2>Temperature and the currency of the stake leave the contrasts in place</h2>
+<div class="split even cols">
+<div class="prose">
+<p><span class="colhead">Country contrast at three temperatures</span></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>0</th>
+<th>0.7</th>
+<th>1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Brazil</td>
+<td>−10.0</td>
+<td>−11.0</td>
+<td>−11.4</td>
+</tr>
+<tr class="even">
+<td>Germany</td>
+<td>−3.6</td>
+<td>−4.0</td>
+<td>−4.2</td>
+</tr>
+<tr class="odd">
+<td>Sweden</td>
+<td>−0.3</td>
+<td>−0.2</td>
+<td>−0.7</td>
+</tr>
+<tr class="even">
+<td>Japan</td>
+<td>+2.5</td>
+<td>+1.2</td>
+<td>+0.2</td>
+</tr>
+</tbody>
+</table>
+<p>The pooled mean moves 0.3 points at either bookend.</p>
+</div>
+<div class="prose">
+<p><span class="colhead">The stake stated as $50,000 instead of the local amount</span></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>shift</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Germany</td>
+<td>+1.2</td>
+<td>0.13</td>
+</tr>
+<tr class="even">
+<td>Japan</td>
+<td>−2.8</td>
+<td>0.01</td>
+</tr>
+<tr class="odd">
+<td>Sweden</td>
+<td>+1.2</td>
+<td>0.26</td>
+</tr>
+</tbody>
+</table>
+<p>Pooled shift −0.1 points (p = 0.84). The seven-digit yen figure raises Japan’s share by 2.8 points.</p>
+</div>
+</div>
+<p><span class="source">Pre-registered robustness cells, collected 6 July 2026, Question 1, Version B, age 40. <a href="#/countries">Back to the talk</a>.</span></p>
+</section>
+<section id="room-coding" class="slide level2 center" data-visibility="uncounted">
+<h2>A separate model codes every explanation, and pension and horizon appear in nearly all of them</h2>
+<div class="stats">
+<div class="stat">
+<p><span class="k f"><span class="data" data-key="textCats.horiz.B" data-pct="0"></span>%</span> <span class="l">of explanations mention the horizon</span></p>
+</div>
+<div class="stat">
+<p><span class="k f"><span class="data" data-key="textCats.pens.B" data-pct="0"></span>%</span> <span class="l">mention an existing pension</span></p>
+</div>
+<div class="stat">
+<p><span class="k f"><span class="data" data-key="textCats.local.B" data-pct="0"></span>%</span> <span class="l">name local financial context</span></p>
+</div>
+</div>
+<div class="prose">
+<p>One model outside the panel, Claude Opus 4.7, codes each explanation, shown only its text and not the country, the model or the allocation. A panel of four judges from other vendor families validated the codes before any coefficient was estimated, with minimum pairwise Cohen’s κ of 0.95 for inflation, 0.95 for pension and 0.87 for local context.</p>
+<p><span class="source">Version B, Question 1, age 40, all 21 countries. <a href="#/words">Back to the talk</a>.</span></p>
+</div>
+</section>
+<section id="room-inflation" class="slide level2 center" data-visibility="uncounted">
+<h2>In Brazil, Turkey and Mexico the inflation answer switches to inflation-linked bonds</h2>
+<div class="stage tall" data-chart="inflation"></div>
+<p><span class="figcap"><a href="#/mortgage">Back to the talk</a></span></p>
+</section>
+<section id="room-cells" class="slide level2 center" data-visibility="uncounted">
+<h2>In the cell means, tolerance moves the share about 46 points and a generous pension about one</h2>
+<div class="prose">
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>limited pension</th>
+<th>generous pension</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>risk-averse</td>
+<td><span class="data" data-key="stated.cells.averseLimited" data-d="2"></span></td>
+<td><span class="data" data-key="stated.cells.averseGenerous" data-d="2"></span></td>
+</tr>
+<tr class="even">
+<td>risk-tolerant</td>
+<td><span class="data" data-key="stated.cells.tolerantLimited" data-d="2"></span></td>
+<td><span class="data" data-key="stated.cells.tolerantGenerous" data-d="2"></span></td>
+</tr>
+</tbody>
+</table>
+<p>The horizon cells: one year <span class="data" data-key="stated.cells.h1" data-d="2"></span>, twenty years <span class="data" data-key="stated.cells.h20" data-d="2"></span>.</p>
+<p><span class="source">Mean recommended equity share, English Question 1, age 40, all 21 countries, about 13,600 answers per cell. <a href="#/levers">Back to the talk</a>.</span></p>
+</div>
+</section>
+<section id="room-limits" class="slide level2 center" data-visibility="uncounted">
+<h2>The design observes advice, not the computation behind it</h2>
+<div class="claims bullets">
+<ul>
+<li><strong>No model internals.</strong> The shared-representation reading is an inference from behaviour, consistent with interpretability work, not a measurement.</li>
+<li><strong>A static benchmark.</strong> Closed form and one period. The one life-cycle treatment of LLM advice reaches the same corner <span class="citation" data-cites="choukhmane2026ai">(<a href="#/references" role="doc-biblioref" onclick="">Choukhmane et al. 2026</a>)</span>.</li>
+<li><strong>A fast-moving panel.</strong> The main collection is a two-day snapshot. Eleven weeks later DeepSeek V4 Flash gave 8.5 points more equity under an unchanged identifier, so replications need the collection date.</li>
+</ul>
+</div>
+<p><span class="figcap"><a href="#/conclusion">Back to the talk</a></span></p>
+</section>
+<section id="mentioned" class="slide level2 center">
+<h2>The pension is mentioned in nearly every explanation, and barely moves the advice</h2>
+<div class="stats two">
+<div class="stat">
+<p><span class="k f"><span class="data" data-key="textCats.horiz.B" data-pct="0"></span>%</span> <span class="l">of explanations mention the investment horizon. A twenty-year horizon raises the stock share by <span class="data" data-key="stated.horizon.est" data-d="0"></span> points.</span></p>
+</div>
+<div class="stat">
+<p><span class="k f"><span class="data" data-key="textCats.pens.B" data-pct="0"></span>%</span> <span class="l">mention an existing pension. A generous pension changes it by <span class="data" data-key="stated.pension.est" data-d="1"></span> points for the risk-averse investor.</span></p>
+</div>
+</div>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-bodie1992labor" class="csl-entry" role="listitem">
+Bodie, Zvi, Robert C Merton, and William F Samuelson. 1992. <span>“Labor Supply Flexibility and Portfolio Choice in a Life Cycle Model.”</span> <em>Journal of Economic Dynamics and Control</em> 16 (3-4): 427–49.
+</div>
+<div id="ref-campbell2002strategic" class="csl-entry" role="listitem">
+Campbell, John Y, and Luis M Viceira. 2002. <em>Strategic Asset Allocation: Portfolio Choice for Long-Term Investors</em>. Clarendon Lectures in Economic.
+</div>
+<div id="ref-canner1997" class="csl-entry" role="listitem">
+Canner, Niko, N. Gregory Mankiw, and David N. Weil. 1997. <span>“An Asset Allocation Puzzle.”</span> <em>American Economic Review</em> 87 (1): 181–91.
+</div>
+<div id="ref-choi2022popular" class="csl-entry" role="listitem">
+Choi, James J. 2022. <span>“Popular Personal Financial Advice Versus the Professors.”</span> <em>Journal of Economic Perspectives</em> 36 (4): 167–92.
+</div>
+<div id="ref-choukhmane2026ai" class="csl-entry" role="listitem">
+Choukhmane, Taha, Tim de Silva, Weidong Lin, and Matthew Akuzawa. 2026. <span>“AI Financial Advice: Supply, Demand, and Life Cycle Implications.”</span> <em>Available at SSRN</em>.
+</div>
+<div id="ref-cocco2005" class="csl-entry" role="listitem">
+Cocco, João F., Francisco J. Gomes, and Pascal J. Maenhout. 2005. <span>“Consumption and Portfolio Choice over the Life Cycle.”</span> <em>Review of Financial Studies</em> 18 (2): 491–533.
+</div>
+<div id="ref-dacunto2019promises" class="csl-entry" role="listitem">
+D’Acunto, Francesco, Nagpurnanand Prabhala, and Alberto G. Rossi. 2019. <span>“The Promises and Pitfalls of Robo-Advising.”</span> <em>Review of Financial Studies</em> 32 (5): 1983–2020.
+</div>
+<div id="ref-falk2018global" class="csl-entry" role="listitem">
+Falk, Armin, Anke Becker, Thomas Dohmen, Benjamin Enke, David Huffman, and Uwe Sunde. 2018. <span>“Global Evidence on Economic Preferences.”</span> <em>Quarterly Journal of Economics</em> 133 (4): 1645–92.
+</div>
+<div id="ref-foerster2017retail" class="csl-entry" role="listitem">
+Foerster, Stephen, Juhani T Linnainmaa, Brian T Melzer, and Alessandro Previtero. 2017. <span>“Retail Financial Advice: Does One Size Fit All?”</span> <em>The Journal of Finance</em> 72 (4): 1441–82.
+</div>
+<div id="ref-foltyn2026gender" class="csl-entry" role="listitem">
+Foltyn, Richard, and Jonna Olsson. 2026. <em>The Worth of a <span>“Wo”</span>: Gender Bias in Financial Advice from <span>LLMs</span></em>. Working Paper. Norwegian School of Economics.
+</div>
+<div id="ref-jdpower2025" class="csl-entry" role="listitem">
+J.D. Power. 2025. <em>As More <span>U.S.</span> Consumers Struggle with Rising Prices, Many Turn to Artificial Intelligence for Financial Advice</em>. Banking and Payments Intelligence Report --- Press Release. J.D. Power.
+</div>
+<div id="ref-klapper2015finlit" class="csl-entry" role="listitem">
+Klapper, Leora, Annamaria Lusardi, and Peter van Oudheusden. 2015. <em>Financial Literacy Around the World: Insights from the <span class="nocase">Standard &amp; Poor’s</span> Ratings Services Global Financial Literacy Survey</em>. Working Paper. Global Financial Literacy Excellence Center.
+</div>
+<div id="ref-love2013rules" class="csl-entry" role="listitem">
+Love, David A. 2013. <span>“Optimal Rules of Thumb for Consumption and Portfolio Choice.”</span> <em>The Economic Journal</em> 123 (571): 932–61.
+</div>
+<div id="ref-oecd2026ai" class="csl-entry" role="listitem">
+OECD. 2026. <em>Artificial Intelligence and Personal Finance</em>. OECD Artificial Intelligence Papers No. 62. OECD Publishing. <a href="https://doi.org/10.1787/2858fdf4-en">https://doi.org/10.1787/2858fdf4-en</a>.
+</div>
+<div id="ref-ross2026one" class="csl-entry" role="listitem">
+Ross, Jillian, and Andrew W Lo. 2026. <span>“One Size Fits None: Heuristic Collapse in LLM Investment Advice.”</span> <em>arXiv Preprint arXiv:2604.23837</em>.
+</div>
+<div id="ref-rossi2024needs" class="csl-entry" role="listitem">
+Rossi, Alberto G., and Stephen P. Utkus. 2024. <span>“The Diversification and Welfare Effects of Robo-Advising.”</span> <em>Journal of Financial Economics</em> 157: 103869.
+</div>
+</div>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="FinancialAdvice_AI_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="FinancialAdvice_AI_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="FinancialAdvice_AI_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="FinancialAdvice_AI_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="FinancialAdvice_AI_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="FinancialAdvice_AI_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="FinancialAdvice_AI_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="FinancialAdvice_AI_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="FinancialAdvice_AI_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'fast',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 6.0e-2,
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script src="js/data.js"></script>
+    <script src="js/lib.js"></script>
+    <script src="js/deck-charts.js"></script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
