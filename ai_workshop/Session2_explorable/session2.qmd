@@ -354,15 +354,13 @@ The paper stays the record of the research. Each box around it is a draft writte
 :::
 :::
 
-::: {.prose}
-[Most of the value is not in having AI write your text. Use it for what it is good at, in your voice, and learn to ignore some of what it says.]{.q}
-:::
+
 
 ::: {.notes}
 Two reasons, one rule, and the personal line: I like writing and do not want AI to take the part of the job I like. The second panel is why the voice file matters: an edit that sounds like you does not trigger the discount. Detectors come back at the end of the block.
 :::
 
-## A voice file puts your prose in the window {#voice}
+## A voice file is meant to emulate your writing {#voice}
 
 ::: {.split .even}
 ::: {.prompt}
@@ -622,16 +620,13 @@ Correlations, magnitudes, selection, missingness, sign conventions, duplicate ke
 The block's BUT. A do-file that runs on simulated data can still compute the wrong thing on real data, silently. Teal is on the left because that is the part that is a verification step; the right column is what you still owe, and it is the same list as this morning's silent-error slide.
 :::
 
-## Your turn {.closing}
+## Thank you!  {.closing}
 
 ::: {.big}
-[The folder is yours. So is the check.]{.q}
 
 ```{=html}
 <div class="cmdline"><span class="typed"> </span><span class="cursor"></span></div>
 ```
-
-[Tonight: keep the folder, keep `voice.md`, keep the line in `CLAUDE.md`. Tomorrow, while the coffee brews: `/review-paper-light` on something small, and read it as a draft.]{.sub}
 
 [Questions now or later: claes.backman@gmail.com. Slides, skills, guides: [claesbackman.com/lugano](https://claesbackman.com/lugano)]{.sub}
 :::
