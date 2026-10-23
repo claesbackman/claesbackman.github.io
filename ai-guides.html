@@ -94,25 +94,6 @@
     my workshop on using these tools day to day.
   </p>
 </header>
-<!-- 
-<section>
-  <h2>All of it as one PDF</h2>
-  <p>
-    The guides below are also collected into a single citable document — the practical
-    workflow and the verification checks in one place, with the tool-specific material
-    quarantined in a dated appendix so the rest stays readable as the products change.
-  </p>
-  <ul class="guide-list">
-    <li>
-      <span class="guide-meta">PDF · v1.0 · August 2026</span>
-      <h3><a href="paper/agentic-ai-empirical-research.pdf">Agentic AI for Empirical Research</a></h3>
-      <p>A practitioner's guide, 28 pages. Where these tools run, how to set up a project,
-        how to pick a model without overpaying, how to work under a data-use agreement, and
-        a cost-ordered set of checks for establishing that AI-generated code and analysis
-        are right before they enter a paper.</p>
-    </li>
-  </ul>
-</section> -->
 
 <section>
   <h2>Where to start</h2>
@@ -167,25 +148,87 @@
   </ul>
 </section>
 
-<section>
-  <h2>Workshop slides</h2>
-  <p>
-    Slides from my workshops on agentic AI for researchers. The repository is updated
-    as the tools change.
-  </p>
-  <ul class="guide-list">
-    <li>
-      <span class="guide-meta">Workshop · Aarhus · August 2026</span>
-      <h3><a href="aarhus/">Practical AI for Academics</a></h3>
-      <p>The two-day Aarhus workshop in one place: slides for both days, the Claude Code skills used in the hands-on blocks with install instructions, the exercises, and the setup guides.</p>
-    </li>
-    <li>
-      <span class="guide-meta">Slides · GitHub</span>
-      <h3><a href="https://github.com/claesbackman/AI_Workshop_Slides">AI Workshop Slides</a></h3>
-      <p>Slide decks used in talks and workshops on integrating Claude Code, Codex, and related tools into an empirical research workflow.</p>
-    </li>
-  </ul>
+ 
+<section id="skills">
+  <h2>Skills for research</h2>
+ <p>A skill is a markdown file that Claude Code loads when you type its <code>/</code> command. Most skills used in the workshop is in one public repository, <a href="https://github.com/claesbackman/AI-research-feedback">github.com/claesbackman/AI-research-feedback</a>
+    (MIT licence). Fork them, edit them,  and change them however you like.</p>
+<p>   <a class="btn btn-primary" href="https://github.com/claesbackman/AI-research-feedback/archive/refs/heads/main.zip">Download all skills from my Github repo (zip).</a> </p>
+
+  <div class="table-wrap">
+  <table class="skills">
+    <thead><tr><th>Command</th><th>What it does</th><th>When to use it</th></tr></thead>
+    <tbody>
+      <tr><td><code>/review-paper</code></td>
+        <td>Pre-submission referee report. Eight subagents run in parallel: spelling and style, internal consistency, unsupported claims and identification, mathematics, tables and figures, a referee assessment, a contribution advocate, and a contribution skeptic. Add a journal: <code>/review-paper JF</code>.</td>
+        <td>A draft you are about to circulate or submit. Ten to fifteen minutes.</td></tr>
+      <!-- <tr><td><code>/review-paper-light</code></td>
+        <td>Two agents, contribution and identification only. Flags causal over-claiming.</td>
+        <td>Quick iteration on a draft. About a minute.</td></tr> -->
+      <tr><td><code>/review-paper-code</code></td>
+        <td>Maps the paper's empirical claims to the code. Checks reproducibility, sample restrictions, clustering, fixed effects.</td>
+        <td>Before a replication package leaves your hands.</td></tr>
+      <!-- <tr><td><code>/audit-analysis</code></td>
+        <td>Adversarial audit of changed analysis code. Looks for the errors that run cleanly and produce a plausible number.</td>
+        <td>After a substantive change to an estimation script.</td></tr> -->
+      <tr><td><code>/explain-diff</code></td>
+        <td>Explains a code change as an offline HTML page: what the code did before, what changed, what it does to the results, and a five-question quiz.</td>
+        <td>When you need to understand a change well enough to defend it.</td></tr>
+      <!-- <tr><td><code>/review-grant</code></td>
+        <td>Six-agent panel review of a grant proposal against a named funder: <code>/review-grant ERC</code>.</td>
+        <td>Before submission.</td></tr>
+      <tr><td><code>/review-pap</code></td>
+        <td>Six-agent review of a pre-analysis plan against a registry or journal standard.</td>
+        <td>Before registration.</td></tr>
+      <tr><td><code>/paper-version</code></td>
+        <td>Turns a paper into a policy brief, a one-page summary, or a five-page summary for a general audience.</td>
+        <td>When a paper needs a version for a non-specialist reader.</td></tr>
+      <tr><td><code>/prose-revision</code></td>
+        <td>Diagnoses the order of the ideas before the choice of words, then offers rewrites that differ in how far they restructure. Claims, citations, and notation come through unchanged.</td>
+        <td>A paragraph that feels awkward and you cannot say why.</td></tr>
+      <tr><td><code>/pdf-to-markdown</code></td>
+        <td>Converts a PDF into readable markdown so the agent can work with it.</td>
+        <td>Before any skill that needs to read a draft you only have as a PDF.</td></tr> -->
+      <tr><td><code>/explorable-explanations</code></td>
+        <td>Builds an interactive explanation of a topic as a tree of short HTML pages the reader moves through, in the style of Nicky Case's <a href="https://ncase.me/trust/">The Evolution of Trust</a>. Written by Nityesh Agarwal. You can download it <a href="https://github.com/nityeshaga/claude-home-base/tree/main/plugins/creative/skills/explorable-explanations">here</a>.</td>
+        <td>Explaining a mechanism or a model to students or a non-specialist reader.</td></tr>
+        <tr><td><code>/explorable-deck  </code></td>
+        <td>Builds an interactive presentation based on the same format as /explorable-explanations. The presentation is done in Quarto-Markdown and is best done by Fable. </a>.</td> <td>Creating an interactive presentation with a clear narrative. </td></tr>
+    </tbody>
+  </table>
+  </div>
 </section>
+
+<section id="installation">
+  <h2>Installation</h2>
+
+ <div class="two-col">
+    <div>
+      <h3>Without a terminal</h3>
+      <p>Windows Explorer or macOS Finder.</p>
+      <ol>
+        <li>Download the zip below and unzip it.</li>
+        <li>Open the <code>Skills</code> folder inside. Copy each skill folder
+          (<code>review-paper</code>, <code>review-paper-light</code>, and so on) into
+          <code>~/.claude/skills/</code>.</li>
+        <li>That is a hidden folder in your user folder: <code>C:\Users\you\.claude\skills</code> on Windows,
+          <code>/Users/you/.claude/skills</code> on a Mac. To see hidden folders in Explorer: View → Show → Hidden items.
+          In Finder: Cmd-Shift-. in your home folder.</li>
+        <li>Restart VS Code. Type <code>/</code> in Claude Code and the skills appear.</li>
+      </ol>
+    </div>
+    <div>
+      <h3>With a terminal</h3>
+      <p>macOS, Linux, or WSL. Paste this one line. Run it again later to update.</p>
+<pre><code>git clone --depth 1 https://github.com/claesbackman/AI-research-feedback.git /tmp/airf &amp;&amp; mkdir -p ~/.claude/skills &amp;&amp; cp -R /tmp/airf/Skills/. ~/.claude/skills/ &amp;&amp; rm -rf /tmp/airf</code></pre>
+      <p>A skill in <code>~/.claude/skills/</code> works in every project. One in
+        <code>project/.claude/skills/</code> works only in that project. The
+        <a href="https://github.com/claesbackman/AI-research-feedback#readme">README</a> has one-line installers
+        for individual skills.</p>
+    </div>
+  </div>
+</section>
+
 
 <section>
   <h2>Related</h2>

@@ -4,13 +4,13 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Practical AI for Academics — Claes Bäckman</title>
-<meta name="description" content="Slides, Claude Code skills, setup guides, and hands-on instructions from the workshop Practical AI for Academics, 2026." />
+<meta name="description" content="Slides from the workshops Practical AI for Academics and Practical AI for Teaching, 2026." />
 
 <!-- Open Graph / social preview -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Claes Bäckman" />
 <meta property="og:title" content="Practical AI for Academics" />
-<meta property="og:description" content="Slides, Claude Code skills, and guides from the workshop for academic economists." />
+<meta property="og:description" content="Slides from the workshops on AI for research and for teaching." />
 <meta property="og:url" content="https://claesbackman.com/ai_workshop/" />
 <meta property="og:image" content="https://claesbackman.com/assets/photo.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -36,15 +36,7 @@
     color: var(--ink-faint);
     margin: 0 0 .6rem;
   }
-  .toc {
-    list-style: none;
-    padding: 0;
-    margin: 1.25rem 0 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: .4rem 1.25rem;
-    font-size: .92rem;
-  }
+  .section-intro { margin: 0 0 1rem; max-width: var(--measure); }
   .guide-list {
     list-style: none;
     padding: 0;
@@ -82,111 +74,7 @@
     color: var(--ink-faint);
     margin-bottom: .4rem;
   }
-  .btn {
-    display: inline-block;
-    margin: .75rem .6rem 0 0;
-    padding: .45rem .95rem;
-    border: 1px solid var(--accent);
-    border-radius: 6px;
-    color: var(--accent);
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    font-size: .88rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background .15s ease, color .15s ease;
-  }
-  .btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .btn-primary { background: var(--accent); color: #fff; }
-  .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
-  pre {
-    background: var(--card-bg);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: .9rem 1.1rem;
-    overflow-x: auto;
-    font-size: .84rem;
-    line-height: 1.5;
-    margin: .6rem 0 1rem;
-    max-width: 100%;
-  }
-  pre code { background: none; padding: 0; font-size: 1em; }
-  .table-wrap { overflow-x: auto; margin: 0 0 1rem; }
-  table.skills { width: 100%; border-collapse: collapse; font-size: .95rem; min-width: 34rem; }
-  .skills th, .skills td {
-    text-align: left;
-    vertical-align: top;
-    padding: .6rem .6rem .6rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .skills th {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: .72rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    font-weight: 600;
-  }
-  .skills td:first-child { white-space: nowrap; }
-  .steps { max-width: var(--measure); padding-left: 1.3rem; }
-  .steps li { margin-bottom: .45rem; }
-  .steps ul { margin: .3rem 0 0; padding-left: 1.1rem; font-size: .95rem; color: var(--ink-muted); }
-  .block { margin: 0 0 2rem; max-width: var(--measure); }
-  .block h3 { font-size: 1.1rem; margin: 0 0 .5rem; }
-  .block p { margin: 0 0 .6rem; }
-  .note {
-    border-left: 3px solid var(--accent);
-    background: var(--card-bg);
-    padding: .7rem 1rem;
-    margin: 1rem 0;
-    font-size: .95rem;
-    max-width: var(--measure);
-  }
-  .two-col {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-    gap: 1.25rem;
-    margin-top: .5rem;
-  }
-  .two-col > div {
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 1rem 1.2rem;
-    background: #fff;
-  }
-  .two-col h3 { font-size: 1.05rem; margin: 0 0 .5rem; }
-  .two-col p { font-size: .95rem; margin: 0 0 .6rem; }
-  .two-col ol { padding-left: 1.2rem; margin: 0; font-size: .95rem; }
-  .two-col ol li { margin-bottom: .35rem; }
-  .schedule {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0 0;
-    display: grid;
-    gap: .9rem;
-    max-width: var(--measure);
-  }
-  .schedule li {
-    display: grid;
-    grid-template-columns: 9rem 1fr;
-    gap: 0 1rem;
-    align-items: baseline;
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: .9rem;
-  }
-  .schedule li:last-child { border-bottom: none; }
-  .schedule .when {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: .78rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-  }
-  .schedule .what { margin: 0; }
-  .schedule .what strong { display: block; margin-bottom: .2rem; }
-  .schedule .what span { color: var(--ink-muted); font-size: .95rem; }
-  @media (max-width: 34rem) {
-    .schedule li { grid-template-columns: 1fr; gap: .25rem; }
-  }
+  .files { margin: 1rem 0 0; font-size: .95rem; max-width: var(--measure); }
 </style>
 </head>
 <body>
@@ -212,29 +100,15 @@
   <p class="eyebrow">Workshop</p>
   <h1>Practical AI for Academics</h1>
   <p class="muted">
-    Everything from the workshop in one place: the slides, the Claude Code skills we use in the
-    hands-on blocks, the setup guides, and the exercises. Bookmark this page. It stays up as
-    the tools change, and the skills repository is updated as I revise them.
+    Slides from my workshops on AI for academics: two sessions on research workflows, and a one-day
+    workshop for university teachers. The setup guides, the Claude Code skills, and how to install
+    them are on the <a href="../ai-guides.html">AI guides</a> page.
   </p>
-  <p class="muted">
-    Here for the teaching workshop? <a href="teaching.html">Practical AI for Teaching</a> has its
-    own page with the slides, the thesis and rubric for the exercises, and the exercise cards.
-  </p>
-  <ul class="toc">
-    <li><a href="#schedule">Schedule</a></li>
-    <li><a href="#slides">Slides</a></li>
-    <li><a href="#setup">Set up before Session 2</a></li>
-    <li><a href="#install">Install the skills</a></li>
-    <li><a href="#skills">What each skill does</a></li>
-    <li><a href="#handson">Hands-on blocks</a></li>
-    <li><a href="#secure">Secure data</a></li>
-    <li><a href="#claudemd">CLAUDE.md template</a></li>
-    <li><a href="#guides">Guides</a></li>
-  </ul>
 </header>
 
-<section id="slides">
-  <h2>Slides</h2>
+<section id="research">
+  <h2>Research</h2>
+  <p class="section-intro">Two sessions on using agentic AI in empirical research.</p>
   <ul class="guide-list">
     <li>
       <span class="guide-meta">Session 1 · <a href="AI_Workshop_Session1.pdf">PDF</a></span>
@@ -245,7 +119,7 @@
         have the same tools, and what all of this means for academic work.</p>
     </li>
     <li>
-      <span class="guide-meta">Session 2 · PDF</span>
+      <span class="guide-meta">Session 2 · <a href="AI_Workshop_Session2.pdf">PDF</a></span>
       <h3><a href="Session2_explorable/session2.html">Practical workflows</a></h3>
       <p>A referee report on your own draft with the <code>/review-paper</code> skill, and a subagent that
         critiques the report. Slides and explorable explanations built from a paper with
@@ -259,261 +133,36 @@
       <h3><a href="AI_Workshop_Syllabus.pdf">Workshop syllabus</a></h3>
       <p>The one-page outline of both sessions and the optional block.</p>
     </li>
-    <li>
-      <span class="guide-meta">Separate workshop · own page</span>
-      <h3><a href="teaching.html">Practical AI for Teaching</a></h3>
-      <p>A one-day workshop for university teachers. In the morning an agent writes a thesis during the
-        lecture. In the afternoon participants assess that thesis against a rubric, turn the rubric into a
-        skill, draft an AI policy, and build a quiz bank from their own notes.</p>
-    </li>
   </ul>
 </section>
 
-<section id="setup">
-  <h2>Set up before Session 2</h2>
-  <p>
-    Session 2 assumes the setup from Session 1: VS Code, Claude Code, and a project folder with a
-    <code>CLAUDE.md</code>. Doing this between the sessions saves the first half hour.
-  </p>
-  <ol class="steps">
-    <li><strong>Install VS Code and Claude Code.</strong> The <a href="../claude-code-guide.html">Claude Code in VS Code</a> guide
-      walks through installation, the extensions worth having for Stata, Python, R, and LaTeX, and the first session.
-      Claude Code needs a Claude account. The free tier is enough to follow along, and the Pro tier
-      (about $20 a month) removes the limits you will otherwise hit during the hands-on blocks.</li>
-    <li><strong>If your paper lives in Overleaf,</strong> link it to a folder on your computer so the agent can read it.
-      <a href="../overleaf-vscode-guide.html">Linking VS Code and Overleaf</a> covers the GitHub and Dropbox routes.</li>
-    <li><strong>Install the skills</strong> below and restart VS Code.</li>
-    <li><strong>Bring</strong> one draft you would like another pair of eyes on, preferably close to finished, and four or five
-      PDFs of your own writing for the <code>voice.md</code> block. Intros, abstracts, and paragraphs you are proud of.
-      Leave out co-authored sections where the prose is not yours.</li>
-  </ol>
-  <div class="note">
-    Nothing you put in a project folder is uploaded anywhere until you ask the agent to read it, but
-    the agent does read what you point it at. Keep licensed and restricted data out of the folder.
-    Session 2 has a block on how to work alongside secure servers.
-  </div>
-</section>
-
-<section id="install">
-  <h2>Install the skills</h2>
-  <p>
-    A skill is a markdown file that Claude Code loads when you type its <code>/</code> command. Most skills used in the workshop is in one public repository, <a href="https://github.com/claesbackman/AI-research-feedback">github.com/claesbackman/AI-research-feedback</a>
-    (MIT licence). Fork them, edit them, make them yours. Two ways to install.
-  </p>
-  <div class="two-col">
-    <div>
-      <h3>Without a terminal</h3>
-      <p>Windows Explorer or macOS Finder.</p>
-      <ol>
-        <li>Download the zip below and unzip it.</li>
-        <li>Open the <code>Skills</code> folder inside. Copy each skill folder
-          (<code>review-paper</code>, <code>review-paper-light</code>, and so on) into
-          <code>~/.claude/skills/</code>.</li>
-        <li>That is a hidden folder in your user folder: <code>C:\Users\you\.claude\skills</code> on Windows,
-          <code>/Users/you/.claude/skills</code> on a Mac. To see hidden folders in Explorer: View → Show → Hidden items.
-          In Finder: Cmd-Shift-. in your home folder.</li>
-        <li>Restart VS Code. Type <code>/</code> in Claude Code and the skills appear.</li>
-      </ol>
-      <a class="btn btn-primary" href="https://github.com/claesbackman/AI-research-feedback/archive/refs/heads/main.zip">Download all skills (zip)</a>
-    </div>
-    <div>
-      <h3>With a terminal</h3>
-      <p>macOS, Linux, or WSL. Paste this one line. Run it again later to update.</p>
-<pre><code>git clone --depth 1 https://github.com/claesbackman/AI-research-feedback.git /tmp/airf &amp;&amp; mkdir -p ~/.claude/skills &amp;&amp; cp -R /tmp/airf/Skills/. ~/.claude/skills/ &amp;&amp; rm -rf /tmp/airf</code></pre>
-      <p>A skill in <code>~/.claude/skills/</code> works in every project. One in
-        <code>project/.claude/skills/</code> works only in that project. The
-        <a href="https://github.com/claesbackman/AI-research-feedback#readme">README</a> has one-line installers
-        for individual skills.</p>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <h2>What each skill does</h2>
-  <p>An overview of some of the skills that we cover in the workshop. Each
-    skill is a few hundred lines of plain markdown you can open and change.
-  </p>
-  <div class="table-wrap">
-  <table class="skills">
-    <thead><tr><th>Command</th><th>What it does</th><th>When to use it</th></tr></thead>
-    <tbody>
-      <tr><td><code>/review-paper</code></td>
-        <td>Pre-submission referee report. Eight subagents run in parallel: spelling and style, internal consistency, unsupported claims and identification, mathematics, tables and figures, a referee assessment, a contribution advocate, and a contribution skeptic. Add a journal: <code>/review-paper JF</code>.</td>
-        <td>A draft you are about to circulate or submit. Ten to fifteen minutes.</td></tr>
-      <!-- <tr><td><code>/review-paper-light</code></td>
-        <td>Two agents, contribution and identification only. Flags causal over-claiming.</td>
-        <td>Quick iteration on a draft. About a minute.</td></tr> -->
-      <tr><td><code>/review-paper-code</code></td>
-        <td>Maps the paper's empirical claims to the code. Checks reproducibility, sample restrictions, clustering, fixed effects.</td>
-        <td>Before a replication package leaves your hands.</td></tr>
-      <!-- <tr><td><code>/audit-analysis</code></td>
-        <td>Adversarial audit of changed analysis code. Looks for the errors that run cleanly and produce a plausible number.</td>
-        <td>After a substantive change to an estimation script.</td></tr> -->
-      <tr><td><code>/explain-diff</code></td>
-        <td>Explains a code change as an offline HTML page: what the code did before, what changed, what it does to the results, and a five-question quiz.</td>
-        <td>When you need to understand a change well enough to defend it.</td></tr>
-      <!-- <tr><td><code>/review-grant</code></td>
-        <td>Six-agent panel review of a grant proposal against a named funder: <code>/review-grant ERC</code>.</td>
-        <td>Before submission.</td></tr>
-      <tr><td><code>/review-pap</code></td>
-        <td>Six-agent review of a pre-analysis plan against a registry or journal standard.</td>
-        <td>Before registration.</td></tr>
-      <tr><td><code>/paper-version</code></td>
-        <td>Turns a paper into a policy brief, a one-page summary, or a five-page summary for a general audience.</td>
-        <td>When a paper needs a version for a non-specialist reader.</td></tr>
-      <tr><td><code>/prose-revision</code></td>
-        <td>Diagnoses the order of the ideas before the choice of words, then offers rewrites that differ in how far they restructure. Claims, citations, and notation come through unchanged.</td>
-        <td>A paragraph that feels awkward and you cannot say why.</td></tr>
-      <tr><td><code>/pdf-to-markdown</code></td>
-        <td>Converts a PDF into readable markdown so the agent can work with it.</td>
-        <td>Before any skill that needs to read a draft you only have as a PDF.</td></tr> -->
-      <tr><td><code>/voice-extractor</code></td>
-        <td>Reads a folder of your own papers and writes a <code>voice.md</code>: phrasing, sentence rhythm, hedging style, and a ban list. Written by Mihail Velikov. You can download it <a href="https://github.com/velikov-mihail/edhec-master-class/tree/main/demo2-voice-skill/.claude/skills/voice-extractor">here</a>.</td>
-        <td>The Session 2 voice block. Once per author.</td></tr>
-      <tr><td><code>/explorable-explanations</code></td>
-        <td>Builds an interactive explanation of a topic as a tree of short HTML pages the reader moves through, in the style of Nicky Case's <a href="https://ncase.me/trust/">The Evolution of Trust</a>. Written by Nityesh Agarwal. You can download it <a href="https://github.com/nityeshaga/claude-home-base/tree/main/plugins/creative/skills/explorable-explanations">here</a>.</td>
-        <td>Explaining a mechanism or a model to students or a non-specialist reader.</td></tr>
-        <tr><td><code>/explorable-deck  </code></td>
-        <td>Builds an interactive presentation based on the same format as /explorable-explanations. The presentation is done in Quarto-Markdown and is best done by Fable. </a>.</td> <td>Creating an interactive presentation with a clear narrative. </td></tr>
-    </tbody>
-  </table>
-  </div>
-</section>
-
-<section id="handson">
-  <h2>Hands-on blocks</h2>
-  <p>The instructions from the Session 2 slides, so you can follow them without switching windows.</p>
-
-  <div class="block">
-    <h3>1. A referee report on your own draft</h3>
-    <ol class="steps">
-      <li>Open the folder with your draft in VS Code and start Claude Code.</li>
-      <li>The draft needs to be LaTeX or markdown. If you only have a PDF, run <code>/pdf-to-markdown draft.pdf</code> first.</li>
-      <li>Run <code>/review-paper-light</code> for the one-minute version, or <code>/review-paper</code> for the full eight-agent run. Add a journal if you have one in mind.</li>
-      <li>Read the report in <code>reviews/</code>. It is not all correct.</li>
-    </ol>
-    <p><em>Debrief.</em> What did it catch that you would not have seen? What did it get wrong? Which agent gave the most useful feedback?</p>
-  </div>
-
-  <div class="block">
-    <h3>2. A <code>voice.md</code> from your own writing</h3>
-    <ol class="steps">
-      <li>Put four or five PDFs of your own writing in a folder, say <code>sample-papers/</code>. Five to ten thousand words is plenty.</li>
-      <li>Run <code>/voice-extractor sample-papers</code>.</li>
-      <li>Read <code>voice.md</code> and edit anything that does not sound like you. The file is yours, not the model's.</li>
-      <li>Reference it from <code>CLAUDE.md</code> so every future session loads your voice.</li>
-    </ol>
-    <p><em>Check it works.</em> Ask Claude to rewrite a paragraph with and without <code>voice.md</code> in context. If you cannot tell the versions apart, the file needs sharper rules.</p>
-  </div>
-
-  <div class="block">
-    <h3>3. Does the code do what the paper says?</h3>
-    <p>Run <code>/review-paper-code</code> in a folder that holds both the draft and the analysis scripts. It maps
-      each empirical claim in the text back to the code that produced it and flags the places where they
-      disagree: a sample restriction described in the paper but absent from the script, clustering that does
-      not match, a table number that no longer matches the output. Useful before a replication package leaves
-      your hands.</p>
-  </div>
-
-  <div class="block">
-    <h3>4. A style file for slides</h3>
-    <p>Put a few old presentations in a folder and ask Claude to describe their structure, palette, and title style.
-      Save the answer as <code>slides-style.md</code> and reference it whenever you ask for a new deck. Build it once,
-      use it for every deck after.</p>
-  </div>
-</section>
-
-<section id="secure">
-  <h2>Working with licensed and confidential data</h2>
-  <p>
-    Most of what we work with cannot be pasted into a chat window. WRDS data sits behind a licence,
-    register data sits on a secure server, and supervisory data never leaves the building. The workflow
-    that makes agentic tools usable here separates two things that usually get tangled together.
-  </p>
-  <div class="two-col">
-    <div>
-      <h3>The logic</h3>
-      <p>How the tables link, how fiscal years align to returns, which rows are usable. This is public
-        knowledge, it is the hard part, and it can be written and tested without touching licensed data.
-        Build it against synthetic data with the same schema.</p>
-    </div>
-    <div>
-      <h3>The data</h3>
-      <p>Proprietary, and only needed at the end. When the logic works, swap the loader and point it at
-        the real thing. Nothing else moves. What does not transfer is the loading layer, where the
-        schema surprises live.</p>
-    </div>
-  </div>
-  <div class="note">
-    Synthetic data only contains the bugs its author already imagined. It catches structural breakage,
-    not a sample that is quietly wrong. The check that finds those is an external benchmark: rebuild a
-    published number first, and if the pipeline cannot reproduce a known answer, nothing it produces
-    afterwards is worth reading.
-  </div>
-</section>
-
-<section id="claudemd">
-  <h2>A <code>CLAUDE.md</code> starter template</h2>
-  <p>
-    <code>CLAUDE.md</code> sits in the project folder and is loaded at the start of every session. Type
-    <code>/init</code> in Claude Code to have it drafted from the folder, or start from this and edit.
-  </p>
-<pre><code># About me
-I am a researcher in [field].
-
-# How I want you to work with me
-- Ask clarifying questions before generating long output.
-- Critical, skeptical tone in feedback. Do not flatter.
-- When editing, preserve my voice (see voice.md). No generic LLM phrasing.
-- Avoid bullet lists and passive voice in formal writing.
-- Cite the specific line or section you are commenting on.
-
-# Things to avoid
-- Do not fabricate citations.
-- Do not over-claim causality.
-- Do not insert emoji or markdown decorations in formal docs.</code></pre>
-</section>
-
-<section id="guides">
-  <h2>Guides</h2>
-  <p>The written versions of what the slides cover, kept current as the tools change.</p>
+<section id="teaching">
+  <h2>Teaching</h2>
+  <p class="section-intro">Practical AI for Teaching, a one-day workshop for university teachers. In the
+    morning an agent writes a thesis during the lecture, and in the afternoon participants assess that
+    thesis and build tools for their own courses.</p>
   <ul class="guide-list">
     <li>
-      <span class="guide-meta">PDF · 28 pages</span>
-      <h3><a href="../paper/agentic-ai-empirical-research.pdf">Agentic AI for Empirical Research</a></h3>
-      <p>The practical workflow and the verification checks in one citable document, with the tool-specific material in a dated appendix.</p>
+      <span class="guide-meta">Session 1 · Morning · <a href="teaching_session1.pdf">PDF</a></span>
+      <h3><a href="teaching_session1.html">An introduction to generative AI</a></h3>
+      <p>Six topics. Fundamentals and tools: chat versus agents, how Copilot Chat and Claude Code
+        differ, and how the agent works. Supervision and assessment of theses, with a thesis an agent
+        writes during the session and AI detectors and their limits. Teaching in general, and why
+        take-home grades stopped measuring learning. Skills. Replication packages and verification.
+        Hallucination, copyright, and plagiarism.</p>
     </li>
     <li>
-      <span class="guide-meta">Overview</span>
-      <h3><a href="../agentic-ai-overview.html">Where to run agentic AI</a></h3>
-      <p>VS Code, terminal, desktop, web, mobile. Which surface suits which task.</p>
-    </li>
-    <li>
-      <span class="guide-meta">Setup · Anthropic</span>
-      <h3><a href="../claude-code-guide.html">Claude Code in VS Code</a></h3>
-      <p>Installation, extensions, <code>CLAUDE.md</code>, skills, and the everyday research workflow.</p>
-    </li>
-    <li>
-      <span class="guide-meta">Setup · OpenAI</span>
-      <h3><a href="../codex-vscode-guide.html">Codex in VS Code</a></h3>
-      <p>The same ground for Codex. <code>AGENTS.md</code>, approval modes, cloud delegation.</p>
-    </li>
-    <li>
-      <span class="guide-meta">Comparison</span>
-      <h3><a href="../codex-vs-claude-code.html">Codex vs Claude Code</a></h3>
-      <p>How the two agents differ in everyday research use.</p>
-    </li>
-    <li>
-      <span class="guide-meta">Verification</span>
-      <h3><a href="../verifying-llm-output.html">Verifying LLM output</a></h3>
-      <p>Fresh-agent review, a second model, comprehension quizzes, and reimplementation in another language.</p>
-    </li>
-    <li>
-      <span class="guide-meta">LaTeX</span>
-      <h3><a href="../overleaf-vscode-guide.html">Linking VS Code and Overleaf</a></h3>
-      <p>Edit locally with the agent while coauthors stay on Overleaf.</p>
+      <span class="guide-meta">Session 2 · Afternoon · <a href="teaching_session2.pdf">PDF</a></span>
+      <h3><a href="teaching_session2.html">Practical workflows</a></h3>
+      <p>Hands-on, on the thesis the agent wrote in the morning. Feedback against a rubric and a
+        second opinion on that feedback, defence questions, a skill built from your own rubric, an
+        AI policy for a course, a quiz bank from your lecture notes, a course update, and one task
+        of your own.</p>
     </li>
   </ul>
+  <p class="files">Files for the Session 2 exercises: <a href="teaching_materials/paper.pdf">paper.pdf</a>,
+    the thesis the agent writes in Session 1, and <a href="teaching_materials/rubric.md" download>rubric.md</a>,
+    an example rubric you can replace with your own.</p>
 </section>
 
 <section id="contact">
