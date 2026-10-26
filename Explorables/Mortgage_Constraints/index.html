@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mortgage Constraints</title>
+<meta name="description" content="An interactive companion to the survey article 'Mortgage Constraints: Household Responses, Market Adjustment and Financial Stability' by Claes Bäckman, Ragnar Enger Juelsrud and Ella Getz Wold.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top">Mortgage Constraints</a>
+    <nav id="nav">
+      <a href="#puzzle">The puzzle</a>
+      <a href="#tools">The tools</a>
+      <a href="#framework">Framework</a>
+      <a href="#direct" class="t1">I · Direct</a>
+      <a href="#incidence" class="t2">II · Incidence</a>
+      <a href="#corrective" class="t3">III · Corrective</a>
+      <a href="#agenda">Agenda</a>
+    </nav>
+    <button class="theme" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode">◐</button>
+    <div class="progress" id="progress"></div>
+  </div>
+</div>
+
+<!-- ============================================================ HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">Survey article · working paper, October 2026</div>
+    <h1>Mortgage Constraints: Household Responses, Market Adjustment and Financial Stability</h1>
+    <div class="authors">Claes Bäckman, Ragnar Enger Juelsrud and Ella Getz Wold</div>
+    <div class="affil">Leibniz Institute for Financial Research SAFE · University of Oslo and CEPR · BI Norwegian Business School</div>
+    <p class="thesis">Limits on how much households may borrow against a home are now standard policy in most advanced economies. The usual test of success is whether credit fell. This article argues that a lower credit number says little on its own about who bears the cost, how markets redistribute it, or whether the financial system became safer, and it organizes the evidence around those three questions.</p>
+    <div class="cta">
+      <a class="btn primary" href="#puzzle">Start reading</a>
+      <a class="btn" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7640858">Paper on SSRN</a>
+      <a class="btn" href="https://claesbackman.com/Papers/Mortgage_constraints.pdf">PDF</a>
+    </div>
+    <div class="tiles">
+      <div class="tile"><div class="num">34<small> of 39</small></div><div class="lbl">advanced economies have used a loan-to-value or income-based mortgage limit</div></div>
+      <div class="tile t2"><div class="num">5–12×</div><div class="lbl">cross-country macro estimates of the credit effect exceed what household-level estimates add up to</div></div>
+      <div class="tile t3"><div class="num">10<small> of 154</small></div><div class="lbl">tightening episodes occurred in the joint credit and house-price boom where historical crisis risk is highest</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================ PUZZLE -->
+<section class="block" id="puzzle">
+  <div class="wrap">
+    <div class="eyebrow">The puzzle</div>
+    <h2>Credit fell. Did the policy work?</h2>
+    <div class="text">
+      <p class="lead">In 2015 Ireland introduced loan-to-value and loan-to-income limits on new mortgages. House-price growth in the most exposed urban markets slowed from above 20 percent to around 4. Authorities in most countries evaluate such rules the same way: did household credit fall after the rule was introduced?</p>
+      <p>Credit usually falls, and that response is the best-measured object in the literature. But a lower credit volume is an incomplete measure of success for three reasons.</p>
+    </div>
+    <div class="three" style="margin-top:24px">
+      <div class="card accent-1"><span class="num-badge" style="background:var(--t1)">I</span><h4>Who gave up borrowing, and what was it worth to them?</h4><p>The same fall in credit can mean a household put in more savings, bought a cheaper home, or was shut out of ownership.</p></div>
+      <div class="card accent-2"><span class="num-badge" style="background:var(--t2)">II</span><h4>What happened to everyone else?</h4><p>Fewer buyers can move house prices, rents and lending conditions. Those changes redistribute gains and losses across buyers, owners, renters and lenders who were never directly constrained.</p></div>
+      <div class="card accent-3"><span class="num-badge" style="background:var(--t3)">III</span><h4>Did financial vulnerability fall, or move?</h4><p>Lower regulated mortgage credit reduces risk only if the credit does not reappear elsewhere and if the economy was in a state where the risk was high in the first place.</p></div>
+    </div>
+    <div class="text" style="margin-top:28px">
+      <p>The evidence on these questions sits in literatures that rarely talk to each other: household-level studies of borrowing at regulatory thresholds, studies of housing markets and lenders, cross-country studies of aggregate credit, and the literature relating credit booms to financial crises. The article provides one framework in which all four can be read together. This page follows the same route and lets you handle the key objects yourself.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ TOOLS -->
+<section class="block alt" id="tools">
+  <div class="wrap">
+    <div class="eyebrow">Section 2 · Adoption and objectives</div>
+    <h2>What is a mortgage constraint?</h2>
+    <div class="text">
+      <p class="lead">Borrower-based rules regulate either how much a household may borrow at origination or how quickly it must repay. Each ties borrowing capacity to a different variable, so each exposes different households and moves with different market conditions.</p>
+    </div>
+    <div class="four" style="margin-top:20px">
+      <div class="card"><h4>Loan-to-value (LTV)</h4><p class="small">Caps the mortgage relative to the property value. A lower cap means a larger down payment. Capacity rises and falls with house prices, which is the collateral constraint of Kiyotaki and Moore (1997).</p></div>
+      <div class="card"><h4>Loan-to-income (LTI, DTI)</h4><p class="small">Caps debt relative to income. Not relaxed mechanically when house prices rise. Binds for households whose desired debt is high relative to current earnings.</p></div>
+      <div class="card"><h4>Debt service to income (DSTI)</h4><p class="small">Caps required payments relative to income, so tightness depends on interest rates, maturity and the repayment schedule. The US 43 percent "DTI" rule is a DSTI limit in this terminology.</p></div>
+      <div class="card"><h4>Amortization requirements</h4><p class="small">Do not cap the loan at origination but set how fast it must be repaid. They raise required payments and can reduce borrowing among households sensitive to monthly cash flow.</p></div>
+    </div>
+
+    <div class="panel" id="p-bind">
+      <header><h3>Which limit binds for this household?</h3><span class="tag model">Calculator</span></header>
+      <p class="help">Set the household and the three caps. Each bar is the largest mortgage that rule allows. The loan the household needs is the price minus its savings. Then shock the environment and watch which caps move: a house-price rise relaxes only the LTV cap, a rate rise tightens only the DSTI cap.</p>
+      <div class="controls" id="bindCtl"></div>
+      <div class="stage wide" id="bindStage"></div>
+      <div class="note"><p>Statutory capacity under each rule follows Appendix B of the paper: LTV capacity is the cap times the price, LTI capacity is the cap times income, and DSTI capacity is the payment cap times income divided by the annuity factor for the mortgage rate and maturity. The household is illustrative.</p></div>
+    </div>
+
+    <div class="two" style="margin-top:36px">
+      <div>
+        <h3>Adoption spread after 2008</h3>
+        <p>Of 39 advanced economies in the IMF's iMaPP database, 34 have used an LTV or income-based limit. Among 122 emerging and developing economies, 52 have. Hong Kong and Korea were early adopters, but adoption accelerated once the expansion of mortgage credit before 2008 was understood to have fueled the boom in house prices and leverage and deepened the bust.</p>
+        <div class="stage" id="adoptStage"></div>
+        <p class="small muted">Cumulative number of countries with an LTV or income-based limit in force. Source: iMaPP (Alam et al. 2019). Amortization and maturity rules not included.</p>
+      </div>
+      <div>
+        <h3>Authorities cite credit nearly twice as often as stability</h3>
+        <p>Across 113 borrower-based measures on residential lending in 18 European countries, 81 percent cite credit growth or household leverage as an objective and 42 percent cite financial stability. Credit is the intermediate target. Financial stability is the ultimate objective that motivates macroprudential policy, and that distinction is where the article's framework starts.</p>
+        <div class="stage" id="objStage"></div>
+        <p class="small muted">Share of measures citing an objective in each category. Objectives are multi-select, so shares do not sum to one. Source: ECB MaPPED (Budnik and Kleibl 2018).</p>
+      </div>
+    </div>
+    <div class="text" style="margin-top:28px">
+      <p>Why would a policymaker restrict borrowing at all? The theoretical literature offers two externality-based rationales that also appear in policy documents. Under a <strong>pecuniary externality</strong>, borrowers do not internalize that their leverage amplifies forced sales after a shock, which lowers collateral values and tightens everyone else's constraints. Under an <strong>aggregate demand externality</strong>, indebted households cut spending sharply after a shock and, if monetary policy cannot offset the fall in demand, reduce other households' incomes. A third rationale, consumer protection, does not rest on an externality and changes how the direct effect should be read.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FRAMEWORK -->
+<section class="block" id="framework">
+  <div class="wrap">
+    <div class="eyebrow">Section 3 · Framework</div>
+    <h2>One equation, three questions</h2>
+    <div class="two">
+      <div class="text">
+        <p class="lead">A mortgage constraint works through a chain. A statutory rule changes the borrowing capacity households actually face. Households respond. Their responses move house prices, rents and lending. Those market outcomes change how vulnerable the economy is, and vulnerability carries an external cost that no individual borrower takes into account.</p>
+        <p>Appendix B of the paper takes optimizing households, adds a reduced-form external cost of financial vulnerability of the kind studied in the normative macroprudential literature, and derives a first-order expression for the welfare effect of a small, permanent tightening. The expression has three terms, and they correspond to the three questions above. Click a term to read what it means and which empirical objects it needs.</p>
+      </div>
+      <div class="chain" aria-label="From the statutory rule to the three welfare terms">
+        <div class="box t1">Statutory rule</div><div class="arrow">↓</div>
+        <div class="box t1">Effective borrowing capacity</div><div class="arrow">↓</div>
+        <div class="box t1">Household adjustment: debt, equity, housing, tenure</div><div class="arrow">↓</div>
+        <div class="box t2">Market outcomes: house prices, rents, lending</div><div class="arrow">↓</div>
+        <div class="box t3">Aggregate vulnerability</div><div class="arrow">↓</div>
+        <div class="box t3">External cost</div>
+        <div class="fb">dashed feedback in the paper: lower prices reduce collateral values and tighten capacity under an LTV rule</div>
+      </div>
+    </div>
+
+    <div class="eq" id="eq">
+      <div class="line">
+        <span>dW&nbsp;=</span>
+        <span class="term t1 on" data-t="1"><math><mrow><mo>[</mo><mo>∫</mo><msub><mi>λ</mi><mi>i</mi></msub><msub><mi>ε</mi><mi>i</mi></msub><mfrac><mrow><mo>∂</mo><msub><mi>κ</mi><mi>i</mi></msub></mrow><mrow><mo>∂</mo><mi>τ</mi></mrow></mfrac><mi>d</mi><mi>i</mi><mo>]</mo><mi>d</mi><mi>τ</mi></mrow></math><span class="lbl">(I) Direct effect</span></span>
+        <span class="op">+</span>
+        <span class="term t2" data-t="2"><math><mrow><munder><mo>∑</mo><mi>j</mi></munder><mo>[</mo><mo>∫</mo><mo>(</mo><msub><mi>m</mi><mi>ij</mi></msub><mo>+</mo><msub><mi>λ</mi><mi>i</mi></msub><mfrac><mrow><mo>∂</mo><msub><mover><mi>κ</mi><mo>~</mo></mover><mi>i</mi></msub></mrow><mrow><mo>∂</mo><msub><mi>x</mi><mi>j</mi></msub></mrow></mfrac><mo>)</mo><mi>d</mi><mi>i</mi><mo>]</mo><mi>d</mi><msub><mi>x</mi><mi>j</mi></msub></mrow></math><span class="lbl">(II) Equilibrium incidence</span></span>
+        <span class="op">−</span>
+        <span class="term t3" data-t="3"><math><mrow><mo>∇</mo><mi>Ψ</mi><mo>(</mo><mi>Z</mi><mo>)</mo><mo>·</mo><mi>d</mi><mi>Z</mi></mrow></math><span class="lbl">(III) Corrective effect</span></span>
+      </div>
+      <div class="explain">
+        <div class="tab on" data-t="1">
+          <h4 style="color:var(--t1)">The direct effect: what lost borrowing capacity is worth to the households who lose it</h4>
+          <p>A tightening lowers the statutory parameter τ. For each household, that changes statutory capacity κ by an amount that depends on the instrument: in proportion to the property value under an LTV rule, in proportion to income under an LTI rule. Pass-through ε says how much of the statutory change reaches the household, since lender exemptions and family support can insulate it. The shadow value λ is what one more unit of borrowing capacity is worth to the household, zero for anyone the rule does not bind.</p>
+          <p>Because households were already optimizing, their coping responses, drawing down savings, buying a cheaper home, asking family, are <em>not</em> extra costs to add on. They are how the one loss is absorbed, and they reveal how much the constraint binds. One group needs separate treatment: households kept out of ownership entirely can lose more than any marginal shadow value captures.</p>
+          <div class="objs"><span><i>κ</i>statutory capacity</span><span><i>ε</i>implementation pass-through</span><span><i>λ</i>shadow value of capacity</span><span><i>τ</i>the policy parameter, higher permits more borrowing</span></div>
+        </div>
+        <div class="tab" data-t="2">
+          <h4 style="color:var(--t2)">Equilibrium incidence: who gains and loses when prices, rents and lending shift</h4>
+          <p>Each market outcome x that the policy moves is valued through two channels. The first is the household's net position m in that market: a lower house price is a gain for net buyers and a loss for net sellers, higher rents redistribute from tenants to landlords, higher spreads from borrowers to the owners of lenders. Every purchase is someone's sale, so for prices these positions sum to zero across households. This channel is a transfer, and it matters for distribution rather than for the total.</p>
+          <p>The second channel does not net out. If a market outcome enters effective capacity, a change in it revalues the constraint for every household the rule binds. Under an LTV limit a lower house price lowers collateral values and tightens capacity for all constrained households at once. Under a pure income-based limit this channel is absent.</p>
+          <div class="objs"><span><i>x</i>house prices, rents, spreads, underwriting</span><span><i>m</i>net position in each market</span><span><i>∂κ̃/∂x</i>feedback from markets to capacity</span></div>
+        </div>
+        <div class="tab" data-t="3">
+          <h4 style="color:var(--t3)">The corrective effect: whether fragility fell, and what that is worth</h4>
+          <p>Z collects the aggregate outcomes that carry external costs: total household credit, the distribution of leverage and debt service, the composition of new lending, house-price growth. Ψ is the external social cost of that vulnerability. The term multiplies the policy-induced change in each component of Z by its marginal external cost and sums. If a tightening lowers credit growth and the marginal cost of credit growth is high, the corrective benefit is large.</p>
+          <p>The marginal cost is evaluated at the current state. The crisis literature finds that credit growth predicts crises mainly when it coincides with rapid house-price growth, which means the corrective benefit of the same reduction in credit depends on when the tightening happens.</p>
+          <div class="objs"><span><i>Z</i>stability-relevant aggregates</span><span><i>∇Ψ</i>marginal external cost of each</span><span><i>dZ</i>the policy's total effect on each</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="text">
+      <p>The equation does not deliver a welfare number. It is a first-order decomposition under stated assumptions. Large reforms need a structural model, and households rationed out of ownership and borrowers who misjudge repayment risk each enter as an extra term in the appendix. What it does is identify the information an evaluation needs. The next three sections review what the evidence says about each term.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ TERM I -->
+<section class="block alt" id="direct">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="background:var(--t1)"></span>Section 4 · Term (I)</div>
+    <h2>Direct effects: who is hit, and how they cope</h2>
+    <div class="text">
+      <p class="lead">Statutory design does not determine who is constrained. Incidence depends on the instrument, on how lenders implement the rule, and on the resources households can draw on to meet it. The household-level literature gives a consistent picture on all three.</p>
+    </div>
+
+    <div class="panel" id="p-town">
+      <header><h3>The town: 24 households shopping for a home</h3><span class="tag model">Stylised model</span></header>
+      <p class="help">Each house is a vessel. Borrowed money fills it from the floor up to the cap line. Savings and family money sit on top. Drag the cap and watch who flips first. Switch to an income cap and different households are hit. Then show the cost the credit bar never records.</p>
+      <div class="controls" id="townCtl"></div>
+      <div class="town-wrap">
+        <div class="stage town" id="townStage"></div>
+        <div>
+          <div class="counts" id="townCounts"></div>
+          <div class="legend" id="townLegend"></div>
+        </div>
+      </div>
+      <div class="note">
+        <p>A teaching model, not an estimate. Rules in order: a household whose planned loan no longer fits waits and rents if it only mildly wanted to own. Otherwise it tops up from savings, then from family, then buys a cheaper home down to 65 percent of the one it wanted, and otherwise is shut out of ownership. With exemptions on, the lender may exempt three constrained households and gives them to the lowest-income ones, in the spirit of the Irish evidence that banks allocate exemptions actively and lower-income households in high-price areas are particularly likely to receive one. The town has no prices, so it cannot show term (II).</p>
+      </div>
+    </div>
+
+    <div class="two" style="margin-top:12px">
+      <div>
+        <h3>Exposure depends on the instrument</h3>
+        <p>An LTV limit binds for households with too little wealth or housing equity to meet the down payment, and the statutory change is largest for expensive properties. Income-based limits bind for households whose desired debt is high relative to current earnings. Young and first-time buyers have little wealth and are early in their earnings profiles, and they emerge across the literature as among the groups most affected under both. Exposure is also concentrated in urban, high-price markets, where more buyers are close to the threshold before any tightening. That is where the Irish limits bound most tightly. In Israel the affected buyers were pushed outward from Tel Aviv.</p>
+        <h3>The rule is not the constraint</h3>
+        <p>Two similar households under the same headline limit can face very different effective constraints. Many regimes let banks exempt a share of originations, and Irish banks allocated those exemptions actively, to lower-income households in high-price areas. UK lenders constrained by the cap on high loan-to-income lending issued fewer such loans and charged more for them, while lenders with spare capacity expanded to other groups. Family resources matter in the same way: pre-death bequests, transfers parents make during their lifetime, became a stronger predictor of market entry after Switzerland introduced LTV limits, and wealthy parents became more predictive of entering ownership as Norwegian limits tightened. Tighter constraints can therefore raise the importance of family background.</p>
+      </div>
+      <div>
+        <h3>How households adjust</h3>
+        <div class="ev">
+          <div class="item"><div class="who"><b>Smaller mortgage</b>Finland, Netherlands, Norway, US</div><p>Affected Norwegian buyers borrow about 11 percent less and Dutch buyers under the LTV cap about 9.5 percent less. Among affected high-DTI US borrowers, 20 percent shift below the threshold. In Finland, 4 percent of first-time-buyer loans shift to lower LTV levels.</p></div>
+          <div class="item"><div class="who"><b>Savings drained</b>Netherlands, Norway</div><p>LTV-constrained buyers draw down liquid assets. Dutch buyers rebuild them quickly. Norwegian buyers remain less liquid for at least three years, which matters for how they weather later shocks.</p></div>
+          <div class="item"><div class="who"><b>Cheaper or farther</b>Israel, Ireland</div><p>Israeli households affected by an LTV limit buy smaller, cheaper homes farther from central Tel Aviv. LTI-constrained Irish households mainly buy cheaper properties, while LTV-constrained ones put in more equity and largely preserve the value of the property.</p></div>
+          <div class="item"><div class="who"><b>No purchase</b>Finland, Norway, US</div><p>The Finnish limit cut first-time entry by 16 percent among affected households, and 8 percent of first-time-buyer loans left the market. The purchase probability fell 6 percent among affected Norwegians, and 15 percent of affected high-DTI US borrowers left the market.</p></div>
+          <div class="item"><div class="who"><b>Consumption</b>Norway</div><p>No discernible effect on consumption in normal times among households that still buy. Those who delay or abandon a purchase may save more to reach the new down payment, or less if buying becomes unattainable, a channel found so far only in a quantitative model.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout t1">
+      <p><strong>The exit twist.</strong> Households that stop buying altogether need separate treatment. Some were close to indifferent between owning and renting, and for them postponing costs little even though an entire mortgage disappears from the statistics. Others strongly prefer to own and are kept out by a down-payment requirement, a rejected application, or a bank that has used up its exemption quota. Their loss can be large and is not captured by any marginal shadow value. Credit data cannot tell the two apart. Two renters, the same missing mortgage, opposite welfare.</p>
+    </div>
+
+    <div class="panel" id="p-micro">
+      <header><h3>Adding up the household-level evidence</h3><span class="tag data">Calculator · Appendix C</span></header>
+      <p class="help">What do the micro estimates imply for aggregate credit growth? Apply the extensive and intensive responses to a flow of originations and divide by the debt stock. The preset loads the paper's illustration with DeFusco et al.; move the sliders to see how sensitive the number is.</p>
+      <div class="pill-row" id="microPresets"></div>
+      <div class="controls" id="microCtl"></div>
+      <div class="stage wide" id="microStage"></div>
+      <div class="note"><p>Δg ≈ −[e + sΔ] (O/B) × 100, equation C.1 in the paper. e is the share of counterfactual originations eliminated, s the share shifted to smaller loans, Δ the average proportional loan reduction among shifted borrowers, and O/B annual originations over the outstanding debt stock. Both e and s are measured relative to the whole counterfactual market. For DeFusco et al. the paper extrapolates the jumbo-market responses to the full US purchase market and obtains −0.16 percentage points, 94 percent of it from the extensive margin. Aastveit et al. report their own calculation for Norway of −0.27. These are partial-equilibrium accounting exercises, not aggregate effects.</p></div>
+    </div>
+
+    <div class="section-summary">
+      <div class="card"><div class="n">1</div><strong>Incidence is concentrated, not widespread.</strong> Young, first-time and low-wealth households are most exposed, and those without family resources have the fewest ways to mitigate a tightening.</div>
+      <div class="card"><div class="n">2</div><strong>Adjustment reveals how much the constraint binds.</strong> Households deplete liquidity, change housing quality and location, and delay or forgo ownership. Additional borrowing capacity is valuable to a non-negligible group.</div>
+      <div class="card"><div class="n">3</div><strong>Design matters.</strong> LTV and income-based limits expose different households and induce different substitutions, and lender implementation decides who ultimately faces the rule. The direct credit effect, added up, is modest: 0.16 to 0.27 percentage points of annual credit growth.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ TERM II -->
+<section class="block" id="incidence">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="background:var(--t2)"></span>Section 5 · Term (II)</div>
+    <h2>Equilibrium incidence: the aggregation gap</h2>
+    <div class="text">
+      <p class="lead">Household-level studies compare more and less exposed households in the same market, which differences out anything common to both: house prices, rents, lending conditions. Macro studies keep those market-wide responses in. When the two are placed on a common scale, the cross-country macro estimates are five to twelve times larger.</p>
+    </div>
+
+    <div class="panel gap" id="p-gap">
+      <header><h3>How much amplification would close the gap?</h3><span class="tag data">Figure 3, interactive</span></header>
+      <p class="help">The blue dots are the two household-level estimates. Drag the multiplier to amplify them and see when the amplified range reaches the cross-country macro estimates. The markers under the slider are total-to-direct ratios from other credit shocks, each labelled with its setting, because none of them is a policy tightening.</p>
+      <div class="controls" id="gapCtl"></div>
+      <div class="stage wide" id="gapStage"></div>
+      <div class="note"><p>Household-level estimates: DeFusco et al. (2020) for the United States (0.16) and Aastveit et al. for Norway (0.27). Macro range: 1.4 to 2.0 pp from the cross-country studies of Cerutti et al. (2017) and Akinci and Olmstead-Rumsey (2018), the paper's preferred range. The faint row is the publication-bias-adjusted meta-analysis of Malovaná et al. (2025), 0.6 to 1.1 pp, shown for context only because its sample mixes micro-level and macro-level studies. Benchmarks: Huber (2018), county employment after a German bank's lending cut, 2.6 to 3.9; Mian, Sarto and Sufi (2026), regional credit response in the US 2000s expansion, 4.5; Sarto (2025), US counties in the same expansion, 5.6 with a range of 4.2 (elastic housing supply) to 7.7 (inelastic). The comparison is a plausibility check across different settings, not an estimate of amplification from mortgage constraints.</p></div>
+    </div>
+
+    <div class="text">
+      <p>The gap should not be read as an estimate of general equilibrium amplification. The micro and macro studies differ in samples, countries, policy changes, credit measures, methods and horizons. Macro estimates may pick up anticipation, concurrent policies, or whatever else was happening around a tightening. Micro comparisons can suffer from contaminated control groups, and the direction of that bias depends on whom the spillover hits. If lower house prices reduce borrowing more among the comparison group, the gap overstates amplification. If the spillover falls mainly on exposed households, as the collateral feedback under an LTV limit does, or if lenders reallocate credit toward the comparison group, as in Ireland, the gap understates it.</p>
+      <p>What the exercise shows is narrower. Multipliers of 2.6 to 7.7, the range spanned by the regional estimates, turn 0.16 to 0.27 into 0.4 to 2.1 percentage points, which spans the macro range. But the overlap is confined to the upper part of that range: the macro estimates correspond to five to twelve times the household-level effects, so only amplification of the size Sarto finds in counties with inelastic housing supply, or the upper end of the regional credit multipliers, closes the gap. Huber's German employment ratios and the US regional credit multiplier of Mian, Sarto and Sufi do not. Equilibrium effects at the upper end of those found elsewhere in the credit literature would reconcile the two sets of estimates, they have not been estimated for mortgage constraints, and the gap may also reflect upward bias in the macro estimates.</p>
+    </div>
+
+    <h3 style="margin-top:36px">Three channels, and who sits on each side</h3>
+    <div class="three">
+      <div class="card accent-2"><h4>House prices</h4><p class="small">Cross-country estimates are imprecise: a meta-analysis finds weaker effects on prices than on credit, while one cross-country study puts the house-price effect of LTV tightenings at about 8 percent. Within-country studies find clearer responses where the rules bind: Irish house-price growth in the most exposed urban markets slowed from above 20 percent to around 4. Taiwanese districts under an LTV tightening saw prices fall 6 percent relative to neighbours across the border. Lower prices transfer from net sellers, who are older and wealthier, to net buyers, who are younger. Under an LTV rule they also tighten capacity for owners who move or refinance.</p></div>
+      <div class="card accent-2"><h4>Rents</h4><p class="small">Households that delay a purchase add to rental demand. In the Irish counties where the 2015 limits bound most, house prices grew less and rents grew more over the following two years. A one-standard-deviation increase in exposure came with 4.2 percent lower house-price growth and 2.5 percent higher rent growth. A policy that lowers the price of owner-occupied housing can still leave prospective buyers worse off while they remain renters. Rents rising while prices fall also says the rental market did not absorb the displaced demand frictionlessly.</p></div>
+      <div class="card accent-2"><h4>Lenders</h4><p class="small">Banks most exposed to the Irish limits shifted mortgage lending toward higher-income households and rural markets, lent more to riskier firms and bought more high-yield securities. Irish banking groups also took on more leveraged mortgage lending in the United Kingdom. UK lenders bound by the high-LTI cap charged more for such loans. A reduction in high-LTV mortgages lowers vulnerability only to the extent that the displaced credit does not reappear in an equally fragile form.</p></div>
+    </div>
+
+    <div class="panel" id="p-ledger">
+      <header><h3>Transfers net out. Collateral revaluation does not.</h3><span class="tag model">Stylised model</span></header>
+      <p class="help">Drag the house-price change a tightening induces. Buyers' gains and sellers' losses are mirror images and sum to zero: a transfer whose size matters for distribution, not for the total. The second bar is the revaluation of borrowing capacity for every constrained household. Switch the instrument to see it vanish under an income-based limit.</p>
+      <div class="controls" id="ledgerCtl"></div>
+      <div class="stage wide" id="ledgerStage"></div>
+      <div class="note"><p>Illustrative magnitudes for a market with one unit of housing traded. The revaluation channel is λ·τ·h per constrained household under an LTV rule (Appendix B.3). For a first-time buyer the two channels partly offset. For an owner who trades up modestly and is constrained, a lower price can be a net loss.</p></div>
+    </div>
+
+    <div class="section-summary">
+      <div class="card"><div class="n">1</div><strong>Market responses are plausibly large.</strong> Aggregate credit estimates are several times the mechanically aggregated micro responses. The gap is consistent with amplification through prices, lending conditions and credit allocation, but it does not identify it.</div>
+      <div class="card"><div class="n">2</div><strong>Incidence depends on the channel.</strong> Lower prices favour prospective buyers and may offset part of their direct burden. Higher rents fall on the households that could not buy. Lender reallocation moves credit toward groups that are generally less exposed.</div>
+      <div class="card"><div class="n">3</div><strong>No study adds it up.</strong> The evidence shows that term (II) redistributes the effects of mortgage constraints in ways that differ from statutory exposure. It does not yet provide a joint estimate of the gains and losses, or a money-metric value of the term as a whole.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ TERM III -->
+<section class="block alt" id="corrective">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="background:var(--t3)"></span>Section 6 · Term (III)</div>
+    <h2>Corrective effects: the crisis map</h2>
+    <div class="text">
+      <p class="lead">Financial stability is the main rationale for mortgage constraints, and the term has two parts: how much each stability-relevant outcome matters for crisis risk, and how much the policy moves it. The crisis literature answers the first part clearly. Credit expansions are among the most robust predictors of financial crises in long historical panels, and in the postwar period mortgage lending accounts for much of that relationship. But the relationship is state dependent.</p>
+    </div>
+
+    <div class="panel" id="p-grid">
+      <header><h3>Crisis probability depends on credit and house prices together</h3><span class="tag data">Figure 4a · Greenwood et al. (2022)</span></header>
+      <p class="help">Each cell is the probability that a financial crisis begins within three years, for country-years sorted by the three-year change in household debt to GDP and three-year real house-price growth. Hover a cell. The outlined cell is the household "R-zone".</p>
+      <div class="stage wide" id="gridStage"></div>
+      <div class="note"><p>Table 3, Panel D of Greenwood, Hanson, Shleifer and Sørensen (2022), 42 countries, 1950 to 2016. Cell values are conditional frequencies and should not be read as causal policy effects. In their regression decomposition, high credit growth alone adds about 9 percentage points to the three-year crisis probability, high house-price growth alone adds essentially nothing, and both together add about 30.</p></div>
+    </div>
+
+    <div class="text">
+      <p>If the corrective benefit of a given reduction in credit is largest in a joint credit and house-price boom, a natural question is whether tightenings actually happen there. The paper places every tightening involving an LTV limit, an income-based limit or a household loan restriction recorded in the IMF iMaPP database between 2000 and 2024 on the same map, using the country's position in the quarter before the action.</p>
+    </div>
+
+    <div class="panel" id="p-episodes">
+      <header><h3>Where were economies when they tightened?</h3><span class="tag data">Figure 4b · 154 episodes</span></header>
+      <p class="help">Each marker is one tightening episode. Hover for country, year, instruments and position. Filter by country group, and highlight the reforms studied in the papers the article reviews. The counters update with the filter.</p>
+      <div class="controls" id="epCtl"></div>
+      <div class="readout" id="epRead"></div>
+      <div class="stage wide" id="epStage"></div>
+      <div class="note"><p>Tightenings involving an LTV limit, an income-based limit, or a household loan restriction in iMaPP (Alam et al. 2019); consecutive actions within twelve months count as one episode. Positions use BIS credit to households relative to GDP and the BIS real residential property-price index. Zone thresholds follow Greenwood et al. (2022). Observations from 2020 to 2024 are affected by unusually large movements in nominal GDP.</p></div>
+    </div>
+
+    <div class="two">
+      <div class="card accent-3"><h4>Reading one: used when risk was low</h4><p class="small">Only 10 of 154 episodes, and 8 of 105 in advanced economies, fall in the R-zone. House-price growth is in the top tercile in 56 episodes, but only 10 of those also have household credit growth in the top quintile, and household debt relative to GDP is falling in 46 episodes. On this reading the policies were used in states where historical crisis risk was modest, and the corrective benefit was correspondingly small.</p></div>
+      <div class="card accent-3"><h4>Reading two: successful pre-emption</h4><p class="small">Mortgage constraints are preventive and forward-looking. Optimal timing may well be at intermediate credit and house-price growth, before the economy enters the region where risk rises steeply. On this reading the sparse R-zone is evidence that the policies kept economies out of it. The economy's position at implementation cannot distinguish the two readings. Only the path credit and house prices would have followed without the tightening can.</p></div>
+    </div>
+
+    <h3 style="margin-top:36px">Does the policy move the outcomes that matter?</h3>
+    <div class="ev">
+      <div class="item"><div class="who"><b>Credit and prices</b>Terms (I) and (II)</div><p>Aggregate credit growth falls, fewer mortgages are originated, continuing buyers take on less leverage, and house-price growth slows in the most exposed markets. These move two central crisis predictors in the direction of lower risk.</p></div>
+      <div class="item"><div class="who"><b>Defaults and arrears</b>US, Netherlands, UK</div><p>Applying the US debt-to-income rule to the whole market would have lowered five-year default rates of the 2007 and 2008 cohorts by 0.35 to 0.40 percentage points, small against default rates of 24 to 34 percent among loans not repaid early. Dutch households affected by the LTV limit were 0.8 percentage points less likely to enter arrears against a baseline of 3.3. After the Brexit referendum, low-income borrowers in areas more exposed to the UK loan-to-income limit defaulted one-fifth to one-third less often.</p></div>
+      <div class="item"><div class="who"><b>The leverage–liquidity trade-off</b>Netherlands vs Norway</div><p>Constrained buyers who meet a larger down payment by draining savings have less debt but a smaller buffer. Dutch buyers smooth consumption better once buffers are rebuilt. Norwegian buyers, whose liquidity stays lower for years, cut spending more after job loss. Not every response reduces vulnerability.</p></div>
+      <div class="item"><div class="who"><b>GDP at risk</b>Reduced form</div><p>Tighter LTV limits narrow the distribution of future GDP growth by raising its lower tail without lowering mean growth. Borrower-based measures look most beneficial when credit vulnerabilities are high. But narratively identified shocks in twelve European economies attribute the tail improvement mainly to lender-based measures, so the specific contribution of mortgage constraints is not established.</p></div>
+    </div>
+
+    <div class="callout t3">
+      <p><strong>What the evidence establishes about term (III).</strong> Rapid household credit growth is a robust predictor of distress, especially alongside rapid house-price growth, and credit-intensive booms are followed by deeper downturns. Mortgage constraints move most stability-relevant outcomes in a favourable direction, and reduced-form evidence points the same way. Existing research supports a positive corrective effect but does not provide a quantitative estimate of it. That would require a causal mapping from each change in Z to external losses, and evidence on how that mapping varies with the state of the economy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ AGENDA -->
+<section class="block" id="agenda">
+  <div class="wrap">
+    <div class="eyebrow">Section 7 · Directions for future research</div>
+    <h2>Where another estimate is worth the most</h2>
+    <div class="text">
+      <p class="lead">The best-measured object in the literature, the direct credit response of exposed households, is a small part of the total response and reveals neither the full private burden, nor the equilibrium adjustment, nor the corrective benefit. One more estimate of it is worth less than research on the six questions below.</p>
+    </div>
+    <div style="max-width:800px;margin-top:20px">
+      <details><summary>Measure the full, direct burden on households</summary><div class="body"><span class="term" style="color:var(--t1)">Term (I)</span><p>Most of the direct credit response comes from the extensive margin, yet most of what we know about adjustment comes from households that still buy. Does a constraint delay ownership by a year or two, or exclude some households permanently? Linking applications and rejections to credit registers, transactions, rental contracts and parental wealth, as Nordic data allow, would show how long entry is delayed, what delayed households pay in rent, what they eventually buy, and whether family resources decide who enters. Survey designs that elicit willingness to pay for borrowing capacity directly are a natural complement, since households that never buy do not reveal it through their choices.</p></div></details>
+      <details><summary>Estimate direct and equilibrium effects in the same setting, and identify the channel</summary><div class="body"><span class="term" style="color:var(--t2)">Term (II)</span><p>The aggregation gap compares studies of different countries, instruments, outcomes and horizons. A study that estimates the household response within markets and the market-level response across markets with different average exposure, for the same outcome and horizon, delivers a regional multiplier directly, and should report the diagnostics for heterogeneous spillovers. No study of a borrower-based measure has yet properly estimated the general equilibrium amplification of mortgage constraints. Mortgage constraints also offer a natural test of mechanism: the collateral channel operates under LTV limits but not under income-based limits, so house-price spillovers to credit should be weaker for LTI-constrained households. Appendix C of the paper is a practitioner's guide to these designs.</p></div></details>
+      <details><summary>Trace where the displaced credit goes</summary><div class="body"><span class="term" style="color:var(--t2)">Terms (II) and (III)</span><p>A tightening lowers vulnerability only if the credit it removes does not reappear elsewhere in an equally fragile form. Irish banks expanded riskier corporate lending and UK mortgage lending. Swedish buyers paid a large premium for unregulated debt to bypass the LTV cap. Parents borrow against their own homes to help children enter. Most studies measure only the regulated segment. The relevant outcome is the distribution of leverage and debt service across the whole system, including debt held by parents, non-bank lenders and foreign affiliates.</p></div></details>
+      <details><summary>Measure the external cost of household leverage in a downturn</summary><div class="body"><span class="term" style="color:var(--t3)">Term (III)</span><p>Several authorities explicitly invoke an aggregate demand externality. In the models behind that rationale, the externality is the product of how sharply indebted households cut spending after a shock and how far monetary policy fails to offset the fall in demand. Neither object has been measured in a setting with mortgage constraints. The first step is to establish whether households whose mortgages were originated under tighter constraints actually cut consumption less when house prices or incomes fall, given that lower leverage comes with lower liquid buffers. The second is whether their spending supports the incomes of other households in the same local market. The monetary offset could be studied by comparing countries inside and outside a currency union.</p></div></details>
+      <details><summary>Understand whether mortgage constraints keep countries out of the R-zone</summary><div class="body"><span class="term" style="color:var(--t3)">Term (III)</span><p>Few tightenings occur where historical crisis risk is highest, which is consistent both with policy being used too late and with successful pre-emption. Separating the two requires an estimate of the path that credit, debt service, lending standards and house prices would have followed without the tightening. The main obstacle is endogeneity, since authorities tighten in response to the very credit growth they cite as the objective. With more than 150 episodes across nearly 40 countries, event-study and synthetic-control designs on the crisis map are now feasible.</p></div></details>
+      <details><summary>Evaluate mortgage constraints jointly</summary><div class="body"><span class="term" style="color:var(--ink3)">All terms</span><p>Norway combines LTV and debt-to-income limits with amortization requirements and a stress test. Ireland introduced LTV and LTI limits together. Sweden combines amortization with an LTV limit. The instruments bind for different households, the binding one changes with prices, incomes and rates, and they induce different adjustments. Meta-analytic estimates suggest larger credit effects when LTV and income-based limits are combined, but few studies show how the instruments interact for the same borrowers. Loan-level data recording all ratios at origination would show how many households each limit constrains, and how the response to one depends on the others. Bank-based measures that target the same externalities belong in the same evaluation.</p></div></details>
+    </div>
+    <div class="callout" style="margin-top:36px;max-width:800px">
+      <p><strong>In one paragraph.</strong> A decline in credit shows that the policy reduced leverage, not that it improved welfare. That assessment also requires the value of the borrowing capacity households lose, the incidence of the equilibrium changes that follow, and the path financial vulnerability would have followed without the policy. The evidence reviewed in the article identifies many of these components. It does not yet put a number on any of the three terms.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="two">
+      <div>
+        <p><strong>Cite the paper</strong></p>
+        <pre>Bäckman, Claes, Ragnar Enger Juelsrud, and Ella Getz Wold. 2026.
+"Mortgage Constraints: Household Responses, Market Adjustment
+and Financial Stability." Working paper.
+Available at SSRN: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7640858</pre>
+        <p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7640858">Read the paper on SSRN</a> · <a href="https://claesbackman.com/Papers/Mortgage_constraints.pdf">download the PDF</a></p>
+      </div>
+      <div>
+        <p><strong>About this page</strong></p>
+        <p>The empirical numbers on this page are taken from the paper and its appendices. The adoption, objectives, crisis-grid and episode data are the same files that produce the paper's figures. The town and the price ledger are stylised teaching models and are labelled as such. Nothing here is an estimate of the welfare effect of a mortgage constraint.</p>
+        <p class="muted">Sources: IMF iMaPP (Alam et al. 2019); ECB MaPPED (Budnik and Kleibl 2018); Greenwood, Hanson, Shleifer and Sørensen (2022); BIS credit and property-price statistics. The authors acknowledge research support from the Leibniz Institute for Financial Research SAFE. Claes Bäckman gratefully acknowledges funding from the European Union through the Marie Skłodowska-Curie Individual Fellowship YoHo, project 101151984. Views and opinions expressed are those of the authors only and do not necessarily reflect those of the European Union or the European Research Executive Agency (REA). Neither the European Union nor the granting authority can be held responsible for them.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
