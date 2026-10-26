@@ -45,10 +45,6 @@ link-citations: false
 
 [Sophia Kazinnik on X (x.com/SophiaKazinnik). Screenshots as posted.]{.figcap}
 
-::: {.notes}
-Read the first post: everyone asks about agents, orchestration, elaborate setups. Then press for the second, the turn of the block: most empirical research tasks are bounded, and the elaborate setup adds cost and failure points. After an hour of skills and subagents this is deliberate: the writing block is a file and a habit, nothing more.
-:::
-
 
 ## Before anything: the folder, the panel, the skills {#checkin}
 
@@ -64,19 +60,11 @@ Read the first post: everyone asks about agents, orchestration, elaborate setups
 **Claude Code needs a paid plan** (Pro, Max, Team or Enterprise). On a free account, pair up with a neighbour for the exercises.
 :::
 
-::: {.notes}
-Walk the room while they check. The three failures are always the same: the website open instead of VS Code, a file open instead of the folder, and no skills installed. Give the skill install five minutes and let neighbours help; the exercise that follows is dead without it. Say the two mechanics aloud, slash and at-sign, because they are the only syntax the afternoon needs. Anyone on a free plan pairs up; say it now rather than at slide 3.
-:::
-
 
 ##  {#message}
 
 ::: {.big}
 [Context improves AI tools tremendously, and the goal is to provide the right context.]{.q}
-:::
-
-::: {.notes}
-The morning's sentence, now earned three times over. Pause, then the recap.
 :::
 
 
@@ -96,11 +84,7 @@ The morning's sentence, now earned three times over. Pause, then the recap.
 ::: {.prose}
 Every block is the same move as this morning's argument: put the right files in the folder, type one command, and read what comes back as a draft to check, not an answer to accept. Blocks 1, 3 and 5 have a timed exercise; block 4 has an optional one. **Break after block 3, around 15:30.**
 
-**Slides, skills and guides for both sessions:** [claesbackman.com/lugano](https://claesbackman.com/ai_workshops).
-:::
-
-::: {.notes}
-Do not read the six boxes. Say the one sentence about the move and point at the three timed blocks. The break time is here and nowhere else. The resources page is the one from the Lugano workshop and still applies; say so if someone asks about the name.
+**Slides, skills and guides for both sessions:** [claesbackman.com/ai_workshop](https://claesbackman.com/ai_workshop).
 :::
 
 ## 1 · A referee report on your paper {.divider .center}
@@ -132,10 +116,6 @@ Do not read the six boxes. Say the one sentence about the move and point at the 
 
 :::
 
-:::
-
-::: {.notes}
-Start the clock as soon as the first person has typed the command. This is the afternoon's background demo, the way Ben's website was this morning: the report runs while the next slides explain what is happening. A full run on a forty-page paper usually finishes inside ten minutes; the light version in about one. If the network is down or nothing runs, the fallback is the example paper's finished report on the resources page, and the debrief uses that. Ask for the two guesses in writing so the debrief has something to compare against. Anyone without a draft runs it on the example paper from the resources page.
 :::
 
 
@@ -176,19 +156,11 @@ Very easy to make your own skill if you keep repeating prompts: say *make this a
 :::
 :::
 
-::: {.notes}
-Say "a saved prompt with a name" and let the code block do the rest. The file is long because it tells eight reviewers exactly what to look for and how to report; that length is why the report is specific rather than a checklist. The trigger is the slash; Codex uses a dollar sign. Nothing here is magic: whoever wants to can open the file this evening.
-:::
-
 ## Eight narrow reviewers beat one diffuse reader {#fan-out}
 
 ```{=html}
 <div class="stage tall" data-chart="fan-out"></div>
 ```
-
-::: {.notes}
-The move: press "Run /review-paper" and let the eight bars fill; the report box fills when the last one is back. Two things while it runs. Parallel: the report takes as long as the slowest reviewer, not the sum. Fresh windows: a reader checking only cross-references is not distracted by the identification strategy, and a reader with the whole paper and nothing else in its window does not run out of room; that is this morning's context budget used on purpose. If the stage does not animate, the static picture shows the finished state; narrate the same two points from it. The independence caveat is on the slide because the room's empiricists will raise it otherwise.
-:::
 
 ## But the agent that wrote the report will defend it {#second-opinion}
 
@@ -196,10 +168,6 @@ The move: press "Run /review-paper" and let the eight bars fill; the report box 
 <div class="stage tall" data-chart="second-opinion"></div>
 ```
 
-
-::: {.notes}
-The block's reversal. Before advancing, ask the room: "If you now type 'is this report right?', what will it say?" Everyone knows. That is the point: the answer is worthless because of what is in the window, not because the model is weak. Point at the blue segment in the top window and the brick one in the bottom: the same report, once as the author's own output, once as a file handed to a stranger. "Report, do not fix" is check 1 from this morning. The exercise itself is two slides on, once the reports are in.
-:::
 
 
 
@@ -224,10 +192,6 @@ The block's reversal. Before advancing, ask the room: "If you now type 'is this 
 :::
 :::
 
-::: {.notes}
-Collect answers to question 2 first, wrong ones before right ones: the room needs to hear that the report invented a missing robustness check or misread a table, so that nobody leaves thinking the output is to be accepted. Then the adversary: usually it softens two of the report's findings and adds one, which is the mechanism of the previous slide made visible. Four things to say if the room does not: the report is about their draft, with line references, not a checklist; the eight fresh windows are why it works; it is a pre-flight check, not a substitute for a referee; and the whole thing is a markdown file they can fork. End on the sentence in large type.
-:::
-
 ## 2 · Slides and communication {.divider .center}
 
 ```{=html}
@@ -239,10 +203,6 @@ Collect answers to question 2 first, wrong ones before right ones: the room need
 ```{=html}
 <div class="stage tall" data-chart="parrot"></div>
 ```
-
-::: {.notes}
-Static stage: two miniature slides. Left, what the prompt produces, drawn from memory of a hundred conference decks; right, one slide from an explorable deck. Say that the left one is not wrong, it is what every hour of manual Beamer used to produce, only in twenty minutes. The question the next slide asks is whether "faster" is the only thing the tool can do for a talk.
-:::
 
 ## AI should let us do new things, not only old things faster {#explorable}
 
@@ -258,10 +218,6 @@ Static stage: two miniature slides. Left, what the prompt produces, drawn from m
 [Examples: [a housing-returns paper](https://claesbackman.com/Slides/HousingReturns) and [a paper on financial advice from LLMs](https://claesbackman.com/Slides/FinancialAdvice_AI). The skill: [github.com/claesbackman/AI-research-feedback](https://github.com/claesbackman/AI-research-feedback), `Skills/explorable-deck`. Adapted from Nityesh Agarwal's skill for explorable websites.]{.source}
 :::
 
-::: {.notes}
-Open the housing-returns deck if the network is up and show two slides: the hook with the two buyers and one live stage. Say what the skill is: the same kind of markdown file as /review-paper, a few thousand words of craft rules the agent follows, with independent reviewer subagents before it hands the deck over. The left column is the reason to reach for it; the right column is what the room has been looking at all day.
-:::
-
 ## But it comes with some caveats {#right-story}
 
 ::: {.split .even .pairs}
@@ -275,10 +231,6 @@ Open the housing-returns deck if the network is up and show two slides: the hook
 :::
 :::
 
-
-::: {.notes}
-The block's BUT and its check. The housing-returns deck was edited by hand; the financial-advice one was not, and it shows in a few sentences. Say that plainly: the draft is cheap, the judging is the work, which is the same shift as every other block today. Then the closing line: try it on one of your own papers.
-:::
 
 ## Other fields have worked out how to explain their work {#other-fields}
 
@@ -301,10 +253,6 @@ The block's BUT and its check. The housing-returns deck was edited by hand; the 
 ```
 :::
 
-::: {.notes}
-An explorable deck is still a talk, read in one order. The website lets the reader choose the order. Point at the dashed arrows: each fork sits inside a slide, where a reader is likely to ask why. The five steps are the afternoon's pattern again. There is a plan you can read before anything is built, subagents with one job each, and checks before the agent hands the result over.
-:::
-
 ## We do not have to be bound by the PDF {#beyond-pdf}
 
 ::: {.stack}
@@ -312,10 +260,6 @@ An explorable deck is still a talk, read in one order. The website lets the read
 <div class="stage" data-chart="outputs"></div>
 ```
 
-:::
-
-::: {.notes}
-The paper stays the record of the research. Each box around it is a draft written from the paper for one audience, and each one is checked against the paper, the same check as the rest of the afternoon. The policy brief is /paper-version from the skill library. The explorable website is the previous slide.
 :::
 
 ## Innovations are already happening 
@@ -328,11 +272,6 @@ The paper stays the record of the research. Each box around it is a draft writte
 ![](figs/erzo_luttmer.png){style="width: 500px"}
 :::
 :::
-
-::: {.figwrap .wide}
-![](figs/)
-:::
-
 
 
 ## 3 · Writing with agentic AI {.divider .center}
@@ -356,10 +295,6 @@ The paper stays the record of the research. Each box around it is a draft writte
 
 
 
-::: {.notes}
-Two reasons, one rule, and the personal line: I like writing and do not want AI to take the part of the job I like. The second panel is why the voice file matters: an edit that sounds like you does not trigger the discount. Detectors come back at the end of the block.
-:::
-
 ## A voice file is meant to emulate your writing {#voice}
 
 ::: {.split .even}
@@ -373,10 +308,6 @@ When editing my prose, match the voice in `voice.md`. Do not use em-dashes, bull
 
 **Where it goes.** Next to `CLAUDE.md`. Point at it from there, so every session loads your voice, or with `@voice.md` only when editing, to keep the permanent window small. [The files that hold durable context.](#files)
 :::
-:::
-
-::: {.notes}
-The instruction on the left is the whole mechanism: the model conditions on your paragraphs, so its edits regress towards you instead of towards the average of the internet. The exclusions matter more than the inclusions; an AI-edited paragraph in the sample teaches the agent its own tics. The two placements are the previous block's cost argument applied: a voice file is about the size of the skill, and it is up to you whether it is permanent.
 :::
 
 ## Analyze your own voice {#ex2}
@@ -397,10 +328,6 @@ The instruction on the left is the whole mechanism: the model conditions on your
 
 :::
 
-::: {.notes}
-Start the clock. Step 3 is the exercise; steps 1, 2 and 4 are typing. The skill is Mihail Velikov's, linked from the resources page and in the library room; the fallback prompt in step 2 gets most of the way without it. Walk the room and look at the voice files: the skill over-describes rhythm and under-describes what the writer never does, which is the more useful half. PhD students with one paper use the thesis chapters. The debrief answer that matters is the deleted sentence: the first time today somebody edited the agent's output rather than accepting it.
-:::
-
 ## /prose-revision fixes the order of ideas before the choice of words {#prose-revision}
 
 ::: {.split .even .cols}
@@ -418,20 +345,12 @@ It will not add or drop an idea without saying so, and it is not a proofreader. 
 
 [A skill in the library, after a method described by alz_zyd on X (x.com/alz_zyd_).]{.source}
 
-::: {.notes}
-The second writing skill, for a paragraph that is yours and does not flow. The order matters: fix which idea comes first before anyone touches a word, or the polishing hides the structural problem. Run it live on one paragraph from a volunteer if there is time; otherwise it is in the library.
-:::
-
 ##  {#detectors}
 
 ::: {.big}
 [But: AI detectors can tell AI generated writing]{.q}
 
 [Pangram is the most-cited detector at the moment: a classifier trained on the fingerprint of model text, with a low false-positive rate in its own reporting. ]{.sub}
-:::
-
-::: {.notes}
-Close the block. The room will ask whether detectors work; the honest answer is "well enough that assuming you will not be noticed is a mistake", and the useful answer is that the discount by a human reader is what you are actually avoiding. Break here, about 15:30.
 :::
 
 ## The current state of play on writing 
@@ -455,10 +374,6 @@ Close the block. The room will ask whether detectors work; the honest answer is 
 <div class="stage tall" data-chart="paper-code-map"></div>
 ```
 
-::: {.notes}
-Static stage. Walk the three link types: teal, the code does what the paper says; dashed, the two disagree and one of them is wrong, which is the row you read first; hatched, the paper shows something no script in the folder produces. The example rows are invented, and say so; the room will recognise the winsorising row from their own projects. For the register-data people: the code review works on the do-files, which are on the laptop; the logs are on the server, so the reproducibility checklist is what the tool can do and the fresh-folder run happens on the server. This is this morning's "the code is the analysis" as a skill.
-:::
-
 ## Git diff is a very useful command for agents {#diff}
 
 ::: {.split .even}
@@ -473,10 +388,6 @@ An agent that sees only the diff knows exactly what is new.
 :::
 :::
 
-::: {.notes}
-Three definitions in one breath, then the tool that uses them. The quiz is the point, not the page. Then the practical question: how do you get a history without a terminal? Next slide.
-:::
-
 ## GitHub or Dropbox? {#sync}
 
 | | GitHub | Dropbox |
@@ -487,10 +398,6 @@ Three definitions in one breath, then the tool that uses them. The quiz is the p
 | **Conflicts** | A merge you resolve | “Conflicted copy” files |
 
 
-
-::: {.notes}
-The THEREFORE is in the title: the skills need a history to diff against, which is the argument for GitHub even for people who never type git, and GitHub Desktop gives them commits by clicking. Dropbox wins for a coauthor who lives in Overleaf. The Overleaf room has the click-by-click for both.
-:::
 
 
 ## 5 · Teaching {#teaching-block .divider .center}
@@ -514,10 +421,6 @@ The median take-home mark was []{.data key="serrano.medMidterm"}; the median in-
 ```
 :::
 
-::: {.notes}
-A recap, not a rerun: ten seconds on the scatter, then the three changes in one breath. The room saw the homework-up, exams-down evidence this morning; if anyone missed it, the numbers are eighteen percent up on homework, thirty percent less time, twenty percent down on the exam, for pupils in China as cited by Bryan. The rules and the three things to build are rooms, for questions.
-:::
-
 ## Build a weekly quiz bank from your notes {#ex3}
 
 ::: {.prose}
@@ -534,10 +437,6 @@ From `notes/week3.md`, write 15 multiple-choice questions at three levels, with 
 3. Read every question. **Verify every answer key yourself.**
 
 :::
-:::
-
-::: {.notes}
-Step 3 is the exercise. The bet is the number of wrong keys; collect it before anyone runs the prompt, then in the debrief count the wrong keys the room reports and read the count against the guesses. There is usually at least one wrong key in the room, which makes this morning's "a next-token predictor is not a calculator" concrete. The weekly quiz design is Bryan's rule 2, students study when tested; the rules room has the rest.
 :::
 
 
@@ -567,19 +466,11 @@ Microdata, register extracts, any number from a log or table produced on the sec
 :::
 :::
 
-::: {.notes}
-This reconciles the morning's warning with what the room did an hour ago: the draft went in, under the terms they signed up to, and that is a choice they can make about their own text. Register data is not theirs to make that choice about. Do not soften the right column. If a register-data person asks about enterprise tiers or a local model, say those change the policy question, not the workflow on the next slide.
-:::
-
 ## The agent never sees the data, but it sees everything that explains the data {#secure}
 
 ```{=html}
 <div class="stage tall" data-chart="server-wall"></div>
 ```
-
-::: {.notes}
-The move: press "step" six times and read each line. At step 3 point at the dashed arrow: it is you, by remote desktop or the provider's upload route, not the agent. At step 5 point at the struck-out chat bubble: pasting the log into a chat window is the same as the agent reading it, so what crosses back is your sentence, or the error code, which carries no data. The agent writes correct Stata against a schema; it does not need the values. If the step button does nothing, the static picture is the finished state; walk it left to right. If asked whether step 2 works with a real codebook: tested on two Danish register codebooks, the agent produced 55,000 simulated rows with correct value codes and a working merge key. Say it as an anecdote, not a result.
-:::
 
 ## Two files to keep local: a codebook in markdown and a simulated dataset {#artifacts}
 
@@ -594,10 +485,6 @@ The move: press "step" six times and read each line. At step 3 point at the dash
 <p>Same variable names, types and ranges; not the real values. Some replication packages ship one.</p>
 <p>Or ask the agent to generate it from the codebook: one prompt, fifty thousand rows.</p>
 :::
-:::
-
-::: {.notes}
-Two files, made once. The codebook conversion is one command; the simulated dataset is one prompt: "generate a dataset with this codebook's variables, 50,000 rows, plausible ranges and value codes". Then the BUT.
 :::
 
 ## But synthetic data tests that the code runs, not that it is right {#synthetic}
@@ -616,10 +503,6 @@ Correlations, magnitudes, selection, missingness, sign conventions, duplicate ke
 :::
 
 
-::: {.notes}
-The block's BUT. A do-file that runs on simulated data can still compute the wrong thing on real data, silently. Teal is on the left because that is the part that is a verification step; the right column is what you still owe, and it is the same list as this morning's silent-error slide.
-:::
-
 ## Thank you!  {.closing}
 
 ::: {.big}
@@ -628,11 +511,7 @@ The block's BUT. A do-file that runs on simulated data can still compute the wro
 <div class="cmdline"><span class="typed"> </span><span class="cursor"></span></div>
 ```
 
-[Questions now or later: claes.backman@gmail.com. Slides, skills, guides: [claesbackman.com/lugano](https://claesbackman.com/lugano)]{.sub}
-:::
-
-::: {.notes}
-Open floor. The task on the slide is the room's homework; say it once. The appendix has the setup guide, the CLAUDE.md template and the skill library for whoever asks.
+[Questions now or later: claes.backman@gmail.com. Slides, skills, guides: [claesbackman.com/ai_workshop](https://claesbackman.com/ai_workshop)]{.sub}
 :::
 
 ## Appendix {.divider .center visibility="uncounted"}
@@ -657,24 +536,16 @@ Open floor. The task on the slide is the room's homework; say it once. The appen
 [Then: [the extensions](#extensions), [every session](#session), [installing the skills](#install). Back to [the check-in](#checkin).]{.source}
 :::
 
-::: {.notes}
-Jump here from the check-in when someone has nothing installed. Step 5 is the one people skip.
-:::
-
 ## Installing the skills is a copy into one hidden folder {#install visibility="uncounted"}
 
 ::: {.claims}
-- Download the zip from [claesbackman.com/lugano](https://claesbackman.com/lugano), or paste the one-line command from that page into the VS Code terminal (`` Ctrl+` ``). Source and updates: [github.com/claesbackman/AI-research-feedback](https://github.com/claesbackman/AI-research-feedback). `/voice-extractor` is Mihail Velikov's and is linked from the same page.
+- Download the zip from [claesbackman.com/ai-guides.html](https://claesbackman.com/ai-guides.html#installation), or paste the one-line command from that page into the VS Code terminal (`` Ctrl+` ``). Source and updates: [github.com/claesbackman/AI-research-feedback](https://github.com/claesbackman/AI-research-feedback). `/voice-extractor` is Mihail Velikov's and is linked from the same page.
 - Unzip, then copy each skill folder (`review-paper`, `review-paper-light`, `voice-extractor`, …) into `~/.claude/skills/`, a hidden folder under your user folder. Windows: `C:\Users\you\.claude\skills`; to see hidden folders, View, Show, Hidden items in File Explorer.
 - A skill in `~/.claude/skills/` works in every project; one in `project/.claude/skills/` only in that project.
 - Start a new Claude Code conversation. Type `/` and the skills appear in the list.
 :::
 
 [Back to [the check-in](#checkin) or [the skill slide](#skill).]{.source}
-
-::: {.notes}
-Two minutes with a neighbour. A running conversation does not see newly copied skills; a new one does.
-:::
 
 ## A handful of extensions cover Stata, Python, LaTeX and data {#extensions visibility="uncounted"}
 
@@ -690,10 +561,6 @@ Two minutes with a neighbour. A running conversation does not see newly copied s
 Install Python even if you do not write it. The agent uses Python as glue for many different tasks.
 
 [Back to [setup](#setup).]{.source}
-:::
-
-::: {.notes}
-For the setup question "what else do I install". Python is the one non-obvious answer.
 :::
 
 ## Every session: open the folder, set context, then prompt {#session visibility="uncounted"}
@@ -716,10 +583,6 @@ Read the files in this folder and tell me what this project is about.
 :::
 :::
 
-::: {.notes}
-The orienting prompt is the cheapest test that the folder, not a file, is open: if the summary is of one file, the wrong thing is open.
-:::
-
 ## Permissions follow a tiered model, and auto mode is now the default {#permissions visibility="uncounted"}
 
 ```{=html}
@@ -735,10 +598,6 @@ The orienting prompt is the cheapest test that the folder, not a file, is open: 
 Claude Code is meant to stay inside the folder you opened; do not rely on it for a folder that holds anything sensitive. `/permissions` shows the current rules; allow- or block-list specific commands (`Rscript`, `pdflatex`, `rm`) in `settings.json`. Manual mode for the first week is a reasonable choice.
 
 [Back to [every session](#session).]{.source}
-:::
-
-::: {.notes}
-For the "what can it do to my machine" question. The honest answer is on the slide: it is meant to stay in the folder, and the folder should not hold anything that must not leave. Manual mode is the conservative start.
 :::
 
 ## A session is a conversation, not a query {#conversation visibility="uncounted"}
@@ -762,10 +621,6 @@ For the "what can it do to my machine" question. The honest answer is on the sli
 [Back to [every session](#session).]{.source}
 :::
 
-::: {.notes}
-For the "it gave me a bad answer" question: the answer is a draft; the second turn is where the work happens.
-:::
-
 ## Signs of session drift {#drift visibility="uncounted"}
 
 ::: {.split .even}
@@ -785,10 +640,6 @@ For the "it gave me a bad answer" question: the answer is a draft; the second tu
 :::
 :::
 
-::: {.notes}
-The morning had this room too; here for the afternoon's own questions.
-:::
-
 ## A few files hold your durable project context {#files visibility="uncounted"}
 
 | file | use it for |
@@ -802,10 +653,6 @@ The morning had this room too; here for the afternoon's own questions.
 Keep secrets and raw confidential data **out of all of them**: they are read into context every session and sent to the model provider.
 
 [Then: [bootstrap with /init](#init), [the starter template](#claude-md). Back to [the voice file](#voice).]{.source}
-:::
-
-::: {.notes}
-For "where does all this live". The warning line is block 2 again.
 :::
 
 ## /init writes a first CLAUDE.md in two minutes {#init visibility="uncounted"}
@@ -825,10 +672,6 @@ Read this project folder and draft a `CLAUDE.md` file with the project structure
 
 [Back to [the files](#files) or [exercise 2](#ex2).]{.source}
 :::
-:::
-
-::: {.notes}
-Exercise 2's step 4 sends people here who have no CLAUDE.md yet.
 :::
 
 ## CLAUDE.md starter template {#claude-md visibility="uncounted"}
@@ -860,10 +703,6 @@ Always loaded, every session: the things you would otherwise repeat in every pro
 :::
 :::
 
-::: {.notes}
-Copy, edit, done. The voice line is already in it.
-:::
-
 
 ## Keep CLAUDE.md short; put long workflows in skills {#claude-md-vs-skill}
 
@@ -874,10 +713,6 @@ Two ways to put standing text in front of the agent. `CLAUDE.md` is read at the 
 ```{=html}
 <div class="stage short" data-chart="skill-load"></div>
 ```
-:::
-
-::: {.notes}
-The move: flip "type /review-paper" and the hatched segment arrives in the window; flip it back and it is gone while the solid CLAUDE.md segment stays. Say: permanent context is a permanent cost and a permanent influence, so CLAUDE.md stays to a page and the ten-page workflows go in skills. The counts are stylised, the orders of magnitude are right, and the strip is the first tenth of the window so the segments are visible at all. If the toggle does nothing, the static state shows the skill loaded; describe the flip. Most of the room has no CLAUDE.md yet: the two links are the door, and exercise 2 ends by writing its first line.
 :::
 
 
@@ -897,11 +732,7 @@ The move: flip "type /review-paper" and the hatched segment arrives in the windo
 | `/prose-revision` | Revise idea flow before wording |
 | `/voice-extractor` | Write `voice.md` from PDFs of your own prose (Mihail Velikov) |
 
-[Mine are at [github.com/claesbackman/AI-research-feedback](https://github.com/claesbackman/AI-research-feedback) (MIT); all are linked from claesbackman.com/lugano. Fork them, modify them, make them yours. Back to [the skill slide](#skill).]{.source}
-
-::: {.notes}
-For "what else is there". Every one is a markdown file.
-:::
+[Mine are at [github.com/claesbackman/AI-research-feedback](https://github.com/claesbackman/AI-research-feedback) (MIT); all are linked from claesbackman.com/ai-guides.html. Fork them, modify them, make them yours. Back to [the skill slide](#skill).]{.source}
 
 ## File formats: text is free, binaries cost a conversion {#formats visibility="uncounted"}
 
@@ -918,10 +749,6 @@ For "what else is there". Every one is a markdown file.
 
 [Back to [exercise 1](#hook) or [the two files](#artifacts).]{.source}
 
-::: {.notes}
-For the .docx draft in exercise 1 and the .pptx notes in exercise 3: one conversion, then native.
-:::
-
 ## You can link Overleaf to your own computer and work in that folder {#overleaf visibility="uncounted"}
 
 ::: {.prose}
@@ -932,10 +759,6 @@ For the .docx draft in exercise 1 and the .pptx notes in exercise 3: one convers
 **Two routes.** GitHub via GitHub Desktop for a history, click to commit, no terminal. Dropbox for live coauthoring, no commit step. [Click by click.](#overleaf-steps)
 
 [claesbackman.com/overleaf-vscode-guide; Overleaf documentation. Back to [GitHub or Dropbox](#sync).]{.source}
-:::
-
-::: {.notes}
-For the coauthor-in-Overleaf question from the sync slide.
 :::
 
 ## The two Overleaf routes, click by click {#overleaf-steps visibility="uncounted"}
@@ -967,10 +790,6 @@ For the coauthor-in-Overleaf question from the sync slide.
 
 [Back to [Overleaf](#overleaf).]{.source}
 
-::: {.notes}
-Read the route the questioner needs, not both.
-:::
-
 ## Other tools generate referee reports too {#tools visibility="uncounted"}
 
 | tool | what it is |
@@ -984,10 +803,6 @@ Read the route the questioner needs, not both.
 A skill that lives next to your draft knows your conventions and lets you edit what it checks. The services do not.
 
 [Back to [the debrief](#debrief).]{.source}
-:::
-
-::: {.notes}
-For "why not just use X". The answer is the second sentence.
 :::
 
 ## Bryan's eight rules: protect learning, then teach more {#rules visibility="uncounted"}
@@ -1015,10 +830,6 @@ For "why not just use X". The answer is the second sentence.
 
 [Rules 1–8 of @bryan2026eight. Back to [the teaching recap](#teaching).]{.source}
 
-::: {.notes}
-The morning's slides 62 and 63, as a room. Rule 2 is exercise 3.
-:::
-
 ## Three things to build this term: a tutor, a misconception digest, levelled problem sets {#build visibility="uncounted"}
 
 ::: {.three}
@@ -1043,10 +854,6 @@ The morning's slides 62 and 63, as a room. Rule 2 is exercise 3.
 Student questions are personal data. Anonymise before exporting, and check the institutional policy once. [Back to the teaching recap.](#teaching)
 :::
 
-::: {.notes}
-A menu, not a list to complete. The anonymisation line is block 2 again.
-:::
-
 
 
 ## A replication package is a README, a master script and portable paths {#replication}
@@ -1065,10 +872,6 @@ A menu, not a list to complete. The anonymisation line is block 2 again.
 <p>“Make every path relative and write <code>master.do</code>.”</p>
 <p class="mm"><b>Then verify:</b> run it in a fresh folder and diff the tables against the paper. With register data that run happens on the server; the code and the README are the package.</p>
 :::
-:::
-
-::: {.notes}
-Three prompts and one check. The fresh-folder run is the whole verification: if it does not run from a clean copy it is not a package. For the register-data half of the room, this block and block 2 are the same workflow seen from the end: the fresh-folder run is the server run, and the README says so.
 :::
 
 
