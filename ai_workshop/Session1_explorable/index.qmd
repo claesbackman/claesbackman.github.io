@@ -400,6 +400,16 @@ Under the chatbot, results differ a lot by software. Under the agent, the differ
 ```
 :::
 
+
+
+
+## Some examples 
+
+
+[Explorables: [Housing return paper](https://claesbackman.com/Explorables/HousingReturns) and [Financial advice from LLMs](https://claesbackman.com/Explorables/FinancialAdvice_AI). Created using Nityesh Agarwal's skill for explorable websites, `explorable-explanations`.]{.source}
+
+[Slides: [Housing-returns paper](https://claesbackman.com/Slides/HousingReturns) and [Financial advice from LLMs](https://claesbackman.com/Slides/FinancialAdvice_AI). The skill: [github.com/claesbackman/AI-research-feedback](https://github.com/claesbackman/AI-research-feedback), `Skills/explorable-deck`. Adapted from Nityesh Agarwal's skill for explorable websites.]{.source}
+
 ## We do not have to be bound by the PDF {#beyond-pdf}
 
 ::: {.stack}
@@ -419,7 +429,6 @@ Under the chatbot, results differ a lot by software. Under the agent, the differ
 ![](figs/erzo_luttmer.png)
 :::
 :::
-
 
 
 ## 4 · Teaching in times of AI {.divider .center style="--fill:48%"}
