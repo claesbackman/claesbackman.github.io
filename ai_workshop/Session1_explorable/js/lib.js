@@ -169,7 +169,7 @@
         { year: 2023, model: 'GPT-4', note: 'GPT-4 summarises a paper and writes a working script. This is the model in Dell’Acqua et al.’s experiment.' },
         { year: 2024, model: 'o1, a reasoning model', note: 'Reasoning models think before they answer. Counting letters moves inside, and arithmetic on a table reaches the edge.' },
         { year: 2025, model: 'Claude Code, Codex', note: 'Agents run code and search the web. Re-deriving a table and finding real citations move inside.' },
-        { year: 2026, model: 'today', note: 'Agents run a replication package end to end. Catching a silent error and choosing the question are still outside.' },
+        { year: 2026, model: 'today', note: 'Agents run a replication package end to end. ' },
       ],
       // clockwise from the top of the circle, one spoke every 40 degrees
       tasks: [

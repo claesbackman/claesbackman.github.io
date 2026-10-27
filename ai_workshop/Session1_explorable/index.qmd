@@ -12,7 +12,7 @@ format:
     margin: 0.06
     center: true
     slide-number: c/t
-    show-slide-number: speaker
+    show-slide-number: all
     progress: true
     menu: false
     transition: fade
@@ -53,7 +53,7 @@ link-citations: false
 :::
 --> 
 
-## Three messages: AI is here, the workflow matters more than the model, and verification is key.
+## Three messages
 
 ::: {.claims}
 - **The tools changed.** Chat gave way to agents that read files, run code and iterate. The tool you tried in 2023 is not the tool of today. 
@@ -64,20 +64,23 @@ context (your files), standing instructions, and reusable skills — not from ra
 
 [Workshop synthesis, drawing on @mollick2026guide, @velikov2026guide and Korinek (2025).]{.source}
 
-## A brief example on developments since 2023
+## 
 
-## Eight steps now, hands-on later
+::: {.big}
+[AI should let us do new things, not only old things faster]{.q}
+:::
+
+## Seven steps now, hands-on later
 
 ```{=html}
-<div class="agenda">
+<div class="agenda seven">
 <div><b>1</b><span>What an LLM is</span><small>Prediction, not lookup. Confident when wrong.</small></div>
 <div><b>2</b><span>Landscape</span><small>Three model generations; who uses them.</small></div>
-<div><b>3</b><span>Use cases</span><small>Research, coding, admin.</small></div>
-<div><b>4</b><span>How the tools work</span><small>The harness, context, the loop.</small></div>
-<div><b>5</b><span>Choosing a tool</span><small>Chat vs. agent; pricing and models.</small></div>
-<div><b>6</b><span>In practice</span><small>A prompt to copy; things to try.</small></div>
-<div><b>7</b><span>Verification</span><small>Four checks for silent errors.</small></div>
-<div><b>8</b><span>Teaching</span><small>Protect learning, then teach more.</small></div>
+<div><b>3</b><span>Use cases</span><small>Research, coding, admin, communication.</small></div>
+<div><b>4</b><span>Teaching</span><small>Protect learning, then teach more.</small></div>
+<div><b>5</b><span>Tools and context</span><small>The harness, the window, choosing a tool, a prompt to copy.</small></div>
+<div><b>6</b><span>Verification</span><small>Checks for silent errors.</small></div>
+<div><b>7</b><span>What this means</span><small>Friction, bottlenecks, norms.</small></div>
 </div>
 ```
 
@@ -87,7 +90,7 @@ context (your files), standing instructions, and reusable skills — not from ra
 **Slides, skills and guides for both days:** [claesbackman.com/ai_workshop](https://claesbackman.com/ai_workshop).
 :::
 
-## 1 · An LLM predicts the next token {.divider .center style="--fill:10%"}
+## 1 · An LLM predicts the next token {.divider .center style="--fill:8%"}
 
 ## An LLM predicts the next token, over and over, very well {#next-token}
 
@@ -109,7 +112,7 @@ A token is a word or a piece of a word, about four characters of English. That i
 :::
 ::: {.panel}
 [Not a calculator]{.ph}
-<p>It predicts what an answer looks like. The arithmetic is right when the pattern is common, and the tools in section 4 exist because of this.</p>
+<p>It predicts what an answer looks like. The arithmetic is right when the pattern is common, and the tools in section 5 exist because of this.</p>
 :::
 ::: {.panel}
 [Not connected to your files]{.ph}
@@ -117,50 +120,14 @@ A token is a word or a piece of a word, about four characters of English. That i
 :::
 :::
 
-::: {.prose}
-An invented citation is a sequence of plausible tokens. "Smith and Jones (2019)" is very plausible.
-:::
 
-## A useful mental model
+##
 
 ::: {.big}
 [A very well-read, very fast colleague who has read almost everything but remembers none of it precisely, has no access to your files, **will never admit to not knowing**, and is **unapologetic about being wrong**.]{.q}
 :::
 
-<!--
-## But give it the paper, and the same predictor becomes specific {#context-turn}
-
-::: {.split .even .cols}
-::: {.prose}
-[Ask about a paper it has not been given]{.colhead .chat}
-
-*"What is the identification strategy in Bäckman and Khorunzhina's paper on housing returns?"*
-
-The model has the title and its training data. It predicts what such a paper probably does: a plausible method, a plausible result, confidently. Some of it will be wrong.
-:::
-::: {.prose}
-[Ask with the paper in the conversation]{.colhead .agent}
-
-*Same question, PDF attached.*
-
-The predictions are now conditioned on the actual text. The answer quotes section 4, names the assumption, and can be checked against the page.
-:::
-:::
-
-::: {.prose}
-[Same model. The difference is what was in the context window: the text the model can see when it predicts.]{.q}
-:::
-
---> 
-## The message in one sentence
-
-::: {.big}
-[Context improves AI tools tremendously, and the goal is to provide the right context.]{.q}
-
-[Everything else today is a way of doing that, or of checking what came back.]{.sub}
-:::
-
-## 2 · The landscape moved from chat to agents {.divider .center style="--fill:22%"}
+## 2 · The landscape moved from chat to agents {.divider .center style="--fill:12%"}
 
 ## Three generations in four years: chat, reasoning, agents
 
@@ -184,34 +151,6 @@ The predictions are now conditioned on the actual text. The answer quotes sectio
 ![](figs/AI iq test.jpg)
 :::
 
-
-## Efforts underway to automate research 
-
-::: {.claims}
-- **Paul Novosad** wrote a paper with AI in about three hours, then another one with the opposite result [@novosad2026ai].
-- **Project APE** has automated 1,000 policy-evaluation papers.
-- **Alejandro López-Lira** built a system that finds a problem, generates a theory, verifies it adversarially and writes a publication-ready paper.
-- **@novy2026artificial** describe how academic research could be automated with LLMs, and what that does to the literature.
-:::
-
-[Links to Project APE and López-Lira's system are on the workshop resources page.]{.source}
-
-
-## Are we there yet? 
-
-::: {.figwrap .wide}
-![](figs/APE_evaluation.png)
-:::
-
-## 
-
-::: {.big}
-::: {.bet}
-["We conclude that, in the first half of 2026, our autonomous policy evaluations remained unreliable despite our best efforts with frontier models and research workflows designed for reliability."]{.q}
-:::
-
-[APE Briefs, October 2026]{.sub}
-:::
 
 
 ## Agents raise econometric coding success from 74 to 96 percent
@@ -240,107 +179,68 @@ Under the chatbot, results differ a lot by software. Under the agent, the differ
 
 ## But the frontier is jagged
 
-::: {.split}
-::: {.prose}
-Two tasks that look equally hard to you can sit on opposite sides of the line.
-
-Drafting prose, summarising a literature, re-deriving a table: inside. But some things are outside, and figuring out which is difficult ex-ante. 
-
-Consultants in Dell'Acqua et al.'s field experiment did better inside the frontier and worse outside it, because they trusted the tool in both places.
-
-[@dell2026navigating; Ethan Mollick's "jagged frontier".]{.source}
-:::
 ```{=html}
 <div class="stage tall" data-chart="frontier" style="height:560px"></div>
 ```
+
+
+
+## Efforts underway to automate research 
+
+::: {.claims}
+- **Project APE** has automated 1,000 policy-evaluation papers.
+- **Alejandro López-Lira** built a system that finds a problem, generates a theory, verifies it adversarially and writes a publication-ready paper.
+- **@novy2026artificial** describe how academic research could be automated with LLMs, and what that does to the literature.
+:::
+
+[Links to Project APE and López-Lira's system are on the workshop resources page.]{.source}
+
+
+## Are we there yet? 
+
+::: {.figwrap .wide}
+![](figs/APE_evaluation.png)
 :::
 
 ## 
 
 ::: {.big}
 ::: {.bet}
-[Who has used ChatGPT or Claude inside an IDE or terminal? Who has used Claude Code or the Claude desktop app?
-]{.q}
+["We conclude that, in the first half of 2026, our autonomous policy evaluations remained unreliable despite our best efforts with frontier models and research workflows designed for reliability."]{.q}
 :::
 
-[What share of economists in a survey of 1,260 social scientists use a coding agent?]{.sub}
+[APE Briefs, October 2026]{.sub}
 :::
 
-## Most social scientists use AI, few use an agent {#adoption}
+## 
 
-::: {.split}
-::: {.prose}
-Open dots: anyone using AI at all. 
-
-::: {.fragment}
-Four in five use some AI tool. One in five uses an agent. Economists are still under forty percent.
-
-**Most use chat only**
-
-**The caveat that this was a really long time ago (February/March).**
+::: {.big}
+::: {.bet}
+["More capable foundation models, or better verification tools feeding back into the research process, may change that."]{.q}
+:::
+[APE Briefs, October 2026]{.sub}
 :::
 
-[@lyttelton2026agents, survey of 1,260 social scientists, February–March 2026.]{.source}
-:::
+
+## Most social scientists use AI, few use an agent (from February/March) {#adoption}
+
 ```{=html}
 <div class="stage tall" data-chart="adoption-field" data-animate></div>
 ```
-:::
 
 ## Adoption falls with seniority
 
-::: {.split}
-::: {.prose}
-About a quarter of PhD students use a coding agent. Fewer than one in ten full professors do.
-
-Different readings: seniors have less to gain, seniors have RAs who use agents, or seniors face the highest switching cost. 
-
-[@lyttelton2026agents.]{.source}
-:::
 ```{=html}
 <div class="stage" data-chart="adoption-career"></div>
 ```
-:::
 
-## Agent users do more of everything, especially drafting
-
-::: {.split}
-::: {.prose}
-Code is nearly universal among agent users. 
-
-More than half of agent users draft with it, fewer than a third of other users do.
-
-[@lyttelton2026agents.]{.source}
-:::
-```{=html}
-<div class="stage" data-chart="adoption-use"></div>
-```
-:::
-
-## 3 · Use cases for AI {.divider .center style="--fill:34%"}
+## Check-in: the website {.divider .center style="--fill:31%"}
 
 
-## AI is going to change how we do research
-
-::: {.split .even .cols}
-::: {.prose}
-[Same research, done faster]{.colhead}
-
-**Faster coding.** Stata, R and Python drafts, debugging error logs, robustness checks, replication packages.
-
-**Better writing.** Structured critique, edits in your own voice, pre-submission referee reports.
-:::
-::: {.prose}
-[New outputs, new projects]{.colhead}
-
-**New ways to communicate a paper.** An interactive website, a policy brief, a dashboard or an audio summary, all from the same paper.
-
-**New kinds of projects.** Mass automation (Project APE), automated replication and extension [@schwartz2026llm], AI agents as simulated humans (Expected Parrot), ??? 
-:::
-:::
+## 3 · Use cases for AI {.divider .center style="--fill:32%"}
 
 
-## Three jobs for an agent: feedback machine, talented RA, personal assistant
+## Three jobs for an agent 
 
 ::: {.three}
 ::: {.panel}
@@ -394,7 +294,67 @@ More than half of agent users draft with it, fewer than a third of other users d
 :::
 :::
 
-## AI rewards expertise
+## AI is going to change how we do research
+
+::: {.split .even .cols}
+::: {.prose}
+[Same research, done faster]{.colhead}
+
+**Faster coding.** Stata, R and Python drafts, debugging error logs, robustness checks, replication packages.
+
+**Better writing.** Structured critique, text edits, detailed feedback 
+:::
+::: {.prose}
+[New outputs, new projects]{.colhead}
+
+**New ways to communicate a paper.** An interactive website, a policy brief, a dashboard or an audio summary, all from the same paper.
+
+**New kinds of projects.** Lower costs for trying out new things, mass automation (Project APE), automated replication and extension [@schwartz2026llm], AI agents as simulated humans (Expected Parrot). 
+:::
+:::
+
+## AI use cases in research 
+
+::: {.three}
+::: {.panel}
+[1 · Coding]{.ph}
+
+- Faster results 
+- New types of projects 
+- Websites, interactive tools.
+- API calls to download data. 
+
+:::
+::: {.panel}
+[2 · Ideation and feedback ]{.ph}
+
+- Direct feedback on drafts 
+- Thinking through ideas 
+- New types of projects
+- Consistency between paper and code. 
+
+:::
+::: {.panel}
+[3 · Writing and presentations]{.ph}
+
+- Editing prose 
+- Grammar and spelling 
+- Consistency between different parts of a paper
+- New ways of making slides 
+
+:::
+:::
+
+
+
+## 
+
+::: {.big}
+[AI should let us do new things, not only old things faster]{.q}
+:::
+
+
+## AI rewards expertise 
 
 ::: {.split .even .cols}
 ::: {.prose}
@@ -409,9 +369,9 @@ More than half of agent users draft with it, fewer than a third of other users d
 ::: {.prose}
 [What the tool does not]{.colhead}
 
-**It does not supply the question.** It lowers the cost of asking one seriously.
+**It does not supply the question.** It will just do what you ask for. 
 
-**It does not replace judgment.** You decide what to do and whether it is worth doing.
+**It does not replace judgment.** You decide whether it is worth doing.
 
 **It does not know your institution's rules** unless you put them in the context: the journal's AI policy, the funder's format.
 :::
@@ -419,24 +379,194 @@ More than half of agent users draft with it, fewer than a third of other users d
 
 
 
+## Different ways to explain your work {#other-fields}
 
-## Check-in: the website {.divider .center style="--fill:40%"}
+::: {.split .even .center-v}
+::: {.prose}
+`/explorable-explanation` builds a website as a non-linear tree of short HTML decks, one idea per slide, with forks placed where the reader becomes curious.
 
-## 4 · The agent is the harness around the model {.divider .center style="--fill:46%"}
+[How it works]{.colhead}
+
+::: {.claims}
+- Reads the source material, then writes `plan.md` like a script: the hook, what the reader sees and does, and where the branches go
+- Shows you the first batch before it builds the rest
+- Screenshots every slide and reworks the ones that break the craft rules
+- Sends adversarial subagents to judge writing, interface, visuals and teaching
+- A “creative director” subagent gives it a visual identity; an impatient-reader subagent flags every slide where the flow breaks
+:::
+:::
+```{=html}
+<div class="stage" data-chart="explorable-tree"></div>
+```
+:::
+
+## We do not have to be bound by the PDF {#beyond-pdf}
+
+::: {.stack}
+```{=html}
+<div class="stage" data-chart="outputs"></div>
+```
+
+:::
+
+## Innovations are already happening 
+
+::: {.figwrap .raster .tweets}
+![](figs/paper_in_ai_age.jpg)
+[Figure from [https://nobel-prizes.devdatalab.org/](https://nobel-prizes.devdatalab.org/)]{.figcap}
+
+::: {.fragment}
+![](figs/erzo_luttmer.png)
+:::
+:::
+
+
+
+## 4 · Teaching in times of AI {.divider .center style="--fill:48%"}
+
+## The challenge with AI: take-home grades stopped measuring learning
+
+::: {.figwrap}
+![](figs/midterm_final_grades_crop.jpg)
+:::
+
+
+
+## With AI, homework got better and faster {#homework}
+
+::: {.figwrap .pair .wide}
+![](figs/homework_score.png)
+![](figs/homework_time.png)
+:::
+
+::: {.stats .two}
+::: {.stat}
+[+18%]{.k .f}
+[homework score for pupils using AI]{.l}
+:::
+::: {.stat}
+[−30%]{.k .f}
+[homework completion time]{.l}
+:::
+:::
+
+[Distributions for pupils in China: never used AI, before using AI, and using AI. Charts reproduced as published; study as cited in @bryan2026eight.]{.figcap}
+
+## But exam scores fell
+
+::: {.split .wide-left}
+::: {.figwrap .wide}
+![](figs/exam_score.png)
+:::
+::: {.prose}
+::: {.stat}
+[−20%]{.k .f}
+[exam performance for the same pupils]{.l}
+:::
+
+Homework up, time down, exams down. The homework stopped teaching.
+
+[Same study and source as the previous slide.]{.source}
+:::
+:::
+
+
+## AI breaks the grade–knowledge link
+
+::: {.claims}
+- **The grade–knowledge link is broken.** A good take-home grade no longer shows what the student can do
+- **Students need to use AI well later.** Banning it everywhere leaves them untrained.
+- **AI should let us teach more.** Tutoring, feedback and individual practice used to be too expensive.
+:::
+
+[@bryan2026eight, kevinbryanecon.com/teachwithai.]{.source}
+
+## Protect learning: decide, test, do not assign what AI can do
+
+::: {.claims}
+- **Decide what should be learned without AI.** Be explicit about which assignments test AI-independent competence.
+- **Give students an incentive to learn.** A closed book exam gives incentives to learn. 
+- **Do not give AI-cheatable assignments.** Almost every take-home assignment can be done by a frontier model today.
+- **Give students an idea of how AI impacts learning.** Everyone is struggling through what AI means for teaching, including students. 
+
+:::
+
+[1, 2, 3 from @bryan2026eight. 4 is mine.]{.source}
+
+
+## Then teach more with AI
+
+::: {.split .even .cols}
+::: {.prose}
+[For the students]{.colhead}
+
+**Help them learn more efficiently.** Class-specific tutoring, spaced repetition, mastery learning at scale.
+
+**Personalise assignments.** Problems at the level each student is struggling with.
+:::
+::: {.prose}
+[For the teacher]{.colhead}
+
+**Improve your own teaching.** Find out where you were confusing before the exam tells you.
+
+**Raise standards.** If research and drafting are cheaper, the bar moves up.
+:::
+:::
+
+[Rules 4–7 of @bryan2026eight.]{.source}
+
+<!--
+## Students study when tested, so test them every week
+
+::: {.split .even}
+::: {.prose}
+**How to run it.** A weekly quiz, pass or fail, small weight each, most weeks count.
+
+**Generate the bank from your own notes**, then verify every answer key yourself: a next-token predictor is not a calculator.
+:::
+::: {.prompt}
+From `notes/week3.md`, write 15 multiple-choice questions at three levels, with distractors built from common misconceptions and a one-sentence explanation each.
+:::
+:::
+
+--> 
+## Three things to build: a tutor, a misconception digest, levelled problem sets
+
+::: {.three}
+::: {.panel}
+[Course tutor]{.ph}
+<p>A shared assistant (a Claude project, custom GPT or NotebookLM) loaded with <em>your</em> lecture notes and problem sets.</p>
+<p class="mm">Standing instructions: use the course's notation, never give the answer, ask the student to explain first, return to topics they missed.</p>
+:::
+::: {.panel}
+[Misconception digest]{.ph}
+<p>Each week, export the questions students asked, anonymised.</p>
+<p class="mm">Prompt: "Group these by underlying misconception, rank by frequency, and point to the lecture slide most likely to have caused each."</p>
+:::
+::: {.panel}
+[Levelled problem sets]{.ph}
+<p>One problem, three difficulty tiers. Assign the tier by last week's quiz result.</p>
+<p class="mm">Prompt: "Write this problem at three levels: scaffolded, standard, extension. Same concept, full solutions, and a rubric."</p>
+:::
+:::
+
+::: {.prose}
+Student questions are personal data. Anonymise before exporting and check the institutional policy once.
+:::
+
+
+## 5 · Tools, context, and workflows {.divider .center style="--fill:60%"}
 
 ## The agent is a loop: prompt, model, tool, result, repeat {#harness}
 
-::: {.split}
-::: {.prose}
-Your prompt goes to the model together with the context: [CLAUDE.md](#claude-md), a file of standing instructions the agent reads every session, plus the folder listing and the conversation so far.
-
-The model decides which tool to call. The harness runs it and puts the result back into the conversation. Repeat until the task is done, or the agent asks you a question.
-
-[Stylised trace of the website session. After Korinek (2025); figure adapted from @velikov2026guide. [All six tools are in the appendix.](#tools)]{.source}
-:::
 ```{=html}
 <div class="stage terse" data-chart="harness-loop"></div>
 ```
+
+::: {.notes }
+Your prompt goes to the model together with the context: [CLAUDE.md](#claude-md), a file of standing instructions the agent reads every session, plus the folder listing and the conversation so far.
+
+The model decides which tool to call. The harness runs it and puts the result back into the conversation. Repeat until the task is done, or the agent asks you a question.
 :::
 
 ## Context is a budget {#context-budget}
@@ -449,6 +579,7 @@ Everything the model conditions on has to fit in one window: the standing instru
 <div class="stage" data-chart="context-budget"></div>
 ```
 :::
+
 
 ## Four good habits
 
@@ -474,8 +605,6 @@ Everything the model conditions on has to fit in one window: the standing instru
 <div><b>5</b><span>Restart</span><small>Thirty turns or a shifted task: a fresh session.</small></div>
 </div>
 ```
-
-## 5 · Choosing a tool {.divider .center style="--fill:58%"}
 
 ## Providers trade places monthly; switching costs are low
 
@@ -589,7 +718,7 @@ The loop. Projects hold context; they do not read your folder, write files, or r
 :::
 :::
 
-## The surface is your choice; the workflow is the same
+## The workflow is the same regardless of the software
 
 | surface | what it is good for |
 |---|---|
@@ -621,13 +750,6 @@ The loop. Projects hold context; they do not read your folder, write files, or r
 
 ## The difference between tools is how easily you supply context
 
-::: {.big}
-[Context improves AI tools tremendously, and the goal is to provide the right context.]{.q}
-
-[Chat: you paste it. Projects: you upload it once. An agent: it goes and reads it.]{.sub}
-:::
-
-## 6 · In practice {.divider .center style="--fill:68%"}
 
 ## For prompting: make a plan, documents the work, and get something you can check {#ecb-prompt}
 
@@ -670,7 +792,7 @@ Then plot the two series together, and report the 2008Q1 and 2022Q1 values of ea
 :::
 :::
 
-## 7 · Verification is the new bottleneck {.divider .center style="--fill:80%"}
+## 6 · Verification {.divider .center style="--fill:85%"}
 
 ## You are responsible for the output, and so you have to make sure that it is right
 
@@ -718,246 +840,19 @@ You can use `git diff`, or your agent can. A *diff* is the list of lines that ch
 Version control is a verification tool. This is a good reason to use Git. 
 :::
 
-<!--
-## Each check buys independence from the agent that wrote the code {#checks}
 
-::: {.stack}
-```{=html}
-<div class="stage" data-chart="checks-cost"></div>
-```
-::: {.prose}
-Cheap ones first, the expensive one for the main tables. [The full table is in the appendix.](#checks-table)
-:::
-:::
+## Different levels of checks {#checks-table}
 
---> 
-## Check 1: a fresh agent reviews the diff, and reports {#check-1}
+| check | what you do | what it catches | cost |
+|---|---|---|---|
+| **1 · Fresh agent reviews the diff** | A fresh session or subagent reviews the diff and reports | Errors invisible to the agent that wrote the code | Minutes |
+| **2 · [Different model](#check-2)** | Same diff, model from another developer (Codex vs. Claude) | Shared habits: two copies of one model make the same mistakes | Minutes |
+| **3 · [Make the agent quiz you](#quiz)** | Fresh session explains the change, then quizzes you | Your own understanding gap | 10–15 min |
+| **4 · [Reimplement in another language](#check-4)** | Fresh folder, `spec.md` and `README.md` only, other language and model, you run it | Code that faithfully implements something other than the paper | Hours |
 
-::: {.split .even}
-::: {.prose}
-Two ways to get a reviewer with no stake in the code:
-
-**Ask the current agent** to hand the diff to a subagent, a fresh copy of itself with an empty context.
-
-**Open a new session** and point it at the diff.
-:::
-::: {.panel .check}
-[Have the reviewer report, not fix]{.ph}
-<p>Look at what the agent found and verify whether you agree with them. .</p>
-<p class="mm">Weakness: a fresh copy of the same model shares its habits. Hence check 2.</p>
-:::
-:::
-
-## Check 2: a different model breaks shared habits
-
-::: {.big}
-[Two copies of one model share training data and habits of thought, so they make the same mistakes. Send the same diff to a model from a different developer.]{.q}
-
-:::
-
-## Check 3: make the agent quiz you {#quiz}
-
-::: {.split .even}
-::: {.prose}
-Open a fresh session and ask:
-
-::: {.prompt}
-Read the last commit and the files it touches, then ask me three questions about what it changed. Do not tell me the answers until I have answered. If my answer is wrong, say so directly; do not tell me I was close.
-:::
-:::
-::: {.prose}
-**Always a new session**, not the one that made the change. Starting fresh forces the agent to read the files instead of recalling the conversation.
-
-**A skill for it:** `/explain-diff` writes one offline page about what changed, why, what it does to the results, and ends with a five-question quiz. [More skills in the appendix.](#skills)
-:::
-:::
-
-## Check 4: reimplement the analysis in another language
-
-::: {.split .even .cols}
-::: {.prose}
-[What and why]{.colhead}
-
-If your code is Stata, a second agent writes the results in Python or R from the paper's description alone. An idea from Scott Cunningham.
-
-If coding slips are independent across languages, differences in the output reveal the errors. 
-:::
-::: {.prose}
-[How to isolate it]{.colhead}
-
-New folder, fresh session, a `spec.md` copied from the paper with the results deleted, a `README.md` describing the raw data. 
-
-This is a major enterprise, so reserve it for the main tables and for things that matter. 
-:::
-:::
-
-## 8 · Teaching in times of AI {.divider .center style="--fill:92%"}
-
-## The challenge with AI: take-home grades stopped measuring learning
-::: {.split}
-::: {.prose}
-Two dot per student, each is an exam. 
-
- Almost everyone scored above 90 on the take-home midterm. 
- 
- On the in-person final the same students spread from 95 down to zero.
-:::
-::: {.figwrap}
-![](figs/midterm_final_grades_crop.jpg)
-:::
-:::
+[Cheap ones first, the expensive one for the main tables. Checks 2 to 4 each have a room in the appendix; click the name.]{.source}
 
 
-
-## With AI, homework got better and faster {#homework}
-
-::: {.figwrap .pair .wide}
-![](figs/homework_score.png)
-![](figs/homework_time.png)
-:::
-
-::: {.stats .two}
-::: {.stat}
-[+18%]{.k .f}
-[homework score for pupils using AI]{.l}
-:::
-::: {.stat}
-[−30%]{.k .f}
-[homework completion time]{.l}
-:::
-:::
-
-[Distributions for pupils in China: never used AI, before using AI, and using AI. Charts reproduced as published; study as cited in @bryan2026eight.]{.figcap}
-
-## But exam scores fell
-
-::: {.split .wide-left}
-::: {.figwrap .wide}
-![](figs/exam_score.png)
-:::
-::: {.prose}
-::: {.stat}
-[−20%]{.k .f}
-[exam performance for the same pupils]{.l}
-:::
-
-Homework up, time down, exams down. The homework stopped teaching.
-
-[Same study and source as the previous slide.]{.source}
-:::
-:::
-
-## Homework was already a weak signal
-
-::: {.stats .two}
-::: {.stat}
-[40 → 27]{.k .f}
-[hours a week of study, US college students, 1961–2003]{.l}
-:::
-::: {.stat}
-[one in four]{.k .f}
-[finance students copied wrong Chegg answers, and learned less]{.l}
-:::
-:::
-
-::: {.prose}
-[Both figures as cited in @bryan2026eight.]{.source}
-:::
-
-## AI breaks the grade–knowledge link, so the rules have to change
-
-::: {.claims}
-- **The grade–knowledge link is broken.** A good take-home grade no longer shows the student can do the thing.
-- **Students need to use AI well later.** Banning it everywhere leaves them untrained.
-- **AI should let us teach more.** Tutoring, feedback and individual practice used to be too expensive.
-:::
-
-[@bryan2026eight, kevinbryanecon.com/teachwithai.]{.source}
-
-## Protect learning: decide, test, do not assign what AI can do
-
-::: {.claims}
-- **Decide what should be learned without AI.** Be explicit about which assignments test AI-independent competence.
-- **Give students an incentive to learn.** Regular, graded checks. Effort follows tests.
-- **Do not give AI-cheatable assignments.** Bryan's line: almost every take-home worth real credit can be done by a frontier model today.
-:::
-
-[Rules 1–3 of @bryan2026eight.]{.source}
-
-## Then teach more with AI
-
-::: {.split .even .cols}
-::: {.prose}
-[For the students]{.colhead}
-
-**Help them learn more efficiently.** Class-specific tutoring, spaced repetition, mastery learning at scale.
-
-**Personalise assignments.** Problems at the level each student is struggling with.
-:::
-::: {.prose}
-[For the teacher]{.colhead}
-
-**Improve your own teaching.** Find out where you were confusing before the exam tells you.
-
-**Raise standards.** If research and drafting are cheaper, the bar moves up.
-:::
-:::
-
-[Rules 4–7 of @bryan2026eight.]{.source}
-
-<!--
-## Students study when tested, so test them every week
-
-::: {.split .even}
-::: {.prose}
-**How to run it.** A weekly quiz, pass or fail, small weight each, most weeks count.
-
-**Generate the bank from your own notes**, then verify every answer key yourself: a next-token predictor is not a calculator.
-:::
-::: {.prompt}
-From `notes/week3.md`, write 15 multiple-choice questions at three levels, with distractors built from common misconceptions and a one-sentence explanation each.
-:::
-:::
-
---> 
-## Three things to build: a tutor, a misconception digest, levelled problem sets
-
-::: {.three}
-::: {.panel}
-[Course tutor]{.ph}
-<p>A shared assistant (a Claude project, custom GPT or NotebookLM) loaded with <em>your</em> lecture notes and problem sets.</p>
-<p class="mm">Standing instructions: use the course's notation, never give the answer, ask the student to explain first, return to topics they missed.</p>
-:::
-::: {.panel}
-[Misconception digest]{.ph}
-<p>Each week, export the questions students asked, anonymised.</p>
-<p class="mm">Prompt: "Group these by underlying misconception, rank by frequency, and point to the lecture slide most likely to have caused each."</p>
-:::
-::: {.panel}
-[Levelled problem sets]{.ph}
-<p>One problem, three difficulty tiers. Assign the tier by last week's quiz result.</p>
-<p class="mm">Prompt: "Write this problem at three levels: scaffolded, standard, extension. Same concept, full solutions, and a rubric."</p>
-:::
-:::
-
-::: {.prose}
-Student questions are personal data. Anonymise before exporting and check the institutional policy once.
-:::
-
-## What this means for academic work {.divider .center style="--fill:98%"}
-
-## Friction drops, the bottleneck moves, verification becomes the edge
-
-::: {.claims}
-- **Friction drops** in writing, editing and admin: the paper website, the grant CV.
-- **The bottleneck shifts** from producing to judging.
-- **Verification becomes the differentiator.** Not typing speed, not LaTeX fluency.
-- **Tooling will keep moving.** The principles, specificity, iteration, verification, will not.
-:::
-
-::: {.prose}
-The researchers who get the most out of these tools treat the AI as a colleague to argue with, which is what the mental model in section 1 said.
-:::
 
 ## Four habits for text output: run, check, read, re-read
 
@@ -970,6 +865,21 @@ The researchers who get the most out of these tools treat the AI as a colleague 
 
 [Adapted from Korinek (2025).]{.source}
 
+
+
+
+## 7 · What this means for academic work {.divider .center style="--fill:94%"}
+
+## Friction drops, the bottleneck moves, verification is key, things will keep moving
+
+::: {.claims}
+- **Friction drops** in writing, editing and admin: the paper website, the grant CV.
+- **The bottleneck shifts** from producing to judging.
+- **Verification becomes the differentiator.** Not typing speed, not LaTeX fluency.
+- **Tooling will keep moving.** The principles, specificity, iteration, verification, will not.
+:::
+
+
 ## Disclosure and data norms are still in flux
 
 ::: {.split .even .pairs}
@@ -980,7 +890,6 @@ The researchers who get the most out of these tools treat the AI as a colleague 
 - Briefs, teaching and internal documents have no strong norm yet
 - Default rule: disclose where your name is on it
 
-<p class="mm">Bryan's rule 8: write the AI policy into the syllabus, per assignment.</p>
 :::
 ::: {.panel}
 [Data handling]{.ph}
@@ -988,8 +897,6 @@ The researchers who get the most out of these tools treat the AI as a colleague 
 - An agent sends the files it reads to the model provider, not only your prompt
 - Confidential microdata, HR material and DUA-covered data stay out until the institution says otherwise
 - Web chat and a local agent are different tools with different policies
-
-<p class="mm">Check once, before the first paste; Day 2 has the secure-server workflow.</p>
 :::
 :::
 
@@ -1008,9 +915,6 @@ Ideas that could not be written before reach readers. The language barrier falls
 :::
 :::
 
-::: {.prose}
-[The open question: how do we evaluate research once competent-looking writing is free?]{.q}
-:::
 
 ## End of Session 1 {.closing}
 
@@ -1032,14 +936,14 @@ Ideas that could not be written before reach readers. The language barrier falls
 
 | from | slide | what is in it |
 |---|---|---|
-| 4 · Harness | [CLAUDE.md starter template](#claude-md) | Standing instructions to adapt for your own project |
-| 4 · Harness | [The six tools the harness adds](#tools) | Read, edit, shell, search, web, MCP |
-| 4 · Harness | [Signs of session drift](#drift) | When to start a fresh session |
-| 4 · Harness | [Which file formats need converting](#formats) | Text, convert once, read through code, OCR |
-| 4 · Harness | [Converting is one sentence](#convert) | A prompt that converts a folder of PDFs |
-| 6 · In practice | [What the ECB prompt is testing for](#ecb-room) | APIs, series keys, and what to check |
-| 7 · Verification | [My skill library](#skills) | Nine skills on GitHub, free to fork |
-| 7 · Verification | [Four checks, the full table](#checks-table) | What each check catches and what it costs |
+| 5 · Tools | [CLAUDE.md starter template](#claude-md) | Standing instructions to adapt for your own project |
+| 5 · Tools | [The six tools the harness adds](#tools) | Read, edit, shell, search, web, MCP |
+| 5 · Tools | [Signs of session drift](#drift) | When to start a fresh session |
+| 5 · Tools | [Which file formats need converting](#formats) | Text, convert once, read through code, OCR |
+| 5 · Tools | [Converting is one sentence](#convert) | A prompt that converts a folder of PDFs |
+| 5 · Tools | [What the ECB prompt is testing for](#ecb-room) | APIs, series keys, and what to check |
+| 6 · Verification | [My skill library](#skills) | Nine skills on GitHub, free to fork |
+| 6 · Verification | [Four checks, the full table](#checks-table) | What each check catches and what it costs |
 | | [References](#references) | Everything cited on the slides |
 
 ## CLAUDE.md starter template {#claude-md visibility="uncounted"}
@@ -1157,16 +1061,67 @@ Convert once, commit the markdown alongside the original, point the agent at the
 
 [All at [github.com/claesbackman/AI-research-feedback](https://github.com/claesbackman/AI-research-feedback) (MIT), linked from claesbackman.com/ai_workshop. Fork them, modify them, make them yours. Back to [check 3](#quiz) or the [appendix overview](#appendix).]{.source}
 
-## Four checks, the full table {#checks-table visibility="uncounted"}
+## Check 1: a fresh agent reviews the diff, and reports {#check-1 visibility="uncounted"}
 
-| check | what you do | what it catches | cost |
-|---|---|---|---|
-| **Fresh agent attacks the diff** | A fresh chat or subagent reviews the diff | Errors invisible to the agent that wrote the code | Minutes |
-| **Different model** | Same diff, model from another developer (Codex vs. Claude) | Shared habits: two copies of one model make the same mistakes | Minutes |
-| **Make the agent quiz you** | Fresh session explains the change, then quizzes you | Your own understanding gap | 10–15 min |
-| **Reimplement in another language** | Fresh folder, `spec.md` and `README.md` only, other language and model, you run it | Code that faithfully implements something other than the paper | Hours |
+::: {.split .even}
+::: {.prose}
+Two ways to get a reviewer with no stake in the code:
 
-[Back to [the four checks](#check-1) or the [appendix overview](#appendix).]{.source}
+**Ask the current agent** to hand the diff to a subagent, a fresh copy of itself with an empty context.
+
+**Open a new session** and point it at the diff.
+:::
+::: {.panel .check}
+[Have the reviewer report, not fix]{.ph}
+<p>Look at what the agent found and verify whether you agree with them. .</p>
+<p class="mm">Weakness: a fresh copy of the same model shares its habits. Hence check 2.</p>
+:::
+:::
+
+## Check 2: a different model breaks shared habits {visibility="uncounted"}
+
+::: {.big}
+[Two copies of one model share training data and habits of thought, so they make the same mistakes. Send the same diff to a model from a different developer.]{.q}
+
+:::
+
+## Check 3: make the agent quiz you {#quiz visibility="uncounted"}
+
+::: {.split .even}
+::: {.prose}
+Open a fresh session and ask:
+
+::: {.prompt}
+Read the last commit and the files it touches, then ask me three questions about what it changed. Do not tell me the answers until I have answered. If my answer is wrong, say so directly; do not tell me I was close.
+:::
+:::
+::: {.prose}
+**Always a new session**, not the one that made the change. Starting fresh forces the agent to read the files instead of recalling the conversation.
+
+**A skill for it:** `/explain-diff` writes one offline page about what changed, why, what it does to the results, and ends with a five-question quiz. [More skills in the appendix.](#skills)
+:::
+:::
+
+## Check 4: reimplement the analysis in another language  {visibility="uncounted"}
+
+::: {.split .even .cols}
+::: {.prose}
+[What and why]{.colhead}
+
+If your code is Stata, a second agent writes the results in Python or R from the paper's description alone. An idea from Scott Cunningham.
+
+If coding slips are independent across languages, differences in the output reveal the errors. 
+:::
+::: {.prose}
+[How to isolate it]{.colhead}
+
+New folder, fresh session, a `spec.md` copied from the paper with the results deleted, a `README.md` describing the raw data. 
+
+This is a major enterprise, so reserve it for the main tables and for things that matter. 
+:::
+:::
+
+
 
 ## References {#references visibility="uncounted"}
 

@@ -40,6 +40,18 @@
     const btn = (text, onClick) => { const b = E('button', { class: 'btn', text }); b.addEventListener('click', onClick); return b; };
     const chipBtn = (text, onClick) => { const b = E('button', { class: 'chip', text }); b.addEventListener('click', onClick); return b; };
     const txt = (x, y, text, attrs = {}) => S('text', Object.assign({ x, y, text }, attrs));
+    // An arrowhead in the colour of the path that uses it; the id must be unique in the deck
+    const arrowHead = (svg, id) => {
+      const d = S('defs'), m = S('marker', { id, viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+      m.append(S('path', { d: 'M0 0 L10 5 L0 10 z', fill: 'currentColor' })); d.append(m); svg.insertBefore(d, svg.firstChild);
+    };
+    // A straight edge between two boxes given by centre and size, clipped to both borders
+    const edge = (a, b, gap = 4) => {
+      const dx = b.x - a.x, dy = b.y - a.y, len = Math.hypot(dx, dy);
+      const s = (n) => Math.min(dx ? n.w / 2 / Math.abs(dx) : Infinity, dy ? n.h / 2 / Math.abs(dy) : Infinity) + gap / len;
+      const sa = s(a), sb = s(b);
+      return `M${a.x + sa * dx} ${a.y + sa * dy} L${b.x - sb * dx} ${b.y - sb * dy}`;
+    };
 
     const CH = {};
 
@@ -367,7 +379,7 @@
         [...log.children].forEach((li, k) => { li.className = k < i ? (k === i - 1 && !STATIC ? 'on' : 'done') : ''; });
         b.disabled = i >= steps.length;
         const tools = steps.filter((s) => s.from === 'model' && s.to !== 'you').length;
-        st.innerHTML = i === 0 ? 'Press <b>step</b> to run the request through the loop.' : i < steps.length ? `Step ${i} of ${steps.length}` : `${tools} tool calls, ${tools + 1} model calls, one result. The model never touched a file; it asked the harness to.`;
+        st.innerHTML = i === 0 ? 'Press <b>step</b> to run the request through the loop.' : i < steps.length ? `Step ${i} of ${steps.length}` : `${tools} tool calls, ${tools + 1} model calls, one result. `;
       };
       draw();
       el.append(wrap(svg, LEFT), log, E('div', { class: 'ctl' }, [b, reset, st]));
@@ -427,6 +439,71 @@
       sl.input.addEventListener('input', () => set(+sl.input.value));
       el.append(wrap(svg, LEFT), leg, sl.row, st, cap(`Stylised arithmetic with real orders of magnitude: about ${L.fmtInt(T.window / 1e6)} million tokens in the window, about ${T.perPage} tokens a PDF page, so a 200-page PDF is 80–100k. The fixed segments are rules of thumb for a Claude Code session. Quality degrades well before the bar is full.`));
     };
+
+//=====================================================================
+    // explorable-tree: a website as a tree of short decks, with forks
+    // =====================================================================
+    CH['explorable-tree'] = (el) => {
+      const W = 470, H = 324, bw = 124, bh = 44;
+      const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart' });
+      arrowHead(svg, 'et-head');
+      const N = {
+        hook:     { x: 260, y: 24,  t: ['the hook'] },
+        model:    { x: 150, y: 114, t: ['the model'] },
+        evidence: { x: 390, y: 114, t: ['the evidence'] },
+        twist:    { x: 80,  y: 204, t: ['a twist'] },
+        why:      { x: 228, y: 204, t: ['why it', 'happens'] },
+        data:     { x: 390, y: 204, t: ['the data'] },
+        sandbox:  { x: 260, y: 294, t: ['the sandbox'] },
+      };
+      Object.values(N).forEach((n) => { n.w = bw; n.h = bh; });
+      // solid: the decks in order; dashed: a fork the reader opens from inside a slide
+      [['hook', 'model'], ['hook', 'evidence'], ['model', 'twist'], ['evidence', 'data'],
+        ['twist', 'sandbox'], ['why', 'sandbox'], ['data', 'sandbox'], ['model', 'why', 1], ['data', 'why', 1]]
+        .forEach(([a, b, fork]) => svg.append(S('path', { d: edge(N[a], N[b]), fill: 'none', stroke: 'currentColor', 'stroke-width': 1.6, style: 'color:var(--ink-3)', 'stroke-dasharray': fork ? '5 4' : null, 'marker-end': 'url(#et-head)' })));
+      // the hook is where every reader starts, so it gets the heavy border
+      Object.entries(N).forEach(([k, n]) => {
+        const start = k === 'hook';
+        svg.append(S('rect', { x: n.x - bw / 2, y: n.y - bh / 2, width: bw, height: bh, rx: 6, class: start ? 'box on' : 'box' }));
+        n.t.forEach((line, i) => svg.append(txt(n.x, n.y + 5 + (i - (n.t.length - 1) / 2) * 16, line, { 'text-anchor': 'middle', class: 'boxlbl', style: start ? null : 'font-weight:500' })));
+      });
+      el.append(wrap(svg), cap('Each box is a short deck. Dashed arrows are forks the reader chooses from inside a slide.'));
+    };
+
+
+    // =====================================================================
+    // outputs: one paper, five ways to tell it
+    // =====================================================================
+    CH.outputs = (el) => {
+      const W = 1000, H = 364, bw = 262, bh = 80;
+      const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart' });
+      arrowHead(svg, 'op-head');
+      const hub = { x: 500, y: 150, w: 230, h: 90 };
+      const out = [
+        { x: 138, y: 44,  t: 'A seminar deck',        s: ['titles that state claims,', 'for colleagues'] },
+        { x: 862, y: 44,  t: 'An explorable website', s: ['the model to run, for', 'students and the curious'] },
+        { x: 138, y: 254, t: 'A policy brief',        s: ['one page, for people', 'who decide (/paper-version)'] },
+        { x: 862, y: 254, t: 'Teaching material',     s: ['a lecture, a problem set,', 'a quiz bank'] },
+        { x: 500, y: 320, t: 'An interactive figure', s: ['for the paper’s', 'own web page'] },
+      ];
+      out.forEach((o) => { o.w = bw; o.h = bh; svg.append(S('path', { d: edge(hub, o, 6), fill: 'none', stroke: 'currentColor', 'stroke-width': 1.8, style: 'color:var(--ink-3)', 'marker-end': 'url(#op-head)' })); });
+      svg.append(S('rect', { x: hub.x - hub.w / 2, y: hub.y - hub.h / 2, width: hub.w, height: hub.h, rx: 8, class: 'box on' }));
+      svg.append(txt(hub.x, hub.y - 4, 'Your paper', { 'text-anchor': 'middle', class: 'boxlbl', style: 'font-size:22px' }));
+      svg.append(txt(hub.x, hub.y + 22, 'the record of the research', { 'text-anchor': 'middle', class: 'boxsub', style: 'font-size:14px' }));
+      // a skill name inside a sub-line is set in mono
+      const subline = (x, y, str) => {
+        const t = S('text', { x, y, 'text-anchor': 'middle', class: 'boxsub', style: 'font-size:15px' });
+        str.split(/(\/[a-z-]+)/).filter(Boolean).forEach((p) => t.append(S('tspan', p[0] === '/' ? { text: p, class: 'lbl-mono', style: 'font-size:13.5px' } : { text: p })));
+        return t;
+      };
+      out.forEach((o) => {
+        svg.append(S('rect', { x: o.x - bw / 2, y: o.y - bh / 2, width: bw, height: bh, rx: 6, class: 'box' }));
+        svg.append(txt(o.x, o.y - 14, o.t, { 'text-anchor': 'middle', class: 'boxlbl', style: 'font-size:16px' }));
+        o.s.forEach((line, i) => svg.append(subline(o.x, o.y + 8 + i * 19, line)));
+      });
+      el.append(wrap(svg));
+    };
+
 
     // =====================================================================
     // checks-cost: four verification checks on a cost axis

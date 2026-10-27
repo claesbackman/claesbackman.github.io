@@ -11,7 +11,7 @@ format:
     margin: 0.06
     center: true
     slide-number: c/t
-    show-slide-number: speaker
+    show-slide-number: all
     progress: true
     menu: false
     transition: fade
@@ -359,6 +359,49 @@ It will not add or drop an idea without saying so, and it is not a proofreader. 
 ![](figs/Ai_writing_PaulGP.png)
 :::
 [Figure from [Paul Goldsmith-Pinkham, A Causal Affair on Substack](https://paulgp.substack.com/p/how-do-we-know-if-writing-is-ai)]{.figcap}
+
+
+## Other fields have worked out how to explain their work {#other-fields}
+
+::: {.split .even .center-v}
+::: {.prose}
+`/explorable-explanation` builds a website as a non-linear tree of short HTML decks, one idea per slide, with forks placed where the reader becomes curious.
+
+[How it works]{.colhead}
+
+::: {.claims}
+- Reads the source material, then writes `plan.md` like a script: the hook, what the reader sees and does, and where the branches go
+- Shows you the first batch before it builds the rest
+- Screenshots every slide and reworks the ones that break the craft rules
+- Sends adversarial subagents to judge writing, interface, visuals and teaching
+- A “creative director” subagent gives it a visual identity; an impatient-reader subagent flags every slide where the flow breaks
+:::
+:::
+```{=html}
+<div class="stage" data-chart="explorable-tree"></div>
+```
+:::
+
+## We do not have to be bound by the PDF {#beyond-pdf}
+
+::: {.stack}
+```{=html}
+<div class="stage" data-chart="outputs"></div>
+```
+
+:::
+
+## Innovations are already happening 
+
+::: {.figwrap .raster .tweets}
+![](figs/paper_in_ai_age.jpg){width="30%"}
+[Figure from [https://nobel-prizes.devdatalab.org/](https://nobel-prizes.devdatalab.org/)]{.figcap}
+
+::: {.fragment}
+![](figs/erzo_luttmer.png){style="width: 500px"}
+:::
+:::
+
 
 
 

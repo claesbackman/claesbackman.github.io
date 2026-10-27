@@ -409,6 +409,11 @@ $code-block-font-size: 0.6em;
 /* Raster figures with a dark ground must not blend with the paper */
 .reveal .figwrap.raster img { mix-blend-mode: normal; }
 
+/* two screenshots stacked and centred, height following the width */
+.reveal .figwrap.raster.tweets { flex-direction: column; align-items: center; gap: 16px; }
+.reveal .figwrap.raster.tweets p { flex-direction: column; align-items: center; }
+.reveal .figwrap.raster.tweets img { height: auto; width: auto; max-width: 760px; max-height: 300px; border: 1px solid $line; border-radius: 12px; }
+
 
 /* Each slide paints the paper itself: reveal's sections are stacking contexts
    with no background, so without this mix-blend-mode has nothing to blend with
@@ -426,6 +431,7 @@ $code-block-font-size: 0.6em;
 .reveal .slides section > .prompt { max-width: 1040px; }
 
 /* five or six small cards in a strip */
+.reveal .agenda.seven { grid-template-columns: repeat(7, minmax(0, 1fr)); }
 .reveal .agenda.five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .reveal .agenda.five div { min-height: 190px; padding: 16px 14px; }
 .reveal .agenda.five span { font-size: 0.62em; min-height: 0; }
