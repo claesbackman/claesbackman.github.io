@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robustness explorer · Macroprudential policies and homeownership</title>
+<meta name="description" content="Every specification of the local projections in the paper, with a specification curve, leave-one-out estimates, alternative inference and event-study variants.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="wide" data-page="robustness-explorer">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">Macroprudential policies and homeownership</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/MacroPrud-Homeownership/issues/new?title=Website: Robustness explorer&body=Page: robustness-explorer.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="paper/MacroPrudHomeownership.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">Macroprudential policies and homeownership rates</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="framework.html"><span class="nav-num">2</span><span>Conceptual framework</span></a></li><li><a href="data.html"><span class="nav-num">3–4</span><span>Data and descriptive patterns</span></a></li><li><a href="strategy.html"><span class="nav-num">5</span><span>Empirical strategy</span></a></li><li><a href="results.html"><span class="nav-num">6</span><span>Aggregate results</span></a></li><li><a href="margins.html"><span class="nav-num">7–8</span><span>Young households and the rental market</span></a></li><li><a href="reforms.html"><span class="nav-num">9</span><span>Large borrower-based reforms</span></a></li><li><a href="benchmark.html"><span class="nav-num">10–11</span><span>Benchmark and robustness</span></a></li><li><a href="conclusion.html"><span class="nav-num">12</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–C</span><span>Online appendix</span></a></li><li class="nav-group">Robustness and FAQ</li><li class="active"><a href="robustness-explorer.html"><span class="nav-num"></span><span>Robustness explorer</span></a></li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li class="nav-group">Explore further</li><li><a href="data-explorer.html"><span class="nav-num"></span><span>Data explorer</span></a></li><li><a href="policy-explorer.html"><span class="nav-num"></span><span>Policy action explorer</span></a></li><li><a href="replication.html"><span class="nav-num"></span><span>Replicate or remix with AI</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<div class="explorer">
+<h1>Robustness explorer</h1>
+<p class="lead">Every result in the paper is one point in a grid of specifications. This page lets you walk the grid. Pick an outcome, choose any combination of policy index, controls, fixed effects, sample, weights and dependent-variable definition, and see the full impulse response with equivalence tests. The specification curve below shows every estimated combination at once, and the remaining panels show leave-one-out estimates, alternative inference and the event-study variants around the five large reforms.</p>
+<p class="small muted">All estimates were produced by the Stata scripts in <code>ProjectCode/4_*.do</code> using the same local projection as the paper (Equation 1), with standard errors clustered by country. The baseline specification in the paper is the overall MaPPED index with the Eurostat control set, country and year fixed effects, the full sample, no weights and the cumulative dependent variable. Figures on the paper pages link here with the matching specification preselected.</p>
+
+<div class="panel">
+  <div class="ctl">
+    <label class="ctl-group"><span class="ctl-label">Outcome</span> <select id="outcome"></select></label>
+    <div class="ctl-group"><span class="ctl-label">Confidence level</span><span id="level"></span></div>
+    <div class="ctl-group"><span class="ctl-label">Equivalence margin δ</span><span id="delta"></span></div>
+    <div class="ctl-group"><span class="ctl-label">Horizon for curve and leave-one-out</span><span id="horizon"></span></div>
+  </div>
+  <p id="loading" class="muted small" style="margin-top:.6rem">Loading…</p>
+</div>
+
+<section class="panel" id="focal">
+  <h2>1. One specification in full</h2>
+  <p>Select the specification below. The chart shows the cumulative response at horizons one to five (and the pre-period for the leads where estimated); the table reports the coefficient, confidence interval, two one-sided equivalence test and minimum detectable effect at each horizon.</p>
+  <div class="ctl" id="focal-controls"></div>
+  <div class="ctl" style="margin-top:.6rem">
+    <label class="ctl-group"><input type="checkbox" id="compare" checked> Overlay the paper's baseline</label>
+    <button type="button" class="pill" id="reset">Reset to baseline</button>
+  </div>
+  <h3 id="focal-title"></h3>
+  <div id="focal-desc" class="small" style="margin-bottom:.5rem"></div>
+  <div id="focal-legend"></div>
+  <div id="focal-chart" class="fig-chart"></div>
+  <div id="focal-table" class="tab-scroll" style="margin-top:.8rem"></div>
+</section>
+
+<section class="panel" id="curve">
+  <h2>2. Specification curve</h2>
+  <p>Each point is one specification at the selected horizon, sorted by the coefficient, with its confidence interval. The matrix below the curve shows which choices each specification makes. Use the filters to restrict the grid; click a point to load that specification in panel 1. The shaded band is the equivalence margin.</p>
+  <div class="ctl" id="filter-controls"></div>
+  <div class="stat-row" id="curve-stats"></div>
+  <div id="curve-legend"></div>
+  <div id="curve-chart" class="fig-chart"></div>
+  <p class="small"><a href="#" id="curve-download">Download the displayed specifications (CSV)</a></p>
+</section>
+
+<section class="panel" id="loo">
+  <h2>3. Leave one country or one year out</h2>
+  <p id="loo-note" class="small"></p>
+  <div class="two-col">
+    <div><h3>Dropping one country</h3><div id="loo-country" class="fig-chart"></div></div>
+    <div><h3>Dropping one year</h3><div id="loo-year" class="fig-chart"></div></div>
+  </div>
+  <p class="small muted">The dashed line and shaded band are the coefficient and confidence interval of the full-sample specification.</p>
+</section>
+
+<section class="panel" id="inference">
+  <h2>4. Alternative inference</h2>
+  <p>With 28 country clusters, asymptotic clustered standard errors may be unreliable. The table compares them with heteroskedasticity-robust, two-way clustered and Driscoll–Kraay standard errors, with wild cluster bootstrap p-values and confidence intervals, and with randomization inference.</p>
+  <div id="inference-table" class="tab-scroll"></div>
+  <h3>Randomization inference</h3>
+  <p id="ri-note" class="small"></p>
+  <div id="ri-chart" class="fig-chart"></div>
+</section>
+
+<section class="panel" id="es-section" hidden>
+  <h2>5. Event study around the five large borrower-based reforms</h2>
+  <p>Callaway–Sant'Anna estimates for the Netherlands (2011), the United Kingdom (2014), Ireland (2015), Sweden (2016) and Finland (2016), with the sample variants of Appendix Table B26: alternative control groups, leaving one reform out, and one reform at a time. Standard errors clustered by country in parentheses.</p>
+  <div id="es-table" class="tab-scroll"></div>
+  <div class="ctl" style="margin:.8rem 0 .4rem"><label class="ctl-group"><span class="ctl-label">Event-time coefficients for</span> <select id="es-variant"></select></label></div>
+  <div id="es-chart" class="fig-chart"></div>
+</section>
+</div>
+
+<nav class="prevnext"><a class="pn prev" href="appendix.html"><span class="pn-dir">Previous</span><span class="pn-title">Online appendix</span></a><a class="pn next" href="faq.html"><span class="pn-dir">Next</span><span class="pn-title">Questions and answers</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. Funded by the European Union (Marie Skłodowska-Curie Individual Fellowship YoHo, project 101151984). Views and opinions expressed are those of the author only. This study is based on data from Eurostat (EU-SILC), the ECB MaPPED database, the IMF iMaPP database and the BIS.</p>
+  <p><a href="https://github.com/claesbackman/MacroPrud-Homeownership" target="_blank" rel="noopener">Source repository</a> · <a href="replication.html">Replication</a> · <a href="errata.html">Errata and notes</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/charts.js"></script><script src="assets/explorer.js"></script>
+</body>
+</html>

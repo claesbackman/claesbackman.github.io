@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Replicate or remix with AI · Macroprudential policies and homeownership</title>
+<meta name="description" content="Code, data and an AI prompt for replicating or extending the paper.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="" data-page="replication">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">Macroprudential policies and homeownership</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/MacroPrud-Homeownership/issues/new?title=Website: Replicate or remix with AI&body=Page: replication.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="paper/MacroPrudHomeownership.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">Macroprudential policies and homeownership rates</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="framework.html"><span class="nav-num">2</span><span>Conceptual framework</span></a></li><li><a href="data.html"><span class="nav-num">3–4</span><span>Data and descriptive patterns</span></a></li><li><a href="strategy.html"><span class="nav-num">5</span><span>Empirical strategy</span></a></li><li><a href="results.html"><span class="nav-num">6</span><span>Aggregate results</span></a></li><li><a href="margins.html"><span class="nav-num">7–8</span><span>Young households and the rental market</span></a></li><li><a href="reforms.html"><span class="nav-num">9</span><span>Large borrower-based reforms</span></a></li><li><a href="benchmark.html"><span class="nav-num">10–11</span><span>Benchmark and robustness</span></a></li><li><a href="conclusion.html"><span class="nav-num">12</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–C</span><span>Online appendix</span></a></li><li class="nav-group">Robustness and FAQ</li><li><a href="robustness-explorer.html"><span class="nav-num"></span><span>Robustness explorer</span></a></li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li class="nav-group">Explore further</li><li><a href="data-explorer.html"><span class="nav-num"></span><span>Data explorer</span></a></li><li><a href="policy-explorer.html"><span class="nav-num"></span><span>Policy action explorer</span></a></li><li class="active"><a href="replication.html"><span class="nav-num"></span><span>Replicate or remix with AI</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<div class="explorer">
+<h1>Replicate or remix with AI</h1>
+<p class="lead">Everything on this site is produced by the Stata code in the paper's repository from publicly available data. This page lists the pieces, explains how to run them, and gives a prompt you can paste into an AI assistant to work with the paper.</p>
+
+<div class="panel">
+<h2>Ask an AI about this paper</h2>
+<p>Paste the text below into the assistant of your choice. It points the assistant at the paper, the site and the code, and asks it to help you read, check or extend the analysis.</p>
+<pre id="prompt">I am reading the working paper "Macroprudential policies and homeownership rates" by Claes Bäckman (Leibniz Institute SAFE). The paper estimates local projections of homeownership rates on a narrative index of macroprudential policy actions for 28 European countries, 2003-2017, and finds no detectable decline in homeownership, with equivalence tests that bound the cumulative effect at half a percentage point.
+
+Resources:
+- Digital edition with interactive figures and a robustness explorer: @@SITE_URL@@
+- PDF: @@SITE_URL@@paper/MacroPrudHomeownership.pdf
+- Code and data: https://github.com/claesbackman/MacroPrud-Homeownership (Stata do-files in ProjectCode/, website build in ProjectCode/Website_build/, robustness grid outputs in ProjectCode/Multiverse/)
+- Country-year panel (CSV): @@SITE_URL@@data/csv/panel.csv
+- Policy actions (CSV): @@SITE_URL@@data/csv/policy_actions.csv
+
+Please (1) explain the identification strategy and what the equivalence tests do and do not establish, (2) explain how to run the replication code, and (3) suggest one additional robustness check or extension that is not already in the robustness explorer, and sketch the Stata or Python code for it.</pre>
+<p><button type="button" class="pill" id="copy">Copy the prompt</button> <span id="copied" class="small muted"></span></p>
+</div>
+
+<div class="panel">
+<h2>What is inside the repository</h2>
+<table class="est">
+<thead><tr><th>File</th><th style="text-align:left">What it does</th></tr></thead>
+<tbody>
+<tr><th scope="row"><code>ProjectCode/00_Master.do</code></th><td style="text-align:left">Runs the whole pipeline from raw data to the paper's tables and figures.</td></tr>
+<tr><th scope="row"><code>1_1_MaPPED_load.do</code>, <code>1_1_Data_MacroPrudLoad1.do</code></th><td style="text-align:left">Build the narrative MaPPED index (weights, counter-cyclical filter, announcement dates) and the iMaPP indices.</td></tr>
+<tr><th scope="row"><code>1_2_Data.do</code> to <code>1_6_Data_EurostatMacro.do</code></th><td style="text-align:left">Import EU-SILC tenure shares, Eurostat national accounts, house prices, debt and interest rates, and BIS credit and policy rates; assemble the annual panel.</td></tr>
+<tr><th scope="row"><code>2_1_Analysis.do</code>, <code>2_2_Analysis_AgeCohort.do</code>, <code>2_3_Analysis_Revision.do</code></th><td style="text-align:left">The paper's estimates: local projections, equivalence tests, first stage, pre-trends, randomization inference, rental margins, young households, effective tightenings, Callaway–Sant'Anna event studies, alternative inference.</td></tr>
+<tr><th scope="row"><code>3_Appendix.do</code></th><td style="text-align:left">Appendix tables and figures, including the iMaPP comparison.</td></tr>
+<tr><th scope="row"><code>4_1_Website_Data.do</code> to <code>4_6_Multiverse_Extra.do</code></th><td style="text-align:left">The robustness grid behind this site: alternative index constructions, the full specification grid for every outcome, leave-one-out, inference variants, randomization inference and event-study variants. Each block runs separately in batch mode and writes a CSV to <code>ProjectCode/Multiverse/</code>.</td></tr>
+<tr><th scope="row"><code>ProjectCode/Website_build/</code></th><td style="text-align:left"><code>tex2html.py</code> converts the LaTeX source into the pages of this site (pandoc with the paper's bibliography); <code>make_data.py</code> converts the CSV outputs into the JSON the charts read.</td></tr>
+<tr><th scope="row"><code>Writing/</code></th><td style="text-align:left">LaTeX source, tables and figures of the paper.</td></tr>
+</tbody></table>
+<p class="small muted">Stata 18.5 with <code>reghdfe</code>, <code>ftools</code>, <code>estout</code>, <code>boottest</code>, <code>xtscc</code>, <code>csdid</code>, <code>drdid</code>, <code>bacondecomp</code> and <code>coefplot</code> from SSC. The website build needs Python 3 with pandas and numpy, and pandoc 3.</p>
+</div>
+
+<div class="panel">
+<h2>Data</h2>
+<p>The raw inputs are public. The repository does not redistribute them, but the assembled panel and the policy-action list are available here.</p>
+<ul>
+<li><a href="data/csv/panel.csv">panel.csv</a>: the 347 country-year observations with tenure shares, policy indices and controls (the file behind the <a href="data-explorer.html">data explorer</a>).</li>
+<li><a href="data/csv/policy_actions.csv">policy_actions.csv</a>: the 1,076 MaPPED actions for the sample countries and years with their weights.</li>
+<li><a href="data/csv/inference.csv">inference.csv</a>, <a href="data/csv/es_att.csv">es_att.csv</a>, <a href="data/csv/es_event.csv">es_event.csv</a>: alternative inference and event-study variants.</li>
+<li>The full specification grid (several hundred thousand rows) is in <code>ProjectCode/Multiverse/lp_*.csv</code> in the repository; the explorer offers CSV downloads of any filtered subset.</li>
+</ul>
+<p>Sources: Eurostat EU-SILC tables <code>ilc_lvho02</code>, <code>ilc_lvho02</code> by income group and <code>ilc_lvps15</code>; ECB <a href="https://www.ecb.europa.eu/pub/pdf/scpwps/ecb.wp2123.en.pdf" target="_blank" rel="noopener">MaPPED</a> (Budnik and Kleibl 2018); IMF <a href="https://www.elibrary-areaer.imf.org/Macroprudential/Pages/Home.aspx" target="_blank" rel="noopener">iMaPP</a> (Alam et al. 2019); Eurostat national accounts, HICP, house price index (<code>prc_hpi_a</code>), private and household debt (<code>tipspd20</code>, <code>tipspd22</code>) and money market rates (<code>irt_st_a</code>, <code>irt_h_mr3_a</code>); <a href="https://www.bis.org/statistics/totcredit.htm" target="_blank" rel="noopener">BIS</a> total credit statistics, policy rates and residential property prices.</p>
+</div>
+
+<div class="panel">
+<h2>Running it</h2>
+<pre>git clone https://github.com/claesbackman/MacroPrud-Homeownership
+cd MacroPrud-Homeownership
+# place the raw files listed in ProjectCode/RawData/ReadMe_Main.txt in ProjectCode/RawData/
+stata -b do ProjectCode/00_Master.do            # paper tables and figures
+stata -b do ProjectCode/4_1_Website_Data.do     # website panel and alternative indices
+stata -b do ProjectCode/4_3_Multiverse_LP.do A  # one block of the grid (A, B1, B2, C, LOO)
+python3 ProjectCode/Website_build/make_data.py  # JSON for the site
+python3 ProjectCode/Website_build/tex2html.py   # the pages</pre>
+<p class="small muted">Paths at the top of <code>0_Setup_charts_paths.do</code> and the <code>4_*.do</code> files need to point at your copy of the repository.</p>
+</div>
+
+<div class="panel">
+<h2>Citing</h2>
+<p>Bäckman, Claes. 2026. "Macroprudential policies and homeownership rates." Working paper, Leibniz Institute for Financial Research SAFE.</p>
+<pre>@unpublished{backman2026macroprudential,
+  author = {B{\"a}ckman, Claes},
+  title  = {Macroprudential policies and homeownership rates},
+  year   = {2026},
+  note   = {Working paper, Leibniz Institute for Financial Research SAFE}
+}</pre>
+</div>
+</div>
+
+<nav class="prevnext"><a class="pn prev" href="policy-explorer.html"><span class="pn-dir">Previous</span><span class="pn-title">Policy action explorer</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. Funded by the European Union (Marie Skłodowska-Curie Individual Fellowship YoHo, project 101151984). Views and opinions expressed are those of the author only. This study is based on data from Eurostat (EU-SILC), the ECB MaPPED database, the IMF iMaPP database and the BIS.</p>
+  <p><a href="https://github.com/claesbackman/MacroPrud-Homeownership" target="_blank" rel="noopener">Source repository</a> · <a href="replication.html">Replication</a> · <a href="errata.html">Errata and notes</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/replication.js"></script>
+</body>
+</html>

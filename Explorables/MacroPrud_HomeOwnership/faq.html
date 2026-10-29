@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Questions and answers · Macroprudential policies and homeownership</title>
+<meta name="description" content="Interactive edition of the paper Macroprudential policies and homeownership rates, with a full robustness explorer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="" data-page="faq">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">Macroprudential policies and homeownership</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/MacroPrud-Homeownership/issues/new?title=Website: Questions and answers&body=Page: faq.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="paper/MacroPrudHomeownership.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">Macroprudential policies and homeownership rates</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="framework.html"><span class="nav-num">2</span><span>Conceptual framework</span></a></li><li><a href="data.html"><span class="nav-num">3–4</span><span>Data and descriptive patterns</span></a></li><li><a href="strategy.html"><span class="nav-num">5</span><span>Empirical strategy</span></a></li><li><a href="results.html"><span class="nav-num">6</span><span>Aggregate results</span></a></li><li><a href="margins.html"><span class="nav-num">7–8</span><span>Young households and the rental market</span></a></li><li><a href="reforms.html"><span class="nav-num">9</span><span>Large borrower-based reforms</span></a></li><li><a href="benchmark.html"><span class="nav-num">10–11</span><span>Benchmark and robustness</span></a></li><li><a href="conclusion.html"><span class="nav-num">12</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–C</span><span>Online appendix</span></a></li><li class="nav-group">Robustness and FAQ</li><li><a href="robustness-explorer.html"><span class="nav-num"></span><span>Robustness explorer</span></a></li><li class="active"><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li class="nav-group">Explore further</li><li><a href="data-explorer.html"><span class="nav-num"></span><span>Data explorer</span></a></li><li><a href="policy-explorer.html"><span class="nav-num"></span><span>Policy action explorer</span></a></li><li><a href="replication.html"><span class="nav-num"></span><span>Replicate or remix with AI</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<div class="faq">
+<h1>Questions and answers</h1>
+<p class="lead">Questions that readers, seminar audiences and referees have raised about the paper, with answers that point to the evidence in the paper and on this site. The answers are the author's.</p>
+
+<h2 id="q-published">Is this paper published?<a class="q-link" href="#q-published">#</a></h2>
+<p>Not yet. This is a working paper, and the digital edition follows the current draft. The <a href="errata.html">errata and notes</a> page records changes between versions.</p>
+
+<h2 id="q-null">How can a null result be informative with 28 countries and fifteen years of annual data?<a class="q-link" href="#q-null">#</a></h2>
+<p>By saying how large an effect the data could have detected. The paper does not stop at statistical insignificance. For the aggregate homeownership rate, two one-sided equivalence tests reject cumulative effects larger than half a percentage point in absolute value at all five reported horizons, with and without controls, and the minimum detectable effect lies between 0.15 and 0.50 percentage points (Table <a href="appendix.html#table:LP_HO_Full">B10</a>). Randomization inference gives the same message from a different angle: when the index change is reshuffled across countries within years, the 97.5th percentile of the placebo coefficients rises from 0.12 percentage points at the first horizon to 0.25 at the fifth (Table <a href="appendix.html#table:RI">B15</a>), so an effect of that size would have stood out. The structural models the paper confronts predict responses of 1.8 to 3 percentage points, several times larger than these bounds.</p>
+
+<h2 id="q-tight">Why are the confidence bands so tight?<a class="q-link" href="#q-tight">#</a></h2>
+<p>Because homeownership rates move slowly. The annual change in the aggregate rate has a standard deviation of 1.4 percentage points across the 291 country-years in the estimation sample (Table <a href="appendix.html#table:SumStats">B7</a>), and the index change has a standard deviation of 1.5 units, so a regression of one on the other with country and year fixed effects produces standard errors of about 0.08 percentage points at the first horizon. The bands widen with the horizon as the cumulative change accumulates more variation. The <a href="robustness-explorer.html?outcome=owner#inference">inference panel of the explorer</a> shows that wild cluster bootstrap p-values, Driscoll–Kraay standard errors and randomization inference give similar answers, so the precision is not an artefact of asymptotic clustered standard errors with 28 clusters.</p>
+
+<h2 id="q-firststage">The index barely moves credit or house prices. Does the null on homeownership mean anything?<a class="q-link" href="#q-firststage">#</a></h2>
+<p>This is the main caveat, and the paper states it in the introduction. The average non-counter-cyclical action in MaPPED is not followed by a significant fall in real house prices or private debt (Section <a href="results.html#sec:firststage">6.1</a>), so the aggregate null can be read either as homeownership not responding to credit, or as the index not moving credit. The paper addresses this in two ways. Section <a href="results.html#sec:effective">6.3</a> splits tightenings by whether real household debt fell afterwards; after the 51 tightenings that reduced credit, real household debt is about two percent lower and real house prices fall by 1.6 to 2.2 percent, and the homeownership rate still does not fall. Section <a href="reforms.html">9</a> examines five reforms with large documented effects on targeted borrowers and finds no common decline in the aggregate rate. Both exercises are suggestive rather than decisive, and the results should be read as bounds on the aggregate effect of recorded policy actions rather than as a test between the two modelling traditions.</p>
+
+<h2 id="q-stock">The homeownership rate is a stock. Macroprudential policy acts on new mortgages. Can the aggregate rate detect anything?<a class="q-link" href="#q-stock">#</a></h2>
+<p>It can detect persistent exclusion of a sizeable share of first-time buyers, and it cannot detect delays. Section <a href="benchmark.html">10</a> works this out. About 1.3 percent of households enter ownership each year. A policy that permanently excludes 20 percent of first-time buyers lowers the aggregate rate by 1.3 percentage points over five years, which the estimates reject; the half-percentage-point equivalence bound corresponds to a permanent exclusion of about 8 percent of first-time buyers per unit of the index. If excluded buyers enter a few years later, the stock barely moves. That is why the paper also looks at the share of young adult-only households who own with a mortgage, the available series most exposed to first-time-buyer entry, and finds no decline there either (Section <a href="margins.html#sec:flow">7.2</a>).</p>
+
+<h2 id="q-marginal">What about the marginal buyer, the young and the low-income household?<a class="q-link" href="#q-marginal">#</a></h2>
+<p>The young-household margins do not fall: the homeownership rate of adult-only households under 65, the rates for individuals aged 18 to 54 and 25 to 54, and the share of young households owning with a mortgage all stay within a few tenths of a percentage point of zero at every horizon (Sections <a href="margins.html">7</a> and <a href="appendix.html#table:LP_HO_AgeGroups">Table B17</a>). The low-income estimates are less precise because the group is small and changes composition from year to year, and the low-income mortgagor share falls by 0.48 percentage points at the longest horizon, significant at the 5 percent level (Table <a href="appendix.html#table:LP_HO_Groups">B4</a>). The paper reports this and does not treat the low-income results as precise nulls.</p>
+
+<h2 id="q-horizon">Could the effect take longer than five years to appear?<a class="q-link" href="#q-horizon">#</a></h2>
+<p>Yes. The sample ends in 2017 and the horizons run to five years, so slower adjustment is possible, and the stock-flow benchmark shows that temporary delays in entry would not be visible in the aggregate rate at all. The conclusion says so. What the data rule out is a persistent aggregate effect of the size predicted by models with elastic landlord conversion within five years of a recorded tightening.</p>
+
+<h2 id="q-index">Why do well-known reforms, such as Ireland's 2015 limits, enter the index as zero?<a class="q-link" href="#q-index">#</a></h2>
+<p>Because the narrative index follows Fernández-Gallardo (2025) and uses only actions that MaPPED does not code as counter-cyclical in design. The Irish 2015 limits and the Finnish 2016 cap are coded as counter-cyclical and drop out; the Swedish 2016 amortization requirement enters as 0.25, the UK 2014 loan-to-income limit as 2.1 and the Dutch 2011 cap as 3. The <a href="policy-explorer.html">policy action explorer</a> lists every action with its weight and whether it enters the index. Section <a href="reforms.html">9</a> examines these five reforms directly with a staggered difference-in-differences design, and the <a href="robustness-explorer.html">robustness explorer</a> reports the results with alternative index constructions: unweighted counts, the index including counter-cyclical actions, the index dated by in-force rather than announcement date, actions of macroprudential character only, and the IMF's iMaPP database.</p>
+
+<h2 id="q-micro">The micro literature finds large effects of borrower-based limits. Why do they not show up here?<a class="q-link" href="#q-micro">#</a></h2>
+<p>The two kinds of evidence measure different objects. The micro studies compare exposed with unexposed borrowers, lenders or regions within a country, so any response common to the whole country is differenced out, and they document the adjustments that shrink the aggregate footprint: lenders reallocated credit toward unconstrained borrowers in Ireland, affected buyers in Finland entered ownership later rather than not at all, and in a segmented market prices absorb part of the demand shift. Add the stock-flow dilution and a borrower-level effect of 20 percent on constrained first-time buyers becomes a change in the stock of owners that is inside the confidence intervals here. Section <a href="reforms.html">9</a> makes this argument in full and shows that the five reforms also leave no common trace in aggregate credit or house prices.</p>
+
+<h2 id="q-loosen">Does the paper show that relaxing loan-to-value limits would not raise homeownership?<a class="q-link" href="#q-loosen">#</a></h2>
+<p>No. Only 18 of the 161 non-zero changes in the index are loosenings, and their coefficients have standard errors of 0.4 to 1.3 percentage points (Table <a href="appendix.html#table:LP_HO_TightLoose">B24</a>). The results are about tightenings. They say that the case for relaxing borrower-based measures cannot rest on evidence that tightenings reduced homeownership, because none is found.</p>
+
+<h2 id="q-other">What about the size and location of the homes people buy, household formation, or welfare?<a class="q-link" href="#q-other">#</a></h2>
+<p>The paper is silent on them. Delayed household formation lowers the denominator of the homeownership rate and can leave the measured rate unchanged while reducing access to independent ownership; the intensive margin of housing consumption and the welfare of the marginal buyer need micro data. The paper's contribution is to pin down the aggregate magnitudes those studies should be reconciled with.</p>
+
+<h2 id="q-robust">Which robustness checks were run, and how were they chosen?<a class="q-link" href="#q-robust">#</a></h2>
+<p>The <a href="robustness-explorer.html">robustness explorer</a> contains a factorial grid rather than a hand-picked set. For the aggregate homeownership rate the grid crosses eight constructions of the policy index (plus the tightening, effective-tightening and mortgage-depth splits used in the paper), seven control sets, three fixed-effect structures, eight samples, two weighting schemes and two definitions of the dependent variable, at horizons one to five and for the two pre-period leads. For the other headline outcomes it drops the annual-change definition and the leads and estimates country-specific trends on the full sample only; for the remaining outcomes it also drops the population weights and three of the eight samples. Every cell in these grids is reported; none was removed after estimation. The paper's own robustness section (Section <a href="benchmark.html#sec:robustness">11</a>) covers pre-trends, tightenings versus loosenings, alternative inference, randomization inference, the alternative policy database and the control sets; the explorer extends each of these to every outcome and adds leave-one-country-out and leave-one-year-out estimates and the event-study variants.</p>
+
+<h2 id="q-unit">What is "one unit" of the index?<a class="q-link" href="#q-unit">#</a></h2>
+<p>The activation of one new instrument, or four changes in the level of existing instruments, or ten changes in scope (Table <a href="appendix.html#table:weighting">B1</a>). The index does not measure the intensity of a restriction: activating a capital buffer and activating a loan-to-value limit enter with the same weight. In the estimation sample the index change has a standard deviation of 1.46 and the median non-zero tightening is 1.25 units, so the tables also report the effect of a one-standard-deviation change and of the median tightening, and the figures on this site can be rescaled to either.</p>
+
+<h2 id="q-code">Where are the code and the data?<a class="q-link" href="#q-code">#</a></h2>
+<p>On the <a href="replication.html">replication page</a>, together with a prompt for asking an AI assistant about the paper.</p>
+</div>
+
+<nav class="prevnext"><a class="pn prev" href="robustness-explorer.html"><span class="pn-dir">Previous</span><span class="pn-title">Robustness explorer</span></a><a class="pn next" href="errata.html"><span class="pn-dir">Next</span><span class="pn-title">Errata and notes</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. Funded by the European Union (Marie Skłodowska-Curie Individual Fellowship YoHo, project 101151984). Views and opinions expressed are those of the author only. This study is based on data from Eurostat (EU-SILC), the ECB MaPPED database, the IMF iMaPP database and the BIS.</p>
+  <p><a href="https://github.com/claesbackman/MacroPrud-Homeownership" target="_blank" rel="noopener">Source repository</a> · <a href="replication.html">Replication</a> · <a href="errata.html">Errata and notes</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+
+</body>
+</html>

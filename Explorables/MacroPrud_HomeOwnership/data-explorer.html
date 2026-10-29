@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data explorer · Macroprudential policies and homeownership</title>
+<meta name="description" content="The country-year panel of tenure shares, macroprudential indices and macroeconomic controls used in the paper.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="wide" data-page="data-explorer">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">Macroprudential policies and homeownership</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/MacroPrud-Homeownership/issues/new?title=Website: Data explorer&body=Page: data-explorer.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="paper/MacroPrudHomeownership.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">Macroprudential policies and homeownership rates</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="framework.html"><span class="nav-num">2</span><span>Conceptual framework</span></a></li><li><a href="data.html"><span class="nav-num">3–4</span><span>Data and descriptive patterns</span></a></li><li><a href="strategy.html"><span class="nav-num">5</span><span>Empirical strategy</span></a></li><li><a href="results.html"><span class="nav-num">6</span><span>Aggregate results</span></a></li><li><a href="margins.html"><span class="nav-num">7–8</span><span>Young households and the rental market</span></a></li><li><a href="reforms.html"><span class="nav-num">9</span><span>Large borrower-based reforms</span></a></li><li><a href="benchmark.html"><span class="nav-num">10–11</span><span>Benchmark and robustness</span></a></li><li><a href="conclusion.html"><span class="nav-num">12</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–C</span><span>Online appendix</span></a></li><li class="nav-group">Robustness and FAQ</li><li><a href="robustness-explorer.html"><span class="nav-num"></span><span>Robustness explorer</span></a></li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li class="nav-group">Explore further</li><li class="active"><a href="data-explorer.html"><span class="nav-num"></span><span>Data explorer</span></a></li><li><a href="policy-explorer.html"><span class="nav-num"></span><span>Policy action explorer</span></a></li><li><a href="replication.html"><span class="nav-num"></span><span>Replicate or remix with AI</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<div class="explorer">
+<h1>Data explorer</h1>
+<p class="lead">The country-year panel behind every estimate: tenure shares from EU-SILC, the macroprudential indices built from MaPPED and iMaPP, and the macroeconomic controls from Eurostat and the BIS. Pick a variable to plot it for all countries, or browse and download the table.</p>
+<div class="panel">
+  <div class="ctl">
+    <label class="ctl-group"><span class="ctl-label">Variable</span> <select id="var"></select></label>
+    <label class="ctl-group"><span class="ctl-label">Highlight</span> <select id="country"><option value="">(click a line)</option></select></label>
+  </div>
+  <p id="var-desc" class="small muted"></p>
+  <div id="chart" class="fig-chart"></div>
+</div>
+<div class="panel">
+  <h2>Table</h2>
+  <div class="ctl">
+    <label class="ctl-group"><span class="ctl-label">Country</span> <select id="tcountry"><option value="">All</option></select></label>
+    <label class="ctl-group"><span class="ctl-label">Columns</span> <select id="tcols"><option value="tenure">Tenure shares</option><option value="young">Young households and age groups</option><option value="policy">Policy indices</option><option value="macro">Macro controls</option></select></label>
+    <a href="#" id="download" class="small">Download the full panel (CSV)</a>
+  </div>
+  <div class="table-wrap" id="table"></div>
+  <p class="small muted">Sources: EU-SILC tables ilc_lvho02 (tenure by household type), ilc_lvps15 (tenure by age), ilc_lvho02 by income; ECB MaPPED; IMF iMaPP; Eurostat national accounts, HICP, house price index (prc_hpi_a), private and household debt (tipspd20, tipspd22), money market rates (irt_st_a, irt_h_mr3_a); BIS credit statistics and policy rates. Blank cells are values that are not available for that country-year.</p>
+</div>
+</div>
+
+<nav class="prevnext"><a class="pn prev" href="errata.html"><span class="pn-dir">Previous</span><span class="pn-title">Errata and notes</span></a><a class="pn next" href="policy-explorer.html"><span class="pn-dir">Next</span><span class="pn-title">Policy action explorer</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. Funded by the European Union (Marie Skłodowska-Curie Individual Fellowship YoHo, project 101151984). Views and opinions expressed are those of the author only. This study is based on data from Eurostat (EU-SILC), the ECB MaPPED database, the IMF iMaPP database and the BIS.</p>
+  <p><a href="https://github.com/claesbackman/MacroPrud-Homeownership" target="_blank" rel="noopener">Source repository</a> · <a href="replication.html">Replication</a> · <a href="errata.html">Errata and notes</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/charts.js"></script><script src="assets/dataexplorer.js"></script>
+</body>
+</html>

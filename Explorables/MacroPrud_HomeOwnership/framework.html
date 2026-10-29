@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conceptual framework · Macroprudential policies and homeownership</title>
+<meta name="description" content="Interactive edition of the paper Macroprudential policies and homeownership rates, with a full robustness explorer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="" data-page="framework">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">Macroprudential policies and homeownership</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/MacroPrud-Homeownership/issues/new?title=Website: Conceptual framework&body=Page: framework.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="paper/MacroPrudHomeownership.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">Macroprudential policies and homeownership rates</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li class="active"><a href="framework.html"><span class="nav-num">2</span><span>Conceptual framework</span></a></li><li><a href="data.html"><span class="nav-num">3–4</span><span>Data and descriptive patterns</span></a></li><li><a href="strategy.html"><span class="nav-num">5</span><span>Empirical strategy</span></a></li><li><a href="results.html"><span class="nav-num">6</span><span>Aggregate results</span></a></li><li><a href="margins.html"><span class="nav-num">7–8</span><span>Young households and the rental market</span></a></li><li><a href="reforms.html"><span class="nav-num">9</span><span>Large borrower-based reforms</span></a></li><li><a href="benchmark.html"><span class="nav-num">10–11</span><span>Benchmark and robustness</span></a></li><li><a href="conclusion.html"><span class="nav-num">12</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–C</span><span>Online appendix</span></a></li><li class="nav-group">Robustness and FAQ</li><li><a href="robustness-explorer.html"><span class="nav-num"></span><span>Robustness explorer</span></a></li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li class="nav-group">Explore further</li><li><a href="data-explorer.html"><span class="nav-num"></span><span>Data explorer</span></a></li><li><a href="policy-explorer.html"><span class="nav-num"></span><span>Policy action explorer</span></a></li><li><a href="replication.html"><span class="nav-num"></span><span>Replicate or remix with AI</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<h1 id="sec:discussion"><span class="sec-num">2</span>Conceptual framework</h1>
+<p>Two modeling traditions make different predictions about how a credit tightening affects the homeownership rate. In the first, the markets for owner-occupied and rental housing are segmented, so a credit shock moves house prices but leaves the homeownership rate largely unchanged <a class="cite" href="references.html#ref-greenwald2019credit">(Greenwald and Guren 2025)</a>. In the second, deep-pocketed landlords stand ready to convert housing between the rental and owner-occupied segments, so a credit shock moves both prices and the homeownership rate <a class="cite" href="references.html#ref-kaplan2020housing">(Kaplan et al. 2020)</a>. This section summarizes the two traditions and derives the predictions that the empirical sections examine. The aim is not to adjudicate between the models. A cross-country null is consistent with several mechanisms. The aim is instead to be explicit about the magnitudes each tradition predicts, so that the equivalence bounds estimated below can be read against them.</p>
+<h2 id="sec:segmented"><span class="sec-num">2.1</span>Segmented markets</h2>
+<p>The framework closely follows <a class="cite" href="references.html#ref-greenwald2019credit">Greenwald and Guren (2025)</a>, who present a simple supply and demand framework for how changes in credit affect the homeownership rate.</p>
+<p>Imagine that there is a market for owner-occupied housing but that households could also choose to rent. Following the literature using user-cost models <a class="cite" href="references.html#ref-poterba_tax_1984">(Poterba 1984; Himmelberg et al. 2005)</a>, the price of owning will be determined by an arbitrage relationship between the cost of renting and the cost of owning, commonly referred to as the user cost. Prices will adjust to equalize the user cost of owning and renting, <span class="math inline">P = r/u</span>, where <span class="math inline">P</span> is the price of housing, <span class="math inline">r</span> is the rental price and <span class="math inline">u</span> is the user cost. We can rewrite this as <span class="math inline">P/r=1/u</span>, giving us that the price-to-rent ratio equals the user cost. As the price-to-rent ratio increases, more households prefer to rent than to own, which creates a downward-sloping demand for ownership. Assuming that households require credit to own housing—a reasonable assumption given that most households use credit to purchase housing or are competing with other buyers who require credit—a reduction in credit supply will shift the demand for housing inward.</p>
+<p>Note that this model says nothing about the homeownership rate, only about the equilibrium price-to-rent ratio. The ownership rate could in principle range from 0 to 100 percent, depending on the relative cost of owning and renting. In principle, if house prices adjust more rapidly than the supply of owner-occupied housing, the market can reach a new equilibrium where the price-rent ratio adjusts to maintain the user cost equality. In addition, rental markets could also adjust to maintain the user cost equality <a class="cite" href="references.html#ref-castellanos2024aggregate">(Castellanos et al. 2024)</a>. In these scenarios, the homeownership rate remains unchanged because the relative cost of owning versus renting is preserved through price adjustments rather than quantity changes. This would imply that the supply curve is perfectly inelastic. This mechanism explains why macroprudential policies can affect house prices without necessarily altering the extensive margin of homeownership participation.</p>
+<p>The supply curve is not the general supply curve for housing, but the supply curve for owner-occupied housing relative to renting. Intuitively, the slope of the supply curve comes either from new construction of owner-occupied housing or from landlords or owners who decide to convert rental units to owner-occupied housing. The slope of the supply curve therefore represents (a) the willingness of construction companies to expand the share of owner-occupied housing in their total construction when prices increase and (b) the willingness of landlords to convert existing supply from rental to owner-occupied housing.</p>
+<p>What will be the impact of a change in demand on prices and the homeownership rate? As in standard supply and demand frameworks, the answer depends on the slope of the supply curve. If the supply curve is perfectly inelastic, the price will increase by the same amount as the demand shock. If the supply curve is perfectly elastic, the price will not change. If the supply curve is somewhere in between, the price will change by less than the demand shock. The slope of the supply function therefore determines the response of both the homeownership rate and house prices to a change in credit. Previous studies have found that macroprudential policies affect both credit and house prices. This suggests that we are not in the world where the supply of owner-occupied housing is perfectly elastic: if supply were perfectly elastic, macroprudential policies could affect credit but not house prices. In the segmented case, prices adjust and quantities do not. The rental market is affected only through the price-to-rent ratio, and the composition of the rental stock, in particular the share of households renting at market rates, does not need to change.</p>
+<p><a class="cite" href="references.html#ref-greenwald2019credit">Greenwald and Guren (2025)</a> show that the slope of the supply curve maps to different assumptions in macroeconomic models. In <a class="cite" href="references.html#ref-greenwald2017mortgage">Greenwald (2017)</a> and <a class="cite" href="references.html#ref-favilukis2017macroeconomic">Favilukis et al. (2017)</a>, households cannot rent housing, which creates a perfectly inelastic supply curve where any demand shock is fully reflected in prices. The empirical evidence in <a class="cite" href="references.html#ref-greenwald2019credit">Greenwald and Guren (2025)</a> for US regional markets points in the same direction: credit shocks move house prices, but not the homeownership rate.</p>
+<h2 id="sec:integrated"><span class="sec-num">2.2</span>Integrated markets with elastic landlords</h2>
+<p>The second tradition assumes that the rental and owner-occupied segments are integrated. In <a class="cite" href="references.html#ref-kaplan2020housing">Kaplan et al. (2020)</a>, identical, risk-neutral and deep-pocketed landlords buy and sell housing, and the price of housing is tied to the present value of future rents. When credit tightens, households who can no longer buy rent instead, landlords buy the units they vacate, and rents and prices fall together by less than they would in a segmented market. In terms of the framework above, the supply of owner-occupied housing relative to renting is elastic, so a credit tightening lowers house prices by less and lowers the homeownership rate by more than in the segmented case, and it raises the share of households renting from landlords at market rates.</p>
+<p>Models in this tradition generate quantitatively large responses. A relaxation of payment-to-income and loan-to-value constraints raises the homeownership rate by roughly 3 percentage points in <a class="cite" href="references.html#ref-kaplan2020housing">Kaplan et al. (2020)</a>. A tighter loan-to-value limit lowers the homeownership rate by 2.8 percentage points in <a class="cite" href="references.html#ref-garriga2020mortgage">Garriga and Hedlund (2020)</a>. <a class="cite" href="references.html#ref-castellanos2024aggregate">Castellanos et al. (2024)</a> introduce endogenous landlords, which moves the model toward the segmented case, but still find that the 2016 loan-to-value and loan-to-income limits in Ireland lower the long-run homeownership rate by 1.8 percentage points. <a class="cite" href="references.html#ref-karlman2020mortgage">Balke et al. (2023)</a> find large effects of down-payment requirements on the transition into homeownership. Because macroprudential policies act on new mortgages rather than on the existing stock, these models also predict that the response is concentrated among households at the margin of entry: young households, first-time buyers, and households who need a mortgage to buy.</p>
+<h2 id="sec:predictions"><span class="sec-num">2.3</span>Predictions across margins</h2>
+<p>Table <a href="#table:predictions" class="xref">1</a> summarizes the predictions of the two traditions for the margins that the data allow me to examine. Both traditions predict that a tightening lowers credit and house prices, although the price response is smaller with elastic landlords, so a first-stage response of these variables is a precondition for the remaining tests rather than a discriminating prediction. Section <a href="results.html#sec:firststage" class="xref">6.1</a> shows that this precondition is not met for the average change in the index, and Section <a href="reforms.html#sec:largeshocks" class="xref">9</a> that it cannot be verified for the five large reforms. The null results below are therefore read as bounds on the aggregate effect of recorded policy actions rather than as a test between the two traditions. The traditions differ on the aggregate homeownership rate, on the ownership rate of young households, on the share of young households who own with a mortgage, which is the available series most exposed to first-time-buyer entry, and on the composition of the rental market. The integrated tradition predicts responses on all four margins, and the calibrations above put the aggregate response at 1.8 to 3 percentage points. The segmented tradition predicts no response on any of them.</p>
+<div class="paper-table" id="table:predictions"><div class="tab-head"><span class="tab-label">Table 1</span><span class="tab-title">Predicted responses to a macroprudential tightening</span></div><div class="tab-scroll"><table>
+<thead>
+<tr>
+<th style="text-align: left;">Margin</th>
+<th style="text-align: center;">Segmented markets</th>
+<th style="text-align: center;">Integrated markets</th>
+<th style="text-align: left;">Evidence in this paper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">House prices</td>
+<td style="text-align: center;">Fall</td>
+<td style="text-align: center;">Fall, by less</td>
+<td style="text-align: left;">Section <a href="results.html#sec:firststage" class="xref">6.1</a>, no average response</td>
+</tr>
+<tr>
+<td style="text-align: left;">Credit</td>
+<td style="text-align: center;">Fall</td>
+<td style="text-align: center;">Fall</td>
+<td style="text-align: left;">Section <a href="results.html#sec:firststage" class="xref">6.1</a>, no average response</td>
+</tr>
+<tr>
+<td style="text-align: left;">Aggregate homeownership rate</td>
+<td style="text-align: center;">No response</td>
+<td style="text-align: center;">Fall by 1.8–3 pp</td>
+<td style="text-align: left;">Section <a href="results.html#sec:results" class="xref">6</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Young-household ownership rate</td>
+<td style="text-align: center;">No response</td>
+<td style="text-align: center;">Larger fall than aggregate</td>
+<td style="text-align: left;">Section <a href="margins.html#sec:cohort" class="xref">7</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Young households owning with a mortgage</td>
+<td style="text-align: center;">No response</td>
+<td style="text-align: center;">Fall</td>
+<td style="text-align: left;">Section <a href="margins.html#sec:flow" class="xref">7.2</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Share renting at market rates</td>
+<td style="text-align: center;">No response</td>
+<td style="text-align: center;">Rise</td>
+<td style="text-align: left;">Section <a href="margins.html#sec:rental" class="xref">8</a></td>
+</tr>
+</tbody>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Segmented markets refers to the class of models in <a class="cite" href="references.html#ref-greenwald2019credit">Greenwald and Guren (2025)</a>, <a class="cite" href="references.html#ref-greenwald2017mortgage">Greenwald (2017)</a> and <a class="cite" href="references.html#ref-favilukis2017macroeconomic">Favilukis et al. (2017)</a>, in which the supply of owner-occupied housing relative to rental housing is inelastic. Integrated markets refers to the class of models with elastic landlord conversion in <a class="cite" href="references.html#ref-kaplan2020housing">Kaplan et al. (2020)</a>, <a class="cite" href="references.html#ref-garriga2020mortgage">Garriga and Hedlund (2020)</a>, <a class="cite" href="references.html#ref-castellanos2024aggregate">Castellanos et al. (2024)</a> and <a class="cite" href="references.html#ref-karlman2020mortgage">Balke et al. (2023)</a>. The quantitative range for the aggregate homeownership rate is taken from the baseline calibrations in those papers.</div></div>
+<p>The empirical strategy follows from this table. Section <a href="results.html#sec:firststage" class="xref">6.1</a> asks whether the policy index moves credit and house prices in this sample, and Section <a href="reforms.html#sec:largeshocks" class="xref">9</a> asks the same of the five large reforms. Section <a href="results.html#sec:results" class="xref">6</a> estimates the aggregate response and reports equivalence bounds. Sections <a href="margins.html#sec:cohort" class="xref">7</a> to <a href="margins.html#sec:rental" class="xref">8</a> examine the margins on which the integrated tradition predicts the largest responses. Section <a href="benchmark.html#sec:benchmark" class="xref">10</a> translates the aggregate bounds into the flow of first-time buyers, which is the object the structural models discipline.</p>
+
+<nav class="prevnext"><a class="pn prev" href="introduction.html"><span class="pn-dir">Previous</span><span class="pn-title">Introduction</span></a><a class="pn next" href="data.html"><span class="pn-dir">Next</span><span class="pn-title">Data and descriptive patterns</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. Funded by the European Union (Marie Skłodowska-Curie Individual Fellowship YoHo, project 101151984). Views and opinions expressed are those of the author only. This study is based on data from Eurostat (EU-SILC), the ECB MaPPED database, the IMF iMaPP database and the BIS.</p>
+  <p><a href="https://github.com/claesbackman/MacroPrud-Homeownership" target="_blank" rel="noopener">Source repository</a> · <a href="replication.html">Replication</a> · <a href="errata.html">Errata and notes</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/charts.js"></script><script src="assets/figures.js"></script>
+</body>
+</html>

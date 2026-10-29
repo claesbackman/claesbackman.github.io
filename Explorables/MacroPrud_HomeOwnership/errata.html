@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Errata and notes · Macroprudential policies and homeownership</title>
+<meta name="description" content="Interactive edition of the paper Macroprudential policies and homeownership rates, with a full robustness explorer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="" data-page="errata">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">Macroprudential policies and homeownership</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/MacroPrud-Homeownership/issues/new?title=Website: Errata and notes&body=Page: errata.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="paper/MacroPrudHomeownership.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">Macroprudential policies and homeownership rates</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="framework.html"><span class="nav-num">2</span><span>Conceptual framework</span></a></li><li><a href="data.html"><span class="nav-num">3–4</span><span>Data and descriptive patterns</span></a></li><li><a href="strategy.html"><span class="nav-num">5</span><span>Empirical strategy</span></a></li><li><a href="results.html"><span class="nav-num">6</span><span>Aggregate results</span></a></li><li><a href="margins.html"><span class="nav-num">7–8</span><span>Young households and the rental market</span></a></li><li><a href="reforms.html"><span class="nav-num">9</span><span>Large borrower-based reforms</span></a></li><li><a href="benchmark.html"><span class="nav-num">10–11</span><span>Benchmark and robustness</span></a></li><li><a href="conclusion.html"><span class="nav-num">12</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–C</span><span>Online appendix</span></a></li><li class="nav-group">Robustness and FAQ</li><li><a href="robustness-explorer.html"><span class="nav-num"></span><span>Robustness explorer</span></a></li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li class="active"><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li class="nav-group">Explore further</li><li><a href="data-explorer.html"><span class="nav-num"></span><span>Data explorer</span></a></li><li><a href="policy-explorer.html"><span class="nav-num"></span><span>Policy action explorer</span></a></li><li><a href="replication.html"><span class="nav-num"></span><span>Replicate or remix with AI</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<h1>Errata and notes</h1>
+<h2>Errata</h2>
+<p>No errata have been recorded for the current version. If you find an error, use the "Report a bug" link at the top of any page; it opens an issue in the repository with the page already filled in.</p>
+
+<h2>Notes on the digital edition</h2>
+<p>The text, tables and figure captions are generated from the LaTeX source of the working paper. Tables show the paper's numbers. Figures are drawn from the estimates that the robustness scripts re-ran on the current data, so that every figure can be rescaled, switched to a table and traced to its specification in the explorer. Where the website version of a figure differs from the paper's, the figure notes say so. Known differences:</p>
+<ul>
+<li>Appendix Figure A3 (iMaPP database) uses the cumulative response and the Eurostat or BIS control sets; the paper's version used year-on-year changes with the BIS controls.</li>
+<li>Appendix Table B23 (depth of the mortgage market): the explorer's estimates for the deep and shallow splits without controls differ from the printed table by up to 0.02 percentage points, while the rows with controls match exactly. The source of the difference has not been traced; the signs and significance levels are unchanged.</li>
+<li>Two-way clustered standard errors are reported in the explorer but not in the paper; with fifteen year clusters the estimated variance is sometimes not positive, in which case the explorer shows "n/a".</li>
+</ul>
+
+<h2>Software</h2>
+<p>Estimates: Stata 18.5 with reghdfe, boottest, xtscc, csdid and drdid. Site: pandoc 3.8, Python 3, D3 7.9, KaTeX 0.16. The robustness grid on this site was estimated on 23 October 2026.</p>
+
+<h2>Revision history</h2>
+<ul>
+<li>October 2026: digital edition published with the robustness explorer.</li>
+<li>September 2026: revised working paper. Cumulative local projections throughout, full-coverage Eurostat control set, young-household and rental margins, Callaway–Sant'Anna event studies, equivalence tests at several margins, alternative inference.</li>
+<li>2025: first working paper version.</li>
+</ul>
+
+<nav class="prevnext"><a class="pn prev" href="faq.html"><span class="pn-dir">Previous</span><span class="pn-title">Questions and answers</span></a><a class="pn next" href="data-explorer.html"><span class="pn-dir">Next</span><span class="pn-title">Data explorer</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. Funded by the European Union (Marie Skłodowska-Curie Individual Fellowship YoHo, project 101151984). Views and opinions expressed are those of the author only. This study is based on data from Eurostat (EU-SILC), the ECB MaPPED database, the IMF iMaPP database and the BIS.</p>
+  <p><a href="https://github.com/claesbackman/MacroPrud-Homeownership" target="_blank" rel="noopener">Source repository</a> · <a href="replication.html">Replication</a> · <a href="errata.html">Errata and notes</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+
+</body>
+</html>

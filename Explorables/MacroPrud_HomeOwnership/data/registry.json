@@ -1,0 +1,467 @@
+{
+ "figures": {
+  "fig:Ownership_10_17_MaPP": {
+   "number": "1",
+   "images": [
+    "Plots/Ownership_10-17_MaPP.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:LP_FirstStage": {
+   "number": "2",
+   "images": [
+    "Plots/LP_FirstStage.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:LP_owner": {
+   "number": "3",
+   "images": [
+    "Plots/LP_owner_fullctrl.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:LP_Effective": {
+   "number": "4",
+   "images": [
+    "Plots/LP_Effective.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:LP_groups": {
+   "number": "5",
+   "images": [
+    "Plots/LP_groups.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:LP_groups_LSR": {
+   "number": "6",
+   "images": [
+    "Plots/LP_groups_LSR.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:LP_young": {
+   "number": "7",
+   "images": [
+    "Plots/LP_owner_young.pdf",
+    "Plots/LP_owner_loan_young_rev.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:LP_coresidence": {
+   "number": "8",
+   "images": [
+    "Plots/LP_coresidence.pdf",
+    "Plots/LP_leaveage.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:LP_Segmentation": {
+   "number": "9",
+   "images": [
+    "Plots/LP_Segmentation.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:CS_main": {
+   "number": "10",
+   "images": [
+    "Plots/CS_EventStudy_lhpi.pdf",
+    "Plots/CS_EventStudy_lhhdebt_real.pdf",
+    "Plots/CS_EventStudy_owner.pdf",
+    "Plots/CS_EventStudy_owner_loan_young.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:homeownership_allcountries": {
+   "number": "A1",
+   "images": [
+    "Plots/Ownership_Country1.pdf",
+    "Plots/Ownership_Country2.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:MaPP_overtime": {
+   "number": "A2",
+   "images": [
+    "Plots/MaPP_overtime.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:LP_Groups_iMaPP": {
+   "number": "A3",
+   "images": [
+    "Plots/LP_Groups_iMaPP.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:LargeShocks": {
+   "number": "A4",
+   "images": [
+    "Plots/LargeShocks_owner.pdf",
+    "Plots/LargeShocks_owner_lowinc.pdf",
+    "Plots/LargeShocks_owner_loan_lowinc.pdf",
+    "Plots/LargeShocks_owner_loan_highinc.pdf",
+    "Plots/LargeShocks_owner_highinc.pdf",
+    "Plots/LargeShocks_owner_loan.pdf",
+    "Plots/LargeShocks_owner_full_highinc.pdf",
+    "Plots/LargeShocks_owner_full.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:LargeShocks_Reg_groups": {
+   "number": "A5",
+   "images": [
+    "Plots/LargeShocks_Regowner_lowinc.pdf",
+    "Plots/LargeShocks_Regowner_loan_lowinc.pdf",
+    "Plots/LargeShocks_Regowner_loan_highinc.pdf",
+    "Plots/LargeShocks_Regowner_highinc.pdf",
+    "Plots/LargeShocks_Regowner_loan.pdf",
+    "Plots/LargeShocks_Regowner_full_highinc.pdf",
+    "Plots/LargeShocks_Regowner_full.pdf",
+    "Plots/LargeShocks_Regrent.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:LP_FirstStage_all": {
+   "number": "A6",
+   "images": [
+    "Plots/LP_FirstStage_all.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:LP_FirstStage_LSR": {
+   "number": "A7",
+   "images": [
+    "Plots/LP_FirstStage_LSR.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:LP_Effective_LSR": {
+   "number": "A8",
+   "images": [
+    "Plots/LP_Effective_LSR.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:LP_owner_leads": {
+   "number": "A9",
+   "images": [
+    "Plots/LP_owner_leads.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:RI_owner": {
+   "number": "A10",
+   "images": [
+    "Plots/RI_owner.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:LP_owner_full_young": {
+   "number": "A11",
+   "images": [
+    "Plots/LP_owner_full_young_rev.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:LP_AgeCohort_Groups": {
+   "number": "A12",
+   "images": [
+    "Plots/LP_AgeCohort_Groups.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:LP_Rental_Groups": {
+   "number": "A13",
+   "images": [
+    "Plots/LP_Rental_Groups.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:CS_EventStudy": {
+   "number": "A14",
+   "images": [
+    "Plots/CS_EventStudy_owner.pdf",
+    "Plots/CS_EventStudy_owner_young.pdf",
+    "Plots/CS_EventStudy_owner_loan_young.pdf",
+    "Plots/CS_EventStudy_rent_market.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:Bacon": {
+   "number": "A15",
+   "images": [
+    "Plots/BaconDecomp_owner.pdf"
+   ],
+   "where": "app"
+  }
+ },
+ "tables": {
+  "table:predictions": {
+   "number": "1"
+  },
+  "table:weighting": {
+   "number": "B1"
+  },
+  "table:ownershipsample": {
+   "number": "B2"
+  },
+  "table:LP_HO": {
+   "number": "B3"
+  },
+  "table:LP_HO_Groups": {
+   "number": "B4"
+  },
+  "table:LP_HO_LSR": {
+   "number": "B5"
+  },
+  "table:benchmark": {
+   "number": "B6"
+  },
+  "table:SumStats": {
+   "number": "B7"
+  },
+  "table:policy_changes": {
+   "number": "B8"
+  },
+  "table:sample_controls": {
+   "number": "B9"
+  },
+  "table:LP_HO_Full": {
+   "number": "B10"
+  },
+  "table:equivalence_delta": {
+   "number": "B11"
+  },
+  "table:LP_FirstStage": {
+   "number": "B12"
+  },
+  "table:LP_FirstStage_LSR": {
+   "number": "B13"
+  },
+  "table:LP_Leads": {
+   "number": "B14"
+  },
+  "table:RI": {
+   "number": "B15"
+  },
+  "table:LP_HO_Young": {
+   "number": "B16"
+  },
+  "table:LP_HO_AgeGroups": {
+   "number": "B17"
+  },
+  "table:LP_FlowProxy": {
+   "number": "B18"
+  },
+  "table:LP_Coresidence": {
+   "number": "B19"
+  },
+  "table:LP_Coresidence_Groups": {
+   "number": "B20"
+  },
+  "table:LP_LeaveAge": {
+   "number": "B21"
+  },
+  "table:LP_Rental": {
+   "number": "B22"
+  },
+  "table:LP_HO_Effective": {
+   "number": "B23"
+  },
+  "table:LP_FirstStage_Effective": {
+   "number": "B24"
+  },
+  "table:LP_HO_Effective_LSR": {
+   "number": "B25"
+  },
+  "table:LP_HO_Bite": {
+   "number": "B26"
+  },
+  "table:LP_HO_TightLoose": {
+   "number": "B27"
+  },
+  "table:Inference": {
+   "number": "B28"
+  },
+  "table:LP_HO_Robust": {
+   "number": "B29"
+  },
+  "table:CS_Extensions": {
+   "number": "B30"
+  },
+  "table:CS": {
+   "number": "B31"
+  }
+ },
+ "equations": {
+  "eq:MainSpecification": "1",
+  "eq:identity": "2",
+  "eq:bench": "3"
+ },
+ "anchors": {
+  "introduction": "introduction",
+  "fn1": "introduction",
+  "fn2": "introduction",
+  "sec:discussion": "framework",
+  "sec:segmented": "framework",
+  "sec:integrated": "framework",
+  "sec:predictions": "framework",
+  "table:predictions": "framework",
+  "sec:data": "data",
+  "homeownership-and-tenure-data": "data",
+  "macroprudential-policies": "data",
+  "fn3": "data",
+  "fn4": "data",
+  "sample-selection-and-summary-statistics": "data",
+  "homeownership-rates-and-macroprudential-policies-20102017": "data",
+  "fig:Ownership_10_17_MaPP": "data",
+  "sec:strategy": "strategy",
+  "identifying-macroprudential-policy-shocks": "strategy",
+  "threats-to-identification": "strategy",
+  "omitted-variable-bias.": "strategy",
+  "measurement-error.": "strategy",
+  "anticipation-effects.": "strategy",
+  "data-frequency.": "strategy",
+  "empirical-specification": "strategy",
+  "sec:results": "results",
+  "sec:firststage": "results",
+  "fig:LP_FirstStage": "results",
+  "the-aggregate-homeownership-rate": "results",
+  "fig:LP_owner": "results",
+  "sec:effective": "results",
+  "fig:LP_Effective": "results",
+  "fig:LP_groups": "results",
+  "mortgagors-outright-owners-and-income-groups": "results",
+  "fig:LP_groups_LSR": "results",
+  "lending-standard-restrictions": "results",
+  "sec:cohort": "margins",
+  "fig:LP_young": "margins",
+  "homeownership-of-young-households": "margins",
+  "sec:flow": "margins",
+  "sec:coresidence": "margins",
+  "fig:LP_coresidence": "margins",
+  "sec:rental": "margins",
+  "fig:LP_Segmentation": "margins",
+  "sec:largeshocks": "reforms",
+  "fn5": "reforms",
+  "fig:CS_main": "reforms",
+  "sec:benchmark": "benchmark",
+  "fn6": "benchmark",
+  "sec:robustness": "benchmark",
+  "pre-trends.": "benchmark",
+  "tightenings-and-loosenings.": "benchmark",
+  "inference.": "benchmark",
+  "regional-shocks-trends-and-the-post-socialist-economies.": "benchmark",
+  "randomization-inference.": "benchmark",
+  "alternative-policy-database.": "benchmark",
+  "control-sets-and-house-price-source.": "benchmark",
+  "sec:conclusion": "conclusion",
+  "online-appendix-figures": "appendix",
+  "fig:homeownership_allcountries": "appendix",
+  "fig:MaPP_overtime": "appendix",
+  "fig:LP_Groups_iMaPP": "appendix",
+  "fig:LargeShocks": "appendix",
+  "fig:LargeShocks_Reg_groups": "appendix",
+  "fig:LP_FirstStage_all": "appendix",
+  "fig:LP_FirstStage_LSR": "appendix",
+  "fig:LP_Effective_LSR": "appendix",
+  "fig:LP_owner_leads": "appendix",
+  "fig:RI_owner": "appendix",
+  "fig:LP_owner_full_young": "appendix",
+  "fig:LP_AgeCohort_Groups": "appendix",
+  "fig:LP_Rental_Groups": "appendix",
+  "fig:CS_EventStudy": "appendix",
+  "fig:Bacon": "appendix",
+  "online-appendix-tables": "appendix",
+  "table:weighting": "appendix",
+  "table:ownershipsample": "appendix",
+  "table:LP_HO": "appendix",
+  "table:LP_HO_Groups": "appendix",
+  "table:LP_HO_LSR": "appendix",
+  "table:benchmark": "appendix",
+  "table:SumStats": "appendix",
+  "table:policy_changes": "appendix",
+  "table:sample_controls": "appendix",
+  "table:LP_HO_Full": "appendix",
+  "table:equivalence_delta": "appendix",
+  "table:LP_FirstStage": "appendix",
+  "table:LP_FirstStage_LSR": "appendix",
+  "table:LP_Leads": "appendix",
+  "table:RI": "appendix",
+  "table:LP_HO_Young": "appendix",
+  "table:LP_HO_AgeGroups": "appendix",
+  "table:LP_FlowProxy": "appendix",
+  "table:LP_Coresidence": "appendix",
+  "table:LP_Coresidence_Groups": "appendix",
+  "table:LP_LeaveAge": "appendix",
+  "table:LP_Rental": "appendix",
+  "table:LP_HO_Effective": "appendix",
+  "table:LP_FirstStage_Effective": "appendix",
+  "table:LP_HO_Effective_LSR": "appendix",
+  "table:LP_HO_Bite": "appendix",
+  "table:LP_HO_TightLoose": "appendix",
+  "table:Inference": "appendix",
+  "table:LP_HO_Robust": "appendix",
+  "table:CS_Extensions": "appendix",
+  "table:CS": "appendix",
+  "app:data": "appendix",
+  "macroeconomic-data": "appendix",
+  "credit-interest-rates-and-house-price-data": "appendix",
+  "fn7": "appendix",
+  "other-sources-of-macroprudential-policies": "appendix",
+  "fn8": "appendix",
+  "ref-aastveit2023mortgage": "references",
+  "ref-acharya2022anatomy": "references",
+  "ref-adelino2015credit": "references",
+  "ref-akinci2018effective": "references",
+  "ref-alam2019digging": "references",
+  "ref-araujo2024effects": "references",
+  "ref-arena2020macroprudential": "references",
+  "ref-backman2024mortgage": "references",
+  "ref-karlman2020mortgage": "references",
+  "ref-bolliger2025effect": "references",
+  "ref-broulikova2020homeownership": "references",
+  "ref-budnik2018macroprudential": "references",
+  "ref-callaway2020difference": "references",
+  "ref-castellanos2024aggregate": "references",
+  "ref-cerutti2017use": "references",
+  "ref-coulier2022assessing": "references",
+  "ref-di2017credit": "references",
+  "ref-eerola2023impact": "references",
+  "ref-favara_credit_2015": "references",
+  "ref-favilukis2017macroeconomic": "references",
+  "ref-fernandez2023preventing": "references",
+  "ref-fernandez2025transmission": "references",
+  "ref-galati2013macroprudential": "references",
+  "ref-galati2018we": "references",
+  "ref-garriga2020mortgage": "references",
+  "ref-glaeser2012can": "references",
+  "ref-goodman2021difference": "references",
+  "ref-greenwald2017mortgage": "references",
+  "ref-greenwald2019credit": "references",
+  "ref-himmelberg_assessing_2005": "references",
+  "ref-huber2022nevertheless": "references",
+  "ref-igan2011loan": "references",
+  "ref-jorda2005estimation": "references",
+  "ref-kaas2021low": "references",
+  "ref-kaplan2020housing": "references",
+  "ref-kuttner2016can": "references",
+  "ref-lakens2017equivalence": "references",
+  "ref-laufer2019effect": "references",
+  "ref-lim2011macroprudential": "references",
+  "ref-loutskina2015financial": "references",
+  "ref-meuleman2020macroprudential": "references",
+  "ref-mian2019credit": "references",
+  "ref-peydro2020macroprudential": "references",
+  "ref-poghosyan2020effective": "references",
+  "ref-poterba_tax_1984": "references",
+  "ref-richter2019costs": "references",
+  "ref-roodman2019fast": "references",
+  "ref-tzur2023adjusting": "references",
+  "ref-van2024real": "references"
+ }
+}

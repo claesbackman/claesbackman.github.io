@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Policy action explorer · Macroprudential policies and homeownership</title>
+<meta name="description" content="Browse the MaPPED macroprudential policy actions behind the paper&#x27;s narrative index.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="wide" data-page="policy-explorer">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">Macroprudential policies and homeownership</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/MacroPrud-Homeownership/issues/new?title=Website: Policy action explorer&body=Page: policy-explorer.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="paper/MacroPrudHomeownership.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">Macroprudential policies and homeownership rates</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="framework.html"><span class="nav-num">2</span><span>Conceptual framework</span></a></li><li><a href="data.html"><span class="nav-num">3–4</span><span>Data and descriptive patterns</span></a></li><li><a href="strategy.html"><span class="nav-num">5</span><span>Empirical strategy</span></a></li><li><a href="results.html"><span class="nav-num">6</span><span>Aggregate results</span></a></li><li><a href="margins.html"><span class="nav-num">7–8</span><span>Young households and the rental market</span></a></li><li><a href="reforms.html"><span class="nav-num">9</span><span>Large borrower-based reforms</span></a></li><li><a href="benchmark.html"><span class="nav-num">10–11</span><span>Benchmark and robustness</span></a></li><li><a href="conclusion.html"><span class="nav-num">12</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–C</span><span>Online appendix</span></a></li><li class="nav-group">Robustness and FAQ</li><li><a href="robustness-explorer.html"><span class="nav-num"></span><span>Robustness explorer</span></a></li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li class="nav-group">Explore further</li><li><a href="data-explorer.html"><span class="nav-num"></span><span>Data explorer</span></a></li><li class="active"><a href="policy-explorer.html"><span class="nav-num"></span><span>Policy action explorer</span></a></li><li><a href="replication.html"><span class="nav-num"></span><span>Replicate or remix with AI</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<div class="explorer">
+<h1>Policy action explorer</h1>
+<p class="lead">All 1,076 policy actions in the ECB's Macroprudential Policies Evaluation Database (MaPPED) for the 28 sample countries between 2003 and 2017, with the weight each action receives in the paper's index. Actions coded as counter-cyclical in design are listed but excluded from the index, which is why the Irish 2015 and Finnish 2016 reforms do not register.</p>
+<div class="panel">
+  <div class="ctl">
+    <label class="ctl-group"><span class="ctl-label">Country</span> <select id="fcountry"><option value="">All</option></select></label>
+    <label class="ctl-group"><span class="ctl-label">Category</span> <select id="fcat"><option value="">All</option></select></label>
+    <label class="ctl-group"><span class="ctl-label">Direction</span> <select id="fdir"><option value="">All</option><option>Policy tightening</option><option>Policy loosening</option><option>Other and with ambiguous impact</option></select></label>
+    <label class="ctl-group"><span class="ctl-label">In the index</span> <select id="fidx"><option value="">All</option><option value="1">Included</option><option value="0">Excluded (counter-cyclical)</option></select></label>
+    <label class="ctl-group"><span class="ctl-label">Search</span> <input type="search" id="fsearch" placeholder="description, subcategory…"></label>
+  </div>
+  <p id="count" class="small muted" style="margin:.6rem 0 .2rem"></p>
+  <div class="pager" id="pager-top"></div>
+  <div class="table-wrap" id="table"></div>
+  <div class="pager" id="pager"></div>
+  <p class="small"><a href="#" id="download">Download the filtered actions (CSV)</a></p>
+  <p class="small muted">Weights: 1 for activation or deactivation of a tool, 0.25 for a change in level, 0.1 for a change in scope, 0.05 for maintaining a tool, with sign +1 for tightening, −1 for loosening and 0 for ambiguous actions. Source: Budnik and Kleibl (2018), MaPPED, fourth quarter 2017 release.</p>
+</div>
+</div>
+
+<nav class="prevnext"><a class="pn prev" href="data-explorer.html"><span class="pn-dir">Previous</span><span class="pn-title">Data explorer</span></a><a class="pn next" href="replication.html"><span class="pn-dir">Next</span><span class="pn-title">Replicate or remix with AI</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. Funded by the European Union (Marie Skłodowska-Curie Individual Fellowship YoHo, project 101151984). Views and opinions expressed are those of the author only. This study is based on data from Eurostat (EU-SILC), the ECB MaPPED database, the IMF iMaPP database and the BIS.</p>
+  <p><a href="https://github.com/claesbackman/MacroPrud-Homeownership" target="_blank" rel="noopener">Source repository</a> · <a href="replication.html">Replication</a> · <a href="errata.html">Errata and notes</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/policy.js"></script>
+</body>
+</html>
