@@ -228,6 +228,8 @@
   "newer-models-and-drift-over-time.": "results",
   "fn8": "results",
   "caller-location-and-routing.": "results",
+  "translating-the-instructions-block.": "results",
+  "allowing-the-models-to-ask-questions.": "results",
   "sec:benchmark": "benchmark",
   "sec:benchmark-simple": "benchmark",
   "sec:calibration": "benchmark",
