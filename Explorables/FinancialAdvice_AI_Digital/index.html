@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One advisor for the whole world?</title>
+<meta name="description" content="Digital edition of the paper One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI, by Claes Bäckman: the paper, interactive figures, a country-effects explorer and the exact prompts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="" data-page="index">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">One advisor for the whole world?</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/claesbackman.github.io/issues/new?title=FinancialAdvice_AI website: Title &amp; abstract&body=Page: Explorables/FinancialAdvice_AI/index.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="https://osf.io/2ch5z" target="_blank" rel="noopener">Pre-registration ↗</a>
+    <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI</a>
+    <ul class="nav-list"><li class="active"><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="literature.html"><span class="nav-num">2</span><span>Literature</span></a></li><li><a href="design.html"><span class="nav-num">3</span><span>Experimental design</span></a></li><li><a href="results.html"><span class="nav-num">4</span><span>Main results</span></a></li><li><a href="benchmark.html"><span class="nav-num">5</span><span>When should the advice differ?</span></a></li><li><a href="advice-rule.html"><span class="nav-num">6</span><span>The advice rule</span></a></li><li><a href="text.html"><span class="nav-num">7</span><span>Mechanisms in the explanation text</span></a></li><li><a href="conclusion.html"><span class="nav-num">8</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–B</span><span>Appendix tables and figures</span></a></li><li><a href="appendix-benchmark.html"><span class="nav-num">C</span><span>The normative benchmark</span></a></li><li><a href="appendix-tracking.html"><span class="nav-num">D</span><span>The model-tracking wave</span></a></li><li><a href="appendix-technical.html"><span class="nav-num">E</span><span>Technical appendix</span></a></li><li class="nav-group">Explore</li><li><a href="explorer.html"><span class="nav-num"></span><span>Country effects explorer</span></a></li><li><a href="prompts.html"><span class="nav-num"></span><span>Prompt explorer</span></a></li><li><a href="tracking.html"><span class="nav-num"></span><span>Model tracking</span></a></li><li class="nav-group">Notes</li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li><a href="about.html"><span class="nav-num"></span><span>Data, code and AI prompt</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<div class="titlepage">
+<div class="edition">Digital edition · October 2026 · working paper</div>
+<h1 class="paper-title">One Advisor for the Whole World?</h1>
+<p class="lead" style="margin-top:-.6rem">Cross-Country Evidence on Financial Advice from AI</p>
+<div class="byline"><div><div class="name">Claes Bäckman</div><div class="affil">Leibniz Institute for Financial Research SAFE</div></div></div>
+<div class="abstract"><h2>Abstract</h2><p>Households around the world increasingly take portfolio advice from the same handful of AI models. How does that advice vary across countries, and does the advice track local fundamentals? I pose different portfolio problems to leading models across twenty-one countries in different languages, varying whether the questions invoke local context. When asked about the risky share, the advice is nearly uniform across countries but varies widely across models. Explanations for the allocation advice consistently invoke local context, but this has almost no impact on the risky share. When asked whether to prepay a mortgage or how to protect savings from inflation, the advice differs sharply across countries. The models follow retail financial advice, and only selectively incorporate the household’s balance sheet even when it is stated. While automated advice once held out the promise of tailoring guidance to everyone, AI models encode the same rule for everyone.</p>
+<div class="keywords"><em>JEL:</em> G11, G41, G51, D14, O33 · <em>Keywords:</em> financial advice, household finance, portfolio choice, robo-advising, artificial intelligence, large language models</div></div>
+<a class="cta" href="introduction.html">Proceed to Introduction →</a>
+
+<div class="hero" id="hero">
+  <div class="fig-head"><span class="fig-label">The result in one chart</span><span class="fig-title">Mean recommended share by model and country</span></div>
+  <p class="hero-text">Each row is one of the thirteen models and each dot is one of the twenty-one countries: the mean recommendation that model gives when asked the question in that country's language, with the country named (Version B, age 40, fifty repetitions per dot). The black tick is the model's mean across countries. On the portfolio question the dots of a model sit close together while the rows sit far apart: the model matters far more than the country. Switch to the mortgage question and the dots spread out. Click a dot to follow one country across models.</p>
+  <div class="fig-controls" id="hero-controls"></div>
+  <div class="fig-chart" id="hero-chart"></div>
+  <div class="fig-links" id="hero-links"><a href="explorer.html">Open the country effects explorer</a><a href="prompts.html">Read the exact prompts</a></div>
+</div>
+
+<div class="howto">
+  <h2>How to read this site</h2>
+  <ul>
+    <li>The paper is split into the pages listed on the left, in the paper's own section numbering. Figures are drawn from the estimates and can be switched to a table or downloaded. Tables are the paper's tables.</li>
+    <li>Footnotes open inline when you click the small numbered buttons. Citations link to the reference list. Equation, figure and table numbers match the PDF.</li>
+    <li>The <a href="explorer.html">country effects explorer</a> shows every country contrast for the three questions, the same contrast model by model, the leave-one-model-out estimates, and the cell means behind the language, local-context, age and stated-investor comparisons.</li>
+    <li>The <a href="prompts.html">prompt explorer</a> shows the exact text every model received, in every country, version and question, with the DeepL back-translation for the non-English prompts.</li>
+    <li>The <a href="tracking.html">model tracking</a> page sets the July 2026 panel beside the September 2026 wave of twenty-one models, fourteen of them new, on the same English slice of the primary question.</li>
+    <li>The raw model responses are not public. The <a href="about.html">data and code page</a> says what the site does and does not contain, and gives a prompt for asking an AI assistant about the paper.</li>
+  </ul>
+</div>
+<div class="stat-row" id="hero-stats"></div>
+</div>
+
+<nav class="prevnext"><span></span><a class="pn next" href="introduction.html"><span class="pn-dir">Next</span><span class="pn-title">Introduction</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. The experimental design, hypotheses and inference rules were pre-registered at the Open Science Framework (<a href="https://osf.io/2ch5z" target="_blank" rel="noopener">osf.io/2ch5z</a>) before the main collection. This project was supported by Behavioral Finance e.V. Views and opinions expressed are those of the author only.</p>
+  <p>The model responses behind the paper are not publicly released. Every number on this site is an aggregate that the paper reports: cell means, binned counts, and regression estimates. See <a href="about.html">Data, code and AI prompt</a>.</p>
+  <p><a href="about.html">Data and code</a> · <a href="errata.html">Errata and notes</a> · <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/charts.js"></script><script src="assets/charts-fa.js"></script><script src="assets/hero.js"></script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Main results · One advisor for the whole world?</title>
+<meta name="description" content="Digital edition of the paper One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI, by Claes Bäckman, with interactive figures, a country-effects explorer and the exact prompts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="" data-page="results">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">One advisor for the whole world?</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/claesbackman.github.io/issues/new?title=FinancialAdvice_AI website: Main results&body=Page: Explorables/FinancialAdvice_AI/results.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="https://osf.io/2ch5z" target="_blank" rel="noopener">Pre-registration ↗</a>
+    <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="literature.html"><span class="nav-num">2</span><span>Literature</span></a></li><li><a href="design.html"><span class="nav-num">3</span><span>Experimental design</span></a></li><li class="active"><a href="results.html"><span class="nav-num">4</span><span>Main results</span></a></li><li><a href="benchmark.html"><span class="nav-num">5</span><span>When should the advice differ?</span></a></li><li><a href="advice-rule.html"><span class="nav-num">6</span><span>The advice rule</span></a></li><li><a href="text.html"><span class="nav-num">7</span><span>Mechanisms in the explanation text</span></a></li><li><a href="conclusion.html"><span class="nav-num">8</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–B</span><span>Appendix tables and figures</span></a></li><li><a href="appendix-benchmark.html"><span class="nav-num">C</span><span>The normative benchmark</span></a></li><li><a href="appendix-tracking.html"><span class="nav-num">D</span><span>The model-tracking wave</span></a></li><li><a href="appendix-technical.html"><span class="nav-num">E</span><span>Technical appendix</span></a></li><li class="nav-group">Explore</li><li><a href="explorer.html"><span class="nav-num"></span><span>Country effects explorer</span></a></li><li><a href="prompts.html"><span class="nav-num"></span><span>Prompt explorer</span></a></li><li><a href="tracking.html"><span class="nav-num"></span><span>Model tracking</span></a></li><li class="nav-group">Notes</li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li><a href="about.html"><span class="nav-num"></span><span>Data, code and AI prompt</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<h1 id="sec:main"><span class="sec-num">4</span>Main Results</h1>
+<p>This section reports how LLM advice varies across countries. I first document the raw patterns in the advice (Section <a href="#sec:descriptive" class="xref">4.1</a>), then estimates the country effects on the primary question (Section <a href="#sec:main-countryfe" class="xref">4.2</a>) and decomposes them into language and local framing (Section <a href="#sec:main-decomposition" class="xref">4.3</a>). I then turn to age, the mortgage and inflation questions, and robustness. Except for the two secondary questions in Section <a href="#sec:main-q2q4" class="xref">4.5</a>, the outcome is the recommended equity fraction on Question 1. Every regression includes model fixed effects, so each contrast compares the advice of a single model, and within each comparison the queries pose the same investment problem. The coefficients therefore measure the causal effect of the prompt’s country, language, and framing content on the advice. I cluster standard errors at the model level.<span class="fn"><button type="button" class="fn-ref" aria-expanded="false" aria-controls="fn5" title="Show note 5">5</button><span class="fn-body" id="fn5" hidden><span class="fn-num">5</span> <span class="fn-p">Because thirteen clusters are too few for reliable asymptotic inference, every reported <span class="math inline">\(p\)</span>-value comes from a wild cluster bootstrap with Webb six-point weights and 9<span>,</span>999 replications.</span></span></span> As pre-registered, the twenty primary country contrasts carry a Holm step-down correction as a single family. The reason for the Holm step-down procedure is that I test 20 countries against the United States. With twenty contrasts each tested at the 5 percent level, about one would appear significant by chance even if advice were identical in every country. The correction keeps the probability of any false rejection among the twenty at 5 percent. Appendix Table <a href="appendix.html#tab:hypotheses" class="xref">A16</a> lists each pre-registered hypothesis with its test and outcome.</p>
+<h2 id="sec:descriptive"><span class="sec-num">4.1</span>Descriptive Patterns</h2>
+<figure class="paper-figure" id="fig:dist" data-fig="fig:dist" data-images="fig_D5_distribution"><div class="fig-head"><span class="fig-label">Figure 1</span><span class="fig-title">Distribution of recommended equity shares in the primary cell</span></div><div class="fig-controls"></div><div class="fig-body"><div class="fig-chart"></div><div class="fig-table" hidden></div></div><figcaption class="fig-notes"><span class="notes-label">Notes:</span> Share of responses at each recommended equity share on the primary cell (Question 1, Version B, age 40, <span class="math inline">\(N = 13{,}639\)</span>), pooled across the twenty-one countries and thirteen models. Every response is a multiple of five percentage points. No response falls below 10 or above 80 percent.</figcaption><div class="fig-links"></div></figure>
+<p>I begin with three descriptive facts about the advice that organize the results that follow. The models bunch their recommendations at a few round numbers within a narrow range, mean advice varies little across countries, and the identity of the model matters far more than the country.</p>
+<p>Starting with round numbers in the recommendations, Figure <a href="#fig:dist" class="xref">1</a> plots the distribution of the recommended equity share, pooled across countries and models. Every response is a multiple of five percentage points, and 85 percent are multiples of ten. The modal recommendation is 60 percent equity, given in 31 percent of responses. In addition, the support is narrow. No response in 13<span>,</span>639 allocates less than 10 or more than 80 percent to equities, so the advice never reaches the 100 percent equity share that the benchmark with pension wealth and human capital prescribes (Section <a href="benchmark.html#sec:benchmark-simple" class="xref">5.1</a>).</p>
+<div class="paper-table" id="tab:summary-primary"><div class="tab-head"><span class="tab-label">Table 1</span><span class="tab-title">Summary statistics by country on the primary cell</span></div><div class="tab-scroll"><table class="est">
+<thead>
+<tr>
+<th class="al-left">Country</th>
+<th class="al-center">Mean</th>
+<th class="al-center">SD</th>
+<th class="al-center">p10</th>
+<th class="al-center">Median</th>
+<th class="al-center">p90</th>
+<th class="al-right"><span class="math inline">\(N\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="al-left">Brazil</td>
+<td class="al-center">0.46</td>
+<td class="al-center">0.14</td>
+<td class="al-center">0.30</td>
+<td class="al-center">0.40</td>
+<td class="al-center">0.70</td>
+<td class="al-right">650</td>
+</tr>
+<tr>
+<td class="al-left">Italy</td>
+<td class="al-center">0.48</td>
+<td class="al-center">0.14</td>
+<td class="al-center">0.30</td>
+<td class="al-center">0.50</td>
+<td class="al-center">0.70</td>
+<td class="al-right">650</td>
+</tr>
+<tr>
+<td class="al-left">Poland</td>
+<td class="al-center">0.50</td>
+<td class="al-center">0.14</td>
+<td class="al-center">0.30</td>
+<td class="al-center">0.50</td>
+<td class="al-center">0.70</td>
+<td class="al-right">650</td>
+</tr>
+<tr>
+<td class="al-left">France</td>
+<td class="al-center">0.51</td>
+<td class="al-center">0.14</td>
+<td class="al-center">0.30</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.70</td>
+<td class="al-right">649</td>
+</tr>
+<tr>
+<td class="al-left">China</td>
+<td class="al-center">0.52</td>
+<td class="al-center">0.10</td>
+<td class="al-center">0.40</td>
+<td class="al-center">0.50</td>
+<td class="al-center">0.65</td>
+<td class="al-right">649</td>
+</tr>
+<tr>
+<td class="al-left">Switzerland</td>
+<td class="al-center">0.53</td>
+<td class="al-center">0.14</td>
+<td class="al-center">0.30</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.70</td>
+<td class="al-right">649</td>
+</tr>
+<tr>
+<td class="al-left">Spain</td>
+<td class="al-center">0.53</td>
+<td class="al-center">0.12</td>
+<td class="al-center">0.40</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.70</td>
+<td class="al-right">648</td>
+</tr>
+<tr>
+<td class="al-left">Netherlands</td>
+<td class="al-center">0.53</td>
+<td class="al-center">0.14</td>
+<td class="al-center">0.30</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.70</td>
+<td class="al-right">649</td>
+</tr>
+<tr>
+<td class="al-left">Germany</td>
+<td class="al-center">0.53</td>
+<td class="al-center">0.14</td>
+<td class="al-center">0.30</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.70</td>
+<td class="al-right">650</td>
+</tr>
+<tr>
+<td class="al-left">Turkey</td>
+<td class="al-center">0.54</td>
+<td class="al-center">0.11</td>
+<td class="al-center">0.40</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.65</td>
+<td class="al-right">650</td>
+</tr>
+<tr>
+<td class="al-left">Mexico</td>
+<td class="al-center">0.54</td>
+<td class="al-center">0.14</td>
+<td class="al-center">0.30</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.70</td>
+<td class="al-right">650</td>
+</tr>
+<tr>
+<td class="al-left">Finland</td>
+<td class="al-center">0.55</td>
+<td class="al-center">0.15</td>
+<td class="al-center">0.35</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.75</td>
+<td class="al-right">648</td>
+</tr>
+<tr>
+<td class="al-left">India</td>
+<td class="al-center">0.55</td>
+<td class="al-center">0.12</td>
+<td class="al-center">0.40</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.70</td>
+<td class="al-right">650</td>
+</tr>
+<tr>
+<td class="al-left">Canada</td>
+<td class="al-center">0.56</td>
+<td class="al-center">0.13</td>
+<td class="al-center">0.40</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.70</td>
+<td class="al-right">650</td>
+</tr>
+<tr>
+<td class="al-left">South Africa</td>
+<td class="al-center">0.56</td>
+<td class="al-center">0.12</td>
+<td class="al-center">0.40</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.70</td>
+<td class="al-right">648</td>
+</tr>
+<tr>
+<td class="al-left">Sweden</td>
+<td class="al-center">0.57</td>
+<td class="al-center">0.13</td>
+<td class="al-center">0.40</td>
+<td class="al-center">0.50</td>
+<td class="al-center">0.75</td>
+<td class="al-right">649</td>
+</tr>
+<tr>
+<td class="al-left">United States</td>
+<td class="al-center">0.57</td>
+<td class="al-center">0.13</td>
+<td class="al-center">0.40</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.70</td>
+<td class="al-right">650</td>
+</tr>
+<tr>
+<td class="al-left">United Kingdom</td>
+<td class="al-center">0.58</td>
+<td class="al-center">0.13</td>
+<td class="al-center">0.40</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.75</td>
+<td class="al-right">650</td>
+</tr>
+<tr>
+<td class="al-left">Australia</td>
+<td class="al-center">0.58</td>
+<td class="al-center">0.12</td>
+<td class="al-center">0.40</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.70</td>
+<td class="al-right">650</td>
+</tr>
+<tr>
+<td class="al-left">Japan</td>
+<td class="al-center">0.58</td>
+<td class="al-center">0.14</td>
+<td class="al-center">0.35</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.70</td>
+<td class="al-right">650</td>
+</tr>
+<tr>
+<td class="al-left">South Korea</td>
+<td class="al-center">0.58</td>
+<td class="al-center">0.11</td>
+<td class="al-center">0.40</td>
+<td class="al-center">0.60</td>
+<td class="al-center">0.70</td>
+<td class="al-right">650</td>
+</tr>
+</tbody>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Distribution of the recommended equity share by country on the primary cell (Question 1, Version B, age 40), pooled across the thirteen models with fifty repetitions per country–model cell. Countries a re ordered by mean. <span class="math inline">\(N\)</span> falls slightly below 650 where responses without a parsed numeric recommendation, or truncated at the token limit, are excluded under the pre-registered rules (Section <a href="design.html#sec:data" class="xref">3.7</a>).</div></div>
+<p>The bunching shows that the models answer a continuous allocation problem with a conventional round number. <a class="cite" href="references.html#ref-choukhmane2026ai">Choukhmane et al. (2026)</a> also find round number bunching in AI advice, which they note departs from the more subtle prescriptions of life cycle theory. A portfolio rule would produce a continuous answer for at least some of the answers. Instead, the modal 60/40 split is the most common target allocation in retail portfolio advice, a first sign of the risk-questionnaire interpretation. A 100-minus-age rule of thumb would produce the same 60 percent at age 40. The model explanations occasionally include this rule in the explanations, while also sometimes referring to a “110-age” rule, which would also produce a (different) round number. However, the models do not follow it literally at the other prompted ages. At age 30 the modal response stays at 60 percent rather than the rule’s 70, and at age 55 it falls to 40 percent rather than the rule’s 45. I explore the rule in more detail in Figure <a href="#fig:age-rule" class="xref">4</a>.</p>
+<p>Mean advice varies little across countries. Table <a href="#tab:summary-primary" class="xref">1</a> shows that it spans twelve percentage points, from 0.46 in Brazil to 0.58 in South Korea, with the United States at 0.57 near the top of the range. The band is narrow relative to the dispersion within any single country. The typical within-country standard deviation is 0.13. Instead, most of the within-country dispersion comes from the models. Appendix Table <a href="appendix.html#tab:by-model" class="xref">A3</a> reports mean advice by model, which spans 0.37 (Gemini 3.1 Pro) to 0.71 (Claude Haiku 4.5), a range of 34 percentage points. That is nearly three times the country range. The ordering of the models follows neither vendor nor scale. The four Anthropic models cluster above the pooled mean, between 0.58 and 0.71, but Google’s models span nearly the full panel range. Google’s flagship reasoning model is the most conservative advisor in the panel, but its two Flash-tier models are twenty points higher.</p>
+<p>Model identity accounts for 69.5 percent of the total variation in the primary cell, the country for 5.7 percent, their interaction for 9.5 percent, and sampling variation within country–model cells for the remaining 15.3 percent. The dominance of the model motivates two choices maintained throughout the paper. Every regression identifies country contrasts within model, and inference clusters at the model level, treating the thirteen models rather than the quarter-million responses as the effective sample.</p>
+<h2 id="sec:main-countryfe"><span class="sec-num">4.2</span>Country effects on the primary question</h2>
+<p>I now test whether LLM advice is the same across countries. The primary specification estimates country fixed effects on the pre-registered primary cell, Version B of Question 1 at age 40, <span class="math display">\[y_{imc} \;=\; \alpha_{m} + \gamma_{c} + \varepsilon_{imc}, \tag{1}\]</span> where <span class="math inline">\(y_{imc}\)</span> is the equity fraction recommended in repetition <span class="math inline">\(i\)</span> by model <span class="math inline">\(m\)</span> for country <span class="math inline">\(c\)</span>, the <span class="math inline">\(\alpha_{m}\)</span> are model fixed effects, and the <span class="math inline">\(\gamma_{c}\)</span> are deviations from the omitted U.S. baseline.</p>
+<p>The main finding is that advice is not the same everywhere. Figure <a href="#fig:eq1-coefplot" class="xref">2</a> plots all twenty contrasts.<span class="fn"><button type="button" class="fn-ref" aria-expanded="false" aria-controls="fn6" title="Show note 6">6</button><span class="fn-body" id="fn6" hidden><span class="fn-num">6</span> <span class="fn-p">Appendix Table <a href="appendix.html#tab:eq1-countryfe" class="xref">A9</a> reports each with its wild-bootstrap and Holm <span class="math inline">\(p\)</span>-values. The joint wild-bootstrap test rejects equality of advice across the twenty-one countries with <span class="math inline">\(p = 0.006\)</span>. The joint wild-bootstrap Wald statistic on all twenty restrictions is <span class="math inline">\(F(20,12) = 20.56\)</span>. The asymptotic cluster-robust test can impose at most twelve of the twenty restrictions with thirteen clusters and gives <span class="math inline">\(F(12,12) = 34.26\)</span>. Both reject at the one percent level.</span></span></span> Thirteen of the twenty contrasts clear the wild-bootstrap threshold before correction, and seven survive the Holm step-down.</p>
+<p>Every contrast that survives the correction is negative, and the survivors lie in southern and central Europe and Latin America. Against a U.S. mean equity share of 0.57, the largest gap, Brazil’s eleven percentage points, moves $5<span>,</span>500 of the $50<span>,</span>000 stake from stocks to bonds. The seven significant contrasts average about six points. For comparison, the gender gap that <a class="cite" href="references.html#ref-foltyn2026gender">Foltyn and Olsson (2026)</a> document on a similar allocation question is under two percentage points, so country context moves LLM advice by several times the demographic gaps documented so far.</p>
+<figure class="paper-figure" id="fig:eq1-coefplot" data-fig="fig:eq1-coefplot" data-images="fig_coef_eq1_wild"><div class="fig-head"><span class="fig-label">Figure 2</span><span class="fig-title">Country effects on the recommended equity share</span></div><div class="fig-controls"></div><div class="fig-body"><div class="fig-chart"></div><div class="fig-table" hidden></div></div><figcaption class="fig-notes"><span class="notes-label">Notes:</span> Point estimates of the country fixed effects from equation (1) (Question 1, Version B, age 40), in percentage points relative to the omitted U.S. baseline. Bars are 95 percent wild cluster bootstrap confidence intervals (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G = 13\)</span>), the intervals of record, matching Appendix Table <a href="appendix.html#tab:eq1-countryfe" class="xref">A9</a>.</figcaption><div class="fig-links"></div></figure>
+<p>Before the Holm correction, thirteen of the twenty contrasts fail to reject equality with the U.S. baseline. Six of those are individually significant on the uncorrected wild-bootstrap test but do not survive the step-down (China, Switzerland, Germany, Turkey, India, and Canada, ranging from <span class="math inline">\(-4.4\)</span> to <span class="math inline">\(-1.1\)</span> points). The remaining seven do not reject even before correction. Four of them have small positive point estimates (Australia, Japan, South Korea, and the United Kingdom). Finland and South Africa have small negative gaps, and Sweden sits at the U.S. level. The design’s minimum detectable effect for a single country contrast is roughly four percentage points, so these nulls rule out large gaps but not gaps of a point or two. However, gaps of those magnitudes would not be economically significant, as they would move only moderate amounts from stocks to bonds.</p>
+<h2 id="sec:main-decomposition"><span class="sec-num">4.3</span>Language and local framing</h2>
+<p>I next run two within-country tests. One asks whether local framing shapes the advice, and the other separates the effect of the question’s language from that of the country name. The local-framing regression compares Versions C and B across the twenty non-U.S. countries at age 40, <span class="math display">\[y_{imc} \;=\; \alpha_{m} + \gamma_{c} + \phi\,\mathbf{1}[\text{version}=C] + \varepsilon_{imc}, \tag{2}\]</span> and the language regression compares Versions B and B-cross across the fifteen non-English countries, <span class="math display">\[y_{imc} \;=\; \alpha_{m} + \gamma_{c} + \lambda\,\mathbf{1}[\text{language}=\text{local}] + \varepsilon_{imc}. \tag{3}\]</span></p>
+<p>Asking in the local language rather than in English lowers the recommended equity share by 1.3 percentage points. The language effect is statistically significant but economically small, an order of magnitude below the largest country effects. Naming the local instruments does even less. Replacing the generic vocabulary with local pension names, local government bonds, and local index funds moves the allocation by <span class="math inline">\(-0.7\)</span> points, a result that is not significance at the five percent level.</p>
+<p>The two estimates imply that the country name carries most of each country effect. Language contributes about a point and local framing less than one, so the bulk of every large country effect remains with the country reference, which every version contains. Both small effects are negative, the same direction as the significant country contrasts, so each added localization cue nudges the advice toward bonds.</p>
+<p>Figure <a href="#fig:decomp" class="xref">3</a> applies the same decomposition country by country. Each bar stacks three steps into the gap between a country’s fully localized Version C and the U.S. English generic cell, and the three add up to that gap by construction. The country-name step is Version B-cross minus the United States, the language step is Version B minus B-cross, and the local-context step is Version C minus B. The country-name step also changes the currency unit and the nominal amount, which move together with the country reference. In the large-effect countries (Brazil, Mexico, Poland, France, Italy, Germany) the country-name slab accounts for most of the gap. The language and local-context slabs are usually small, but they are noisier than the pooled <span class="math inline">\(\hat{\lambda}\)</span> and <span class="math inline">\(\hat{\phi}\)</span> and not uniformly negative. Japan is the clearest exception. A large positive language slab pushes its advice toward stocks and produces the panel’s largest positive total.</p>
+<p>The language treatment covers only the Question block, since the Instructions block is English in every cell. I also added anexploratory re-collection with the Instructions block translated as well, reported in Section <a href="#sec:robustness" class="xref">4.6</a>. Sending the message entirely in the local language moves the non-English cells by less than a point relative to the English ones. The small langauge effect is then likely not due to the English instructions.</p>
+<figure class="paper-figure" id="fig:decomp" data-fig="fig:decomp" data-images="fig_decomp_countryfe"><div class="fig-head"><span class="fig-label">Figure 3</span><span class="fig-title">Decomposing the country effect into naming, language, and local context</span></div><div class="fig-controls"></div><div class="fig-body"><div class="fig-chart"></div><div class="fig-table" hidden></div></div><figcaption class="fig-notes"><span class="notes-label">Notes:</span> Each bar decomposes a country’s fully localized effect on the recommended equity share, Version C relative to the omitted U.S. English generic baseline (Question 1, age 40), into three additive cues in percentage points. Country name is the English-only contrast Version B-cross minus the U.S. (language and instruments held fixed, though the currency unit and nominal amount change with the country reference), language is Version B minus B-cross (country name held fixed), and local context is Version C minus B (language held fixed). The black diamond marks the total, which equals the sum of the three slabs by construction. The six English-prompt countries have no B-cross cell, so their language slab is zero and country name is Version B minus the U.S.</figcaption><div class="fig-links"></div></figure>
+<p>The size of the language effect distinguishes between two views of how multilingual models answer a question. If the models retrieve advice the way they retrieve language-keyed knowledge, <span class="math inline">\(\lambda\)</span> should be substantial. The same model often asserts different facts depending on the query language <a class="cite" href="references.html#ref-kassner2021mlama">(Kassner et al. 2021; Qi et al. 2023)</a>. For example, if German queries were to draw on the bond-heavy conventions of German-language financial text, the effect of the language would presumably be large. If instead the models solve the task in a shared representation, <span class="math inline">\(\lambda\)</span> should be near zero. Tracing studies in computer science find that language-specific processing occupies the layers nearest the input and output, that the middle layers solving the task operate in a shared concept space lying closer to English than to any other language, and that cross-lingual sharing rises with model scale <a class="cite" href="references.html#ref-wendler2024llamas">(Wendler et al. 2024; Tang et al. 2024; Wu et al. 2025; <span class="nocase">Lindsey et al.</a> 2025)</span>. Under such processing, two translations of the same question become nearly the same query by the middle of the network. The estimate of <span class="math inline">\(-1.3\)</span> points fits the second account, with the small residual consistent with the language-specific features that remain. The advice behaves like one policy applied across query languages rather than like language-segmented retrieval. Note also that the sharing should be strongest in frontier models like those in this panel. Speculatively, this suggests that small langauge effects is a feature of how the models solve problems generally, and not an artifact of how recent the model is. I later run a robustness with newer model generations, but find similar results for the cross-country variation in advice also for newer models.</p>
+<h2 id="sec:main-age"><span class="sec-num">4.4</span>Age gradients and pension generosity</h2>
+<p>Age is the only characteristic of the investor that the country/language experiment varies. I pre-registered an interaction of age with the national pension system as a test of whether the advice responds to a local institution that changes the investor’s balance sheet. A generous pension is a large bond-like claim whose weight in total wealth grows as retirement nears. Background-wealth logic therefore predicts that the equity share of the liquid portfolio falls less steeply with age where pensions replace more income. To test this prediction, I vary the investor’s age across 30, 40, and 55 in Version B of Question 1 and estimate <span class="math display">\[y_{imca} \;=\; \alpha_{m} + \gamma_{c} + \delta_{a} + \psi\,\tilde{\rho}_{c}\,\mathbf{1}[\text{age}=55] + \varepsilon_{imca}, \tag{4}\]</span> where <span class="math inline">\(\tilde{\rho}_{c}\)</span> is the OECD net pension replacement rate standardized across the twenty-one countries. The coefficient <span class="math inline">\(\psi\)</span> measures how the age-55 tilt toward bonds changes with pension generosity, and background-wealth logic predicts that the tilt shrinks.</p>
+<p>The models tilt toward bonds with age, and they apply the same tilt whatever the pension system. This result echoes the later results in the investor arm, where stating the pension generosity or pension asset composition has little impact on advice. Relative to the 40-year-old, they recommend 6.24 percentage points more equity to the 30-year-old and 11.13 points less to the 55-year-old. Pension generosity does not change it. The estimate of <span class="math inline">\(\psi\)</span> implies that a one-standard-deviation higher replacement rate changes the age-55 tilt by <span class="math inline">\(-0.02\)</span> points (<span class="math inline">\(p = 0.96\)</span>), against a tilt of 11 points, and the coarser above-median replacement-rate split gives <span class="math inline">\(+0.4\)</span> points (<span class="math inline">\(p = 0.49\)</span>). Appendix Figure <a href="appendix.html#fig:age-glidepath" class="xref">A1</a> shows the same glide path applied nearly verbatim in all twenty-one country panels, from the panel’s most generous pension systems to its least generous. Appendix Table <a href="appendix.html#tab:age-pension" class="xref">A12</a> reports the full regression alongside a specification without the pension interaction. The stated-investor arm of Section <a href="advice-rule.html#sec:stated" class="xref">6</a> gives the same answer when the prompt states the pension directly instead of leaving it to the country name.</p>
+<figure class="paper-figure" id="fig:age-rule" data-fig="fig:age-rule" data-images="fig_age_rule_bunching"><div class="fig-head"><span class="fig-label">Figure 4</span><span class="fig-title">The advice against the 100-minus-age rule, by prompted age</span></div><div class="fig-controls"></div><div class="fig-body"><div class="fig-chart"></div><div class="fig-table" hidden></div></div><figcaption class="fig-notes"><span class="notes-label">Notes:</span> Distribution of the recommended equity share at each prompted age (Question 1, Version B, all twenty-one countries and thirteen models, parsed non-refusals, <span class="math inline">\(N = 40{,}910\)</span>). Dashed lines mark the 100-minus-age prescription. Essentially all responses sit on multiples of five percentage points, so each panel is a discrete bar chart as in Figure <a href="#fig:dist" class="xref">1</a>. Exploratory exhibit, not pre-registered.</figcaption><div class="fig-links"></div></figure>
+<p>Section <a href="#sec:descriptive" class="xref">4.1</a> noted that the 60 percent mode at age 40 is also what the 100-minus-age rule prescribes. Figure <a href="#fig:age-rule" class="xref">4</a> plots the advice at each prompted age against the rule’s 70, 60, and 45 percent equity. The rule matches the modal advice only at 40, where exactly 60 percent accounts for 31.7 percent of responses in the six English-prompting countries and 30.5 percent elsewhere. At 30 and 55 the mode falls below the rule, at 60 percent (24 percent of responses, against 18 percent at the rule’s 70) and at 40 percent (35 percent, against 8 percent at the rule’s 45). Pooled advice falls by 0.70 percentage points per year of age, where a 100-minus-age rule would prescribe 1.00. Ten of the thirteen models are flatter than the rule. The glide path is thus a flatter, language-invariant version of the 100-minus-age rule rather than literal compliance with it. <a class="cite" href="references.html#ref-love2013rules">Love (2013)</a> shows that this kind of rule tracks the optimal decline in equity exposure through the middle of the life cycle but prescribes less equity than the optimum at both tails. The models’ departures from the rule therefore run opposite to the life-cycle optimum.</p>
+<p>Looking at the explanations and the numbers, the models follow the rule the same way in every language but name it almost only in English. Explicit citations of the heuristic (“rule of thumb,” “100 minus age”) appear in 15 to 17 percent of primary-cell explanations in the United States and India but in under 1 percent outside the English-prompting countries. This is consistent with a single advice policy formed in the English-language financial-planning corpus and applied everywhere.</p>
+<h2 id="sec:main-q2q4"><span class="sec-num">4.5</span>The mortgage and inflation questions</h2>
+<figure class="paper-figure" id="fig:three-questions" data-fig="fig:three-questions" data-images="fig_three_questions"><div class="fig-head"><span class="fig-label">Figure 5</span><span class="fig-title">Country effects across the three questions</span></div><div class="fig-controls"></div><div class="fig-body"><div class="fig-chart"></div><div class="fig-table" hidden></div></div><figcaption class="fig-notes"><span class="notes-label">Notes:</span> Point estimates of the country fixed effects from equation (1) for Question 1 (recommended equity share), Question 2 (recommended fraction invested rather than used to prepay a 4 percent mortgage), and Question 3 (recommended fraction moved out of a 1 percent savings account), Version B, age 40, in percentage points relative to the omitted U.S. baseline. Each question is estimated separately with model fixed effects. Hollow markers denote the premise-acceptance group on Question 2. Countries are ordered by their Question 1 effect. Confidence intervals are omitted for legibility and are reported in Appendix Tables <a href="appendix.html#tab:eq1-countryfe" class="xref">A9</a>, <a href="appendix.html#tab:q2-countryfe" class="xref">A10</a>, and <a href="appendix.html#tab:q4-countryfe" class="xref">A11</a>.</figcaption><div class="fig-links"></div></figure>
+<p>The two secondary questions depend on the local economy. Figure <a href="#fig:three-questions" class="xref">5</a> plots the country effects on all three questions side by side. For these questions, the advice differs far more across countries, and the variance decomposition reverses. Country accounts for 27 percent of the variation in mortgage advice against 15 percent for model, and model identity accounts for only 26 percent of the variation in inflation advice, whereas on the allocation question the shares are 6 percent for country and 70 percent for model. The secondary questions also pick up a different country signal from the allocation question rather than a stronger version of the same one. The countries that receive less equity on the allocation question, Brazil, Italy, Poland, and France, are not the countries told to prepay, which are Japan, China, Switzerland, and Germany. Japan, statistically at the U.S. level on the allocation question, has the largest gap on both secondary questions. Across countries the allocation and mortgage effects correlate at <span class="math inline">\(-0.10\)</span>, while the mortgage and inflation effects correlate at <span class="math inline">\(0.80\)</span>.</p>
+<p>On the mortgage question, the models recommend investing 10 to 29 percentage points less than in the United States in each of the fifteen countries outside the premise-acceptance group. All fifteen contrasts survive the Holm correction. Among the largest gaps are Japan at <span class="math inline">\(-28.6\)</span>, China at <span class="math inline">\(-22.7\)</span>, Switzerland at <span class="math inline">\(-21.6\)</span>, Germany at <span class="math inline">\(-21.1\)</span>, and Spain at <span class="math inline">\(-20.4\)</span>. Japan’s gap alone is more than twice the largest contrast on the allocation question. Part of the common gap reflects the United States itself, whose deductible and freely prepayable mortgages favor investing. The ordering among the fifteen countries, however, spans a further 19 points and places the low-inflation economies at the bottom, consistent with the high real rate that a fixed nominal mortgage carries where inflation is low. For the five countries where the prevailing mortgage rates exceeded twice the prompted 4 percent at the filing date(Brazil, India, Mexico, Turkey, and South Africa), the contrasts are mostly null, and only South Africa (<span class="math inline">\(-2.4\)</span> points) survives the correction.</p>
+<p>On the inflation question, seven country contrasts survive the Holm correction, all negative, so in these countries the models recommend moving less of the savings out of the account than in the United States: Japan (<span class="math inline">\(-11.3\)</span> points), China (<span class="math inline">\(-7.2\)</span>), South Korea (<span class="math inline">\(-6.9\)</span>), the Netherlands (<span class="math inline">\(-6.5\)</span>), Italy (<span class="math inline">\(-5.0\)</span>), Switzerland (<span class="math inline">\(-5.0\)</span>), and France (<span class="math inline">\(-4.3\)</span>). Japan and China, two of the countries told to prepay, lead the list, in line with the correlation of 0.80 between the inflation and mortgage effects. The clearest localization on this question, however, is in the instrument the models recommend (Appendix Table <a href="appendix.html#tab:q4-instrument" class="xref">A4</a>). Equities are the primary instrument in 93 percent or more of responses in fourteen countries and in a clear majority in all but the highest-inflation economies. In Brazil, Turkey, and Mexico the models switch to inflation protection. In Brazil, inflation-linked bonds account for 86.7 percent of the recommendations, and in Turkey inflation-linked bonds and gold together account for 82.3 percent (66.0 and 16.3 percent). Mexico’s recommendations tilt the same way (58.1 percent inflation-linked bonds), and Poland’s are split (38.6 percent inflation-linked). The tilt appears even inside the English-prompting group, where models in the two higher-inflation members, India and South Africa, recommend inflation protection (11.5 and 16.3 percent, compared to under 3 percent in the United States, the United Kingdom, Canada, and Australia). Because these two countries share the baseline’s language, the switch tracks the country rather than the language of the prompt.</p>
+<h2 id="sec:robustness"><span class="sec-num">4.6</span>Robustness</h2>
+<p>I conduct several robustness checks. Some of these checks were pre-registered, but some derive from feedback I received after the preregistration. Two pre-registered re-collections ask whether the results depend on the sampling temperature or on the size of the numerals in the local-currency amount.<span class="fn"><button type="button" class="fn-ref" aria-expanded="false" aria-controls="fn7" title="Show note 7">7</button><span class="fn-body" id="fn7" hidden><span class="fn-num">7</span> <span class="fn-p">I also included several pre-registered checks, but these have nothing to act on. The collection produced no refusals, so the refusal outcome is constant and the zero-equity imputation changes no observation. The collection also also finished within two days, so estimating effect by week of collecting does not have any effect.</span></span></span></p>
+<p>In thhe exploratory robustness checks, I first check whether the results change over time as new models are introduced. I also check whether the English Instructions block affects the results, and I ask whether allowing models to ask questions affects the cross-country differences. Finally, I also examine whether the answers depend on the country where I was when I sent the queries (Germany).</p>
+<h4 id="temperature-check." class="runin">Temperature check.</h4>
+<p>Temperature is a sampling parameter that sets how much randomness a language model uses when it picks each word of its response. The next-token prediction at the heart of an LLM picks the next word based on a predicted probability. Model provider introduce some randomness in the token the model uses, which introduces some variation in the answers even with a similar prompt. At a temperature of 0, the model always chooses its most likely next word. Higher values make less likely words more probable. The main set of prompts use a sampling temperature of 0.7.</p>
+<p>The temperature check re-collects the primary cell at the temperatures of 0 and 1.0 for five countries (the United States, Germany, Sweden, Japan, and Brazil). Appendix Table <a href="appendix.html#tab:robust-cells" class="xref">A13</a>, Panel A shows that temperature does not affect the results. The pooled mean equity share shifts by 0.3 percentage points at either bookend relative to the 0.7 baseline (wild bootstrap <span class="math inline">\(p = 0.55\)</span> at temperature 0 and <span class="math inline">\(p = 0.40\)</span> at 1.0), and the country contrasts barely move.</p>
+<h4 id="numeral-magnitude." class="runin">Numeral-magnitude.</h4>
+<p>The second robustness check addresses a numeral-magnitude confound. Version B states the stake as a round native-currency figure. The cross-country contrasts compare prompts whose numerals differ by orders of magnitude, such as 7<span>,</span>500<span>,</span>000 yen in Japan against 50<span>,</span>000 dollars in the U.S. baseline cell. An advisor that anchored on the size of the number rather than on the economics could generate spurious country effects. For Sweden, Japan, and Germany I therefore re-collect Version B with the amount stated as $50<span>,</span>000, holding country and language fixed (Appendix Table <a href="appendix.html#tab:robust-cells" class="xref">A13</a>, Panel B). The pooled shift is a tight zero (<span class="math inline">\(-0.1\)</span> percentage points, wild bootstrap <span class="math inline">\(p = 0.84\)</span>, confidence interval <span class="math inline">\(-1.6\)</span> to <span class="math inline">\(+1.4\)</span> points). The one significant per-country shift is Japan, whose seven-digit yen figure raises the recommended share by 2.8 points relative to the dollar statement (<span class="math inline">\(p = 0.01\)</span>). Japan’s country contrast is small and statistically null with native numerals (<span class="math inline">\(+1.2\)</span> points) and remains small under the dollar statement (an implied <span class="math inline">\(-1.6\)</span> points).</p>
+<h4 id="purchasing-power-adjustment-of-the-stake." class="runin">Purchasing power adjustment of the stake.</h4>
+<p>The main collection uses $50<span>,</span>000 converted at market exchange rates to the local currency. At purchasing-power parity, the stake is worth about twice the U.S. stake in Brazil, Mexico, Poland, and China, two and a half times in South Africa, and three and a half to four times in Turkey and India. If the models advise more caution on a stake that is large relative to local prices, part of these countries’ contrasts would reflect the size of the stake rather than the country.</p>
+<p>On October 29, 2026, I restated the stake in the twenty non-U.S. Version B prompts as the purchasing-power-parity equivalent of $50<span>,</span>000, rounded in each prompt’s own notation, and re-collected the unchanged Version B prompts for all twenty-one countries, with twenty-five repetitions per model and cell. Appendix Table <a href="appendix.html#tab:robust-cells" class="xref">A13</a>, Panel C reports the shifts. Cutting the real stake raises the recommended equity share by 1.0 percentage point on average (wild bootstrap <span class="math inline">\(p&lt;0.001\)</span>, confidence interval 0.5 to 1.7 points). Each halving of the real stake adds 1.2 points (<span class="math inline">\(p&lt;0.001\)</span>). However, the effect is small relative to the baseline contrasts. For example, Brazil’s contrast moves from <span class="math inline">\(-11.5\)</span> to <span class="math inline">\(-9.7\)</span> points and Poland’s from <span class="math inline">\(-8.4\)</span> to <span class="math inline">\(-6.1\)</span>, and both remain significant after Holm correction. Stake size therefore accounts for between a sixth and a third of these contrasts. Moreover, the effect is not specific to emerging markets, since Spain’s contrast narrows by a similar 2.1 points.</p>
+<h4 id="leave-one-out-mean-and-vendor-fixed-effects." class="runin">Leave-one-out mean and vendor fixed effects.</h4>
+<p>The pre-registered leave-one-model-out sweep re-estimates equation (1) thirteen times, each time without one model. No contrast moves by more than 1.3 percentage points. Six of the seven contrasts that survive the Holm correction survive it in all thirteen samples, with a largest Holm <span class="math inline">\(p\)</span>-value of 0.027. Replacing the thirteen model fixed effects with six vendor fixed effects, for comparability with <a class="cite" href="references.html#ref-foltyn2026gender">Foltyn and Olsson (2026)</a>, leaves every country contrast essentially unchanged, although with six clusters the variant supports no formal inference.</p>
+<h4 id="newer-models-and-drift-over-time." class="runin">Newer models and drift over time.</h4>
+<p>To examine whether newer models give different results and to check the robustness of the answers over time, I re-asked one English slice of the primary cell on September 19, 2026 to a panel of twenty-one models. Fourteen of these models were new to the panel. The other seven carry over from the main panel under unchanged identifiers.</p>
+<p>The main findings are robust. On the same English slice, model identity accounts for 70 percent of the variance in September against 78 percent in July, and country for 5 percent against 3 percent. Within each model, 77 percent of non-U.S. cells lie below the model’s own U.S. cell, against 67 percent in July. Six of the seven carried-over models return average advice within 2.5 points of July.<span class="fn"><button type="button" class="fn-ref" aria-expanded="false" aria-controls="fn8" title="Show note 8">8</button><span class="fn-body" id="fn8" hidden><span class="fn-num">8</span> <span class="fn-p">The interested reader can explore the differences in the answers by model themselves on <a href="www.claesbackman.com/Explorables/FinancialAdvice_AI_Digital">this website.</a></span></span></span></p>
+<h4 id="caller-location-and-routing." class="runin">Caller location and routing.</h4>
+<p>Every query went through OpenRouter from Germany, which raises two concerns: that the models condition on the caller’s location, and that the routing of requests between hosts moves the estimates. Note first that the location is the same in every call, and that the APIs do not pass the location to the model. Each query is a single user message, the only text the vendors add is fixed (the current date for OpenAI and a system prompt for xAI). Asked what they know about the user, none of the thirteen models reports a location.</p>
+<p>A direct test shows that the level does not move either. I sent the primary prompt for the United States, Germany, Brazil, and Japan to one model from each vendor in four blocks of 240 queries, routed through VPN exits in Germany and the United States. Moving the origin to the United States changes the recommended equity share by 0.4 percentage points. The shift does not differ across prompt countries (<span class="math inline">\(p = 0.23\)</span>), and each model bills the same number of prompt tokens from both origins.</p>
+<p>The second exploratory collection addresses the Instructions block. Every prompt in the design wraps the translated question in the same English instructions, and a model that reads the wrapper as a cue could anchor on an English-language answer, which would compress the country differences and understate the language effect. I therefore re-collected the primary cell on October 29, 2026 with the Instructions block rendered in the local language for the fifteen non-English countries, translated line by line with the JSON schema held fixed and reviewed as the question blocks were (5<span>,</span>460 responses, twenty per model and country). The six English-prompting countries received prompts identical to the main collection, so their change between July and October measures drift in the models over the interval, and the language component is the change in the non-English countries net of that drift. The country structure survives. The twenty country contrasts estimated on the new collection correlate at 0.93 with those of equation (1), eight of them lie below the United States after the Holm correction, and their range is 11 points against 12. Translating the instructions lowers the non-English cells by 1.4 points and the identical English cells by 0.6, a language component of 0.8 points (wild bootstrap <span class="math inline">\(p = 0.13\)</span>, confidence interval <span class="math inline">\(-1.8\)</span> to <span class="math inline">\(0.2\)</span> points), and Finland is the only country whose change survives the Holm correction (Appendix Table <a href="appendix.html#tab:trinstr" class="xref">A18</a>). The response is concentrated in two models. The two Gemini Flash models recommend about four points less equity when the instructions are in the local language, while the other eleven move by less than 1.5 points. The English wrapper therefore does not produce the compression, and for most models it does not enter the answer at all.</p>
+<p>The third exploratory collection addresses the single-turn format. A human advisor asks before advising, and the design denies the model that turn, which raises the possibility that the uniform advice reflects a uniform lack of information rather than a uniform policy. I therefore re-asked the primary question in English for all twenty-one countries with the instruction inverted: the model lists up to five questions it would want the investor to answer first, states the direction in which each answer would move its recommendation, and gives the share it would recommend provisionally if the investor answered nothing further (2<span>,</span>730 responses, ten per model and country). The provisional share reproduces the one-shot structure. Country means in the two arms correlate at 0.94 with a slope of one, so the cross-country gaps are the same size, and the same five countries sit below the United States after the Holm correction (Appendix Table <a href="appendix.html#tab:elicit-countryfe" class="xref">A19</a>). Model identity accounts for 82 percent of the variance of the provisional share against 4 percent for country, the same ordering as in the main arm. The one difference is a level shift. Asked for a provisional number, the models recommend about six points less equity, and the shift is uniform across countries and concentrated in the models with the highest equity shares. The questions the models ask are investor-specific rather than country-specific, and Section <a href="advice-rule.html#sec:stated" class="xref">6</a> reads their content. The information the models say they lack is therefore about the investor, and a second turn would not have produced country-specific advice.</p>
+
+<nav class="prevnext"><a class="pn prev" href="design.html"><span class="pn-dir">Previous</span><span class="pn-title">Experimental design</span></a><a class="pn next" href="benchmark.html"><span class="pn-dir">Next</span><span class="pn-title">When should the advice differ?</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. The experimental design, hypotheses and inference rules were pre-registered at the Open Science Framework (<a href="https://osf.io/2ch5z" target="_blank" rel="noopener">osf.io/2ch5z</a>) before the main collection. This project was supported by Behavioral Finance e.V. Views and opinions expressed are those of the author only.</p>
+  <p>The model responses behind the paper are not publicly released. Every number on this site is an aggregate that the paper reports: cell means, binned counts, and regression estimates. See <a href="about.html">Data, code and AI prompt</a>.</p>
+  <p><a href="about.html">Data and code</a> · <a href="errata.html">Errata and notes</a> · <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/charts.js"></script><script src="assets/charts-fa.js"></script><script src="assets/figures.js"></script>
+</body>
+</html>

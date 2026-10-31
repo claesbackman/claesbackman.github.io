@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The model-tracking wave · One advisor for the whole world?</title>
+<meta name="description" content="Digital edition of the paper One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI, by Claes Bäckman, with interactive figures, a country-effects explorer and the exact prompts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="" data-page="appendix-tracking">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">One advisor for the whole world?</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/claesbackman.github.io/issues/new?title=FinancialAdvice_AI website: The model-tracking wave&body=Page: Explorables/FinancialAdvice_AI/appendix-tracking.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="https://osf.io/2ch5z" target="_blank" rel="noopener">Pre-registration ↗</a>
+    <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="literature.html"><span class="nav-num">2</span><span>Literature</span></a></li><li><a href="design.html"><span class="nav-num">3</span><span>Experimental design</span></a></li><li><a href="results.html"><span class="nav-num">4</span><span>Main results</span></a></li><li><a href="benchmark.html"><span class="nav-num">5</span><span>When should the advice differ?</span></a></li><li><a href="advice-rule.html"><span class="nav-num">6</span><span>The advice rule</span></a></li><li><a href="text.html"><span class="nav-num">7</span><span>Mechanisms in the explanation text</span></a></li><li><a href="conclusion.html"><span class="nav-num">8</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–B</span><span>Appendix tables and figures</span></a></li><li><a href="appendix-benchmark.html"><span class="nav-num">C</span><span>The normative benchmark</span></a></li><li class="active"><a href="appendix-tracking.html"><span class="nav-num">D</span><span>The model-tracking wave</span></a></li><li><a href="appendix-technical.html"><span class="nav-num">E</span><span>Technical appendix</span></a></li><li class="nav-group">Explore</li><li><a href="explorer.html"><span class="nav-num"></span><span>Country effects explorer</span></a></li><li><a href="prompts.html"><span class="nav-num"></span><span>Prompt explorer</span></a></li><li><a href="tracking.html"><span class="nav-num"></span><span>Model tracking</span></a></li><li class="nav-group">Notes</li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li><a href="about.html"><span class="nav-num"></span><span>Data, code and AI prompt</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<h1 id="app:tracking-wave"><span class="sec-num">D</span>The September 2026 Model-Tracking Wave</h1>
+<p>The final robustness check of Section <a href="results.html#sec:robustness" class="xref">4.6</a> is exploratory and outside the pre-registration. It asks whether the results outlast the models that produced them, since the main collection is a snapshot of the models available in early July 2026. After examining the pre-registered results, I re-asked one slice of the primary cell on September 19, 2026 to a panel of twenty-one models. Fourteen of them came out after the main collection. The other seven carry over from the original panel under unchanged model identifiers, which separates the arrival of new models from changes in the model behind a fixed identifier. The slice keeps Question 1 at age 40 and uses one English prompt per country, Version B in the six English-prompting countries and Version B-cross in the other fifteen, with temperature 0.7 and 25 repetitions per cell. Table <a href="appendix.html#tab:tracking" class="xref">A17</a> and Figures <a href="appendix.html#fig:tracking-heatmap" class="xref">A2</a> to <a href="appendix.html#fig:tracking-vintage" class="xref">A4</a> report the results.</p>
+<p>Both main patterns of the July collection hold in the September wave. Model identity accounts for 70 percent of the variance and country for 5 percent, against 78 and 3 percent on the same English slice of the July collection.<span class="fn"><button type="button" class="fn-ref" aria-expanded="false" aria-controls="fn14" title="Show note 14">14</button><span class="fn-body" id="fn14" hidden><span class="fn-num">14</span> <span class="fn-p">These shares differ from the 69.5 and 5.7 percent of Section <a href="results.html#sec:descriptive" class="xref">4.1</a> only because the tracking slice replaces the local-language Version B prompt with its English counterpart in fifteen countries. Asking in the local language roughly doubles the country share, so the English slice is a conservative test for country effects.</span></span></span> Most countries still receive less equity than the U.S. within each model, with 77 percent of non-U.S. cells below the model’s own U.S. cell against 67 percent in July (Figure <a href="appendix.html#fig:tracking-heatmap" class="xref">A2</a>).</p>
+<p>The fourteen new models differ from the July panel in two respects. First, country matters more relative to model. Among the new models, model identity accounts for 43 percent of the variance and country for 15 percent. This reflects the composition of the panel rather than the collection date, since the seven carried-over models give country a 1.5 percent share in both waves. Figure <a href="appendix.html#fig:tracking-vintage" class="xref">A4</a> plots each model’s cross-country dispersion against its release date. The noise-net standard deviation of a model’s country means rises by 0.98 percentage points per year of release date, a slope the wild cluster bootstrap does not distinguish from zero (<span class="math inline">\(p = 0.19\)</span>, Table <a href="appendix.html#tab:tracking" class="xref">A17</a>, Panel C). Second, the new models agree more with one another on the level of advice, with model means between 39 and 55 percent against 36 to 73 percent in July. Their country means span 13 percentage points, from Brazil at 38 percent to Turkey at 51 percent, but the larger role of country does not bring the advice closer to the unhedged benchmark of Section <a href="benchmark.html#sec:benchmark" class="xref">5</a>. Turkey, where that benchmark prescribes the lowest equity share in the panel, receives the most equity.</p>
+<p>The carried-over models also show that the advice behind an unchanged identifier can move. Four of the seven return the same average advice within half a percentage point after eleven weeks. Gemini 3 Flash keeps its average but lowers its Brazil recommendation by 9 points, and Grok 4.3 raises its average by 2.4 points (Table <a href="appendix.html#tab:tracking" class="xref">A17</a>, Panel B, and Figure <a href="appendix.html#fig:tracking-anchors" class="xref">A3</a>). The largest change, an 8.5-point rise for DeepSeek V4 Flash, comes from routing rather than from the model. OpenRouter sent 79 percent of its September queries to hosts that run it with the reasoning step switched off, against 28 percent in July, and these hosts recommend about 58 percent equity in both waves, against about 40 percent on hosts that keep the reasoning step (Section <a href="results.html#sec:robustness" class="xref">4.6</a>). Holding the hosts at their July shares, the September mean lies within a point of the July mean. DeepSeek V4 Pro’s 2.3-point fall partly reflects the same mechanism in reverse, as its share of such hosts fell from 13 percent to under 1 percent. The Gemini shift is as large as the country contrasts of Section <a href="results.html#sec:main-countryfe" class="xref">4.2</a>, which range from 2.7 to 11 points. These shifts are consistent with the within-run monitor of Section <a href="design.html#sec:data" class="xref">3.7</a>, which found no identifier rotation during the two-day main collection, because they occur between collections rather than within one. Replications of LLM-advice experiments therefore need to report the collection date alongside the model name, and for open-weight models the host that served each response.</p>
+
+<nav class="prevnext"><a class="pn prev" href="appendix-benchmark.html"><span class="pn-dir">Previous</span><span class="pn-title">The normative benchmark</span></a><a class="pn next" href="appendix-technical.html"><span class="pn-dir">Next</span><span class="pn-title">Technical appendix</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. The experimental design, hypotheses and inference rules were pre-registered at the Open Science Framework (<a href="https://osf.io/2ch5z" target="_blank" rel="noopener">osf.io/2ch5z</a>) before the main collection. This project was supported by Behavioral Finance e.V. Views and opinions expressed are those of the author only.</p>
+  <p>The model responses behind the paper are not publicly released. Every number on this site is an aggregate that the paper reports: cell means, binned counts, and regression estimates. See <a href="about.html">Data, code and AI prompt</a>.</p>
+  <p><a href="about.html">Data and code</a> · <a href="errata.html">Errata and notes</a> · <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/charts.js"></script><script src="assets/charts-fa.js"></script><script src="assets/figures.js"></script>
+</body>
+</html>

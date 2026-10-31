@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Country effects explorer · One advisor for the whole world?</title>
+<meta name="description" content="Every country contrast of the paper by question, by model, leave-one-model-out, and the cell means behind the language, local-context, age and stated-investor comparisons.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="wide" data-page="explorer">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">One advisor for the whole world?</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/claesbackman.github.io/issues/new?title=FinancialAdvice_AI website: Country effects explorer&body=Page: Explorables/FinancialAdvice_AI/explorer.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="https://osf.io/2ch5z" target="_blank" rel="noopener">Pre-registration ↗</a>
+    <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="literature.html"><span class="nav-num">2</span><span>Literature</span></a></li><li><a href="design.html"><span class="nav-num">3</span><span>Experimental design</span></a></li><li><a href="results.html"><span class="nav-num">4</span><span>Main results</span></a></li><li><a href="benchmark.html"><span class="nav-num">5</span><span>When should the advice differ?</span></a></li><li><a href="advice-rule.html"><span class="nav-num">6</span><span>The advice rule</span></a></li><li><a href="text.html"><span class="nav-num">7</span><span>Mechanisms in the explanation text</span></a></li><li><a href="conclusion.html"><span class="nav-num">8</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–B</span><span>Appendix tables and figures</span></a></li><li><a href="appendix-benchmark.html"><span class="nav-num">C</span><span>The normative benchmark</span></a></li><li><a href="appendix-tracking.html"><span class="nav-num">D</span><span>The model-tracking wave</span></a></li><li><a href="appendix-technical.html"><span class="nav-num">E</span><span>Technical appendix</span></a></li><li class="nav-group">Explore</li><li class="active"><a href="explorer.html"><span class="nav-num"></span><span>Country effects explorer</span></a></li><li><a href="prompts.html"><span class="nav-num"></span><span>Prompt explorer</span></a></li><li><a href="tracking.html"><span class="nav-num"></span><span>Model tracking</span></a></li><li class="nav-group">Notes</li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li><a href="about.html"><span class="nav-num"></span><span>Data, code and AI prompt</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<div class="explorer">
+<h1>Country effects explorer</h1>
+<p class="lead">Every country contrast in the paper, and the cell means behind them. All numbers are aggregates over fifty repetitions per country–model cell; the underlying responses are not on this site.</p>
+
+<div class="panel" id="p-fe">
+  <h2>1. Country effects relative to the United States</h2>
+  <p>Country fixed effects from the pre-registered regression (equation 1 and its Q2 and Q3 analogues): model fixed effects, standard errors clustered by model, wild cluster bootstrap with Webb weights and 9,999 replications. The portfolio question is the primary outcome (Version B, age 40). The twenty contrasts of each question form one Holm family.</p>
+  <div class="fig-controls" id="fe-controls"></div>
+  <div class="fig-chart" id="fe-chart"></div>
+  <div class="fig-links" id="fe-links"></div>
+</div>
+
+<div class="panel" id="p-model">
+  <h2>2. The same contrast, one model at a time</h2>
+  <p>The regression pools thirteen models. This panel shows the raw difference between a model's mean recommendation in each country and its own U.S. mean, with no pooling, so you can see whether the country ordering is shared across models or driven by a few. The dots are differences of cell means (fifty responses each), not regression estimates, and carry no confidence interval.</p>
+  <div class="fig-controls" id="model-controls"></div>
+  <div class="fig-chart" id="model-chart"></div>
+  <div class="fig-links" id="model-links"></div>
+</div>
+
+<div class="panel" id="p-loo">
+  <h2>3. Leave one model out</h2>
+  <p>The primary regression re-estimated without one model at a time (Q1, Version B, age 40). The joint wild-bootstrap p-value tests that all twenty country contrasts are zero.</p>
+  <div class="fig-controls" id="loo-controls"></div>
+  <p class="spec-summary" id="loo-summary"></p>
+  <div class="fig-chart" id="loo-chart"></div>
+  <div class="fig-links" id="loo-links"></div>
+</div>
+
+<div class="panel" id="p-version">
+  <h2>4. Language, country name and local context, model by model</h2>
+  <p>Cell means for one country under the three prompt versions (Q1, age 40). Version B asks in the local language with generic instruments. Version B-cross asks the same question in English with the country named, so B minus B-cross is the effect of the language. Version C asks in the local language and names local funds, bonds and pension vehicles, so C minus B is the effect of local context. The six English-prompting countries have no B-cross cell.</p>
+  <div class="fig-controls" id="ver-controls"></div>
+  <div class="fig-chart" id="ver-chart"></div>
+  <div class="fig-links" id="ver-links"></div>
+</div>
+
+<div class="panel" id="p-age">
+  <h2>5. Age</h2>
+  <p>Cell means for one country at the three prompted ages (Q1, Version B). The 100-minus-age rule would put the equity share at 70, 60 and 45 percent.</p>
+  <div class="fig-controls" id="age-controls"></div>
+  <div class="fig-chart" id="age-chart"></div>
+  <div class="fig-links" id="age-links"></div>
+</div>
+
+<div class="panel" id="p-stated">
+  <h2>6. The stated-investor arm</h2>
+  <p>Cell means for one country when the English Version B question adds a sentence about the investor (Q1, age 40): risk tolerance crossed with pension generosity, and a one-year or twenty-year horizon in place of the five-year baseline. The baseline column is the Version B cell in the local language.</p>
+  <div class="fig-controls" id="stated-controls"></div>
+  <div class="fig-chart" id="stated-chart"></div>
+</div>
+</div>
+
+<nav class="prevnext"><a class="pn prev" href="appendix-technical.html"><span class="pn-dir">Previous</span><span class="pn-title">Technical appendix</span></a><a class="pn next" href="prompts.html"><span class="pn-dir">Next</span><span class="pn-title">Prompt explorer</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. The experimental design, hypotheses and inference rules were pre-registered at the Open Science Framework (<a href="https://osf.io/2ch5z" target="_blank" rel="noopener">osf.io/2ch5z</a>) before the main collection. This project was supported by Behavioral Finance e.V. Views and opinions expressed are those of the author only.</p>
+  <p>The model responses behind the paper are not publicly released. Every number on this site is an aggregate that the paper reports: cell means, binned counts, and regression estimates. See <a href="about.html">Data, code and AI prompt</a>.</p>
+  <p><a href="about.html">Data and code</a> · <a href="errata.html">Errata and notes</a> · <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/charts.js"></script><script src="assets/charts-fa.js"></script><script src="assets/explorer.js"></script>
+</body>
+</html>

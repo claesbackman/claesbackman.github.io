@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data, code and AI prompt · One advisor for the whole world?</title>
+<meta name="description" content="What the site contains and does not contain, how it is built, and a prompt for asking an AI assistant about the paper.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="" data-page="about">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">One advisor for the whole world?</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/claesbackman.github.io/issues/new?title=FinancialAdvice_AI website: Data, code and AI prompt&body=Page: Explorables/FinancialAdvice_AI/about.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="https://osf.io/2ch5z" target="_blank" rel="noopener">Pre-registration ↗</a>
+    <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="literature.html"><span class="nav-num">2</span><span>Literature</span></a></li><li><a href="design.html"><span class="nav-num">3</span><span>Experimental design</span></a></li><li><a href="results.html"><span class="nav-num">4</span><span>Main results</span></a></li><li><a href="benchmark.html"><span class="nav-num">5</span><span>When should the advice differ?</span></a></li><li><a href="advice-rule.html"><span class="nav-num">6</span><span>The advice rule</span></a></li><li><a href="text.html"><span class="nav-num">7</span><span>Mechanisms in the explanation text</span></a></li><li><a href="conclusion.html"><span class="nav-num">8</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–B</span><span>Appendix tables and figures</span></a></li><li><a href="appendix-benchmark.html"><span class="nav-num">C</span><span>The normative benchmark</span></a></li><li><a href="appendix-tracking.html"><span class="nav-num">D</span><span>The model-tracking wave</span></a></li><li><a href="appendix-technical.html"><span class="nav-num">E</span><span>Technical appendix</span></a></li><li class="nav-group">Explore</li><li><a href="explorer.html"><span class="nav-num"></span><span>Country effects explorer</span></a></li><li><a href="prompts.html"><span class="nav-num"></span><span>Prompt explorer</span></a></li><li><a href="tracking.html"><span class="nav-num"></span><span>Model tracking</span></a></li><li class="nav-group">Notes</li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li class="active"><a href="about.html"><span class="nav-num"></span><span>Data, code and AI prompt</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<div class="explorer">
+<h1>Data, code and AI prompt</h1>
+<p class="lead">What this site contains, what it does not, and how to work with the paper.</p>
+
+<div class="panel">
+<h2>What is on this site</h2>
+<p>Every number on the site is an aggregate that the paper reports or that its figures draw. The files in <code>data/</code> are:</p>
+<table class="est">
+<thead><tr><th>File</th><th class="al-left">Contents</th></tr></thead>
+<tbody>
+<tr><th scope="row"><code>cells.json</code></th><td class="al-left">Mean, standard deviation, median and count of the recommended share for every country × model × version × question cell at age 40, plus the Version B portfolio cells at ages 30 and 55 and the stated-investor cells. Fifty repetitions per cell.</td></tr>
+<tr><th scope="row"><code>hist.json</code></th><td class="al-left">Counts of responses at each recommended equity share on the primary cell, pooled and by model and by country.</td></tr>
+<tr><th scope="row"><code>tables.json</code></th><td class="al-left">The coefficient tables behind the figures: country fixed effects for the three questions with wild-bootstrap and Holm p-values, the decomposition, the GPS and literacy slopes, the benchmark allocations and gaps, the calibration slope, the explanation-text prevalences, the stated-investor and balance-sheet coefficients and the leave-one-model-out estimates.</td></tr>
+<tr><th scope="row"><code>prompts.json</code></th><td class="al-left">The exact prompt for every country, version, question and age, with the English source and the DeepL back-translation.</td></tr>
+<tr><th scope="row"><code>tracking.json</code></th><td class="al-left">The model-tracking waves (July 2026 panel and September 2026 wave): mean, standard deviation and count per model × country cell, model metadata, and the Appendix D summary tables. The standalone tracker under <code>tracker/</code> reads the same aggregates.</td></tr>
+<tr><th scope="row"><code>index.json</code></th><td class="al-left">Country, model and cell labels.</td></tr>
+</tbody></table>
+<p class="small muted">The JSON files sit next to <code>.js</code> twins that the pages load with a script tag, so the site also works when opened from disk.</p>
+</div>
+
+<div class="panel">
+<h2>What is not on this site</h2>
+<p>The individual model responses, including the explanation text that Section <a href="text.html">7</a> codes, are not part of the public release. The site therefore has no row-level data download and no response browser. Aggregates at the country–model cell level (fifty responses) are the finest resolution shown.</p>
+<p>The collection and analysis code (the Python collector that queries the models through the OpenRouter API, the translation pipeline, and the Stata scripts that estimate every table and figure) lives in the project repository, which is private at the time of writing. The pre-registration at <a href="https://osf.io/2ch5z" target="_blank" rel="noopener">osf.io/2ch5z</a> documents the design, the prompt wording, the regression equations and the inference rules that the code implements.</p>
+</div>
+
+<div class="panel">
+<h2>Ask an AI about this paper</h2>
+<p>Paste the text below into the assistant of your choice. It points the assistant at the paper and the site and asks it to help you read or check the analysis.</p>
+<pre id="prompt">I am reading the working paper "One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI" by Claes Bäckman (Leibniz Institute SAFE). The paper poses three household-finance questions (an equity-bond split, whether to invest or prepay a mortgage, and how to protect savings from inflation) to thirteen large language models in twenty-one countries, in each country's language, with fifty repetitions per cell, and estimates country fixed effects with model fixed effects and wild cluster bootstrap inference. Main findings: on the portfolio question advice is nearly uniform across countries (the country explains 6 percent of the variance, the model 70 percent) while the mortgage and inflation questions differ sharply across countries; explanations invoke local context far more than the allocation moves; the advice tracks a stated risk tolerance and horizon but not a stated pension; and the advice does not track a Merton benchmark across countries (calibration slope 0.13).
+
+Resources:
+- Digital edition with interactive figures, a country effects explorer and every prompt: https://claesbackman.com/Explorables/FinancialAdvice_AI/
+- PDF: https://claesbackman.com/Explorables/FinancialAdvice_AI/paper/Backman_AI_FinAdvice.pdf
+- Pre-registration (design, prompts, hypotheses H1-H13, inference rules): https://osf.io/2ch5z
+- Aggregate data (JSON): https://claesbackman.com/Explorables/FinancialAdvice_AI/data/tables.json (coefficient tables), https://claesbackman.com/Explorables/FinancialAdvice_AI/data/cells.json (country x model cell means), https://claesbackman.com/Explorables/FinancialAdvice_AI/data/prompts.json (prompts)
+
+Please (1) explain the experimental design and what the country fixed effects do and do not identify, (2) explain how the wild cluster bootstrap with thirteen clusters and the Holm correction work here, and (3) suggest one additional analysis of the aggregate data on the site that is not already in the paper, and sketch the code for it.</pre>
+<p><button type="button" class="pill" id="copy">Copy the prompt</button> <span id="copied" class="small muted"></span></p>
+</div>
+
+<div class="panel">
+<h2>How the site is built</h2>
+<p><code>code/website_build/tex2html.py</code> converts the LaTeX source into the pages of this site with pandoc, numbering figures, tables and equations as LaTeX does, turning footnotes into inline notes and linking citations to the reference list. <code>code/website_build/make_data.py</code> computes the cell means and binned counts from the cleaned collection, copies the coefficient tables from the pipeline output and renders every prompt through the collector's own prompt builder. The charts are D3; the math is KaTeX. The site is static and needs no server.</p>
+</div>
+
+<div class="panel">
+<h2>Citing</h2>
+<p>Bäckman, Claes. 2026. "One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI." Working paper, Leibniz Institute for Financial Research SAFE.</p>
+<pre>@unpublished{backman2026oneadvisor,
+  author = {B{\"a}ckman, Claes},
+  title  = {One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from {AI}},
+  year   = {2026},
+  note   = {Working paper, Leibniz Institute for Financial Research SAFE. Pre-registered at https://osf.io/2ch5z}
+}</pre>
+</div>
+</div>
+
+<nav class="prevnext"><a class="pn prev" href="errata.html"><span class="pn-dir">Previous</span><span class="pn-title">Errata and notes</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. The experimental design, hypotheses and inference rules were pre-registered at the Open Science Framework (<a href="https://osf.io/2ch5z" target="_blank" rel="noopener">osf.io/2ch5z</a>) before the main collection. This project was supported by Behavioral Finance e.V. Views and opinions expressed are those of the author only.</p>
+  <p>The model responses behind the paper are not publicly released. Every number on this site is an aggregate that the paper reports: cell means, binned counts, and regression estimates. See <a href="about.html">Data, code and AI prompt</a>.</p>
+  <p><a href="about.html">Data and code</a> · <a href="errata.html">Errata and notes</a> · <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/copyprompt.js"></script>
+</body>
+</html>

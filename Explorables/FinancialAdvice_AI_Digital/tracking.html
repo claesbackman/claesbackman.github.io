@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model tracking · One advisor for the whole world?</title>
+<meta name="description" content="The model-tracking waves: the July 2026 panel beside the September 2026 wave of twenty-one models, by model and country.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="wide" data-page="tracking">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">One advisor for the whole world?</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/claesbackman.github.io/issues/new?title=FinancialAdvice_AI website: Model tracking&body=Page: Explorables/FinancialAdvice_AI/tracking.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="https://osf.io/2ch5z" target="_blank" rel="noopener">Pre-registration ↗</a>
+    <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="literature.html"><span class="nav-num">2</span><span>Literature</span></a></li><li><a href="design.html"><span class="nav-num">3</span><span>Experimental design</span></a></li><li><a href="results.html"><span class="nav-num">4</span><span>Main results</span></a></li><li><a href="benchmark.html"><span class="nav-num">5</span><span>When should the advice differ?</span></a></li><li><a href="advice-rule.html"><span class="nav-num">6</span><span>The advice rule</span></a></li><li><a href="text.html"><span class="nav-num">7</span><span>Mechanisms in the explanation text</span></a></li><li><a href="conclusion.html"><span class="nav-num">8</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–B</span><span>Appendix tables and figures</span></a></li><li><a href="appendix-benchmark.html"><span class="nav-num">C</span><span>The normative benchmark</span></a></li><li><a href="appendix-tracking.html"><span class="nav-num">D</span><span>The model-tracking wave</span></a></li><li><a href="appendix-technical.html"><span class="nav-num">E</span><span>Technical appendix</span></a></li><li class="nav-group">Explore</li><li><a href="explorer.html"><span class="nav-num"></span><span>Country effects explorer</span></a></li><li><a href="prompts.html"><span class="nav-num"></span><span>Prompt explorer</span></a></li><li class="active"><a href="tracking.html"><span class="nav-num"></span><span>Model tracking</span></a></li><li class="nav-group">Notes</li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li><a href="about.html"><span class="nav-num"></span><span>Data, code and AI prompt</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<div class="explorer">
+<h1>Model tracking</h1>
+<p class="lead">Does the result outlast the models that produced it? The paper's main collection is a snapshot of the models available in early July 2026. A tracking wave re-asks one English slice of the primary question of whatever models are current, so the July panel can be set beside later ones on the same footing. This page shows the July collection and the September 2026 wave reported in Appendix <a href="appendix-tracking.html">D</a>. Everything here is a raw cell mean over 25 repetitions (50 in July); the page does not reproduce the paper's regressions.</p>
+
+<div class="stat-row" id="tr-stats"></div>
+
+<div class="panel" id="p-wave">
+  <h2>1. Where each model lands, and how far it moves across countries</h2>
+  <p>One row per model. Each dot is the model's mean recommended equity share in one country, the grey bar runs from its lowest to its highest country, and the black tick is its mean across countries. The slice is Question 1 at age 40 with one English prompt per country (Version B in the six English-prompting countries, B-cross elsewhere), temperature 0.7. A short bar is the compression the paper documents; a long one is a model that localizes. Click a dot to follow one country across models.</p>
+  <div class="fig-controls" id="wave-controls"></div>
+  <p class="spec-summary" id="wave-summary"></p>
+  <div class="fig-chart" id="wave-chart"></div>
+  <div class="fig-links" id="wave-links"></div>
+</div>
+
+<div class="panel" id="p-anchor">
+  <h2>2. Seven anchors: the same identifier, eleven weeks apart</h2>
+  <p>Seven of the paper's models were re-queried in September under unchanged model identifiers. Movement in one of these is change on the provider's side, a rotated snapshot or a serving change, not a difference in model vintage. The chart shows each anchor's mean across countries in July and in September; the table gives the change, the paired change across countries and the largest single-cell move.</p>
+  <div class="fig-controls" id="anchor-controls"></div>
+  <div class="fig-chart" id="anchor-chart"></div>
+  <div class="fig-chart" id="anchor-table"></div>
+</div>
+
+<div class="panel" id="p-vintage">
+  <h2>3. Does the answer change with model generation?</h2>
+  <p>Every model placed by the date its identifier went live on OpenRouter, one dot per model per wave, so an anchor appears twice. The vertical axis is the model's mean recommended equity share, its country spread (highest minus lowest country mean), or its mean absolute gap against its own U.S. cell. No line is fitted on the chart; the slopes the paper reports, with cluster-by-model standard errors and wild bootstrap p-values, are in Appendix Table <a href="appendix.html#tab:tracking">A17</a>.</p>
+  <div class="fig-controls" id="vintage-controls"></div>
+  <div class="fig-chart" id="vintage-chart"></div>
+  <div class="fig-links" id="vintage-links"></div>
+</div>
+
+<div class="panel" id="p-heat">
+  <h2>4. Every cell in one wave</h2>
+  <p>Mean recommended equity share in percent for every country and model in the chosen wave. The U.S. row is the paper's baseline. Hover a cell for its standard deviation across repetitions and its count. Models are ordered by their mean, countries by the fixed order of the tracker: the U.S., the other English-prompt countries, then Europe, Asia and the Americas.</p>
+  <div class="fig-controls" id="heat-controls"></div>
+  <div class="fig-chart" id="heat-chart"></div>
+</div>
+
+<div class="panel">
+  <h2>Reading this page</h2>
+  <p>The tracking corpus is separate from the paper's analysis of record and was collected after the pre-registered results had been examined, so it is an exploratory stability check, not a registered test. The numbers are raw cell means: no country fixed effects, no wild cluster bootstrap over models, no Holm correction. The country gaps are plain differences against each model's own U.S. cell. Two models that were briefly collected and then dropped (one truncated responses at the token limit, one was withdrawn by its vendor) are excluded from every figure. The <a href="tracker/index.html">standalone Advice Drift Tracker</a> has the same data with more filters, per-model country profiles and a dark theme, and is the page that future waves update.</p>
+</div>
+</div>
+
+<nav class="prevnext"><a class="pn prev" href="prompts.html"><span class="pn-dir">Previous</span><span class="pn-title">Prompt explorer</span></a><a class="pn next" href="faq.html"><span class="pn-dir">Next</span><span class="pn-title">Questions and answers</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. The experimental design, hypotheses and inference rules were pre-registered at the Open Science Framework (<a href="https://osf.io/2ch5z" target="_blank" rel="noopener">osf.io/2ch5z</a>) before the main collection. This project was supported by Behavioral Finance e.V. Views and opinions expressed are those of the author only.</p>
+  <p>The model responses behind the paper are not publicly released. Every number on this site is an aggregate that the paper reports: cell means, binned counts, and regression estimates. See <a href="about.html">Data, code and AI prompt</a>.</p>
+  <p><a href="about.html">Data and code</a> · <a href="errata.html">Errata and notes</a> · <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/charts.js"></script><script src="assets/charts-fa.js"></script><script src="assets/tracking.js"></script>
+</body>
+</html>

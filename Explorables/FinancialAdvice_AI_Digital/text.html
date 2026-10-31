@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mechanisms in the explanation text · One advisor for the whole world?</title>
+<meta name="description" content="Digital edition of the paper One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI, by Claes Bäckman, with interactive figures, a country-effects explorer and the exact prompts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="" data-page="text">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">One advisor for the whole world?</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/claesbackman.github.io/issues/new?title=FinancialAdvice_AI website: Mechanisms in the explanation text&body=Page: Explorables/FinancialAdvice_AI/text.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="https://osf.io/2ch5z" target="_blank" rel="noopener">Pre-registration ↗</a>
+    <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="literature.html"><span class="nav-num">2</span><span>Literature</span></a></li><li><a href="design.html"><span class="nav-num">3</span><span>Experimental design</span></a></li><li><a href="results.html"><span class="nav-num">4</span><span>Main results</span></a></li><li><a href="benchmark.html"><span class="nav-num">5</span><span>When should the advice differ?</span></a></li><li><a href="advice-rule.html"><span class="nav-num">6</span><span>The advice rule</span></a></li><li class="active"><a href="text.html"><span class="nav-num">7</span><span>Mechanisms in the explanation text</span></a></li><li><a href="conclusion.html"><span class="nav-num">8</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–B</span><span>Appendix tables and figures</span></a></li><li><a href="appendix-benchmark.html"><span class="nav-num">C</span><span>The normative benchmark</span></a></li><li><a href="appendix-tracking.html"><span class="nav-num">D</span><span>The model-tracking wave</span></a></li><li><a href="appendix-technical.html"><span class="nav-num">E</span><span>Technical appendix</span></a></li><li class="nav-group">Explore</li><li><a href="explorer.html"><span class="nav-num"></span><span>Country effects explorer</span></a></li><li><a href="prompts.html"><span class="nav-num"></span><span>Prompt explorer</span></a></li><li><a href="tracking.html"><span class="nav-num"></span><span>Model tracking</span></a></li><li class="nav-group">Notes</li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li><a href="about.html"><span class="nav-num"></span><span>Data, code and AI prompt</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<h1 id="sec:text"><span class="sec-num">7</span>Mechanisms in the Explanation Text</h1>
+<p>Finally, I examine the explanation that each model gives for its recommendation. The explanations separate two accounts of the compression documented in Section <a href="results.html#sec:main" class="xref">4</a>. Under the first, the models do not know how the investor’s country differs from the United States. Under the second, they know but do not let that knowledge reach the recommended share. The first account predicts explanations that rarely refer to the investor’s country, and the second predicts explanations that refer to it often alongside a nearly uniform allocation.</p>
+<p>Each prompt asks the model to justify its recommendation in at most two hundred words. I machine-code each explanation into four binary indicators that record whether it invokes inflation or real-value protection, an existing pension or retirement entitlement, the investment horizon, or local or home-country financial context. The coder is a single judge model outside the thirteen under study, Claude Opus 4.7, which sees only the explanation text and is blind to the country, model, and allocation that produced it. Horizon appears in every explanation and so leaves no variation to test. The other three categories clear two pre-registered reliability gates and enter pre-specified testing.<span class="fn"><button type="button" class="fn-ref" aria-expanded="false" aria-controls="fn13" title="Show note 13">13</button><span class="fn-body" id="fn13" hidden><span class="fn-num">13</span> <span class="fn-p">I froze the coding instrument at pre-registration and validated it with four judge models from independent vendor families, none among the thirteen models under study and each shown only the explanation text. On a stratified validation subsample, each category had to clear two pre-registered inter-rater reliability gates, both requiring <span class="math inline">\(\kappa \geq 0.6\)</span>: a reproducibility gate on the minimum pairwise Cohen’s <span class="math inline">\(\kappa\)</span> across the four judges, and a face-validity gate on the <span class="math inline">\(\kappa\)</span> between the primary judge and my hand-codes on a bilingual English-and-Swedish anchor. I reported the results of both gates before estimating any coefficient in this section. Inflation, pension, and local context clear both gates comfortably (minimum pairwise judge <span class="math inline">\(\kappa\)</span> of <span class="math inline">\(0.95\)</span>, <span class="math inline">\(0.95\)</span>, and <span class="math inline">\(0.87\)</span>). The primary judge then coded every explanation in the analysis sample. A deterministic multilingual keyword dictionary, coded independently, agrees with it on 99, 96, and 73 percent of rows, and local context is the hardest category by every measure. See Appendix <a href="appendix.html#app:tables" class="xref">A</a> and the judge-validation amendment of record.</span></span></span></p>
+<p>For each of the three categories, I re-estimate equation (1) on the primary cell (Question 1, Version B, age 40) with the binary rationale code in place of the equity share. Because the explanation and the allocation enter the same specification on the same sample, their country effects are directly comparable. Each country effect tests whether a rationale appears more or less often than in U.S. explanations. Inference uses the same model-level wild cluster bootstrap as the primary regressions, with a Holm correction within each category’s family of twenty contrasts.</p>
+<p>The explanations localize far more than the advice. Local financial context appears in 18.0 percent of U.S. explanations and 29 to 78 percentage points more often in every other country, with nineteen of the twenty contrasts surviving the Holm correction (Table <a href="#tab:h9-text" class="xref">3</a>). The rate approaches saturation in South Africa, Mexico, and Brazil, where more than nine explanations in ten name a local instrument, tax, or pension system, and it stays close to half even where it is lowest, in South Korea and Sweden at roughly 47 percent (Figure <a href="#fig:local-context" class="xref">9</a> gives the levels behind these contrasts). The same specification on the equity share yields country effects of at most 11 percentage points (Section <a href="results.html#sec:main" class="xref">4</a>). When the models answer the allocation question outside the United States, they reach for local knowledge in the explanation and leave it out of the allocation.</p>
+<div class="paper-table" id="tab:h9-text"><div class="tab-head"><span class="tab-label">Table 3</span><span class="tab-title">Rationale composition by country in the explanation text</span></div><div class="tab-scroll"><table class="est">
+<thead><tr>
+<th class="al-left"></th>
+<th colspan="2" style="text-align: center;">Inflation</th>
+<th colspan="2" style="text-align: center;">Pension</th>
+<th colspan="2" style="text-align: center;">Local context</th>
+</tr><tr>
+<th class="al-left">Country</th>
+<th class="al-center">Est.</th>
+<th class="al-center">Holm <span class="math inline">\(p\)</span></th>
+<th class="al-center">Est.</th>
+<th class="al-center">Holm <span class="math inline">\(p\)</span></th>
+<th class="al-center">Est.</th>
+<th class="al-center">Holm <span class="math inline">\(p\)</span></th>
+</tr></thead><tbody>
+<tr>
+<td class="al-left">Turkey</td>
+<td class="al-center"><span class="math inline">\(56.3\)</span></td>
+<td class="al-center">0.019</td>
+<td class="al-center"><span class="math inline">\(0.6\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(70.6\)</span></td>
+<td class="al-center"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">South Africa</td>
+<td class="al-center"><span class="math inline">\(33.2\)</span></td>
+<td class="al-center"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-center"><span class="math inline">\(0.0\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(78.2\)</span></td>
+<td class="al-center"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">Poland</td>
+<td class="al-center"><span class="math inline">\(31.4\)</span></td>
+<td class="al-center">0.090</td>
+<td class="al-center"><span class="math inline">\(-8.2\)</span></td>
+<td class="al-center">0.470</td>
+<td class="al-center"><span class="math inline">\(56.3\)</span></td>
+<td class="al-center">0.003</td>
+</tr>
+<tr>
+<td class="al-left">Brazil</td>
+<td class="al-center"><span class="math inline">\(25.1\)</span></td>
+<td class="al-center">0.441</td>
+<td class="al-center"><span class="math inline">\(-0.3\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(75.8\)</span></td>
+<td class="al-center"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">Mexico</td>
+<td class="al-center"><span class="math inline">\(21.8\)</span></td>
+<td class="al-center">0.359</td>
+<td class="al-center"><span class="math inline">\(-3.4\)</span></td>
+<td class="al-center">0.930</td>
+<td class="al-center"><span class="math inline">\(77.2\)</span></td>
+<td class="al-center"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">India</td>
+<td class="al-center"><span class="math inline">\(17.8\)</span></td>
+<td class="al-center">0.803</td>
+<td class="al-center"><span class="math inline">\(-0.2\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(70.3\)</span></td>
+<td class="al-center"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">United Kingdom</td>
+<td class="al-center"><span class="math inline">\(5.8\)</span></td>
+<td class="al-center">0.141</td>
+<td class="al-center"><span class="math inline">\(-8.5\)</span></td>
+<td class="al-center">0.128</td>
+<td class="al-center"><span class="math inline">\(71.8\)</span></td>
+<td class="al-center"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">South Korea</td>
+<td class="al-center"><span class="math inline">\(0.2\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(-5.5\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(29.2\)</span></td>
+<td class="al-center">0.059</td>
+</tr>
+<tr>
+<td class="al-left">Canada</td>
+<td class="al-center"><span class="math inline">\(-0.2\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(2.3\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(59.4\)</span></td>
+<td class="al-center"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">Australia</td>
+<td class="al-center"><span class="math inline">\(-2.8\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(-2.6\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(68.2\)</span></td>
+<td class="al-center"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">Netherlands</td>
+<td class="al-center"><span class="math inline">\(-4.7\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(-0.5\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(43.0\)</span></td>
+<td class="al-center">0.009</td>
+</tr>
+<tr>
+<td class="al-left">Italy</td>
+<td class="al-center"><span class="math inline">\(-8.8\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(-1.4\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(70.5\)</span></td>
+<td class="al-center"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">Japan</td>
+<td class="al-center"><span class="math inline">\(-9.4\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(-1.1\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(36.3\)</span></td>
+<td class="al-center">0.025</td>
+</tr>
+<tr>
+<td class="al-left">Spain</td>
+<td class="al-center"><span class="math inline">\(-9.5\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(1.9\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(61.1\)</span></td>
+<td class="al-center"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">Germany</td>
+<td class="al-center">−12.5</td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(1.5\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(45.1\)</span></td>
+<td class="al-center"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">Finland</td>
+<td class="al-center">−13.3</td>
+<td class="al-center">0.965</td>
+<td class="al-center"><span class="math inline">\(-8.0\)</span></td>
+<td class="al-center">0.169</td>
+<td class="al-center"><span class="math inline">\(39.4\)</span></td>
+<td class="al-center">0.005</td>
+</tr>
+<tr>
+<td class="al-left">France</td>
+<td class="al-center">−14.8</td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(-0.9\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(59.0\)</span></td>
+<td class="al-center"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">Switzerland</td>
+<td class="al-center">−16.6</td>
+<td class="al-center">0.998</td>
+<td class="al-center"><span class="math inline">\(-3.2\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(66.5\)</span></td>
+<td class="al-center"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">Sweden</td>
+<td class="al-center">−19.4</td>
+<td class="al-center">0.392</td>
+<td class="al-center"><span class="math inline">\(-6.8\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(29.6\)</span></td>
+<td class="al-center">0.013</td>
+</tr>
+<tr>
+<td class="al-left">China</td>
+<td class="al-center">−20.5</td>
+<td class="al-center">0.333</td>
+<td class="al-center"><span class="math inline">\(-2.6\)</span></td>
+<td class="al-center">1.000</td>
+<td class="al-center"><span class="math inline">\(32.9\)</span></td>
+<td class="al-center">0.025</td>
+</tr>
+</tbody>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Country fixed effects from the linear probability model of equation (1), estimated on each binary rationale code in place of the equity share (Question 1, Version B, age 40, <span class="math inline">\(N = 13{,}639\)</span>), in percentage points relative to the omitted U.S. baseline. A positive entry means the rationale appears more often than in U.S. explanations. The U.S. baseline rates are 33.7 percent (inflation), 97.5 percent (pension), and 18.0 percent (local context). Holm <span class="math inline">\(p\)</span>-values correct the model-level wild cluster bootstrap <span class="math inline">\(p\)</span>-values (Webb six-point weights, 9<span>,</span>999 replications, <span class="math inline">\(G = 13\)</span>) within each category’s family of twenty contrasts. Countries are ordered by the inflation estimate. The horizon category is omitted because every explanation invokes it (prevalence 100 percent), leaving its country effects undefined.</div></div>
+<p>The inflation rationale follows the local economy, while the pension rationale is the same everywhere. Against a U.S. base of 34 percent, the inflation rationale rises by 56 percentage points in Turkey and 33 in South Africa, both surviving correction, and it is also higher in Poland, Brazil, Mexico, and India, though short of the corrected threshold. The ranking of countries on this rationale tracks their inflation environments and is the explanation counterpart of the mortgage and inflation results of Section <a href="results.html#sec:main" class="xref">4</a>, where the advice itself localizes when the question depends on the local economy. The pension rationale appears in almost every explanation (97.5 percent in the United States), and no country departs from that rate after correction.</p>
+<p>Naming local instruments in the prompt also moves the explanation far more than the allocation. When I re-estimate the Version-C regression of equation (2) with the local-context code as the outcome, Version C raises the rate of local references by 23.3 percentage points relative to Version B (<span class="math inline">\(\hat{\phi}^{\text{text}} = 0.233\)</span>, wild bootstrap <span class="math inline">\(p &lt; 0.001\)</span>, confidence interval <span class="math inline">\([0.143, 0.329]\)</span>). The same cue moved the allocation by <span class="math inline">\(-0.7\)</span> points (Section <a href="results.html#sec:main" class="xref">4</a>). The treatment therefore registers with the models, and its small effect on the allocation does not reflect a cue they failed to read. Handed the local institutional context outright, the models change what they say and leave what they recommend essentially unchanged. Figure <a href="#fig:local-context" class="xref">9</a> puts both results in levels. The Version-C gain is not uniform. Once the prompt names the instruments, sixteen of the twenty-one countries sit within half a point of universal local reference, so the gain comes from the countries that were not already localizing.</p>
+<figure class="paper-figure" id="fig:local-context" data-fig="fig:local-context" data-images="fig_local_context_prevalence"><div class="fig-head"><span class="fig-label">Figure 9</span><span class="fig-title">Local financial context in the explanation text, by country and version</span></div><div class="fig-controls"></div><div class="fig-body"><div class="fig-chart"></div><div class="fig-table" hidden></div></div><figcaption class="fig-notes"><span class="notes-label">Notes:</span> Share of explanations that refer to country-specific financial context, coded by the out-of-panel judge model described in the text (Question 1, age 40, <span class="math inline">\(N = 13{,}639\)</span> under Version B and <span class="math inline">\(13{,}631\)</span> under Version C). Hollow grey marks Version B, where the question is translated but the instruments are generic. Filled navy marks Version C, which additionally names the local pension, bond, and index instruments. Countries are sorted by the Version B rate, so the United States anchors the bottom of the panel. The reported means are weighted by cell counts. Version C is not collected for the country-name-only contrast, so Version B-cross does not appear. The coding records whether local context is mentioned, not whether it is accurate or used to set the allocation.</figcaption><div class="fig-links"></div></figure>
+<p>The explanations therefore rule out the first account of the compression. Local financial context appears in three quarters of non-U.S. explanations even when the prompt names no local instrument, and in almost all of them once it does, so the models do distinguish the investor’s country from the United States. Nor are the small allocation effects an artifact of the test. The same equation, on the same sample and with the same inference, returns a 78-point effect for South Africa on the local-context code, while South Africa’s contrast on the equity share does not reject even before correction. The design detects country variation where the output contains it, and the compression is a property of the advice.</p>
+<p>The same gap between mention and use appears in the investor’s own circumstances. Almost every explanation names her pension, and every explanation names her horizon. Yet only the horizon moves the allocation, by forty points between the one-year and twenty-year cells of the stated-investor arm, against a pension response near zero. How often the models mention a consideration therefore says nothing about whether they use it. Which considerations they use follows the line that Section <a href="advice-rule.html#sec:stated" class="xref">6</a> draws, between the cues a retail risk questionnaire collects and the balance-sheet quantities it does not.</p>
+<p>Taken together, the explanations localize far more than the advice. Because the coding records whether local context is <em>mentioned</em> rather than whether it is accurate or used, and because the design observes advice rather than model internals, these results describe the explanations shown to users, not the computation behind the allocation.</p>
+<p>The pattern is nonetheless consistent with interpretability evidence that multilingual models solve tasks in a shared, English-leaning concept space <a class="cite" href="references.html#ref-wendler2024llamas">(Wendler et al. 2024; Wu et al. 2025; Schut et al. 2025)</a>. In such a model, translating the question changes the words of the question and the answer without reaching the policy that produces the allocation, which matches the small language effect of Section <a href="results.html#sec:main" class="xref">4</a>. The Version C result extends this reading beyond language. There the treatment supplies explicit local institutional content rather than a change of language, and it too changes the explanation without reaching the allocation.</p>
+
+<nav class="prevnext"><a class="pn prev" href="advice-rule.html"><span class="pn-dir">Previous</span><span class="pn-title">The advice rule</span></a><a class="pn next" href="conclusion.html"><span class="pn-dir">Next</span><span class="pn-title">Conclusion</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. The experimental design, hypotheses and inference rules were pre-registered at the Open Science Framework (<a href="https://osf.io/2ch5z" target="_blank" rel="noopener">osf.io/2ch5z</a>) before the main collection. This project was supported by Behavioral Finance e.V. Views and opinions expressed are those of the author only.</p>
+  <p>The model responses behind the paper are not publicly released. Every number on this site is an aggregate that the paper reports: cell means, binned counts, and regression estimates. See <a href="about.html">Data, code and AI prompt</a>.</p>
+  <p><a href="about.html">Data and code</a> · <a href="errata.html">Errata and notes</a> · <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/charts.js"></script><script src="assets/charts-fa.js"></script><script src="assets/figures.js"></script>
+</body>
+</html>

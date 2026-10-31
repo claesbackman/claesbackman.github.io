@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Questions and answers · One advisor for the whole world?</title>
+<meta name="description" content="Digital edition of the paper One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI, by Claes Bäckman, with interactive figures, a country-effects explorer and the exact prompts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="" data-page="faq">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">One advisor for the whole world?</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/claesbackman.github.io/issues/new?title=FinancialAdvice_AI website: Questions and answers&body=Page: Explorables/FinancialAdvice_AI/faq.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="https://osf.io/2ch5z" target="_blank" rel="noopener">Pre-registration ↗</a>
+    <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="literature.html"><span class="nav-num">2</span><span>Literature</span></a></li><li><a href="design.html"><span class="nav-num">3</span><span>Experimental design</span></a></li><li><a href="results.html"><span class="nav-num">4</span><span>Main results</span></a></li><li><a href="benchmark.html"><span class="nav-num">5</span><span>When should the advice differ?</span></a></li><li><a href="advice-rule.html"><span class="nav-num">6</span><span>The advice rule</span></a></li><li><a href="text.html"><span class="nav-num">7</span><span>Mechanisms in the explanation text</span></a></li><li><a href="conclusion.html"><span class="nav-num">8</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–B</span><span>Appendix tables and figures</span></a></li><li><a href="appendix-benchmark.html"><span class="nav-num">C</span><span>The normative benchmark</span></a></li><li><a href="appendix-tracking.html"><span class="nav-num">D</span><span>The model-tracking wave</span></a></li><li><a href="appendix-technical.html"><span class="nav-num">E</span><span>Technical appendix</span></a></li><li class="nav-group">Explore</li><li><a href="explorer.html"><span class="nav-num"></span><span>Country effects explorer</span></a></li><li><a href="prompts.html"><span class="nav-num"></span><span>Prompt explorer</span></a></li><li><a href="tracking.html"><span class="nav-num"></span><span>Model tracking</span></a></li><li class="nav-group">Notes</li><li class="active"><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li><a href="about.html"><span class="nav-num"></span><span>Data, code and AI prompt</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<div class="faq">
+<h1>Questions and answers</h1>
+<p class="lead">Questions that seminar audiences and readers have raised about the paper, with answers that point to the evidence in the paper and on this site. The answers are the author's and follow the current draft.</p>
+
+<h2 id="q-published">Is this paper published?<a class="q-link" href="#q-published">#</a></h2>
+<p>Not yet. It is a working paper, and the digital edition follows the current draft. The design, the prompt wording, the thirteen hypotheses and the inference rules were pre-registered at the Open Science Framework (<a href="https://osf.io/2ch5z" target="_blank" rel="noopener">osf.io/2ch5z</a>) on 2 July 2026, before the main collection on 3 and 4 July 2026. Appendix Table <a href="appendix.html#tab:hypotheses">A16</a> lists every pre-registered hypothesis with its test and outcome, including the ones the text does not dwell on.</p>
+
+<h2 id="q-default">The models mostly say 60/40. Is the paper just documenting a default?<a class="q-link" href="#q-default">#</a></h2>
+<p>Partly, and that is one of its points. On the primary cell the modal recommendation is 60 percent equity, given in 31 percent of responses, every response is a multiple of five percentage points, and none of the 13,639 responses allocates less than 10 or more than 80 percent to stocks (Figure <a href="results.html#fig:dist">1</a>). The paper's reading is that the models apply a retail advice rule rather than solve the household's portfolio problem. The rest of the paper asks what moves that rule: the country barely does on the portfolio question, the model does a great deal, the stated risk tolerance and horizon do, and the stated pension does not (Table <a href="advice-rule.html#tab:scorecard">2</a>).</p>
+
+<h2 id="q-model-vs-country">Which matters more, the model or the country?<a class="q-link" href="#q-model-vs-country">#</a></h2>
+<p>It depends on the question. On the portfolio question the model explains about 70 percent of the variance in the recommended share and the country about 6 percent; the model means span 34 percentage points, from 37 to 71 percent equity, while the country means span 12. On the mortgage question the ordering reverses: the country explains 27 percent and the model 15 percent, and the country range exceeds the model range (Section <a href="results.html#sec:main-q2q4">4.5</a>). The <a href="index.html">title page</a> chart shows both patterns, and the <a href="explorer.html#p-model">explorer</a> shows each country contrast one model at a time.</p>
+
+<h2 id="q-clusters">With thirteen models as clusters, can the country effects be trusted?<a class="q-link" href="#q-clusters">#</a></h2>
+<p>Every p-value in the paper comes from a wild cluster bootstrap with Webb six-point weights and 9,999 replications, which is the standard remedy for few clusters; asymptotic cluster-robust standard errors would over-reject. The twenty country contrasts of each question form one Holm family. On the portfolio question the joint test rejects equal advice across countries (F(20,12) = 20.56, p = 0.006), thirteen contrasts are individually significant before correction and seven survive the Holm step-down, all negative, from Brazil at −11.0 points to Mexico at −2.7 (Figure <a href="results.html#fig:eq1-coefplot">2</a>, Appendix Table <a href="appendix.html#tab:eq1-countryfe">A9</a>). The <a href="explorer.html#p-loo">leave-one-model-out panel</a> of the explorer shows that no single model carries the result.</p>
+
+<h2 id="q-translation">Could the country effects be an artefact of translation?<a class="q-link" href="#q-translation">#</a></h2>
+<p>The design separates the language from the country. Version B-cross asks the identical question in English but names the country, so the Version B minus B-cross difference is the effect of asking in the local language with the country held fixed. That effect is −1.3 percentage points (H4, p = 0.007). Naming local funds, bonds and pension vehicles (Version C) moves the share by a further −0.7 points (H5, p = 0.069). The bulk of each country effect attaches to the country name itself (Figure <a href="results.html#fig:decomp">3</a>). The Instructions block with the JSON schema is in English in every cell, which keeps parsing uniform; the translations were produced with DeepL, back-translated, and corrected by hand where the back-translation drifted (Appendix <a href="appendix-technical.html#app:translation">E.2</a>). The <a href="prompts.html">prompt explorer</a> shows every prompt with its back-translation.</p>
+
+<h2 id="q-should">Should the advice differ across countries at all?<a class="q-link" href="#q-should">#</a></h2>
+<p>Not necessarily on the portfolio question, and the paper says so. Under integrated markets with a currency-hedged world fund a Merton benchmark prescribes the same share, about 0.52, everywhere, which is within about six points of the advice in every country. With unhedged local-currency moments the same benchmark prescribes shares from 0.21 in Turkey to 0.53 in South Korea, while the advice spans only 0.46 to 0.58. Regressing the country effects on the benchmark's prescribed deviations gives a calibration slope of 0.13, far below the slope of one that full calibration implies and not distinguishable from zero under the pre-registered country bootstrap (Section <a href="benchmark.html#sec:benchmark-simple">5.1</a>, Appendix <a href="appendix-benchmark.html">C</a>). The country effects also do not track measured risk preferences or financial literacy (Figure <a href="benchmark.html#fig:gps-panels">6</a>).</p>
+
+<h2 id="q-balance-sheet">Does the advice respond to the investor's own situation?<a class="q-link" href="#q-balance-sheet">#</a></h2>
+<p>Selectively. A stated risk tolerance raises the equity share by 46 percentage points (H11). A stated twenty-year rather than one-year horizon raises it by 40 points (H13), although the benchmark with constant relative risk aversion says the horizon should not matter. A stated generous pension moves the share by −1.0 point with a confidence interval of [−2.3, +0.2] (H12), although pension wealth is the balance-sheet item that should matter most. Exploratory probes show the same asymmetry: telling the model the stake is all of the investor's liquid wealth lowers the share by 23 points, telling it the pension is invested in equities lowers it by 17, while the statements that should raise the share move it by 0.4 to 4.8 points (Figure <a href="advice-rule.html#fig:upgrade-asymmetry">8</a>).</p>
+
+<h2 id="q-explanations">If the allocation barely moves, what does the local context change?<a class="q-link" href="#q-explanations">#</a></h2>
+<p>The words. Local financial context appears in 18 percent of U.S. explanations and 29 to 78 percentage points more often in every other country. Naming local instruments in the prompt raises local references by 23 points while moving the allocation by less than a point. Inflation reasoning is most elevated in the high-inflation countries, and pension-as-exposure reasoning is flat everywhere (Section <a href="text.html">7</a>, Figure <a href="text.html#fig:local-context">9</a>). The explanations localize far more than the advice.</p>
+
+<h2 id="q-prompts">What exactly did the models see, and under what settings?<a class="q-link" href="#q-prompts">#</a></h2>
+<p>A single user message with no system prompt: an English Instructions block asking for a JSON object, followed by the Question block in the country's language. Temperature 0.7, a 4,000-token limit, fifty repetitions per cell, queried through the OpenRouter API with the returned model identifier recorded for every response. The <a href="prompts.html">prompt explorer</a> has every prompt; Appendix <a href="appendix-technical.html">E</a> describes the parser, the refusal rule and the model-identity checks.</p>
+
+<h2 id="q-data">Why are the responses not available?<a class="q-link" href="#q-data">#</a></h2>
+<p>The individual model responses are not part of the public release at this time. The site carries aggregates only: cell means over fifty responses, binned counts, and the regression estimates. The <a href="about.html">data and code page</a> lists what is shared.</p>
+</div>
+
+<nav class="prevnext"><a class="pn prev" href="tracking.html"><span class="pn-dir">Previous</span><span class="pn-title">Model tracking</span></a><a class="pn next" href="errata.html"><span class="pn-dir">Next</span><span class="pn-title">Errata and notes</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. The experimental design, hypotheses and inference rules were pre-registered at the Open Science Framework (<a href="https://osf.io/2ch5z" target="_blank" rel="noopener">osf.io/2ch5z</a>) before the main collection. This project was supported by Behavioral Finance e.V. Views and opinions expressed are those of the author only.</p>
+  <p>The model responses behind the paper are not publicly released. Every number on this site is an aggregate that the paper reports: cell means, binned counts, and regression estimates. See <a href="about.html">Data, code and AI prompt</a>.</p>
+  <p><a href="about.html">Data and code</a> · <a href="errata.html">Errata and notes</a> · <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+
+</body>
+</html>

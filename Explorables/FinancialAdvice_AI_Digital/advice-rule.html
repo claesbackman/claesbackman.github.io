@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The advice rule · One advisor for the whole world?</title>
+<meta name="description" content="Digital edition of the paper One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI, by Claes Bäckman, with interactive figures, a country-effects explorer and the exact prompts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="" data-page="advice-rule">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">One advisor for the whole world?</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/claesbackman.github.io/issues/new?title=FinancialAdvice_AI website: The advice rule&body=Page: Explorables/FinancialAdvice_AI/advice-rule.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="https://osf.io/2ch5z" target="_blank" rel="noopener">Pre-registration ↗</a>
+    <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="literature.html"><span class="nav-num">2</span><span>Literature</span></a></li><li><a href="design.html"><span class="nav-num">3</span><span>Experimental design</span></a></li><li><a href="results.html"><span class="nav-num">4</span><span>Main results</span></a></li><li><a href="benchmark.html"><span class="nav-num">5</span><span>When should the advice differ?</span></a></li><li class="active"><a href="advice-rule.html"><span class="nav-num">6</span><span>The advice rule</span></a></li><li><a href="text.html"><span class="nav-num">7</span><span>Mechanisms in the explanation text</span></a></li><li><a href="conclusion.html"><span class="nav-num">8</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A–B</span><span>Appendix tables and figures</span></a></li><li><a href="appendix-benchmark.html"><span class="nav-num">C</span><span>The normative benchmark</span></a></li><li><a href="appendix-tracking.html"><span class="nav-num">D</span><span>The model-tracking wave</span></a></li><li><a href="appendix-technical.html"><span class="nav-num">E</span><span>Technical appendix</span></a></li><li class="nav-group">Explore</li><li><a href="explorer.html"><span class="nav-num"></span><span>Country effects explorer</span></a></li><li><a href="prompts.html"><span class="nav-num"></span><span>Prompt explorer</span></a></li><li><a href="tracking.html"><span class="nav-num"></span><span>Model tracking</span></a></li><li class="nav-group">Notes</li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li><a href="about.html"><span class="nav-num"></span><span>Data, code and AI prompt</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<h1 id="sec:stated"><span class="sec-num">6</span>The Advice Rule</h1>
+<p>The country-level analysis asks whether the same investor receives different advice in different places. The stated-investor arm of Section <a href="design.html#sec:design-stated" class="xref">3.5</a> asks which rule generates the advice. I consider three candidate models of the advisor: the frictionless Merton planner, the life-cycle planner with background wealth, and the risk questionnaire of popular financial advice <a class="cite" href="references.html#ref-canner1997">(Canner et al. 1997; Choi 2022)</a>. The arm separates them by tracing the benchmark’s comparative statics one primitive at a time. Stated risk tolerance targets the risk-aversion coefficient in the denominator of the Merton rule (5), and all three candidates predict that it raises the equity share. The stated horizon does not enter the rule at all. Under CRRA preferences with i.i.d. returns the optimal share is the same at every horizon, so both planners predict no response, whereas a risk questionnaire scores the horizon alongside risk tolerance. The stated pension targets the outside-wealth multiplier <span class="math inline">\(1+B_{c}/W\)</span> in equation (6), and only the life-cycle planner predicts that a generous pension raises the share. The sign pattern of the three responses therefore discriminates among the candidates. The exploratory probes of Section <a href="#sec:stated-probes" class="xref">6.1</a>, which I added after examining these pre-registered results, then push past pension generosity to the composition of the pension, the stake’s share of the investor’s liquid wealth, and the currency exposure of the fund.</p>
+<p>On the four crossed risk–pension cells the estimating equation is <span class="math display">\[y_{icm} \;=\; \beta_{R}\,\mathrm{Tol}_{i} \;+\; \beta_{P}\,\mathrm{Gen}_{i} \;+\; \beta_{RP}\,\mathrm{Tol}_{i}\,\mathrm{Gen}_{i} \;+\; \phi_{c} \;+\; \lambda_{m} \;+\; \varepsilon_{icm}, \tag{7}\]</span> where <span class="math inline">\(\mathrm{Tol}_{i}\)</span> and <span class="math inline">\(\mathrm{Gen}_{i}\)</span> indicate the risk-tolerant and generous-pension statements, the omitted cell is the risk-averse investor with the limited pension, and <span class="math inline">\(\phi_{c}\)</span> and <span class="math inline">\(\lambda_{m}\)</span> are country and model fixed effects. On the two horizon cells the analogous equation regresses the recommended share on an indicator for the twenty-year horizon with the one-year horizon omitted, yielding <span class="math inline">\(\beta_{H}\)</span>. The coefficients <span class="math inline">\(\beta_{R}\)</span>, <span class="math inline">\(\beta_{P}\)</span>, and <span class="math inline">\(\beta_{H}\)</span> are the three pre-registered tests of Section <a href="design.html#sec:design-stated" class="xref">3.5</a>, each without multiplicity correction, and the interaction <span class="math inline">\(\beta_{RP}\)</span> is descriptive. Inference is the same model-level wild cluster bootstrap as the primary regressions. Appendix Table <a href="appendix.html#tab:summary-bgrt" class="xref">A5</a> reports the distribution of the recommended share in each treatment cell, and Appendix Table <a href="appendix.html#tab:bgrt-coef" class="xref">A6</a> reports the coefficient estimates.</p>
+<p>The estimates yield three findings. First, the advice responds strongly to stated risk tolerance. The mean recommended share rises from 0.30 in the risk-averse cells to 0.78 in the risk-tolerant ones. The coefficient, which measures the effect at the limited pension, is <span class="math inline">\(\hat{\beta}_{R}=46.3\)</span> percentage points (confidence interval <span class="math inline">\([41.1, 51.4]\)</span>). The response is almost the same in every country. All twenty-one country responses lie inside a band of 3 percentage points, and no country’s response differs from the U.S. response after Holm correction (Appendix Table <a href="appendix.html#tab:bgrt-bycountry" class="xref">A8</a>).</p>
+<p>Second, the advice responds strongly to the stated horizon, which the benchmark says should not matter. The mean equity share is 0.36 at the one-year horizon and 0.76 at the twenty-year horizon, and the coefficient is <span class="math inline">\(\hat{\beta}_{H}=39.9\)</span> percentage points (confidence interval <span class="math inline">\([25.7, 53.4]\)</span>). The horizon moves the share substantially in every country, but its cross-country span of 11.9 percentage points is wider than the 3-point band for stated risk tolerance. The response is largest in Sweden, France, Poland, and Switzerland, at 44 to 46 points, and smallest in China, Mexico, South Korea, and Turkey, at 34 to 35 points. Sweden and Switzerland differ from the United States after Holm correction.<span class="fn"><button type="button" class="fn-ref" aria-expanded="false" aria-controls="fn11" title="Show note 11">11</button><span class="fn-body" id="fn11" hidden><span class="fn-num">11</span> <span class="fn-p">The rejection of horizon invariance is not uniform across the panel: two of thirteen models are nearly horizon-invariant, while the most responsive model moves 79 percentage points between the one-year and twenty-year cells. The one-year cell is also where the panel disagrees most, against near-consensus at twenty years. The risk-tolerance response, by contrast, is positive for all thirteen models and remarkably uniform across countries.</span></span></span></p>
+<p>Third, the advice responds at most weakly to the stated pension. At the risk-averse baseline the generous pension lowers the recommended share by 1.0 percentage point (<span class="math inline">\(\hat{\beta}_{P}=-1.0\)</span>, confidence interval <span class="math inline">\([-2.3, +0.2]\)</span>). For the risk-tolerant investor it raises the share by about 2.6 points, the sum of <span class="math inline">\(\hat{\beta}_{P}\)</span> and the risk-by-pension interaction of <span class="math inline">\(+3.6\)</span> points (<span class="math inline">\([2.0, 5.2]\)</span>). Averaged over the two investors, the effect is about <span class="math inline">\(+0.8\)</span> points, an order of magnitude below the background-wealth adjustment that a generous pension should trigger. The pension response is equally small in every country, with a cross-country range of 1.4 points.</p>
+<p>The levels of the advice fit the frictionless Merton planner, but the comparative statics fit neither planner. Inverting the Merton rule (5) at the paper’s calibration puts the implied relative risk aversion at roughly 2 for the stated-tolerant cells, 5 for the stated-averse cells, and 3 for the no-statement reference, all inside the conventional range, so the levels are consistent with a <a class="cite" href="references.html#ref-merton1969">Merton (1969)</a>–<a class="cite" href="references.html#ref-samuelson1969">Samuelson (1969)</a> planner holding plausible preferences. With CRRA preferences and i.i.d. returns, however, that planner predicts exact horizon invariance, and the data show a forty-point response. The life-cycle planner fails on the pension. An advisor that fully integrated the balance sheet would sit at the 100 percent corner of Benchmark I in every cell, which the interior levels already rule out. Conditional on interior advice, any degree of balance-sheet integration still implies <span class="math inline">\(\beta_{P}&gt;0\)</span>. A stated generous pension is a bond-like annuity claim that should crowd financial-portfolio equity <em>in</em> under any total-wealth model <a class="cite" href="references.html#ref-cocco2005">(Cocco et al. 2005)</a>, yet the estimated response is at most a few points. Mean reversion in returns <a class="cite" href="references.html#ref-campbell2002strategic">(Campbell and Viceira 2002)</a> could rationalize the horizon response but not the pension null, because a planner sophisticated enough to price return dynamics into a forty-point horizon effect should not ignore pension wealth entirely.</p>
+<p>Instead, the responses match the third candidate, the risk questionnaire of popular financial advice. The models respond strongly to the two cues that retail risk questionnaires collect, stated risk tolerance and investment horizon, and barely to the one balance-sheet cue in the pre-registered cells, the pension that normative theory requires them to weigh. This conclusion rests on the three pre-registered tests alone. The age gradient of Section <a href="results.html#sec:main-age" class="xref">4.4</a> fits the same reading. Its glide path is a compressed, language-invariant rendering of the 100-minus-age heuristic, anchored on the industry’s 60/40 portfolio at mid-career (Figure <a href="results.html#fig:age-rule" class="xref">4</a>).</p>
+<p>The pension null also sharpens the reading of the zero age-by-pension interaction in Section <a href="results.html#sec:main-age" class="xref">4.4</a>. That zero could in principle reflect ignorance of local pension systems. Here, however, the prompt states pension generosity directly, so acting on it requires no knowledge of local institutions, and the models still barely use it.</p>
+<h2 id="sec:stated-probes"><span class="sec-num">6.1</span>Exploratory probes: which balance-sheet cues register</h2>
+<p>The pension null leaves open whether the models disregard the investor’s balance sheet altogether or respond to some balance-sheet cues and not to others. To find out, I turn to the three exploratory probes of Section <a href="design.html#sec:design-stated" class="xref">3.5</a>.<span class="fn"><button type="button" class="fn-ref" aria-expanded="false" aria-controls="fn12" title="Show note 12">12</button><span class="fn-body" id="fn12" hidden><span class="fn-num">12</span> <span class="fn-p">Everything in this subsection is exploratory and post hoc, sits in no Holm family, and is tested two-sided against the benchmark-implied sign.</span></span></span> The first probe states the pension’s <em>composition</em>: either a guaranteed inflation-linked annuity or a portfolio invested almost entirely in stocks. The benchmark predicts opposite-signed tilts of the liquid stake, toward equity when the background claim is bond-like and away from it when the background claim already carries equity risk. In equation (11) of Appendix <a href="appendix-benchmark.html#sec:benchmark-i" class="xref">C.3</a>, the annuity sets the pension’s equity loading <span class="math inline">\(\omega\)</span> to zero and the stocks statement sets it to one, which lowers the uncapped share by <span class="math inline">\(P_{c}/W\)</span>. As for the pension test, the predicted signs are those of the uncapped index, since interior advice already rules out the capped benchmark’s corner. The second probe, a wealth ladder, states the stake’s share of the investor’s liquid wealth, all, half, or a third. With <span class="math inline">\(W\)</span> the stake and <span class="math inline">\(D\)</span> the stated safe savings beside it, the benchmark share of the stake is <span class="math inline">\(\theta^{*}(W+D)/W\)</span>, which rises monotonically as the stated safe cushion grows. The third probe states whether the stock fund is currency-hedged or unhedged. For a non-U.S. investor the hedge removes exchange-rate variance and should raise the Merton share, so the benchmark predicts a hedged–unhedged gap that widens with local-currency volatility <span class="math inline">\(\sigma_{c}\)</span>. The composition and hedging probes cover all twenty-one countries, and the wealth ladder covers the United States alone. I estimate each probe cell against the no-statement reference with country and model fixed effects and the same wild cluster bootstrap as the rest of the arm. Figure <a href="#fig:upgrade-asymmetry" class="xref">8</a> plots the estimates and Appendix Table <a href="appendix.html#tab:upgrade-coef" class="xref">A7</a> reports them.</p>
+<p>Told that the pension is invested almost entirely in stocks, the models cut the recommended equity share by 16.9 percentage points (confidence interval <span class="math inline">\([-21.8, -12.1]\)</span>, <span class="math inline">\(p&lt;0.001\)</span>). Told that it is a guaranteed annuity, they raise the share by 4.8 points (<span class="math inline">\([0.1, 9.6]\)</span>, <span class="math inline">\(p=0.042\)</span>). Both signs match the benchmark, but the response to background risk is more than three times the response to background safety. The asymmetry holds in every country, but the size of the cut does not. Told of a pension in stocks, the models cut the share by 19 to 22 points in the United States, Canada, Australia, Japan, South Korea, Mexico, China, South Africa, and India, and by 11 to 17 points in the ten European countries, Turkey, and Brazil, a split that twelve Holm-corrected country contrasts confirm (Appendix Table <a href="appendix.html#tab:bgrt-bycountry" class="xref">A8</a>). The annuity response is small everywhere. The wealth ladder shows the same asymmetry. Stating that the stake is all of the investor’s liquid wealth cuts the share by 23.3 points (<span class="math inline">\(p&lt;0.001\)</span>), while the cushion rungs, half and a third of liquid wealth, raise it by only 1.4 and 2.5 points. The pattern is monotone in the predicted direction (the per-rung slope is 7.6 points, <span class="math inline">\(p&lt;0.001\)</span>), but its safe side is an order of magnitude short. With the baseline recommendation near 0.6, the benchmark share <span class="math inline">\(\theta^{*}(W+D)/W\)</span> is pinned at its 100 percent corner from the half rung (<span class="math inline">\(D=W\)</span>) onward. At that rung the benchmark lies about 40 points above the baseline, and the advice rises by 1.4.</p>
+<p>The hedging probe moves the advice by little, and not in the pattern the benchmark predicts. At the mean local-currency volatility, the hedged statement changes the share by 0.4 points (<span class="math inline">\(p=0.66\)</span>) and the unhedged statement by <span class="math inline">\(-1.3\)</span> (<span class="math inline">\(p=0.15\)</span>). The gap between them, estimated on the two hedging cells alone, is 1.8 points (<span class="math inline">\(p&lt;0.001\)</span>), which has the benchmark’s sign but not its size. The benchmark gap is zero in the United States, where the fund’s base currency is the investor’s own, and about thirty points in Turkey. Across countries the estimated gap lies between <span class="math inline">\(-2.4\)</span> and <span class="math inline">\(+4.0\)</span> points, it does not grow with <span class="math inline">\(\sigma_{c}\)</span> (the slope is negative, <span class="math inline">\(p=0.26\)</span>), and it is negative in Turkey, the country with the highest volatility (Appendix Table <a href="appendix.html#tab:bgrt-bycountry" class="xref">A8</a>). Both the hedged and the unhedged statements raise the share more where <span class="math inline">\(\sigma_{c}\)</span> is higher, by roughly two and a half and four points across the panel’s range, but they rise <em>together</em>. The models respond to the mention of currency exposure, not to what a hedge does to the variance.</p>
+<figure class="paper-figure" id="fig:upgrade-asymmetry" data-fig="fig:upgrade-asymmetry" data-images="fig_upgrade_asymmetry"><div class="fig-head"><span class="fig-label">Figure 8</span><span class="fig-title">Exploratory balance-sheet probes: large de-risking, small re-risking</span></div><div class="fig-controls"></div><div class="fig-body"><div class="fig-chart"></div><div class="fig-table" hidden></div></div><figcaption class="fig-notes"><span class="notes-label">Notes:</span> Effect of each probe statement on the recommended equity share, in percentage points against the no-statement Version B and B-cross reference (Question 1, age 40), with country and model fixed effects. Squares mark statements that raise the investor’s risk exposure and diamonds statements that lower it, so a balance-sheet advisor would place the squares to the left of zero and the diamonds symmetrically to the right. The pension-composition and hedging cells pool all twenty-one countries and the wealth rungs are U.S.-only. Bars are 95 percent wild cluster bootstrap confidence intervals (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G = 13\)</span>). All estimates are exploratory and post hoc, in no Holm family (Appendix Table <a href="appendix.html#tab:upgrade-coef" class="xref">A7</a>).</figcaption><div class="fig-links"></div></figure>
+<p>Two of the three probes show the same one-sided pattern, and the third moves the advice by at most a few points on either side. On pension composition and on the size of the stake, the advice moves strongly, and with the benchmark’s sign, when the stated cue raises the investor’s exposure, and it moves weakly on the mirror-image cues that should raise the equity share. A planner that integrated the balance sheet would respond in both directions, since safe outside wealth crowds equity in just as risky outside wealth crowds it out. The models implement only the de-risking half. They read the balance sheet as a source of hazard rather than as the two-sided input of portfolio theory.</p>
+<p>The one-sided pattern also completes the questionnaire reading of the pre-registered cells. Retail suitability assessments ask a third question beside tolerance and horizon, namely whether the client can afford to lose the money. UK guidance calls this capacity for loss and asks advisors to recommend only the risk a customer is both willing and able to take <a class="cite" href="references.html#ref-fsa2011suitability">(Financial Services Authority 2011)</a>, and the MiFID II guidelines treat the client’s ability to bear losses as part of her financial situation <a class="cite" href="references.html#ref-esma2022suitability">(European Securities and Markets Authority 2022)</a>. A screen of this kind lowers the recommended risk when a stated cue shows that the client could not absorb a loss, as a pension invested in stocks or a stake that is all of her liquid wealth does, while stated safety does not raise the risk beyond what her stated tolerance allows. A questionnaire with such a screen predicts every sign in this section: a response to tolerance and horizon, none to a generous pension, a cut on the two exposure cues, and little response to the annuity, the cash cushion, or the currency hedge. I add the screen to the reading after seeing the probes, so it interprets exploratory evidence rather than testing it.</p>
+<p>The models’ own information demand supports the questionnaire reading. In the elicitation probe of Section <a href="results.html#sec:robustness" class="xref">4.6</a>, which lets each model state what it would ask the investor before advising, the questions form a suitability questionnaire. Nearly every response in every country asks four things, in the order a retail assessment asks them: the investor’s tolerance for losses, the purpose of the money, whether the stated horizon is firm, and whether a separate emergency fund exists. Tolerance is the first question in five responses out of six, and it is framed behaviorally, as how the investor would react to a drop of thirty percent, rather than as a capacity to bear the loss. The thresholds travel unchanged, the thirty-percent drawdown and the three-to-six-month cash buffer appear from Turkey to Japan, and the second tier of questions, on income stability, debt, and the size of the pension, varies across models two to three times more than across countries (Appendix Table <a href="#tab:elicit-topics" class="xref">[tab:elicit-topics]</a>). Country enters the questions in two narrow ways. For countries with weaker currencies the models ask whether the investor would accept exposure to the home currency or prefer international diversification, treating the home market as a risk to leave rather than as a reason for a different equity share, and where a named tax account exists, such as an IRA or a Swedish ISK, they ask whether the money sits in it. Neither bears on the split between a world index and government bonds. The probe also closes a gap in the stated-investor arm. Four of every five elicited questions fall on a cue the arm manipulates, tolerance, horizon, the pension, the currency hedge, or the size of the stake, and the questions the arm does not state, on purpose, emergency savings, and income, are all proxies for the same capacity-for-loss screen. The cues the arm varies are the ones the models say they need.</p>
+<h2 id="sec:scorecard"><span class="sec-num">6.2</span>Invariance and responsiveness</h2>
+<p>Table <a href="#tab:scorecard" class="xref">2</a> collects the evidence of Sections <a href="results.html#sec:main" class="xref">4</a> to <a href="#sec:stated" class="xref">6</a> against the two properties of Section <a href="benchmark.html#sec:benchmark" class="xref">5</a>. The models pass most invariance tests. The language of the question, the local names of the instruments, and the U.K. country name each move the advice by about a point or less. The exception is the investment horizon, which moves the advice by forty points although it lies outside the benchmark. The models fail most responsiveness tests. Stated risk tolerance moves the advice strongly and in the right direction, but currency risk, pension generosity, stated safe wealth, and the currency hedge barely move it, and the mortgage advice follows the real mortgage rate in direction but not in magnitude. The advice is thus close to invariant where theory asks for invariance and insufficiently responsive where it asks for responsiveness, with the horizon and stated risk tolerance the two exceptions. The country-name effects in the remaining countries are the one entry the design cannot classify, because the prompt leaves some fundamentals to the model.</p>
+<div class="paper-table" id="tab:scorecard"><div class="tab-head"><span class="tab-label">Table 2</span><span class="tab-title">Invariance and responsiveness: the evidence against the benchmark</span></div><div class="tab-scroll"><table class="est">
+<thead>
+<tr>
+<th class="al-left">Cue</th>
+<th class="al-left">Benchmark prediction</th>
+<th class="al-left">Estimate</th>
+<th class="al-left">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="4" style="text-align: left;"><em>Panel A. Should not move the advice (invariance)</em></td>
+</tr>
+<tr>
+<td class="al-left">Language of the question, local vs. English</td>
+<td class="al-left">No effect</td>
+<td class="al-left">−1.3</td>
+<td class="al-left">H4</td>
+</tr>
+<tr>
+<td class="al-left">Local names of the instruments (Version C)</td>
+<td class="al-left">No effect</td>
+<td class="al-left">−0.7</td>
+<td class="al-left">H5</td>
+</tr>
+<tr>
+<td class="al-left">U.K. rather than U.S. country name</td>
+<td class="al-left">No effect</td>
+<td class="al-left">+0.7 (equivalent)</td>
+<td class="al-left">H3</td>
+</tr>
+<tr>
+<td class="al-left">Twenty-year rather than one-year horizon</td>
+<td class="al-left">No effect</td>
+<td class="al-left">+39.9</td>
+<td class="al-left">H13</td>
+</tr>
+<tr>
+<td class="al-left">Other country names (Version B)</td>
+<td class="al-left">No effect if economics fixed</td>
+<td class="al-left">−11.0 to +1.4</td>
+<td class="al-left">H1</td>
+</tr>
+<tr>
+<td colspan="4" style="text-align: left;"><em>Panel B. Should move the advice (responsiveness)</em></td>
+</tr>
+<tr>
+<td class="al-left">Stated risk tolerance</td>
+<td class="al-left">Raises</td>
+<td class="al-left">+46.3</td>
+<td class="al-left">H11</td>
+</tr>
+<tr>
+<td class="al-left">Unhedged currency risk across countries</td>
+<td class="al-left">Slope of one</td>
+<td class="al-left"><span class="math inline">\(\hat{\kappa}=0.13\)</span></td>
+<td class="al-left">H2</td>
+</tr>
+<tr>
+<td class="al-left">Stated generous pension</td>
+<td class="al-left">Raises</td>
+<td class="al-left">−1.0 / +2.6</td>
+<td class="al-left">H12</td>
+</tr>
+<tr>
+<td class="al-left">Pension in stocks / guaranteed annuity</td>
+<td class="al-left">Lowers / raises</td>
+<td class="al-left">−16.9 / +4.8</td>
+<td class="al-left">Exploratory</td>
+</tr>
+<tr>
+<td class="al-left">Stake is all / a third of liquid wealth</td>
+<td class="al-left">Lowers / raises</td>
+<td class="al-left">−23.3 / +2.5</td>
+<td class="al-left">Exploratory</td>
+</tr>
+<tr>
+<td class="al-left">Currency-hedged fund</td>
+<td class="al-left">Raises outside the U.S.</td>
+<td class="al-left">+0.4</td>
+<td class="al-left">Exploratory</td>
+</tr>
+<tr>
+<td class="al-left">Real mortgage rate across countries</td>
+<td class="al-left">Slope of one</td>
+<td class="al-left"><span class="math inline">\(\hat{\kappa}^{Q2}=0.24\)</span></td>
+<td class="al-left">Exploratory</td>
+</tr>
+</tbody>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Estimates are effects on the recommended equity share in percentage points, except the two calibration slopes. Panel A lists treatments that equation (6) excludes, so each should leave the advice unchanged once the investor’s economics is fixed. The country-name row gives the range of the twenty Version B contrasts of Section <a href="results.html#sec:main-countryfe" class="xref">4.2</a>, seven of which survive the Holm correction, all negative. Because the prompt leaves some fundamentals to the model, that row does not by itself establish a failure of invariance. Panel B lists cues that move a term of the equation. The generous-pension entries are the effects for the risk-averse and the risk-tolerant investor. The wealth-ladder entries are U.S.-only. The hedge entry is the hedged statement at the mean local-currency volatility, and the unhedged statement gives <span class="math inline">\(-1.3\)</span>. The calibration slopes regress the country effects on the benchmark’s prescribed deviations, where one is full pass-through (Sections <a href="benchmark.html#sec:benchmark-simple" class="xref">5.1</a> and <a href="benchmark.html#sec:benchmark-q2" class="xref">5.3</a>). Status gives the pre-registered hypothesis of Appendix Table <a href="appendix.html#tab:hypotheses" class="xref">A16</a> or marks a post-filing exploratory estimate.</div></div>
+
+<nav class="prevnext"><a class="pn prev" href="benchmark.html"><span class="pn-dir">Previous</span><span class="pn-title">When should the advice differ?</span></a><a class="pn next" href="text.html"><span class="pn-dir">Next</span><span class="pn-title">Mechanisms in the explanation text</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. The experimental design, hypotheses and inference rules were pre-registered at the Open Science Framework (<a href="https://osf.io/2ch5z" target="_blank" rel="noopener">osf.io/2ch5z</a>) before the main collection. This project was supported by Behavioral Finance e.V. Views and opinions expressed are those of the author only.</p>
+  <p>The model responses behind the paper are not publicly released. Every number on this site is an aggregate that the paper reports: cell means, binned counts, and regression estimates. See <a href="about.html">Data, code and AI prompt</a>.</p>
+  <p><a href="about.html">Data and code</a> · <a href="errata.html">Errata and notes</a> · <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/charts.js"></script><script src="assets/charts-fa.js"></script><script src="assets/figures.js"></script>
+</body>
+</html>
