@@ -62,7 +62,7 @@
       setLegend(panel, F.legendHTML([{ label: "Significant, negative", color: css("--neg"), kind: "dot" }, { label: "Significant, positive", color: css("--pos"), kind: "dot" }, { label: "Not significant", color: css("--chart-ink-2"), kind: "dot" }, { label: "95% wild cluster bootstrap CI", color: css("--chart-muted") }]));
       links("fe-links", { table: () => `<div class="table-wrap"><table class="data-table"><thead><tr><th>Country</th><th>Effect (pp)</th><th>95% CI</th><th>p (wild)</th><th>p (Holm)</th></tr></thead><tbody>${rows.map((r) => `<tr><th scope="row">${S.esc(r.name)}</th><td>${S.fmt.signed(r.b, 2)}</td><td>[${S.fmt.signed(r.lo, 2)}, ${S.fmt.signed(r.hi, 2)}]</td><td>${S.fmt.p(r.p)}</td><td>${S.fmt.p(r.p_holm)}</td></tr>`).join("")}</tbody></table></div>`,
         download: () => S.download(`countryfe_${q}.csv`, S.toCSV(rows.map((r) => ({ country: r.name, effect_pp: r.b, ci_lo: r.lo, ci_hi: r.hi, p_wild: r.p, p_holm: r.p_holm })), ["country", "effect_pp", "ci_lo", "ci_hi", "p_wild", "p_holm"])),
-        paper: { href: "results.html#fig:three-questions", label: "Figure 5 in the paper" } });
+        paper: { href: "results.html#fig:three-questions", label: "Figure 4 in the paper" } });
     })();
 
     // ---- 2. by model ----
@@ -111,7 +111,7 @@
         const mean = (v) => d3.mean(rows, (r) => (r.marks.find((m) => m.key === v) || {}).x);
         panel.querySelector(".ver-summary")?.remove();
         const hasX = rows.some((r) => r.marks.some((m) => m.key === "B-cross"));
-        chart.insertAdjacentHTML("beforebegin", `<p class="spec-summary ver-summary">${S.esc(cname(c))}, mean across models: Version B ${S.fmt.n(mean("B"), 1)}${hasX ? `, B-cross ${S.fmt.n(mean("B-cross"), 1)} (language effect ${S.fmt.signed(mean("B") - mean("B-cross"), 1)} pp)` : " (English-prompting country, no B-cross cell)"}, Version C ${S.fmt.n(mean("C"), 1)} (local-context effect ${S.fmt.signed(mean("C") - mean("B"), 1)} pp). Raw cell means; the pooled regression estimates are in Section 4.3.</p>`);
+        chart.insertAdjacentHTML("beforebegin", `<p class="spec-summary ver-summary">${S.esc(cname(c))}, mean across models: Version B ${S.fmt.n(mean("B"), 1)}${hasX ? `, B-cross ${S.fmt.n(mean("B-cross"), 1)} (language effect ${S.fmt.signed(mean("B") - mean("B-cross"), 1)} pp)` : " (English-prompting country, no B-cross cell)"}, Version C ${S.fmt.n(mean("C"), 1)} (local-context effect ${S.fmt.signed(mean("C") - mean("B"), 1)} pp). Raw cell means; the pooled regression estimates are in Section 5.3.</p>`);
       }
       select(ctl, "Country", countriesSorted.map((x) => [x.key, x.name]), c, (v) => { c = v; draw(); });
       draw();
@@ -135,7 +135,7 @@
       select(ctl, "Country", countriesSorted.map((x) => [x.key, x.name]), c, (v) => { c = v; draw(); });
       draw();
       setLegend(panel, F.legendHTML(series.map((s) => ({ label: s.label, color: s.color, kind: "dot" }))));
-      links("age-links", { table: () => ch.table(), paper: { href: "results.html#fig:age-rule", label: "Figure 4 in the paper" } });
+      links("age-links", { table: () => ch.table(), paper: { href: "advice-rule.html#fig:age-rule", label: "Figure 6 in the paper" } });
     })();
 
     // ---- 6. stated investor ----
@@ -146,7 +146,7 @@
       function draw() {
         const rows = I.models.map((m) => [m.label].concat(cols.map(([k]) => { const r = k === "v1" ? cell(c, m.key, "B", "Q1", 40) : cell(c, m.key, "Bgrt", "Q1", 40, k); return r ? r.mean * 100 : null; })));
         const means = cols.map((_, i) => d3.mean(rows, (r) => r[i + 1]));
-        chart.innerHTML = `<div class="table-wrap"><table class="data-table"><thead><tr><th>Model</th>${cols.map(([, l]) => `<th>${l}</th>`).join("")}</tr></thead><tbody>${rows.map((r) => `<tr><th scope="row">${S.esc(r[0])}</th>${r.slice(1).map((v) => `<td>${S.fmt.n(v, 1)}</td>`).join("")}</tr>`).join("")}<tr class="rule"><th scope="row"><strong>Mean across models</strong></th>${means.map((v) => `<td><strong>${S.fmt.n(v, 1)}</strong></td>`).join("")}</tr></tbody></table></div><p class="small muted">Mean recommended equity share in percent, fifty responses per cell. The pooled regression estimates (H11 to H13) are in Section 6 and Appendix Table A6.</p>`;
+        chart.innerHTML = `<div class="table-wrap"><table class="data-table"><thead><tr><th>Model</th>${cols.map(([, l]) => `<th>${l}</th>`).join("")}</tr></thead><tbody>${rows.map((r) => `<tr><th scope="row">${S.esc(r[0])}</th>${r.slice(1).map((v) => `<td>${S.fmt.n(v, 1)}</td>`).join("")}</tr>`).join("")}<tr class="rule"><th scope="row"><strong>Mean across models</strong></th>${means.map((v) => `<td><strong>${S.fmt.n(v, 1)}</strong></td>`).join("")}</tr></tbody></table></div><p class="small muted">Mean recommended equity share in percent, fifty responses per cell. The pooled regression estimates (H11 to H13) are in Section 6 and Appendix Table A10.</p>`;
       }
       select(ctl, "Country", countriesSorted.map((x) => [x.key, x.name]), c, (v) => { c = v; draw(); });
       draw();
