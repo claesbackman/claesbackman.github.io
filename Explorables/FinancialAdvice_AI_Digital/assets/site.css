@@ -3,43 +3,43 @@
    Layout: fixed top bar, left contents rail, 720px reading column. */
 
 :root {
-  --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --font-ui: "Bricolage Grotesque", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --ink: #1a1a1a;
-  --ink-soft: #3a3a3a;
-  --muted: #777;
-  --muted-light: #999;
-  --accent: #1e88e5;
-  --accent-ink: #1565c0;
-  --annotation: #e8871e;
-  --note: #6d28d9;
-  --note-tint: #6d28d914;
-  --rule: #e7e7e4;
-  --rule-strong: #d7d7d2;
+  --ink: #1c2224;
+  --ink-soft: #4b5457;
+  --muted: #667074;
+  --muted-light: #8b9497;
+  --accent: #c4452a;
+  --accent-ink: #99361f;
+  --annotation: #b8760a;
+  --note: #1b6e7e;
+  --note-tint: #1b6e7e14;
+  --rule: #e2e5e0;
+  --rule-strong: #c9cec6;
   --bg: #ffffff;
-  --bg-panel: #faf9f6;
-  --bg-inset: #f3f1ea;
-  --bg-inset-hover: #ebe8df;
+  --bg-panel: #f7f7f7;
+  --bg-inset: #ececec;
+  --bg-inset-hover: #e2e2e2;
   --header-h: 56px;
   --nav-w: 230px;
   --read-max: 720px;
   --wide-max: 1100px;
   --gutter: 2.5rem;
-  /* chart tokens (validated palette, see ProjectCode/Website_build/README) */
-  --series-1: #2a78d6;
-  --series-2: #eb6834;
-  --series-3: #1baf7a;
-  --series-4: #6250d6;
-  --series-5: #e34948;
-  --chart-grid: #e1e0d9;
-  --chart-axis: #c3c2b7;
-  --chart-muted: #898781;
-  --chart-ink: #0b0b0b;
-  --chart-ink-2: #52514e;
+  /* chart tokens: the palette of the explorable deck (Presentation/03_ExplorableDeck/theme/deck.scss) */
+  --series-1: #c4452a;
+  --series-2: #1b6e7e;
+  --series-3: #b8760a;
+  --series-4: #6b4fa8;
+  --series-5: #667074;
+  --chart-grid: #e2e5e0;
+  --chart-axis: #c9cec6;
+  --chart-muted: #667074;
+  --chart-ink: #1c2224;
+  --chart-ink-2: #4b5457;
   --chart-surface: #ffffff;
-  --neg: #c62828;
-  --pos: #2a78d6;
+  --neg: #c4452a;
+  --pos: #1b6e7e;
 }
 
 * { box-sizing: border-box; }
@@ -85,7 +85,7 @@ a:hover { text-decoration: underline; }
 .nav-list { list-style: none; margin: 0; padding: 0; font-size: 13px; }
 .nav-list li a { display: flex; gap: .5rem; padding: .32rem .4rem .32rem .3rem; color: var(--ink-soft); border-radius: 4px; line-height: 1.3; }
 .nav-list li a:hover { background: var(--bg-inset); text-decoration: none; }
-.nav-list li.active a { color: var(--accent-ink); font-weight: 600; background: #1e88e514; }
+.nav-list li.active a { color: var(--accent-ink); font-weight: 600; background: #c4452a14; }
 .nav-num { flex: none; width: 2.2em; color: var(--muted-light); font-variant-numeric: tabular-nums; font-size: 12px; padding-top: 1px; }
 .nav-list li.active .nav-num { color: var(--accent-ink); }
 .nav-group { margin: 1rem 0 .3rem .3rem; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
@@ -329,7 +329,7 @@ table.est tbody tr:first-child td { padding-top: .45rem; }
 .prompt-box .q { color: var(--ink); }
 .prompt-meta { font-size: 12.5px; color: var(--muted); margin: .4rem 0 .6rem; }
 .prompt-meta b { color: var(--ink-soft); }
-.lang-tag { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 999px; background: #1e88e514; color: var(--accent-ink); margin-left: .4rem; }
+.lang-tag { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 999px; background: #c4452a14; color: var(--accent-ink); margin-left: .4rem; }
 .hero .legend { margin: .2rem 0 .4rem; }
 .explorer .fig-chart { margin-top: .4rem; }
 .kv { display: grid; grid-template-columns: max-content 1fr; gap: .25rem 1rem; font-size: 13.5px; font-family: var(--font-ui); }
