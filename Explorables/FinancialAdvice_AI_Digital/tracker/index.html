@@ -1,0 +1,1286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Tracking how large language models' portfolio advice varies by country, re-run as new models are released. English-language prompts, 21 countries, Q1 equity share at age 40.">
+<meta name="author" content="Claes Backman">
+<title>Advice Drift Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* ============================================================
+   Tokens mirror docs/index.html so the tracker reads as part of
+   the same project. Light on bare :root; dark redefined twice
+   (OS preference, guarded; and explicit toggle).
+   ============================================================ */
+:root {
+  color-scheme: light;
+  --paper:      #f2f4f7;
+  --surface:    #fbfcfd;
+  --surface-2:  #eef1f5;
+  --ink:        #10151c;
+  --ink-2:      #47535f;
+  --muted:      #7b8794;
+  --rule:       #dfe4ea;
+  --rule-soft:  #e9edf1;
+
+  --s1: #2a78d6;  --s2: #eb6834;  --s3: #1baf7a;
+  --s4: #eda100;  --s5: #e87ba4;  --s6: #008300;
+  /* sequential blue ramp, 5 ordinal steps */
+  --q1:#86b6ef; --q2:#3987e5; --q3:#256abf; --q4:#184f95; --q5:#0d366b;
+  --accent: #2a78d6;
+  --accent-soft: rgba(42,120,214,0.10);
+  --warm: #eb6834;
+  --warm-soft: rgba(235,104,52,0.12);
+  --good: #1baf7a;
+  --shadow: 0 1px 2px rgba(16,21,28,0.05), 0 6px 20px rgba(16,21,28,0.05);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper:      #0b0f14;
+    --surface:    #131920;
+    --surface-2:  #1a222b;
+    --ink:        #eef2f6;
+    --ink-2:      #a7b3c0;
+    --muted:      #76828f;
+    --rule:       #253039;
+    --rule-soft:  #1c242d;
+    --s1: #3987e5;  --s2: #d95926;  --s3: #199e70;
+    --s4: #c98500;  --s5: #d55181;  --s6: #008300;
+    --q1:#184f95; --q2:#256abf; --q3:#3987e5; --q4:#86b6ef; --q5:#cde2fb;
+    --accent: #3987e5;
+    --accent-soft: rgba(57,135,229,0.16);
+    --warm: #d95926;
+    --warm-soft: rgba(217,89,38,0.18);
+    --good: #199e70;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 6px 20px rgba(0,0,0,0.3);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper:      #0b0f14;
+  --surface:    #131920;
+  --surface-2:  #1a222b;
+  --ink:        #eef2f6;
+  --ink-2:      #a7b3c0;
+  --muted:      #76828f;
+  --rule:       #253039;
+  --rule-soft:  #1c242d;
+  --s1: #3987e5;  --s2: #d95926;  --s3: #199e70;
+  --s4: #c98500;  --s5: #d55181;  --s6: #008300;
+  --q1:#184f95; --q2:#256abf; --q3:#3987e5; --q4:#86b6ef; --q5:#cde2fb;
+  --accent: #3987e5;
+  --accent-soft: rgba(57,135,229,0.16);
+  --warm: #d95926;
+  --warm-soft: rgba(217,89,38,0.18);
+  --good: #199e70;
+  --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 6px 20px rgba(0,0,0,0.3);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 2.2rem 4rem; padding-left: 20px; padding-right: 20px; }
+
+h1 {
+  font-family: Newsreader, ui-serif, Georgia, "Times New Roman", serif;
+  font-weight: 600; font-size: clamp(1.7rem, 4.2vw, 2.5rem);
+  line-height: 1.12; margin: 0 0 .5rem; letter-spacing: -.012em;
+  text-wrap: balance;
+}
+h2 {
+  font-family: Newsreader, ui-serif, Georgia, serif;
+  font-weight: 600; font-size: clamp(1.18rem, 2.4vw, 1.45rem);
+  margin: 0 0 .25rem; letter-spacing: -.008em; text-wrap: balance;
+}
+.lede { color: var(--ink-2); font-size: 1.02rem; max-width: 64ch; margin: 0 0 .5rem; }
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .7rem; text-transform: uppercase; letter-spacing: .12em;
+  color: var(--muted); margin: 0 0 .6rem;
+}
+p { margin: 0 0 .8rem; }
+a { color: var(--accent); }
+code { font-family: "IBM Plex Mono", monospace; font-size: .9em; }
+
+/* ---- top bar ---- */
+.topbar {
+  display: flex; flex-wrap: wrap; gap: .7rem 1rem; align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--rule); padding-bottom: .9rem; margin-bottom: 1.2rem;
+}
+.controls {
+  display: flex; flex-wrap: wrap; gap: .5rem .9rem; align-items: center;
+  margin: 0 0 1.4rem;
+}
+label.ctl {
+  font-family: "IBM Plex Mono", monospace; font-size: .68rem;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--muted);
+  display: flex; align-items: center; gap: .4rem;
+}
+select, button {
+  font-family: "IBM Plex Sans", sans-serif; font-size: .85rem;
+  background: var(--surface); color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 6px; padding: .3rem .55rem;
+  cursor: pointer;
+}
+input[type="checkbox"] { accent-color: var(--accent); width: 15px; height: 15px; margin: 0; }
+select:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+
+/* ---- QC strip ---- */
+.qc { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 .4rem; }
+.chip {
+  display: inline-flex; align-items: baseline; gap: .4rem;
+  background: var(--surface); border: 1px solid var(--rule);
+  border-radius: 999px; padding: .22rem .7rem;
+  font-family: "IBM Plex Mono", monospace; font-size: .74rem;
+  color: var(--ink-2);
+}
+.chip b { color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+.chip.ok    { border-color: color-mix(in srgb, var(--good) 45%, var(--rule)); }
+.chip.warn  { border-color: color-mix(in srgb, var(--warm) 55%, var(--rule)); }
+
+/* ---- sections ---- */
+section { margin: 0 0 2.6rem; }
+.panel {
+  background: var(--surface); border: 1px solid var(--rule);
+  border-radius: 10px; padding: 1.1rem 1.15rem 1.3rem; box-shadow: var(--shadow);
+}
+.note { color: var(--muted); font-size: .84rem; max-width: 72ch; margin: .55rem 0 0; }
+
+/* ---- wave legend ---- */
+.legend { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem 1rem; margin-top: .9rem; }
+.legend .key { display: inline-flex; align-items: center; gap: .4rem;
+  font-family: "IBM Plex Mono", monospace; font-size: .68rem; color: var(--ink-2); }
+.legend .key i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.legend .key s { width: 18px; height: 5px; border-radius: 2.5px; display: inline-block; text-decoration: none; }
+.legend .sw { width: 26px; height: 12px; border-radius: 2px; }
+.legend span {
+  font-family: "IBM Plex Mono", monospace; font-size: .66rem; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- dumbbell rows ---- */
+.rows { display: flex; flex-direction: column; gap: 0; margin-top: 1rem; }
+.row {
+  display: grid; grid-template-columns: minmax(150px, 200px) 1fr minmax(96px, auto);
+  gap: .7rem; align-items: center;
+  padding: .28rem 0; border-bottom: 1px solid var(--rule-soft);
+}
+.row:last-child { border-bottom: 0; }
+.rname { font-size: .85rem; line-height: 1.2; }
+.rname .vend {
+  display: block; font-family: "IBM Plex Mono", monospace;
+  font-size: .63rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted);
+}
+.rname .rel { display: block; font-family: "IBM Plex Mono", monospace; font-size: .63rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.rname .tag {
+  font-style: normal; letter-spacing: .06em;
+  color: var(--ink-2); border: 1px solid var(--rule);
+  border-radius: 3px; padding: 0 .22rem; font-size: .9em; margin-left: .2rem;
+}
+.rname .tag.anchor { color: var(--warm); border-color: currentColor; }
+.rval {
+  font-family: "IBM Plex Mono", monospace; font-size: .8rem;
+  font-variant-numeric: tabular-nums; text-align: right; color: var(--ink-2); line-height: 1.35;
+}
+.rval b { color: var(--ink); font-weight: 500; }
+.rval .chg { display: block; font-size: .72rem; }
+.track { position: relative; height: 34px; }
+.track svg { display: block; width: 100%; height: 34px; overflow: visible; }
+/* The viewBox is stretched horizontally, so anything that must stay round or
+   legible (the mean dots) lives in pixel space instead. */
+.track .dot {
+  position: absolute; width: 9px; height: 9px; border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--surface);
+  transform: translate(-50%, -50%);
+}
+.row.axis { border-bottom: 0; padding-top: .1rem; }
+.ticks { position: relative; height: 14px; }
+.ticks span {
+  position: absolute; top: 0; transform: translateX(-50%);
+  font-family: "IBM Plex Mono", monospace; font-size: .64rem;
+  color: var(--muted); font-variant-numeric: tabular-nums;
+}
+.ticks span:first-child { transform: none; }
+.ticks span:last-child { transform: translateX(-100%); }
+.axlabel { font-size: .64rem; color: var(--muted); }
+
+/* provider groups */
+.group { border-bottom: 1px solid var(--rule); }
+.group:last-of-type { border-bottom: 0; }
+.group > summary {
+  list-style: none; display: grid;
+  grid-template-columns: minmax(150px, 200px) 1fr minmax(96px, auto);
+  gap: .7rem; align-items: center; padding: .45rem 0 .3rem;
+  cursor: pointer; text-transform: none; letter-spacing: 0; font-size: .85rem;
+  color: var(--ink);
+}
+.group > summary::-webkit-details-marker { display: none; }
+.group > summary .gname { font-weight: 600; }
+.group > summary .gname small {
+  font-family: "IBM Plex Mono", monospace; font-weight: 400; font-size: .63rem;
+  color: var(--muted); margin-left: .4rem; letter-spacing: .06em;
+}
+.group > summary .gname::before {
+  content: "▸"; display: inline-block; color: var(--muted); margin-right: .35rem;
+  transition: transform .15s ease;
+}
+.group[open] > summary .gname::before { transform: rotate(90deg); }
+.group .rows { margin-top: 0; padding-left: 1.05rem; }
+
+/* ---- vintage scatter ---- */
+.vint { position: relative; margin-top: .6rem; }
+.vint svg { display: block; width: 100%; height: auto; overflow: visible; }
+.vint text { font-family: "IBM Plex Mono", monospace; }
+.vint .pt { cursor: default; }
+.vint .pt:hover circle.mark { stroke-width: 3; }
+
+/* ---- small multiples ---- */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: .8rem; margin-top: 1rem; }
+.card {
+  border: 1px solid var(--rule-soft); border-radius: 8px; padding: .7rem .8rem .6rem;
+  background: var(--surface);
+}
+.card h3 { margin: 0; font-size: .9rem; font-weight: 600; line-height: 1.25; }
+.card .sub {
+  font-family: "IBM Plex Mono", monospace; font-size: .63rem; color: var(--muted);
+  letter-spacing: .06em; text-transform: uppercase; display: flex; flex-wrap: wrap; gap: .2rem .6rem; margin: .1rem 0 .45rem;
+}
+.card .sub .tag { border: 1px solid var(--rule); border-radius: 3px; padding: 0 .22rem; text-transform: none; letter-spacing: .04em; color: var(--ink-2); }
+.card .sub .tag.anchor { color: var(--warm); border-color: currentColor; }
+.card .sm { position: relative; }
+.card svg { display: block; width: 100%; height: 132px; overflow: visible; }
+.card .stats {
+  display: flex; justify-content: space-between; gap: .5rem;
+  font-family: "IBM Plex Mono", monospace; font-size: .68rem; color: var(--ink-2);
+  font-variant-numeric: tabular-nums; margin-top: .35rem;
+}
+.card .stats b { color: var(--ink); font-weight: 500; }
+.gtitle {
+  grid-column: 1 / -1; font-weight: 600; font-size: .9rem; margin: .5rem 0 -.2rem;
+  padding-top: .5rem; border-top: 1px solid var(--rule-soft);
+}
+.gtitle small { font-family: "IBM Plex Mono", monospace; font-weight: 400; font-size: .63rem; color: var(--muted); margin-left: .4rem; letter-spacing: .06em; }
+.gtitle:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+
+/* ---- heatmap ---- */
+.hmwrap { overflow-x: auto; margin-top: 1rem; }
+table.hm { border-collapse: separate; border-spacing: 2px; font-size: .74rem; }
+table.hm th {
+  font-family: "IBM Plex Mono", monospace; font-weight: 500;
+  font-size: .64rem; letter-spacing: .05em; color: var(--muted);
+  text-align: right; padding: 0 .4rem; white-space: nowrap;
+}
+table.hm thead th { text-align: center; vertical-align: bottom; padding-bottom: .35rem; }
+table.hm thead th span {
+  display: inline-block; writing-mode: vertical-rl; transform: rotate(180deg);
+  max-height: 96px; overflow: hidden;
+}
+table.hm td {
+  width: 38px; height: 26px; text-align: center; border-radius: 3px;
+  font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums;
+  font-size: .68rem; cursor: default;
+}
+table.hm td.empty { background: var(--surface-2); color: var(--muted); }
+tr.us td { box-shadow: inset 0 0 0 1px var(--ink-2); }
+tr.us th { color: var(--ink); }
+
+/* ---- table view ---- */
+details.tv { margin-top: 1rem; }
+details.tv > summary {
+  font-family: "IBM Plex Mono", monospace; font-size: .7rem;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--muted);
+  cursor: pointer; padding: .3rem 0;
+}
+details.tv > summary:hover { color: var(--ink-2); }
+table.data { border-collapse: collapse; width: 100%; font-size: .8rem; margin-top: .6rem; }
+table.data th, table.data td {
+  text-align: right; padding: .3rem .5rem; border-bottom: 1px solid var(--rule-soft);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+table.data th { color: var(--muted); font-weight: 500; font-size: .7rem;
+  text-transform: uppercase; letter-spacing: .06em; }
+table.data td:first-child, table.data th:first-child,
+table.data td:nth-child(2), table.data th:nth-child(2) { text-align: left; }
+.tblwrap { overflow-x: auto; }
+
+/* ---- tooltip ---- */
+#tip {
+  position: fixed; z-index: 50; pointer-events: none;
+  background: var(--ink); color: var(--paper);
+  font-family: "IBM Plex Mono", monospace; font-size: .72rem; line-height: 1.45;
+  padding: .4rem .55rem; border-radius: 5px; max-width: 260px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.28);
+}
+#tip[hidden] { display: none !important; }
+#tip .k { display: inline-block; width: 12px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: .3rem; }
+
+footer {
+  border-top: 1px solid var(--rule); margin-top: 2.5rem; padding-top: 1.1rem;
+  color: var(--muted); font-size: .82rem;
+}
+@media (max-width: 640px) {
+  .row, .group > summary { grid-template-columns: 1fr auto; grid-auto-flow: dense; }
+  .row .track { grid-column: 1 / -1; }
+  .group > summary .track { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+</style>
+</head>
+<body data-palette="#2a78d6,#eb6834,#1baf7a,#eda100,#e87ba4,#008300">
+<div class="wrap">
+
+  <div class="topbar">
+    <div>
+      <p class="eyebrow">Robustness monitor · Backman, SAFE</p>
+      <h1>Advice Drift Tracker</h1>
+    </div>
+    <button id="theme" type="button" aria-label="Toggle colour theme">Theme</button>
+  </div>
+
+  <p class="lede">
+    Every wave re-asks one question — what share of $50,000, stated in the local
+    currency equivalent, a 40-year-old investing over five years should put in a
+    broad stock index fund rather than government bonds — of a panel of models, in
+    <strong>English</strong>: one English prompt per country, repeated 25 times per
+    model (50 in the July wave). Language is held fixed, so the only things that move
+    between waves are the models and the date. This is the paper's English arm, not
+    its primary local-language cell. The paper's own July 2026 collection is the first
+    wave, cut to the same slice.
+  </p>
+
+  <div class="controls" role="group" aria-label="Filters">
+    <label class="ctl" for="filter">Models
+      <select id="filter">
+        <option value="all">All waves</option>
+        <option value="new">Newest only (not in the paper's panel)</option>
+        <option value="paper">Paper's panel only</option>
+        <option value="anchor">Anchors only (in every wave)</option>
+      </select>
+    </label>
+    <label class="ctl" for="sort">Sort
+      <select id="sort">
+        <option value="mean">Mean equity share</option>
+        <option value="vintage">Vintage (release date, oldest first)</option>
+        <option value="spread">Country spread (widest first)</option>
+        <option value="change">Change since first wave (largest first)</option>
+        <option value="vendor">Provider</option>
+      </select>
+    </label>
+    <label class="ctl" for="group">
+      <input type="checkbox" id="group"> Collapse by provider
+    </label>
+    <label class="ctl" for="wave">Heatmap wave
+      <select id="wave"></select>
+    </label>
+  </div>
+
+  <div class="qc" id="qc"></div>
+  <p class="note" id="qcnote" style="margin-top:0;margin-bottom:1.8rem"></p>
+
+  <section>
+    <p class="eyebrow">By model, across waves</p>
+    <h2>Where each model lands, and how far it moves across countries</h2>
+    <p class="note">
+      One row per model. For each wave the model was in, the dot is its average
+      recommended equity share over all its kept responses in that wave, and the bar
+      behind it runs from its lowest to its highest country average — a short bar
+      means the model gives nearly the same answer everywhere, which is the
+      compression the paper documents. A model in two waves gets two dots joined by a
+      line. For the seven <i class="tag anchor">anchor</i> models, queried under the
+      same slug in every wave, that line is change on the provider's side, a rotated
+      snapshot or a serving change, not a change of model. For every other pair the
+      difference mixes model vintage with the later query date. Models tagged
+      <i class="tag">partial</i> were still collecting when the page was built.
+    </p>
+    <div class="panel">
+      <div class="legend" id="wavekey"></div>
+      <div id="dots"></div>
+      <details class="tv">
+        <summary>Table view</summary>
+        <div class="tblwrap">
+          <table class="data" id="modelTable"></table>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">By vintage</p>
+    <h2>Does the answer change with model generation?</h2>
+    <p class="note">
+      Every model placed by the day its slug went live on OpenRouter. The vertical
+      axis is either the model's mean recommended equity share or its country spread,
+      the distance from its lowest to its highest country average. One dot per model
+      per wave, so an anchor appears twice at the same date, joined by a line. The
+      shaded band is the paper's collection, 2–4 July 2026. No line is fitted: with
+      a handful of models per vendor this is a picture, not an estimate.
+    </p>
+    <div class="panel">
+      <div class="controls" style="margin:0 0 .6rem">
+        <label class="ctl" for="vmetric">Vertical axis
+          <select id="vmetric">
+            <option value="mean">Mean equity share (%)</option>
+            <option value="spread">Country spread (pp)</option>
+            <option value="gap_absmean">Mean |gap vs USA| (pp)</option>
+          </select>
+        </label>
+      </div>
+      <div class="legend" id="wavekey3"></div>
+      <div class="vint" id="vintage"></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Each model</p>
+    <h2>Country profiles, one chart per model</h2>
+    <p class="note">
+      Each chart plots the model's mean recommended equity share in every country,
+      one dot per wave, in a fixed order: the USA first, then the other five
+      English-prompt countries, then Europe, Asia and the Americas. The dashed line is
+      the model's USA value in its latest wave, so dots below it are countries where
+      that wave's advice sits below the model's own US level. All charts share one
+      vertical scale, set by the models currently shown. Hover a column for the
+      numbers.
+    </p>
+    <div class="panel">
+      <div class="legend" id="wavekey2"></div>
+      <div class="grid" id="cards"></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">By country and model</p>
+    <h2>Every cell in one wave</h2>
+    <p class="note">
+      Mean recommended equity share, in percentage points, for the wave chosen in the
+      controls above. The USA row is outlined because it is the paper's baseline.
+      Hover any cell for its standard deviation across repetitions and its
+      observation count.
+    </p>
+    <div class="panel">
+      <div class="hmwrap">
+        <table class="hm" id="heat"></table>
+      </div>
+      <div class="legend" id="legend"></div>
+      <details class="tv">
+        <summary>Table view</summary>
+        <div class="tblwrap">
+          <table class="data" id="countryTable"></table>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Reading this</p>
+    <h2>What the tracker does and does not show</h2>
+    <div class="panel">
+      <p>
+        These are raw cell means. The tracker does <strong>not</strong> reproduce the
+        paper's estimates: there are no country fixed effects, no wild cluster
+        bootstrap over models, and no Holm correction for multiple comparisons. The
+        country gaps shown are plain differences against each model's own USA cell,
+        which is a descriptive summary and not an estimated treatment effect. The
+        provider average in the collapsed view is an unweighted mean of that
+        provider's models.
+      </p>
+      <p>
+        The July wave is the paper's main collection restricted to the tracker's
+        slice, so its thirteen models are directly comparable with every later panel,
+        with one difference in precision: July cells hold 50 repetitions, tracking
+        cells 25.
+        A difference between a July model and a September model still mixes two
+        things — the model is newer <em>and</em> the query is later — and only the
+        anchors, which are the same slug queried in both waves, separate them.
+        Release dates are the day the slug went live on OpenRouter. In July the API
+        returned dated snapshot names (shown as “served as” in the table view); in
+        September it returned the bare slug, so the exact snapshot behind a September
+        answer is not observable from the response.
+      </p>
+      <p class="note" style="margin-top:.9rem">
+        Excluded from every figure, following the pre-registered rules: truncated
+        responses, parse failures, and refusals. Also excluded, by the tracker's own
+        rules rather than the pre-registration: zero-token provider errors, and rows
+        from models dropped from a panel after collection had started, which the strip
+        counts outside the total. “Slug drift” in the strip counts rows whose returned
+        slug differs from the one every other row of that model got in the same wave.
+        Temperature is fixed at 0.7 with no system prompt, and <code>max_tokens</code>
+        is 4000, matching the main collection.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Companion to <em>One Advisor for the Whole World? Cross-Country Evidence on
+    Financial Advice from Large Language Models</em>.
+    Rebuilt with <code>python code/build_tracking_site_data.py</code>.
+    <span id="stamp"></span>
+  </footer>
+</div>
+
+<div id="tip" hidden></div>
+<script src="data.js"></script>
+<script>
+(function () {
+  "use strict";
+  var T = window.TRACKING;
+  var tip = document.getElementById("tip");
+  var root = document.documentElement;
+  var SVGNS = "http://www.w3.org/2000/svg";
+
+  /* ---------- theme toggle ---------- */
+  document.getElementById("theme").addEventListener("click", function () {
+    var cur = root.getAttribute("data-theme");
+    var dark = cur ? cur === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    root.setAttribute("data-theme", dark ? "light" : "dark");
+    try { localStorage.setItem("tracker-theme", dark ? "light" : "dark"); } catch (e) {}
+    render();
+  });
+  try {
+    var saved = localStorage.getItem("tracker-theme");
+    if (saved) root.setAttribute("data-theme", saved);
+  } catch (e) {}
+
+  function tok(name) { return getComputedStyle(root).getPropertyValue(name).trim(); }
+
+  /* ---------- tooltip ---------- */
+  function showTip(node, ev) {
+    tip.innerHTML = "";
+    tip.appendChild(node);
+    tip.hidden = false;
+    var pad = 12, r = tip.getBoundingClientRect();
+    var x = ev.clientX + pad, y = ev.clientY + pad;
+    if (x + r.width > window.innerWidth - 8) x = ev.clientX - r.width - pad;
+    if (y + r.height > window.innerHeight - 8) y = ev.clientY - r.height - pad;
+    tip.style.left = x + "px";
+    tip.style.top = Math.max(8, y) + "px";
+  }
+  function hideTip() { tip.hidden = true; }
+  document.addEventListener("scroll", hideTip, true);
+
+  // Tooltip rows are built from DOM nodes, never innerHTML, because model names
+  // and country names originate in CSV output.
+  function tipNode(title, lines) {
+    var frag = document.createDocumentFragment();
+    var b = document.createElement("b"); b.textContent = title; frag.appendChild(b);
+    lines.forEach(function (l) {
+      frag.appendChild(document.createElement("br"));
+      if (l.color) { var k = document.createElement("i"); k.className = "k"; k.style.background = l.color; frag.appendChild(k); }
+      frag.appendChild(document.createTextNode(l.text));
+    });
+    return frag;
+  }
+
+  /* ---------- helpers ---------- */
+  function fmt(v) { return (v === null || v === undefined || isNaN(v)) ? "—" : v.toFixed(1); }
+  function sfmt(v) { return (v === null || v === undefined || isNaN(v)) ? "—" : (v > 0 ? "+" : "") + v.toFixed(1); }
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+  function svgEl(tag, attrs) {
+    var e = document.createElementNS(SVGNS, tag);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    return e;
+  }
+
+  /* ---------- waves and their colours ---------- */
+  // Categorical hues assigned in fixed order by wave index, never cycled. The
+  // palette carries six; a seventh wave would fold into the sixth's hue and the
+  // legend would say so. Text never wears these colours.
+  var WAVE_TOKENS = ["--s2", "--s1", "--s3", "--s4", "--s5", "--s6"];
+  function waveColor(i) { return tok(WAVE_TOKENS[Math.min(i, WAVE_TOKENS.length - 1)]); }
+  function waveShort(w) { return w.source === "paper" ? "July 2026 · paper" : w.date + " · wave"; }
+  function baselineLabel(m) {
+    var b = m.latest && m.latest.baseline_date;
+    var w = waves.filter(function (x) { return x.date === b; })[0];
+    return w ? waveShort(w).split(" · ")[0] : (b || "");
+  }
+
+  var waves = T.waves;
+  var latest = waves.length - 1;
+  var countries = T.countryOrder.filter(function (c) {
+    return waves.some(function (w) { return w.countries.indexOf(c) >= 0; });
+  });
+
+  /* ---------- the model directory, joined across waves ---------- */
+  // One record per slug: metadata plus a per-wave array of that wave's summary
+  // (or null). "latest" is the last wave the model appears in, which is what
+  // the sort keys and the right-hand value read.
+  var byWave = waves.map(function (w) {
+    var m = {}; w.models.forEach(function (d) { m[d.slug] = d; }); return m;
+  });
+  var models = Object.keys(T.models).map(function (slug) {
+    var meta = T.models[slug];
+    var per = byWave.map(function (m) { return m[slug] || null; });
+    var li = -1; per.forEach(function (p, i) { if (p) li = i; });
+    var fi = per.findIndex(function (p) { return !!p; });
+    var lat = per[li];
+    return {
+      slug: slug, name: meta.name, vendor: meta.vendor, released: meta.released,
+      anchor: !!meta.anchor, paper: !!meta.paper,
+      per: per, latestIdx: li, firstIdx: fi, latest: lat,
+      mean: lat ? lat.mean : null, spread: lat ? lat.spread : null,
+      change: (lat && lat.change !== undefined) ? lat.change : null,
+      inBoth: per.filter(Boolean).length > 1
+    };
+  });
+
+  /* ---------- controls ---------- */
+  var selFilter = document.getElementById("filter");
+  var selSort = document.getElementById("sort");
+  var chkGroup = document.getElementById("group");
+  var selWave = document.getElementById("wave");
+  waves.forEach(function (w, i) {
+    var o = document.createElement("option");
+    o.value = String(i); o.textContent = w.label || w.date;
+    selWave.appendChild(o);
+  });
+  selWave.value = String(latest);
+  [selFilter, selSort, chkGroup, selWave].forEach(function (c) { c.addEventListener("change", render); });
+  try {
+    var st = JSON.parse(localStorage.getItem("tracker-view") || "{}");
+    if (st.filter) selFilter.value = st.filter;
+    if (st.sort) selSort.value = st.sort;
+    if (st.group) chkGroup.checked = true;
+  } catch (e) {}
+
+  document.getElementById("stamp").textContent = "Latest wave " + T.generated + ".";
+
+  function filtered() {
+    var f = selFilter.value;
+    return models.filter(function (m) {
+      if (!m.latest) return false;
+      if (f === "new") return !m.paper;
+      if (f === "paper") return m.paper;
+      if (f === "anchor") return m.anchor;
+      return true;
+    });
+  }
+
+  var SORTS = {
+    mean:    function (a, b) { return (b.mean || 0) - (a.mean || 0); },
+    vintage: function (a, b) {
+      var da = a.released || "9999", db = b.released || "9999";
+      return da < db ? -1 : da > db ? 1 : SORTS.mean(a, b);
+    },
+    spread:  function (a, b) { return (b.spread || 0) - (a.spread || 0); },
+    change:  function (a, b) {
+      var ca = a.change === null ? -1 : Math.abs(a.change);
+      var cb = b.change === null ? -1 : Math.abs(b.change);
+      return cb - ca || SORTS.mean(a, b);
+    },
+    vendor:  function (a, b) { return a.vendor.localeCompare(b.vendor) || SORTS.mean(a, b); }
+  };
+  function sorted(list) { return list.slice().sort(SORTS[selSort.value] || SORTS.mean); }
+
+  // Provider groups keep the chosen sort inside each group, and order the
+  // groups by the same key applied to the group's best member, so "sort by
+  // vintage, collapsed by provider" lists providers by their oldest model.
+  function grouped(list) {
+    var g = {}; list.forEach(function (m) { (g[m.vendor] = g[m.vendor] || []).push(m); });
+    var cmp = SORTS[selSort.value] || SORTS.mean;
+    return Object.keys(g).map(function (v) {
+      return { vendor: v, models: g[v].slice().sort(cmp) };
+    }).sort(function (A, B) { return cmp(A.models[0], B.models[0]); });
+  }
+
+  /* ---------- wave legend ---------- */
+  function renderKey(hostId, list) {
+    var host = document.getElementById(hostId); host.innerHTML = "";
+    waves.forEach(function (w, i) {
+      var n = list.filter(function (m) { return m.per[i]; }).length;
+      if (!n) return;
+      var k = el("span", "key");
+      var dot = el("i"); dot.style.background = waveColor(i); k.appendChild(dot);
+      k.appendChild(document.createTextNode(waveShort(w) + " · " + n + " model" + (n === 1 ? "" : "s")));
+      host.appendChild(k);
+    });
+  }
+
+  /* ---------- QC strip (for the heatmap wave) ---------- */
+  function renderQC(w) {
+    var q = w.qc, host = document.getElementById("qc");
+    var pct = q.total ? (100 * q.kept / q.total) : 0;
+    var items = [
+      ["Wave", w.label || w.date, ""],
+      ["Responses kept", q.kept.toLocaleString() + " / " + q.total.toLocaleString(), pct >= 98 ? "ok" : "warn"],
+      ["Models", String(w.models.length), ""],
+      ["Countries", String(w.countries.length), ""],
+      ["Truncated", String(q.truncated), q.truncated ? "warn" : "ok"],
+      ["Parse failures", String(q.parse_failed), q.parse_failed ? "warn" : "ok"],
+      ["API errors", String(q.api_errors || 0), (q.api_errors || 0) ? "warn" : "ok"],
+      ["Refusals", String(q.refusals), q.refusals ? "warn" : "ok"],
+      ["Slug drift", String(q.drift), q.drift ? "warn" : "ok"]
+    ];
+    if (q.dropped_models) items.push(["Dropped-model rows", String(q.dropped_models), "warn"]);
+    if (q.reps_per_cell) items.push(["Reps per cell", String(q.reps_per_cell), ""]);
+    items.push(["Models still collecting", String(q.partial_models || 0), (q.partial_models || 0) ? "warn" : "ok"]);
+    host.innerHTML = "";
+    items.forEach(function (it) {
+      var c = el("span", "chip " + it[2], it[0] + " ");
+      c.appendChild(el("b", null, it[1]));
+      host.appendChild(c);
+    });
+    document.getElementById("qcnote").textContent =
+      "Quality counts are for the wave chosen under “Heatmap wave”. The two model views below pool every wave.";
+  }
+
+  /* ---------- dumbbell rows ---------- */
+  var scale = null;
+  function computeScale(list) {
+    var lo = Infinity, hi = -Infinity;
+    list.forEach(function (m) {
+      m.per.forEach(function (p, i) {
+        if (!p) return;
+        var cells = waves[i].cells[m.slug] || {};
+        countries.forEach(function (c) {
+          var s = cells[c]; if (!s) return;
+          if (s.mean < lo) lo = s.mean;
+          if (s.mean > hi) hi = s.mean;
+        });
+      });
+    });
+    if (!isFinite(lo)) { lo = 0; hi = 100; }
+    lo = Math.max(0, Math.floor((lo - 4) / 5) * 5);
+    hi = Math.min(100, Math.ceil((hi + 4) / 5) * 5);
+    var span = hi - lo || 1;
+    return { lo: lo, hi: hi, span: span, px: function (v) { return ((v - lo) / span) * 100; } };
+  }
+
+  function modelRow(m) {
+    var div = el("div", "row");
+
+    var name = el("div", "rname");
+    var vend = el("span", "vend", m.vendor);
+    if (m.anchor) { var t = el("i", "tag anchor", "anchor"); vend.appendChild(document.createTextNode(" ")); vend.appendChild(t); }
+    else if (m.paper) { var t2 = el("i", "tag", "paper"); vend.appendChild(document.createTextNode(" ")); vend.appendChild(t2); }
+    if (m.latest.partial) { var t3 = el("i", "tag", "partial"); vend.appendChild(document.createTextNode(" ")); vend.appendChild(t3); }
+    name.appendChild(vend);
+    name.appendChild(document.createTextNode(m.name));
+    name.appendChild(el("span", "rel", m.released ? "released " + m.released : ""));
+
+    var track = el("div", "track");
+    var svg = svgEl("svg", { viewBox: "0 0 100 34", preserveAspectRatio: "none", role: "img" });
+    var present = [];
+    m.per.forEach(function (p, i) { if (p) present.push(i); });
+    var lanes = present.length;
+    // Lane geometry: one lane per wave the model is in, stacked top to bottom.
+    function laneY(k) { return lanes === 1 ? 17 : 8 + k * (18 / (lanes - 1)); }
+
+    var aria = [];
+    var dotsToPlace = [];
+    present.forEach(function (i, k) {
+      var p = m.per[i];
+      var cells = waves[i].cells[m.slug] || {};
+      var vals = countries.map(function (c) { return cells[c]; }).filter(Boolean);
+      if (!vals.length) return;
+      var mins = Math.min.apply(null, vals.map(function (s) { return s.mean; }));
+      var maxs = Math.max.apply(null, vals.map(function (s) { return s.mean; }));
+      var y = laneY(k);
+      var col = waveColor(i);
+      // range bar: the series hue as a wash, thin
+      svg.appendChild(svgEl("rect", {
+        x: scale.px(mins), y: y - 2.5, width: Math.max(0.6, scale.px(maxs) - scale.px(mins)),
+        height: 5, rx: 2.5, fill: col, opacity: .18
+      }));
+      // per-country ticks so the distribution inside the range is visible
+      vals.forEach(function (s) {
+        svg.appendChild(svgEl("rect", { x: scale.px(s.mean), y: y - 4, width: .3, height: 8, fill: col, opacity: .5 }));
+      });
+      dotsToPlace.push({ x: scale.px(p.mean), y: y, col: col });
+      aria.push(waveShort(waves[i]) + ": mean " + fmt(p.mean) + " percent, range " + fmt(mins) + " to " + fmt(maxs));
+    });
+    // dumbbell connector between successive wave means
+    for (var k = 1; k < dotsToPlace.length; k++) {
+      var a = dotsToPlace[k - 1], b = dotsToPlace[k];
+      svg.appendChild(svgEl("line", {
+        x1: a.x, y1: a.y, x2: b.x, y2: b.y, stroke: tok("--ink-2"), "stroke-width": "1.5",
+        "vector-effect": "non-scaling-stroke", opacity: .7
+      }));
+    }
+    svg.setAttribute("aria-label", m.name + ". " + aria.join(". ") + ".");
+    track.appendChild(svg);
+    // Mean markers in real pixel space: inside the stretched viewBox an SVG
+    // circle renders as an ellipse.
+    dotsToPlace.forEach(function (d) {
+      var dot = el("i", "dot");
+      dot.style.left = d.x + "%"; dot.style.top = (d.y / 34 * 100) + "%"; dot.style.background = d.col;
+      track.appendChild(dot);
+    });
+
+    track.addEventListener("mousemove", function (ev) {
+      var lines = [];
+      present.forEach(function (i) {
+        var p = m.per[i];
+        lines.push({ color: waveColor(i), text: fmt(p.mean) + "%  " + waveShort(waves[i]) + "  · spread " + fmt(p.spread) + " pp · n " + p.n });
+      });
+      if (m.change !== null) lines.push({ text: "change " + sfmt(m.change) + " pp since " + m.latest.baseline_date });
+      present.forEach(function (i) {
+        var p = m.per[i];
+        if (p.served && p.served !== m.slug) lines.push({ text: "served " + waveShort(waves[i]).split(" · ")[0] + ": " + p.served });
+      });
+      showTip(tipNode(m.name, lines), ev);
+    });
+    track.addEventListener("mouseleave", hideTip);
+
+    var val = el("div", "rval");
+    val.appendChild(el("b", null, fmt(m.mean) + "%"));
+    val.appendChild(document.createTextNode(" · spread " + fmt(m.spread)));
+    var chg = el("span", "chg", m.change !== null ? sfmt(m.change) + " pp since " + baselineLabel(m) : (m.inBoth ? "" : "one wave"));
+    val.appendChild(chg);
+
+    div.appendChild(name); div.appendChild(track); div.appendChild(val);
+    return div;
+  }
+
+  function axisRow() {
+    var ax = el("div", "row axis");
+    ax.appendChild(el("div"));
+    var ticks = el("div", "ticks");
+    [0, .25, .5, .75, 1].forEach(function (f) {
+      var s = el("span", null, String(Math.round(scale.lo + f * scale.span)));
+      s.style.left = (f * 100) + "%"; ticks.appendChild(s);
+    });
+    ax.appendChild(ticks);
+    ax.appendChild(el("div", "rval axlabel", "% equity"));
+    return ax;
+  }
+
+  function groupSummary(g) {
+    // The collapsed view of a provider: its models' mean per wave, averaged.
+    var sum = el("summary");
+    var gn = el("div", "gname", g.vendor);
+    var small = el("small", null, g.models.length + " model" + (g.models.length === 1 ? "" : "s"));
+    gn.appendChild(small); sum.appendChild(gn);
+
+    var track = el("div", "track");
+    var svg = svgEl("svg", { viewBox: "0 0 100 34", preserveAspectRatio: "none", "aria-hidden": "true" });
+    var pts = [];
+    waves.forEach(function (w, i) {
+      var ms = g.models.filter(function (m) { return m.per[i]; });
+      if (!ms.length) return;
+      var means = ms.map(function (m) { return m.per[i].mean; });
+      var avg = means.reduce(function (a, b) { return a + b; }, 0) / means.length;
+      var lo = Math.min.apply(null, means), hi = Math.max.apply(null, means);
+      pts.push({ i: i, avg: avg, lo: lo, hi: hi, n: ms.length });
+    });
+    var lanes = pts.length;
+    function laneY(k) { return lanes === 1 ? 17 : 8 + k * (18 / (lanes - 1)); }
+    var placed = [];
+    pts.forEach(function (p, k) {
+      var y = laneY(k), col = waveColor(p.i);
+      svg.appendChild(svgEl("rect", { x: scale.px(p.lo), y: y - 2.5, width: Math.max(.6, scale.px(p.hi) - scale.px(p.lo)), height: 5, rx: 2.5, fill: col, opacity: .18 }));
+      placed.push({ x: scale.px(p.avg), y: y, col: col });
+    });
+    for (var k = 1; k < placed.length; k++) {
+      svg.appendChild(svgEl("line", { x1: placed[k - 1].x, y1: placed[k - 1].y, x2: placed[k].x, y2: placed[k].y, stroke: tok("--ink-2"), "stroke-width": "1.5", "vector-effect": "non-scaling-stroke", opacity: .7 }));
+    }
+    track.appendChild(svg);
+    placed.forEach(function (d) {
+      var dot = el("i", "dot"); dot.style.left = d.x + "%"; dot.style.top = (d.y / 34 * 100) + "%"; dot.style.background = d.col; track.appendChild(dot);
+    });
+    track.addEventListener("mousemove", function (ev) {
+      showTip(tipNode(g.vendor, pts.map(function (p) {
+        return { color: waveColor(p.i), text: fmt(p.avg) + "%  " + waveShort(waves[p.i]) + "  · " + p.n + " model" + (p.n === 1 ? "" : "s") + ", " + fmt(p.lo) + "–" + fmt(p.hi) };
+      })), ev);
+    });
+    track.addEventListener("mouseleave", hideTip);
+    sum.appendChild(track);
+
+    var last = pts[pts.length - 1];
+    var val = el("div", "rval");
+    val.appendChild(el("b", null, last ? fmt(last.avg) + "%" : "—"));
+    val.appendChild(el("span", "chg", "provider avg, unweighted"));
+    sum.appendChild(val);
+    return sum;
+  }
+
+  var openGroups = {};
+  function renderDots(list) {
+    var host = document.getElementById("dots"); host.innerHTML = "";
+    if (!list.length) { host.appendChild(el("p", "note", "No models match this filter.")); return; }
+
+    if (chkGroup.checked) {
+      grouped(list).forEach(function (g) {
+        var det = el("details", "group");
+        if (openGroups[g.vendor]) det.open = true;
+        det.addEventListener("toggle", function () { openGroups[g.vendor] = det.open; });
+        det.appendChild(groupSummary(g));
+        var rows = el("div", "rows");
+        g.models.forEach(function (m) { rows.appendChild(modelRow(m)); });
+        det.appendChild(rows);
+        host.appendChild(det);
+      });
+      var axw = el("div", "rows"); axw.appendChild(axisRow()); host.appendChild(axw);
+    } else {
+      var rows = el("div", "rows");
+      sorted(list).forEach(function (m) { rows.appendChild(modelRow(m)); });
+      rows.appendChild(axisRow());
+      host.appendChild(rows);
+    }
+
+    // table view
+    var tb = document.getElementById("modelTable"); tb.innerHTML = "";
+    var thead = el("thead"), hr = el("tr");
+    var heads = ["Model", "Vendor", "Released", "Role"];
+    waves.forEach(function (w) { heads.push(waveShort(w) + " mean %"); });
+    heads = heads.concat(["Change pp", "Spread pp", "USA %", "n kept (latest)", "Rows (latest)", "Served as"]);
+    heads.forEach(function (h) { hr.appendChild(el("th", null, h)); });
+    thead.appendChild(hr); tb.appendChild(thead);
+    var tbody = el("tbody");
+    var order = chkGroup.checked ? grouped(list).reduce(function (a, g) { return a.concat(g.models); }, []) : sorted(list);
+    order.forEach(function (m) {
+      var tr = el("tr");
+      [m.name, m.vendor, m.released || "—", m.anchor ? "anchor" : (m.paper ? "paper" : "new")].forEach(function (v) { tr.appendChild(el("td", null, v)); });
+      m.per.forEach(function (p) { tr.appendChild(el("td", null, p ? fmt(p.mean) : "—")); });
+      tr.appendChild(el("td", null, m.change === null ? "—" : sfmt(m.change)));
+      tr.appendChild(el("td", null, fmt(m.spread)));
+      tr.appendChild(el("td", null, fmt(m.latest.usa)));
+      tr.appendChild(el("td", null, String(m.latest.n)));
+      tr.appendChild(el("td", null, String(m.latest.rows || "—") + (m.latest.partial ? " (partial)" : "")));
+      var servedList = m.per.filter(Boolean).map(function (p) { return p.served || "—"; });
+      var uniq = servedList.filter(function (v, i, a) { return a.indexOf(v) === i; });
+      tr.appendChild(el("td", null, uniq.join(" → ")));
+      tbody.appendChild(tr);
+    });
+    tb.appendChild(tbody);
+  }
+
+  /* ---------- vintage scatter ---------- */
+  var selMetric = document.getElementById("vmetric");
+  selMetric.addEventListener("change", render);
+  var METRIC_LABEL = { mean: "% equity", spread: "spread, pp", gap_absmean: "mean |gap vs USA|, pp" };
+
+  function renderVintage(list) {
+    var host = document.getElementById("vintage"); host.innerHTML = "";
+    var metric = selMetric.value;
+    var pts = [];
+    list.forEach(function (m) {
+      if (!m.released) return;
+      m.per.forEach(function (p, i) {
+        if (p && p[metric] !== null && p[metric] !== undefined) pts.push({ m: m, i: i, v: p[metric], p: p });
+      });
+    });
+    if (!pts.length) { host.appendChild(el("p", "note", "No release dates for the models shown.")); return; }
+
+    var W = 1000, H = 390, padL = 44, padR = 16, padT = 26, padB = 40;
+    var iw = W - padL - padR, ih = H - padT - padB;
+    function day(d) { return Date.parse(d + "T00:00:00Z") / 864e5; }
+    var xs = pts.map(function (q) { return day(q.m.released); });
+    var x0 = Math.min.apply(null, xs) - 20, x1 = Math.max.apply(null, xs) + 20;
+    var ys = pts.map(function (q) { return q.v; });
+    var y0 = Math.floor((Math.min.apply(null, ys) - 3) / 5) * 5, y1 = Math.ceil((Math.max.apply(null, ys) + 3) / 5) * 5;
+    if (metric !== "mean") y0 = 0;
+    if (y1 <= y0) y1 = y0 + 5;
+    function X(d) { return padL + (d - x0) / (x1 - x0) * iw; }
+    function Y(v) { return padT + (1 - (v - y0) / (y1 - y0)) * ih; }
+
+    var svg = svgEl("svg", { viewBox: "0 0 " + W + " " + H, role: "img" });
+    svg.setAttribute("aria-label", "Models by release date against " + METRIC_LABEL[metric] + ". Values are in the table view above.");
+
+    // gridlines and y ticks
+    var step = (y1 - y0) > 40 ? 10 : 5;
+    for (var g = y0; g <= y1; g += step) {
+      svg.appendChild(svgEl("line", { x1: padL, x2: W - padR, y1: Y(g), y2: Y(g), stroke: tok("--rule-soft"), "stroke-width": 1 }));
+      var t = svgEl("text", { x: padL - 6, y: Y(g) + 3.5, "text-anchor": "end", "font-size": 10, fill: tok("--muted") });
+      t.textContent = String(g); svg.appendChild(t);
+    }
+    var yl = svgEl("text", { x: padL - 6, y: padT - 12, "text-anchor": "end", "font-size": 10, fill: tok("--muted") });
+    yl.textContent = METRIC_LABEL[metric]; svg.appendChild(yl);
+
+    // month ticks on x
+    var d0 = new Date(x0 * 864e5), cur = new Date(Date.UTC(d0.getUTCFullYear(), d0.getUTCMonth() + 1, 1));
+    while (cur.getTime() / 864e5 < x1) {
+      var xd = cur.getTime() / 864e5;
+      svg.appendChild(svgEl("line", { x1: X(xd), x2: X(xd), y1: padT, y2: H - padB, stroke: tok("--rule-soft"), "stroke-width": 1 }));
+      var lab = svgEl("text", { x: X(xd), y: H - padB + 14, "text-anchor": "middle", "font-size": 9.5, fill: tok("--muted") });
+      lab.textContent = cur.toLocaleDateString("en-GB", { month: "short", year: cur.getUTCMonth() === 0 ? "numeric" : undefined, timeZone: "UTC" });
+      svg.appendChild(lab);
+      cur = new Date(Date.UTC(cur.getUTCFullYear(), cur.getUTCMonth() + 1, 1));
+    }
+    var xl = svgEl("text", { x: W - padR, y: H - 6, "text-anchor": "end", "font-size": 10, fill: tok("--muted") });
+    xl.textContent = "release date on OpenRouter"; svg.appendChild(xl);
+
+    // paper collection band, 2–4 July 2026
+    var b0 = X(day("2026-07-02")), b1 = X(day("2026-07-05"));
+    svg.appendChild(svgEl("rect", { x: b0, y: padT, width: Math.max(2, b1 - b0), height: ih, fill: waveColor(0), opacity: .12 }));
+    var bl = svgEl("text", { x: b1 + 4, y: padT + 10, "font-size": 9.5, fill: tok("--muted") });
+    bl.textContent = "paper collected"; svg.appendChild(bl);
+
+    // connectors for models in more than one wave (same x)
+    list.forEach(function (m) {
+      var mine = pts.filter(function (q) { return q.m === m; });
+      if (mine.length > 1) {
+        var vs = mine.map(function (q) { return q.v; });
+        svg.appendChild(svgEl("line", { x1: X(day(m.released)), x2: X(day(m.released)), y1: Y(Math.min.apply(null, vs)), y2: Y(Math.max.apply(null, vs)), stroke: tok("--ink-2"), "stroke-width": 1.5, opacity: .7 }));
+      }
+    });
+
+    // Labels: one per model at its latest-wave point, placed greedily where a
+    // label fits without covering another label or a mark. Extremes are placed
+    // first; a label that fits nowhere is skipped, and the tooltip and the table
+    // view above carry that model's identity instead.
+    var CH = 5.8, LH = 11;                   // approx glyph width / line height at 9.5px mono
+    var boxes = pts.map(function (q) {        // marks are obstacles
+      var cx = X(day(q.m.released)), cy = Y(q.v);
+      return { x0: cx - 7, x1: cx + 7, y0: cy - 7, y1: cy + 7 };
+    });
+    function clear(b) {
+      if (b.x0 < padL || b.x1 > W - padR || b.y0 < padT - 10 || b.y1 > H - padB) return false;
+      return !boxes.some(function (o) { return b.x0 < o.x1 && b.x1 > o.x0 && b.y0 < o.y1 && b.y1 > o.y0; });
+    }
+    var med = ys.slice().sort(function (a, b) { return a - b; })[Math.floor(ys.length / 2)];
+    var cands = [];
+    list.forEach(function (m) {
+      var mine = pts.filter(function (q) { return q.m === m; });
+      if (!mine.length) return;
+      var q = mine[mine.length - 1];
+      cands.push({ x: X(day(m.released)), y: Y(q.v), text: m.name, pri: Math.abs(q.v - med) + (m.anchor ? 100 : 0) });
+    });
+    cands.sort(function (a, b) { return b.pri - a.pri; });
+    cands.forEach(function (L) {
+      var w = L.text.length * CH, h = LH;
+      var tries = [
+        { x: L.x + 9,  y: L.y + 3.5,  anchor: "start", bx: L.x + 8,  by: L.y - h / 2 },
+        { x: L.x - 9,  y: L.y + 3.5,  anchor: "end",   bx: L.x - 8 - w, by: L.y - h / 2 },
+        { x: L.x,      y: L.y - 9,    anchor: "middle", bx: L.x - w / 2, by: L.y - 9 - h },
+        { x: L.x,      y: L.y + 15,   anchor: "middle", bx: L.x - w / 2, by: L.y + 7 },
+        { x: L.x + 9,  y: L.y - 7,    anchor: "start", bx: L.x + 8,  by: L.y - 7 - h + 3 },
+        { x: L.x + 9,  y: L.y + 14,   anchor: "start", bx: L.x + 8,  by: L.y + 6 },
+        { x: L.x - 9,  y: L.y - 7,    anchor: "end",   bx: L.x - 8 - w, by: L.y - 7 - h + 3 },
+        { x: L.x - 9,  y: L.y + 14,   anchor: "end",   bx: L.x - 8 - w, by: L.y + 6 }
+      ];
+      for (var k = 0; k < tries.length; k++) {
+        var t = tries[k], b = { x0: t.bx, x1: t.bx + w, y0: t.by, y1: t.by + h };
+        if (clear(b)) {
+          var tx = svgEl("text", { x: t.x, y: t.y, "text-anchor": t.anchor, "font-size": 9.5, fill: tok("--ink-2") });
+          tx.textContent = L.text; svg.appendChild(tx);
+          boxes.push(b);
+          break;
+        }
+      }
+    });
+
+    // marks, latest wave drawn last so it sits on top
+    pts.sort(function (a, b) { return a.i - b.i; });
+    pts.forEach(function (q) {
+      var grp = svgEl("g", { class: "pt" });
+      var cx = X(day(q.m.released)), cy = Y(q.v);
+      grp.appendChild(svgEl("circle", { cx: cx, cy: cy, r: 12, fill: "transparent" }));
+      grp.appendChild(svgEl("circle", { class: "mark", cx: cx, cy: cy, r: 5, fill: waveColor(q.i), stroke: tok("--surface"), "stroke-width": 2 }));
+      grp.addEventListener("mousemove", function (ev) {
+        var lines = [{ color: waveColor(q.i), text: fmt(q.v) + " " + METRIC_LABEL[metric] + "  " + waveShort(waves[q.i]) },
+                     { text: q.m.vendor + " · released " + q.m.released + (q.m.anchor ? " · anchor" : q.m.paper ? " · paper" : "") },
+                     { text: "mean " + fmt(q.p.mean) + "% · spread " + fmt(q.p.spread) + " pp · n " + q.p.n }];
+        showTip(tipNode(q.m.name, lines), ev);
+      });
+      grp.addEventListener("mouseleave", hideTip);
+      svg.appendChild(grp);
+    });
+    host.appendChild(svg);
+  }
+
+  /* ---------- small multiples ---------- */
+  function card(m) {
+    var c = el("div", "card");
+    c.appendChild(el("h3", null, m.name));
+    var sub = el("div", "sub");
+    sub.appendChild(el("span", null, m.vendor));
+    if (m.released) sub.appendChild(el("span", null, m.released));
+    if (m.anchor) sub.appendChild(el("span", "tag anchor", "anchor"));
+    else if (m.paper) sub.appendChild(el("span", "tag", "paper"));
+    if (m.latest.partial) sub.appendChild(el("span", "tag", "partial"));
+    c.appendChild(sub);
+
+    var W = 300, H = 132, padL = 26, padR = 6, padT = 6, padB = 18;
+    var iw = W - padL - padR, ih = H - padT - padB;
+    var n = countries.length;
+    function xOf(i) { return padL + (i + .5) * (iw / n); }
+    function yOf(v) { return padT + (1 - (v - scale.lo) / scale.span) * ih; }
+
+    var wrapper = el("div", "sm");
+    var svg = svgEl("svg", { viewBox: "0 0 " + W + " " + H, role: "img" });
+    svg.setAttribute("aria-label", m.name + ": recommended equity share by country, one dot per wave. See table view above for values.");
+
+    // recessive gridlines at clean steps
+    var step = scale.span > 40 ? 20 : 10;
+    for (var g = Math.ceil(scale.lo / step) * step; g <= scale.hi; g += step) {
+      svg.appendChild(svgEl("line", { x1: padL, x2: W - padR, y1: yOf(g), y2: yOf(g), stroke: tok("--rule-soft"), "stroke-width": 1 }));
+      var lab = svgEl("text", { x: padL - 4, y: yOf(g) + 3, "text-anchor": "end", "font-size": 8.5, fill: tok("--muted"), "font-family": "IBM Plex Mono, monospace" });
+      lab.textContent = String(g); svg.appendChild(lab);
+    }
+    // USA reference: the model's USA cell in its latest wave
+    var usa = m.latest.usa;
+    if (usa !== null && usa !== undefined) {
+      svg.appendChild(svgEl("line", { x1: padL, x2: W - padR, y1: yOf(usa), y2: yOf(usa), stroke: tok("--ink-2"), "stroke-width": 1, "stroke-dasharray": "3 3", opacity: .7 }));
+    }
+    // highlight the USA column
+    svg.appendChild(svgEl("rect", { x: xOf(0) - iw / n / 2, y: padT, width: iw / n, height: ih, fill: tok("--surface-2") }));
+
+    // per-country marks: connector between waves, then dots (surface ring)
+    var present = []; m.per.forEach(function (p, i) { if (p) present.push(i); });
+    countries.forEach(function (cn, ci) {
+      var pts = present.map(function (i) {
+        var s = (waves[i].cells[m.slug] || {})[cn]; return s ? { i: i, v: s.mean, s: s } : null;
+      }).filter(Boolean);
+      if (!pts.length) return;
+      if (pts.length > 1) {
+        svg.appendChild(svgEl("line", { x1: xOf(ci), x2: xOf(ci), y1: yOf(pts[0].v), y2: yOf(pts[pts.length - 1].v), stroke: tok("--ink-2"), "stroke-width": 1, opacity: .6 }));
+      }
+      pts.forEach(function (p) {
+        svg.appendChild(svgEl("circle", { cx: xOf(ci), cy: yOf(p.v), r: 3.6, fill: waveColor(p.i), stroke: tok("--surface"), "stroke-width": 1.5 }));
+      });
+      // hit target wider than the mark: the whole column
+      var hit = svgEl("rect", { x: xOf(ci) - iw / n / 2, y: padT, width: iw / n, height: ih, fill: "transparent" });
+      hit.style.cursor = "default";
+      hit.addEventListener("mousemove", function (ev) {
+        showTip(tipNode(m.name + " · " + cn, pts.map(function (p) {
+          return { color: waveColor(p.i), text: fmt(p.v) + "%  " + waveShort(waves[p.i]) + "  · sd " + fmt(p.s.sd) + " · n " + p.s.n + (p.s.gap_vs_us !== undefined ? " · vs USA " + sfmt(p.s.gap_vs_us) : "") };
+        })), ev);
+      });
+      hit.addEventListener("mouseleave", hideTip);
+      svg.appendChild(hit);
+    });
+    // x labels: USA and a few landmarks only, never all 21
+    [[0, "USA"], [6, "SWE"], [9, "FRA"], [15, "JPN"], [18, "BRA"], [20, "TUR"]].forEach(function (pair) {
+      if (pair[0] >= n) return;
+      var t = svgEl("text", { x: xOf(pair[0]), y: H - 5, "text-anchor": "middle", "font-size": 8, fill: tok("--muted"), "font-family": "IBM Plex Mono, monospace" });
+      t.textContent = pair[1]; svg.appendChild(t);
+    });
+    wrapper.appendChild(svg);
+    c.appendChild(wrapper);
+
+    var stats = el("div", "stats");
+    var s1 = el("span", null, "mean "); s1.appendChild(el("b", null, fmt(m.mean) + "%")); stats.appendChild(s1);
+    var s2 = el("span", null, "spread "); s2.appendChild(el("b", null, fmt(m.spread) + " pp")); stats.appendChild(s2);
+    var s3 = el("span", null, m.change !== null ? "since " + baselineLabel(m) + " " : "USA ");
+    s3.appendChild(el("b", null, m.change !== null ? sfmt(m.change) + " pp" : fmt(usa) + "%")); stats.appendChild(s3);
+    c.appendChild(stats);
+    return c;
+  }
+
+  function renderCards(list) {
+    var host = document.getElementById("cards"); host.innerHTML = "";
+    if (chkGroup.checked) {
+      grouped(list).forEach(function (g) {
+        var t = el("div", "gtitle", g.vendor);
+        t.appendChild(el("small", null, g.models.length + " model" + (g.models.length === 1 ? "" : "s")));
+        host.appendChild(t);
+        g.models.forEach(function (m) { host.appendChild(card(m)); });
+      });
+    } else {
+      sorted(list).forEach(function (m) { host.appendChild(card(m)); });
+    }
+  }
+
+  /* ---------- heatmap (one wave) ---------- */
+  function renderHeat(w) {
+    var steps = ["--q1", "--q2", "--q3", "--q4", "--q5"].map(tok);
+    var all = [];
+    w.models.forEach(function (m) {
+      var row = w.cells[m.slug] || {};
+      w.countries.forEach(function (c) { if (row[c]) all.push(row[c].mean); });
+    });
+    var t = document.getElementById("heat"); t.innerHTML = "";
+    if (!all.length) return;
+    var lo = Math.min.apply(null, all), hi = Math.max.apply(null, all);
+    var sp = (hi - lo) || 1;
+    function band(v) {
+      var i = Math.floor(((v - lo) / sp) * steps.length);
+      return Math.max(0, Math.min(steps.length - 1, i));
+    }
+    function lum(hex) {
+      var m = /^#?([0-9a-f]{6})$/i.exec((hex || "").trim());
+      if (!m) return 1;
+      var n = parseInt(m[1], 16);
+      return (0.2126 * (n >> 16 & 255) + 0.7152 * (n >> 8 & 255) + 0.0722 * (n & 255)) / 255;
+    }
+    var inks = steps.map(function (c) { return lum(c) < 0.55 ? "#ffffff" : "#10151c"; });
+
+    // Column order follows the page's sort so the two views agree.
+    var cmp = SORTS[selSort.value] || SORTS.mean;
+    var cols = w.models.map(function (d) {
+      var m = models.find(function (x) { return x.slug === d.slug; });
+      return m || { slug: d.slug, name: d.name, vendor: d.vendor, mean: d.mean, spread: d.spread, change: null, released: null };
+    }).sort(cmp);
+
+    var thead = el("thead"), hr = el("tr"); hr.appendChild(el("th"));
+    cols.forEach(function (m) { var th = el("th"); th.appendChild(el("span", null, m.name)); hr.appendChild(th); });
+    thead.appendChild(hr); t.appendChild(thead);
+
+    var tbody = el("tbody");
+    w.countries.forEach(function (c) {
+      var tr = el("tr", c === "USA" ? "us" : ""); tr.appendChild(el("th", null, c));
+      cols.forEach(function (m) {
+        var s = (w.cells[m.slug] || {})[c];
+        if (!s) { var e = el("td", "empty", "·"); e.title = "no data"; tr.appendChild(e); return; }
+        var i = band(s.mean);
+        var td = el("td", null, String(Math.round(s.mean)));
+        td.style.background = steps[i]; td.style.color = inks[i];
+        td.addEventListener("mousemove", function (ev) {
+          showTip(tipNode(c + " · " + m.name, [
+            { text: fmt(s.mean) + "%  mean" }, { text: "sd " + fmt(s.sd) + " pp · n " + s.n },
+            { text: "vs USA " + sfmt(s.gap_vs_us) + " pp" }
+          ]), ev);
+        });
+        td.addEventListener("mouseleave", hideTip);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    t.appendChild(tbody);
+
+    var lg = document.getElementById("legend"); lg.innerHTML = "";
+    lg.appendChild(el("span", null, fmt(lo) + "%"));
+    steps.forEach(function (s) { var sw = el("i", "sw"); sw.style.background = s; lg.appendChild(sw); });
+    lg.appendChild(el("span", null, fmt(hi) + "% equity"));
+
+    var ct = document.getElementById("countryTable"); ct.innerHTML = "";
+    var th2 = el("thead"), hr2 = el("tr");
+    ["Country", "Mean %", "SD pp", "n"].forEach(function (h) { hr2.appendChild(el("th", null, h)); });
+    th2.appendChild(hr2); ct.appendChild(th2);
+    var tb2 = el("tbody");
+    w.countryMeans.forEach(function (s) {
+      var tr = el("tr");
+      [s.country, fmt(s.mean), fmt(s.sd), String(s.n)].forEach(function (v) { tr.appendChild(el("td", null, v)); });
+      tb2.appendChild(tr);
+    });
+    ct.appendChild(tb2);
+  }
+
+  function render() {
+    hideTip();
+    try { localStorage.setItem("tracker-view", JSON.stringify({ filter: selFilter.value, sort: selSort.value, group: chkGroup.checked })); } catch (e) {}
+    var list = filtered();
+    scale = computeScale(list.length ? list : models);
+    renderKey("wavekey", list); renderKey("wavekey2", list); renderKey("wavekey3", list);
+    renderDots(list); renderVintage(list); renderCards(list);
+    var w = waves[parseInt(selWave.value, 10)];
+    renderQC(w); renderHeat(w);
+  }
+  render();
+})();
+</script>
+</body>
+</html>

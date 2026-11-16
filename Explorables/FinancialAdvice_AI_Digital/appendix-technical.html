@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technical appendix · One advisor for the whole world?</title>
+<meta name="description" content="Digital edition of the paper One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI, by Claes Bäckman, with interactive figures, a country-effects explorer and the exact prompts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="" data-page="appendix-technical">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">One advisor for the whole world?</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/claesbackman.github.io/issues/new?title=FinancialAdvice_AI website: Technical appendix&body=Page: Explorables/FinancialAdvice_AI_Digital/appendix-technical.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="https://osf.io/2ch5z" target="_blank" rel="noopener">Pre-registration ↗</a>
+    <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">One Advisor for the Whole World?</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="literature.html"><span class="nav-num">2</span><span>Literature</span></a></li><li><a href="design.html"><span class="nav-num">3</span><span>Experimental design</span></a></li><li><a href="benchmark.html"><span class="nav-num">4</span><span>What should move the advice?</span></a></li><li><a href="results.html"><span class="nav-num">5</span><span>Main results</span></a></li><li><a href="advice-rule.html"><span class="nav-num">6</span><span>The advice rule</span></a></li><li><a href="text.html"><span class="nav-num">7</span><span>Explanations versus advice</span></a></li><li><a href="conclusion.html"><span class="nav-num">8</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A</span><span>Appendix tables and figures</span></a></li><li><a href="appendix-benchmark.html"><span class="nav-num">B</span><span>The normative benchmark</span></a></li><li><a href="appendix-tracking.html"><span class="nav-num">C</span><span>The model-tracking wave</span></a></li><li class="active"><a href="appendix-technical.html"><span class="nav-num">D</span><span>Technical appendix</span></a></li><li class="nav-group">Explore</li><li><a href="explorer.html"><span class="nav-num"></span><span>Country effects explorer</span></a></li><li><a href="prompts.html"><span class="nav-num"></span><span>Prompt explorer</span></a></li><li><a href="tracking.html"><span class="nav-num"></span><span>Model tracking</span></a></li><li class="nav-group">Notes</li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li><a href="about.html"><span class="nav-num"></span><span>Data, code and AI prompt</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<h1 id="app:technical"><span class="sec-num">D</span>Technical Appendix: Prompts, Models, Translation, and Collection</h1>
+<p>This appendix reproduces the prompts, lists the dated version of every AI model used to create or classify the data, and documents the translation, collection, and parsing steps. The replication package contains the pipeline code, the assembled prompt for every country, version, question, and age, and the translation review and provenance records.</p>
+<h2 id="app:prompts"><span class="sec-num">D.1</span>Prompt structure and prompt texts</h2>
+<p>Each prompt consists of two blocks. The <em>Instructions</em> block specifies the JSON schema and is in English for every country and version. The <em>Question</em> block contains the investor’s stated demographics, the financial question, and the word limit on the explanation, and it is the only part of the prompt that varies across versions. An English Instructions block keeps JSON parsing rates near-identical across languages and removes a confound between the language treatment and response-format compliance. Each query is a single user message with no system prompt. The message consists of the Instructions block for the question, a blank line, and the Question block. The placeholder <code>{age}</code> is replaced by 30, 40, or 55 at query time. This section reproduces the English prompts verbatim.</p>
+<h4 id="instructions-blocks." class="runin">Instructions blocks.</h4>
+<p>The Instructions block is in English for every country and version. The three blocks differ only in the JSON schema.</p>
+<p>Question 1:</p>
+<blockquote>
+<p>Instructions:<br />
+Consider the following question and respond according to the template provided.<br />
+Return the result as a JSON object with the following schema:<br />
+{<br />
+"fraction": float,  // fraction to invest in the stock fund, between 0 and 1<br />
+"explanation": string<br />
+}</p>
+</blockquote>
+<p>Question 2:</p>
+<blockquote>
+<p>Instructions:<br />
+Consider the following question and respond according to the template provided.<br />
+Return the result as a JSON object with the following schema:<br />
+{<br />
+"fraction_invest": float,  // fraction to invest in the stock fund (versus paying down the mortgage), between 0 and 1<br />
+"explanation": string<br />
+}</p>
+</blockquote>
+<p>Question 3:</p>
+<blockquote>
+<p>Instructions:<br />
+Consider the following question and respond according to the template provided.<br />
+Return the result as a JSON object with the following schema:<br />
+{<br />
+"fraction_to_invest": float,  // fraction of savings to move into investments, 0 to 1<br />
+"primary_instrument": string,  // main instrument recommended (e.g., "stock index fund", "inflation-linked bonds", "real estate", "gold")<br />
+"explanation": string<br />
+}</p>
+</blockquote>
+<h4 id="question-blocks-version-b-united-states." class="runin">Question blocks, Version B (United States).</h4>
+<p>The Version B blocks for the other twenty countries replace the amount and the country name, and the fifteen local-language countries receive the translated block. Version B-cross uses the English text below with the local-currency amount and the country name of the corresponding Version B block.</p>
+<p>Question 1:</p>
+<blockquote>
+<p>I am {age} years old and looking to invest $50,000 over a five-year horizon. I have a standard pension plan otherwise. I live in the United States.</p>
+<p>I am thinking of splitting my investment between a broad stock market index fund and some government bonds. What percentage should I invest in the stock fund?</p>
+<p>Limit your explanation to a maximum of 200 words.</p>
+</blockquote>
+<p>Question 2:</p>
+<blockquote>
+<p>I am {age} years old with $50,000 in savings. I have a mortgage on my home with a 4% annual interest rate and 20 years remaining. I live in the United States. I am thinking about whether to use some or all of this money to pay down the mortgage, or to invest it in a broad stock market index fund instead.</p>
+<p>What fraction of the $50,000 would you recommend I invest in the stock fund (versus using it to pay down the mortgage)?</p>
+<p>Limit your explanation to a maximum of 200 words.</p>
+</blockquote>
+<p>Question 3:</p>
+<blockquote>
+<p>I am {age} years old with $50,000 sitting in a savings account earning 1% interest per year. Annual inflation is currently around 3%, meaning my savings are losing real value. I have a standard pension plan otherwise. I live in the United States.</p>
+<p>What would you recommend I do to protect the real value of my savings?</p>
+<p>Limit your explanation to a maximum of 200 words.</p>
+</blockquote>
+<h4 id="question-blocks-version-c-united-states." class="runin">Question blocks, Version C (United States).</h4>
+<p>Version C replaces the generic instrument and pension vocabulary with the country-specific terms listed in Table <a href="#tab:country-context" class="xref">A17</a>. Question 1 reads as follows. Questions 2 and 3 make the same substitutions in the Version B text. Question 2 has no pension sentence, so only the equity instrument changes. Question 3 names no instrument, so only the pension reference changes.</p>
+<p>Question 1:</p>
+<blockquote>
+<p>I am {age} years old and looking to invest $50,000 over a five-year horizon. I have a standard 401(k) through my employer otherwise. I live in the United States.</p>
+<p>I am thinking of splitting my investment between a broad US stock market index fund (such as a Vanguard or Fidelity total-market fund) and US Treasury bonds. What percentage should I invest in the stock fund?</p>
+<p>Limit your explanation to a maximum of 200 words.</p>
+</blockquote>
+<h4 id="stated-investor-arm-version-bgammarhotau." class="runin">Stated-investor arm (Version B<span class="math inline">\(\gamma\rho\tau\)</span>).</h4>
+<p>The stated-investor arm uses the English Version B text of Question 1 at age 40 for all twenty-one countries. The four risk-and-pension cells insert one risk statement and one pension statement after the country sentence. The two horizon cells insert no statement and replace “five-year” with “one-year” or “twenty-year.” The three exploratory balance-sheet probes each insert a single statement in the same position. Sections <a href="advice-rule.html#sec:stated" class="xref">6</a> and <a href="advice-rule.html#sec:stated-probes" class="xref">6.3</a> quote the risk, pension, pension-composition, and hedging statements verbatim. The three wealth statements read as follows.</p>
+<blockquote>
+<p>This amount is essentially all of my liquid wealth, and I hold little else in cash or savings for everyday needs and emergencies.</p>
+<p>This amount is about half of my liquid wealth, and I hold roughly the same again in cash and other safe savings.</p>
+<p>This amount is about a third of my liquid wealth, and I hold roughly twice as much in cash and other safe savings.</p>
+</blockquote>
+<h4 id="exploratory-re-collections." class="runin">Exploratory re-collections.</h4>
+<p>The elicitation probe of Section <a href="results.html#sec:robustness" class="xref">5.6</a> keeps the English Question 1 block at age 40 and replaces the Instructions block with the text below. The translated-Instructions arm replaces the English Instructions block of Question 1 with a DeepL translation into the prompt language, accessed October 29, 2026, with the JSON schema lines left unchanged.</p>
+<pre><code>Instructions:
+A person has sent you the message below asking for investment advice. Before
+giving a recommendation, you may ask them questions. List the questions you
+would most want answered, in order of importance (at most 5). For each, say
+briefly why it matters and how the answer would move your recommended share
+in the stock fund. Then give the provisional share you would recommend if the
+person answered nothing further.
+Return the result as a JSON object with the following schema:
+{
+    &quot;questions&quot;: [
+        {
+            &quot;question&quot;: string,          // the question you would ask
+            &quot;why&quot;: string,               // why the answer matters, one sentence
+            &quot;direction&quot;: string          // &quot;higher&quot;, &quot;lower&quot;, &quot;either&quot;, or &quot;none&quot;: how the stock share would move
+        }
+    ],
+    &quot;provisional_fraction&quot;: float,       // share in the stock fund, between 0 and 1, if no further information
+    &quot;explanation&quot;: string                // at most 200 words
+}</code></pre>
+<h4 id="judge-rubric-for-the-explanation-coding." class="runin">Judge rubric for the explanation coding.</h4>
+<p>Each judge receives a single user message that contains the rubric below followed by the explanation text. The judge sees no other part of the response and no information on the country, the model, or the allocation. The rubric was frozen at pre-registration.</p>
+<pre><code>You are coding a short financial-advice explanation written in any language.
+Decide, for each category below, whether the explanation INVOKES that line of
+reasoning. Code 1 if present, 0 if absent. Judge the reasoning itself, not the
+quality of the advice. Do not infer anything not stated in the text.
+
+Categories:
+- infl: mentions inflation, loss of real value, or purchasing power as a reason.
+- pens: refers to an existing pension, retirement plan, or social-security
+  entitlement as background coverage the investor already has.
+- horiz: reasons explicitly about the investment time horizon or how long the
+  money will be invested (e.g. a five-year horizon, short vs. long term).
+- local: refers to country-specific or local financial context — a named local
+  instrument or broker, the local tax system, or the local pension/market.
+
+Return ONLY a JSON object with integer 0/1 values and no other text:
+{&quot;infl&quot;: 0, &quot;pens&quot;: 0, &quot;horiz&quot;: 0, &quot;local&quot;: 0}
+
+Explanation to code:</code></pre>
+<h2 id="country-panel-and-query-accounting"><span class="sec-num">D.2</span>Country panel and query accounting</h2>
+<p>Table <a href="#tab:country-context" class="xref">A17</a> lists the prompt language, the investment amount, and the Version C vocabulary for each country. Table <a href="#tab:query-accounting" class="xref">A18</a> gives the number of queries by arm.</p>
+<div class="paper-table" id="tab:country-context"><div class="tab-head"><span class="tab-label">Table A17</span><span class="tab-title">The country panel: prompt language, investment amount, and local financial context</span></div><div class="tab-scroll"><table class="est">
+<thead><tr>
+<th class="al-left"></th>
+<th class="al-left"></th>
+<th class="al-left"></th>
+<th colspan="3" style="text-align: center;">Local financial context (Version C)</th>
+</tr><tr>
+<th class="al-left">Country</th>
+<th class="al-left">Language</th>
+<th class="al-left">Amount</th>
+<th class="al-left">Equity instrument</th>
+<th class="al-left">Government bonds</th>
+<th class="al-left">Pension reference</th>
+</tr></thead><tbody>
+<tr>
+<td class="al-left">United States</td>
+<td class="al-left">English</td>
+<td class="al-left">USD 50,000</td>
+<td class="al-left">Broad US total-market index fund (Vanguard or Fidelity)</td>
+<td class="al-left">US Treasury bonds</td>
+<td class="al-left">401(k) through employer</td>
+</tr>
+<tr>
+<td class="al-left">United Kingdom</td>
+<td class="al-left">English</td>
+<td class="al-left">GBP 40,000</td>
+<td class="al-left">FTSE All-World ETF</td>
+<td class="al-left">UK Gilts</td>
+<td class="al-left">Workplace pension through employer</td>
+</tr>
+<tr>
+<td class="al-left">Australia</td>
+<td class="al-left">English</td>
+<td class="al-left">AUD 75,000</td>
+<td class="al-left">ASX-listed global index ETF</td>
+<td class="al-left">Australian government bonds</td>
+<td class="al-left">Superannuation fund through employer</td>
+</tr>
+<tr>
+<td class="al-left">Canada</td>
+<td class="al-left">English</td>
+<td class="al-left">CAD 70,000</td>
+<td class="al-left">Global index ETF</td>
+<td class="al-left">Government of Canada bonds</td>
+<td class="al-left">Workplace pension plus RRSP</td>
+</tr>
+<tr>
+<td class="al-left">India</td>
+<td class="al-left">English</td>
+<td class="al-left">INR 4,000,000</td>
+<td class="al-left">Nifty index fund</td>
+<td class="al-left">Government of India bonds</td>
+<td class="al-left">EPF plus NPS account</td>
+</tr>
+<tr>
+<td class="al-left">South Africa</td>
+<td class="al-left">English</td>
+<td class="al-left">ZAR 900,000</td>
+<td class="al-left">Global index ETF (MSCI World)</td>
+<td class="al-left">South African government bonds</td>
+<td class="al-left">Pension fund through employer</td>
+</tr>
+<tr>
+<td class="al-left">Sweden</td>
+<td class="al-left">Swedish</td>
+<td class="al-left">SEK 500,000</td>
+<td class="al-left">Global index fund (via Avanza or Nordnet)</td>
+<td class="al-left">Swedish government bonds</td>
+<td class="al-left"><em>Tjänstepension</em> through employer</td>
+</tr>
+<tr>
+<td class="al-left">Finland</td>
+<td class="al-left">Finnish</td>
+<td class="al-left">EUR 45,000</td>
+<td class="al-left">World index fund (MSCI World, via Nordnet or OP)</td>
+<td class="al-left">Finnish government bonds</td>
+<td class="al-left"><em>Työeläke</em> (TyEL) through employer</td>
+</tr>
+<tr>
+<td class="al-left">Germany</td>
+<td class="al-left">German</td>
+<td class="al-left">EUR 45,000</td>
+<td class="al-left">MSCI World ETF</td>
+<td class="al-left"><em>Bundesanleihen</em></td>
+<td class="al-left"><em>Betriebliche Altersvorsorge</em> (bAV)</td>
+</tr>
+<tr>
+<td class="al-left">France</td>
+<td class="al-left">French</td>
+<td class="al-left">EUR 45,000</td>
+<td class="al-left">World equity ETF (MSCI World)</td>
+<td class="al-left">OATs</td>
+<td class="al-left"><em>Plan d’épargne retraite</em> (PER)</td>
+</tr>
+<tr>
+<td class="al-left">Spain</td>
+<td class="al-left">Spanish</td>
+<td class="al-left">EUR 45,000</td>
+<td class="al-left">World index fund (MSCI World)</td>
+<td class="al-left">Spanish government bonds</td>
+<td class="al-left"><em>Plan de pensiones de empresa</em></td>
+</tr>
+<tr>
+<td class="al-left">Japan</td>
+<td class="al-left">Japanese</td>
+<td class="al-left">JPY 7,500,000</td>
+<td class="al-left">Global equity index fund (eMAXIS Slim All Country)</td>
+<td class="al-left">JGBs</td>
+<td class="al-left">iDeCo plus national pension (<em>kokumin nenkin</em>)</td>
+</tr>
+<tr>
+<td class="al-left">Brazil</td>
+<td class="al-left">Portuguese (BR)</td>
+<td class="al-left">BRL 250,000</td>
+<td class="al-left">Global-ETF BDRs (BURT39, BWOR39)</td>
+<td class="al-left">Tesouro Direto</td>
+<td class="al-left">Private pension plan (PGBL/VGBL)</td>
+</tr>
+<tr>
+<td class="al-left">Netherlands</td>
+<td class="al-left">Dutch</td>
+<td class="al-left">EUR 45,000</td>
+<td class="al-left">World index ETF (MSCI World)</td>
+<td class="al-left">Dutch government bonds</td>
+<td class="al-left"><em>Pensioenfonds</em> through employer</td>
+</tr>
+<tr>
+<td class="al-left">Italy</td>
+<td class="al-left">Italian</td>
+<td class="al-left">EUR 45,000</td>
+<td class="al-left">World index ETF (MSCI World)</td>
+<td class="al-left">BTPs</td>
+<td class="al-left"><em>Fondo pensione</em> through employer</td>
+</tr>
+<tr>
+<td class="al-left">Switzerland</td>
+<td class="al-left">German (CH)</td>
+<td class="al-left">CHF 45,000</td>
+<td class="al-left">MSCI World ETF</td>
+<td class="al-left">Swiss government bonds</td>
+<td class="al-left"><em>Pensionskasse</em> (second pillar) plus <em>Säule 3a</em></td>
+</tr>
+<tr>
+<td class="al-left">Poland</td>
+<td class="al-left">Polish</td>
+<td class="al-left">PLN 200,000</td>
+<td class="al-left">World index fund (MSCI World ETF)</td>
+<td class="al-left">Polish government bonds</td>
+<td class="al-left">PPK plan through employer</td>
+</tr>
+<tr>
+<td class="al-left">South Korea</td>
+<td class="al-left">Korean</td>
+<td class="al-left">KRW 70,000,000</td>
+<td class="al-left">Global equity index fund (KODEX or TIGER world ETF)</td>
+<td class="al-left">KTBs</td>
+<td class="al-left">Retirement pension (<em>toejik yeongeum</em>) plus national pension (<em>gukmin yeongeum</em>)</td>
+</tr>
+<tr>
+<td class="al-left">China</td>
+<td class="al-left">Chinese (simplified)</td>
+<td class="al-left">CNY 350,000</td>
+<td class="al-left">QDII global index fund (MSCI World)</td>
+<td class="al-left">Chinese government bonds</td>
+<td class="al-left">Basic pension insurance (<em>jiben yanglao baoxian</em>) plus enterprise annuity</td>
+</tr>
+<tr>
+<td class="al-left">Mexico</td>
+<td class="al-left">Spanish (MX)</td>
+<td class="al-left">MXN 1,000,000</td>
+<td class="al-left">Global index fund (MSCI World ETF)</td>
+<td class="al-left">CETES</td>
+<td class="al-left">Afore retirement account</td>
+</tr>
+<tr>
+<td class="al-left">Turkey</td>
+<td class="al-left">Turkish</td>
+<td class="al-left">TRY 2,000,000</td>
+<td class="al-left">Global equity index fund (MSCI World ETF)</td>
+<td class="al-left">Turkish government bonds</td>
+<td class="al-left">BES private pension account</td>
+</tr>
+</tbody>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> The upper block lists the six English-prompting countries, which have no Version B-cross cell, and the lower block the fifteen local-language countries. The investment amount is the round local-currency equivalent of $50<span>,</span>000, identical across Versions B, C, and B-cross within a country, and rendered in the prompt in the native number format (e.g. “500 000 kr” in Sweden, “45.000 Euro” in Germany). The three context columns give the country-specific vocabulary that Version C substitutes for the generic Version B wording (“a broad stock market index fund,” “government bonds,” “a standard pension plan”), condensed from the exact prompt sentences. In most countries the Version C equity instrument is a global or MSCI World-type tracker. India is the exception, naming a domestic Nifty index fund, so for India the Version C step also shifts the underlying equity exposure and not only its label. Pension terms that appear in Japanese, Korean, or Chinese script in the prompts are shown here in romanized form.</div></div>
+<div class="paper-table" id="tab:query-accounting"><div class="tab-head"><span class="tab-label">Table A18</span><span class="tab-title">Query accounting by experimental arm</span></div><div class="tab-scroll"><table class="est">
+<thead>
+<tr>
+<th class="al-left">Arm</th>
+<th class="al-left">Version</th>
+<th class="al-center">Countries</th>
+<th class="al-left">Question–age blocks</th>
+<th class="al-right">Cells</th>
+<th class="al-right">Queries</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="al-left">Country/language</td>
+<td class="al-left">B</td>
+<td class="al-center">21</td>
+<td class="al-left">Q1 at ages 30/40/55</td>
+<td class="al-right">63</td>
+<td class="al-right">40<span>,</span>950</td>
+</tr>
+<tr>
+<td class="al-left"></td>
+<td class="al-left">C</td>
+<td class="al-center">21</td>
+<td class="al-left">Q1 at ages 30/40/55</td>
+<td class="al-right">63</td>
+<td class="al-right">40<span>,</span>950</td>
+</tr>
+<tr>
+<td class="al-left"></td>
+<td class="al-left">B-cross</td>
+<td class="al-center">15</td>
+<td class="al-left">Q1 at ages 30/40/55</td>
+<td class="al-right">45</td>
+<td class="al-right">29<span>,</span>250</td>
+</tr>
+<tr>
+<td class="al-left"></td>
+<td class="al-left">B</td>
+<td class="al-center">21</td>
+<td class="al-left">Q2 and Q3 at age 40</td>
+<td class="al-right">42</td>
+<td class="al-right">27<span>,</span>300</td>
+</tr>
+<tr>
+<td class="al-left"></td>
+<td class="al-left">C</td>
+<td class="al-center">21</td>
+<td class="al-left">Q2 and Q3 at age 40</td>
+<td class="al-right">42</td>
+<td class="al-right">27<span>,</span>300</td>
+</tr>
+<tr>
+<td class="al-left"></td>
+<td class="al-left">B-cross</td>
+<td class="al-center">15</td>
+<td class="al-left">Q2 and Q3 at age 40</td>
+<td class="al-right">30</td>
+<td class="al-right">19<span>,</span>500</td>
+</tr>
+<tr>
+<td class="al-left">Stated investor</td>
+<td class="al-left">B<span class="math inline">\(\gamma\rho\tau\)</span> (six cells)</td>
+<td class="al-center">21</td>
+<td class="al-left">Q1 at age 40</td>
+<td class="al-right">126</td>
+<td class="al-right">81<span>,</span>900</td>
+</tr>
+<tr>
+<td class="al-left">Total</td>
+<td class="al-left"></td>
+<td class="al-center"></td>
+<td class="al-left"></td>
+<td class="al-right">411</td>
+<td class="al-right">267<span>,</span>150</td>
+</tr>
+</tbody>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> A cell is one country <span class="math inline">\(\times\)</span> version <span class="math inline">\(\times\)</span> question <span class="math inline">\(\times\)</span> age combination, and for the stated-investor arm one country <span class="math inline">\(\times\)</span> treatment cell. Every cell is queried by all thirteen models fifty times, so each cell contributes <span class="math inline">\(13 \times 50 = 650\)</span> queries. Version B-cross exists only for the fifteen non-English countries. The two pre-registered collection-robustness cells (temperature bookends at 0 and 1.0, and Version B with the investment amount stated in U.S. dollars) added 8<span>,</span>450 queries outside this grid and are reported in Section <a href="results.html#sec:robustness" class="xref">5.6</a>. The exploratory re-collection of the Version B, Question 1, age-40 cell with the Instructions block translated (Section <a href="results.html#sec:robustness" class="xref">5.6</a>, Appendix Table <a href="appendix.html#tab:trinstr" class="xref">A9</a>) added 5<span>,</span>460 queries, twenty per model and country, on October 29, 2026. The exploratory re-collection with the stake restated at purchasing-power parity (Section <a href="results.html#sec:robustness" class="xref">5.6</a>, Appendix Table <a href="appendix.html#tab:ppp-contrasts" class="xref">A8</a>) added 13<span>,</span>325 queries on the same day, twenty-five per model and cell, of which 6<span>,</span>825 re-collect Version B unchanged as a same-day reference.</div></div>
+<h2 id="app:model-versions"><span class="sec-num">D.3</span>Model versions and access dates</h2>
+<p>Table <a href="#tab:model-versions" class="xref">A19</a> lists every AI model used to create or classify the data. Panel A reports the thirteen models under study, with the identifier sent to the OpenRouter API and the dated version the API returned. Panel B reports the four judge models used to code the explanation text. All models are proprietary and were accessed through the OpenRouter API.</p>
+<div class="paper-table" id="tab:model-versions"><div class="tab-head"><span class="tab-label">Table A19</span><span class="tab-title">Model versions and access dates</span></div><div class="tab-scroll"><table class="est">
+<thead>
+<tr>
+<th class="al-left">Model</th>
+<th class="al-left">Requested identifier</th>
+<th class="al-left">Dated version returned by the API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="3" style="text-align: left;"><em>Panel A: Models under study (accessed July 2–4, 2026)</em></td>
+</tr>
+<tr>
+<td class="al-left">Claude Haiku 4.5</td>
+<td class="al-left"><code>anthropic/claude-haiku-4.5</code></td>
+<td class="al-left"><code>anthropic/claude-4.5-haiku-20251001</code></td>
+</tr>
+<tr>
+<td class="al-left">Claude Sonnet 4.6</td>
+<td class="al-left"><code>anthropic/claude-sonnet-4.6</code></td>
+<td class="al-left"><code>anthropic/claude-4.6-sonnet-20260217</code></td>
+</tr>
+<tr>
+<td class="al-left">Claude Opus 4.6</td>
+<td class="al-left"><code>anthropic/claude-opus-4.6</code></td>
+<td class="al-left"><code>anthropic/claude-4.6-opus-20260205</code></td>
+</tr>
+<tr>
+<td class="al-left">Claude Opus 4.8</td>
+<td class="al-left"><code>anthropic/claude-opus-4.8</code></td>
+<td class="al-left"><code>anthropic/claude-4.8-opus-20260528</code></td>
+</tr>
+<tr>
+<td class="al-left">GPT-5-mini</td>
+<td class="al-left"><code>openai/gpt-5-mini</code></td>
+<td class="al-left"><code>openai/gpt-5-mini-2025-08-07</code></td>
+</tr>
+<tr>
+<td class="al-left">GPT-5.5</td>
+<td class="al-left"><code>openai/gpt-5.5</code></td>
+<td class="al-left"><code>openai/gpt-5.5-20260423</code></td>
+</tr>
+<tr>
+<td class="al-left">Gemini 3 Flash</td>
+<td class="al-left"><code>google/gemini-3-flash-preview</code></td>
+<td class="al-left"><code>google/gemini-3-flash-preview-20251217</code></td>
+</tr>
+<tr>
+<td class="al-left">Gemini 3.5 Flash</td>
+<td class="al-left"><code>google/gemini-3.5-flash</code></td>
+<td class="al-left"><code>google/gemini-3.5-flash-20260519</code></td>
+</tr>
+<tr>
+<td class="al-left">Gemini 3.1 Pro</td>
+<td class="al-left"><code>google/gemini-3.1-pro-preview</code></td>
+<td class="al-left"><code>google/gemini-3.1-pro-preview-20260219</code></td>
+</tr>
+<tr>
+<td class="al-left">Grok 4.3</td>
+<td class="al-left"><code>x-ai/grok-4.3</code></td>
+<td class="al-left"><code>x-ai/grok-4.3-20260430</code></td>
+</tr>
+<tr>
+<td class="al-left">DeepSeek V4 Flash</td>
+<td class="al-left"><code>deepseek/deepseek-v4-flash</code></td>
+<td class="al-left"><code>deepseek/deepseek-v4-flash-20260423</code></td>
+</tr>
+<tr>
+<td class="al-left">DeepSeek V4 Pro</td>
+<td class="al-left"><code>deepseek/deepseek-v4-pro</code></td>
+<td class="al-left"><code>deepseek/deepseek-v4-pro-20260423</code></td>
+</tr>
+<tr>
+<td class="al-left">Mistral Medium 3.5</td>
+<td class="al-left"><code>mistralai/mistral-medium-3-5</code></td>
+<td class="al-left"><code>mistralai/mistral-medium-3.5-20260430</code></td>
+</tr>
+<tr>
+<td colspan="3" style="text-align: left;"><em>Panel B: Judge models for the explanation coding (accessed July 9–10, 2026)</em></td>
+</tr>
+<tr>
+<td class="al-left">Claude Opus 4.7 (primary)</td>
+<td class="al-left"><code>anthropic/claude-opus-4.7</code></td>
+<td class="al-left">not recorded</td>
+</tr>
+<tr>
+<td class="al-left">GPT-5.5 Pro</td>
+<td class="al-left"><code>openai/gpt-5.5-pro</code></td>
+<td class="al-left">not recorded</td>
+</tr>
+<tr>
+<td class="al-left">Gemini 2.5 Pro</td>
+<td class="al-left"><code>google/gemini-2.5-pro</code></td>
+<td class="al-left">not recorded</td>
+</tr>
+<tr>
+<td class="al-left">Qwen 3.7 Max</td>
+<td class="al-left"><code>qwen/qwen3.7-max</code></td>
+<td class="al-left">not recorded</td>
+</tr>
+</tbody>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Access dates are in UTC. Panel A covers the 267<span>,</span>150 queries of the main collection. Each requested identifier resolved to a single dated version throughout the collection. The API returned no identifier for eleven responses (ten for GPT-5.5 and one for Mistral Medium 3.5). The two pre-registered robustness cells collected on July 6, 2026 returned the same dated versions. The exploratory collections of September 19 and October 28–29, 2026 use the same requested identifiers for these models, and the API returned them without a date suffix. Table <a href="appendix-tracking.html#tab:tracking" class="xref">A16</a> lists the panel of the September wave. In Panel B, the four judges coded the validation sample on July 9, 2026, and the primary judge coded the full sample on July 9–10, 2026. The coding script did not store the identifier returned by the API. The script requested temperature zero for all four judges. Claude Opus 4.7 and GPT-5.5 Pro do not accept a temperature parameter and ran at their default sampling. The translated Question blocks come from the DeepL API, accessed June 11, 2026. DeepL does not publish version identifiers for its translation models.</div></div>
+<h2 id="app:translation"><span class="sec-num">D.4</span>Translation and quality control</h2>
+<p>I produced the Version B and Version C Question blocks with the DeepL API on June 11, 2026. Version B-cross is the original English prompt and required no translation. The pipeline translates only the Question block, protects the pinned financial terms and the locked currency amounts so that they survive translation verbatim, and requests the formal register where the target language supports it. A provenance log stores every translation call with its raw response. The age-30, age-40, and age-55 prompts within a cell differ only in the stated age.</p>
+<p>Two automated checks screened the machine output. A term-protection check verifies that every protected term and amount appears verbatim in the translated block. It caught three systematic failures, in which the translator dropped a currency amount, rendered an amount as the name of a financial product, or dropped a pension term. A back-translation of every block to English, scored with smoothed sentence BLEU against the source at a threshold of 0.6, routed blocks to human review. I did not use the score to accept translations, because it flags faithful translations into Japanese, Korean, and Chinese and it passed at least one wrong translation.</p>
+<p>The acceptance gate was native-speaker review of the Version B and Version C blocks in all fifteen translated countries and of the local-instrument wording for India. I reviewed the Swedish blocks myself as a native speaker. South Africa had no available native reviewer. I verified its blocks with a two-model cross-check instead, using Gemini 3.1 Pro (<code>google/gemini-3.1-pro-preview</code>) and GPT-5.5 (<code>openai/gpt-5.5</code>) at temperature zero between June 29 and July 1, 2026, with a pre-stated escalation rule. The cross-check surfaced one instrument-naming error, which I corrected and re-verified on both models. I ran the same cross-check on the United Kingdom, Australia, and Canada blocks and re-ran it on Mexico and Spain after their native reviews. I adopted a model suggestion only where it did not contradict a native reviewer’s decision. Before I filed the pre-registration, every assembled prompt passed a deterministic consistency audit with zero failures, a Claude Opus model reviewed all ninety unique translated blocks adversarially, and I read every block in full. I then froze the translations for collection.</p>
+<h2 id="app:parsing"><span class="sec-num">D.5</span>Collection and parsing</h2>
+<p><span id="app:collection" data-label="app:collection"></span></p>
+<p>The runner submits each query to the OpenRouter API as a single user message with temperature 0.7 and a 4<span>,</span>000-token cap, and it sets no other sampling parameter. It submits the queries in random order. The runner logs each parsed response before the raw API response and skips completed queries on restart, so an interruption cannot produce a duplicate observation. The main run covered the design grid exactly, with fifty repetitions in every cell, no duplicates, and no unresolved API errors.</p>
+<p>Parsing proceeds in a fixed order of decreasing strictness. The parser first extracts the first balanced brace block in the response and attempts to read it as JSON against the schema stated in the Instructions block. A JSON value between 1 and 100 is read as a percentage and divided by 100. If the JSON step fails, the parser searches for a decimal fraction, and then for a percentage, in each case only where the number appears in explicit allocation language, so that a stray number elsewhere in the response cannot be mistaken for a recommendation. Of the 267<span>,</span>150 responses, the parser read 266<span>,</span>798 as JSON, rescaled 2 JSON values, recovered 113 through the two fallback searches, and failed on 237. A parse-method field records the strategy for each observation, which allows any analysis to be re-run on the strictly JSON-parsed subsample. Responses whose generation stopped at the 4<span>,</span>000-token ceiling are marked truncated and excluded under the pre-registered rule.</p>
+<p>Refusal detection runs after parsing. A response is classified as a refusal only when a refusal phrase matches and no numeric recommendation was parsed, which prevents advisory boilerplate such as “consult a financial advisor” on an otherwise valid answer from being misclassified. The phrase list covers all fourteen prompt languages (thirteen non-English languages plus English, with Swiss German and Mexican Spanish handled as within-language variants). The main collection produced no refusals.</p>
+<p>Every row records both the requested and the returned model identifier (Table <a href="#tab:model-versions" class="xref">A19</a>). In the main collection each requested identifier resolved to a single dated version throughout, so no model changed versions mid-run.</p>
+
+
+<nav class="prevnext"><a class="pn prev" href="appendix-tracking.html"><span class="pn-dir">Previous</span><span class="pn-title">The model-tracking wave</span></a><a class="pn next" href="explorer.html"><span class="pn-dir">Next</span><span class="pn-title">Country effects explorer</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. The experimental design, hypotheses and inference rules were pre-registered at the Open Science Framework (<a href="https://osf.io/2ch5z" target="_blank" rel="noopener">osf.io/2ch5z</a>) before the main collection. This project was supported by Behavioral Finance e.V. Views and opinions expressed are those of the author only.</p>
+  <p>The model responses behind the paper are not publicly released. Every number on this site is an aggregate that the paper reports: cell means, binned counts, and regression estimates. See <a href="about.html">Data, code and AI prompt</a>.</p>
+  <p><a href="about.html">Data and code</a> · <a href="errata.html">Errata and notes</a> · <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/charts.js"></script><script src="assets/charts-fa.js"></script><script src="assets/figures.js"></script>
+</body>
+</html>

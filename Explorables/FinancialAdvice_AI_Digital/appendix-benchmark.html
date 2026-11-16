@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The normative benchmark · One advisor for the whole world?</title>
+<meta name="description" content="Digital edition of the paper One Advisor for the Whole World? Cross-Country Evidence on Financial Advice from AI, by Claes Bäckman, with interactive figures, a country-effects explorer and the exact prompts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="" data-page="appendix-benchmark">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">One advisor for the whole world?</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/claesbackman.github.io/issues/new?title=FinancialAdvice_AI website: The normative benchmark&body=Page: Explorables/FinancialAdvice_AI_Digital/appendix-benchmark.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="https://osf.io/2ch5z" target="_blank" rel="noopener">Pre-registration ↗</a>
+    <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">One Advisor for the Whole World?</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="literature.html"><span class="nav-num">2</span><span>Literature</span></a></li><li><a href="design.html"><span class="nav-num">3</span><span>Experimental design</span></a></li><li><a href="benchmark.html"><span class="nav-num">4</span><span>What should move the advice?</span></a></li><li><a href="results.html"><span class="nav-num">5</span><span>Main results</span></a></li><li><a href="advice-rule.html"><span class="nav-num">6</span><span>The advice rule</span></a></li><li><a href="text.html"><span class="nav-num">7</span><span>Explanations versus advice</span></a></li><li><a href="conclusion.html"><span class="nav-num">8</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix.html"><span class="nav-num">A</span><span>Appendix tables and figures</span></a></li><li class="active"><a href="appendix-benchmark.html"><span class="nav-num">B</span><span>The normative benchmark</span></a></li><li><a href="appendix-tracking.html"><span class="nav-num">C</span><span>The model-tracking wave</span></a></li><li><a href="appendix-technical.html"><span class="nav-num">D</span><span>Technical appendix</span></a></li><li class="nav-group">Explore</li><li><a href="explorer.html"><span class="nav-num"></span><span>Country effects explorer</span></a></li><li><a href="prompts.html"><span class="nav-num"></span><span>Prompt explorer</span></a></li><li><a href="tracking.html"><span class="nav-num"></span><span>Model tracking</span></a></li><li class="nav-group">Notes</li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li><a href="about.html"><span class="nav-num"></span><span>Data, code and AI prompt</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<h1 id="app:benchmark"><span class="sec-num">B</span>The Normative Benchmark</h1>
+<p>This appendix develops the benchmarks summarized in Section <a href="benchmark.html#sec:benchmark" class="xref">4</a>. The benchmark delivers three empirical objects. First, a country-specific optimal equity share <span class="math inline">\(\alpha^{*}_{c}\)</span> against which the level of LLM advice can be compared. Second, a <em>calibration slope</em> that measures how much of the cross-country variation that should appear in the advice actually does appear, nesting the “U.S.-default” hypothesis (H2) as the case where the slope is zero. Third, a welfare metric that converts the gap between actual and optimal advice into a certainty-equivalent return loss, and into dollars on the $50<span>,</span>000 stake in the prompt. The model is deliberately static and closed form. A full life-cycle model in the tradition of <a class="cite" href="references.html#ref-cocco2005">Cocco et al. (2005)</a> would add realism on several margins discussed in Section <a href="#sec:benchmark-limits" class="xref">B.7</a>, but at the cost of a large calibration apparatus <a class="cite" href="references.html#ref-choukhmane2026ai">(see e.g. Choukhmane et al. 2026)</a>. However, the central mechanism (background wealth crowding equity into the liquid portfolio) is captured in a simpler manner here.</p>
+<h2 id="sec:benchmark-s"><span class="sec-num">B.1</span>Benchmark S: the stake as a standalone portfolio</h2>
+<p>Consider the investor described in the prompt: age <span class="math inline">\(a=40\)</span>, liquid savings <span class="math inline">\(W\)</span> (the local-currency equivalent of $50<span>,</span>000), choosing how to split <span class="math inline">\(W\)</span> between a broad equity index fund and domestic government bonds. Let <span class="math inline">\(r_{c}\)</span> denote the real return on the safe asset in country <span class="math inline">\(c\)</span>, let the equity fund earn an expected real excess return <span class="math inline">\(\mu_{c}-r_{c}\)</span> with standard deviation <span class="math inline">\(\sigma_{c}\)</span>, both measured in local currency, and let the investor have constant relative risk aversion over terminal wealth with coefficient <span class="math inline">\(\gamma_{c}\)</span>. The optimal equity share is then the rule of <a class="cite" href="references.html#ref-merton1969">Merton (1969)</a> and <a class="cite" href="references.html#ref-samuelson1969">Samuelson (1969)</a>, equation (1) in Section <a href="benchmark.html#sec:benchmark-simple" class="xref">4.1</a>. It does not depend on the level of wealth and, with returns independent over time, it does not depend on the horizon either, so the prompt’s five-year horizon requires no separate model input. Because the prompt restricts the answer to a fraction between zero and one, every benchmark below is truncated to the unit interval, <span class="math inline">\(\alpha^{*}_{c}=[\theta^{*}_{c}]_{0}^{1}\)</span> with <span class="math inline">\([x]_{0}^{1} \equiv \min\{1,\max\{0,x\}\}\)</span>.</p>
+<p>The first benchmark takes the prompt at face value: the investor is asking about this $50<span>,</span>000 as a self-contained decision (the investor is “looking to invest $50<span>,</span>000 over a five-year horizon.”).</p>
+<p>Under Benchmark S the optimal share is simply equation (1), <span class="math display">\[\alpha^{S}_{c} \;=\; \left[\frac{\mu_{c}-r_{c}}{\gamma_{c}\,\sigma_{c}^{2}}\right]_{0}^{1}. \tag{8}\]</span></p>
+<p>How can we measure <span class="math inline">\(\mu_{c}\)</span> and <span class="math inline">\(\sigma_{c}\)</span> in this context? The prompt says “a broad stock market index fund,” which could mean the local equity market or a global fund held from country <span class="math inline">\(c\)</span>. I take the world equity index measured in local currency as the baseline. This matches the instruments named in Version C (MSCI World trackers in most countries) and avoids attributing “bias” to any sensible reluctance to recommend concentrated exposure to a small home market. The home-market reading is reported as a robustness variant in Table <a href="#tab:benchmark-gaps" class="xref">A13</a> and in the calibration slope below.</p>
+<p>Under the world-index reading the expected excess return is common across currencies by uncovered interest parity, so it sets the level of every benchmark but not the spread across them. I hold it at about 5.3 percent, the arithmetic mean of the MSCI World index (net, in U.S. dollars, 1999–2025) over the U.S. long-term rate. With a common <span class="math inline">\(\gamma\)</span>, cross-country variation in <span class="math inline">\(\alpha^{S}_{c}\)</span> then comes from local-currency volatility alone, that is, from currency covariances and the hedged-versus-unhedged choice. The baseline uses unhedged local-currency moments, and Table <a href="#tab:benchmark-gaps" class="xref">A13</a> reports a currency-hedged variant alongside it. For the U.S. cell the moments are an equity volatility near 18 percent and a real safe rate near 0.4 percent (trailing twenty-year mean), taken from MSCI and the Global Macro Database (Appendix Table <a href="#tab:benchmark-params" class="xref">A15</a>), which imply a share of about 0.52 at the baseline <span class="math inline">\(\bar{\gamma}=3\)</span>.</p>
+<p>I report results on a risk-aversion grid <span class="math inline">\(\bar{\gamma}\in\{2,3,5,10\}\)</span> with baseline <span class="math inline">\(\bar{\gamma}=3\)</span>. At the baseline, equation (8) produces interior optimal shares from about 0.21 in Turkey to 0.53 in South Korea, a band that overlaps the 0.46 to 0.58 range in which LLM recommendations fall, so deviations are informative in both directions. <a class="cite" href="references.html#ref-choukhmane2026ai">Choukhmane et al. (2026)</a> estimate by simulated method of moments a coefficient of relative risk aversion of about 5 (5.2 under their survey prompts, 4.7 under the academic prompt) that rationalizes the advice of current-generation models, which corresponds to the <span class="math inline">\(\gamma=5\)</span> point of the sensitivity grid, one step above the baseline. At <span class="math inline">\(\gamma=2\)</span> the U.S. benchmark rises to about 0.78, and at <span class="math inline">\(\gamma=10\)</span> shares compress to between 6 and 16 percent across countries, implausibly low relative to observed advice.</p>
+<h2 id="sec:benchmark-i"><span class="sec-num">B.2</span>Benchmark I: adding pension wealth and human capital</h2>
+<p>The prompt also says “I have a standard pension plan otherwise,” which invites the model to consider the investor’s full balance sheet. The second benchmark therefore integrates two non-tradable assets that a 40-year-old holds outside the liquid portfolio: pension wealth <span class="math inline">\(P_{c}\)</span>, the present value of future pension benefits, and human capital <span class="math inline">\(H_{c}\)</span>, the present value of future labor income <a class="cite" href="references.html#ref-bodie1992labor">(Bodie et al. 1992; Campbell and Viceira 2002; Gálvez and Paz-Pardo 2026)</a>. If a fraction <span class="math inline">\(\zeta\)</span> of human capital and a fraction <span class="math inline">\(\omega\)</span> of pension wealth are equity-like, equation (2) with <span class="math inline">\(B^{s}_{c}=(1-\zeta)H_{c}+(1-\omega)P_{c}\)</span> and <span class="math inline">\(B^{r}_{c}=\zeta H_{c}+\omega P_{c}\)</span> gives the optimal share of the liquid portfolio, <span class="math display">\[\alpha^{I}_{c} \;=\; \left[\theta^{*}_{c}\,\frac{W + H_{c} + P_{c}}{W} \;-\; \frac{\zeta\,H_{c}+\omega\,P_{c}}{W}\right]_{0}^{1}. \tag{9}\]</span> With <span class="math inline">\(\zeta=\omega=0\)</span> this is the rule of <a class="cite" href="references.html#ref-merton1971">Merton (1971)</a> for an investor with riskless non-tradable income, in the form restated by <a class="cite" href="references.html#ref-cocco2005">Cocco et al. (2005, equation 12)</a>. Safe outside wealth makes the investor less exposed to her liquid portfolio, so she should hold <em>more</em> equity in it, and the more generous the pension system, the stronger this push. The second term works in the opposite direction when labor income co-moves with the stock market or when the pension itself is invested in stocks. The equity-like parts of human capital and pension wealth are treated as perfectly correlated with the market and both are discounted at the safe rate.</p>
+<p>The baseline sets <span class="math inline">\(\omega=0\)</span>, a reasonable description of public and defined-benefit pillars, although treating pension claims as bond-like is itself contestable for pay-as-you-go systems whose benefits are indexed to wages. The exploratory probes of Section <a href="advice-rule.html#sec:stated-probes" class="xref">6.3</a> state the pension’s composition directly, which sets <span class="math inline">\(\omega=0\)</span> for a guaranteed annuity and <span class="math inline">\(\omega=1\)</span> for a pension invested in stocks.</p>
+<p>Because <span class="math inline">\(H_{c}+P_{c}\)</span> for an average 40-year-old is an order of magnitude larger than <span class="math inline">\(W\)</span>, equation (9) puts <span class="math inline">\(\alpha^{I}_{c}\)</span> at the corner of 100 percent equity in essentially every country. At <span class="math inline">\(\zeta=0\)</span> the corner holds for all 21 countries through <span class="math inline">\(\bar{\gamma}=5\)</span> and breaks at <span class="math inline">\(\bar{\gamma}=10\)</span> only for four countries (Brazil, India, Mexico, South Africa). At <span class="math inline">\(\zeta=0.2\)</span> it holds everywhere through <span class="math inline">\(\bar{\gamma}=3\)</span>. Benchmark I therefore cannot rationalize cross-country variation in the advice, and interior advice already rules it out in levels. Its comparative statics live in the uncapped index inside the brackets, which rises with a generous pension, falls when the pension is invested in stocks, and falls with age as human capital decays, faster where public pensions replace less. The country <span class="math inline">\(\times\)</span> age interaction in equation (7) and the stated-investor contrasts of Section <a href="advice-rule.html#sec:stated" class="xref">6</a> should be read against that ordering.</p>
+<p>Making labor income riskier, as in <a class="cite" href="references.html#ref-galvez2026richer">Gálvez and Paz-Pardo (2026)</a>, moves some low-multiplier countries off the corner at equity loadings of human capital near one half, but the exit is knife-edge, because equation (9) differences two terms that are each an order of magnitude larger than the unit interval. I therefore do not use the high-<span class="math inline">\(\zeta\)</span> cases as the benchmark, and the extended grid is in the released code.</p>
+<h4 id="pension-wealth-and-human-capital-inputs." class="runin">Pension-wealth and human-capital inputs.</h4>
+<p>The persona in the prompt reveals no wage, so I calibrate both inputs for the average earner. Pension wealth is the replacement-rate-scaled wage stream from retirement age <span class="math inline">\(R_{c}\)</span> for the remaining life span <span class="math inline">\(L_{c}\)</span>, discounted to age 40, <span class="math display">\[P_{c} \;=\; \rho_{c}\,\bar{w}_{c}\,(1+g_{c})^{R_{c}-40}\,
+    \frac{1-(1+r_{c})^{-L_{c}}}{r_{c}}\,
+    (1+r_{c})^{-(R_{c}-40)}, \tag{10}\]</span> where <span class="math inline">\(\rho_{c}\)</span> is the net pension replacement rate and <span class="math inline">\(\bar{w}_{c}\)</span> the average wage. The wage-growth factor keeps <span class="math inline">\(P_{c}\)</span> consistent with equation (11), which assumes that replacement rates are defined relative to pre-retirement earnings rather than today’s wage. The annuity is an ordinary level annuity over <span class="math inline">\(L_{c}\)</span> years whose factor tends to <span class="math inline">\(L_{c}\)</span> as <span class="math inline">\(r_{c}\)</span> approaches zero (relevant for Japan), and survival weighting is absorbed into <span class="math inline">\(L_{c}\)</span>. Human capital is the discounted wage stream from now to retirement, <span class="math display">\[H_{c} \;=\; \sum_{t=1}^{R_{c}-40} \bar{w}_{c}\,(1+g_{c})^{t}\,(1+r_{c})^{-t}, \tag{11}\]</span> with <span class="math inline">\(g_{c}\)</span> real wage growth.</p>
+<h2 id="sec:benchmark-estimation"><span class="sec-num">B.3</span>Taking the benchmark to the data</h2>
+<p>The benchmark is computed from external country-level inputs and then confronted with the experimental estimates using two measures, the advice gap and the calibration slope. Appendix Table <a href="#tab:benchmark-params" class="xref">A15</a> reports every country-specific input, with sources in the table notes.</p>
+<h4 id="advice-gaps." class="runin">Advice gaps.</h4>
+<p>For each country, the gap between mean LLM advice and the benchmark, <span class="math display">\[\Delta_{c} \;=\; \bar{y}_{c} - \alpha^{S}_{c}, \tag{12}\]</span> where <span class="math inline">\(\bar{y}_{c}\)</span> is the mean recommended fraction in the primary cell (Version B, Q1, age 40). The gap <span class="math inline">\(\Delta_{c}\)</span> is a descriptive level comparison. The wild-cluster-bootstrap confidence interval inherited from the country fixed effects describes the advice deviation from the U.S. baseline, not the level gap itself.</p>
+<h4 id="the-calibration-slope." class="runin">The calibration slope.</h4>
+<p>The next measure examines whether cross-country <em>movements</em> in the benchmark show up in the advice. Let <span class="math inline">\(\hat{b}_{c}\)</span> denote the estimated country fixed effect from equation (3) (the LLM advice deviation from the U.S. baseline, written <span class="math inline">\(\gamma_{c}\)</span> there but renamed here to avoid collision with risk aversion) and let <span class="math inline">\(\delta^{*}_{c}=\alpha^{S}_{c}-\alpha^{S}_{US}\)</span> denote the benchmark’s prescribed deviation. The regression <span class="math display">\[\hat{b}_{c} \;=\; \kappa_{0} + \kappa\,\delta^{*}_{c} + e_{c} \tag{13}\]</span> summarizes calibration in a single number. Full normative calibration implies <span class="math inline">\(\kappa=1\)</span>: advice moves one for one with what local fundamentals prescribe. The U.S.-default hypothesis implies <span class="math inline">\(\kappa=0\)</span>. Note that the converse does not hold, since large country effects orthogonal to fundamentals also produce a zero slope. I therefore report the gap table and the slope together. Intermediate values measure partial calibration.</p>
+<h2 id="sec:benchmark-results"><span class="sec-num">B.4</span>Advice gaps and the calibration slope</h2>
+<p>The benchmark prescribes large differences in advice across this panel. At the baseline grid point (<span class="math inline">\(\bar{\gamma}=3\)</span>), the standalone benchmark <span class="math inline">\(\alpha^{S}_{c}\)</span> ranges from 0.21 in Turkey and 0.23 in Brazil, whose local-currency volatilities are the highest in the panel, to 0.53 in South Korea and 0.52 in the United States, a prescribed spread of thirty-two percentage points. Mean advice spans twelve points, from 0.46 to 0.58 (Table <a href="appendix.html#tab:eq1-countryfe" class="xref">A2</a>), so the advice covers roughly a third of the spread that local fundamentals warrant. In addition, Turkey, whose prescribed share is the lowest in the panel, receives mean advice of 0.54, statistically indistinguishable from the U.S. baseline and near the top of the realized band.</p>
+<div class="paper-table" id="tab:benchmark-gaps"><div class="tab-head"><span class="tab-label">Table A13</span><span class="tab-title">Advice gaps against the standalone benchmark and their welfare cost</span></div><div class="tab-scroll"><table class="est">
+<thead><tr>
+<th class="al-left"></th>
+<th class="al-center">Mean</th>
+<th colspan="2" style="text-align: center;">Unhedged</th>
+<th colspan="2" style="text-align: center;">Hedged</th>
+<th colspan="2" style="text-align: center;">Home index</th>
+<th class="al-center">Loss</th>
+<th class="al-right">$ over</th>
+</tr><tr>
+<th class="al-left">Country</th>
+<th class="al-center">advice</th>
+<th class="al-center"><span class="math inline">\(\alpha^{S}_{c}\)</span></th>
+<th class="al-center">Gap <span class="math inline">\(\Delta_{c}\)</span></th>
+<th class="al-center"><span class="math inline">\(\alpha^{S}_{c}\)</span></th>
+<th class="al-center">Gap</th>
+<th class="al-center"><span class="math inline">\(\alpha^{S}_{c}\)</span></th>
+<th class="al-center">Gap</th>
+<th class="al-center">(bp/yr)</th>
+<th class="al-right">5y</th>
+</tr></thead><tbody>
+<tr>
+<td class="al-left">Turkey</td>
+<td class="al-center"><span class="math inline">\(0.54\)</span></td>
+<td class="al-center"><span class="math inline">\(0.21\)</span></td>
+<td class="al-center"><span class="math inline">\(0.33\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.02\)</span></td>
+<td class="al-center"><span class="math inline">\(0.21\)</span></td>
+<td class="al-center"><span class="math inline">\(0.33\)</span></td>
+<td class="al-center"><span class="math inline">\(136.7\)</span></td>
+<td class="al-right"><span class="math inline">\(3,513\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Brazil</td>
+<td class="al-center"><span class="math inline">\(0.46\)</span></td>
+<td class="al-center"><span class="math inline">\(0.23\)</span></td>
+<td class="al-center"><span class="math inline">\(0.23\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(-0.06\)</span></td>
+<td class="al-center"><span class="math inline">\(0.38\)</span></td>
+<td class="al-center"><span class="math inline">\(0.08\)</span></td>
+<td class="al-center"><span class="math inline">\(57.8\)</span></td>
+<td class="al-right"><span class="math inline">\(1,461\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Mexico</td>
+<td class="al-center"><span class="math inline">\(0.54\)</span></td>
+<td class="al-center"><span class="math inline">\(0.38\)</span></td>
+<td class="al-center"><span class="math inline">\(0.17\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.02\)</span></td>
+<td class="al-center">—</td>
+<td class="al-center">—</td>
+<td class="al-center"><span class="math inline">\(19.5\)</span></td>
+<td class="al-right"><span class="math inline">\(489\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Poland</td>
+<td class="al-center"><span class="math inline">\(0.50\)</span></td>
+<td class="al-center"><span class="math inline">\(0.35\)</span></td>
+<td class="al-center"><span class="math inline">\(0.15\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(-0.03\)</span></td>
+<td class="al-center"><span class="math inline">\(0.14\)</span></td>
+<td class="al-center"><span class="math inline">\(0.35\)</span></td>
+<td class="al-center"><span class="math inline">\(16.3\)</span></td>
+<td class="al-right"><span class="math inline">\(408\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Japan</td>
+<td class="al-center"><span class="math inline">\(0.58\)</span></td>
+<td class="al-center"><span class="math inline">\(0.43\)</span></td>
+<td class="al-center"><span class="math inline">\(0.15\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.06\)</span></td>
+<td class="al-center"><span class="math inline">\(0.51\)</span></td>
+<td class="al-center"><span class="math inline">\(0.07\)</span></td>
+<td class="al-center"><span class="math inline">\(14.7\)</span></td>
+<td class="al-right"><span class="math inline">\(368\)</span></td>
+</tr>
+<tr>
+<td class="al-left">United Kingdom</td>
+<td class="al-center"><span class="math inline">\(0.58\)</span></td>
+<td class="al-center"><span class="math inline">\(0.49\)</span></td>
+<td class="al-center"><span class="math inline">\(0.09\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.05\)</span></td>
+<td class="al-center"><span class="math inline">\(0.57\)</span></td>
+<td class="al-center"><span class="math inline">\(0.00\)</span></td>
+<td class="al-center"><span class="math inline">\(4.5\)</span></td>
+<td class="al-right"><span class="math inline">\(113\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Sweden</td>
+<td class="al-center"><span class="math inline">\(0.57\)</span></td>
+<td class="al-center"><span class="math inline">\(0.48\)</span></td>
+<td class="al-center"><span class="math inline">\(0.09\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.05\)</span></td>
+<td class="al-center"><span class="math inline">\(0.44\)</span></td>
+<td class="al-center"><span class="math inline">\(0.13\)</span></td>
+<td class="al-center"><span class="math inline">\(4.4\)</span></td>
+<td class="al-right"><span class="math inline">\(110\)</span></td>
+</tr>
+<tr>
+<td class="al-left">India</td>
+<td class="al-center"><span class="math inline">\(0.55\)</span></td>
+<td class="al-center"><span class="math inline">\(0.46\)</span></td>
+<td class="al-center"><span class="math inline">\(0.09\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.03\)</span></td>
+<td class="al-center"><span class="math inline">\(0.38\)</span></td>
+<td class="al-center"><span class="math inline">\(0.17\)</span></td>
+<td class="al-center"><span class="math inline">\(4.3\)</span></td>
+<td class="al-right"><span class="math inline">\(109\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Australia</td>
+<td class="al-center"><span class="math inline">\(0.58\)</span></td>
+<td class="al-center"><span class="math inline">\(0.49\)</span></td>
+<td class="al-center"><span class="math inline">\(0.08\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.05\)</span></td>
+<td class="al-center"><span class="math inline">\(0.74\)</span></td>
+<td class="al-center"><span class="math inline">\(-0.17\)</span></td>
+<td class="al-center"><span class="math inline">\(3.9\)</span></td>
+<td class="al-right"><span class="math inline">\(98\)</span></td>
+</tr>
+<tr>
+<td class="al-left">South Africa</td>
+<td class="al-center"><span class="math inline">\(0.56\)</span></td>
+<td class="al-center"><span class="math inline">\(0.49\)</span></td>
+<td class="al-center"><span class="math inline">\(0.07\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.04\)</span></td>
+<td class="al-center"><span class="math inline">\(0.58\)</span></td>
+<td class="al-center"><span class="math inline">\(-0.02\)</span></td>
+<td class="al-center"><span class="math inline">\(2.5\)</span></td>
+<td class="al-right"><span class="math inline">\(63\)</span></td>
+</tr>
+<tr>
+<td class="al-left">South Korea</td>
+<td class="al-center"><span class="math inline">\(0.58\)</span></td>
+<td class="al-center"><span class="math inline">\(0.53\)</span></td>
+<td class="al-center"><span class="math inline">\(0.06\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.06\)</span></td>
+<td class="al-center"><span class="math inline">\(0.42\)</span></td>
+<td class="al-center"><span class="math inline">\(0.16\)</span></td>
+<td class="al-center"><span class="math inline">\(1.6\)</span></td>
+<td class="al-right"><span class="math inline">\(40\)</span></td>
+</tr>
+<tr>
+<td class="al-left">USA</td>
+<td class="al-center"><span class="math inline">\(0.57\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.05\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.05\)</span></td>
+<td class="al-center"><span class="math inline">\(0.68\)</span></td>
+<td class="al-center"><span class="math inline">\(-0.11\)</span></td>
+<td class="al-center"><span class="math inline">\(1.2\)</span></td>
+<td class="al-right"><span class="math inline">\(29\)</span></td>
+</tr>
+<tr>
+<td class="al-left">China</td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.48\)</span></td>
+<td class="al-center"><span class="math inline">\(0.04\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.00\)</span></td>
+<td class="al-center">—</td>
+<td class="al-center">—</td>
+<td class="al-center"><span class="math inline">\(0.9\)</span></td>
+<td class="al-right"><span class="math inline">\(23\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Canada</td>
+<td class="al-center"><span class="math inline">\(0.56\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.04\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.04\)</span></td>
+<td class="al-center"><span class="math inline">\(0.68\)</span></td>
+<td class="al-center"><span class="math inline">\(-0.12\)</span></td>
+<td class="al-center"><span class="math inline">\(0.8\)</span></td>
+<td class="al-right"><span class="math inline">\(21\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Italy</td>
+<td class="al-center"><span class="math inline">\(0.48\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(-0.03\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(-0.04\)</span></td>
+<td class="al-center"><span class="math inline">\(0.13\)</span></td>
+<td class="al-center"><span class="math inline">\(0.35\)</span></td>
+<td class="al-center"><span class="math inline">\(0.5\)</span></td>
+<td class="al-right"><span class="math inline">\(14\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Finland</td>
+<td class="al-center"><span class="math inline">\(0.55\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.03\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.02\)</span></td>
+<td class="al-center"><span class="math inline">\(0.08\)</span></td>
+<td class="al-center"><span class="math inline">\(0.47\)</span></td>
+<td class="al-center"><span class="math inline">\(0.4\)</span></td>
+<td class="al-right"><span class="math inline">\(11\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Switzerland</td>
+<td class="al-center"><span class="math inline">\(0.53\)</span></td>
+<td class="al-center"><span class="math inline">\(0.51\)</span></td>
+<td class="al-center"><span class="math inline">\(0.02\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.00\)</span></td>
+<td class="al-center"><span class="math inline">\(0.46\)</span></td>
+<td class="al-center"><span class="math inline">\(0.06\)</span></td>
+<td class="al-center"><span class="math inline">\(0.2\)</span></td>
+<td class="al-right"><span class="math inline">\(5\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Germany</td>
+<td class="al-center"><span class="math inline">\(0.53\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.01\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.01\)</span></td>
+<td class="al-center"><span class="math inline">\(0.35\)</span></td>
+<td class="al-center"><span class="math inline">\(0.18\)</span></td>
+<td class="al-center"><span class="math inline">\(0.1\)</span></td>
+<td class="al-right"><span class="math inline">\(2\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Netherlands</td>
+<td class="al-center"><span class="math inline">\(0.53\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.01\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.01\)</span></td>
+<td class="al-center"><span class="math inline">\(0.43\)</span></td>
+<td class="al-center"><span class="math inline">\(0.09\)</span></td>
+<td class="al-center"><span class="math inline">\(0.1\)</span></td>
+<td class="al-right"><span class="math inline">\(1\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Spain</td>
+<td class="al-center"><span class="math inline">\(0.53\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.01\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.00\)</span></td>
+<td class="al-center"><span class="math inline">\(0.34\)</span></td>
+<td class="al-center"><span class="math inline">\(0.19\)</span></td>
+<td class="al-center"><span class="math inline">\(0.0\)</span></td>
+<td class="al-right"><span class="math inline">\(1\)</span></td>
+</tr>
+<tr>
+<td class="al-left">France</td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(-0.00\)</span></td>
+<td class="al-center"><span class="math inline">\(0.52\)</span></td>
+<td class="al-center"><span class="math inline">\(-0.01\)</span></td>
+<td class="al-center"><span class="math inline">\(0.31\)</span></td>
+<td class="al-center"><span class="math inline">\(0.20\)</span></td>
+<td class="al-center"><span class="math inline">\(0.0\)</span></td>
+<td class="al-right"><span class="math inline">\(0\)</span></td>
+</tr>
+</tbody>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Mean recommended equity share by country in the primary cell (Question 1, Version B, age 40) against the standalone benchmark <span class="math inline">\(\alpha^{S}_{c}\)</span> at the baseline grid point (<span class="math inline">\(\bar{\gamma}=3\)</span>, world index in local currency). The gap is <span class="math inline">\(\Delta_{c}=\bar{y}_{c}-\alpha^{S}_{c}\)</span>. The hedged columns replace <span class="math inline">\(\sigma_{c}\)</span> with the U.S.-dollar volatility of the index, which a currency-hedged world fund carries in every currency to first order, and report the benchmark and the gap under that assumption. The home-index columns replace both moments with those of the country’s own MSCI country index in local currency (net total return, 2001–2025, premium over the Global Macro Database long rate) at the same <span class="math inline">\(\gamma_{c}\)</span>, an exploratory post-registration variant. A dash marks the two countries without a country series (China, Mexico). The annual loss prices the unhedged gap with the certainty-equivalent formula (14) at the same grid point, in basis points of the liquid stake per year, and the last column converts it to dollars over the prompt’s five-year horizon on the $50<span>,</span>000-equivalent stake. Countries are ordered by annual loss.</div></div>
+<p>Table <a href="#tab:benchmark-gaps" class="xref">A13</a> reports the per-country results. The gaps are positive nearly everywhere, and they are largest where fundamentals depart most from the U.S. baseline: 33 percentage points in Turkey, 23 in Brazil, 17 in Mexico, and 15 in Japan and Poland. Across most of western Europe, whose prescribed shares sit close to the U.S. value, the gaps are within a few points of zero, with France exact to within a fifth of a point.</p>
+<p>The hedged columns of Table <a href="#tab:benchmark-gaps" class="xref">A13</a> replace the local-currency volatility with the U.S.-dollar volatility of the index, which a currency-hedged world fund delivers in every currency to first order. With the premium common across countries, the hedged benchmark is 0.52 in every country, and mean advice lies within 6.2 percentage points of it everywhere, with Brazil furthest below. The thirty-two-point spread of the unhedged benchmark, and with it every non-zero prescribed deviation <span class="math inline">\(\delta^{*}_{c}\)</span> below, therefore comes from exchange-rate risk alone.</p>
+<p>The home-index columns take the opposite reading of the prompt’s “broad stock market index fund”: each country’s own MSCI country index in local currency, with the premium and the volatility estimated over 2001 to 2025. The prescribed share then runs from 0.08 in Finland to 0.74 in Australia, a spread of sixty-six points, and the advice does not follow it. Regressing the country effects on the home-index deviations over the eighteen non-U.S. countries with a series gives a slope of 0.11 (HC2 standard error 0.03, <span class="math inline">\(R^{2}=0.33\)</span>), against 0.14 for the world index on the same countries. Realized twenty-five-year premia are noisy inputs, which is why the baseline uses one global premium.</p>
+<p>Panel A of Figure <a href="results.html#fig:advice-benchmark" class="xref">5</a> plots the estimated country effects against the benchmark’s prescribed deviations and fits the calibration regression (13). The slope is <span class="math inline">\(\hat{\kappa}=0.130\)</span> (standard error 0.112). The primary wild bootstrap over countries rejects full calibration (<span class="math inline">\(p &lt; 0.001\)</span> against <span class="math inline">\(\kappa=1\)</span>) and does not reject the U.S.-default anchor (<span class="math inline">\(p = 0.317\)</span> against <span class="math inline">\(\kappa=0\)</span>, 95 percent confidence interval <span class="math inline">\([-0.145, 0.328]\)</span>). The pre-registered influence diagnostics flag two of the seven countries with thin benchmark data. Brazil and Turkey, whose currencies are the most volatile in the panel, have DFBETA values on the slope above the conventional threshold of <span class="math inline">\(2/\sqrt{N}\)</span> in absolute value. Dropping Brazil lowers <span class="math inline">\(\hat{\kappa}\)</span> to 0.03, dropping Turkey raises it to 0.21, and dropping any other country leaves it between 0.11 and 0.15. No leave-one-out estimate comes close to full calibration.</p>
+<p>The distance from full calibration also survives treating the benchmark regressor as measured with error, which would attenuate <span class="math inline">\(\hat{\kappa}\)</span> toward zero. Under classical measurement error the structural slope lies between <span class="math inline">\(\hat{\kappa}=0.13\)</span> and the reciprocal of the reverse regression of <span class="math inline">\(\delta^{*}_{c}\)</span> on the country effects, a Frisch bound of <span class="math inline">\([0.13, 0.97]\)</span> whose upper end still lies below one. Resampling the twenty-seven return years (1999–2025) with replacement and recomputing every <span class="math inline">\(\delta^{*}_{c}\)</span> on each draw moves the slope only from 0.13 to a resampled center of 0.10.</p>
+<p>The slope is also not an artifact of the baseline risk aversion. Across the grid <span class="math inline">\(\bar{\gamma}\in\{2,3,5,10\}\)</span>, <span class="math inline">\(\hat{\kappa}\)</span> is 0.09, 0.13, 0.22 and 0.43. The rise with <span class="math inline">\(\bar{\gamma}\)</span> is mechanical, since higher risk aversion compresses the prescribed deviations that form the regressor. At <span class="math inline">\(\bar{\gamma}=10\)</span> the interval is too wide to reject full calibration (<span class="math inline">\(p=0.12\)</span>), but that grid point prescribes equity shares below 16 percent in every country, far below any advice observed in the data (Section <a href="#sec:benchmark-s" class="xref">B.1</a>). At the other three grid points full calibration is rejected with <span class="math inline">\(p&lt;0.001\)</span>.</p>
+<h2 id="sec:benchmark-welfare"><span class="sec-num">B.5</span>The welfare cost of the country gaps</h2>
+<p>CRRA preferences yield a closed-form price for deviating from the optimum. The certainty-equivalent return of holding share <span class="math inline">\(\alpha\)</span> is quadratic, <span class="math inline">\(ce(\alpha)=r_{c}+\alpha(\mu_{c}-r_{c})-\tfrac{1}{2}\gamma_{c}\alpha^{2}\sigma_{c}^{2}\)</span>, so the annual loss from holding <span class="math inline">\(\alpha\)</span> instead of the benchmark is <span class="math display">\[\mathcal{L}_{c} \;=\; ce(\alpha^{*}_{c}) - ce(\alpha)
+    \;=\; \tfrac{1}{2}\,\gamma_{c}\,\sigma_{c}^{2}\,
+    \Bigl[\bigl(\theta^{*}_{c}-\alpha\bigr)^{2}-\bigl(\theta^{*}_{c}-\alpha^{*}_{c}\bigr)^{2}\Bigr], \tag{14}\]</span> which reduces to the familiar <span class="math inline">\(\tfrac{1}{2}\gamma_{c}\sigma_{c}^{2}(\alpha-\alpha^{*}_{c})^{2}\)</span> whenever the benchmark is interior. Over the prompt’s five-year horizon the dollar cost on the stake is approximately <span class="math inline">\(5\,W\mathcal{L}_{c}\)</span>.</p>
+<p>For the median country the gap costs 1.6 basis points of the liquid stake per year, about $40 over five years, and sixteen of the twenty-one countries lie below five basis points per year (Table <a href="#tab:benchmark-gaps" class="xref">A13</a>). The loss is locally quadratic, so the moderate gaps that dominate the panel are nearly free. The incidence differs widely, however. Turkey pays 137 basis points per year, about $3<span>,</span>500 over five years or seven percent of the stake, Brazil pays 58 basis points, Mexico 19, Poland 16, and Japan 15, while no western European country pays more than five. These figures assume that the user adopts the advice, that the standalone benchmark is the right target, and that the allocation is static. They also rest on the unhedged benchmark, which treats local government bonds as riskless in real terms. In high-inflation economies such as Turkey and Brazil local bonds carry substantial real risk and an unhedged foreign equity fund partly hedges it, so the losses for these countries are upper bounds. Under the hedged benchmark the loss is below two basis points a year in every country.</p>
+<h2 id="app:benchmark-q2"><span class="sec-num">B.6</span>The mortgage benchmark</h2>
+<p>This subsection derives the benchmark of Section <a href="benchmark.html#sec:benchmark-q2" class="xref">4.2</a> for Question 2 (invest versus prepay a 4 percent mortgage). Prepaying a mortgage is a risk-free investment whose return is the after-tax mortgage rate. Because every return in this section is real, the prompt’s quoted nominal rate <span class="math inline">\(m\)</span> must be deflated, so the return to prepayment is <span class="math display">\[r^{m}_{c} \;=\; m\,(1-\tau^{m}_{c}) - \pi_{c},\]</span> where <span class="math inline">\(\tau^{m}_{c}\)</span> is the share of mortgage interest that is effectively deductible in country <span class="math inline">\(c\)</span> and <span class="math inline">\(\pi_{c}\)</span> is expected inflation.</p>
+<p>Two country-specific channels operate here. Deductibility differs sharply across the sample (broadly deductible in the United States for itemizers, capital-income offset in Sweden, no owner-occupier deduction in Germany), and expected inflation differs too, so a fixed nominal mortgage is a better real investment precisely where inflation is low, as in Japan. Prepayment is the household’s safe asset only if it pays more than local government bonds, however. Where the after-tax real mortgage rate falls below the local real bond rate <span class="math inline">\(r_{c}\)</span>, the household should keep the mortgage and hold bonds for the safe part of its portfolio <a class="cite" href="references.html#ref-becker2010outstanding">(Becker and Shabani 2010)</a>. The safe rate is therefore <span class="math inline">\(\max\{r^{m}_{c},\,r_{c}\}\)</span>, and the Merton logic gives <span class="math display">\[\alpha^{Q2}_{c} \;=\; \min\Bigl\{1,\;\max\Bigl\{0,\;\frac{\mu_{c}-\max\{r^{m}_{c},\,r_{c}\}}{\gamma_{c}\,\sigma_{c}^{2}}\Bigr\}\Bigr\}, \tag{15}\]</span> which is Equation (2) of <a class="cite" href="references.html#ref-becker2010outstanding">Becker and Shabani (2010)</a> with after-tax real rates. The benchmark has two regions. Where <span class="math inline">\(r^{m}_{c}\)</span> exceeds <span class="math inline">\(r_{c}\)</span>, prepayment raises the safe rate, so <span class="math inline">\(\alpha^{Q2}_{c}\)</span> lies below the allocation benchmark <span class="math inline">\(\alpha^{S}_{c}\)</span> of Equation (8), and full prepayment is optimal wherever the expected equity return <span class="math inline">\(\mu_{c}\)</span> falls below <span class="math inline">\(r^{m}_{c}\)</span>. Where <span class="math inline">\(r_{c}\)</span> exceeds <span class="math inline">\(r^{m}_{c}\)</span>, the mortgage is cheap debt that should not be prepaid, and <span class="math inline">\(\alpha^{Q2}_{c}=\alpha^{S}_{c}\)</span>. At the baseline calibration the second region contains the five premise-acceptance countries, where the prompted 4 percent lies below local inflation, and Poland, where the two rates differ by less than half a percentage point. Cross-country differences in Q2 advice are therefore a gap only <em>net of</em> the cross-country differences in <span class="math inline">\(\alpha^{Q2}_{c}\)</span>, which come from inflation, the local real rate, and currency volatility as well as from deductibility. Because effective deductibility depends on income, itemization, and loan size rather than on a single statutory rate, I treat <span class="math inline">\(\tau^{m}_{c}\)</span> as a calibration assumption rather than a point-sourced number and report <span class="math inline">\(\alpha^{Q2}_{c}\)</span> across a <span class="math inline">\(\tau^{m}\in[0,0.5]\)</span> band. The baseline sets <span class="math inline">\(\tau^{m}_{c}\)</span> to zero in thirteen countries and to between 0.05 and 0.35 in the other eight (Table <a href="#tab:benchmark-params" class="xref">A15</a>). Widening the band from no deductibility to a fifty percent effective deduction raises <span class="math inline">\(\alpha^{Q2}_{c}\)</span> by at most about twenty percentage points, and never above <span class="math inline">\(\alpha^{S}_{c}\)</span>. This is too little to overturn the comparison that follows, which places the advice above the benchmark in every country even at the equity-favorable end of the band.</p>
+<p>The question offers only two uses of the savings, the index fund and prepayment. If the household could not hold bonds, the safe rate would be <span class="math inline">\(r^{m}_{c}\)</span> alone. Table <a href="#tab:benchmark-gaps-q2" class="xref">A14</a> reports this two-option benchmark <span class="math inline">\(\tilde{\alpha}^{Q2}_{c}\)</span>, Equation (15) with <span class="math inline">\(r^{m}_{c}\)</span> in place of <span class="math inline">\(\max\{r^{m}_{c},\,r_{c}\}\)</span>, alongside <span class="math inline">\(\alpha^{Q2}_{c}\)</span>. The two coincide wherever prepayment pays more than bonds, so they differ only in the six countries above. Because <span class="math inline">\(\tilde{\alpha}^{Q2}_{c}\)</span> is not bounded by <span class="math inline">\(\alpha^{S}_{c}\)</span>, it reaches 0.98 in South Africa, where the prompted rate is far below local inflation.</p>
+<div class="paper-table" id="tab:benchmark-gaps-q2"><div class="tab-head"><span class="tab-label">Table A14</span><span class="tab-title">Advice gaps against the mortgage benchmark</span></div><div class="tab-scroll"><table class="est">
+<thead>
+<tr>
+<th class="al-left">Country</th>
+<th class="al-center">Mean advice</th>
+<th class="al-center">Benchmark <span class="math inline">\(\alpha^{Q2}_{c}\)</span></th>
+<th class="al-center">Band (<span class="math inline">\(\tau^{m}\in[0,0.5]\)</span>)</th>
+<th class="al-center">Two-option <span class="math inline">\(\tilde{\alpha}^{Q2}_{c}\)</span></th>
+<th class="al-center">Gap <span class="math inline">\(\Delta^{Q2}_{c}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="al-left">USA</td>
+<td class="al-center"><span class="math inline">\(0.83\)</span></td>
+<td class="al-center"><span class="math inline">\(0.47\)</span></td>
+<td class="al-center"><span class="math inline">\([0.41,\,0.52]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.47\)</span></td>
+<td class="al-center"><span class="math inline">\(0.36\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Japan</td>
+<td class="al-center"><span class="math inline">\(0.54\)</span></td>
+<td class="al-center"><span class="math inline">\(0.20\)</span></td>
+<td class="al-center"><span class="math inline">\([0.16,\,0.32]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.20\)</span></td>
+<td class="al-center"><span class="math inline">\(0.34\)</span></td>
+</tr>
+<tr>
+<td class="al-left">France</td>
+<td class="al-center"><span class="math inline">\(0.67\)</span></td>
+<td class="al-center"><span class="math inline">\(0.33\)</span></td>
+<td class="al-center"><span class="math inline">\([0.33,\,0.52]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.33\)</span></td>
+<td class="al-center"><span class="math inline">\(0.34\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Sweden</td>
+<td class="al-center"><span class="math inline">\(0.73\)</span></td>
+<td class="al-center"><span class="math inline">\(0.39\)</span></td>
+<td class="al-center"><span class="math inline">\([0.28,\,0.46]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.39\)</span></td>
+<td class="al-center"><span class="math inline">\(0.34\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Switzerland</td>
+<td class="al-center"><span class="math inline">\(0.61\)</span></td>
+<td class="al-center"><span class="math inline">\(0.27\)</span></td>
+<td class="al-center"><span class="math inline">\([0.20,\,0.39]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.27\)</span></td>
+<td class="al-center"><span class="math inline">\(0.34\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Canada</td>
+<td class="al-center"><span class="math inline">\(0.70\)</span></td>
+<td class="al-center"><span class="math inline">\(0.37\)</span></td>
+<td class="al-center"><span class="math inline">\([0.37,\,0.52]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.37\)</span></td>
+<td class="al-center"><span class="math inline">\(0.33\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Germany</td>
+<td class="al-center"><span class="math inline">\(0.61\)</span></td>
+<td class="al-center"><span class="math inline">\(0.28\)</span></td>
+<td class="al-center"><span class="math inline">\([0.28,\,0.48]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.28\)</span></td>
+<td class="al-center"><span class="math inline">\(0.33\)</span></td>
+</tr>
+<tr>
+<td class="al-left">United Kingdom</td>
+<td class="al-center"><span class="math inline">\(0.68\)</span></td>
+<td class="al-center"><span class="math inline">\(0.35\)</span></td>
+<td class="al-center"><span class="math inline">\([0.35,\,0.49]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.35\)</span></td>
+<td class="al-center"><span class="math inline">\(0.33\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Finland</td>
+<td class="al-center"><span class="math inline">\(0.63\)</span></td>
+<td class="al-center"><span class="math inline">\(0.32\)</span></td>
+<td class="al-center"><span class="math inline">\([0.32,\,0.51]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.32\)</span></td>
+<td class="al-center"><span class="math inline">\(0.32\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Poland</td>
+<td class="al-center"><span class="math inline">\(0.66\)</span></td>
+<td class="al-center"><span class="math inline">\(0.35\)</span></td>
+<td class="al-center"><span class="math inline">\([0.35,\,0.35]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.38\)</span></td>
+<td class="al-center"><span class="math inline">\(0.31\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Netherlands</td>
+<td class="al-center"><span class="math inline">\(0.67\)</span></td>
+<td class="al-center"><span class="math inline">\(0.44\)</span></td>
+<td class="al-center"><span class="math inline">\([0.31,\,0.50]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.44\)</span></td>
+<td class="al-center"><span class="math inline">\(0.22\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Spain</td>
+<td class="al-center"><span class="math inline">\(0.62\)</span></td>
+<td class="al-center"><span class="math inline">\(0.41\)</span></td>
+<td class="al-center"><span class="math inline">\([0.41,\,0.52]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.41\)</span></td>
+<td class="al-center"><span class="math inline">\(0.21\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Australia</td>
+<td class="al-center"><span class="math inline">\(0.65\)</span></td>
+<td class="al-center"><span class="math inline">\(0.45\)</span></td>
+<td class="al-center"><span class="math inline">\([0.45,\,0.49]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.45\)</span></td>
+<td class="al-center"><span class="math inline">\(0.20\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Italy</td>
+<td class="al-center"><span class="math inline">\(0.63\)</span></td>
+<td class="al-center"><span class="math inline">\(0.45\)</span></td>
+<td class="al-center"><span class="math inline">\([0.45,\,0.52]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.45\)</span></td>
+<td class="al-center"><span class="math inline">\(0.18\)</span></td>
+</tr>
+<tr>
+<td class="al-left">South Korea</td>
+<td class="al-center"><span class="math inline">\(0.65\)</span></td>
+<td class="al-center"><span class="math inline">\(0.47\)</span></td>
+<td class="al-center"><span class="math inline">\([0.45,\,0.53]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.47\)</span></td>
+<td class="al-center"><span class="math inline">\(0.18\)</span></td>
+</tr>
+<tr>
+<td class="al-left">China</td>
+<td class="al-center"><span class="math inline">\(0.60\)</span></td>
+<td class="al-center"><span class="math inline">\(0.47\)</span></td>
+<td class="al-center"><span class="math inline">\([0.45,\,0.48]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.47\)</span></td>
+<td class="al-center"><span class="math inline">\(0.13\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Turkey</td>
+<td class="al-center"><span class="math inline">\(0.81\)</span></td>
+<td class="al-center"><span class="math inline">\(0.21\)</span></td>
+<td class="al-center"><span class="math inline">\([0.21,\,0.21]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.65\)</span></td>
+<td class="al-center"><span class="math inline">\(0.60\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Brazil</td>
+<td class="al-center"><span class="math inline">\(0.81\)</span></td>
+<td class="al-center"><span class="math inline">\(0.23\)</span></td>
+<td class="al-center"><span class="math inline">\([0.23,\,0.23]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.34\)</span></td>
+<td class="al-center"><span class="math inline">\(0.57\)</span></td>
+</tr>
+<tr>
+<td class="al-left">Mexico</td>
+<td class="al-center"><span class="math inline">\(0.81\)</span></td>
+<td class="al-center"><span class="math inline">\(0.38\)</span></td>
+<td class="al-center"><span class="math inline">\([0.38,\,0.38]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.61\)</span></td>
+<td class="al-center"><span class="math inline">\(0.43\)</span></td>
+</tr>
+<tr>
+<td class="al-left">India</td>
+<td class="al-center"><span class="math inline">\(0.79\)</span></td>
+<td class="al-center"><span class="math inline">\(0.46\)</span></td>
+<td class="al-center"><span class="math inline">\([0.46,\,0.46]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.79\)</span></td>
+<td class="al-center"><span class="math inline">\(0.32\)</span></td>
+</tr>
+<tr>
+<td class="al-left">South Africa</td>
+<td class="al-center"><span class="math inline">\(0.80\)</span></td>
+<td class="al-center"><span class="math inline">\(0.49\)</span></td>
+<td class="al-center"><span class="math inline">\([0.49,\,0.49]\)</span></td>
+<td class="al-center"><span class="math inline">\(0.98\)</span></td>
+<td class="al-center"><span class="math inline">\(0.31\)</span></td>
+</tr>
+</tbody>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Mean recommended index-fund share on the mortgage question (Question 2, Version B, age 40) against the country-specific benchmark <span class="math inline">\(\alpha^{Q2}_{c}\)</span> from Equation (15) at the baseline grid point (<span class="math inline">\(\bar{\gamma}=3\)</span>), which uses the higher of the after-tax real mortgage rate and the local real bond rate as the safe return. The band reports <span class="math inline">\(\alpha^{Q2}_{c}\)</span> at the two ends of the effective-deductibility range, <span class="math inline">\(\tau^{m}=0\)</span> and <span class="math inline">\(\tau^{m}=0.5\)</span>. The two-option benchmark <span class="math inline">\(\tilde{\alpha}^{Q2}_{c}\)</span> uses the after-tax real mortgage rate alone, as if the household could not hold bonds. The gap is <span class="math inline">\(\Delta^{Q2}_{c}=\bar{y}^{Q2}_{c}-\alpha^{Q2}_{c}\)</span>, so a positive value means the model recommends more equity, and hence less prepayment, than the benchmark. Countries above the rule form the calibration group, ordered by gap. The five below form the premise-acceptance group of Section <a href="design.html#sec:design" class="xref">3</a>. In all five, local bonds pay more in real terms than the prompted mortgage costs, so <span class="math inline">\(\alpha^{Q2}_{c}=\alpha^{S}_{c}\)</span>. <span class="math inline">\(N \approx 650\)</span> per country.</div></div>
+<h2 id="sec:benchmark-limits"><span class="sec-num">B.7</span>What the simple model leaves out</h2>
+<p>I note five omissions from the simple model and the likely direction of each. First, the model is static, so with mean-reverting returns longer horizons would justify higher equity shares for the younger investors <a class="cite" href="references.html#ref-campbell2002strategic">(Campbell and Viceira 2002)</a>. Second, labor income risk is reduced to a single loading <span class="math inline">\(\zeta\)</span>, which lowers <span class="math inline">\(\alpha^{I}_{c}\)</span> but, in the baseline calibration, does not move it off the corner for a stake this small relative to total wealth. Only the high-<span class="math inline">\(\zeta\)</span> cases of Section <a href="#sec:benchmark-i" class="xref">B.2</a> do. Third, taxes on investment returns and housing wealth are excluded from the portfolio benchmarks. Fourth, the benchmark conditions on an average earner, so any country where $50<span>,</span>000-equivalent savings implies a very different position in the wage distribution (Brazil again) inherits calibration error in <span class="math inline">\(H_{c}\)</span> and <span class="math inline">\(P_{c}\)</span>. Fifth, the benchmark treats local government bonds as riskless in real terms, which overstates the case for bonds in high-inflation economies (Section <a href="#sec:benchmark-welfare" class="xref">B.5</a>). Each of these would let the advice match a richer benchmark than <span class="math inline">\(\alpha^{S}_{c}\)</span>, but the stated-investor arm of Section <a href="advice-rule.html#sec:stated" class="xref">6</a> shows that the models act on stated balance-sheet information mainly when it signals that the investor could not absorb a loss, as with a pension invested in stocks or a stake that is all of her liquid wealth, and not in the two-sided way these richer benchmarks would require.</p>
+<p>None of the first four caveats enters the computation of Benchmark S, which requires only return moments and preferences. Reassuringly, the one existing full life-cycle treatment of LLM advice reaches the same corner as Benchmark I: <a class="cite" href="references.html#ref-choukhmane2026ai">Choukhmane et al. (2026)</a> find that a calibrated <a class="cite" href="references.html#ref-cocco2005">Cocco et al. (2005)</a> model implies near-universal equity holding for young and middle-aged average earners, and that it cannot rationalize the more conservative shares LLMs actually recommend early in life.</p>
+<div class="paper-table" id="tab:benchmark-params"><div class="tab-head"><span class="tab-label">Table A15</span><span class="tab-title">Country-specific calibration inputs for the normative benchmark</span></div><div class="tab-scroll"><table class="est">
+<thead><tr>
+<th class="al-left"></th>
+<th class="al-right"><span class="math inline">\(\sigma_{c}\)</span></th>
+<th class="al-right"><span class="math inline">\(r_{c}\)</span></th>
+<th class="al-right"><span class="math inline">\(z_{c}\)</span></th>
+<th class="al-right"><span class="math inline">\(\rho_{c}\)</span></th>
+<th class="al-right"><span class="math inline">\(\bar{w}_{c}\)</span></th>
+<th class="al-right"><span class="math inline">\(R_{c}\)</span></th>
+<th class="al-right"><span class="math inline">\(L_{c}\)</span></th>
+<th class="al-right"><span class="math inline">\(g_{c}\)</span></th>
+<th class="al-right"><span class="math inline">\(\tau^{m}_{c}\)</span></th>
+<th class="al-right"><span class="math inline">\(\pi_{c}\)</span></th>
+<th class="al-right"><span class="math inline">\(\alpha^{S}_{c}\)</span></th>
+</tr><tr>
+<th class="al-left">Country</th>
+<th class="al-right">(%)</th>
+<th class="al-right">(%)</th>
+<th class="al-right">(std)</th>
+<th class="al-right">(%)</th>
+<th class="al-right">(000s)</th>
+<th class="al-right">(age)</th>
+<th class="al-right">(yrs)</th>
+<th class="al-right">(%)</th>
+<th class="al-right"></th>
+<th class="al-right">(%)</th>
+<th class="al-right">(<span class="math inline">\(\bar{\gamma}{=}3\)</span>)</th>
+</tr></thead><tbody>
+<tr>
+<td class="al-left">USA (USD)</td>
+<td class="al-right">18.4</td>
+<td class="al-right">0.4</td>
+<td class="al-right">0.12</td>
+<td class="al-right">51.3</td>
+<td class="al-right">87</td>
+<td class="al-right">67</td>
+<td class="al-right">18</td>
+<td class="al-right">1.1</td>
+<td class="al-right">0.15</td>
+<td class="al-right">2.5</td>
+<td class="al-right">0.52</td>
+</tr>
+<tr>
+<td class="al-left">United Kingdom (GBP)</td>
+<td class="al-right">19.1</td>
+<td class="al-right">-0.3</td>
+<td class="al-right">0.05</td>
+<td class="al-right">54.2</td>
+<td class="al-right">47</td>
+<td class="al-right">68</td>
+<td class="al-right">17</td>
+<td class="al-right">0.3</td>
+<td class="al-right">0.00</td>
+<td class="al-right">2.9</td>
+<td class="al-right">0.49</td>
+</tr>
+<tr>
+<td class="al-left">Sweden (SEK)</td>
+<td class="al-right">19.2</td>
+<td class="al-right">-0.3</td>
+<td class="al-right">0.05</td>
+<td class="al-right">66.3</td>
+<td class="al-right">546</td>
+<td class="al-right">70</td>
+<td class="al-right">16</td>
+<td class="al-right">1.0</td>
+<td class="al-right">0.30</td>
+<td class="al-right">2.1</td>
+<td class="al-right">0.48</td>
+</tr>
+<tr>
+<td class="al-left">Finland (EUR)</td>
+<td class="al-right">18.5</td>
+<td class="al-right">-0.1</td>
+<td class="al-right">-0.28</td>
+<td class="al-right">65.7</td>
+<td class="al-right">51</td>
+<td class="al-right">68</td>
+<td class="al-right">17</td>
+<td class="al-right">0.5</td>
+<td class="al-right">0.00</td>
+<td class="al-right">2.0</td>
+<td class="al-right">0.52</td>
+</tr>
+<tr>
+<td class="al-left">Germany (EUR)</td>
+<td class="al-right">18.5</td>
+<td class="al-right">-0.6</td>
+<td class="al-right">-0.04</td>
+<td class="al-right">53.3</td>
+<td class="al-right">55</td>
+<td class="al-right">67</td>
+<td class="al-right">18</td>
+<td class="al-right">0.8</td>
+<td class="al-right">0.00</td>
+<td class="al-right">2.2</td>
+<td class="al-right">0.52</td>
+</tr>
+<tr>
+<td class="al-left">France (EUR)</td>
+<td class="al-right">18.5</td>
+<td class="al-right">0.2</td>
+<td class="al-right">-0.03</td>
+<td class="al-right">70.0</td>
+<td class="al-right">44</td>
+<td class="al-right">65</td>
+<td class="al-right">22</td>
+<td class="al-right">0.6</td>
+<td class="al-right">0.00</td>
+<td class="al-right">1.9</td>
+<td class="al-right">0.52</td>
+</tr>
+<tr>
+<td class="al-left">Spain (EUR)</td>
+<td class="al-right">18.5</td>
+<td class="al-right">0.9</td>
+<td class="al-right">-0.16</td>
+<td class="al-right">86.3</td>
+<td class="al-right">35</td>
+<td class="al-right">65</td>
+<td class="al-right">22</td>
+<td class="al-right">0.5</td>
+<td class="al-right">0.00</td>
+<td class="al-right">2.0</td>
+<td class="al-right">0.52</td>
+</tr>
+<tr>
+<td class="al-left">Japan (JPY)</td>
+<td class="al-right">20.4</td>
+<td class="al-right">-0.1</td>
+<td class="al-right">-0.36</td>
+<td class="al-right">42.4</td>
+<td class="al-right">5,186</td>
+<td class="al-right">65</td>
+<td class="al-right">22</td>
+<td class="al-right">-0.2</td>
+<td class="al-right">0.10</td>
+<td class="al-right">0.9</td>
+<td class="al-right">0.43</td>
+</tr>
+<tr>
+<td class="al-left">Brazil (BRL)</td>
+<td class="al-right">27.5</td>
+<td class="al-right">0.8</td>
+<td class="al-right">-0.25</td>
+<td class="al-right">97.5</td>
+<td class="al-right">56</td>
+<td class="al-right">64</td>
+<td class="al-right">20</td>
+<td class="al-right">1.2</td>
+<td class="al-right">0.00</td>
+<td class="al-right">5.5</td>
+<td class="al-right">0.23</td>
+</tr>
+<tr>
+<td class="al-left">Australia (AUD)</td>
+<td class="al-right">19.0</td>
+<td class="al-right">0.9</td>
+<td class="al-right">0.14</td>
+<td class="al-right">53.0</td>
+<td class="al-right">105</td>
+<td class="al-right">67</td>
+<td class="al-right">20</td>
+<td class="al-right">0.7</td>
+<td class="al-right">0.00</td>
+<td class="al-right">2.7</td>
+<td class="al-right">0.49</td>
+</tr>
+<tr>
+<td class="al-left">Canada (CAD)</td>
+<td class="al-right">18.5</td>
+<td class="al-right">0.3</td>
+<td class="al-right">0.18</td>
+<td class="al-right">45.1</td>
+<td class="al-right">86</td>
+<td class="al-right">65</td>
+<td class="al-right">21</td>
+<td class="al-right">0.9</td>
+<td class="al-right">0.00</td>
+<td class="al-right">2.2</td>
+<td class="al-right">0.52</td>
+</tr>
+<tr>
+<td class="al-left">India (INR)</td>
+<td class="al-right">19.6</td>
+<td class="al-right">1.0</td>
+<td class="al-right">-0.28</td>
+<td class="al-right">44.6</td>
+<td class="al-right">273</td>
+<td class="al-right">58</td>
+<td class="al-right">23</td>
+<td class="al-right">4.9</td>
+<td class="al-right">0.10</td>
+<td class="al-right">6.4</td>
+<td class="al-right">0.46</td>
+</tr>
+<tr>
+<td class="al-left">South Africa (ZAR)</td>
+<td class="al-right">19.0</td>
+<td class="al-right">3.7</td>
+<td class="al-right">0.97</td>
+<td class="al-right">8.9</td>
+<td class="al-right">339</td>
+<td class="al-right">60</td>
+<td class="al-right">20</td>
+<td class="al-right">0.1</td>
+<td class="al-right">0.00</td>
+<td class="al-right">5.5</td>
+<td class="al-right">0.49</td>
+</tr>
+<tr>
+<td class="al-left">Netherlands (EUR)</td>
+<td class="al-right">18.5</td>
+<td class="al-right">-0.5</td>
+<td class="al-right">0.19</td>
+<td class="al-right">96.0</td>
+<td class="al-right">61</td>
+<td class="al-right">70</td>
+<td class="al-right">15</td>
+<td class="al-right">0.1</td>
+<td class="al-right">0.35</td>
+<td class="al-right">2.4</td>
+<td class="al-right">0.52</td>
+</tr>
+<tr>
+<td class="al-left">Italy (EUR)</td>
+<td class="al-right">18.5</td>
+<td class="al-right">1.3</td>
+<td class="al-right">-0.09</td>
+<td class="al-right">79.0</td>
+<td class="al-right">35</td>
+<td class="al-right">70</td>
+<td class="al-right">16</td>
+<td class="al-right">-0.3</td>
+<td class="al-right">0.00</td>
+<td class="al-right">2.0</td>
+<td class="al-right">0.52</td>
+</tr>
+<tr>
+<td class="al-left">Switzerland (CHF)</td>
+<td class="al-right">18.7</td>
+<td class="al-right">0.2</td>
+<td class="al-right">-0.02</td>
+<td class="al-right">47.5</td>
+<td class="al-right">98</td>
+<td class="al-right">65</td>
+<td class="al-right">22</td>
+<td class="al-right">0.7</td>
+<td class="al-right">0.20</td>
+<td class="al-right">0.5</td>
+<td class="al-right">0.51</td>
+</tr>
+<tr>
+<td class="al-left">Poland (PLN)</td>
+<td class="al-right">22.5</td>
+<td class="al-right">0.7</td>
+<td class="al-right">-0.07</td>
+<td class="al-right">40.6</td>
+<td class="al-right">101</td>
+<td class="al-right">62</td>
+<td class="al-right">21</td>
+<td class="al-right">2.6</td>
+<td class="al-right">0.00</td>
+<td class="al-right">3.7</td>
+<td class="al-right">0.35</td>
+</tr>
+<tr>
+<td class="al-left">South Korea (KRW)</td>
+<td class="al-right">18.4</td>
+<td class="al-right">1.0</td>
+<td class="al-right">-0.04</td>
+<td class="al-right">38.9</td>
+<td class="al-right">53,916</td>
+<td class="al-right">65</td>
+<td class="al-right">21</td>
+<td class="al-right">1.3</td>
+<td class="al-right">0.05</td>
+<td class="al-right">2.2</td>
+<td class="al-right">0.53</td>
+</tr>
+<tr>
+<td class="al-left">China (CNY)</td>
+<td class="al-right">19.1</td>
+<td class="al-right">1.4</td>
+<td class="al-right">-0.02</td>
+<td class="al-right">103.6</td>
+<td class="al-right">106</td>
+<td class="al-right">60</td>
+<td class="al-right">22</td>
+<td class="al-right">6.8</td>
+<td class="al-right">0.05</td>
+<td class="al-right">2.2</td>
+<td class="al-right">0.48</td>
+</tr>
+<tr>
+<td class="al-left">Mexico (MXN)</td>
+<td class="al-right">21.7</td>
+<td class="al-right">2.9</td>
+<td class="al-right">-0.14</td>
+<td class="al-right">79.6</td>
+<td class="al-right">277</td>
+<td class="al-right">65</td>
+<td class="al-right">18</td>
+<td class="al-right">0.1</td>
+<td class="al-right">0.00</td>
+<td class="al-right">4.4</td>
+<td class="al-right">0.38</td>
+</tr>
+<tr>
+<td class="al-left">Turkey (TRY)</td>
+<td class="al-right">29.1</td>
+<td class="al-right">-4.2</td>
+<td class="al-right">0.02</td>
+<td class="al-right">96.4</td>
+<td class="al-right">743</td>
+<td class="al-right">64</td>
+<td class="al-right">18</td>
+<td class="al-right">11.5</td>
+<td class="al-right">0.00</td>
+<td class="al-right">19.4</td>
+<td class="al-right">0.21</td>
+</tr>
+</tbody>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Country-level inputs to the normative benchmark of Appendix <a href="#app:benchmark" class="xref">B</a>, one row per country. <span class="math inline">\(\sigma_{c}\)</span> is the annualized volatility of a world equity index measured in local currency, unhedged, and <span class="math inline">\(r_{c}\)</span> is the real safe rate, local government yields less expected inflation, taken as a trailing twenty-year mean. The equity premium <span class="math inline">\(\mu_{c}-r_{c}\)</span> is held common across countries at 5.32 percent, the arithmetic mean of the net MSCI World index in U.S. dollars over the U.S. long-term rate (1999–2025). <span class="math inline">\(z_{c}\)</span> is the country-mean GPS willingness to take risks, standardized at the individual level <a class="cite" href="references.html#ref-falk2018global">(Falk et al. 2018)</a>, which enters the tests of Section <a href="results.html#sec:main-gps" class="xref">5.5</a> and not the benchmark. <span class="math inline">\(\rho_{c}\)</span> is the OECD net pension replacement rate for the average earner and <span class="math inline">\(\bar{w}_{c}\)</span> is the average annual wage in thousands of local currency <a class="cite" href="references.html#ref-oecd2023pensions">(OECD 2023)</a>. <span class="math inline">\(R_{c}\)</span> is the normal retirement age, <span class="math inline">\(L_{c}\)</span> the years of life expectancy at retirement, and <span class="math inline">\(g_{c}\)</span> the real wage growth. <span class="math inline">\(\tau^{m}_{c}\)</span> is the assumed effective mortgage-interest deductibility for the mortgage question. <span class="math inline">\(\pi_{c}\)</span> is expected inflation from central-bank targets and consensus forecasts. The final column is the standalone benchmark share <span class="math inline">\(\alpha^{S}_{c}\)</span> at the baseline grid point (<span class="math inline">\(\bar{\gamma}=3\)</span>). The thin-data group (Brazil, China, India, Turkey, Mexico, South Africa, Poland) relies on shorter MSCI and local-bond series. Return moments are from MSCI local-currency series, with DMS <a class="cite" href="references.html#ref-dimson2002triumph">(Dimson et al. 2002)</a> and JST <a class="cite" href="references.html#ref-jorda2019rate">(Jordà et al. 2019)</a> for long-run return robustness. The prompt stake <span class="math inline">\(W\)</span> is the round local-currency equivalent of $50<span>,</span>000.</div></div>
+
+<nav class="prevnext"><a class="pn prev" href="appendix.html"><span class="pn-dir">Previous</span><span class="pn-title">Appendix tables and figures</span></a><a class="pn next" href="appendix-tracking.html"><span class="pn-dir">Next</span><span class="pn-title">The model-tracking wave</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. The experimental design, hypotheses and inference rules were pre-registered at the Open Science Framework (<a href="https://osf.io/2ch5z" target="_blank" rel="noopener">osf.io/2ch5z</a>) before the main collection. This project was supported by Behavioral Finance e.V. Views and opinions expressed are those of the author only.</p>
+  <p>The model responses behind the paper are not publicly released. Every number on this site is an aggregate that the paper reports: cell means, binned counts, and regression estimates. See <a href="about.html">Data, code and AI prompt</a>.</p>
+  <p><a href="about.html">Data and code</a> · <a href="errata.html">Errata and notes</a> · <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/charts.js"></script><script src="assets/charts-fa.js"></script><script src="assets/figures.js"></script>
+</body>
+</html>

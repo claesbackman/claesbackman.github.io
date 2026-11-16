@@ -1,0 +1,327 @@
+{
+ "figures": {
+  "fig:dist": {
+   "number": "1",
+   "images": [
+    "Figures/fig_D5_distribution.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:eq1-coefplot": {
+   "number": "2",
+   "images": [
+    "Figures/fig_coef_eq1_wild.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:decomp": {
+   "number": "3",
+   "images": [
+    "Figures/fig_decomp_countryfe.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:three-questions": {
+   "number": "4",
+   "images": [
+    "Figures/fig_three_questions.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:advice-benchmark": {
+   "number": "5",
+   "images": [
+    "Figures/fig_benchmark_panels.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:age-rule": {
+   "number": "6",
+   "images": [
+    "Figures/fig_age_rule_bunching.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:upgrade-asymmetry": {
+   "number": "7",
+   "images": [
+    "Figures/fig_upgrade_asymmetry.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:local-context": {
+   "number": "8",
+   "images": [
+    "Figures/fig_local_context_prevalence.pdf"
+   ],
+   "where": "main"
+  },
+  "fig:gps-panels": {
+   "number": "A1",
+   "images": [
+    "Figures/fig_gps_panels.pdf"
+   ],
+   "where": "app"
+  },
+  "fig:age-glidepath": {
+   "number": "A2",
+   "images": [
+    "Figures/fig_D4_by_age.png"
+   ],
+   "where": "app"
+  },
+  "fig:tracking-heatmap": {
+   "number": "A3",
+   "images": [
+    "Figures/fig_track_heatmap_2026-09-19_paper.png"
+   ],
+   "where": "app"
+  },
+  "fig:tracking-vintage": {
+   "number": "A4",
+   "images": [
+    "Figures/fig_track_vintage_sdcorr_paper.png"
+   ],
+   "where": "app"
+  }
+ },
+ "tables": {
+  "tab:by-model": {
+   "number": "1"
+  },
+  "tab:scorecard": {
+   "number": "2"
+  },
+  "tab:h9-text": {
+   "number": "3"
+  },
+  "tab:hypotheses": {
+   "number": "A1"
+  },
+  "tab:hypotheses-cont": {
+   "number": "A1"
+  },
+  "tab:eq1-countryfe": {
+   "number": "A2"
+  },
+  "tab:q2q3-countryfe": {
+   "number": "A3"
+  },
+  "tab:q4-instrument": {
+   "number": "A4"
+  },
+  "tab:country-correlates": {
+   "number": "A5"
+  },
+  "tab:age-pension": {
+   "number": "A6"
+  },
+  "tab:robust-cells": {
+   "number": "A7"
+  },
+  "tab:ppp-contrasts": {
+   "number": "A8"
+  },
+  "tab:trinstr": {
+   "number": "A9"
+  },
+  "tab:bgrt-coef": {
+   "number": "A10"
+  },
+  "tab:bgrt-bycountry": {
+   "number": "A11"
+  },
+  "tab:upgrade-coef": {
+   "number": "A12"
+  },
+  "tab:benchmark-gaps": {
+   "number": "A13"
+  },
+  "tab:benchmark-gaps-q2": {
+   "number": "A14"
+  },
+  "tab:benchmark-params": {
+   "number": "A15"
+  },
+  "tab:tracking": {
+   "number": "A16"
+  },
+  "tab:country-context": {
+   "number": "A17"
+  },
+  "tab:query-accounting": {
+   "number": "A18"
+  },
+  "tab:model-versions": {
+   "number": "A19"
+  }
+ },
+ "equations": {
+  "eq:merton": "1",
+  "eq:organizing": "2",
+  "eq:countryfe": "3",
+  "eq:localcontext": "4",
+  "eq:language": "5",
+  "eq:stated": "6",
+  "eq:age": "7",
+  "eq:benchS": "8",
+  "eq:benchI": "9",
+  "eq:pensionwealth": "10",
+  "eq:humancapital": "11",
+  "eq:kappa": "13",
+  "eq:welfare": "14",
+  "eq:alphaq2": "15"
+ },
+ "anchors": {
+  "introduction": "introduction",
+  "fn1": "introduction",
+  "fn2": "introduction",
+  "sec:literature": "literature",
+  "sec:design": "design",
+  "the-three-questions": "design",
+  "country-selection": "design",
+  "prompt-structure-and-version-design": "design",
+  "fn3": "design",
+  "sec:data": "design",
+  "fn4": "design",
+  "sec:benchmark": "benchmark",
+  "sec:benchmark-simple": "benchmark",
+  "sec:benchmark-q2": "benchmark",
+  "sec:main": "results",
+  "fn5": "results",
+  "sec:descriptive": "results",
+  "fig:dist": "results",
+  "tab:by-model": "results",
+  "sec:main-countryfe": "results",
+  "fn6": "results",
+  "fig:eq1-coefplot": "results",
+  "sec:main-decomposition": "results",
+  "fig:decomp": "results",
+  "sec:main-q2q4": "results",
+  "fig:three-questions": "results",
+  "sec:main-gps": "results",
+  "fn7": "results",
+  "fn8": "results",
+  "fig:advice-benchmark": "results",
+  "fn9": "results",
+  "fn10": "results",
+  "sec:robustness": "results",
+  "fn11": "results",
+  "temperature-check.": "results",
+  "numeral-magnitude.": "results",
+  "purchasing-power-adjustment.": "results",
+  "leave-one-out-mean-and-vendor-fixed-effects.": "results",
+  "model-drift-over-time.": "results",
+  "fn12": "results",
+  "caller-location-and-routing.": "results",
+  "translating-the-instructions-block.": "results",
+  "allowing-the-models-to-ask-questions.": "results",
+  "sec:stated": "advice-rule",
+  "risk-tolerance-horizon-and-pension-generosity": "advice-rule",
+  "sec:main-age": "advice-rule",
+  "fig:age-rule": "advice-rule",
+  "sec:stated-probes": "advice-rule",
+  "fn13": "advice-rule",
+  "fig:upgrade-asymmetry": "advice-rule",
+  "sec:scorecard": "advice-rule",
+  "tab:scorecard": "advice-rule",
+  "sec:text": "text",
+  "fn14": "text",
+  "tab:h9-text": "text",
+  "fig:local-context": "text",
+  "sec:conclusion": "conclusion",
+  "app:tables": "appendix",
+  "tab:hypotheses": "appendix",
+  "tab:hypotheses-cont": "appendix",
+  "tab:eq1-countryfe": "appendix",
+  "tab:q2q3-countryfe": "appendix",
+  "tab:q4-instrument": "appendix",
+  "fig:gps-panels": "appendix",
+  "tab:country-correlates": "appendix",
+  "tab:age-pension": "appendix",
+  "fig:age-glidepath": "appendix",
+  "tab:robust-cells": "appendix",
+  "tab:ppp-contrasts": "appendix",
+  "tab:trinstr": "appendix",
+  "tab:bgrt-coef": "appendix",
+  "tab:bgrt-bycountry": "appendix",
+  "tab:upgrade-coef": "appendix",
+  "app:benchmark": "appendix-benchmark",
+  "sec:benchmark-s": "appendix-benchmark",
+  "sec:benchmark-i": "appendix-benchmark",
+  "pension-wealth-and-human-capital-inputs.": "appendix-benchmark",
+  "sec:benchmark-estimation": "appendix-benchmark",
+  "advice-gaps.": "appendix-benchmark",
+  "the-calibration-slope.": "appendix-benchmark",
+  "sec:benchmark-results": "appendix-benchmark",
+  "tab:benchmark-gaps": "appendix-benchmark",
+  "sec:benchmark-welfare": "appendix-benchmark",
+  "app:benchmark-q2": "appendix-benchmark",
+  "tab:benchmark-gaps-q2": "appendix-benchmark",
+  "sec:benchmark-limits": "appendix-benchmark",
+  "tab:benchmark-params": "appendix-benchmark",
+  "app:tracking-wave": "appendix-tracking",
+  "fn15": "appendix-tracking",
+  "tab:tracking": "appendix-tracking",
+  "fig:tracking-heatmap": "appendix-tracking",
+  "fig:tracking-vintage": "appendix-tracking",
+  "app:technical": "appendix-technical",
+  "app:prompts": "appendix-technical",
+  "instructions-blocks.": "appendix-technical",
+  "question-blocks-version-b-united-states.": "appendix-technical",
+  "question-blocks-version-c-united-states.": "appendix-technical",
+  "stated-investor-arm-version-bgammarhotau.": "appendix-technical",
+  "exploratory-re-collections.": "appendix-technical",
+  "judge-rubric-for-the-explanation-coding.": "appendix-technical",
+  "country-panel-and-query-accounting": "appendix-technical",
+  "tab:country-context": "appendix-technical",
+  "tab:query-accounting": "appendix-technical",
+  "app:model-versions": "appendix-technical",
+  "tab:model-versions": "appendix-technical",
+  "app:translation": "appendix-technical",
+  "app:parsing": "appendix-technical",
+  "app:collection": "appendix-technical",
+  "ref-becker2010outstanding": "references",
+  "ref-bodie1992labor": "references",
+  "ref-campbell2002strategic": "references",
+  "ref-canner1997": "references",
+  "ref-choi2022popular": "references",
+  "ref-choukhmane2026ai": "references",
+  "ref-cocco2005": "references",
+  "ref-dacunto2019promises": "references",
+  "ref-dacunto2023robo": "references",
+  "ref-dimson2002triumph": "references",
+  "ref-einberger2026chatbots": "references",
+  "ref-esma2022suitability": "references",
+  "ref-falk2018global": "references",
+  "ref-fieberg2025using": "references",
+  "ref-FHN2025": "references",
+  "ref-fsa2011suitability": "references",
+  "ref-foerster2017retail": "references",
+  "ref-foltyn2026gender": "references",
+  "ref-fuster2022predictably": "references",
+  "ref-galvez2026richer": "references",
+  "ref-jansen2022measuring": "references",
+  "ref-jorda2019rate": "references",
+  "ref-kassner2021mlama": "references",
+  "ref-klapper2015finlit": "references",
+  "ref-lindsey2025biology": "references",
+  "ref-lloyds2025": "references",
+  "ref-love2013rules": "references",
+  "ref-merton1969": "references",
+  "ref-merton1971": "references",
+  "ref-oecd2023pensions": "references",
+  "ref-oecd2026ai": "references",
+  "ref-qi2023crosslingual": "references",
+  "ref-reuter2024demand": "references",
+  "ref-vanrooij2011financial": "references",
+  "ref-ross2026one": "references",
+  "ref-rossi2024needs": "references",
+  "ref-samuelson1969": "references",
+  "ref-schut2025multilingual": "references",
+  "ref-sensortower2026stateofai": "references",
+  "ref-tang2024neurons": "references",
+  "ref-wendler2024llamas": "references",
+  "ref-wu2025semantic": "references"
+ }
+}
