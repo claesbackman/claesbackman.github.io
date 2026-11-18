@@ -108,20 +108,21 @@
     // reveal: 21 country means huddle, 13 model means spread (build-in once)
     // =====================================================================
     CH.reveal = (el, o) => {
-      const W = 760, H = 396, m = { l: 30, r: 30 }, x0 = 0.30, x1 = 0.76;
+      // Two rows of the same 21 countries: the portfolio question on top, the mortgage question below.
+      const W = 760, H = 396, m = { l: 30, r: 30 }, x0 = 0.38, x1 = 0.90;
       const x = L.scale(x0, x1, m.l, W - m.r);
       const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart' });
       const yC = 112, yM = 262, base = 352;
       const ax = S('g', { class: 'axis' });
       ax.appendChild(S('line', { x1: m.l, x2: W - m.r, y1: base, y2: base }));
-      for (let t = 0.30; t <= 0.76; t += 0.10) {
+      for (let t = 0.40; t <= 0.901; t += 0.10) {
         ax.appendChild(S('line', { x1: x(t), x2: x(t), y1: 30, y2: base, class: 'grid' }));
         ax.appendChild(T(x(t), base + 18, Math.round(t * 100) + '%', null, { 'text-anchor': 'middle' }));
       }
       ax.appendChild(T((m.l + W - m.r) / 2, base + 40, 'mean recommended share in the stock fund', 'axis-label', { 'text-anchor': 'middle' }));
       svg.appendChild(ax);
-      svg.append(T(m.l, 20, 'Where the investor lives: 21 country means', 'rowhead'),
-        T(m.l, yM - 44, 'Which model is asked: 13 model means', 'rowhead'));
+      svg.append(T(m.l, 20, 'The portfolio question: 21 country means', 'rowhead'),
+        T(m.l, yM - 44, 'The mortgage question: the same 21 countries', 'rowhead'));
 
       // dodge overlapping dots into lanes; the two characters are placed first, on the centre lane
       const dodge = (vals, gap = 13) => {
@@ -134,19 +135,19 @@
           placed.push({ ln: 0, px }); return Object.assign({ px, ln: 0 }, v);
         });
       };
-      const cs = dodge([...C].sort((a, b) => (WHO[b.key] ? 1 : 0) - (WHO[a.key] ? 1 : 0) || a.mean - b.mean).map((c) => ({ v: c.mean, c })));
-      const ms = dodge([...D.models].sort((a, b) => a.mean - b.mean).map((md) => ({ v: md.mean, md })));
-      const cDots = cs.map((d) => {
-        const big = !!WHO[d.c.key];
-        const dot = big ? markAt(d.c, d.px, yC + d.ln, 10)
-          : S('circle', { cx: d.px, cy: yC + d.ln, r: 6, fill: 'var(--advice)', 'fill-opacity': 0.8, stroke: 'var(--paper)', 'stroke-width': 1.5 });
-        return { d, dot, big };
-      });
-      cDots.filter((c) => !c.big).concat(cDots.filter((c) => c.big)).forEach(({ dot }) => svg.appendChild(dot));
-      const mDots = ms.map((d) => {
-        const dot = S('circle', { cx: d.px, cy: yM + d.ln, r: 6.5, fill: 'var(--advice)', stroke: 'var(--paper)', 'stroke-width': 1.5 });
-        svg.appendChild(dot); return { d, dot };
-      });
+      const whoFirst = (f) => (a, b) => (WHO[b.key] ? 1 : 0) - (WHO[a.key] ? 1 : 0) || f(a) - f(b);
+      const row = (vals, y) => {
+        const dots = vals.map((d) => {
+          const big = !!WHO[d.c.key];
+          const dot = big ? markAt(d.c, d.px, y + d.ln, 10)
+            : S('circle', { cx: d.px, cy: y + d.ln, r: 6, fill: 'var(--advice)', 'fill-opacity': 0.8, stroke: 'var(--paper)', 'stroke-width': 1.5 });
+          return { d, dot, big };
+        });
+        dots.filter((c) => !c.big).concat(dots.filter((c) => c.big)).forEach(({ dot }) => svg.appendChild(dot));
+        return dots;
+      };
+      const cDots = row(dodge([...C].sort(whoFirst((c) => c.mean)).map((c) => ({ v: c.mean, c }))), yC);
+      const mDots = row(dodge([...C].sort(whoFirst((c) => c.q2mean)).map((c) => ({ v: c.q2mean, c }))), yM);
 
       const bracket = (a, b, y, label) => {
         const g = S('g');
@@ -154,13 +155,13 @@
           T((x(a) + x(b)) / 2, y + 26, label, 'lbl-big', { 'text-anchor': 'middle' }));
         svg.appendChild(g); return g;
       };
-      const cMin = Math.min(...C.map((c) => c.mean)), cMax = Math.max(...C.map((c) => c.mean));
-      const mMin = D.models[0].mean, mMax = D.models[D.models.length - 1].mean;
-      const b1 = bracket(cMin, cMax, yC + 46, `${D.variance.q1.countryRange} points`);
-      const b2 = bracket(mMin, mMax, yM + 44, `${D.variance.q1.modelRange} points`);
+      const lo = (f) => C.reduce((a, c) => (f(c) < f(a) ? c : a)), hi = (f) => C.reduce((a, c) => (f(c) > f(a) ? c : a));
+      const cLo = lo((c) => c.mean), cHi = hi((c) => c.mean), mLo = lo((c) => c.q2mean), mHi = hi((c) => c.q2mean);
+      const b1 = bracket(cLo.mean, cHi.mean, yC + 46, `${D.variance.q1.countryRange} points`);
+      const b2 = bracket(mLo.q2mean, mHi.q2mean, yM + 44, `${D.variance.q2.countryRange} points`);
 
       const us = byKey.USA, de = byKey.Germany;
-      const lab = S('g');
+      const lab = S('g'), lab2 = S('g');
       const ly = yC - 44;
       // Lena sits left of Emily, so her label goes to the left and Emily's to the right.
       lab.append(
@@ -168,26 +169,30 @@
         S('path', { d: `M${x(us.mean) + 46} ${ly + 5} L${x(us.mean) + 6} ${yC - 11}`, stroke: 'var(--emily)', 'stroke-width': 1.5, fill: 'none' }),
         T(x(de.mean) - 50, ly, `Lena ${pct(de.mean)}`, 'lbl halo', { 'text-anchor': 'end', fill: 'var(--lena)' }),
         T(x(us.mean) + 50, ly, `Emily ${pct(us.mean)}`, 'lbl halo', { 'text-anchor': 'start', fill: 'var(--emily)' }),
-        T(x(cMin) - 12, yC + 5, 'Brazil', 'lbl-sm', { 'text-anchor': 'end' }),
-        T(x(mMin) - 12, yM + 5, D.models[0].name, 'lbl-sm', { 'text-anchor': 'end' }),
-        T(x(mMax) + 12, yM + 5, D.models[D.models.length - 1].name, 'lbl-sm', { 'text-anchor': 'start' }));
-      svg.appendChild(lab);
+        T(x(cLo.mean) - 12, yC + 5, nameOf(cLo), 'lbl-sm', { 'text-anchor': 'end' }));
+      const ly2 = yM - 22;
+      lab2.append(
+        S('path', { d: `M${x(de.q2mean) - 30} ${ly2 + 4} L${x(de.q2mean) - 7} ${yM - 9}`, stroke: 'var(--lena)', 'stroke-width': 1.5, fill: 'none' }),
+        T(x(de.q2mean) - 34, ly2, `Lena ${pct(de.q2mean)}`, 'lbl halo', { 'text-anchor': 'end', fill: 'var(--lena)' }),
+        T(x(us.q2mean) + 16, yM + 5, `Emily ${pct(us.q2mean)}`, 'lbl halo', { 'text-anchor': 'start', fill: 'var(--emily)' }),
+        T(x(mLo.q2mean) - 12, yM + 5, nameOf(mLo), 'lbl-sm', { 'text-anchor': 'end' }));
+      svg.append(lab, lab2);
 
-      el.append(wrap(svg), cap(`The portfolio question in the local language, age 40, all ${L.fmtInt(D.stats.nPrimary)} answers in the collection. Top: each country averaged over the 13 models. Bottom: each model averaged over the 21 countries.`));
+      el.append(wrap(svg), cap('Local-language prompts, age 40. Each dot is a country averaged over the 13 models. Top: the share in the stock fund on the portfolio question. Bottom: the share invested in the stock fund and not used to prepay a 4% mortgage.'));
 
       if (!o.animate) return;
-      const pooled = D.models.reduce((s, md) => s + md.mean, 0) / D.models.length;
+      // The portfolio row drops in. Then each country slides from its portfolio position to its mortgage position.
       cDots.forEach(({ dot, big }) => (big ? setT(dot, 'ty', -20) : dot.setAttribute('cy', -20)));
-      mDots.forEach(({ dot }) => { dot.setAttribute('cx', x(pooled)); dot.setAttribute('opacity', 0); });
-      [b1, b2, lab].forEach((g) => g.setAttribute('opacity', 0));
+      mDots.forEach(({ d, dot, big }) => { if (big) setT(dot, 'tx', x(d.c.mean)); else dot.setAttribute('cx', x(d.c.mean)); dot.setAttribute('opacity', 0); });
+      [b1, b2, lab, lab2].forEach((g) => g.setAttribute('opacity', 0));
       const timers = [];
       move(cDots.map(({ d, dot, big }) => ({ el: dot, attr: big ? 'ty' : 'cy', from: -20, to: yC + d.ln })), 900);
       timers.push(setTimeout(() => {
         L.tween(0, 1, 400, (k) => { b1.setAttribute('opacity', k); lab.setAttribute('opacity', k); });
         timers.push(setTimeout(() => {
           mDots.forEach(({ dot }) => dot.setAttribute('opacity', 1));
-          move(mDots.map(({ d, dot }) => ({ el: dot, attr: 'cx', from: x(pooled), to: d.px })), 1500);
-          timers.push(setTimeout(() => L.tween(0, 1, 400, (k) => b2.setAttribute('opacity', k)), 1400));
+          move(mDots.map(({ d, dot, big }) => ({ el: dot, attr: big ? 'tx' : 'cx', from: x(d.c.mean), to: d.px })), 1500);
+          timers.push(setTimeout(() => L.tween(0, 1, 400, (k) => { b2.setAttribute('opacity', k); lab2.setAttribute('opacity', k); }), 1400));
         }, 1300));
       }, 1000));
       return () => timers.forEach(clearTimeout);
@@ -512,7 +517,7 @@
         row(y + 40, p.risk, p.r, 'risk');
         row(y + 70, p.safe, p.s, 'safe');
       });
-      el.append(wrap(svg), cap('Effect of one added sentence with 95% intervals, English Question 1 at age 40, country and model fixed effects. Teal ◂ ▸: the direction a balance-sheet planner predicts.'));
+      el.append(wrap(svg), cap('Effect of one added sentence with 95% intervals, English Question 1 at age 40, country and model fixed effects. Teal ◂ ▸: the direction the Life-Cycle advisor predicts.'));
     };
 
     // =====================================================================
@@ -723,7 +728,7 @@
       ax.appendChild(T(x(-5), H - 3, 'percentage points relative to the U.S. English generic prompt', 'axis-label', { 'text-anchor': 'middle' }));
       svg.appendChild(ax);
       svg.appendChild(S('line', { x1: x(0), x2: x(0), y1: top - 8, y2: H - 40, stroke: 'var(--ink-3)' }));
-      const fills = { name: 'var(--ink-2)', lang: '#8A9195', local: 'var(--line)' };
+      const fills = { name: 'var(--primary)', lang: 'var(--contrast)', local: '#A9B0B3' };
       rows.forEach((c, i) => {
         const y = top + i * rowH, d = c.decomp;
         svg.appendChild(T(lx, y + rowH / 2 + 4.5, nameOf(c), 'rowlbl', { 'text-anchor': 'end', fill: WHO[c.key] || 'var(--ink-2)' }));
@@ -736,7 +741,7 @@
         }
         svg.appendChild(S('path', { d: `M${x(d.total)} ${y + 2} l5 ${rowH / 2 - 2} l-5 ${rowH / 2 - 2} l-5 ${-(rowH / 2 - 2)} z`, fill: 'var(--ink)' }));
       });
-      el.append(E('div', { class: 'legend' }, [E('span', { style: '--c:var(--ink-2)', text: 'country name (B-cross vs. U.S.)' }), E('span', { style: '--c:#8A9195', text: 'language (B vs. B-cross)' }), E('span', { style: '--c:var(--line)', text: 'local instruments (C vs. B)' }), E('span', { class: 'diamond', text: 'total (C vs. U.S.)' })]),
+      el.append(E('div', { class: 'legend' }, [E('span', { style: '--c:var(--primary)', text: 'country name (B-cross vs. U.S.)' }), E('span', { style: '--c:var(--contrast)', text: 'language (B vs. B-cross)' }), E('span', { style: '--c:#A9B0B3', text: 'local instruments (C vs. B)' }), E('span', { class: 'diamond', text: 'total (C vs. U.S.)' })]),
         wrap(svg), cap('Model-adjusted cell contrasts from one saturated country-by-version regression, Question 1, age 40. Descriptive: the per-country slabs are noisier than the pooled estimates. The six English-prompt countries have no language slab. The country-name slab also changes the currency and the amount.'));
     };
 
@@ -755,7 +760,7 @@
         const l = lab[k.key];
         if (l) c.g.appendChild(T(c.x(k.q2alpha) + l[0], c.y(k.q2mean) + l[1], nameOf(k), 'lbl-sm halo', { fill: WHO[k.key] || 'var(--ink-2)', 'text-anchor': l[2] || 'start' }));
       });
-      el.append(wrap(c.svg), cap('Question 2, Version B, age 40. Theory: the Merton share with the after-tax real mortgage rate as the safe return (γ = 3, no deductibility). Diamonds: the five countries whose local rates were more than twice the prompted 4%, where the benchmark takes the 4% at face value.'));
+      el.append(wrap(c.svg), cap('Question 2, Version B, age 40. Theory: the Merton share with the higher of the after-tax real mortgage rate and the local real bond rate as the safe return (γ = 3, no deductibility). Diamonds: the five countries whose local rates were more than twice the prompted 4%, where local bonds pay more than the mortgage costs.'));
     };
 
     // inflation: primary instrument on the inflation question
@@ -764,7 +769,7 @@
       const W = 1120, top = 10, rowH = 18, lx = 130, H = top + rows.length * rowH + 36;
       const x = L.scale(0, 1, lx + 10, W - 40);
       const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart' });
-      const parts = [['linker', 'var(--ink)'], ['gold', 'var(--ink-3)'], ['re', '#9AA1A4'], ['other', 'var(--paper-3)'], ['eq', 'var(--line)']];
+      const parts = [['linker', 'var(--primary)'], ['gold', 'var(--contrast)'], ['re', '#8DBCC5'], ['other', 'var(--paper-3)'], ['eq', '#B8BEC0']];
       rows.forEach((c, i) => {
         const y = top + i * rowH;
         svg.appendChild(T(lx, y + rowH / 2 + 4.5, nameOf(c), 'rowlbl', { 'text-anchor': 'end', fill: WHO[c.key] || 'var(--ink-2)' }));
@@ -780,7 +785,7 @@
       const ax = S('g', { class: 'axis' });
       for (const t of [0, 0.25, 0.5, 0.75, 1]) ax.appendChild(T(x(t), H - 16, pct(t), null, { 'text-anchor': 'middle' }));
       svg.appendChild(ax);
-      el.append(E('div', { class: 'legend' }, [E('span', { style: '--c:var(--ink)', text: 'inflation-linked bonds' }), E('span', { style: '--c:var(--ink-3)', text: 'gold' }), E('span', { style: '--c:#9AA1A4', text: 'real estate' }), E('span', { style: '--c:var(--paper-3)', text: 'other' }), E('span', { style: '--c:var(--line)', text: 'equities' })]),
+      el.append(E('div', { class: 'legend' }, [E('span', { style: '--c:var(--primary)', text: 'inflation-linked bonds' }), E('span', { style: '--c:var(--contrast)', text: 'gold' }), E('span', { style: '--c:#8DBCC5', text: 'real estate' }), E('span', { style: '--c:var(--paper-3)', text: 'other' }), E('span', { style: '--c:#B8BEC0', text: 'equities' })]),
         wrap(svg), cap('Share of answers naming each primary instrument, Question 3 (a 1% savings account with 3% inflation), Version B, age 40, from the collection. Labels: inflation-linked bonds plus gold.'));
     };
 
