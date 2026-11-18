@@ -35,6 +35,7 @@
 <main id="main" class="main">
 <article class="read">
 <h1 id="app:tables"><span class="sec-num">A</span>Appendix Tables and Figures</h1>
+<h2 id="app:tables-tab"><span class="sec-num">A.1</span>Tables</h2>
 <div class="paper-table" id="tab:hypotheses"><div class="tab-head"><span class="tab-label">Table A1</span><span class="tab-title">The pre-registered hypotheses, their tests, and their outcomes</span></div><div class="tab-scroll"><table class="est">
 <thead>
 <tr>
@@ -51,56 +52,56 @@
 <td class="al-left">Equity recommendations differ systematically across countries (country fixed effects in Eq. (3)).</td>
 <td class="al-left">Per-country wild-bootstrap tests of the twenty contrasts, corrected as a single Holm family.</td>
 <td class="al-left">Primary</td>
-<td class="al-left">Supported. Seven of twenty contrasts survive the Holm correction, all negative, from Brazil (−11.0 pp) to Mexico (−2.7 pp).</td>
+<td class="al-left">Supported. Seven of twenty contrasts survive the Holm correction, all negative, from Brazil (−11.0 pp) to Mexico (−2.7 pp). Section <a href="results.html#sec:main-countryfe" class="xref">5.2</a>, Table <a href="#tab:eq1-countryfe" class="xref">A2</a>.</td>
 </tr>
 <tr>
 <td class="al-left">H2</td>
-<td class="al-left">Advice does not move with country fundamentals (the U.S.-default anchor): <span class="math inline">\(\kappa=0\)</span> in the calibration regression (13).</td>
+<td class="al-left">Advice does not move with country fundamentals (the U.S.-default anchor): <span class="math inline">\(\kappa=0\)</span> in the calibration regression (11).</td>
 <td class="al-left">Wild bootstrap over the twenty non-U.S. countries, HC2 standard errors alongside.</td>
 <td class="al-left">Second altitude<sup>a</sup></td>
-<td class="al-left">Descriptive read consistent with compression. <span class="math inline">\(\hat{\kappa}=0.13\)</span> (HC2 se 0.11), ranging 0.09–0.43 across the risk-aversion grid. The wild bootstrap over countries does not reject <span class="math inline">\(\kappa=0\)</span> (<span class="math inline">\(p=0.32\)</span>) and rejects <span class="math inline">\(\kappa=1\)</span>. The secondary two-stage bootstrap over models, holding the country panel fixed, gives <span class="math inline">\([0.07, 0.19]\)</span> (Appendix <a href="appendix-benchmark.html#sec:benchmark-results" class="xref">B.4</a>).</td>
+<td class="al-left">Descriptive read consistent with compression. <span class="math inline">\(\hat{\kappa}=0.13\)</span> (HC2 se 0.11), wild <span class="math inline">\(p=0.32\)</span> against <span class="math inline">\(\kappa=0\)</span>, and <span class="math inline">\(\kappa=1\)</span> is rejected. Section <a href="benchmark.html#sec:benchmark-simple" class="xref">4.1</a>, Appendix <a href="appendix-benchmark.html#sec:benchmark-results" class="xref">B.4</a>.</td>
 </tr>
 <tr>
 <td class="al-left">H3</td>
 <td class="al-left">The U.K. contrast is equivalent to zero within a <span class="math inline">\(\pm 5\)</span> pp margin, consistent with shared Anglo-American norms.</td>
-<td class="al-left">Two one-sided tests: supported when the 90 percent wild-bootstrap CI for <span class="math inline">\(\gamma_{UK}\)</span> lies inside the margin.</td>
+<td class="al-left">Two one-sided tests: supported when the 90 percent wild-bootstrap CI for <span class="math inline">\(b_{UK}\)</span> lies inside the margin.</td>
 <td class="al-left">Primary</td>
-<td class="al-left">Supported. <span class="math inline">\(\hat{\gamma}_{UK}=+0.7\)</span> pp with 95 percent CI <span class="math inline">\([-0.8,+2.2]\)</span>, so the 90 percent interval of the two one-sided tests is inside the margin as well.</td>
+<td class="al-left">Supported. <span class="math inline">\(\hat{b}_{UK}=+0.7\)</span> pp, 95 percent CI <span class="math inline">\([-0.8,+2.2]\)</span>, inside the margin. Section <a href="results.html#sec:main-countryfe" class="xref">5.2</a>, Table <a href="#tab:eq1-countryfe" class="xref">A2</a>.</td>
 </tr>
 <tr>
 <td class="al-left">H4</td>
 <td class="al-left">Asking in the local language rather than in English shifts advice, holding the country name fixed (<span class="math inline">\(\lambda\neq 0\)</span> in Eq. (5)).</td>
 <td class="al-left">Single pre-specified coefficient, reported uncorrected.</td>
 <td class="al-left">Primary</td>
-<td class="al-left">Supported. <span class="math inline">\(\hat{\lambda}=-1.3\)</span> pp, <span class="math inline">\(p=0.007\)</span>, CI <span class="math inline">\([-2.3,-0.4]\)</span>.</td>
+<td class="al-left">Supported. <span class="math inline">\(\hat{\lambda}=-1.3\)</span> pp, <span class="math inline">\(p=0.007\)</span>. Section <a href="results.html#sec:main-decomposition" class="xref">5.3</a>, Figure <a href="results.html#fig:decomp" class="xref">3</a>.</td>
 </tr>
 <tr>
 <td class="al-left">H5</td>
 <td class="al-left">Naming local instruments and pension vehicles shifts advice beyond the country name alone (<span class="math inline">\(\phi\neq 0\)</span> in Eq. (4)).</td>
 <td class="al-left">Single pre-specified coefficient, reported uncorrected.</td>
 <td class="al-left">Primary</td>
-<td class="al-left">Not supported at the 5 percent level. <span class="math inline">\(\hat{\phi}=-0.7\)</span> pp, <span class="math inline">\(p=0.069\)</span>, CI <span class="math inline">\([-1.5,+0.1]\)</span>.</td>
+<td class="al-left">Not supported at the 5 percent level. <span class="math inline">\(\hat{\phi}=-0.7\)</span> pp, <span class="math inline">\(p=0.069\)</span>. Section <a href="results.html#sec:main-decomposition" class="xref">5.3</a>, Figure <a href="results.html#fig:decomp" class="xref">3</a>.</td>
 </tr>
 <tr>
 <td class="al-left">H6</td>
 <td class="al-left">The age-55 tilt toward bonds is smaller where pension replacement rates are higher (age-55 <span class="math inline">\(\times\)</span> standardized replacement rate in Eq. (7)).</td>
 <td class="al-left">Single pre-specified interaction, reported uncorrected.</td>
 <td class="al-left">Secondary</td>
-<td class="al-left">Not supported. −0.02 pp, <span class="math inline">\(p=0.964\)</span>. The coarser above-median split gives +0.4 pp, <span class="math inline">\(p=0.489\)</span>.</td>
+<td class="al-left">Not supported. −0.02 pp, <span class="math inline">\(p=0.964\)</span>. Section <a href="advice-rule.html#sec:main-age" class="xref">6.2</a>, Table <a href="#tab:age-pension" class="xref">A14</a>.</td>
 </tr>
 <tr>
 <td class="al-left">H7</td>
 <td class="al-left">Country effects covary positively with the country’s GPS risk-taking score.</td>
 <td class="al-left">Bivariate slope over the twenty non-U.S. countries, wild bootstrap over countries.</td>
 <td class="al-left">Second altitude<sup>a</sup></td>
-<td class="al-left">Descriptive read unsupported. Slope +0.028 (HC2 se 0.021), wild <span class="math inline">\(p = 0.272\)</span>.</td>
+<td class="al-left">Descriptive read unsupported. +0.77 pp per standard deviation, wild <span class="math inline">\(p = 0.272\)</span>. Section <a href="results.html#sec:main-gps" class="xref">5.5</a>, Table <a href="#tab:country-correlates" class="xref">A8</a>.</td>
 </tr>
 <tr>
 <td class="al-left">H8</td>
 <td class="al-left">Country effects covary positively with the country’s financial literacy score.</td>
 <td class="al-left">Bivariate slope over the twenty non-U.S. countries, wild bootstrap over countries.</td>
 <td class="al-left">Second altitude<sup>a</sup></td>
-<td class="al-left">Descriptive read unsupported. Slope +0.055 (HC2 se 0.040), wild <span class="math inline">\(p = 0.178\)</span>.</td>
+<td class="al-left">Descriptive read unsupported. +0.89 pp per standard deviation, wild <span class="math inline">\(p = 0.178\)</span>. Section <a href="results.html#sec:main-gps" class="xref">5.5</a>, Table <a href="#tab:country-correlates" class="xref">A8</a>.</td>
 </tr>
 </tbody>
 </table></div></div>
@@ -120,39 +121,39 @@
 <td class="al-left">The rate at which the explanation text invokes a given rationale differs across countries (Section <a href="text.html#sec:text" class="xref">7</a>).</td>
 <td class="al-left">Country fixed effects per admitted category, one Holm family per category.</td>
 <td class="al-left">Second altitude<sup>b</sup></td>
-<td class="al-left">Supported where the design gives it variation. Local-context references are elevated in all twenty non-U.S. countries (+30 to +78 pp, nineteen of twenty Holm-surviving) and inflation reasoning is most elevated in the five high-inflation countries (Turkey +56 pp, South Africa +33 pp, both Holm-surviving). Pension-as-exposure rates are flat everywhere (all <span class="math inline">\(|\)</span>estimates<span class="math inline">\(|\leq 8.5\)</span> pp, none survive). Horizon is untestable by ceiling (prevalence 100.0 percent, ruling R.1).</td>
+<td class="al-left">Supported where the design gives it variation. Local-context references are elevated in all twenty non-U.S. countries (+29 to +78 pp, nineteen Holm-surviving) and inflation reasoning in the high-inflation countries (Turkey +56 pp). Pension rates are flat, and horizon sits at its 100 percent ceiling. Section <a href="text.html#sec:text" class="xref">7</a>, Table <a href="text.html#tab:h9-text" class="xref">3</a>.</td>
 </tr>
 <tr>
 <td class="al-left">H10</td>
 <td class="al-left">Version C raises the rate of local financial references in the explanation text relative to Version B (<span class="math inline">\(\phi_{\text{text}}&gt;0\)</span>, Section <a href="text.html#sec:text" class="xref">7</a>).</td>
 <td class="al-left">Single pre-specified coefficient, reported uncorrected.</td>
 <td class="al-left">Second altitude<sup>b</sup></td>
-<td class="al-left">Supported. +23.3 pp (wild <span class="math inline">\(p=0.0004\)</span>, CI <span class="math inline">\([14.3, 32.9]\)</span>) on the rate of local references, against the −0.7 pp allocation effect of H5.</td>
+<td class="al-left">Supported. +23.3 pp, <span class="math inline">\(p&lt;0.001\)</span>, against the −0.7 pp allocation effect of H5. Section <a href="text.html#sec:text" class="xref">7</a>, Figure <a href="text.html#fig:local-context" class="xref">10</a>.</td>
 </tr>
 <tr>
 <td class="al-left">H11</td>
 <td class="al-left">A stated risk-tolerant investor is recommended more equity than a stated risk-averse one (<span class="math inline">\(\beta_{R}&gt;0\)</span> in Eq. (6)).</td>
 <td class="al-left">Single coefficient, directional prediction tested with a two-sided <span class="math inline">\(p\)</span>-value, reported uncorrected.</td>
 <td class="al-left">Secondary confirmatory</td>
-<td class="al-left">Supported. <span class="math inline">\(\hat{\beta}_{R}=+46.3\)</span> pp, <span class="math inline">\(p&lt;0.001\)</span>, CI <span class="math inline">\([41.1,51.4]\)</span>.</td>
+<td class="al-left">Supported. <span class="math inline">\(\hat{\beta}_{R}=+46.3\)</span> pp, <span class="math inline">\(p&lt;0.001\)</span>. Section <a href="advice-rule.html#sec:stated" class="xref">6</a>, Table <a href="#tab:bgrt-coef" class="xref">A12</a>.</td>
 </tr>
 <tr>
 <td class="al-left">H12</td>
 <td class="al-left">A stated generous pension moves the recommendation (<span class="math inline">\(\beta_{P}\neq 0\)</span> in Eq. (6), two-sided by design).</td>
 <td class="al-left">Single coefficient, two-sided, reported uncorrected.</td>
 <td class="al-left">Secondary confirmatory</td>
-<td class="al-left">Not supported, and precisely so. <span class="math inline">\(\hat{\beta}_{P}=-1.0\)</span> pp, <span class="math inline">\(p=0.107\)</span>, CI <span class="math inline">\([-2.3,+0.2]\)</span>.</td>
+<td class="al-left">Not supported, and precisely so. <span class="math inline">\(\hat{\beta}_{P}=-1.0\)</span> pp, <span class="math inline">\(p=0.107\)</span>. Section <a href="advice-rule.html#sec:stated" class="xref">6</a>, Table <a href="#tab:bgrt-coef" class="xref">A12</a>.</td>
 </tr>
 <tr>
 <td class="al-left">H13</td>
 <td class="al-left">The stated horizon moves the recommendation, against the CRRA prediction of exact irrelevance (<span class="math inline">\(\beta_{H}\neq 0\)</span> in the horizon analog of Eq. (6)).</td>
 <td class="al-left">Single coefficient, reported uncorrected.</td>
 <td class="al-left">Secondary confirmatory</td>
-<td class="al-left">Supported. <span class="math inline">\(\hat{\beta}_{H}=+39.9\)</span> pp, <span class="math inline">\(p&lt;0.001\)</span>, CI <span class="math inline">\([25.7,53.4]\)</span>.</td>
+<td class="al-left">Supported. <span class="math inline">\(\hat{\beta}_{H}=+39.9\)</span> pp, <span class="math inline">\(p&lt;0.001\)</span>. Section <a href="advice-rule.html#sec:stated" class="xref">6</a>, Table <a href="#tab:bgrt-coef" class="xref">A12</a>.</td>
 </tr>
 </tbody>
-</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> The table records the complete set of hypotheses in the pre-registration, independently of which ones the text discusses. Estimates are in percentage points of the recommended equity share. Unless noted otherwise, <span class="math inline">\(p\)</span>-values come from the wild cluster bootstrap (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G=13\)</span>) and confidence intervals are 95 percent intervals from the same procedure. All reported <span class="math inline">\(p\)</span>-values are two-sided: the directional predictions (H7, H8, H11, H13) are stated as directional but tested with two-sided <span class="math inline">\(p\)</span>-values, a conservative choice. The equivalence hypothesis H3 is the exception, tested by two one-sided tests as its statement requires. The second-stage tests (H2, H7, H8) instead bootstrap over the twenty non-U.S. countries.<br>
-(a) Registered as pre-specified but descriptive at filing. A dated amendment freezes the benchmark deviations and the covariate vectors before any second-stage coefficient is estimated. Because it post-dates the pilot, these are pre-specified descriptive tests rather than blind confirmatory ones, and the rows report descriptive reads.<br>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> <em>Notes:</em> The table records the complete set of hypotheses in the pre-registration, independently of which ones the text discusses. The Result column gives the verdict and the headline estimate, and the exhibits it cites report confidence intervals and the full set of estimates. Estimates are in percentage points of the recommended equity share. Unless noted otherwise, <span class="math inline">\(p\)</span>-values come from the wild cluster bootstrap (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G=13\)</span>), and the H3 confidence interval is a 95 percent interval from the same procedure. All reported <span class="math inline">\(p\)</span>-values are two-sided: the directional predictions (H7, H8, H11, H13) are stated as directional but tested with two-sided <span class="math inline">\(p\)</span>-values, a conservative choice. The equivalence hypothesis H3 is the exception, tested by two one-sided tests as its statement requires. The second-stage tests (H2, H7, H8) instead bootstrap over the twenty non-U.S. countries.<br>
+(a) Registered as pre-specified but descriptive at filing.<br>
 (b) Registered as pre-specified but descriptive at filing, with the coding instrument frozen and its pre-registered reliability gates reported by the judge-validation amendment of record (filed 2026-07-15) before any Equation 5 coefficient was estimated. Because it post-dates the pilot, these are pre-specified descriptive tests rather than blind confirmatory ones. Three of the four categories passed both gates. The horizon category is degenerate at 100.0 percent prevalence and is reported descriptively under the amendment’s ruling R.1.</div></div>
 <div class="paper-table" id="tab:eq1-countryfe"><div class="tab-head"><span class="tab-label">Table A2</span><span class="tab-title">Country means and country effects on the recommended equity share (Question 1, Version B, age 40)</span></div><div class="tab-scroll"><table class="est">
 <thead><tr>
@@ -355,20 +356,29 @@
 <td class="al-right">1.000</td>
 </tr>
 </tbody>
-</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> The first two columns report the mean and standard deviation of the recommended equity share by country on the primary cell (Question 1, Version B, age 40), pooled across the thirteen models with fifty repetitions per country–model cell. Each country has 648 to 650 responses after the pre-registered exclusion of responses without a parsed numeric recommendation or truncated at the token limit. The remaining columns report the country fixed effects <span class="math inline">\(\gamma_{c}\)</span> from equation (3), estimated on the same cell (<span class="math inline">\(N = 13{,}639\)</span>) with model fixed effects and the United States as the omitted baseline. Estimates and confidence intervals are in percentage points of the recommended equity share, and countries are ordered by point estimate. <span class="math inline">\(p\)</span> (wild) is the wild cluster bootstrap <span class="math inline">\(p\)</span>-value (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G = 13\)</span>), and the 95 percent confidence interval comes from the same procedure. <span class="math inline">\(p\)</span> (Holm) applies the pre-registered Holm step-down correction across the family of twenty contrasts. Figure <a href="results.html#fig:eq1-coefplot" class="xref">2</a> plots these estimates.</div></div>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> <em>Notes:</em> The first two columns report the mean and standard deviation of the recommended equity share by country on the primary cell (Question 1, Version B, age 40), pooled across the thirteen models with fifty repetitions per country–model cell. Each country has 648 to 650 responses after the pre-registered exclusion of responses without a parsed numeric recommendation or truncated at the token limit. The remaining columns report the country fixed effects <span class="math inline">\(b_{c}\)</span> from equation (3), estimated on the same cell (<span class="math inline">\(N = 13{,}639\)</span>) with model fixed effects and the United States as the omitted baseline. Estimates and confidence intervals are in percentage points of the recommended equity share, and countries are ordered by point estimate. <span class="math inline">\(p\)</span> (wild) is the wild cluster bootstrap <span class="math inline">\(p\)</span>-value (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G = 13\)</span>), and the 95 percent confidence interval comes from the same procedure. <span class="math inline">\(p\)</span> (Holm) applies the pre-registered Holm step-down correction across the family of twenty contrasts. Figure <a href="results.html#fig:eq1-coefplot" class="xref">2</a> plots these estimates.</div></div>
 <div class="paper-table" id="tab:q2q3-countryfe"><div class="tab-head"><span class="tab-label">Table A3</span><span class="tab-title">Country effects on the mortgage and inflation questions (Version B, age 40)</span></div><div class="tab-scroll"><table class="est">
-<thead>
-<tr>
+<thead><tr>
+<th class="al-left"></th>
+<th colspan="4" style="text-align: center;">Mortgage (Question 2)</th>
+<th colspan="4" style="text-align: center;">Inflation (Question 3)</th>
+</tr><tr>
 <th class="al-left">Country</th>
 <th class="al-right">Estimate</th>
 <th class="al-center">95% CI</th>
 <th class="al-right"><span class="math inline">\(p\)</span> (wild)</th>
 <th class="al-right"><span class="math inline">\(p\)</span> (Holm)</th>
-</tr>
-</thead>
-<tbody>
+<th class="al-right">Estimate</th>
+<th class="al-center">95% CI</th>
+<th class="al-right"><span class="math inline">\(p\)</span> (wild)</th>
+<th class="al-right"><span class="math inline">\(p\)</span> (Holm)</th>
+</tr></thead><tbody>
 <tr>
 <td class="al-left">Japan</td>
+<td class="al-right">−28.6</td>
+<td class="al-center"><span class="math inline">\([-42.5,\ -15.0]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right">0.002</td>
 <td class="al-right">−11.3</td>
 <td class="al-center"><span class="math inline">\([-13.7,\  -8.9]\)</span></td>
 <td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
@@ -376,140 +386,846 @@
 </tr>
 <tr>
 <td class="al-left">China</td>
+<td class="al-right">−22.7</td>
+<td class="al-center"><span class="math inline">\([-32.5,\ -13.7]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right">0.002</td>
 <td class="al-right"><span class="math inline">\(-7.2\)</span></td>
 <td class="al-center"><span class="math inline">\([ -9.6,\  -4.7]\)</span></td>
 <td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
 <td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
 </tr>
 <tr>
-<td class="al-left">South Korea</td>
-<td class="al-right"><span class="math inline">\(-6.9\)</span></td>
-<td class="al-center"><span class="math inline">\([-10.3,\  -3.5]\)</span></td>
-<td class="al-right">0.001</td>
-<td class="al-right">0.020</td>
-</tr>
-<tr>
-<td class="al-left">Netherlands</td>
-<td class="al-right"><span class="math inline">\(-6.5\)</span></td>
-<td class="al-center"><span class="math inline">\([ -8.9,\  -4.2]\)</span></td>
+<td class="al-left">Switzerland</td>
+<td class="al-right">−21.6</td>
+<td class="al-center"><span class="math inline">\([-29.8,\ -14.0]\)</span></td>
 <td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
 <td class="al-right">0.002</td>
-</tr>
-<tr>
-<td class="al-left">Switzerland</td>
 <td class="al-right"><span class="math inline">\(-5.0\)</span></td>
 <td class="al-center"><span class="math inline">\([ -7.3,\  -2.7]\)</span></td>
 <td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
 <td class="al-right">0.006</td>
 </tr>
 <tr>
-<td class="al-left">Italy</td>
-<td class="al-right"><span class="math inline">\(-5.0\)</span></td>
-<td class="al-center"><span class="math inline">\([ -7.3,\  -2.8]\)</span></td>
+<td class="al-left">Germany</td>
+<td class="al-right">−21.1</td>
+<td class="al-center"><span class="math inline">\([-30.0,\ -12.0]\)</span></td>
 <td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
 <td class="al-right">0.002</td>
-</tr>
-<tr>
-<td class="al-left">France</td>
-<td class="al-right"><span class="math inline">\(-4.3\)</span></td>
-<td class="al-center"><span class="math inline">\([ -6.9,\  -1.8]\)</span></td>
-<td class="al-right">0.003</td>
-<td class="al-right">0.041</td>
-</tr>
-<tr>
-<td class="al-left">Spain</td>
-<td class="al-right"><span class="math inline">\(-4.0\)</span></td>
-<td class="al-center"><span class="math inline">\([ -6.6,\  -1.3]\)</span></td>
-<td class="al-right">0.007</td>
-<td class="al-right">0.091</td>
-</tr>
-<tr>
-<td class="al-left">Finland</td>
-<td class="al-right"><span class="math inline">\(-2.5\)</span></td>
-<td class="al-center"><span class="math inline">\([ -5.2,\  -0.1]\)</span></td>
-<td class="al-right">0.041</td>
-<td class="al-right">0.473</td>
-</tr>
-<tr>
-<td class="al-left">Germany</td>
 <td class="al-right"><span class="math inline">\(-2.0\)</span></td>
 <td class="al-center"><span class="math inline">\([ -4.1,\  -0.1]\)</span></td>
 <td class="al-right">0.039</td>
 <td class="al-right">0.473</td>
 </tr>
 <tr>
-<td class="al-left">Poland</td>
-<td class="al-right"><span class="math inline">\(-1.8\)</span></td>
-<td class="al-center"><span class="math inline">\([ -5.3,\   1.6]\)</span></td>
-<td class="al-right">0.269</td>
-<td class="al-right">1.000</td>
+<td class="al-left">Spain</td>
+<td class="al-right">−20.4</td>
+<td class="al-center"><span class="math inline">\([-28.6,\ -12.3]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right">0.002</td>
+<td class="al-right"><span class="math inline">\(-4.0\)</span></td>
+<td class="al-center"><span class="math inline">\([ -6.6,\  -1.3]\)</span></td>
+<td class="al-right">0.007</td>
+<td class="al-right">0.091</td>
 </tr>
 <tr>
-<td class="al-left">United Kingdom</td>
-<td class="al-right"><span class="math inline">\(-1.5\)</span></td>
-<td class="al-center"><span class="math inline">\([ -3.2,\   0.1]\)</span></td>
-<td class="al-right">0.064</td>
-<td class="al-right">0.636</td>
+<td class="al-left">Italy</td>
+<td class="al-right">−19.5</td>
+<td class="al-center"><span class="math inline">\([-26.7,\ -12.5]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right">0.002</td>
+<td class="al-right"><span class="math inline">\(-5.0\)</span></td>
+<td class="al-center"><span class="math inline">\([ -7.3,\  -2.8]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right">0.002</td>
 </tr>
 <tr>
-<td class="al-left">Turkey</td>
-<td class="al-right"><span class="math inline">\(-0.9\)</span></td>
-<td class="al-center"><span class="math inline">\([ -4.5,\   2.7]\)</span></td>
-<td class="al-right">0.596</td>
-<td class="al-right">1.000</td>
+<td class="al-left">Finland</td>
+<td class="al-right">−19.1</td>
+<td class="al-center"><span class="math inline">\([-27.1,\ -11.3]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right">0.002</td>
+<td class="al-right"><span class="math inline">\(-2.5\)</span></td>
+<td class="al-center"><span class="math inline">\([ -5.2,\  -0.1]\)</span></td>
+<td class="al-right">0.041</td>
+<td class="al-right">0.473</td>
+</tr>
+<tr>
+<td class="al-left">South Korea</td>
+<td class="al-right">−17.3</td>
+<td class="al-center"><span class="math inline">\([-24.4,\ -10.1]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right">0.002</td>
+<td class="al-right"><span class="math inline">\(-6.9\)</span></td>
+<td class="al-center"><span class="math inline">\([-10.3,\  -3.5]\)</span></td>
+<td class="al-right">0.001</td>
+<td class="al-right">0.020</td>
 </tr>
 <tr>
 <td class="al-left">Australia</td>
+<td class="al-right">−17.1</td>
+<td class="al-center"><span class="math inline">\([-24.8,\  -9.8]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right">0.003</td>
 <td class="al-right"><span class="math inline">\(-0.2\)</span></td>
 <td class="al-center"><span class="math inline">\([ -2.2,\   1.9]\)</span></td>
 <td class="al-right">0.862</td>
 <td class="al-right">1.000</td>
 </tr>
 <tr>
-<td class="al-left">Sweden</td>
-<td class="al-right"><span class="math inline">\(-0.1\)</span></td>
-<td class="al-center"><span class="math inline">\([ -3.1,\   2.7]\)</span></td>
-<td class="al-right">0.930</td>
+<td class="al-left">Poland</td>
+<td class="al-right">−16.2</td>
+<td class="al-center"><span class="math inline">\([-21.0,\ -11.5]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right">0.002</td>
+<td class="al-right"><span class="math inline">\(-1.8\)</span></td>
+<td class="al-center"><span class="math inline">\([ -5.3,\   1.6]\)</span></td>
+<td class="al-right">0.269</td>
 <td class="al-right">1.000</td>
 </tr>
 <tr>
-<td class="al-left">Mexico</td>
-<td class="al-right"><span class="math inline">\(0.1\)</span></td>
-<td class="al-center"><span class="math inline">\([ -3.3,\   3.4]\)</span></td>
-<td class="al-right">0.973</td>
-<td class="al-right">1.000</td>
+<td class="al-left">Netherlands</td>
+<td class="al-right">−16.0</td>
+<td class="al-center"><span class="math inline">\([-23.2,\  -9.9]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right">0.002</td>
+<td class="al-right"><span class="math inline">\(-6.5\)</span></td>
+<td class="al-center"><span class="math inline">\([ -8.9,\  -4.2]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right">0.002</td>
 </tr>
 <tr>
-<td class="al-left">India</td>
-<td class="al-right"><span class="math inline">\(0.8\)</span></td>
-<td class="al-center"><span class="math inline">\([ -2.5,\   3.9]\)</span></td>
-<td class="al-right">0.618</td>
-<td class="al-right">1.000</td>
+<td class="al-left">France</td>
+<td class="al-right">−15.7</td>
+<td class="al-center"><span class="math inline">\([-24.6,\  -6.6]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right">0.003</td>
+<td class="al-right"><span class="math inline">\(-4.3\)</span></td>
+<td class="al-center"><span class="math inline">\([ -6.9,\  -1.8]\)</span></td>
+<td class="al-right">0.003</td>
+<td class="al-right">0.041</td>
+</tr>
+<tr>
+<td class="al-left">United Kingdom</td>
+<td class="al-right">−14.3</td>
+<td class="al-center"><span class="math inline">\([-21.5,\  -8.1]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right">0.003</td>
+<td class="al-right"><span class="math inline">\(-1.5\)</span></td>
+<td class="al-center"><span class="math inline">\([ -3.2,\   0.1]\)</span></td>
+<td class="al-right">0.064</td>
+<td class="al-right">0.636</td>
 </tr>
 <tr>
 <td class="al-left">Canada</td>
+<td class="al-right">−12.3</td>
+<td class="al-center"><span class="math inline">\([-18.4,\  -6.6]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right">0.003</td>
 <td class="al-right"><span class="math inline">\(1.6\)</span></td>
 <td class="al-center"><span class="math inline">\([ -0.4,\   3.6]\)</span></td>
 <td class="al-right">0.100</td>
 <td class="al-right">0.799</td>
 </tr>
 <tr>
-<td class="al-left">South Africa</td>
+<td class="al-left">Sweden</td>
+<td class="al-right">−10.0</td>
+<td class="al-center"><span class="math inline">\([-16.5,\  -4.1]\)</span></td>
+<td class="al-right">0.001</td>
+<td class="al-right">0.006</td>
+<td class="al-right"><span class="math inline">\(-0.1\)</span></td>
+<td class="al-center"><span class="math inline">\([ -3.1,\   2.7]\)</span></td>
+<td class="al-right">0.930</td>
+<td class="al-right">1.000</td>
+</tr>
+<tr>
+<td class="al-left">India<sup>a</sup></td>
+<td class="al-right"><span class="math inline">\(-3.8\)</span></td>
+<td class="al-center"><span class="math inline">\([ -6.7,\  -0.8]\)</span></td>
+<td class="al-right">0.015</td>
+<td class="al-right">0.060</td>
+<td class="al-right"><span class="math inline">\(0.8\)</span></td>
+<td class="al-center"><span class="math inline">\([ -2.5,\   3.9]\)</span></td>
+<td class="al-right">0.618</td>
+<td class="al-right">1.000</td>
+</tr>
+<tr>
+<td class="al-left">South Africa<sup>a</sup></td>
+<td class="al-right"><span class="math inline">\(-2.4\)</span></td>
+<td class="al-center"><span class="math inline">\([ -4.3,\  -0.7]\)</span></td>
+<td class="al-right">0.002</td>
+<td class="al-right">0.008</td>
 <td class="al-right"><span class="math inline">\(2.3\)</span></td>
 <td class="al-center"><span class="math inline">\([ -0.3,\   4.9]\)</span></td>
 <td class="al-right">0.082</td>
 <td class="al-right">0.739</td>
 </tr>
 <tr>
-<td class="al-left">Brazil</td>
+<td class="al-left">Mexico<sup>a</sup></td>
+<td class="al-right"><span class="math inline">\(-1.9\)</span></td>
+<td class="al-center"><span class="math inline">\([ -5.3,\   1.7]\)</span></td>
+<td class="al-right">0.262</td>
+<td class="al-right">0.787</td>
+<td class="al-right"><span class="math inline">\(0.1\)</span></td>
+<td class="al-center"><span class="math inline">\([ -3.3,\   3.4]\)</span></td>
+<td class="al-right">0.973</td>
+<td class="al-right">1.000</td>
+</tr>
+<tr>
+<td class="al-left">Brazil<sup>a</sup></td>
+<td class="al-right"><span class="math inline">\(-1.7\)</span></td>
+<td class="al-center"><span class="math inline">\([ -6.2,\   3.0]\)</span></td>
+<td class="al-right">0.452</td>
+<td class="al-right">0.904</td>
 <td class="al-right"><span class="math inline">\(2.6\)</span></td>
 <td class="al-center"><span class="math inline">\([ -1.0,\   5.9]\)</span></td>
 <td class="al-right">0.139</td>
 <td class="al-right">0.972</td>
 </tr>
+<tr>
+<td class="al-left">Turkey<sup>a</sup></td>
+<td class="al-right"><span class="math inline">\(-1.6\)</span></td>
+<td class="al-center"><span class="math inline">\([ -8.4,\   5.3]\)</span></td>
+<td class="al-right">0.628</td>
+<td class="al-right">0.904</td>
+<td class="al-right"><span class="math inline">\(-0.9\)</span></td>
+<td class="al-center"><span class="math inline">\([ -4.5,\   2.7]\)</span></td>
+<td class="al-right">0.596</td>
+<td class="al-right">1.000</td>
+</tr>
 </tbody>
-</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Country fixed effects from the specification of equation (3), with model fixed effects and the United States as the omitted baseline, in percentage points. Panel A reports the recommended fraction to invest in a broad stock market index fund rather than prepay a 4 percent mortgage (<span class="math inline">\(N = 13{,}619\)</span>). The five countries below the separator are the pre-specified premise-acceptance group, whose prevailing mortgage rate at the filing date exceeded twice the prompted 4 percent, so their contrasts test whether the model accepts or corrects the premise rather than whether it calibrates to local fundamentals. Panel B reports the recommended fraction of savings to move out of a 1 percent savings account in the face of 3 percent inflation (Question 3, the registration’s Q4, <span class="math inline">\(N = 13{,}637\)</span>). The numeric fraction is the primary Question 3 outcome because the collection produced no refusals and the pre-specified refusal contingency never bound (Section <a href="design.html#sec:data" class="xref">3.4</a>). Countries are ordered by point estimate within group. Inference is the model-level wild cluster bootstrap (Webb six-point weights, 9<span>,</span>999 replications, <span class="math inline">\(G = 13\)</span>), and <span class="math inline">\(p\)</span> (Holm) applies the step-down correction across the twenty contrasts of each question, which form separate families as pre-registered. Figure <a href="results.html#fig:three-questions" class="xref">4</a> plots these estimates, and Table <a href="#tab:q4-instrument" class="xref">A4</a> reports the categorical companion to Panel B.</div></div>
-<div class="paper-table" id="tab:q4-instrument"><div class="tab-head"><span class="tab-label">Table A4</span><span class="tab-title">Primary-instrument recommendation on the inflation question by country (Question 3, Version B, age 40)</span></div><div class="tab-scroll"><table class="est">
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Country fixed effects from the specification of equation (3), with model fixed effects and the United States as the omitted baseline, in percentage points. The mortgage columns report the recommended fraction to invest in a broad stock market index fund rather than prepay a 4 percent mortgage (<span class="math inline">\(N = 13{,}619\)</span>). The inflation columns report the recommended fraction of savings to move out of a 1 percent savings account in the face of 3 percent inflation (Question 3, the registration’s Q4, <span class="math inline">\(N = 13{,}637\)</span>). The numeric fraction is the primary Question 3 outcome because the collection produced no refusals and the pre-specified refusal contingency never bound (Section <a href="design.html#sec:data" class="xref">3.4</a>). Countries are ordered by the mortgage estimate. Inference is the model-level wild cluster bootstrap (Webb six-point weights, 9<span>,</span>999 replications, <span class="math inline">\(G = 13\)</span>), and <span class="math inline">\(p\)</span> (Holm) applies the step-down correction across the twenty contrasts of each question, which form separate families as pre-registered. Figure <a href="results.html#fig:three-questions" class="xref">4</a> plots these estimates, and Table <a href="#tab:q4-instrument" class="xref">A7</a> reports the categorical companion to the inflation columns.<br>
+(a) Pre-specified premise-acceptance group. The prevailing mortgage rate at the filing date exceeded twice the prompted 4 percent, so the mortgage contrasts for these countries test whether the model accepts or corrects the premise rather than whether it calibrates to local fundamentals.</div></div>
+<div class="paper-table" id="tab:nonum-countryfe"><div class="tab-head"><span class="tab-label">Table A4</span><span class="tab-title">The mortgage question without the stated rate: country effects</span></div><div class="tab-scroll"><table class="est">
+<thead><tr>
+<th class="al-left"></th>
+<th class="al-right">Prevailing</th>
+<th class="al-right">4% stated</th>
+<th colspan="3" style="text-align: center;">No rate</th>
+<th colspan="2" style="text-align: center;">Change in gap</th>
+</tr><tr>
+<th class="al-left">Country</th>
+<th class="al-right">rate (%)</th>
+<th class="al-right">Estimate</th>
+<th class="al-right">Estimate</th>
+<th class="al-center">95% CI</th>
+<th class="al-right"><span class="math inline">\(p\)</span> (Holm)</th>
+<th class="al-right">Estimate</th>
+<th class="al-right"><span class="math inline">\(p\)</span> (Holm)</th>
+</tr></thead><tbody>
+<tr>
+<td colspan="8" style="text-align: left;"><em>Panel A: Country effects relative to the United States</em></td>
+</tr>
+<tr>
+<td class="al-left">Switzerland</td>
+<td class="al-right">1.4</td>
+<td class="al-right">−17.2</td>
+<td class="al-right">1.5</td>
+<td class="al-center"><span class="math inline">\([-2.9,\ 6.2]\)</span></td>
+<td class="al-right">1.000</td>
+<td class="al-right">18.7</td>
+<td class="al-right">0.005</td>
+</tr>
+<tr>
+<td class="al-left">Spain</td>
+<td class="al-right">2.8</td>
+<td class="al-right">−18.9</td>
+<td class="al-right">−5.8</td>
+<td class="al-center"><span class="math inline">\([-11.0,\ -0.6]\)</span></td>
+<td class="al-right">0.267</td>
+<td class="al-right">13.1</td>
+<td class="al-right">0.004</td>
+</tr>
+<tr>
+<td class="al-left">Finland</td>
+<td class="al-right">2.8</td>
+<td class="al-right">−17.9</td>
+<td class="al-right">−5.9</td>
+<td class="al-center"><span class="math inline">\([-11.5,\ -0.4]\)</span></td>
+<td class="al-right">0.269</td>
+<td class="al-right">12.1</td>
+<td class="al-right">0.010</td>
+</tr>
+<tr>
+<td class="al-left">Japan</td>
+<td class="al-right">2.8</td>
+<td class="al-right">−26.9</td>
+<td class="al-right">3.0</td>
+<td class="al-center"><span class="math inline">\([-0.6,\ 7.0]\)</span></td>
+<td class="al-right">0.728</td>
+<td class="al-right">29.9</td>
+<td class="al-right">0.004</td>
+</tr>
+<tr>
+<td class="al-left">China</td>
+<td class="al-right">3.1</td>
+<td class="al-right">−25.3</td>
+<td class="al-right">−19.8</td>
+<td class="al-center"><span class="math inline">\([-33.1,\ -7.5]\)</span></td>
+<td class="al-right">0.005</td>
+<td class="al-right">5.5</td>
+<td class="al-right">0.468</td>
+</tr>
+<tr>
+<td class="al-left">France</td>
+<td class="al-right">3.1</td>
+<td class="al-right">−16.7</td>
+<td class="al-right">−0.6</td>
+<td class="al-center"><span class="math inline">\([-4.4,\ 3.2]\)</span></td>
+<td class="al-right">1.000</td>
+<td class="al-right">16.1</td>
+<td class="al-right">0.006</td>
+</tr>
+<tr>
+<td class="al-left">Sweden</td>
+<td class="al-right">3.4</td>
+<td class="al-right">−5.4</td>
+<td class="al-right">−1.3</td>
+<td class="al-center"><span class="math inline">\([-6.0,\ 3.8]\)</span></td>
+<td class="al-right">1.000</td>
+<td class="al-right">4.1</td>
+<td class="al-right">0.468</td>
+</tr>
+<tr>
+<td class="al-left">Italy</td>
+<td class="al-right">3.4</td>
+<td class="al-right">−20.2</td>
+<td class="al-right">−5.8</td>
+<td class="al-center"><span class="math inline">\([-10.5,\ -1.2]\)</span></td>
+<td class="al-right">0.176</td>
+<td class="al-right">14.3</td>
+<td class="al-right">0.005</td>
+</tr>
+<tr>
+<td class="al-left">Netherlands</td>
+<td class="al-right">3.6</td>
+<td class="al-right">−14.5</td>
+<td class="al-right">−3.2</td>
+<td class="al-center"><span class="math inline">\([-8.1,\ 1.7]\)</span></td>
+<td class="al-right">0.979</td>
+<td class="al-right">11.4</td>
+<td class="al-right">0.002</td>
+</tr>
+<tr>
+<td class="al-left">Canada</td>
+<td class="al-right">3.8</td>
+<td class="al-right">−12.3</td>
+<td class="al-right">−11.2</td>
+<td class="al-center"><span class="math inline">\([-18.4,\ -4.6]\)</span></td>
+<td class="al-right">0.015</td>
+<td class="al-right">1.0</td>
+<td class="al-right">1.000</td>
+</tr>
+<tr>
+<td class="al-left">Germany</td>
+<td class="al-right">3.8</td>
+<td class="al-right">−21.2</td>
+<td class="al-right">−5.4</td>
+<td class="al-center"><span class="math inline">\([-11.1,\ 0.2]\)</span></td>
+<td class="al-right">0.431</td>
+<td class="al-right">15.8</td>
+<td class="al-right">0.006</td>
+</tr>
+<tr>
+<td class="al-left">South Korea</td>
+<td class="al-right">4.3</td>
+<td class="al-right">−17.6</td>
+<td class="al-right">−10.7</td>
+<td class="al-center"><span class="math inline">\([-16.2,\ -5.8]\)</span></td>
+<td class="al-right">0.007</td>
+<td class="al-right">7.0</td>
+<td class="al-right">0.070</td>
+</tr>
+<tr>
+<td class="al-left">United Kingdom</td>
+<td class="al-right">4.8</td>
+<td class="al-right">−14.3</td>
+<td class="al-right">−10.4</td>
+<td class="al-center"><span class="math inline">\([-17.5,\ -4.4]\)</span></td>
+<td class="al-right">0.016</td>
+<td class="al-right">3.9</td>
+<td class="al-right">0.468</td>
+</tr>
+<tr>
+<td class="al-left">Australia</td>
+<td class="al-right">5.7</td>
+<td class="al-right">−17.1</td>
+<td class="al-right">−18.6</td>
+<td class="al-center"><span class="math inline">\([-29.5,\ -8.3]\)</span></td>
+<td class="al-right">0.016</td>
+<td class="al-right">−1.5</td>
+<td class="al-right">1.000</td>
+</tr>
+<tr>
+<td class="al-left">Poland</td>
+<td class="al-right">6.0</td>
+<td class="al-right">−12.0</td>
+<td class="al-right">−20.9</td>
+<td class="al-center"><span class="math inline">\([-32.7,\ -9.0]\)</span></td>
+<td class="al-right">0.007</td>
+<td class="al-right">−8.9</td>
+<td class="al-right">0.468</td>
+</tr>
+<tr>
+<td class="al-left">United States</td>
+<td class="al-right">6.2</td>
+<td colspan="6" style="text-align: center;"><em>baseline</em></td>
+</tr>
+<tr>
+<td class="al-left">India<sup>a</sup></td>
+<td class="al-right">8.1</td>
+<td class="al-right">−3.8</td>
+<td class="al-right">−10.8</td>
+<td class="al-center"><span class="math inline">\([-17.6,\ -5.0]\)</span></td>
+<td class="al-right">0.014</td>
+<td class="al-right">−7.1</td>
+<td class="al-right">0.303</td>
+</tr>
+<tr>
+<td class="al-left">South Africa<sup>a</sup></td>
+<td class="al-right">10.2</td>
+<td class="al-right">−2.4</td>
+<td class="al-right">−26.7</td>
+<td class="al-center"><span class="math inline">\([-39.9,\ -13.3]\)</span></td>
+<td class="al-right">0.002</td>
+<td class="al-right">−24.3</td>
+<td class="al-right">0.010</td>
+</tr>
+<tr>
+<td class="al-left">Brazil<sup>a</sup></td>
+<td class="al-right">10.7</td>
+<td class="al-right">−1.8</td>
+<td class="al-right">−28.7</td>
+<td class="al-center"><span class="math inline">\([-43.4,\ -14.2]\)</span></td>
+<td class="al-right">0.002</td>
+<td class="al-right">−26.9</td>
+<td class="al-right">0.009</td>
+</tr>
+<tr>
+<td class="al-left">Mexico<sup>a</sup></td>
+<td class="al-right">11.4</td>
+<td class="al-right">−1.5</td>
+<td class="al-right">−20.1</td>
+<td class="al-center"><span class="math inline">\([-34.3,\ -6.2]\)</span></td>
+<td class="al-right">0.031</td>
+<td class="al-right">−18.6</td>
+<td class="al-right">0.070</td>
+</tr>
+<tr>
+<td class="al-left">Turkey<sup>a</sup></td>
+<td class="al-right">36.2</td>
+<td class="al-right">3.5</td>
+<td class="al-right">−5.7</td>
+<td class="al-center"><span class="math inline">\([-16.6,\ 4.8]\)</span></td>
+<td class="al-right">1.000</td>
+<td class="al-right">−9.2</td>
+<td class="al-right">0.584</td>
+</tr>
+<tr>
+<td colspan="8" style="text-align: left;"><em>Panel B: Pooled estimates</em></td>
+</tr>
+<tr>
+<td class="al-left"></td>
+<td class="al-right"></td>
+<td class="al-right"></td>
+<td class="al-right">Estimate</td>
+<td class="al-center">95% CI</td>
+<td class="al-right"><span class="math inline">\(p\)</span> (wild)</td>
+<td class="al-right"></td>
+<td class="al-right"></td>
+</tr>
+<tr>
+<td colspan="3" style="text-align: left;">Field check: asking for the assumed rates</td>
+<td class="al-right">2.79</td>
+<td class="al-center"><span class="math inline">\([0.91,\ 4.66]\)</span></td>
+<td class="al-right">0.008</td>
+<td class="al-right"></td>
+<td class="al-right"></td>
+</tr>
+<tr>
+<td colspan="3" style="text-align: left;">Gap change per point of rate above 4%</td>
+<td class="al-right">−1.02</td>
+<td class="al-center"><span class="math inline">\([-5.06,\ -0.33]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right"></td>
+<td class="al-right"></td>
+</tr>
+<tr>
+<td colspan="3" style="text-align: left;">without Turkey</td>
+<td class="al-right">−4.63</td>
+<td class="al-center"><span class="math inline">\([-5.93,\ -3.54]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-right"></td>
+<td class="al-right"></td>
+</tr>
+<tr>
+<td colspan="3" style="text-align: left;">Per point of assumed mortgage rate</td>
+<td class="al-right">−1.59</td>
+<td class="al-center"><span class="math inline">\([-2.79,\ -0.40]\)</span></td>
+<td class="al-right">0.017</td>
+<td class="al-right"></td>
+<td class="al-right"></td>
+</tr>
+<tr>
+<td colspan="3" style="text-align: left;">Per point of assumed inflation</td>
+<td class="al-right">0.78</td>
+<td class="al-center"><span class="math inline">\([-0.19,\ 1.91]\)</span></td>
+<td class="al-right">0.102</td>
+<td class="al-right"></td>
+<td class="al-right"></td>
+</tr>
+<tr>
+<td colspan="3" style="text-align: left;">sum (zero if only the real rate matters)</td>
+<td class="al-right">−0.82</td>
+<td class="al-center"><span class="math inline">\([-2.25,\ 0.33]\)</span></td>
+<td class="al-right">0.135</td>
+<td class="al-right"></td>
+<td class="al-right"></td>
+</tr>
+</tbody>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Panel A: country fixed effects from equation (3) with model fixed effects, in percentage points of the fraction invested rather than used to prepay. “4% stated” is the English Question 2 cell of the main collection (July 2026). “No rate” deletes the rate clause (November 2026). “Change in gap” is the difference of the two contrasts from the stacked sample with model-by-collection fixed effects, which removes drift common to all countries. Wild cluster bootstrap over models (Webb, 9,999 replications), Holm over the twenty non-U.S. countries in each column. Prevailing rate from the pre-registered rate supplement. Panel B, in percentage points: the field check against the same question without the assumption fields (five countries, country and model fixed effects), the change in gap regressed on the prevailing rate minus 4 across countries (HC2, wild bootstrap over countries), and the share regressed on the assumed rates within countries (country and model fixed effects). Exploratory, post-filing (deviation D22).<br>
+(a) Premise-acceptance group.</div></div>
+<div class="paper-table" id="tab:nonum-assumed"><div class="tab-head"><span class="tab-label">Table A5</span><span class="tab-title">The mortgage question without the stated rate: assumed rates by country</span></div><div class="tab-scroll"><table class="est">
+<thead><tr>
+<th class="al-left"></th>
+<th colspan="3" style="text-align: center;">Mortgage rate (%)</th>
+<th colspan="3" style="text-align: center;">Inflation (%)</th>
+</tr><tr>
+<th class="al-left">Country</th>
+<th class="al-right">Prevailing</th>
+<th class="al-right">Assumed</th>
+<th class="al-center">Model range</th>
+<th class="al-right">2024</th>
+<th class="al-right">Assumed</th>
+<th class="al-center">Model range</th>
+</tr></thead><tbody>
+<tr>
+<td class="al-left">Switzerland</td>
+<td class="al-right">1.4</td>
+<td class="al-right">2.0</td>
+<td class="al-center">1.5–2.7</td>
+<td class="al-right">1.1</td>
+<td class="al-right">1.4</td>
+<td class="al-center">1.0–2.0</td>
+</tr>
+<tr>
+<td class="al-left">Spain</td>
+<td class="al-right">2.8</td>
+<td class="al-right">3.3</td>
+<td class="al-center">3.0–3.6</td>
+<td class="al-right">2.8</td>
+<td class="al-right">2.2</td>
+<td class="al-center">2.0–2.5</td>
+</tr>
+<tr>
+<td class="al-left">Finland</td>
+<td class="al-right">2.8</td>
+<td class="al-right">3.5</td>
+<td class="al-center">2.5–4.1</td>
+<td class="al-right">0.9</td>
+<td class="al-right">2.1</td>
+<td class="al-center">2.0–2.5</td>
+</tr>
+<tr>
+<td class="al-left">Japan</td>
+<td class="al-right">2.8</td>
+<td class="al-right">1.1</td>
+<td class="al-center">0.6–1.5</td>
+<td class="al-right">2.6</td>
+<td class="al-right">1.8</td>
+<td class="al-center">1.3–2.5</td>
+</tr>
+<tr>
+<td class="al-left">China</td>
+<td class="al-right">3.1</td>
+<td class="al-right">4.1</td>
+<td class="al-center">3.7–4.7</td>
+<td class="al-right">0.4</td>
+<td class="al-right">2.1</td>
+<td class="al-center">1.5–2.5</td>
+</tr>
+<tr>
+<td class="al-left">France</td>
+<td class="al-right">3.1</td>
+<td class="al-right">2.8</td>
+<td class="al-center">1.5–3.5</td>
+<td class="al-right">2.4</td>
+<td class="al-right">2.1</td>
+<td class="al-center">2.0–2.5</td>
+</tr>
+<tr>
+<td class="al-left">Sweden</td>
+<td class="al-right">3.4</td>
+<td class="al-right">4.0</td>
+<td class="al-center">3.4–4.5</td>
+<td class="al-right">2.8</td>
+<td class="al-right">2.1</td>
+<td class="al-center">2.0–2.5</td>
+</tr>
+<tr>
+<td class="al-left">Italy</td>
+<td class="al-right">3.4</td>
+<td class="al-right">3.4</td>
+<td class="al-center">3.0–3.6</td>
+<td class="al-right">1.2</td>
+<td class="al-right">2.1</td>
+<td class="al-center">2.0–2.5</td>
+</tr>
+<tr>
+<td class="al-left">Netherlands</td>
+<td class="al-right">3.6</td>
+<td class="al-right">3.7</td>
+<td class="al-center">3.4–4.1</td>
+<td class="al-right">3.2</td>
+<td class="al-right">2.2</td>
+<td class="al-center">2.0–2.5</td>
+</tr>
+<tr>
+<td class="al-left">Canada</td>
+<td class="al-right">3.8</td>
+<td class="al-right">5.0</td>
+<td class="al-center">4.3–5.5</td>
+<td class="al-right">2.4</td>
+<td class="al-right">2.3</td>
+<td class="al-center">2.0–2.5</td>
+</tr>
+<tr>
+<td class="al-left">Germany</td>
+<td class="al-right">3.8</td>
+<td class="al-right">3.4</td>
+<td class="al-center">2.7–3.8</td>
+<td class="al-right">2.4</td>
+<td class="al-right">2.1</td>
+<td class="al-center">2.0–2.5</td>
+</tr>
+<tr>
+<td class="al-left">South Korea</td>
+<td class="al-right">4.3</td>
+<td class="al-right">4.1</td>
+<td class="al-center">3.5–4.5</td>
+<td class="al-right">2.3</td>
+<td class="al-right">2.4</td>
+<td class="al-center">2.1–2.7</td>
+</tr>
+<tr>
+<td class="al-left">United Kingdom</td>
+<td class="al-right">4.8</td>
+<td class="al-right">4.5</td>
+<td class="al-center">4.1–5.0</td>
+<td class="al-right">2.6</td>
+<td class="al-right">2.4</td>
+<td class="al-center">2.0–2.9</td>
+</tr>
+<tr>
+<td class="al-left">Australia</td>
+<td class="al-right">5.7</td>
+<td class="al-right">6.0</td>
+<td class="al-center">4.7–6.4</td>
+<td class="al-right">3.2</td>
+<td class="al-right">3.0</td>
+<td class="al-center">2.5–3.5</td>
+</tr>
+<tr>
+<td class="al-left">Poland</td>
+<td class="al-right">6.0</td>
+<td class="al-right">6.7</td>
+<td class="al-center">4.5–7.5</td>
+<td class="al-right">3.8</td>
+<td class="al-right">3.7</td>
+<td class="al-center">2.6–4.7</td>
+</tr>
+<tr>
+<td class="al-left">United States</td>
+<td class="al-right">6.2</td>
+<td class="al-right">5.1</td>
+<td class="al-center">4.0–6.5</td>
+<td class="al-right">2.9</td>
+<td class="al-right">2.6</td>
+<td class="al-center">2.0–3.0</td>
+</tr>
+<tr>
+<td class="al-left">India</td>
+<td class="al-right">8.1</td>
+<td class="al-right">8.4</td>
+<td class="al-center">7.2–9.0</td>
+<td class="al-right">4.8</td>
+<td class="al-right">5.3</td>
+<td class="al-center">5.0–6.0</td>
+</tr>
+<tr>
+<td class="al-left">South Africa</td>
+<td class="al-right">10.2</td>
+<td class="al-right">10.9</td>
+<td class="al-center">8.9–11.8</td>
+<td class="al-right">4.6</td>
+<td class="al-right">5.3</td>
+<td class="al-center">5.0–5.6</td>
+</tr>
+<tr>
+<td class="al-left">Brazil</td>
+<td class="al-right">10.7</td>
+<td class="al-right">9.7</td>
+<td class="al-center">6.7–11.3</td>
+<td class="al-right">4.5</td>
+<td class="al-right">4.5</td>
+<td class="al-center">4.0–4.9</td>
+</tr>
+<tr>
+<td class="al-left">Mexico</td>
+<td class="al-right">11.4</td>
+<td class="al-right">9.5</td>
+<td class="al-center">6.5–11.5</td>
+<td class="al-right">4.7</td>
+<td class="al-right">4.3</td>
+<td class="al-center">3.9–5.0</td>
+</tr>
+<tr>
+<td class="al-left">Turkey</td>
+<td class="al-right">36.2</td>
+<td class="al-right">26.6</td>
+<td class="al-center">15.2–41.8</td>
+<td class="al-right">58.3</td>
+<td class="al-right">40.6</td>
+<td class="al-center">26.8–61.0</td>
+</tr>
+</tbody>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Assumed rates are the values each model reports in the <code>assumed_mortgage_rate</code> and <code>assumed_inflation_rate</code> fields after its recommendation in the no-rate cell. “Assumed” is the mean over all responses, and “Model range” is the smallest and largest of the thirteen model means. Every model reported the rates as decimals. The prevailing mortgage rate is from the pre-registered rate supplement, and inflation is 2024 consumer price inflation from the Global Macro Database. Countries are ordered by the prevailing mortgage rate.</div></div>
+<div class="paper-table" id="tab:nonum-bymodel"><div class="tab-head"><span class="tab-label">Table A6</span><span class="tab-title">The mortgage question without the stated rate: by model</span></div><div class="tab-scroll"><table class="est">
+<thead><tr>
+<th class="al-left"></th>
+<th class="al-right">Share</th>
+<th colspan="2" style="text-align: center;">Field check (pp)</th>
+<th colspan="2" style="text-align: center;">Assumed (%)</th>
+<th class="al-right"></th>
+</tr><tr>
+<th class="al-left">Model</th>
+<th class="al-right">invested (%)</th>
+<th class="al-right">Diff.</th>
+<th class="al-right">(SE)</th>
+<th class="al-right">Mortgage</th>
+<th class="al-right">Inflation</th>
+<th class="al-right">Corr.</th>
+</tr></thead><tbody>
+<tr>
+<td class="al-left"><code>claude-haiku-4.5</code></td>
+<td class="al-right">70.3</td>
+<td class="al-right">0.8</td>
+<td class="al-right">(0.7)</td>
+<td class="al-right">4.4</td>
+<td class="al-right">2.8</td>
+<td class="al-right">0.91</td>
+</tr>
+<tr>
+<td class="al-left"><code>claude-opus-4.6</code></td>
+<td class="al-right">56.2</td>
+<td class="al-right">−2.1</td>
+<td class="al-right">(3.2)</td>
+<td class="al-right">5.3</td>
+<td class="al-right">3.1</td>
+<td class="al-right">0.93</td>
+</tr>
+<tr>
+<td class="al-left"><code>claude-opus-4.8</code></td>
+<td class="al-right">63.4</td>
+<td class="al-right">1.4</td>
+<td class="al-right">(4.0)</td>
+<td class="al-right">5.4</td>
+<td class="al-right">2.8</td>
+<td class="al-right">0.94</td>
+</tr>
+<tr>
+<td class="al-left"><code>claude-sonnet-4.6</code></td>
+<td class="al-right">69.6</td>
+<td class="al-right">−0.2</td>
+<td class="al-right">(2.1)</td>
+<td class="al-right">5.3</td>
+<td class="al-right">3.0</td>
+<td class="al-right">0.96</td>
+</tr>
+<tr>
+<td class="al-left"><code>deepseek-v4-flash</code></td>
+<td class="al-right">67.1</td>
+<td class="al-right">6.8</td>
+<td class="al-right">(2.6)</td>
+<td class="al-right">4.8</td>
+<td class="al-right">2.7</td>
+<td class="al-right">0.91</td>
+</tr>
+<tr>
+<td class="al-left"><code>deepseek-v4-pro</code></td>
+<td class="al-right">72.1</td>
+<td class="al-right">5.5</td>
+<td class="al-right">(4.2)</td>
+<td class="al-right">5.3</td>
+<td class="al-right">2.9</td>
+<td class="al-right">0.91</td>
+</tr>
+<tr>
+<td class="al-left"><code>gemini-3-flash-preview</code></td>
+<td class="al-right">75.6</td>
+<td class="al-right">−1.2</td>
+<td class="al-right">(4.7)</td>
+<td class="al-right">5.2</td>
+<td class="al-right">2.7</td>
+<td class="al-right">0.85</td>
+</tr>
+<tr>
+<td class="al-left"><code>gemini-3.1-pro-preview</code></td>
+<td class="al-right">64.0</td>
+<td class="al-right">5.9</td>
+<td class="al-right">(4.1)</td>
+<td class="al-right">5.2</td>
+<td class="al-right">2.9</td>
+<td class="al-right">0.83</td>
+</tr>
+<tr>
+<td class="al-left"><code>gemini-3.5-flash</code></td>
+<td class="al-right">65.8</td>
+<td class="al-right">4.9</td>
+<td class="al-right">(2.4)</td>
+<td class="al-right">5.2</td>
+<td class="al-right">2.7</td>
+<td class="al-right">0.88</td>
+</tr>
+<tr>
+<td class="al-left"><code>gpt-5-mini</code></td>
+<td class="al-right">70.8</td>
+<td class="al-right">5.8</td>
+<td class="al-right">(1.6)</td>
+<td class="al-right">4.7</td>
+<td class="al-right">2.6</td>
+<td class="al-right">0.90</td>
+</tr>
+<tr>
+<td class="al-left"><code>gpt-5.5</code></td>
+<td class="al-right">52.1</td>
+<td class="al-right">0.8</td>
+<td class="al-right">(3.0)</td>
+<td class="al-right">5.4</td>
+<td class="al-right">2.8</td>
+<td class="al-right">0.92</td>
+</tr>
+<tr>
+<td class="al-left"><code>grok-4.3</code></td>
+<td class="al-right">66.5</td>
+<td class="al-right">5.4</td>
+<td class="al-right">(1.5)</td>
+<td class="al-right">4.9</td>
+<td class="al-right">2.7</td>
+<td class="al-right">0.92</td>
+</tr>
+<tr>
+<td class="al-left"><code>mistral-medium-3-5</code></td>
+<td class="al-right">73.8</td>
+<td class="al-right">2.5</td>
+<td class="al-right">(0.7)</td>
+<td class="al-right">4.6</td>
+<td class="al-right">2.6</td>
+<td class="al-right">0.90</td>
+</tr>
+</tbody>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> “Share invested” is the mean recommended fraction invested in the no-rate cell across all twenty-one countries. “Field check” is the difference in percentage points between the no-rate cell and the same question without the assumption fields in the five field-check countries, from a regression with country fixed effects within each model, with standard errors clustered by country. “Assumed” gives the model’s mean assumed rates over the twenty countries other than Turkey. “Corr.” is the correlation across the twenty-one countries between the log of the model’s mean assumed mortgage rate and the log of the prevailing rate. Descriptive.</div></div>
+<div class="paper-table" id="tab:q4-instrument"><div class="tab-head"><span class="tab-label">Table A7</span><span class="tab-title">Primary-instrument recommendation on the inflation question by country (Question 3, Version B, age 40)</span></div><div class="tab-scroll"><table class="est">
 <thead>
 <tr>
 <th class="al-left">Country</th>
@@ -594,7 +1310,7 @@
 <td class="al-center">–</td>
 </tr>
 <tr>
-<td class="al-left">USA</td>
+<td class="al-left">United States</td>
 <td class="al-center">96.8</td>
 <td class="al-center">2.9</td>
 <td class="al-center">–</td>
@@ -691,8 +1407,7 @@
 </tr>
 </tbody>
 </table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Share of responses (in percent) recommending each instrument category as the primary way to protect savings against inflation (Question 3, Version B, age 40), pooled across the thirteen models. Each response is assigned a single primary instrument by a deterministic multilingual keyword classifier, and the five categories sum to 100; “Other” collects mixed, bond, and money-market funds and the rare response with no reported instrument. Countries are ordered by the combined inflation-protection share (inflation-linked bonds plus gold), descending. A dash denotes a category recommended in under 0.05 percent of responses. This is the categorical companion to the numeric outcome of Table <a href="#tab:q2q3-countryfe" class="xref">A3</a>, Panel B, discussed in Section <a href="results.html#sec:main-q2q4" class="xref">5.4</a>.</div></div>
-<figure class="paper-figure" id="fig:gps-panels" data-fig="fig:gps-panels" data-images="fig_gps_panels"><div class="fig-head"><span class="fig-label">Figure A1</span><span class="fig-title">Country effects against measured risk preferences and financial literacy</span></div><div class="fig-controls"></div><div class="fig-body"><div class="fig-chart"></div><div class="fig-table" hidden></div></div><figcaption class="fig-notes"><span class="notes-label">Notes:</span> Estimated country fixed effects <span class="math inline">\(\hat{b}_{c}\)</span> from equation (3) (Question 1, Version B, age 40, U.S. baseline omitted) plotted against the country mean of the GPS willingness to take risks <a class="cite" href="references.html#ref-falk2018global">(Falk et al. 2018)</a> in Panel A and the share of financially literate adults from the S&amp;P Global FinLit Survey <a class="cite" href="references.html#ref-klapper2015finlit">(Klapper et al. 2015)</a> in Panel B, for the twenty non-U.S. countries. Country effects are in percentage points. Ribbons are 95 percent country-bootstrap confidence bands around the fitted bivariate line (9<span>,</span>999 replications). Each panel reports the bivariate slope with its wild bootstrap <span class="math inline">\(p\)</span>-value.</figcaption><div class="fig-links"></div></figure>
-<div class="paper-table" id="tab:country-correlates"><div class="tab-head"><span class="tab-label">Table A5</span><span class="tab-title">Country effects and country characteristics, by question</span></div><div class="tab-scroll"><table class="est">
+<div class="paper-table" id="tab:country-correlates"><div class="tab-head"><span class="tab-label">Table A8</span><span class="tab-title">Country effects and country characteristics, by question</span></div><div class="tab-scroll"><table class="est">
 <thead><tr>
 <th class="al-left"></th>
 <th colspan="3" style="text-align: center;">Allocation (Q1)</th>
@@ -723,113 +1438,8 @@
 <td class="al-right"></td>
 </tr>
 </tbody>
-</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Each cell reports a separate regression, across the twenty non-U.S. countries, of the country fixed effects on one country characteristic. The dependent variables are the country effects of Appendix Tables <a href="#tab:eq1-countryfe" class="xref">A2</a> and <a href="#tab:q2q3-countryfe" class="xref">A3</a> (Version B, age 40, United States omitted), in percentage points. Continuous characteristics are standardized within the sample, so a slope is the change in the country effect per standard deviation of the characteristic. Interest rates, inflation, and GDP per capita enter in logs. The English-prompt indicator is a dummy, so its slope is the difference between the English-prompting and the other countries. The home-index rows cover eighteen countries, because no MSCI country series is available for China and Mexico. The benchmark row uses the benchmark share for each question, Benchmark S for Question 1 (Section <a href="benchmark.html#sec:benchmark-simple" class="xref">4.1</a>) and <span class="math inline">\(\alpha^{Q2}_{c}\)</span> for Question 2 (Section <a href="benchmark.html#sec:benchmark-q2" class="xref">4.2</a>), in deviation from the U.S. value. Question 3 has no benchmark. <span class="math inline">\(p\)</span> in brackets is the wild bootstrap <span class="math inline">\(p\)</span>-value over countries (Webb weights, 9<span>,</span>999 replications). Holm-adjusted <span class="math inline">\(p\)</span>-values within each question are reported in the text. The rows on GPS risk-taking and financial literacy are the pre-registered H7 and H8 slopes in standardized units, and the Question 1 benchmark row is the calibration slope <span class="math inline">\(\kappa\)</span> in standardized units. All other cells are post-filing exploratory analyses.</div></div>
-<div class="paper-table" id="tab:age-pension"><div class="tab-head"><span class="tab-label">Table A6</span><span class="tab-title">The age gradient and its interaction with pension generosity (Question 1, Version B)</span></div><div class="tab-scroll"><table class="est">
-<thead><tr>
-<th class="al-left"></th>
-<th class="al-center">(1)</th>
-<th class="al-center">(2)</th>
-<th class="al-center">(3)</th>
-</tr><tr>
-<th class="al-left"></th>
-<th class="al-center">No interaction</th>
-<th class="al-center">Continuous <span class="math inline">\(\tilde\rho\)</span></th>
-<th class="al-center">Median split</th>
-</tr></thead><tbody>
-<tr>
-<td class="al-left">Age 30 (vs. 40)</td>
-<td class="al-center">6.24</td>
-<td class="al-center">6.24</td>
-<td class="al-center">6.24</td>
-</tr>
-<tr>
-<td class="al-left"></td>
-<td class="al-center">(0.57)</td>
-<td class="al-center">(0.57)</td>
-<td class="al-center">(0.57)</td>
-</tr>
-<tr>
-<td class="al-left">Age 55 (vs. 40)</td>
-<td class="al-center">-11.13</td>
-<td class="al-center">-11.13</td>
-<td class="al-center">-11.34</td>
-</tr>
-<tr>
-<td class="al-left"></td>
-<td class="al-center">(1.90)</td>
-<td class="al-center">(1.90)</td>
-<td class="al-center">(1.96)</td>
-</tr>
-<tr>
-<td class="al-left"><span class="math inline">\(\times\)</span> std. replacement rate (<span class="math inline">\(\psi\)</span>)</td>
-<td class="al-center"></td>
-<td class="al-center">-0.02</td>
-<td class="al-center"></td>
-</tr>
-<tr>
-<td class="al-left"></td>
-<td class="al-center"></td>
-<td class="al-center">(0.33)</td>
-<td class="al-center"></td>
-</tr>
-<tr>
-<td class="al-left"><span class="math inline">\(\times\)</span> above-median pension</td>
-<td class="al-center"></td>
-<td class="al-center"></td>
-<td class="al-center">0.44</td>
-</tr>
-<tr>
-<td class="al-left"></td>
-<td class="al-center"></td>
-<td class="al-center"></td>
-<td class="al-center">(0.61)</td>
-</tr>
-<tr>
-<td class="al-left">Country fixed effects</td>
-<td class="al-center">Yes</td>
-<td class="al-center">Yes</td>
-<td class="al-center">Yes</td>
-</tr>
-<tr>
-<td class="al-left">Model fixed effects</td>
-<td class="al-center">Yes</td>
-<td class="al-center">Yes</td>
-<td class="al-center">Yes</td>
-</tr>
-<tr>
-<td class="al-left">Wild <span class="math inline">\(p\)</span>: Age 30</td>
-<td class="al-center">0.000</td>
-<td class="al-center">0.000</td>
-<td class="al-center">0.000</td>
-</tr>
-<tr>
-<td class="al-left">Wild <span class="math inline">\(p\)</span>: Age 55</td>
-<td class="al-center">0.000</td>
-<td class="al-center">0.000</td>
-<td class="al-center">0.000</td>
-</tr>
-<tr>
-<td class="al-left">Wild <span class="math inline">\(p\)</span>: interaction</td>
-<td class="al-center"></td>
-<td class="al-center">0.964</td>
-<td class="al-center">0.489</td>
-</tr>
-<tr>
-<td class="al-left">Observations</td>
-<td class="al-center">40,910</td>
-<td class="al-center">40,910</td>
-<td class="al-center">40,910</td>
-</tr>
-<tr>
-<td class="al-left">Model clusters (<span class="math inline">\(G\)</span>)</td>
-<td class="al-center">13</td>
-<td class="al-center">13</td>
-<td class="al-center">13</td>
-</tr>
-</tbody>
-</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Estimates of equation (7) on Question 1, Version B, pooled across the three prompted ages (30, 40, 55), the twenty-one countries, and the thirteen models. The outcome is the recommended equity share in percentage points, and every column includes country and model fixed effects with the United States and age 40 as the omitted baselines. Column (1) fits the age effects alone. Column (2) adds the pre-registered interaction of the age-55 indicator with the standardized OECD net pension replacement rate <span class="math inline">\(\tilde{\rho}_{c}\)</span> (the coefficient <span class="math inline">\(\psi\)</span> of hypothesis H6). Column (3) replaces it with the coarser interaction of age 55 with an above-median replacement-rate indicator. Parentheses report CR1 cluster-robust standard errors clustered by model. The wild cluster bootstrap <span class="math inline">\(p\)</span>-values (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G = 13\)</span>) are the inference of record and are reported in the lower panel.</div></div>
-<figure class="paper-figure" id="fig:age-glidepath" data-fig="fig:age-glidepath" data-images="fig_D4_by_age"><div class="fig-head"><span class="fig-label">Figure A2</span><span class="fig-title">Age glide path by country (Question 1, Version B)</span></div><div class="fig-controls"></div><div class="fig-body"><div class="fig-chart"></div><div class="fig-table" hidden></div></div><figcaption class="fig-notes"><span class="notes-label">Notes:</span> Mean recommended equity share by stated investor age (30, 40, or 55) within each country, Version B of Question 1, with 95 percent confidence intervals on the cell means. The downward glide path has nearly the same level and slope in every country, the raw pattern behind the null interaction of age with pension generosity in equation (7).</figcaption><div class="fig-links"></div></figure>
-<div class="paper-table" id="tab:robust-cells"><div class="tab-head"><span class="tab-label">Table A7</span><span class="tab-title">Collection-robustness cells: temperature bookends and numeral magnitude</span></div><div class="tab-scroll"><table class="est">
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Each cell reports a separate regression, across the twenty non-U.S. countries, of the country fixed effects on one country characteristic. The dependent variables are the country effects of Appendix Tables <a href="#tab:eq1-countryfe" class="xref">A2</a> and <a href="#tab:q2q3-countryfe" class="xref">A3</a> (Version B, age 40, United States omitted), in percentage points. Continuous characteristics are standardized within the sample, so a slope is the change in the country effect per standard deviation of the characteristic. Interest rates, inflation, and GDP per capita enter in logs. The English-prompt indicator is a dummy. The home-index rows cover eighteen countries due to a lack of data on the MSCI country series for China and Mexico. The benchmark row uses the benchmark share for each question, Benchmark S for Question 1 (Section <a href="benchmark.html#sec:benchmark-simple" class="xref">4.1</a>) and <span class="math inline">\(\alpha^{Q2}_{c}\)</span> for Question 2 (Section <a href="benchmark.html#sec:benchmark-q2" class="xref">4.2</a>), in deviation from the U.S. value. Question 3 has no benchmark. <span class="math inline">\(p\)</span> in brackets is the wild bootstrap <span class="math inline">\(p\)</span>-value over countries (Webb weights, 9<span>,</span>999 replications). Holm-adjusted <span class="math inline">\(p\)</span>-values within each question are reported in the text. The rows on GPS risk-taking and financial literacy are the pre-registered H7 and H8 slopes in standardized units, and the Question 1 benchmark row is the calibration slope <span class="math inline">\(\kappa\)</span> in standardized units. All other cells are post-filing exploratory analyses.</div></div>
+<div class="paper-table" id="tab:robust-cells"><div class="tab-head"><span class="tab-label">Table A9</span><span class="tab-title">Collection-robustness cells: temperature bookends and numeral magnitude</span></div><div class="tab-scroll"><table class="est">
 <thead>
 <tr>
 <th class="al-left">Country</th>
@@ -866,245 +1476,287 @@
 <td class="al-right">0.255</td>
 </tr>
 </tbody>
-</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> The table reports the two pre-registered collection-robustness cells (Section <a href="results.html#sec:robustness" class="xref">5.6</a>), re-collected on July 6, 2026 alongside the main corpus (Section <a href="design.html#sec:data" class="xref">3.4</a>). Panel A re-estimates the country fixed effects of equation (3) separately at each sampling temperature on the five bookend countries (Question 1, Version B, age 40, United States omitted), in percentage points of the recommended equity share. The <span class="math inline">\(T=0.7\)</span> column uses the primary-collection cells and the bookend columns use the re-collected cells, so the <span class="math inline">\(T=0.7\)</span> estimates differ from Appendix Table <a href="#tab:eq1-countryfe" class="xref">A2</a> only in the estimation sample being restricted to these five countries. The dispersion row reports the mean across country–model cells of the within-cell standard deviation of the recommended share, in fraction units. Panel B compares Version B, whose stake is a round native-currency amount, with an otherwise identical prompt stating the amount as $50<span>,</span>000, for the three pre-registered countries with country and language held fixed. The mean columns are recommended equity shares, and the shift is the B-USD minus Version-B difference in percentage points, estimated with model fixed effects. All <span class="math inline">\(p\)</span>-values and confidence intervals come from the wild cluster bootstrap (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G = 13\)</span>). The pooled estimates quoted in Section <a href="results.html#sec:robustness" class="xref">5.6</a> average over the countries shown here.</div></div>
-<div class="paper-table" id="tab:ppp-contrasts"><div class="tab-head"><span class="tab-label">Table A8</span><span class="tab-title">Country contrasts with the stake at purchasing-power parity and in the elicitation probe</span></div><div class="tab-scroll"><table class="est">
-<thead>
-<tr>
-<th class="al-left">Contrasts</th>
-<th class="al-right"><span class="math inline">\(\hat{\kappa}\)</span></th>
-<th class="al-center">95% CI</th>
-<th class="al-right"><span class="math inline">\(p\)</span> (<span class="math inline">\(\kappa=0\)</span>)</th>
-<th class="al-right"><span class="math inline">\(p\)</span> (<span class="math inline">\(\kappa=1\)</span>)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="al-left">Main collection (July)</td>
-<td class="al-right"><span class="math inline">\(0.13\)</span></td>
-<td class="al-center"><span class="math inline">\([-0.14,\  0.33]\)</span></td>
-<td class="al-right">0.317</td>
-<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
-</tr>
-<tr>
-<td class="al-left">Same day, filed stake</td>
-<td class="al-right"><span class="math inline">\(0.10\)</span></td>
-<td class="al-center"><span class="math inline">\([-0.18,\  0.34]\)</span></td>
-<td class="al-right">0.541</td>
-<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
-</tr>
-<tr>
-<td class="al-left">Same day, PPP stake</td>
-<td class="al-right"><span class="math inline">\(0.07\)</span></td>
-<td class="al-center"><span class="math inline">\([-0.22,\  0.29]\)</span></td>
-<td class="al-right">0.661</td>
-<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
-</tr>
-</tbody>
-</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Panel A reports the country fixed effects of equation (3) (Question 1, age 40, United States omitted, model fixed effects) in four samples. The main-collection column reproduces Table <a href="#tab:eq1-countryfe" class="xref">A2</a> (July 2026, fifty repetitions per cell). The two same-day columns come from the exploratory re-collection of October 29, 2026 (twenty-five repetitions per cell), with the filed stake and with the stake in the twenty non-U.S. Version B prompts restated at purchasing-power parity (World Bank, 2024). Both use the same-day U.S. rows as the baseline, because the U.S. stake does not change. The stake ratio is the filed stake divided by the restated stake, and the PPP <span class="math inline">\(-\)</span> filed column is the within-country shift from restating the stake. The last column reports the country effects on the provisional equity share in the exploratory elicitation probe of Section <a href="results.html#sec:robustness" class="xref">5.6</a> (October 28, 2026), in which the model lists the questions it would ask the investor before advising and states the share it would recommend with no further information (one English prompt per country, Version B in the six English-prompting countries and Version B-cross in the other fifteen, ten repetitions per model and country, 2<span>,</span>730 queries). <span class="math inline">\(^{\dagger}\)</span> marks a contrast significant at the five percent level after Holm correction across the twenty countries, using the wild cluster bootstrap (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G = 13\)</span>). Panel B estimates the PPP minus filed shift on the same-day re-collection. The pooled row has country and model fixed effects, and the last two rows give the slope on the log real stake per doubling, without and with an indicator for the restated prompt. Panel C regresses each column’s twenty contrasts on the benchmark deviations at the baseline calibration, as in equation (13), with the wild bootstrap over countries. The benchmark does not depend on the size of the stake, so the regressor is the same in all three rows. Post-filing exploratory deviations recorded in the design lock.</div></div>
-<div class="paper-table" id="tab:trinstr"><div class="tab-head"><span class="tab-label">Table A9</span><span class="tab-title">Translating the Instructions block: the primary cell re-collected with local-language instructions</span></div><div class="tab-scroll"><table class="est">
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> The table reports the two pre-registered collection-robustness cells (Section <a href="results.html#sec:robustness" class="xref">5.6</a>), re-collected on July 6, 2026 alongside the main corpus (Section <a href="design.html#sec:data" class="xref">3.4</a>). Panel A re-estimates the country fixed effects of equation (3) separately at each sampling temperature on the five bookend countries (Question 1, Version B, age 40, United States omitted), in percentage points of the recommended equity share. The <span class="math inline">\(T=0.7\)</span> column uses the primary-collection cells and the bookend columns use the re-collected cells, so the <span class="math inline">\(T=0.7\)</span> estimates differ from Appendix Table <a href="#tab:eq1-countryfe" class="xref">A2</a> only in the estimation sample, which is restricted to these five countries. GPT-5-mini, GPT-5.5 and Claude Opus 4.8 do not accept a temperature parameter (Section <a href="design.html#sec:data" class="xref">3.4</a>), so their bookend cells re-collect the provider default, and Panel A estimates the contrasts on the other ten models (<span class="math inline">\(G=10\)</span>). The dispersion rows report the mean across country–model cells of the within-cell standard deviation of the recommended share, in fraction units, separately for the ten models and for the three without a temperature parameter. Panel B compares Version B, whose stake is a round native-currency amount, with an otherwise identical prompt stating the amount as $50<span>,</span>000, for three pre-registered countries with country and language held fixed. The mean columns are recommended equity shares, and the shift is the B-USD minus Version-B difference in percentage points, estimated with model fixed effects. All <span class="math inline">\(p\)</span>-values and confidence intervals come from the wild cluster bootstrap (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G = 13\)</span> in Panel B and <span class="math inline">\(G = 10\)</span> in Panel A). The pooled estimates quoted in Section <a href="results.html#sec:robustness" class="xref">5.6</a> average over the countries shown here.</div></div>
+<div class="paper-table" id="tab:ppp-contrasts"><div class="tab-head"><span class="tab-label">Table A10</span><span class="tab-title">Country contrasts in the exploratory re-collections: stake at purchasing-power parity, translated instructions, and the elicitation probe</span></div><div class="tab-scroll"><table class="est">
 <thead>
 <tr>
 <th class="al-left"></th>
 <th class="al-right">Estimate</th>
 <th class="al-center">95% CI</th>
 <th class="al-right"><span class="math inline">\(p\)</span> (wild)</th>
-<th class="al-right"><span class="math inline">\(p\)</span> (Holm)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td colspan="5" style="text-align: left;"><em>Panel A: Translated minus English instructions, pooled</em></td>
+<td colspan="4" style="text-align: left;"><em>Stake restated at purchasing-power parity</em></td>
+</tr>
+<tr>
+<td class="al-left">Pooled shift, PPP minus filed stake (20 countries)</td>
+<td class="al-right"><span class="math inline">\(1.0\)</span></td>
+<td class="al-center"><span class="math inline">\([  0.5,\   1.7]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">Per doubling of the real stake</td>
+<td class="al-right"><span class="math inline">\(-1.2\)</span></td>
+<td class="al-center"><span class="math inline">\([ -2.0,\  -0.6]\)</span></td>
+<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+</tr>
+<tr>
+<td class="al-left">net of a common shift</td>
+<td class="al-right"><span class="math inline">\(-0.9\)</span></td>
+<td class="al-center"><span class="math inline">\([ -1.4,\  -0.4]\)</span></td>
+<td class="al-right">0.003</td>
+</tr>
+<tr>
+<td colspan="4" style="text-align: left;"><em>Translated minus English instructions (October minus July)</em></td>
 </tr>
 <tr>
 <td class="al-left">All twenty-one countries</td>
 <td class="al-right"><span class="math inline">\(-1.2\)</span></td>
 <td class="al-center"><span class="math inline">\([ -2.7,\   0.2]\)</span></td>
 <td class="al-right">0.095</td>
-<td class="al-right">–</td>
 </tr>
 <tr>
 <td class="al-left">English-prompting countries (identical prompts)</td>
 <td class="al-right"><span class="math inline">\(-0.6\)</span></td>
 <td class="al-center"><span class="math inline">\([ -1.8,\   0.4]\)</span></td>
 <td class="al-right">0.257</td>
-<td class="al-right">–</td>
 </tr>
 <tr>
 <td class="al-left">Non-English countries</td>
 <td class="al-right"><span class="math inline">\(-1.4\)</span></td>
 <td class="al-center"><span class="math inline">\([ -3.2,\   0.1]\)</span></td>
 <td class="al-right">0.084</td>
-<td class="al-right">–</td>
 </tr>
 <tr>
 <td class="al-left">Language component (non-English minus English)</td>
 <td class="al-right"><span class="math inline">\(-0.8\)</span></td>
 <td class="al-center"><span class="math inline">\([ -1.8,\   0.2]\)</span></td>
 <td class="al-right">0.130</td>
-<td class="al-right">–</td>
-</tr>
-<tr>
-<td colspan="5" style="text-align: left;"><em>Panel B: Translated minus English instructions, by country</em></td>
-</tr>
-<tr>
-<td colspan="5" style="text-align: left;">Non-English countries (instructions translated)</td>
-</tr>
-<tr>
-<td class="al-left">Finland</td>
-<td class="al-right"><span class="math inline">\(-4.6\)</span></td>
-<td class="al-center"><span class="math inline">\([ -7.1,\  -2.2]\)</span></td>
-<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
-<td class="al-right">0.006</td>
-</tr>
-<tr>
-<td class="al-left">Mexico</td>
-<td class="al-right"><span class="math inline">\(-3.7\)</span></td>
-<td class="al-center"><span class="math inline">\([ -6.8,\  -0.8]\)</span></td>
-<td class="al-right">0.013</td>
-<td class="al-right">0.250</td>
-</tr>
-<tr>
-<td class="al-left">China</td>
-<td class="al-right"><span class="math inline">\(-3.6\)</span></td>
-<td class="al-center"><span class="math inline">\([ -8.0,\   0.5]\)</span></td>
-<td class="al-right">0.098</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">Italy</td>
-<td class="al-right"><span class="math inline">\(-2.0\)</span></td>
-<td class="al-center"><span class="math inline">\([ -4.8,\   0.6]\)</span></td>
-<td class="al-right">0.127</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">Poland</td>
-<td class="al-right"><span class="math inline">\(-1.8\)</span></td>
-<td class="al-center"><span class="math inline">\([ -5.7,\   1.7]\)</span></td>
-<td class="al-right">0.368</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">South Korea</td>
-<td class="al-right"><span class="math inline">\(-1.1\)</span></td>
-<td class="al-center"><span class="math inline">\([ -3.7,\   1.6]\)</span></td>
-<td class="al-right">0.396</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">Japan</td>
-<td class="al-right"><span class="math inline">\(-1.1\)</span></td>
-<td class="al-center"><span class="math inline">\([ -3.8,\   1.8]\)</span></td>
-<td class="al-right">0.461</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">Netherlands</td>
-<td class="al-right"><span class="math inline">\(-1.0\)</span></td>
-<td class="al-center"><span class="math inline">\([ -5.1,\   2.8]\)</span></td>
-<td class="al-right">0.601</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">Turkey</td>
-<td class="al-right"><span class="math inline">\(-0.9\)</span></td>
-<td class="al-center"><span class="math inline">\([ -2.6,\   0.9]\)</span></td>
-<td class="al-right">0.310</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">Germany</td>
-<td class="al-right"><span class="math inline">\(-0.8\)</span></td>
-<td class="al-center"><span class="math inline">\([ -5.0,\   3.1]\)</span></td>
-<td class="al-right">0.691</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">Spain</td>
-<td class="al-right"><span class="math inline">\(-0.5\)</span></td>
-<td class="al-center"><span class="math inline">\([ -3.7,\   2.8]\)</span></td>
-<td class="al-right">0.755</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">France</td>
-<td class="al-right"><span class="math inline">\(-0.4\)</span></td>
-<td class="al-center"><span class="math inline">\([ -4.1,\   3.0]\)</span></td>
-<td class="al-right">0.787</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">Switzerland</td>
-<td class="al-right"><span class="math inline">\(-0.4\)</span></td>
-<td class="al-center"><span class="math inline">\([ -4.7,\   3.7]\)</span></td>
-<td class="al-right">0.867</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">Sweden</td>
-<td class="al-right"><span class="math inline">\(-0.2\)</span></td>
-<td class="al-center"><span class="math inline">\([ -2.4,\   2.2]\)</span></td>
-<td class="al-right">0.869</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">Brazil</td>
-<td class="al-right"><span class="math inline">\(1.0\)</span></td>
-<td class="al-center"><span class="math inline">\([ -1.7,\   3.7]\)</span></td>
-<td class="al-right">0.465</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td colspan="5" style="text-align: left;">English-prompting countries (prompts identical in both arms)</td>
-</tr>
-<tr>
-<td class="al-left">Canada</td>
-<td class="al-right"><span class="math inline">\(-1.5\)</span></td>
-<td class="al-center"><span class="math inline">\([ -3.6,\   0.3]\)</span></td>
-<td class="al-right">0.208</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">Australia</td>
-<td class="al-right"><span class="math inline">\(-1.2\)</span></td>
-<td class="al-center"><span class="math inline">\([ -2.5,\   0.0]\)</span></td>
-<td class="al-right">0.057</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">India</td>
-<td class="al-right"><span class="math inline">\(-1.1\)</span></td>
-<td class="al-center"><span class="math inline">\([ -3.0,\   0.6]\)</span></td>
-<td class="al-right">0.309</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">United Kingdom</td>
-<td class="al-right"><span class="math inline">\(-0.4\)</span></td>
-<td class="al-center"><span class="math inline">\([ -1.2,\   0.5]\)</span></td>
-<td class="al-right">0.340</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">South Africa</td>
-<td class="al-right"><span class="math inline">\(-0.2\)</span></td>
-<td class="al-center"><span class="math inline">\([ -2.4,\   2.3]\)</span></td>
-<td class="al-right">0.856</td>
-<td class="al-right">1.000</td>
-</tr>
-<tr>
-<td class="al-left">United States</td>
-<td class="al-right"><span class="math inline">\(0.5\)</span></td>
-<td class="al-center"><span class="math inline">\([ -2.3,\   3.4]\)</span></td>
-<td class="al-right">0.750</td>
-<td class="al-right">1.000</td>
 </tr>
 </tbody>
-</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Exploratory re-collection of the primary cell (Question 1, Version B, age 40, twenty-one countries, thirteen models, twenty repetitions per cell, 5<span>,</span>460 queries, October 29, 2026) with the Instructions block in the local language for the fifteen non-English countries, compared with the main collection of July 2026 (fifty repetitions per cell). Entries are the October minus July difference in the recommended equity share, in percentage points, from a regression with country and model fixed effects. Panel A pools the difference over all countries, over the six English-prompting countries, whose prompts are identical in the two collections and so measure drift in the models over the interval, and over the fifteen non-English countries, and reports the language component as the non-English minus the English difference. Panel B estimates the difference for each country, with the Holm correction treating the twenty-one countries as a single family. <span class="math inline">\(p\)</span> (wild) is the wild cluster bootstrap <span class="math inline">\(p\)</span>-value (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G = 13\)</span>), and the confidence interval is the 95 percent wild bootstrap interval. Responses truncated at the token limit are excluded as in the main analysis, which removes 45 responses from the October collection, all from the two DeepSeek models.</div></div>
-<div class="paper-table" id="tab:bgrt-coef"><div class="tab-head"><span class="tab-label">Table A10</span><span class="tab-title">Stated-investor arm: cell means and estimated effects of the risk, pension, and horizon statements</span></div><div class="tab-scroll"><table class="est">
+</table></div></div>
+<div class="paper-table" id="tab:tracking"><div class="tab-head"><span class="tab-label">Table A18</span><span class="tab-title">Model-tracking waves: stability of the advice across model generations</span></div><div class="tab-scroll"><table class="est">
+<thead><tr>
+<th class="al-left"></th>
+<th colspan="2" style="text-align: center;">All models</th>
+<th class="al-center">New models</th>
+<th colspan="2" style="text-align: center;">Carried-over models</th>
+</tr><tr>
+<th class="al-left"></th>
+<th class="al-center">July</th>
+<th class="al-center">September</th>
+<th class="al-center">September</th>
+<th class="al-center">July</th>
+<th class="al-center">September</th>
+</tr></thead><tbody>
+<tr>
+<td colspan="6" style="text-align: left;"><em>Panel A: Level and composition of the variance</em></td>
+</tr>
+<tr>
+<td class="al-left">Models</td>
+<td class="al-center">13</td>
+<td class="al-center">21</td>
+<td class="al-center">14</td>
+<td class="al-center">7</td>
+<td class="al-center">7</td>
+</tr>
+<tr>
+<td class="al-left">Responses kept</td>
+<td class="al-center">13<span>,</span>645</td>
+<td class="al-center">11<span>,</span>011</td>
+<td class="al-center">7<span>,</span>339</td>
+<td class="al-center">7<span>,</span>347</td>
+<td class="al-center">3<span>,</span>672</td>
+</tr>
+<tr>
+<td class="al-left">Repetitions per cell</td>
+<td class="al-center">50</td>
+<td class="al-center">25</td>
+<td class="al-center">25</td>
+<td class="al-center">50</td>
+<td class="al-center">25</td>
+</tr>
+<tr>
+<td class="al-left">Mean equity share (%)</td>
+<td class="al-center">54.9</td>
+<td class="al-center">49.4</td>
+<td class="al-center">45.8</td>
+<td class="al-center">55.4</td>
+<td class="al-center">56.6</td>
+</tr>
+<tr>
+<td class="al-left">Variance share, model (%)</td>
+<td class="al-center">78.0</td>
+<td class="al-center">70.5</td>
+<td class="al-center">42.9</td>
+<td class="al-center">73.9</td>
+<td class="al-center">76.7</td>
+</tr>
+<tr>
+<td class="al-left">Variance share, country (%)</td>
+<td class="al-center">2.8</td>
+<td class="al-center">4.7</td>
+<td class="al-center">14.8</td>
+<td class="al-center">1.5</td>
+<td class="al-center">1.5</td>
+</tr>
+<tr>
+<td class="al-left">Variance share, model <span class="math inline">\(\times\)</span> country (%)</td>
+<td class="al-center">4.3</td>
+<td class="al-center">6.7</td>
+<td class="al-center">10.6</td>
+<td class="al-center">2.1</td>
+<td class="al-center">5.1</td>
+</tr>
+<tr>
+<td class="al-left">Variance share, within cell (%)</td>
+<td class="al-center">14.9</td>
+<td class="al-center">18.1</td>
+<td class="al-center">31.7</td>
+<td class="al-center">22.5</td>
+<td class="al-center">16.7</td>
+</tr>
+<tr>
+<td class="al-left">Range of country means, pooled over models (pp)</td>
+<td class="al-center">9.4</td>
+<td class="al-center">10.3</td>
+<td class="al-center">13.1</td>
+<td class="al-center">7.0</td>
+<td class="al-center">6.5</td>
+</tr>
+<tr>
+<td class="al-left">SD of country means net of noise, average over models (pp)</td>
+<td class="al-center">3.2</td>
+<td class="al-center">3.5</td>
+<td class="al-center">3.8</td>
+<td class="al-center">2.2</td>
+<td class="al-center">2.9</td>
+</tr>
+<tr>
+<td class="al-left">Non-U.S. cells below the model’s own U.S. cell (%)</td>
+<td class="al-center">67</td>
+<td class="al-center">77</td>
+<td class="al-center">79</td>
+<td class="al-center">62</td>
+<td class="al-center">74</td>
+</tr>
+<tr>
+<td class="al-left">Slope of country means on <span class="math inline">\(\alpha^{S}_{c}\)</span></td>
+<td class="al-center">0.118</td>
+<td class="al-center">0.081</td>
+<td class="al-center">0.080</td>
+<td class="al-center">0.073</td>
+<td class="al-center">0.084</td>
+</tr>
+<tr>
+<td class="al-left">(robust standard error)</td>
+<td class="al-center">(0.091)</td>
+<td class="al-center">(0.113)</td>
+<td class="al-center">(0.143)</td>
+<td class="al-center">(0.070)</td>
+<td class="al-center">(0.054)</td>
+</tr>
+<tr>
+<td colspan="6" style="text-align: left;"><em>Panel B: Carried-over models, same identifier</em></td>
+</tr>
+<tr>
+<td class="al-left"></td>
+<td class="al-center">Mean, July</td>
+<td class="al-center">Mean, September</td>
+<td class="al-center">Change (se)</td>
+<td class="al-center"><span class="math inline">\(\Delta\)</span> SD of country means</td>
+<td class="al-center">Largest cell change</td>
+</tr>
+<tr>
+<td class="al-left">DeepSeek V4 Flash</td>
+<td class="al-center">46.3</td>
+<td class="al-center">54.8</td>
+<td class="al-center">+8.46 (1.08)</td>
+<td class="al-center">+2.47</td>
+<td class="al-center">15.2</td>
+</tr>
+<tr>
+<td class="al-left">Grok 4.3</td>
+<td class="al-center">54.5</td>
+<td class="al-center">57.0</td>
+<td class="al-center">+2.43 (0.37)</td>
+<td class="al-center">−0.70</td>
+<td class="al-center">5.4</td>
+</tr>
+<tr>
+<td class="al-left">GPT-5-mini</td>
+<td class="al-center">37.2</td>
+<td class="al-center">37.5</td>
+<td class="al-center">+0.22 (0.26)</td>
+<td class="al-center">+0.09</td>
+<td class="al-center">2.2</td>
+</tr>
+<tr>
+<td class="al-left">Claude Haiku 4.5</td>
+<td class="al-center">72.5</td>
+<td class="al-center">72.6</td>
+<td class="al-center">+0.06 (0.12)</td>
+<td class="al-center">+0.02</td>
+<td class="al-center">1.8</td>
+</tr>
+<tr>
+<td class="al-left">Mistral Medium 3.5</td>
+<td class="al-center">70.1</td>
+<td class="al-center">70.0</td>
+<td class="al-center">−0.07 (0.05)</td>
+<td class="al-center">−0.08</td>
+<td class="al-center">0.6</td>
+</tr>
+<tr>
+<td class="al-left">Gemini 3 Flash</td>
+<td class="al-center">59.4</td>
+<td class="al-center">59.0</td>
+<td class="al-center">−0.44 (0.57)</td>
+<td class="al-center">+2.53</td>
+<td class="al-center">9.2</td>
+</tr>
+<tr>
+<td class="al-left">DeepSeek V4 Pro</td>
+<td class="al-center">47.4</td>
+<td class="al-center">45.0</td>
+<td class="al-center">−2.31 (0.52)</td>
+<td class="al-center">+0.44</td>
+<td class="al-center">6.6</td>
+</tr>
+<tr>
+<td colspan="6" style="text-align: left;"><em>Panel C: Slope on release date, percentage points per year (27 models, 34 points)</em></td>
+</tr>
+<tr>
+<td class="al-left"></td>
+<td class="al-center">Estimate</td>
+<td class="al-center">Cluster se</td>
+<td class="al-center"><span class="math inline">\(p\)</span> (wild)</td>
+<td class="al-center"></td>
+<td class="al-center"></td>
+</tr>
+<tr>
+<td class="al-left">SD of country means net of noise</td>
+<td class="al-center">+0.98</td>
+<td class="al-center">0.53</td>
+<td class="al-center">0.19</td>
+<td class="al-center"></td>
+<td class="al-center"></td>
+</tr>
+<tr>
+<td class="al-left">with wave fixed effects</td>
+<td class="al-center">+0.92</td>
+<td class="al-center">0.59</td>
+<td class="al-center">0.30</td>
+<td class="al-center"></td>
+<td class="al-center"></td>
+</tr>
+</tbody>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Question 1, age 40, one English prompt per country (Version B in the six English-prompting countries, Version B-cross in the other fifteen), temperature 0.7. The July columns are the main collection of July 2–4, 2026 cut to this slice, and the September columns the tracking wave of September 19–20, 2026. New models are the fourteen September models absent from the paper panel. Carried-over models are the seven paper-panel models re-queried under the same identifier. Panel A: variance shares are sums of squares relative to the total on response-level data, as in Section <a href="results.html#sec:descriptive" class="xref">5.1</a>. With 25 rather than 50 repetitions per cell, sampling noise raises the between-cell shares by a negligible amount. The SD of country means net of noise subtracts the average sampling variance of the cell means, <span class="math inline">\(\overline{s^{2}_{mc}/n_{mc}}\)</span>, from the variance of a model’s twenty-one country means. The benchmark slope regresses the twenty-one country means, pooled over the models in the column, on the standalone benchmark of Appendix <a href="appendix-benchmark.html#sec:benchmark-s" class="xref">B.1</a>. It carries no model fixed effects, so it is a descriptive analog of <span class="math inline">\(\kappa\)</span> and its changes across columns are compositional. Panel B: mean recommended equity shares in percent. The change is the mean of the twenty-one within-country changes in cell means, with its standard error across countries. The SD change and the largest absolute cell change measure reallocation across countries at a given mean. Seven comparisons, uncorrected. Panel C: each model-by-wave outcome regressed on the model’s OpenRouter listing date, with carried-over models entering once per wave at the same date, standard errors clustered by model, and wild cluster bootstrap <span class="math inline">\(p\)</span>-values (Webb weights, 9<span>,</span>999 replications). Release date is close to collinear with the wave, so only the wave-fixed-effects row separates vintage from collection date. Post-filing exploratory deviation recorded in the design lock, in no Holm family.</div></div>
+<div class="paper-table" id="tab:bgrt-coef"><div class="tab-head"><span class="tab-label">Table A12</span><span class="tab-title">Stated-investor arm: cell means, pre-registered effects, and exploratory balance-sheet probes</span></div><div class="tab-scroll"><table class="est">
 <thead>
 <tr>
-<th class="al-left"></th>
 <th class="al-left">Contrast</th>
 <th class="al-right">Estimate</th>
 <th class="al-center">95% CI</th>
@@ -1113,36 +1765,68 @@
 </thead>
 <tbody>
 <tr>
-<td class="al-left">H11</td>
-<td class="al-left">Risk-tolerant vs. risk-averse</td>
-<td class="al-right"><span class="math inline">\(46.3\)</span></td>
-<td class="al-center"><span class="math inline">\([ 41.1,\  51.4]\)</span></td>
+<td class="al-left">Pension bond-like annuity (Merton: +)</td>
+<td class="al-right"><span class="math inline">\(4.8\)</span></td>
+<td class="al-center"><span class="math inline">\([  0.1,\   9.6]\)</span></td>
+<td class="al-right">0.042</td>
+</tr>
+<tr>
+<td class="al-left">Pension equity-invested (Merton: <span class="math inline">\(-\)</span>)</td>
+<td class="al-right">−16.9</td>
+<td class="al-center"><span class="math inline">\([-21.8,\ -12.1]\)</span></td>
 <td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
 </tr>
 <tr>
-<td class="al-left">H12</td>
-<td class="al-left">Generous vs. limited pension</td>
-<td class="al-right"><span class="math inline">\(-1.0\)</span></td>
-<td class="al-center"><span class="math inline">\([ -2.3,\   0.2]\)</span></td>
-<td class="al-right">0.107</td>
+<td class="al-left">Fund currency-hedged (at mean <span class="math inline">\(\sigma_c\)</span>)</td>
+<td class="al-right"><span class="math inline">\(0.4\)</span></td>
+<td class="al-center"><span class="math inline">\([ -1.5,\   2.2]\)</span></td>
+<td class="al-right">0.659</td>
 </tr>
 <tr>
-<td class="al-left">–</td>
-<td class="al-left">Risk <span class="math inline">\(\times\)</span> pension interaction</td>
-<td class="al-right"><span class="math inline">\(3.6\)</span></td>
-<td class="al-center"><span class="math inline">\([  2.0,\   5.2]\)</span></td>
+<td class="al-left">Fund unhedged (at mean <span class="math inline">\(\sigma_c\)</span>)</td>
+<td class="al-right"><span class="math inline">\(-1.3\)</span></td>
+<td class="al-center"><span class="math inline">\([ -3.2,\   0.4]\)</span></td>
+<td class="al-right">0.149</td>
+</tr>
+<tr>
+<td class="al-left">Hedged <span class="math inline">\(\times \sigma_c\)</span> (Merton: +)</td>
+<td class="al-right"><span class="math inline">\(23.8\)</span></td>
+<td class="al-center"><span class="math inline">\([  6.1,\  42.1]\)</span></td>
+<td class="al-right">0.010</td>
+</tr>
+<tr>
+<td class="al-left">Unhedged <span class="math inline">\(\times \sigma_c\)</span> (Merton: <span class="math inline">\(-\)</span>)</td>
+<td class="al-right"><span class="math inline">\(36.0\)</span></td>
+<td class="al-center"><span class="math inline">\([ 15.8,\  55.5]\)</span></td>
+<td class="al-right">0.002</td>
+</tr>
+<tr>
+<td class="al-left">Stake = all liquid wealth (US only)</td>
+<td class="al-right">−23.3</td>
+<td class="al-center"><span class="math inline">\([-30.4,\ -16.1]\)</span></td>
 <td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
 </tr>
 <tr>
-<td class="al-left">H13</td>
-<td class="al-left">20-year vs. 1-year horizon</td>
-<td class="al-right"><span class="math inline">\(39.9\)</span></td>
-<td class="al-center"><span class="math inline">\([ 25.7,\  53.4]\)</span></td>
+<td class="al-left">Stake = half of wealth (US only)</td>
+<td class="al-right"><span class="math inline">\(1.4\)</span></td>
+<td class="al-center"><span class="math inline">\([ -0.4,\   3.3]\)</span></td>
+<td class="al-right">0.109</td>
+</tr>
+<tr>
+<td class="al-left">Stake = a third of wealth (US only)</td>
+<td class="al-right"><span class="math inline">\(2.5\)</span></td>
+<td class="al-center"><span class="math inline">\([ -0.1,\   4.9]\)</span></td>
+<td class="al-right">0.057</td>
+</tr>
+<tr>
+<td class="al-left">Linear B/L slope, per step (US only)</td>
+<td class="al-right"><span class="math inline">\(7.6\)</span></td>
+<td class="al-center"><span class="math inline">\([  5.4,\   9.8]\)</span></td>
 <td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
 </tr>
 </tbody>
-</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Panel A reports the distribution of the recommended equity share in the stated-investor arm (Version B<span class="math inline">\(\gamma\rho\tau\)</span>, Question 1, age 40, English), pooled across the twenty-one countries and thirteen models. The upper block reports the four crossed cells that state the investor’s risk attitude and pension generosity at a common five-year horizon, and the lower block the two cells that state only the investment horizon with no risk or pension statement. Each cell is queried by all thirteen models fifty times in each of the twenty-one countries. Panel B reports the coefficients from the pre-registered stated-investor regressions on the same sample, estimated with country and model fixed effects. <span class="math inline">\(\beta_{R}\)</span>, <span class="math inline">\(\beta_{P}\)</span>, and the interaction come from equation (6) on the four crossed risk–pension cells, with the risk-averse, limited-pension cell as the omitted baseline. <span class="math inline">\(\beta_{H}\)</span> comes from the horizon analog on the two horizon cells, with the one-year horizon as the baseline. Estimates and confidence intervals are in percentage points of the recommended equity share. <span class="math inline">\(p\)</span> (wild) is the wild cluster bootstrap <span class="math inline">\(p\)</span>-value (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G = 13\)</span>), and the confidence interval comes from the same procedure. The risk–pension interaction is descriptive and not a pre-registered test. These are the estimates behind hypotheses H11–H13 in Table <a href="#tab:hypotheses" class="xref">A1</a> and Section <a href="advice-rule.html#sec:stated" class="xref">6</a>.</div></div>
-<div class="paper-table" id="tab:bgrt-bycountry"><div class="tab-head"><span class="tab-label">Table A11</span><span class="tab-title">Stated-investor effects by country</span></div><div class="tab-scroll"><table class="est">
+</table></div></div>
+<div class="paper-table" id="tab:bgrt-bycountry"><div class="tab-head"><span class="tab-label">Table A13</span><span class="tab-title">Stated-investor effects by country</span></div><div class="tab-scroll"><table class="est">
 <thead><tr>
 <th class="al-left"></th>
 <th colspan="3" style="text-align: center;">Pre-registered cells</th>
@@ -1379,78 +2063,112 @@
 </tr>
 </tbody>
 </table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Effect of each stated-investor treatment on the recommended equity share, in percentage points, estimated separately for each country (Question 1, age 40, statements in English). Risk tolerance is the risk-tolerant minus risk-averse difference pooled over the two pension statements, and generous pension the generous minus limited difference pooled over the two risk statements, both from the four crossed cells of equation (6). Horizon is the twenty-year minus one-year difference on the two horizon cells. Pension in stocks and pension annuity are the probe cells of Section <a href="advice-rule.html#sec:stated-probes" class="xref">6.3</a> against the country’s own no-statement reference, and hedged <span class="math inline">\(-\)</span> unhedged is the difference between the two hedging cells, estimated on those cells alone. Each column comes from one regression that interacts the treatment with country indicators and absorbs model fixed effects, so each entry is the treatment effect within that country. <span class="math inline">\(^{\dagger}\)</span> marks a country whose effect differs from the U.S. effect at the five percent level after Holm correction within the column’s family of twenty contrasts, and <span class="math inline">\(^{*}\)</span> a difference significant at five percent before correction only. The summary rows give the unweighted mean and range of the twenty-one country effects, the median half-width of the per-country 95 percent confidence intervals, and the number of Holm-significant contrasts. All inference is the wild cluster bootstrap (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G = 13\)</span>). No joint test of equal effects across countries is reported, because the model-clustered covariance of twenty interaction coefficients has rank at most twelve with thirteen clusters. The per-country breakdown is a post-filing exploratory deviation recorded in the design lock.</div></div>
-<div class="paper-table" id="tab:upgrade-coef"><div class="tab-head"><span class="tab-label">Table A12</span><span class="tab-title">Exploratory balance-sheet probes: pension composition, currency hedging, and the liquid share</span></div><div class="tab-scroll"><table class="est">
-<thead>
+<div class="paper-table" id="tab:age-pension"><div class="tab-head"><span class="tab-label">Table A14</span><span class="tab-title">The age gradient and its interaction with pension generosity (Question 1, Version B)</span></div><div class="tab-scroll"><table class="est">
+<thead><tr>
+<th class="al-left"></th>
+<th class="al-center">(1)</th>
+<th class="al-center">(2)</th>
+<th class="al-center">(3)</th>
+</tr><tr>
+<th class="al-left"></th>
+<th class="al-center">No interaction</th>
+<th class="al-center">Continuous <span class="math inline">\(\tilde\rho\)</span></th>
+<th class="al-center">Median split</th>
+</tr></thead><tbody>
 <tr>
-<th class="al-left">Contrast</th>
-<th class="al-right">Estimate</th>
-<th class="al-center">95% CI</th>
-<th class="al-right"><span class="math inline">\(p\)</span> (wild)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="al-left">Pension bond-like annuity (Merton: +)</td>
-<td class="al-right"><span class="math inline">\(4.8\)</span></td>
-<td class="al-center"><span class="math inline">\([  0.1,\   9.6]\)</span></td>
-<td class="al-right">0.042</td>
-</tr>
-<tr>
-<td class="al-left">Pension equity-invested (Merton: <span class="math inline">\(-\)</span>)</td>
-<td class="al-right">−16.9</td>
-<td class="al-center"><span class="math inline">\([-21.8,\ -12.1]\)</span></td>
-<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-left">Age 30 (vs. 40)</td>
+<td class="al-center">6.24</td>
+<td class="al-center">6.24</td>
+<td class="al-center">6.24</td>
 </tr>
 <tr>
-<td class="al-left">Fund currency-hedged (at mean <span class="math inline">\(\sigma_c\)</span>)</td>
-<td class="al-right"><span class="math inline">\(0.4\)</span></td>
-<td class="al-center"><span class="math inline">\([ -1.5,\   2.2]\)</span></td>
-<td class="al-right">0.659</td>
+<td class="al-left"></td>
+<td class="al-center">(0.57)</td>
+<td class="al-center">(0.57)</td>
+<td class="al-center">(0.57)</td>
 </tr>
 <tr>
-<td class="al-left">Fund unhedged (at mean <span class="math inline">\(\sigma_c\)</span>)</td>
-<td class="al-right"><span class="math inline">\(-1.3\)</span></td>
-<td class="al-center"><span class="math inline">\([ -3.2,\   0.4]\)</span></td>
-<td class="al-right">0.149</td>
+<td class="al-left">Age 55 (vs. 40)</td>
+<td class="al-center">-11.13</td>
+<td class="al-center">-11.13</td>
+<td class="al-center">-11.34</td>
 </tr>
 <tr>
-<td class="al-left">Hedged <span class="math inline">\(\times \sigma_c\)</span> (Merton: +)</td>
-<td class="al-right"><span class="math inline">\(23.8\)</span></td>
-<td class="al-center"><span class="math inline">\([  6.1,\  42.1]\)</span></td>
-<td class="al-right">0.010</td>
+<td class="al-left"></td>
+<td class="al-center">(1.90)</td>
+<td class="al-center">(1.90)</td>
+<td class="al-center">(1.96)</td>
 </tr>
 <tr>
-<td class="al-left">Unhedged <span class="math inline">\(\times \sigma_c\)</span> (Merton: <span class="math inline">\(-\)</span>)</td>
-<td class="al-right"><span class="math inline">\(36.0\)</span></td>
-<td class="al-center"><span class="math inline">\([ 15.8,\  55.5]\)</span></td>
-<td class="al-right">0.002</td>
+<td class="al-left"><span class="math inline">\(\times\)</span> std. replacement rate (<span class="math inline">\(\psi\)</span>)</td>
+<td class="al-center"></td>
+<td class="al-center">-0.02</td>
+<td class="al-center"></td>
 </tr>
 <tr>
-<td class="al-left">Stake = all liquid wealth (US only)</td>
-<td class="al-right">−23.3</td>
-<td class="al-center"><span class="math inline">\([-30.4,\ -16.1]\)</span></td>
-<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-left"></td>
+<td class="al-center"></td>
+<td class="al-center">(0.33)</td>
+<td class="al-center"></td>
 </tr>
 <tr>
-<td class="al-left">Stake = half of wealth (US only)</td>
-<td class="al-right"><span class="math inline">\(1.4\)</span></td>
-<td class="al-center"><span class="math inline">\([ -0.4,\   3.3]\)</span></td>
-<td class="al-right">0.109</td>
+<td class="al-left"><span class="math inline">\(\times\)</span> above-median pension</td>
+<td class="al-center"></td>
+<td class="al-center"></td>
+<td class="al-center">0.44</td>
 </tr>
 <tr>
-<td class="al-left">Stake = a third of wealth (US only)</td>
-<td class="al-right"><span class="math inline">\(2.5\)</span></td>
-<td class="al-center"><span class="math inline">\([ -0.1,\   4.9]\)</span></td>
-<td class="al-right">0.057</td>
+<td class="al-left"></td>
+<td class="al-center"></td>
+<td class="al-center"></td>
+<td class="al-center">(0.61)</td>
 </tr>
 <tr>
-<td class="al-left">Linear B/L slope, per step (US only)</td>
-<td class="al-right"><span class="math inline">\(7.6\)</span></td>
-<td class="al-center"><span class="math inline">\([  5.4,\   9.8]\)</span></td>
-<td class="al-right"><span class="math inline">\(&lt;\)</span>0.001</td>
+<td class="al-left">Country fixed effects</td>
+<td class="al-center">Yes</td>
+<td class="al-center">Yes</td>
+<td class="al-center">Yes</td>
+</tr>
+<tr>
+<td class="al-left">Model fixed effects</td>
+<td class="al-center">Yes</td>
+<td class="al-center">Yes</td>
+<td class="al-center">Yes</td>
+</tr>
+<tr>
+<td class="al-left">Wild <span class="math inline">\(p\)</span>: Age 30</td>
+<td class="al-center">0.000</td>
+<td class="al-center">0.000</td>
+<td class="al-center">0.000</td>
+</tr>
+<tr>
+<td class="al-left">Wild <span class="math inline">\(p\)</span>: Age 55</td>
+<td class="al-center">0.000</td>
+<td class="al-center">0.000</td>
+<td class="al-center">0.000</td>
+</tr>
+<tr>
+<td class="al-left">Wild <span class="math inline">\(p\)</span>: interaction</td>
+<td class="al-center"></td>
+<td class="al-center">0.964</td>
+<td class="al-center">0.489</td>
+</tr>
+<tr>
+<td class="al-left">Observations</td>
+<td class="al-center">40,910</td>
+<td class="al-center">40,910</td>
+<td class="al-center">40,910</td>
+</tr>
+<tr>
+<td class="al-left">Model clusters (<span class="math inline">\(G\)</span>)</td>
+<td class="al-center">13</td>
+<td class="al-center">13</td>
+<td class="al-center">13</td>
 </tr>
 </tbody>
-</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Exploratory estimates from the three balance-sheet probes added to the stated-investor arm after the pre-registration was filed (Section <a href="advice-rule.html#sec:stated-probes" class="xref">6.3</a>). Each probe regresses the recommended equity share on indicators for its probe cells against the no-statement Version B and B-cross reference rows (Question 1, age 40, statements in English), with country and model fixed effects. Estimates and confidence intervals are in percentage points, except the two <span class="math inline">\(\sigma_c\)</span>-interaction rows, which are in percentage points per unit of local-currency volatility <span class="math inline">\(\sigma_c\)</span> (the annualized local-currency standard deviation of the world fund, spanning roughly 0.18 to 0.29 across the panel, so panel-range effects are about one tenth of the printed coefficients). The hedged and unhedged rows report the cell effects at the treated-sample mean <span class="math inline">\(\sigma_c\)</span>, with the <span class="math inline">\(\sigma_c\)</span> main effect absorbed by the country dummies. The pension-composition and hedging probes pool all twenty-one countries (<span class="math inline">\(N = 37{,}447\)</span> and <span class="math inline">\(37{,}565\)</span>, fifty repetitions per cell in the United States and twenty-five elsewhere), and the wealth ladder is U.S.-only (<span class="math inline">\(N = 2{,}595\)</span>). The linear B/L row is the per-rung slope over the stated safe savings beside the stake, <span class="math inline">\(D/W = 0, 1, 2\)</span> in the notation of Section <a href="advice-rule.html#sec:stated-probes" class="xref">6.3</a> (the stake stated as all, half, or a third of liquid wealth). Row labels carry the benchmark-implied sign where the benchmark makes a directional prediction. <span class="math inline">\(p\)</span> (wild) is the two-sided wild cluster bootstrap <span class="math inline">\(p\)</span>-value (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G = 13\)</span>), and the confidence interval comes from the same procedure. These estimates are post-filing exploratory deviations recorded in the design lock, in no Holm family, with probe cells collected in August 2026 against reference cells from the July 2026 main collection.</div></div>
+</table></div><div class="tab-notes"><span class="notes-label">Notes:</span> Estimates of equation (7) on Question 1, Version B, pooled across the three prompted ages (30, 40, 55), the twenty-one countries, and the thirteen models. The outcome is the recommended equity share in percentage points, and every column includes country and model fixed effects with the United States and age 40 as the omitted baselines. Column (1) fits the age effects alone. Column (2) adds the pre-registered interaction of the age-55 indicator with the standardized OECD net pension replacement rate <span class="math inline">\(\tilde{\rho}_{c}\)</span> (the coefficient <span class="math inline">\(\psi\)</span> of hypothesis H6). Column (3) replaces it with the coarser interaction of age 55 with an above-median replacement-rate indicator. Parentheses report CR1 cluster-robust standard errors clustered by model. The wild cluster bootstrap <span class="math inline">\(p\)</span>-values (Webb six-point weights, 9<span>,</span>999 replications, clustered by model, <span class="math inline">\(G = 13\)</span>) are the inference of record and are reported in the lower panel.</div></div>
+<h2 id="app:figures"><span class="sec-num">A.2</span>Figures</h2>
+<figure class="paper-figure" id="fig:age-glidepath" data-fig="fig:age-glidepath" data-images="fig_D4_by_age"><div class="fig-head"><span class="fig-label">Figure A1</span><span class="fig-title">Age glide path by country (Question 1, Version B)</span></div><div class="fig-controls"></div><div class="fig-body"><div class="fig-chart"></div><div class="fig-table" hidden></div></div><figcaption class="fig-notes"><span class="notes-label">Notes:</span> Mean recommended equity share by stated investor age (30, 40, or 55) within each country, Version B of Question 1, with 95 percent confidence intervals on the cell means. The downward glide path has nearly the same level and slope in every country, the raw pattern behind the null interaction of age with pension generosity in equation (7).</figcaption><div class="fig-links"></div></figure>
 
 <nav class="prevnext"><a class="pn prev" href="references.html"><span class="pn-dir">Previous</span><span class="pn-title">References</span></a><a class="pn next" href="appendix-benchmark.html"><span class="pn-dir">Next</span><span class="pn-title">The normative benchmark</span></a></nav>
 </article>
