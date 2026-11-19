@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Run your own experiment · One advisor for the whole world?</title>
+<meta name="description" content="Write your own stated-investor statement, preview the prompt, and download a Python script that runs the experiment on OpenRouter with your own key.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+</head>
+<body class="wide" data-page="experiment">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar"><span class="burger">☰</span> Contents</button>
+  <a class="site-title" href="index.html">One advisor for the whole world?</a>
+  <nav class="top-links">
+    <a href="https://github.com/claesbackman/claesbackman.github.io/issues/new?title=FinancialAdvice_AI website: Run your own experiment&body=Page: Explorables/FinancialAdvice_AI_Digital/experiment.html%0A%0ADescribe what you were doing, what happened, and what you expected." target="_blank" rel="noopener">Report a bug</a>
+    <a href="https://osf.io/2ch5z" target="_blank" rel="noopener">Pre-registration ↗</a>
+    <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF ↗</a>
+  </nav>
+</header>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="sidebar-title" href="index.html">One Advisor for the Whole World?</a>
+    <ul class="nav-list"><li><a href="index.html"><span class="nav-num"></span><span>Title & abstract</span></a></li><li><a href="introduction.html"><span class="nav-num">1</span><span>Introduction</span></a></li><li><a href="literature.html"><span class="nav-num">2</span><span>Literature</span></a></li><li><a href="design.html"><span class="nav-num">3</span><span>Experimental design</span></a></li><li><a href="benchmark.html"><span class="nav-num">4</span><span>What should move the advice?</span></a></li><li><a href="results.html"><span class="nav-num">5</span><span>Main results</span></a></li><li><a href="advice-rule.html"><span class="nav-num">6</span><span>The advice rule</span></a></li><li><a href="text.html"><span class="nav-num">7</span><span>Explanations versus advice</span></a></li><li><a href="conclusion.html"><span class="nav-num">8</span><span>Conclusion</span></a></li><li><a href="references.html"><span class="nav-num"></span><span>References</span></a></li><li><a href="appendix-technical.html"><span class="nav-num">A</span><span>Technical appendix</span></a></li><li><a href="appendix-benchmark.html"><span class="nav-num">B</span><span>The normative benchmark</span></a></li><li><a href="appendix.html"><span class="nav-num">C</span><span>Appendix tables and figures</span></a></li><li class="nav-group">Explore</li><li><a href="explorer.html"><span class="nav-num"></span><span>Country effects explorer</span></a></li><li><a href="prompts.html"><span class="nav-num"></span><span>Prompt explorer</span></a></li><li class="active"><a href="experiment.html"><span class="nav-num"></span><span>Run your own experiment</span></a></li><li><a href="tracking.html"><span class="nav-num"></span><span>Model tracking</span></a></li><li class="nav-group">Notes</li><li><a href="faq.html"><span class="nav-num"></span><span>Questions and answers</span></a></li><li><a href="errata.html"><span class="nav-num"></span><span>Errata and notes</span></a></li><li><a href="about.html"><span class="nav-num"></span><span>Data, code and AI prompt</span></a></li></ul>
+    <div class="sidebar-foot">Digital edition · October 2026</div>
+  </div>
+</aside>
+<main id="main" class="main">
+<article class="read">
+<div class="explorer xp">
+<h1>Run your own experiment</h1>
+<p class="lead">The stated-investor arm of the paper adds one sentence about the investor to the portfolio question and measures how the recommended stock share moves (<a href="advice-rule.html">section 6</a>). Here you can write your own sentence, for example about future income, and download a script that runs the comparison on <a href="https://openrouter.ai">OpenRouter</a> with your own API key.</p>
+<p>The script uses the paper's prompt, decoding settings and response parser. Nothing is sent from this page. Your key stays on your computer and your results are not collected.</p>
+
+<div class="panel">
+  <h2>1. Countries, models and repetitions</h2>
+  <p>The investor arm is in English for every country. The stake is the paper's local-currency amount and the country sentence names the country.</p>
+  <div class="ctl-group xp-row" id="xp-countries"><span class="ctl-label">Countries</span></div>
+  <div class="ctl-group xp-row" id="xp-models"><span class="ctl-label">Models</span></div>
+  <div class="ctl xp-row">
+    <label class="ctl-group"><span class="ctl-label">Repetitions per cell</span><input type="number" id="xp-reps" min="1" max="200" value="10"></label>
+    <label class="ctl-group"><span class="ctl-label">Age</span><input type="number" id="xp-age" min="18" max="99" value="40"></label>
+    <label class="ctl-group"><span class="ctl-label">Other model slug</span><input type="search" id="xp-slug" placeholder="vendor/model"></label>
+    <button type="button" class="pill" id="xp-slug-add">Add</button>
+  </div>
+  <p class="small muted">The paper's slugs are the defaults. OpenRouter retires slugs over time, so any slug listed at openrouter.ai/models works too. The paper uses age 40 and fifty repetitions per cell.</p>
+</div>
+
+<div class="panel">
+  <h2>2. Arms</h2>
+  <p>Each arm is a version of the prompt. Sentences go after "I live in [country].", where the paper places its statements, one sentence per line. The first arm is the reference that every other arm is compared with. Leave it empty to compare with the paper's plain prompt.</p>
+  <div id="xp-arms"></div>
+  <p><button type="button" class="pill" id="xp-add-arm">Add an arm</button></p>
+</div>
+
+<div class="panel">
+  <h2>3. Preview</h2>
+  <div class="fig-controls" id="xp-preview-controls"></div>
+  <div class="prompt-box" id="xp-preview"></div>
+  <p class="small muted" style="margin-top:.5rem">Grey: the Instructions block with the JSON schema, identical in every cell. Highlighted: your sentences.</p>
+</div>
+
+<div class="panel">
+  <h2>4. The script</h2>
+  <p id="xp-count"></p>
+  <p><button type="button" class="pill on" id="xp-download">Download run_experiment.py</button> <button type="button" class="pill" id="xp-copy">Copy the script</button> <span id="xp-copied" class="small muted"></span></p>
+  <p>To run it you need Python 3.8 or later, the <code>requests</code> package and an OpenRouter key:</p>
+<pre class="prompt-box">pip install requests
+export OPENROUTER_API_KEY="sk-or-..."
+python run_experiment.py --print-prompts   # check the prompts, no calls
+python run_experiment.py --dry-run         # fake responses, no calls
+python run_experiment.py                   # the real run, asks before spending</pre>
+  <p>Responses go to <code>experiment_results/results.csv</code>. An interrupted run resumes where it stopped. At the end the script prints each arm's mean recommended stock share by model and its difference from the reference arm, by model and country, with standard errors.</p>
+  <details><summary>Show the script</summary><pre class="prompt-box" id="xp-script" style="max-height:28rem;overflow:auto"></pre></details>
+</div>
+
+<div class="panel">
+  <h2>Before you read your results</h2>
+  <ul>
+    <li><b>Compare arms within your own run.</b> Models behind a slug change, and the <a href="tracking.html">tracking waves</a> show that the level of advice moves between collections. Your reference arm, run in the same session, is the right comparison, not the paper's numbers.</li>
+    <li><b>Responses are noisy.</b> At temperature 0.7 the recommendation varies from draw to draw. With ten repetitions per cell, differences of a few percentage points are within noise. The paper uses fifty.</li>
+    <li><b>Wording matters.</b> A sentence can shift advice through its tone as well as its content. The paper pairs each statement with its opposite (risk-tolerant and risk-averse, generous and limited pension) so that tone alone cannot explain the gap. Writing a pair is a good habit.</li>
+    <li><b>It is exploration, not replication.</b> The paper's estimates use wild cluster bootstrap inference over thirteen models. The script's standard errors are simple and rough.</li>
+  </ul>
+</div>
+</div>
+
+<nav class="prevnext"><a class="pn prev" href="prompts.html"><span class="pn-dir">Previous</span><span class="pn-title">Prompt explorer</span></a><a class="pn next" href="tracking.html"><span class="pn-dir">Next</span><span class="pn-title">Model tracking</span></a></nav>
+</article>
+<footer class="site-foot">
+  <p>Claes Bäckman, Leibniz Institute for Financial Research SAFE. The experimental design, hypotheses and inference rules were pre-registered at the Open Science Framework (<a href="https://osf.io/2ch5z" target="_blank" rel="noopener">osf.io/2ch5z</a>) before the main collection. This project was supported by Behavioral Finance e.V. Views and opinions expressed are those of the author only.</p>
+  <p>The model responses behind the paper are not publicly released. Every number on this site is an aggregate that the paper reports: cell means, binned counts, and regression estimates. See <a href="about.html">Data, code and AI prompt</a>.</p>
+  <p><a href="about.html">Data and code</a> · <a href="errata.html">Errata and notes</a> · <a href="paper/Backman_AI_FinAdvice.pdf" target="_blank" rel="noopener">PDF</a></p>
+</footer>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/experiment.js"></script>
+</body>
+</html>

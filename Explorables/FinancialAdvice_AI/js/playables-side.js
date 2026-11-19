@@ -1,8 +1,9 @@
 /* ------------------------------------------------------------------------
-   playables-side.js — the playables for the five side paths.
+   playables-side.js — the playables for the side paths and for the `local`
+   deck on the spine.
 
    models   the 273 cell means, regrouped
-   mortgage the same design on a different question
+   local    the same design on the mortgage and inflation questions
    age      the glide path against the rule of thumb
    method   the thirteen observations the study actually has
    ------------------------------------------------------------------------ */
@@ -183,6 +184,117 @@
     ]);
 
     return h("div", { class: "stack" }, [box, legend]);
+  };
+
+  /* ======================================================================
+     The mortgage question with the rate taken out. One row per country,
+     sorted by the prevailing mortgage rate: the gap to the United States
+     with the 4% rate stated (hollow) and with no rate stated (filled).
+     ====================================================================== */
+
+  P.nonumPlot = function () {
+    var W = 700, m = { t: 56, r: 26, b: 46, l: 196 };
+    var list = D.nonum.rows.filter(function (r) { return r.key !== "USA"; });
+    var rowH = 19;
+    var H = m.t + list.length * rowH + m.b;
+
+    var box = h("div", { class: "stage-box" });
+    var s = svg(W, H, box, { label: "Gap to the United States on the mortgage question, with the 4% rate stated and with no rate stated", interactive: true });
+    var x = lin(-32, 8, m.l, W - m.r);
+    var ticks = [-30, -20, -10, 0];
+    var bottom = m.t + list.length * rowH + 4;
+
+    CH.gridX(s, x, m.t - 6, bottom, ticks, true);
+    ticks.forEach(function (t) { CH.text(s, x(t), m.t - 16, t, "ax-t", "middle"); });
+    var zl = CH.line(s, x(0), m.t - 6, x(0), bottom, "ax");
+    zl.setAttribute("stroke", "var(--ink)");
+    var zt = CH.text(s, x(0), m.t - 36, "United States", "ax-t b", "middle");
+    zt.setAttribute("font-size", "11");
+    var rh = CH.text(s, m.l - 12, m.t - 16, "local rate → rate assumed", "ax-t", "end");
+    rh.setAttribute("font-size", "10");
+    rh.setAttribute("fill", "var(--muted)");
+
+    var readout = h("p", { class: "note", style: "min-height:3.2em", "aria-live": "polite",
+      text: "Point at a country. Rows run from the lowest prevailing mortgage rate at the top to the highest at the bottom. Below the dashed line, mortgages cost more than the 4% in the prompt." });
+
+    var marked = false;
+    list.forEach(function (r, i) {
+      var yy = m.t + i * rowH + rowH / 2;
+
+      // the divider between rates below and above the prompt's 4%
+      if (!marked && r.rate > 4) {
+        marked = true;
+        var dy = m.t + i * rowH;
+        var dl = CH.line(s, 8, dy, W - m.r, dy, "gridline dash");
+        dl.setAttribute("stroke", "var(--muted)");
+      }
+
+      var t = CH.text(s, m.l - 96, yy + 4, r.label, "ax-t", "end");
+      t.setAttribute("font-size", "11");
+      var rt = CH.text(s, m.l - 12, yy + 4, r.rate.toFixed(1) + " → " + r.assumed.toFixed(1), "ax-t mono", "end");
+      rt.setAttribute("font-size", "10");
+      rt.setAttribute("fill", "var(--muted)");
+
+      var link = CH.line(s, x(r.gap4), yy, x(r.gap0), yy, "");
+      link.setAttribute("stroke", "var(--rule-2)");
+      link.setAttribute("stroke-width", 1.6);
+      el("circle", {
+        cx: x(r.gap4), cy: yy, r: 3.6, fill: "var(--ground)",
+        stroke: "var(--flat)", "stroke-width": 1.5
+      }, s);
+      el("circle", { cx: x(r.gap0), cy: yy, r: 4.4, fill: "var(--advice)", stroke: "none" }, s);
+
+      var hit = el("rect", { x: 0, y: yy - rowH / 2, width: W, height: rowH, class: "hit" }, s);
+      hit.setAttribute("tabindex", "0");
+      hit.setAttribute("role", "button");
+      hit.setAttribute("aria-label", r.label);
+      function fmt(v) { return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(1); }
+      function show() {
+        readout.innerHTML = "<strong>" + r.label + "</strong>: mortgages cost about " + r.rate.toFixed(1) +
+          "% there, and the models assume " + r.assumed.toFixed(1) + "%. With 4% stated the advice sits " +
+          fmt(r.gap4) + " points from the United States. With no rate stated it sits " + fmt(r.gap0) + ".";
+      }
+      hit.addEventListener("mouseenter", show);
+      hit.addEventListener("focus", show);
+      hit.addEventListener("click", show);
+    });
+
+    CH.text(s, (m.l + W - m.r) / 2, H - 12,
+      "recommended share to invest, percentage points against the United States", "ax-t", "middle");
+
+    var legend = h("div", { class: "legend", style: "margin-top:.6rem" }, [
+      h("span", {}, [h("span", { class: "swatch", style: "background:none;border:1.5px solid var(--flat);border-radius:50%" }), "with the 4% rate stated"]),
+      h("span", {}, [h("span", { class: "swatch", style: "background:var(--advice);border-radius:50%" }), "with no rate stated"])
+    ]);
+
+    return h("div", { class: "stack" }, [box, legend, readout]);
+  };
+
+  /* ======================================================================
+     What the models ask before advising: share of responses that ask about
+     each topic, as plain bars.
+     ====================================================================== */
+
+  P.askList = function () {
+    var W = 620, rowH = 34, m = { t: 8, r: 56, b: 8, l: 250 };
+    var list = D.elicit.topics;
+    var H = m.t + list.length * rowH + m.b;
+    var box = h("div", { class: "stage-box" });
+    var s = svg(W, H, box, { label: "Share of responses that ask about each topic before advising" });
+    var x = lin(0, 100, m.l, W - m.r);
+
+    list.forEach(function (tp, i) {
+      var yy = m.t + i * rowH;
+      var t = CH.text(s, m.l - 12, yy + rowH / 2 + 4, tp[0], "ax-t", "end");
+      t.setAttribute("font-size", "12");
+      CH.rect(s, x(0), yy + 8, x(100) - x(0), rowH - 16, "", { fill: "var(--void)", stroke: "none", rx: 3 });
+      CH.rect(s, x(0), yy + 8, x(tp[1]) - x(0), rowH - 16, "", { fill: "var(--advice)", stroke: "none", opacity: .9, rx: 3 });
+      var n = CH.text(s, x(100) + 8, yy + rowH / 2 + 4, tp[1] + "%", "lbl mono", "start");
+      n.setAttribute("font-size", "12");
+      n.setAttribute("font-weight", "600");
+    });
+
+    return box;
   };
 
   /* ---------- what they recommend against inflation ---------------------- */

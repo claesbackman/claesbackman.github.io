@@ -135,7 +135,7 @@
       select(ctl, "Country", countriesSorted.map((x) => [x.key, x.name]), c, (v) => { c = v; draw(); });
       draw();
       setLegend(panel, F.legendHTML(series.map((s) => ({ label: s.label, color: s.color, kind: "dot" }))));
-      links("age-links", { table: () => ch.table(), paper: { href: "advice-rule.html#fig:age-rule", label: "Figure 6 in the paper" } });
+      links("age-links", { table: () => ch.table(), paper: { href: "advice-rule.html#fig:age-rule", label: "Figure 8 in the paper" } });
     })();
 
     // ---- 6. stated investor ----
@@ -146,7 +146,7 @@
       function draw() {
         const rows = I.models.map((m) => [m.label].concat(cols.map(([k]) => { const r = k === "v1" ? cell(c, m.key, "B", "Q1", 40) : cell(c, m.key, "Bgrt", "Q1", 40, k); return r ? r.mean * 100 : null; })));
         const means = cols.map((_, i) => d3.mean(rows, (r) => r[i + 1]));
-        chart.innerHTML = `<div class="table-wrap"><table class="data-table"><thead><tr><th>Model</th>${cols.map(([, l]) => `<th>${l}</th>`).join("")}</tr></thead><tbody>${rows.map((r) => `<tr><th scope="row">${S.esc(r[0])}</th>${r.slice(1).map((v) => `<td>${S.fmt.n(v, 1)}</td>`).join("")}</tr>`).join("")}<tr class="rule"><th scope="row"><strong>Mean across models</strong></th>${means.map((v) => `<td><strong>${S.fmt.n(v, 1)}</strong></td>`).join("")}</tr></tbody></table></div><p class="small muted">Mean recommended equity share in percent, fifty responses per cell. The pooled regression estimates (H11 to H13) are in Section 6 and Appendix Table A10.</p>`;
+        chart.innerHTML = `<div class="table-wrap"><table class="data-table"><thead><tr><th>Model</th>${cols.map(([, l]) => `<th>${l}</th>`).join("")}</tr></thead><tbody>${rows.map((r) => `<tr><th scope="row">${S.esc(r[0])}</th>${r.slice(1).map((v) => `<td>${S.fmt.n(v, 1)}</td>`).join("")}</tr>`).join("")}<tr class="rule"><th scope="row"><strong>Mean across models</strong></th>${means.map((v) => `<td><strong>${S.fmt.n(v, 1)}</strong></td>`).join("")}</tr></tbody></table></div><p class="small muted">Mean recommended equity share in percent, fifty responses per cell. The pooled regression estimates (H11 to H13) are in Section 6 and Appendix Table A18.</p>`;
       }
       select(ctl, "Country", countriesSorted.map((x) => [x.key, x.name]), c, (v) => { c = v; draw(); });
       draw();

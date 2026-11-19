@@ -336,3 +336,14 @@ table.est tbody tr:first-child td { padding-top: .45rem; }
 .kv dt { color: var(--muted); }
 .kv dd { margin: 0; }
 .hl { background: #fff3cd; border-radius: 3px; padding: 0 .2em; }
+/* ---------- run your own experiment ---------- */
+.xp-row { margin: .5rem 0; }
+.xp-arm { border-top: 1px solid var(--rule); padding: .8rem 0 .4rem; }
+.xp-arm:first-child { border-top: 0; padding-top: 0; }
+.xp-tag { font-weight: 700; color: var(--accent-ink); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+.xp-arm textarea { display: block; width: 100%; box-sizing: border-box; margin-top: .5rem; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.5; padding: .5rem .6rem; border: 1px solid var(--rule-strong); border-radius: 4px; resize: vertical; }
+.xp-arm .xp-lib { max-width: 16rem; }
+.xp-warn { color: var(--accent-ink); font-weight: 600; }
+.xp button:disabled { opacity: .45; cursor: default; }
+.xp ul { font-family: var(--font-ui); font-size: 13.5px; color: var(--ink-soft); padding-left: 1.2rem; }
+.xp ul li { margin: .35rem 0; }

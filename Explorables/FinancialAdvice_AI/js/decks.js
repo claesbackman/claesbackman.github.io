@@ -56,22 +56,22 @@
             p("Somebody is asking a chatbot what to do with their savings. Here is the question they might ask, put to <span class='num'>13</span> frontier models from six companies, fifty times each, in twenty-one countries.", "lede"),
             p("Change the country in the box. The amount changes into local currency, the country name changes, and for fifteen of the twenty-one the whole question is asked in another language."),
             p("Everything else stays the same. The investor is forty, saving for five years, and wants to know how much to put in stocks.", "kicker"),
-            h("p", { class: "note", html: "This question, in this wording, at this age, was sent 13,650 times in July 2026 — one cell of a larger experiment pre-registered beforehand at <a href='" + K.osf + "'>OSF</a>." })
+h("p", { class: "note", html: "This question, in this wording, at this age, was sent 13,650 times in July 2026. It is one cell of a larger experiment with three questions, pre-registered beforehand at <a href='" + K.osf + "'>OSF</a>." })
           ], [P.promptBox({ country: "USA" })], "narrow-first"));
         }
       },
 
       { title: "Place your bet",
         render: function (el) {
-          el.appendChild(head("Before you look", "How different should the answer be?"));
+          el.appendChild(head("Before you look", "How different will the answer be?"));
 
           var tk = D.byKey.Turkey, us = D.byKey.USA;
 
           var left = [
             p("A Turkish saver and an American saver ask the identical question. Their circumstances are not identical."),
-            p("Both would hold much the same global stock fund. But she will spend her money in lira, and measured in lira that fund has swung about <span class='num warranted-t'>" + tk.sigma + "%</span> a year against <span class='num warranted-t'>" + us.sigma + "%</span> for the American. The same fund is a rougher ride for her."),
-            p("A rougher ride means a given slice of stocks buys more risk, so she should be recommended <em class='term'>less</em> equity. The question is how much less."),
-            h("p", { class: "note", text: "Guess. Nothing rides on being right, and the guess is the point — you will see it twice more, once against what the models did and once against what the textbook says they should have done." })
+            p("Both would hold much the same global stock fund. But she will spend her money in lira, and measured in lira that fund has swung about <span class='num warranted-t'>" + tk.sigma + "%</span> a year against <span class='num warranted-t'>" + us.sigma + "%</span> for the American. Inflation, interest rates and the pension system differ too."),
+            p("One view says a rougher ride calls for <em class='term'>less</em> equity in Turkey. Another says that with the currency hedged it is the same fund, and the answer should be the same. The models had to pick something."),
+            h("p", { class: "note", text: "Guess how many points less equity the models recommend in Turkey than in the United States. You will see the guess twice more, once against what the models did and once against what a textbook formula prescribes." })
           ];
 
           var pred = P.predict({
@@ -107,8 +107,8 @@
               ? p("The dotted mark on the chart is where a reader's guess would sit. Go back one slide and place one, and it will be drawn against the answer.")
               : guess >= 8
                 ? p("Your guess is the dotted mark on the chart. You put Turkey " + guess.toFixed(0) + " points below the United States. The models put it three.")
-                : p("Your guess is the dotted mark on the chart, and you were close. Most of the argument that follows is about why three points is a strange number to find here, not a reassuring one."),
-            p("Advice is not literally identical across countries, and a formal test says so. But <em class='term'>nearly</em> uniform is the right description, and the rest of this is about why, and about whether it is a problem.")
+                : p("Your guess is the dotted mark on the chart, and you were close."),
+            p("Advice is not identical across countries, and the formal tests say so. But <em class='term'>nearly</em> uniform is the right description for this question. The rest of this is about why, and about the questions where the models do adapt to the country.")
           ];
 
           el.appendChild(cols(left, [P.distPair({ a: "Turkey", b: "USA", ghostKey: "guess.turkey" })], "narrow-first"));
@@ -123,13 +123,13 @@
 
   EX.deck("same", {
     title: "The same answer everywhere",
-    // The fork. Next always hands the reader whichever elimination is still
+    // The fork. Next always hands the reader whichever branch is still
     // outstanding, so the forward arrow can never bounce between two decks
     // that are both already done.
     next: function () {
       if (!EX.done("warranted")) return "warranted";
       if (!EX.done("words")) return "words";
-      return "levers";
+      return "local";
     },
     back: "ask",
     slides: [
@@ -196,9 +196,9 @@
           el.appendChild(head("The estimates", "The differences are real, small, and one-sided"));
           el.appendChild(h("div", { class: "cols top narrow-first" }, [
             h("div", { class: "stack" }, [
-              p("Each bar is one country against the United States, holding the model fixed. Advice is not literally identical everywhere, and a joint test rejects that it is. That was the study's first pre-registered prediction and it was supported."),
+              p("Each bar is one country against the United States, holding the model fixed. Advice is not identical everywhere. That was the study's first pre-registered prediction and it was supported."),
               p("But look at the direction. Thirteen contrasts clear the bar before you correct for testing twenty countries at once. <span class='advice-t'>Seven</span> survive that correction, and <em class='term'>every one of them is negative</em>."),
-              p("The United States sits near the top of the range and nothing beats it by a meaningful margin. Brazil, eleven points down, is the largest country gap on this question. On a $50,000 stake that is $5,500 moved from stocks to bonds."),
+              p("The United States sits near the top of the range and nothing beats it by a meaningful margin. Brazil, eleven points down, is the largest country gap on this question. On a $50,000 stake that is $5,500 moved from stocks to bonds. The seven average about six points, several times the gender gap found on a similar question."),
               h("p", { class: "note", text: "The contrasts that fail the correction rule out large gaps, not gaps of a point or two. The design could only reliably detect about four points." }),
               (function () {
                 var q = h("p", { class: "note" });
@@ -215,46 +215,46 @@
 
       { title: "Two readings",
         render: function (el, api) {
-          el.appendChild(head("A fork", "Is that a defect?"));
-          el.appendChild(p("Before deciding that near-uniform advice is a problem, there are two innocent explanations to rule out. Either the right answer really is the same everywhere, or the models have no idea where the investor lives. They are independent, so take them in whichever order you like.", "lede"));
+          el.appendChild(head("A fork", "Why so similar?"));
+          el.appendChild(p("There are two simple explanations for near-uniform advice. Either the right answer really is much the same everywhere, or the models cannot tell the countries apart. They are independent, so take them in whichever order you like.", "lede"));
 
           el.appendChild(api.doors([
             ["warranted",
-              "Wait — maybe uniform advice is correct.",
-              "Under standard portfolio theory every investor on earth holds the same world stock index. An advisor who refuses to guess your risk tolerance from your passport might be making the defensible choice, not the lazy one. There is a way to check this, and it has a number attached.",
-              "Work out what the answer should have been"],
+              "Maybe the same answer is right.",
+              "Under standard portfolio theory every investor on earth holds the same world stock index. An advisor who does not guess your risk tolerance from your passport may be making the defensible choice. There is a benchmark to check this against.",
+              "Work out what the answer should be"],
             ["words",
-              "Or maybe it just does not know where you live.",
-              "These models learned mostly from American English. Perhaps Ankara and Amsterdam are simply not distinct places to them, and the uniformity is a gap in what they know rather than a flaw in how they advise.",
+              "Or maybe it does not know where you live.",
+              "These models learned mostly from American English. Perhaps Ankara and Amsterdam are not distinct places to them, and the uniformity is a gap in what they know.",
               "Read what the models said about your country"]
           ], true));
 
           el.appendChild(h("p", { class: "note", style: "margin-top:1.4rem",
-            text: "Both paths come back here. The argument does not continue until you have taken both, because ruling out one explanation is not the same as ruling out the other." }));
+            text: "Both paths come back here. The argument continues once you have taken both." }));
         }
       }
     ]
   });
 
   /* ======================================================================
-     WARRANTED — the normative benchmark
+     WARRANTED — what should move the advice
      ====================================================================== */
 
   EX.deck("warranted", {
     title: "What should it be?",
     back: "same",
-    next: function () { return EX.done("words") ? "levers" : "words"; },
+    next: function () { return EX.done("words") ? "local" : "words"; },
     slides: [
 
       { title: "The only formula here",
         render: function (el) {
-          el.appendChild(head("Suspect one", "Suppose uniform advice is right"));
+          el.appendChild(head("The first explanation", "Suppose the same answer is right"));
 
           var left = [
             p("The argument for uniformity is serious. If world stock markets are open to everyone, every investor holds much the same global portfolio, and the only thing that should differ between two people is how much of it they want. A passport is a poor guide to that."),
-            p("But one thing does differ between a Turkish and an American investor holding the identical global fund, and it is not a preference."),
-            p("She will spend her money in lira. Measured in lira, that fund moves far more than it does in dollars. The ride really is rougher for her, and the textbook says a rougher ride calls for a smaller slice.", "lede"),
-            p("That single channel is all this benchmark lets vary, and that restriction is deliberate.")
+            p("The textbook rule for how much has three inputs. The study holds the first one, the reward for taking risk, identical for all twenty-one countries, and starts with one risk aversion for everybody."),
+            p("That leaves how much the fund swings, and here one detail the prompt does not state decides everything: whether the world fund is hedged into the investor's own currency.", "lede"),
+            p("Hedged, the fund swings the same for everyone, and the rule prescribes one share everywhere. Unhedged, a Turkish investor also carries the lira, the ride is rougher, and the rule prescribes less.")
           ];
 
           var card = h("div", { class: "stage-box", style: "padding:1.7rem 1.6rem" }, [
@@ -270,9 +270,9 @@
                 ])
               ])
             ]),
-            h("p", { class: "frac-sym", text: "α  =  (μ − r)  /  (γ σ²)" }),
+            h("p", { class: "frac-sym", text: "θ  =  (μ − r)  /  (γ σ²)" }),
             h("p", { class: "note", style: "margin:0",
-              html: "Robert Merton wrote this down in 1969 and it is still the reference point. The study holds the top line <em>identical for all twenty-one countries</em> at " + (K.premium * 100).toFixed(2) + "%, so nothing that follows comes from assuming one country's stock market beats another's. Only <span class='num warranted-t'>σ</span> varies — how much the world index swings once you convert it into the money you will spend." })
+              html: "This is the rule of Merton and Samuelson from 1969, and it is still the reference point. The top line is held <em>identical for all twenty-one countries</em> at " + (K.premium * 100).toFixed(2) + "%, so nothing that follows comes from assuming one country's stock market beats another's. Only <span class='num warranted-t'>σ</span> can vary, and only if the fund is unhedged." })
           ]);
 
           el.appendChild(cols(left, [card], "narrow-first"));
@@ -283,9 +283,9 @@
         render: function (el, api) {
           el.appendChild(h("p", { class: "eyebrow", text: "Your turn" }));
           el.appendChild(h("h2", { class: "head", style: "max-width:34ch;margin-bottom:.5rem",
-            text: "One free parameter. Try to make it fit." }));
+            text: "Two versions of the fund. Try to make either fit." }));
           el.appendChild(h("p", { class: "note", style: "max-width:46rem;margin-bottom:1.3rem",
-            text: "One number is free: how much the investor dislikes risk. It is the same for every country, because the uniformity argument says preferences should not vary by country. Hollow rings are what the formula prescribes, filled dots are what the models said." }));
+            text: "Start with the hedged fund, then switch. The slider is how much the investor dislikes risk, the same for every country. Hollow rings are what the formula prescribes, filled dots are what the models said." }));
 
           el.appendChild(P.mertonBench({
             onSolved: function () { api.toast("There it is."); }
@@ -293,18 +293,19 @@
         }
       },
 
-      { title: "Why it cannot fit",
+      { title: "The level fits, the gaps do not",
         render: function (el) {
-          el.appendChild(head("What just happened", "The level and the spread pull against each other"));
+          el.appendChild(head("What just happened", "One version fits the level. Neither explains the gaps."));
 
           var left = [
-            p("At the setting the paper uses, the formula prescribes shares from <span class='num warranted-t'>21%</span> in Turkey to <span class='num warranted-t'>53%</span> in South Korea. A <span class='num warranted-t'>32-point</span> spread, where the advice spans <span class='num advice-t'>12</span>.", "lede"),
-            p("Turning up risk aversion narrows the prescribed spread, because a bigger denominator squeezes everything toward zero together. Keep going and the spread eventually matches."),
-            p("By then the formula is prescribing under <span class='num'>16%</span> equity everywhere and as little as <span class='num'>6%</span> in Turkey and Brazil. No answer in this cell went below 10%."),
-            p("You cannot have both. The paper checks the whole grid of settings, and the one place the slope approaches full calibration is the same place the prescribed levels become impossible.", "kicker")
+            p("Hedged, the formula prescribes <span class='num warranted-t'>" + (K.hedgedShare * 100).toFixed(0) + "%</span> in every country, and every national average is within about <span class='num'>" + K.hedgedMaxGap + " points</span> of it. Near-uniform advice at this level is defensible.", "lede"),
+            p("But one share for everybody predicts no country differences at all, and seven countries get significantly less than the United States."),
+            p("Unhedged, the formula does prescribe differences: from <span class='num warranted-t'>21%</span> in Turkey to <span class='num warranted-t'>53%</span> in South Korea, a <span class='num warranted-t'>32-point</span> spread where the advice spans <span class='num advice-t'>12</span>. Turning up risk aversion narrows the spread, but by the time it matches, the formula prescribes under 16% everywhere, and no answer in this cell went below 10%."),
+            p("So the question becomes whether the differences that do exist follow the unhedged prescription.", "kicker")
           ];
 
           var right = h("div", { class: "stage-box" }, [
+            h("h3", { class: "sub", text: "The unhedged fund, by risk aversion" }),
             h("table", { class: "data" }, [
               h("thead", {}, [h("tr", {}, [
                 h("th", { text: "risk aversion" }),
@@ -322,7 +323,7 @@
               }))
             ]),
             h("p", { class: "note", style: "margin:.9rem 0 0",
-              html: "For comparison, the advice spans <strong>12 points</strong> and its lowest national average is <strong>46%</strong>." })
+              html: "For comparison, the advice spans <strong>12 points</strong> and its lowest national average is <strong>46%</strong>. The hedged fund prescribes a spread of zero at every setting." })
           ]);
 
           el.appendChild(cols(left, [right], "narrow-first"));
@@ -331,27 +332,28 @@
 
       { title: "One number for it", top: true,
         render: function (el, api) {
-          el.appendChild(head("The summary statistic", "It transmits about an eighth"));
+          el.appendChild(head("The summary statistic", "An eighth of the currency risk passes through"));
 
           var guess = api.flagVal("guess.turkey");
           var tkPrescribed = (D.byKey.Turkey.alphaS - D.byKey.USA.alphaS) * 100;
 
           var left = [
-            p("Put each country's prescribed deviation from the United States on one axis and what the models actually did on the other. If advice tracked fundamentals the points would sit on the 45-degree line. If it ignored the country entirely they would sit flat."),
-            p("That slope has a name in the paper, <span class='num advice-t'>κ</span>, and a value: <span class='num advice-t'>0.13</span>. A slope of 1 would mean advice moves point for point with fundamentals, and the data rule that out. A slope of 0 would mean the country never reaches the number at all, and the data cannot rule that out."),
-            p("So κ sits near the bottom of its range, an eighth of the way to full calibration, and the honest reading is a ceiling rather than an estimate: whatever the advice transmits about where you live, it is small."),
+            p("Put each country's prescribed deviation from the United States under the unhedged benchmark on one axis and what the models did on the other. If the advice passed currency risk through in full, the points would sit on the 45-degree line. If every country got the United States answer, they would sit flat."),
+            p("That slope is called <span class='num advice-t'>κ</span> in the paper, and its value is <span class='num advice-t'>0.13</span>. The data reject a slope of 1. They do not reject a slope of 0."),
+            p("The estimate also leans on two countries. Without Brazil it is <span class='num'>" + K.kappaNoBrazil.toFixed(2) + "</span>, without Turkey <span class='num'>" + K.kappaNoTurkey.toFixed(2) + "</span>, and dropping any other country leaves it between 0.11 and 0.15."),
 
             guess !== undefined
               ? h("div", { class: "stage-box", style: "padding:1rem 1.1rem" }, [
-                  h("p", { class: "note", style: "margin:0 0 .6rem", text: "Your bet, one last time." }),
+                  h("p", { class: "note", style: "margin:0 0 .6rem", text: "Your guess, one last time." }),
                   readout([
                     ["you guessed", guess.toFixed(0) + " pts", "less equity for Turkey", "sm"],
-                    ["the formula says", Math.abs(tkPrescribed).toFixed(0) + " pts", "less equity for Turkey", "sm"],
-                    ["the models gave", Math.abs(D.byKey.Turkey.fe).toFixed(1) + " pts", "and not reliably that", "sm"]
+                    ["unhedged formula", Math.abs(tkPrescribed).toFixed(0) + " pts", "less equity for Turkey", "sm"],
+                    ["hedged formula", "0 pts", "the same share everywhere", "sm"],
+                    ["the models gave", Math.abs(D.byKey.Turkey.fe).toFixed(1) + " pts", "less, and not reliably", "sm"]
                   ])
                 ])
               : null,
-            h("p", { class: "note", text: "This slope was written down in advance but registered as descriptive, so it carries less weight than the country contrasts you saw earlier. Allowing for error in the benchmark itself pushes the upper end of the range as high as 0.97 — still under full calibration, and wide mostly because the advice barely moves, which leaves little for the slope to be fitted to." })
+            h("p", { class: "note", text: "This slope was written down in advance and registered as descriptive, so it carries less weight than the country contrasts you saw earlier." })
           ];
 
           el.appendChild(cols(left, [P.kappaScatter()], "narrow-first"));
@@ -360,14 +362,13 @@
 
       { title: "But preferences",
         render: function (el) {
-          el.appendChild(head("The obvious objection", "Maybe risk appetite really does vary by country"));
+          el.appendChild(head("The obvious objection", "Maybe the gaps follow something else about the country"));
 
           var left = [
-            p("If people in some countries genuinely want more risk than the formula assumes, compressed advice might be landing in a defensible place for a different reason. It is worth asking whether the advice moves with measured national risk appetite at all."),
-            p("The Global Preferences Survey asked eighty thousand people across seventy-six countries how willing they are to take risks. Plot the country effects against it."),
-            p("The slope is <span class='num'>0.028</span> and the test does not clear zero (<span class='num'>p = 0.27</span>). A country a full standard deviation more risk-tolerant earns under three points more equity."),
-            p("South Africa is by far the most risk-tolerant country in the panel and receives slightly <em class='term'>less</em> equity than the baseline. Financial literacy gives the same answer."),
-            h("p", { class: "note", text: "This one cuts both ways, and the paper says so. The prompt describes one individual, not a national average, so an advisor who declines to infer her appetite for risk from her country's mean is arguably right to decline. Read the flat line as a description of what the advice does, not as a charge against it." })
+            p("Currency risk is one candidate. Risk appetite is another. The Global Preferences Survey asked eighty thousand people across seventy-six countries how willing they are to take risks. Plot the country effects against it."),
+            p("The line is flat (<span class='num'>p = 0.27</span>). A country one standard deviation more risk-tolerant than another gets <span class='num'>" + K.gpsPerSd + " points</span> more equity. South Africa is by far the most risk-tolerant country in the panel and receives slightly <em class='term'>less</em> equity than the baseline. Financial literacy gives the same answer."),
+            p("The paper runs the same regression on " + K.nCorrelates + " country characteristics, including income, volatility, interest rates, inflation and pension replacement rates. On this question none survives the correction for multiple testing.", "kicker"),
+            h("p", { class: "note", text: "The prompt describes one individual, not a national average. These regressions describe what the advice does, not what it should do." })
           ];
 
           el.appendChild(cols(left, [P.gpsScatter()], "narrow-first"));
@@ -376,59 +377,60 @@
 
       { title: "The other benchmark",
         render: function (el) {
-          el.appendChild(head("An honest complication", "There is a second benchmark, and it says something else"));
+          el.appendChild(head("A complication", "There is a second benchmark, and it says something else"));
 
           var left = [
-            p("Everything so far treats the $50,000 as if it were the investor's whole financial life. It is not. She has a pension, and she has decades of future earnings, and both of those are assets.", "lede"),
-            p("Count them and the arithmetic changes completely. A pension is a large, bond-like claim, and somebody who already holds a big safe asset can afford to put the liquid part almost entirely into stocks. Run that version and it prescribes the maximum equity share in essentially every country."),
-            p("Which is uniform. So under this second reading the models are not miscalibrated across countries at all. They are simply too cautious everywhere."),
-            p("Neither reading can be dismissed by argument. But they make opposite predictions about something testable: whether the advice responds to what else is on the investor's balance sheet. That has an answer, and it is coming.", "kicker")
+            p("Everything so far treats the $50,000 as if it were the investor's whole financial life. It is not. She has a pension and decades of future earnings, and both are assets.", "lede"),
+            p("Count them and the arithmetic changes. A pension is a large, bond-like claim, and somebody who already holds a big safe asset can afford to put the liquid part almost entirely into stocks. Run that version and it prescribes the maximum equity share in every country."),
+            p("That benchmark is also uniform across countries, at a much higher level."),
+            p("The two benchmarks make opposite predictions about something testable: whether the advice responds to what else is on the investor's balance sheet. A later part of the experiment tests exactly that.", "kicker")
           ];
 
           var right = h("div", { class: "stage-box" }, [
-            h("h3", { class: "sub", text: "Two benchmarks, two verdicts" }),
+            h("h3", { class: "sub", text: "Three benchmarks and the advice" }),
             h("table", { class: "data" }, [
               h("tbody", {}, [
                 h("tr", {}, [
-                  h("td", { html: "<strong>The stake on its own</strong><br><span style='color:var(--muted)'>ignore the pension</span>" }),
-                  h("td", { html: "21% to 53%<br><span style='color:var(--muted)'>varies sharply by country</span>" })
+                  h("td", { html: "<strong>The stake on its own, hedged</strong>" }),
+                  h("td", { html: "52%<br><span style='color:var(--muted)'>everywhere</span>" })
+                ]),
+                h("tr", {}, [
+                  h("td", { html: "<strong>The stake on its own, unhedged</strong>" }),
+                  h("td", { html: "21% to 53%<br><span style='color:var(--muted)'>varies with currency risk</span>" })
                 ]),
                 h("tr", {}, [
                   h("td", { html: "<strong>The whole balance sheet</strong><br><span style='color:var(--muted)'>count the pension</span>" }),
-                  h("td", { html: "at the 100% corner<br><span style='color:var(--muted)'>nearly everywhere</span>" })
+                  h("td", { html: "100%<br><span style='color:var(--muted)'>everywhere</span>" })
                 ]),
                 h("tr", {}, [
                   h("td", { html: "<strong>What the models say</strong>" }),
                   h("td", { class: "advice-t", html: "46% to 58%" })
                 ])
               ])
-            ]),
-            h("p", { class: "note", style: "margin:.9rem 0 0",
-              text: "The advice sits between the two, which on its own is not damning. What separates the readings is whether the advice moves when the balance sheet does." })
+            ])
           ]);
 
           el.appendChild(cols(left, [right], "narrow-first"));
         }
       },
 
-      { title: "Suspect one is out",
+      { title: "Where that leaves it",
         render: function (el, api) {
           el.appendChild(h("p", { class: "eyebrow", text: "Verdict" }));
-          el.appendChild(h("h2", { class: "head", text: "More uniform than the defence allows" }));
+          el.appendChild(h("h2", { class: "head", text: "Uniform advice is defensible. The gaps follow nothing." }));
 
           el.appendChild(h("div", { class: "stack", style: "max-width:38rem" }, [
-            p("Uniform advice is not wrong in principle, and that is worth saying plainly. If everyone holds the same world portfolio, sizing the risky share to preferences rather than to a passport is the more defensible choice, not the lazy one.", "lede"),
-            p("But the one channel that survives that argument — how much the world index moves in the currency you actually spend — calls for a 32-point spread. The advice spans 12, and the slope connecting the two is about an eighth of full calibration. Letting risk aversion vary with measured national risk appetite does not close the gap either."),
-            p("So the finding is not that uniformity is inherently a bias. It is that the advice is more uniform than even the world-index defence, taken on its own terms, would produce."),
-            p("One explanation down.")
+            p("Giving much the same answer everywhere is not a mistake in itself. With a hedged world fund the textbook prescribes 52% in every country, and the advice is within about six points of that everywhere.", "lede"),
+            p("What the benchmark cannot explain is the differences that do exist. Every significant one is negative. They pass through about an eighth of the currency risk an unhedged investor would carry, and they are unrelated to measured risk appetite, financial literacy, or any of the other country characteristics the paper tries."),
+            p("So the first explanation holds for the level and says nothing about the rule that produces it. That comes later.")
           ]));
 
           var nextUp = EX.done("words")
-            ? [["levers", "Both suspects are gone. So what does move the number?",
-                "Stop asking why the answer does not change and start asking what makes it change. A separate arm of the experiment inserted one sentence about the investor into the same prompt.",
+            ? [["local", "Both paths taken. Does the country ever reach the number?",
+                "On the allocation question the country barely moves the advice. The same models were asked two other questions, about a mortgage and about inflation.",
                 "Continue"]]
             : [["words", "Now the other one: maybe it does not know where you live.",
-                "Uniform advice would be a knowledge failure rather than an advice failure. Every one of these answers arrived with an explanation attached, and there is a way to check.",
+                "Uniform advice could be a gap in knowledge. Every one of these answers arrived with an explanation attached, and there is a way to check.",
                 "Read what the models said"]];
 
           el.appendChild(h("div", { style: "margin-top:1.6rem" }, [api.doors(nextUp)]));

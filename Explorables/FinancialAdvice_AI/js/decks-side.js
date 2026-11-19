@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------------
-   decks-side.js — the five side paths.
+   decks-side.js — the four side paths.
 
    Each declares its `parent` (where it hangs on the map) and `opensAfter`
    (the deck and slide that offers it, so the map does not spoil the tree).
@@ -161,8 +161,8 @@
           el.appendChild(h("div", { class: "stack", style: "max-width:39rem" }, [
             p("The models sometimes name the heuristic out loud — “a rule of thumb,” “the 100-minus-age rule.”", "lede"),
             p("Those phrases appear in <span class='num advice-t'>" + K.citeUS + "%</span> of explanations for the United States and <span class='num advice-t'>" + K.citeIndia + "%</span> for India. Outside the English-prompting countries they appear in <span class='num flat-t'>" + K.citeNonEnglish + "%</span>."),
-            p("Three hundredths of one percent. And yet the allocations bunch identically everywhere."),
-            p("A single policy, formed in the English-language planning literature and applied in every language, would look like this. So would several other things, and the study does not claim to have separated them.", "kicker")
+            p("Three hundredths of one percent. And yet the allocations bunch the same way everywhere, and the age profile is nearly the same in all twenty-one countries."),
+            p("The study also tested whether the age profile is flatter where the national pension replaces more income, as a life-cycle advisor would make it. It is not. The models apply the same tilt whatever the pension system.", "kicker")
           ]));
           el.appendChild(backTo(api, "same", 2));
         }
@@ -211,9 +211,10 @@
           el.appendChild(head("The order of events", "The predictions were filed before the answers arrived"));
 
           var left = [
-            p("A pilot of roughly 6,800 queries ran in late June 2026. The design, the specifications, the hypotheses and the inference rules were registered publicly on <strong>" + K.preregDate + "</strong>. The main collection ran on <strong>" + K.collectDates + "</strong>.", "lede"),
+            p("An exploratory pilot ran in late June 2026. The design, the specifications, the hypotheses and the inference rules were registered publicly on <strong>" + K.preregDate + "</strong>. The main collection ran on <strong>" + K.collectDates + "</strong>.", "lede"),
             p("That order is what makes the failures worth reporting, and it is why they are reported here too."),
-            p("One primary prediction did not survive: naming local instruments in the prompt was supposed to move the allocation, and it moved it by seven tenths of a point, which is not significant. You will meet that result later if you have not already.")
+            p("One primary prediction did not survive: naming local instruments in the prompt was supposed to move the allocation, and it moved it by seven tenths of a point, which is not significant. You will meet that result later if you have not already."),
+            p("Several parts of this explorable were added after the filing and are exploratory: the balance-sheet probes, the mortgage question without a rate, the questions the models ask, and the later model panel.")
           ];
 
           var right = h("div", { class: "stage-box" }, [
@@ -227,7 +228,9 @@
                 h("tr", {}, [h("td", { text: "Stated risk tolerance moves it" }), h("td", { text: "secondary · supported" })]),
                 h("tr", {}, [h("td", { text: "Stated pension moves it" }), h("td", { class: "flat-t", text: "secondary · not supported" })]),
                 h("tr", {}, [h("td", { text: "The calibration slope κ" }), h("td", { text: "descriptive" })]),
-                h("tr", {}, [h("td", { text: "The balance-sheet probes" }), h("td", { text: "exploratory, added later" })])
+                h("tr", {}, [h("td", { text: "The balance-sheet probes" }), h("td", { text: "exploratory, added later" })]),
+                h("tr", {}, [h("td", { text: "The mortgage question with no rate" }), h("td", { text: "exploratory, added later" })]),
+                h("tr", {}, [h("td", { text: "The questions the models ask" }), h("td", { text: "exploratory, added later" })])
               ])
             ]),
             h("p", { class: "note", style: "margin:.9rem 0 0",
@@ -240,7 +243,7 @@
 
       { title: "The obvious confounds",
         render: function (el, api) {
-          el.appendChild(head("Two things that would have fooled it", "Both were re-collected and checked"));
+          el.appendChild(head("Two things that could have produced it", "Both were re-collected and checked"));
 
           el.appendChild(h("div", { class: "cols even top" }, [
             h("div", { class: "stage-box stack" }, [
@@ -252,75 +255,49 @@
             h("div", { class: "stage-box stack" }, [
               h("h3", { class: "sub", text: "The randomness setting" }),
               p("Everything was collected at a temperature of 0.7. A result that only held at one setting would not be worth much."),
-              p("Five countries were re-collected at 0 and at 1.0. The pooled mean moved <span class='num'>0.3 points</span>. Brazil's contrast was <span class='num'>−10.0</span>, <span class='num'>−11.0</span> and <span class='num'>−11.4</span> across the three."),
+              p("Five countries were re-collected at 0 and at 1.0. Among the ten models that accept the setting, the pooled mean moved <span class='num'>" + K.tempShift + " points</span>. Brazil's contrast was <span class='num'>" + K.brazilByTemp[0].toFixed(1).replace("-", "−") + "</span>, <span class='num'>" + K.brazilByTemp[1].toFixed(1).replace("-", "−") + "</span> and <span class='num'>" + K.brazilByTemp[2].toFixed(1).replace("-", "−") + "</span> across the three."),
               h("p", { class: "note", text: "Temperature changes the scatter around the answer, not the answer." })
             ])
           ]));
 
           el.appendChild(h("p", { class: "note", style: "margin-top:1.4rem;max-width:46rem",
             text: "The collection produced no refusals in 267,150 responses and recovered a usable number from 99.9 percent of them, so the usual worry about who dropped out has nothing to work with here." }));
-
-          el.appendChild(backTo(api, "same", 3));
         }
-      }
-    ]
-  });
+      },
 
-  /* ======================================================================
-     MORTGAGE — the question they do localize
-     ====================================================================== */
+      { title: "Four later checks",
+        render: function (el, api) {
+          el.appendChild(head("Objections raised afterwards", "Four more things that could have produced it"));
 
-  EX.deck("mortgage", {
-    title: "The question they do localize",
-    parent: "words",
-    opensAfter: ["words", 2],
-    back: "words",
-    slides: [
+          function card(title, body, note) {
+            return h("div", { class: "stage-box stack" }, [
+              h("h3", { class: "sub", text: title }), p(body), h("p", { class: "note", text: note })
+            ]);
+          }
 
-      { title: "A fair objection",
-        render: function (el) {
-          el.appendChild(head("The side path", "Maybe the experiment is just too blunt"));
-          el.appendChild(h("div", { class: "stack", style: "max-width:39rem" }, [
-            p("If a design finds nothing, the first thing to ask is whether it could have found anything.", "lede"),
-            p("So here is the same design pointed at a different question. Same thirteen models, same twenty-one countries, same statistics, same everything."),
-            h("div", { class: "promptbox", style: "max-width:38rem" }, [
-              h("div", { class: "pb-head", text: "Question 2, as sent" }),
-              h("p", { class: "pb-p", text: "I am 40 years old with $50,000 in savings. I have a mortgage on my home with a 4% annual interest rate and 20 years remaining. I am thinking about whether to use some or all of this money to pay down the mortgage, or to invest it in a broad stock market index fund instead." }),
-              h("p", { class: "pb-p", text: "What fraction of the $50,000 would you recommend I invest in the stock fund?" })
+          el.appendChild(h("div", { class: "cols even top" }, [
+            h("div", { class: "stack" }, [
+              card("Where the question was sent from",
+                "Every query was sent from Germany. Routing a sample through a United States connection instead moved the recommended share by <span class='num'>" + K.vpnShift + " points</span>.",
+                "The interfaces do not pass the caller's location to the model."),
+              card("The English instructions",
+                "Every prompt wraps the translated question in English instructions, which might pull the answer toward an English default. With the instructions translated as well, the country differences correlate at <span class='num'>" + K.trinstrCorr + "</span> with the main ones and span " + K.trinstrRange + " points against 12.",
+                "Two models respond by about four points. The other eleven move by less than 1.5.")
+            ]),
+            h("div", { class: "stack" }, [
+              card("What the stake buys",
+                "$50,000 at market exchange rates buys twice as much in Brazil or Poland as in the United States. Restating the stake at purchasing power raises the share by <span class='num'>" + K.pppShift.toFixed(1) + " point</span> on average. Brazil's gap goes from " + K.pppBrazil[0].toFixed(1).replace("-", "−") + " to " + K.pppBrazil[1].toFixed(1).replace("-", "−") + ".",
+                "The size of the stake accounts for a sixth to a third of the largest gaps."),
+              card("No chance to ask questions",
+                "Letting the models list questions first lowers the provisional share by about six points in every country. The country averages correlate at <span class='num'>" + D.elicit.corrCountryMeans + "</span> with the main results.",
+                "The similarity across countries is not a shared lack of information.")
             ])
           ]));
-        }
-      },
 
-      { title: "It finds plenty", top: true,
-        render: function (el) {
-          el.appendChild(head("The answer", "Ten to twenty-nine points"));
-          el.appendChild(h("div", { class: "cols top narrow-first" }, [
-            h("div", { class: "stack" }, [
-              p("Every country outside the premise-acceptance group sits significantly below the United States after correction, by <span class='num advice-t'>10 to 29 points</span>. Japan at −28.6. Switzerland at −21.6. Germany at −21.1."),
-              p("The hollow rings are the same countries on the allocation question you have been looking at. The design can detect localization. It detects a great deal of it.", "lede"),
-              p("The five hollow exceptions are countries where prevailing mortgage rates were more than double the 4% in the prompt when it was written. They were flagged in advance as a group whose answers would test whether the models notice an odd premise. Mostly they just conditioned on it."),
-              h("p", { class: "note", text: "The mortgage question has a sharper right answer than the allocation question, because paying down a mortgage is a risk-free return pinned by the contract rate." })
-            ]),
-            P.q2Plot()
-          ]));
-        }
-      },
+          el.appendChild(h("p", { class: "note", style: "margin-top:1.2rem;max-width:46rem",
+            text: "All four were collected in October 2026, after the pre-registered results, and are exploratory." }));
 
-      { title: "And inflation too", top: true,
-        render: function (el, api) {
-          el.appendChild(head("The third question", "Where localization finally shows up in a recommendation"));
-          el.appendChild(h("div", { class: "cols top narrow-first" }, [
-            h("div", { class: "stack" }, [
-              p("Asked how to protect savings from three percent inflation, the models say equities nearly everywhere — above 93% of answers in fourteen countries."),
-              p("In Brazil they switch to inflation-linked bonds (<span class='num'>86.7%</span>). In Turkey to linkers and gold (<span class='num'>82.3%</span> combined). Mexico tilts the same way."),
-              p("The tilt appears inside the English-prompting group too — India and South Africa at 11.5% and 16.3% against under 3% in the US, UK, Canada and Australia — so this is not about language."),
-              p("The models hold country-specific economic knowledge and deploy it when the question forces it into view. Almost none of it reaches the allocation question.", "kicker"),
-              h("p", { class: "note", text: "Japan is the sharpest case: indistinguishable from the United States on the allocation question, and the largest gap in the study on both of the others." })
-            ]),
-            P.q4Instruments()
-          ]));
-          el.appendChild(backTo(api, "words", 2));
+          el.appendChild(backTo(api, "same", 3));
         }
       }
     ]

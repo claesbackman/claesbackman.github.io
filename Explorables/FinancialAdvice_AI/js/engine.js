@@ -307,15 +307,16 @@ window.EX = (function () {
   // the map does not spoil the tree. A spine deck is reachable once the decks
   // it argues from are finished: the map lists them all, but the ones whose
   // premises the reader has not met yet are shown dimmed rather than opened.
-  // This is the diamond -- `levers` needs both eliminations, in either order.
+  // This is the diamond -- `local` needs both branches, in either order.
   var REQUIRES = {
     same:      ["ask"],
     warranted: ["same"],
     words:     ["same"],
-    levers:    ["warranted", "words"],
+    local:     ["warranted", "words"],
+    levers:    ["local"],
     lineup:    ["levers"],
     asym:      ["lineup"],
-    incidence: ["asym"]
+    world:     ["asym"]
   };
 
   function unlocked(id) {

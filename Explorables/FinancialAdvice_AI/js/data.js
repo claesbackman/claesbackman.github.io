@@ -2,7 +2,7 @@
    data.js — every number in this explorable, in one place.
 
    Source: Bäckman, "One Advisor for the Whole World? Cross-Country Evidence
-   on Financial Advice from Large Language Models" (Writing/1_AI_FinAdvice.tex).
+   on Financial Advice from Large Language Models" (Writing/1_AI_FinAdvice_v2.tex, as of 19 November 2026).
    Each block names the table or section it was transcribed from, so a re-run
    of the Stata pipeline can be diffed against it.
 
@@ -100,7 +100,7 @@ window.D = (function () {
     parseRate: 99.9,
     refusals: 0,
     preregDate: "2 July 2026",
-    collectDates: "3–4 July 2026",
+    collectDates: "2–4 July 2026",
     osf: "https://osf.io/2ch5z",
 
     // descriptive                      (sec:descriptive)
@@ -120,10 +120,14 @@ window.D = (function () {
     modelRange: 34,
     countryRange: 12,
 
+    // by question                      (tab_variance_byq_body.tex)
+    varModelQ2: 15, varCountryQ2: 27, varModelQ3: 26, varCountryQ3: 28,
+    corrQ1Q2: -0.10, corrQ2Q3: 0.80,
+
     // H1                               (sec:main-countryfe)
-    jointF: 20.56,
-    jointDf: "20,12",
-    jointP: 0.006,
+    // No joint Wald test is reported: with thirteen clusters the covariance
+    // of twenty country coefficients has rank at most twelve. Equality is
+    // rejected through the Holm family.
     holmSurvivors: 7,
     uncorrectedSurvivors: 13,
     mdeSingle: 4,
@@ -139,15 +143,19 @@ window.D = (function () {
     kappaCiLo: -0.145, kappaCiHi: 0.328,
     kappaVsOneP: 0.001,   // p < 0.001 against kappa = 1
     kappaVsZeroP: 0.317,
-    kappaGridLo: 0.07, kappaGridHi: 0.43,
+    kappaNoBrazil: 0.03, kappaNoTurkey: 0.21,   // leave-one-country-out
+    kappaQ2: 0.23, kappaQ1Same15: 0.07,         // tab_kappa_q2_body.tex
     prescribedSpread: 32,
-    frischLo: 0.13, frischHi: 0.97,
+    // The currency-hedged version of the same benchmark prescribes one share
+    // everywhere (tab_benchmark_gaps_body.tex, hedged column). At gamma = 3
+    // it is 0.5215, which is the Merton share at the hedged volatility below.
+    hedgedShare: 0.52, hedgedSigma: 18.44, hedgedMaxGap: 6,
 
     // preferences and literacy         (sec:calibration)
     gpsSlope: 0.028, gpsSe: 0.021, gpsP: 0.272,
-
-    // welfare                          (sec:benchmark-welfare)
-    medianLossBp: 1.6, medianLoss5y: 40, underFiveBp: 16,
+    gpsPerSd: 0.8,            // points of equity per cross-country SD
+    nCorrelates: 16,          // tab_country_correlates_body.tex, none survives Holm on Q1
+    q2PerSdMortgageRate: 6.6, q2MortgageRateR2: 0.67, q2MortgageRateHolmP: 0.006,
 
     // explanation text                 (sec:text)
     usLocal: 18.0, usInfl: 33.7, usPens: 97.5,
@@ -173,7 +181,7 @@ window.D = (function () {
 
     // age                              (sec:main-age)
     age30: 6.24, age55: -11.13,
-    psi: -0.0002, psiP: 0.96,
+    psi: -0.0002, psiP: 0.96,   // -0.02 points per SD of the replacement rate
     ruleSlope: -0.70, ruleSlopeExact: -1.00,
     ruleSlopeEnglish: -0.65, ruleSlopeOther: -0.72,
     citeUS: 14.8, citeIndia: 17.1, citeNonEnglish: 0.03,
@@ -181,9 +189,15 @@ window.D = (function () {
     // robustness                       (sec:robustness)
     usdShift: -0.1, usdShiftP: 0.84, usdShiftLo: -1.6, usdShiftHi: 1.4,
     japanNumeral: 2.8, japanNumeralP: 0.01,
-    tempShift: 0.3,
-    brazilByTemp: [-10.0, -11.0, -11.4],
-    sdByTemp: [0.035, null, 0.041],
+    // Temperature: the ten models that accept the setting
+    // (tab_robust_temp_body.tex). On all thirteen the shift is 0.3.
+    tempShift: 0.5, tempShiftAll13: 0.3,
+    brazilByTemp: [-11.1, -12.5, -12.7],
+    sdByTemp: [0.036, 0.039, 0.044],
+    // exploratory checks added after filing
+    vpnShift: 0.4,
+    trinstrCorr: 0.93, trinstrRange: 11, trinstrHolm: 8,
+    pppShift: 1.0, pppBrazil: [-11.5, -9.7], pppPoland: [-8.4, -6.1],
 
     // language provenance footnote     (intro footnote)
     glidvagShare: 0.3, glidvagCount: 17, glidvagOneVendor: 13,
@@ -274,6 +288,90 @@ window.D = (function () {
     }
   ];
 
+  /* -- the mortgage question with no rate stated --------------------------
+     tab_nonum_countryfe_body.tex and tab_nonum_assumed_body.tex (stage 15,
+     collected 16-17 November 2026, 25 repetitions, exploratory).
+       rate      prevailing mortgage rate, percent
+       gap4      gap to the US with the 4% rate stated (English cell)
+       gap0      gap to the US with no rate stated
+       lo, hi    95% wild-bootstrap interval on gap0
+       pHolm     Holm p on gap0
+       assumed   mortgage rate the models say they assumed, percent
+       inflAss   inflation rate the models say they assumed, percent
+     The United States is the baseline, so its gaps are zero by construction.
+     ------------------------------------------------------------------- */
+
+  var NONUM = [
+    // key           rate   gap4    gap0    lo     hi     pHolm  assumed inflAss premise
+    ["Switzerland",  1.4,  -17.2,   1.5,   -2.9,   6.2,  1.000,  2.0,   1.4,  false],
+    ["Spain",        2.8,  -18.9,  -5.8,  -11.0,  -0.6,  0.267,  3.3,   2.2,  false],
+    ["Finland",      2.8,  -17.9,  -5.9,  -11.5,  -0.4,  0.269,  3.5,   2.1,  false],
+    ["Japan",        2.8,  -26.9,   3.0,   -0.6,   7.0,  0.728,  1.1,   1.8,  false],
+    ["China",        3.1,  -25.3, -19.8,  -33.1,  -7.5,  0.005,  4.1,   2.1,  false],
+    ["France",       3.1,  -16.7,  -0.6,   -4.4,   3.2,  1.000,  2.8,   2.1,  false],
+    ["Sweden",       3.4,   -5.4,  -1.3,   -6.0,   3.8,  1.000,  4.0,   2.1,  false],
+    ["Italy",        3.4,  -20.2,  -5.8,  -10.5,  -1.2,  0.176,  3.4,   2.1,  false],
+    ["Netherlands",  3.6,  -14.5,  -3.2,   -8.1,   1.7,  0.979,  3.7,   2.2,  false],
+    ["Canada",       3.8,  -12.3, -11.2,  -18.4,  -4.6,  0.015,  5.0,   2.3,  false],
+    ["Germany",      3.8,  -21.2,  -5.4,  -11.1,   0.2,  0.431,  3.4,   2.1,  false],
+    ["South Korea",  4.3,  -17.6, -10.7,  -16.2,  -5.8,  0.007,  4.1,   2.4,  false],
+    ["UK",           4.8,  -14.3, -10.4,  -17.5,  -4.4,  0.016,  4.5,   2.4,  false],
+    ["Australia",    5.7,  -17.1, -18.6,  -29.5,  -8.3,  0.016,  6.0,   3.0,  false],
+    ["Poland",       6.0,  -12.0, -20.9,  -32.7,  -9.0,  0.007,  6.7,   3.7,  false],
+    ["USA",          6.2,    0,     0,     null,  null,  null,   5.1,   2.6,  false],
+    ["India",        8.1,   -3.8, -10.8,  -17.6,  -5.0,  0.014,  8.4,   5.3,  true ],
+    ["South Africa", 10.2,  -2.4, -26.7,  -39.9, -13.3,  0.002, 10.9,   5.3,  true ],
+    ["Brazil",       10.7,  -1.8, -28.7,  -43.4, -14.2,  0.002,  9.7,   4.5,  true ],
+    ["Mexico",       11.4,  -1.5, -20.1,  -34.3,  -6.2,  0.031,  9.5,   4.3,  true ],
+    ["Turkey",       36.2,   3.5,  -5.7,  -16.6,   4.8,  1.000, 26.6,  40.6,  true ]
+  ].map(function (r) {
+    return { key: r[0], label: byKey[r[0]].label, rate: r[1], gap4: r[2], gap0: r[3],
+             lo: r[4], hi: r[5], pHolm: r[6], assumed: r[7], inflAss: r[8], premise: r[9] };
+  });
+
+  var nonum = {
+    rows: NONUM,
+    corrAssumedPrevailing: 0.92,          // in logs, across 21 countries
+    corrByModelLo: 0.83, corrByModelHi: 0.96,
+    lowRateGap: [17.9, 5.0],              // 11 countries with a prevailing rate under 4%
+    premiseGap: [1.2, 18.4],              // the five premise-acceptance countries
+    perPointAbove4: -1.0,                 // change in the gap per point of prevailing rate above 4%
+    perPointAssumedRate: -1.6, perPointAssumedRateP: 0.02,
+    perPointAssumedInfl: 0.8, perPointAssumedInflP: 0.10
+  };
+
+  /* -- what the models ask before advising ---- sec:scorecard, sec:robustness
+     Elicitation arm, English Question 1, age 40, 21 countries, collected
+     October 2026, exploratory. Topic shares are the judge-coded shares of
+     responses that ask about each topic (12,452 elicited questions).
+     ------------------------------------------------------------------- */
+
+  var elicit = {
+    nQuestions: 12452,
+    topics: [
+      ["How would you cope with losses?",        100, "risk tolerance"],
+      ["What is the money for?",                  93, "purpose"],
+      ["Do you have an emergency fund?",          93, "emergency savings"],
+      ["Is the five-year horizon firm?",          84, "horizon"]
+    ],
+    allFour: 75,
+    currency: 24, currencyMexico: 89,     // home-currency exposure, none in the US and UK
+    inflation: 12, inflationTurkey: 81,   // inflation or sovereign risk
+    corrCountryMeans: 0.94,               // provisional share against the main arm
+    levelShift: -6,                       // points of equity, uniform across countries
+    varModel: 82, varCountry: 4
+  };
+
+  /* -- the September model-tracking wave ------ tab_tracking_body.tex ------ */
+
+  var tracking = {
+    nModels: 21, nNew: 14, nCarried: 7,
+    varModel: [78, 70], varCountry: [3, 5],      // July, September, same English slice
+    belowUS: [67, 77],                           // % of non-US cells below the model's own US cell
+    newVarModel: 43, newVarCountry: 15,          // the fourteen new models alone
+    carriedWithin: 6, carriedTol: 2.5
+  };
+
   /* -- helpers ------------------------------------------------------------ */
 
   // Merton share at a given risk aversion, from the country's local-currency
@@ -313,6 +411,9 @@ window.D = (function () {
     models: models,
     K: K,
     stated: stated,
+    nonum: nonum,
+    elicit: elicit,
+    tracking: tracking,
     probes: probes,
     suspects: suspects,
     merton: merton,

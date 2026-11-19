@@ -593,8 +593,29 @@ window.P = (function () {
   function mertonBench(opts) {
     opts = opts || {};
     var gamma = 3;
+    // Whether the world fund is hedged into the investor's own currency. The
+    // prompt does not say, and it decides how much the formula varies: hedged,
+    // every country faces the same volatility and gets the same share.
+    var hedged = true;
+    function sig(c) { return hedged ? D.K.hedgedSigma : c.sigma; }
 
     var wrap = h("div", { class: "stack" });
+
+    var seg = h("div", { class: "seg" });
+    [[true, "Currency-hedged fund"], [false, "Unhedged fund"]].forEach(function (o) {
+      var b = h("button", { text: o[1] });
+      b.onclick = function () {
+        if (hedged === o[0]) return;
+        hedged = o[0];
+        Array.prototype.forEach.call(seg.children, function (bb, i) {
+          bb.setAttribute("aria-pressed", [true, false][i] === hedged ? "true" : "false");
+        });
+        if (!hedged) EX.flag("bench.unhedged", true);
+        update();
+      };
+      b.setAttribute("aria-pressed", o[0] === hedged ? "true" : "false");
+      seg.appendChild(b);
+    });
 
     /* --- the control sits above the chart, so it is never below the fold --- */
 
@@ -625,7 +646,7 @@ window.P = (function () {
 
     var topRow = h("div", {
       style: "display:flex;gap:1.8rem;align-items:flex-end;flex-wrap:wrap;margin-bottom:.9rem"
-    }, [ctl, spreadOut]);
+    }, [h("div", { class: "chips", style: "flex:0 0 auto" }, [seg]), ctl, spreadOut]);
 
     /* --- the chart --------------------------------------------------- */
 
@@ -712,7 +733,7 @@ window.P = (function () {
     function update() {
       var los = Infinity, his = -Infinity;
       rows.forEach(function (r) {
-        var a = D.merton(r.c.sigma, gamma);
+        var a = D.merton(sig(r.c), gamma);
         los = Math.min(los, a); his = Math.max(his, a);
         r.war.setAttribute("cx", x(a));
         r.link.setAttribute("x1", x(Math.min(a, r.advice)));
@@ -734,11 +755,18 @@ window.P = (function () {
       spreadVal.textContent = spread.toFixed(0) + " pts";
 
       var offBoard = rows.filter(function (r) {
-        return D.merton(r.c.sigma, gamma) < 0.10;
+        return D.merton(sig(r.c), gamma) < 0.10;
       }).length;
 
-      if (spread > 22) {
-        verdict.textContent = "The levels overlap the advice for western Europe, but they are spread over " +
+      if (hedged) {
+        var worst = Math.max.apply(null, rows.map(function (r) { return Math.abs(r.advice - his); })) * 100;
+        verdict.textContent = Math.abs(gamma - 3) < 0.13
+          ? "Hedged, the formula prescribes " + (his * 100).toFixed(0) + "% in every country, and every national average is within about " +
+            worst.toFixed(0) + " points of it. Now switch to the unhedged fund."
+          : "Hedged, the formula still prescribes one share for everybody, now " + (his * 100).toFixed(0) +
+            "%. Risk aversion moves the level. It cannot produce a difference between countries.";
+      } else if (spread > 22) {
+        verdict.textContent = "Unhedged, the levels overlap the advice for western Europe, but they are spread over " +
           spread.toFixed(0) + " points where the advice spans 12, and they miss Turkey by thirty-three. " +
           "Turn risk aversion up to squeeze them together.";
       } else if (his < aLo) {
@@ -751,7 +779,7 @@ window.P = (function () {
           " points, and the set has started sliding below the advice.";
       }
 
-      if (gamma >= 6 && !EX.flag("bench.tried")) {
+      if (!hedged && gamma >= 6 && !EX.flag("bench.tried")) {
         EX.flag("bench.tried", true);
         if (opts.onSolved) opts.onSolved();
       }

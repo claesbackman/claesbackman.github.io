@@ -3,6 +3,13 @@
 An interactive explanation of Bäckman, *One Advisor for the Whole World? Cross-Country
 Evidence on Financial Advice from Large Language Models*.
 
+Last brought in line with the paper on 19 November 2026 (`Writing/2_main_v3.tex`). That
+revision made the mortgage and inflation questions a deck on the spine (`local`), added the
+mortgage question without a stated rate, the questions the models ask before advising, the
+later robustness checks and the September model panel, added the currency-hedged benchmark
+to the Merton bench, and removed the welfare-cost deck, which the paper no longer carries.
+`plan.md` describes the original September design and has not been rewritten.
+
 Open `index.html` in a browser. It works from disk by double-click — no server, no build
 step, no external dependencies. It also deploys as-is to GitHub Pages under `docs/`, the
 same way `docs/paper/` does.
@@ -17,11 +24,11 @@ js/
   ruler.js              the standing ruler in the top bar
   charts.js             SVG primitives
   playables.js          hook, compression and benchmark playables
-  playables-rule.js     explanation-text, advice-rule and incidence playables
-  playables-side.js     the five side paths
+  playables-rule.js     explanation-text and advice-rule playables
+  playables-side.js     the side paths, plus the mortgage and inflation charts
   decks.js              ask / same / warranted
-  decks-rule.js         words / levers / lineup / asym / incidence
-  decks-side.js         models / age / method / mortgage / glidvag
+  decks-rule.js         words / local / levers / lineup / asym / world
+  decks-side.js         models / age / method / glidvag
   data.js               every number transcribed from the paper's tables
   data_text.js          explanation-text prevalences
   -- generated, do not edit by hand --
@@ -42,6 +49,10 @@ python docs/explorable/extract_prompts.py   # prompts.js     <- output/translati
 python docs/explorable/extract_bymodel.py   # bymodel.js     <- output/tables/check_q1_country_by_model.csv
 ```
 
+`check_q1_country_by_model.csv` is no longer written by the pipeline, so
+`extract_bymodel.py` fails until that table is restored. The committed `bymodel.js` is from
+the same collection and is still correct.
+
 `data.js` and `data_text.js` are hand-transcribed and each block names its source table, so
 they can be diffed against a fresh pipeline run by hand.
 
@@ -58,13 +69,12 @@ Output goes to `_shots/` (gitignored).
 
 ## What is computed live
 
-The benchmark is not a lookup table. `D.merton()`, `D.ceLoss()`, `D.loss5y()` and
-`D.gammaFor()` in `data.js` implement the paper's formulas, and the Merton bench, the
-squaring curve and the incidence sandbox recompute from the exposed parameters on every
-interaction. At the baseline grid point (γ = 3, η = 0, premium 5.32%) they reproduce the
-paper's benchmark and welfare tables exactly: Turkey comes out at 136.7 basis points and
-$3,513 over five years, matching `tab_benchmark_gaps.csv`, and the prescribed shares run
-from 20.97% in Turkey to 52.66% in South Korea for a spread of 31.7 points.
+The benchmark is not a lookup table. `D.merton()` in `data.js` implements the paper's
+formula, and the Merton bench recomputes from the slider on every interaction, for the
+hedged fund (one volatility for every country, 52% everywhere at γ = 3) and the unhedged
+fund. At the baseline grid point (γ = 3, premium 5.32%) the unhedged shares run from 20.97%
+in Turkey to 52.66% in South Korea for a spread of 31.7 points, matching
+`tab_benchmark_gaps.csv`.
 
 For that to hold, σ is stored to two decimals. The paper's tables print it to one, and at
 one decimal the United States and South Korea tie, which put the maximum prescribed share
@@ -78,7 +88,7 @@ recovered from the published `alpha_s` column by inverting the Merton expression
 - The needle motif — a marker on a 0–100 track — appears wherever the point is that a
   number did or did not move. One of them is promoted to the page furniture: the ruler in
   the top bar carries the band the advice occupies and a needle at the panel average, and
-  it is identical on all 48 slides. On `warranted`, `asym` and `incidence` the twenty-one
-  prescribed shares appear beneath it, spread across a third of the scale.
+  it is identical on every slide. On `warranted` the twenty-one shares the unhedged
+  benchmark prescribes appear beneath it, spread across a third of the scale.
 - Every slide reads as a normal explanation if the reader touches nothing.
 - No fabricated quotes. Prompts, statements and distributions are the real ones.

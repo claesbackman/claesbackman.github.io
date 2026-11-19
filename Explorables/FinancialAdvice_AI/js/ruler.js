@@ -5,12 +5,12 @@
    the page furniture: a hairline rule across the top bar carrying the band
    the advice occupies and one needle at the panel average.
 
-   The point is that it never moves. A reader pages through forty-eight
-   slides and the needle sits in the same place on every one of them, which
-   is the only way a null result can be felt rather than read. On the three
-   decks where the benchmark is the subject, the twenty-one shares the
+   The point is that it never moves. A reader pages through every
+   slide and the needle sits in the same place on every one of them, which
+   is the only way a null result can be felt rather than read. On the deck
+   where the benchmark is the subject, the twenty-one shares the unhedged
    formula prescribes appear underneath it, spread across a third of the
-   scale, so the comparison the whole paper rests on is always in view.
+   scale.
 
    Decorative in the accessibility sense only: it repeats what the slides
    already say, so it is aria-hidden.
@@ -31,7 +31,7 @@
 
   // The decks where the benchmark is the subject and the comparison belongs
   // on screen.
-  var SHOW_PRESCRIBED = { warranted: 1, asym: 1, incidence: 1 };
+  var SHOW_PRESCRIBED = { warranted: 1 };
 
   var bar = document.createElement("div");
   bar.id = "ruler";
