@@ -1508,8 +1508,8 @@ At three levels, with a rubric. Check every key yourself.
 <h2>Installing the skills is a copy into one hidden folder</h2>
 <div class="claims">
 <ul>
-<li>Download the zip from <a href="https://claesbackman.com/ai_workshop">claesbackman.com/ai_workshop</a>, or paste the one-line command from that page into the VS Code terminal (<code>Ctrl+`</code>). Source and updates: <a href="https://github.com/claesbackman/AI-research-feedback">github.com/claesbackman/AI-research-feedback</a>. <code>/voice-extractor</code> is Mihail Velikov’s and is linked from the same page.</li>
-<li>Unzip, then copy each skill folder (<code>review-paper</code>, <code>review-paper-light</code>, <code>voice-extractor</code>, …) into <code>~/.claude/skills/</code>, a hidden folder under your user folder. Windows: <code>C:\Users\you\.claude\skills</code>; to see hidden folders, View, Show, Hidden items in File Explorer.</li>
+<li>Download the zip from <a href="https://claesbackman.com/ai_workshop">claesbackman.com/ai_workshop</a>, or paste the one-line command from that page into the VS Code terminal (<code>Ctrl+`</code>). Source and updates: <a href="https://github.com/claesbackman/AI-research-feedback">github.com/claesbackman/AI-research-feedback</a>.</li>
+<li>Unzip, then copy each skill folder (<code>review-paper</code>, <code>review-paper-light</code>, <code>voice-builder</code>, …) into <code>~/.claude/skills/</code>, a hidden folder under your user folder. Windows: <code>C:\Users\you\.claude\skills</code>; to see hidden folders, View, Show, Hidden items in File Explorer.</li>
 <li>A skill in <code>~/.claude/skills/</code> works in every project; one in <code>project/.claude/skills/</code> only in that project.</li>
 <li>Start a new Claude Code conversation. Type <code>/</code> and the skills appear in the list.</li>
 </ul>
@@ -1739,13 +1739,13 @@ I teach [course] and supervise theses in [field].
 <div class="prose">
 <div class="task">
 <p class="th">
-<b>Optional · <code>/voice-extractor</code></b><span class="time">15 min</span>
+<b>Optional · <code>/voice-builder</code></b><span class="time">15 min</span>
 </p>
 <ol type="1">
 <li>Inside the project folder, make a folder <code>sample-papers</code> with three or four PDFs of your own writing. Coauthored? Pick the papers where the introduction is yours.</li>
-<li>Type <code>/voice-extractor sample-papers</code>. No skill? Type <em>Read the PDFs in sample-papers and write voice.md: how I build paragraphs, sentence length, words I use and avoid, with quoted examples.</em></li>
+<li>Type <code>/voice-builder sample-papers</code>. No skill? Type <em>Read the PDFs in sample-papers and write voice.md: how I build paragraphs, sentence length, words I use and avoid, with quoted examples.</em></li>
 <li>Read <code>voice.md</code> and delete or edit anything that does not sound like you.</li>
-<li>Add one line to <code>CLAUDE.md</code>: “When editing my prose, match the voice in voice.md.” No <code>CLAUDE.md</code> yet? Type <code>/init</code> first.</li>
+<li>The skill proposes a line for <code>CLAUDE.md</code> that points to <code>voice.md</code>. Accept it. No skill? Add the line yourself: “When editing my prose, match the voice in voice.md.” No <code>CLAUDE.md</code> yet? Type <code>/init</code> first.</li>
 </ol>
 <p class="debrief">
 <b>Debrief:</b> which sentence in <code>voice.md</code> did you delete first? Did it name a habit you did not know you had?
@@ -1835,8 +1835,8 @@ I teach [course] and supervise theses in [field].
 <td>Revise idea flow before wording</td>
 </tr>
 <tr class="odd">
-<td><code>/voice-extractor</code></td>
-<td>Write <code>voice.md</code> from PDFs of your own prose (Mihail Velikov)</td>
+<td><code>/voice-builder</code></td>
+<td>Write and test <code>voice.md</code> from your own papers, and turn later corrections into rules</td>
 </tr>
 </tbody>
 </table>

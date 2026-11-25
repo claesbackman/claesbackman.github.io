@@ -112,44 +112,50 @@
   "tab:hypotheses-cont": {
    "number": "A7"
   },
-  "tab:eq1-countryfe": {
+  "tab:deviations": {
    "number": "A8"
   },
-  "tab:q2q3-countryfe": {
+  "tab:deviations-cont": {
+   "number": "A8"
+  },
+  "tab:eq1-countryfe": {
    "number": "A9"
   },
-  "tab:nonum-countryfe": {
+  "tab:q2q3-countryfe": {
    "number": "A10"
   },
-  "tab:nonum-assumed": {
+  "tab:nonum-countryfe": {
    "number": "A11"
   },
-  "tab:nonum-bymodel": {
+  "tab:nonum-assumed": {
    "number": "A12"
   },
-  "tab:q4-instrument": {
+  "tab:nonum-bymodel": {
    "number": "A13"
   },
-  "tab:country-correlates": {
+  "tab:q4-instrument": {
    "number": "A14"
   },
-  "tab:robust-cells": {
+  "tab:country-correlates": {
    "number": "A15"
   },
-  "tab:ppp-contrasts": {
+  "tab:robust-cells": {
    "number": "A16"
   },
-  "tab:tracking": {
+  "tab:ppp-contrasts": {
    "number": "A17"
   },
-  "tab:bgrt-coef": {
+  "tab:tracking": {
    "number": "A18"
   },
-  "tab:bgrt-bycountry": {
+  "tab:bgrt-coef": {
    "number": "A19"
   },
-  "tab:age-pension": {
+  "tab:bgrt-bycountry": {
    "number": "A20"
+  },
+  "tab:age-pension": {
+   "number": "A21"
   }
  },
  "equations": {
@@ -206,7 +212,7 @@
   "temperature-check.": "results",
   "numeral-magnitude.": "results",
   "purchasing-power-adjustment.": "results",
-  "leave-one-out-mean-and-vendor-fixed-effects.": "results",
+  "leave-one-model-out-and-vendor-fixed-effects.": "results",
   "model-drift-over-time.": "results",
   "fn13": "results",
   "caller-location-and-routing.": "results",
@@ -260,6 +266,8 @@
   "app:tables-tab": "appendix",
   "tab:hypotheses": "appendix",
   "tab:hypotheses-cont": "appendix",
+  "tab:deviations": "appendix",
+  "tab:deviations-cont": "appendix",
   "tab:eq1-countryfe": "appendix",
   "tab:q2q3-countryfe": "appendix",
   "tab:nonum-countryfe": "appendix",
